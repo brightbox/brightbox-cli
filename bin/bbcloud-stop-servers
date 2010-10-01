@@ -1,0 +1,21 @@
+#!/usr/bin/env ruby
+
+begin
+  require "bbcloud/cli"
+rescue LoadError
+  bbcloud_path = File.expand_path('../../lib', __FILE__)
+  $:.unshift(bbcloud_path)
+  require "bbcloud/cli"
+end
+
+servers = ARGV.collect { |arg| API.servers.get arg }
+
+servers.each do |server|
+  server.shutdown
+  server.reload
+  output = [server.id]
+  output << server.status.pad_to(10)
+#  output << ["public", server.id, "gb1.eu.brightbox.com"].join('.')
+#  output << server.description.to_s.strip
+  puts output.join("  ")
+end

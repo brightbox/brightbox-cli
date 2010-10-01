@@ -1,0 +1,30 @@
+#!/usr/bin/env ruby
+
+begin
+  require "bbcloud/cli"
+rescue LoadError
+  bbcloud_path = File.expand_path('../../lib', __FILE__)
+  $:.unshift(bbcloud_path)
+  require "bbcloud/cli"
+end
+
+image_id = ARGV.shift
+
+exit 1 if image_id.nil?
+
+image = API.images.get image_id
+puts "image #{image.id}: #{image.name}"
+
+1.times do |i|
+  server = API.servers.create :image_id => image.id
+  output = [server.id]
+  output << server.image_id
+  output << server.status.pad_to(10)
+  output << server.flavor_id
+  output << server.created_at.strftime("%Y-%m-%dT%H:%M")
+  internal_ips = server.interfaces.collect { |i| i['ipv4_address'] }
+  output << internal_ips.join(",").pad_to(16)
+#  output << ["public", server.id, "gb1.eu.brightbox.com"].join('.')
+#  output << server.description.to_s.strip
+  puts output.join("  ")
+end

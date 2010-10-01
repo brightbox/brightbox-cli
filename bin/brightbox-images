@@ -1,0 +1,53 @@
+#!/usr/bin/env ruby
+
+begin
+  require "bbcloud/cli"
+rescue LoadError
+  bbcloud_path = File.expand_path('../../lib', __FILE__)
+  $:.unshift(bbcloud_path)
+  require "bbcloud/cli"
+end
+
+#program_description 'Manage Brightbox Cloud images'
+desc 'List available images'
+arg_name '[image-id...]'
+command [:list] do |c|
+  c.desc "Simple output (tab separated, don't draw the fancy table)"
+  c.switch [:s, :simple]
+
+  c.action do |global_options,options,args|
+    if args.empty?
+      # Get all images
+      images = API.images
+    else
+      # Get the named images
+      images = args.uniq.collect do |i_id|
+        begin
+          API.images.get i_id
+        rescue
+          error "ERROR: Failed to get image id #{i_id}"
+          nil
+        end
+      end
+    end
+    # draw the images
+    table = []
+    images.collect do |image|
+      next if image.nil?
+      o = { }
+      o[:id] = image.id 
+      o[:status] = image.status.pad_to(10)
+      o[:access] = (image.public ? 'public' : 'private')
+      o[:arch] = image.arch.pad_to(7)
+      o[:name] = image.name.pad_to(60)
+      table << o
+    end
+    if options[:s]
+      table.each { |r| info r.values.join("\t") }
+    else
+      info render_table(table, :fields => [:id, :status, :access, :arch, :name])
+    end
+  end
+end
+
+run ARGV
