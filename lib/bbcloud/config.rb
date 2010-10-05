@@ -6,8 +6,6 @@ class BBConfig
 
   attr_writer :client_name
 
-  CONFIG_PATHS = %w{.brightbox/config ~/.brightbox/config /etc/brightbox/config}
-
   def initialize(options = {})
     @options = options
   end
@@ -53,6 +51,8 @@ class BBConfig
   end
 
   def client_name
+    ddefault_client = config['core']['default_client']
+    @client_name = ddefault_client if ddefault_client
     @client_name ||= clients.first
   end
 
