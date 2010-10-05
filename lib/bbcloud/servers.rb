@@ -13,6 +13,7 @@ module Fog
           o[:type] = flavor_id
 					o[:ips] = interfaces.collect { |i| i['ipv4_address'] }.join(', ')
           o[:zone] = zone_id
+          o[:cloud_ips] = cloud_ips.collect { |i| i['public_ip'] }
           o
         end
       end

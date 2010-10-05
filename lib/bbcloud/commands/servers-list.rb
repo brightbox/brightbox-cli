@@ -21,8 +21,8 @@ command [:list] do |c|
       false
     end
 
-    render_table(servers, :fields => [:id, :status, :type, :image, :zone, :created_at, 
-                                      :ips, :description], 
+    render_table(servers, :fields => [:id, :status, :type, :zone, :created_at, 
+                                      :cloud_ips, :description], 
                  :flavors => Api.conn.flavors,
                  :global => global_options)
   end

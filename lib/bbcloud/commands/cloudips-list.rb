@@ -5,13 +5,12 @@ command [:list] do |c|
   c.action do |global_options,options,args|
 
     if args.empty?
-      ips = Api.conn.list_cloud_ips
+      ips = Api.conn.cloud_ips
     else
       ips = args.collect { |arg| Api.conn.cloud_ips.get arg }
     end
-
-    puts ips.body.inspect
-
+    
+    ips = ips.collect { |ip| ip.attributes }
     # Sort
     # ips.sort! { |a,b| a.created_at <=> b.created_at }
 
@@ -21,9 +20,8 @@ command [:list] do |c|
     #  false
     #end
 
-    render_table(ips, :fields => [:id, :status, :type, :image, :created_at, 
-                                      :ips, :description], 
-                 :flavors => Api.conn.flavors,
+    render_table(ips, :fields => [:id, :status, :public_ip, :server_id, :interface_id, 
+                                      :reverse_dns],
                  :global => global_options)
   end
 end
