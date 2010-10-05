@@ -18,6 +18,12 @@ command [:create] do |c|
       raise "You must specify the image_id as the first argument"
     end
 
+    if options[:i].to_s !~ /^[0-9]+$/
+      raise "server-count must be a number"
+    end
+
+    options[:i] = options[:i].to_i
+
     image_id = args.shift
     image = Api.conn.images.get image_id
     raise "Couldn't find image #{image_id}" unless image
@@ -28,12 +34,13 @@ command [:create] do |c|
 
     info "Creating #{options[:i]} '#{type.name}' server#{options[:i] > 1 ? 's' : ''} with image #{image.id} (#{image.name})"
     servers = []
-    options[:i].to_i.times do
+    options[:i].times do
       begin
-        servers << Api.conn.servers.create(:image_id => image.id, 
-                                      :description => options[:d])
+        servers << Api.conn.servers.create(:image_id => image.id,
+                                           :flavor_id => type.id,
+                                           :description => options[:d])
       rescue StandardError => e
-        error "Error creating server"
+        error "Error creating server: #{e}"
       end
     end
     render_table(servers, :fields => [:id, :status, :type, :image, :created_at, 
