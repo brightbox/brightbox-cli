@@ -40,12 +40,21 @@ class Time
   end
 end
 
-def error(s)
-  STDERR.write("#{s}\n")
+def error(s='')
+  STDERR.write s
+  STDERR.write "\n"
+  STDERR.flush
 end
 
-def info(s)
-  STDOUT.write("#{s}\n")
+def info(s='')
+  STDERR.write s
+  STDERR.write "\n"
+  STDERR.flush
+end
+
+def data(s)
+  STDOUT.write s
+  STDOUT.write "\n"
 end
 
 def field(k,v, pad = 16)
@@ -65,13 +74,23 @@ class NilClass
 end
 
 def render_table(rows, options = {})
-  rows = rows.collect { |row| row.to_row }
-  if options[:global][:s]
+  options = { :description => false }.merge options
+  rows = rows.collect { |row| row.respond_to?(:to_row) ? row.to_row : row }
+  if options.fetch(:global, {})[:s]
     rows.each do |row|
-      info options[:fields].collect { |k| row[k] }.join("\t")
+      if options[:vertical]
+        data options[:fields].collect { |k| [k, row[k]].join("\t") }.join("\n")
+      else
+        data options[:fields].collect { |k| row[k] }.join("\t")
+      end
     end
   else
-    info Hirb::Helpers::Table.render(rows, options)
+    if options[:vertical]
+      options.delete(:vertical)
+      data Hirb::Helpers::ShowTable.render(rows, options)
+    else
+      data Hirb::Helpers::Table.render(rows, options)
+    end
   end
 end
 
@@ -85,8 +104,33 @@ class Api
       @@api = Fog::Brightbox::Compute.new CONFIG.to_fog
     end
   end
-
 end
+
+class Hirb::Helpers::ShowTable < Hirb::Helpers::Table
+
+  def self.render(rows, options={})
+    new(rows, {:escape_special_chars=>false, :resize=>false}.merge(options)).render
+  end
+
+  def setup_field_lengths
+    @field_lengths = default_field_lengths
+  end
+
+  def render_header; []; end
+  def render_footer; []; end
+
+  def render_rows
+    longest_header = Hirb::String.size @headers.values.sort_by {|e| Hirb::String.size(e) }.last
+    @rows.map do |row|
+      fields = @fields.map {|f|
+        "#{Hirb::String.rjust(@headers[f], longest_header)}: #{row[f]}"
+      }
+      fields << "" if @rows.size > 1
+      fields.compact.join("\n")
+    end
+  end
+end
+
 
 # Global options
 desc "Simple output (tab separated, don't draw fancy tables)"
@@ -96,14 +140,22 @@ desc "Set the api client to use (named in #{CONFIG.config_filename})"
 flag [:c, :client]
 
 # Load the command libraries for the current group
-command_group_name = File.basename(ENV['_']).gsub(/^brightbox\-/,'')
-Dir.glob(File.join(File.dirname(__FILE__), "commands/#{command_group_name}*.rb")).each do |f|
+cmd_group_name = File.basename($0).gsub(/brightbox\-/,'')
+cmd_group_files = File.join(File.dirname(__FILE__), "commands/#{cmd_group_name}*.rb")
+Dir.glob(cmd_group_files).each do |f|
   load f
 end
 
 pre do |global_options,command,options,args|
   CONFIG.client_name = global_options[:c] if global_options[:c]
+  info "client_id: #{CONFIG.client_name}" if CONFIG.clients.size > 1
   true
+end
+
+on_error do |e|
+  error "ERROR: #{e}"
+  #error e.backtrace
+  exit 1
 end
 
 run ARGV
