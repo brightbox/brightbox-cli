@@ -7,7 +7,9 @@ command [:destroy] do |c|
       raise "you must specify the id of the server(s) you want to destroy"
     end
 
+
     servers = args.collect do |sid|
+      info "Destroying server #{sid}"
       server = Api.conn.servers.get sid
       server.destroy
       server.reload
