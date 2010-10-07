@@ -145,6 +145,10 @@ def info(s='')
   STDERR.flush
 end
 
+def warn(s='')
+  info "WARN: #{s}"
+end
+
 def data(s)
   STDOUT.write s
   STDOUT.write "\n"
@@ -257,7 +261,7 @@ end
 
 pre do |global_options,command,options,args|
   CONFIG.client_name = global_options[:c] if global_options[:c]
-  info "client_id: #{CONFIG.client_name}" if CONFIG.clients.size > 1
+  info "INFO: client_id: #{CONFIG.client_name}" if CONFIG.clients.size > 1
   true
 end
 
