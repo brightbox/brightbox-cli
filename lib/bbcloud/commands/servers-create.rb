@@ -8,8 +8,11 @@ command [:create] do |c|
   c.desc "Set description field"
   c.flag [:d, :description]
 
+  c.desc "Zone to create the servers in"
+  c.flag [:z, "zone"]
+
   c.desc "Set the type"
-  c.default_value "typ-4nssg"
+  c.default_value "nano"
   c.flag [:t, :type]
 
   c.action do |global_options, options, args|
@@ -25,26 +28,39 @@ command [:create] do |c|
     options[:i] = options[:i].to_i
 
     image_id = args.shift
-    image = Api.conn.images.get image_id
+    image = Image.find image_id
     raise "Couldn't find image #{image_id}" unless image
     
     type_id = options[:t]
-    type = Api.conn.flavors.get type_id
+    if type_id =~ /^typ\-/
+      type = Type.find type_id
+    else
+      type = Type.find_by_handle type_id
+    end
     raise "Couldn't find server type #{type_id}" unless type
 
-    info "Creating #{options[:i]} '#{type.name}' server#{options[:i] > 1 ? 's' : ''} with image #{image.id} (#{image.name})"
+    if options[:z]
+      zone = options[:z]
+      if zone =~ /^typ\-/
+        zone = Zone.find zone
+      else
+        zone = Zone.find_by_handle zone
+      end
+    end
+    raise "Couldn't find server type #{type_id}" unless type
+
+    info "Creating #{options[:i]} #{type.id} (#{type.handle}) server#{options[:i] > 1 ? 's' : ''} with image #{image.id} (#{image.name}) in zone #{zone}"
     servers = []
     options[:i].times do
       begin
-        servers << Api.conn.servers.create(:image_id => image.id,
-                                           :flavor_id => type.id,
-                                           :description => options[:d])
+        servers << Server.create(:image_id => image.id,
+                                 :flavor_id => type.id,
+                                 :description => options[:d],
+                                 :zone_id => zone.to_s)
       rescue StandardError => e
         error "Error creating server: #{e}"
       end
     end
-    render_table(servers, :fields => [:id, :status, :type, :image, :created_at, 
-                                      :ips, :description],
-                 :global => global_options)
+    render_table(servers, global_options)
   end
 end

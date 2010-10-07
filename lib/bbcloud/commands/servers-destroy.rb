@@ -10,7 +10,7 @@ command [:destroy] do |c|
 
     servers = args.collect do |sid|
       info "Destroying server #{sid}"
-      server = Api.conn.servers.get sid
+      server = Server.find sid
       server.destroy
       server.reload
     end

@@ -1,34 +1,31 @@
-class Image
-
-  def self.find(list = [])
-    if list.empty?
-      Api.conn.images
-    else
-      list.uniq.collect do |i|
-        image = Api.conn.images.get i
-        image = { :id => i, :status => 'NaN' } if image.nil?
-        image
-      end
+module Brightbox
+  class Image < Api
+    
+    def to_row
+      o = { }
+      o[:id] = fog_model.id 
+      o[:status] = status
+      o[:access] = (public ? 'public' : 'private')
+      o[:arch] = arch
+      o[:name] = name
+      o[:type] = source_type
+      o
     end
-  end
 
-end
+    def public?
+      public
+    end
 
-module Fog
-  module Brightbox
-    class Compute
-      class Image
-        def to_row
-          o = { }
-          o[:id] = id 
-          o[:status] = status
-          o[:access] = (public ? 'public' : 'private')
-          o[:arch] = arch
-          o[:name] = name
-          o[:type] = source_type
-          o
-        end
-      end
+    def self.all
+      conn.images
+    end
+
+    def self.get(id)
+      conn.images.get(id)
+    end
+
+    def self.default_field_order
+      [:id, :type, :status, :access, :arch, :name]
     end
   end
 end

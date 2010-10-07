@@ -6,24 +6,14 @@ command [:list] do |c|
 
   c.action do |global_options,options,args|
 
-    if args.empty?
-      servers = Api.conn.servers
-    else
-      servers = args.collect { |arg| Api.conn.servers.get arg }
-    end
-
-    # Sort
-    servers.sort! { |a,b| a.created_at <=> b.created_at }
+    servers = Server.find args
 
     # Filter
     servers.delete_if do |s|
-      next true if !options[:d] and s.status == "deleted"
+      next true if !options[:d] and s.deleted?
       false
     end
 
-    render_table(servers, :fields => [:id, :status, :type, :zone, :created_at, 
-                                      :cloud_ips, :description], 
-                 :flavors => Api.conn.flavors,
-                 :global => global_options)
+    render_table(servers, global_options)
   end
 end
