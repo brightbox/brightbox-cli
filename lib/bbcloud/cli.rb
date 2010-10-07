@@ -1,4 +1,5 @@
-require 'rubygems'
+require "rubygems"
+require "bundler/setup"
 require 'date'
 require 'gli'
 require 'hirb'
