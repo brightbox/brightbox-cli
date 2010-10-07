@@ -21,6 +21,10 @@ module Brightbox
       attributes
     end
 
+    def mapped?
+      status == 'mapped'
+    end
+
     def self.default_field_order
       [:id, :status, :public_ip, :server_id, :interface_id, :reverse_dns]
     end
