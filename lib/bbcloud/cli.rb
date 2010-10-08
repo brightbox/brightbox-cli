@@ -8,7 +8,7 @@ require 'gli'
 require 'hirb'
 require 'fog'
 
-%w{api servers images types zones cloud_ips config}.each do |f|
+%w{api servers images types zones cloud_ips users config}.each do |f|
   require File.join(File.dirname(__FILE__), f)
 end
 
