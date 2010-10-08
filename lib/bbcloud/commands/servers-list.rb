@@ -10,6 +10,7 @@ command [:list] do |c|
 
     # Filter
     servers.delete_if do |s|
+      next true if s.nil?
       next true if !options[:d] and s.deleted?
       false
     end
