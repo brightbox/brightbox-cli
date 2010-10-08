@@ -3,6 +3,7 @@ module Brightbox
     attr_reader :id
     class ApiError < StandardError ; end
     class NotFound < ApiError ; end
+    class Conflict < ApiError ; end
 
     @@api = nil
 
@@ -38,6 +39,7 @@ module Brightbox
     end
 
     def self.find(args = :all, options = {})
+      return nil if args.nil?
       options = {
         :order => :created_at,
       }.merge options
@@ -61,7 +63,7 @@ module Brightbox
           0
         end
       end
-      if objects.size == 1 and args.is_a? String
+      if objects.size <= 1 and args.is_a? String
         # This was a single lookup
         objects.first
       else
