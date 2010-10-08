@@ -144,7 +144,13 @@ pre do |global_options,command,options,args|
 end
 
 on_error do |e|
-  error "ERROR: #{e}"
+  case e
+  when Excon::Errors::ServiceUnavailable
+    error "Api currently unavailable"
+  else
+    error "ERROR: #{e}"
+  end
+  debug e.class.to_s
   debug e.backtrace.join("\n")
   exit 1
 end
