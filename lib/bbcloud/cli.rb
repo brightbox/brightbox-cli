@@ -1,5 +1,8 @@
 require "rubygems"
-require "bundler/setup"
+# Add any vendored libraries into search path
+Dir.glob(File.join(File.dirname(__FILE__), '../../vendor/*')).each do |f|
+  $:.unshift File.join(f, 'lib')
+end
 require 'date'
 require 'gli'
 require 'hirb'

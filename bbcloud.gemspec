@@ -14,12 +14,13 @@ Gem::Specification.new do |s|
 
   s.rubyforge_project = "bbcloud"
 
-  s.files         = `git ls-files`.split("\n")
+  s.files         = `git ls-files`.split("\n") + `find vendor`.split("\n")
   s.test_files    = `git ls-files -- {test,spec,features}/*`.split("\n")
   s.executables   = `git ls-files -- bin/*`.split("\n").map{ |f| File.basename(f) }
   s.require_paths = ["lib"]
 
 	s.add_dependency 'gli', '1.1.1'
 	s.add_dependency 'hirb', '0.3.4'
-	s.add_dependency 'fog', '0.3.0'
+	s.add_dependency 'fog', '0.3.1'
+	s.add_dependency 'ini', '0.1.1'
 end
