@@ -11,12 +11,15 @@ command [:destroy] do |c|
     servers = args.collect do |sid|
       info "Destroying server #{sid}"
       server = Server.find sid
-      server.destroy
+      begin
+        server.destroy
+      rescue Brightbox::Api::Conflict => e
+        error "Could not destroy #{sid}"
+      end
       server.reload
+      server
     end
 
-    render_table(servers, :fields => [:id, :status, :type, :image, :created_at, 
-                                      :ips, :description],
-                 :global => global_options)
+    render_table(servers, global_options)
   end
 end

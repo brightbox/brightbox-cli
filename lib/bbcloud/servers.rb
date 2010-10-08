@@ -36,6 +36,12 @@ module Brightbox
       fog_model.status == "deleted"
     end
 
+    def destroy
+      fog_model.destroy
+    rescue Excon::Errors::Conflict => e
+      raise Conflict, "Cannot delete server #{id}"
+    end
+
     def self.get(id)
       conn.servers.get id
     end
