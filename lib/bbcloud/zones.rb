@@ -21,7 +21,7 @@ module Brightbox
     end
 
     def render_cell
-      handle
+      handle if fog_model
     end
   end
 end
