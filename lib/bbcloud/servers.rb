@@ -20,6 +20,8 @@ module Brightbox
       a[:created_at] = created_at
       a[:type] = server_type
       a[:zone] = Zone.new(zone_id)
+      a[:hostname] = hostname
+      a[:public_hostname] = public_hostname
       a
     end
 
@@ -43,7 +45,15 @@ module Brightbox
     end
 
     def self.default_field_order
-      [:id, :status, :type, :zone, :created_at, :image_id, :cloud_ips, :description]
+      [:id, :name, :status, :type, :zone, :created_at, :image_id, :cloud_ips]
+    end
+
+    def hostname
+      "#{id}.gb1.eu.brightbox.com"
+    end
+
+    def public_hostname
+      "public.#{hostname}"
     end
   end
 end
