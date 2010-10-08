@@ -5,15 +5,16 @@ command [:create] do |c|
   c.default_value 1
   c.flag [:i, "server-count"]
 
-  c.desc "Set description field"
-  c.flag [:d, :description]
-
   c.desc "Zone to create the servers in"
   c.flag [:z, "zone"]
 
   c.desc "Set the type"
   c.default_value "nano"
   c.flag [:t, :type]
+
+  c.desc "Set the name field"
+  c.flag [:n, :name]
+
 
   c.action do |global_options, options, args|
 
@@ -55,8 +56,8 @@ command [:create] do |c|
       begin
         servers << Server.create(:image_id => image.id,
                                  :flavor_id => type.id,
-                                 :description => options[:d],
-                                 :zone_id => zone.to_s)
+                                 :zone_id => zone.to_s,
+                                 :name => options[:n])
       rescue StandardError => e
         error "Error creating server: #{e}"
       end
