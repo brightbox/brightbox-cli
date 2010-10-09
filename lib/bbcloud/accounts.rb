@@ -8,7 +8,6 @@ module Brightbox
 
     def attributes
       fog_model.merge({ "ram_free" => ram_free })
-
     end
 
     def ram_free
@@ -24,7 +23,7 @@ module Brightbox
     end
 
     def self.get(id)
-      all.find { |a| a.id == id }
+      all.find { |a| a['id'] == id }
     end
 
     def self.default_field_order
