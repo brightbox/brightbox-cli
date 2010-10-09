@@ -50,7 +50,9 @@ command [:create] do |c|
     end
     raise "Couldn't find server type #{type_id}" unless type
 
-    info "Creating #{options[:i]} #{type.id} (#{type.handle}) server#{options[:i] > 1 ? 's' : ''} with image #{image.id} (#{image.name}) in zone #{zone}"
+    msg = "Creating #{options[:i]} #{type.id} (#{type.handle}) server#{options[:i] > 1 ? 's' : ''} with image #{image.id} (#{image.name})"
+    msg << "in zone #{zone}" if zone
+    info msg
     servers = []
     options[:i].times do
       begin
