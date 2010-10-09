@@ -2,9 +2,7 @@ module Brightbox
   class User < Api
 
     def attributes
-      a = fog_model.attributes
-      a[:ssh_key_set?] = ssh_key_set?
-      a
+      fog_model.attributes
     end
 
     def to_row
@@ -20,7 +18,11 @@ module Brightbox
     end
 
     def self.default_field_order
-      [:id, :name, :email_address, :ssh_key_set?, :accounts]
+      [:id, :name, :email_address, :accounts]
+    end
+
+    def accounts
+      @accounts ||= fog_model.accounts.collect { |a| Account.new(a) }
     end
 
     def to_s
