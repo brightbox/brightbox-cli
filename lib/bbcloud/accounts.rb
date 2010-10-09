@@ -7,7 +7,12 @@ module Brightbox
     end
 
     def attributes
-      fog_model
+      fog_model.merge({ "ram_free" => ram_free })
+
+    end
+
+    def ram_free
+      [fog_model['ram_limit'].to_i - fog_model['ram_used'].to_i, 0].max
     end
 
     def to_row
@@ -15,7 +20,7 @@ module Brightbox
     end
 
     def self.all
-      conn.users.first.accounts.collect { |a| new(a) }
+      conn.users.first.accounts.collect { |a| a }
     end
 
     def self.get(id)
@@ -23,7 +28,7 @@ module Brightbox
     end
 
     def self.default_field_order
-      ["id", "name", "ram_limit", "ram_used"]
+      ["id", "name", "ram_limit", "ram_used", "ram_free"]
     end
 
     def to_s
