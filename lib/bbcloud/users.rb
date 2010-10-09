@@ -14,7 +14,8 @@ module Brightbox
     end
 
     def self.get(id)
-      conn.users.get id
+      u = conn.users.get id
+      (u.nil? or u.id != id) ? nil : u
     end
 
     def self.default_field_order
@@ -27,6 +28,12 @@ module Brightbox
 
     def to_s
       @id
+    end
+
+    def save
+      fog_model.save
+    rescue Excon::Errors::UnprocessableEntity
+      raise InvalidRecord, "Could not save user #{self.id}"
     end
 
     def ssh_key_set?

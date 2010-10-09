@@ -4,6 +4,7 @@ module Brightbox
     class ApiError < StandardError ; end
     class NotFound < ApiError ; end
     class Conflict < ApiError ; end
+    class InvalidRecord < ApiError ; end
 
     @@api = nil
 
