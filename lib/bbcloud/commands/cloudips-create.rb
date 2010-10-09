@@ -14,11 +14,7 @@ command [:create] do |c|
 
     ips = []
     options[:i].times do
-      begin
-        ips << CloudIP.create
-      rescue StandardError => e
-        error "Error creating cloud ip: #{e}"
-      end
+      ips << CloudIP.create
     end
     render_table(ips, global_options)
   end
