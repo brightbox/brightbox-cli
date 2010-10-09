@@ -6,9 +6,16 @@ command [:map] do |c|
 
   c.action do |global_options,options,args|
 
+    if args.size < 2
+      raise "You must specify the cloud ip and the server id"
+    end
+
     ip_id = args.first
+
     ip = CloudIP.find ip_id
+
     raise "Cannot find ip #{ip_id}" if ip.nil?
+
     if ip.mapped?
       if options[:u]
         info "Unmapping ip #{ip}"
