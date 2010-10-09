@@ -4,13 +4,19 @@ command [:unmap] do |c|
 
   c.action do |global_options,options,args|
 
+    raise "you must specify the cloud ips to unmap as arguments" if args.empty?
+
     ips = CloudIP.find args
+
+    ips.compact!
+
     ips.each do |ip|
       if ip.mapped?
+        info "Unmapping cloud ip #{ip}"
         ip.unmap
         ip.reload
       else
-        warn "#{ip} already unmapped"
+        warn "Cloud ip #{ip} already unmapped"
       end
     end
 
