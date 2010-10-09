@@ -9,6 +9,7 @@ module Brightbox
       o[:arch] = arch
       o[:name] = name
       o[:type] = source_type
+      o[:created_at] = created_at
       o
     end
 
@@ -25,7 +26,7 @@ module Brightbox
     end
 
     def self.default_field_order
-      [:id, :type, :status, :access, :arch, :name]
+      [:id, :type, :created_at, :status, :access, :arch, :name]
     end
   end
 end
