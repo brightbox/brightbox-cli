@@ -155,9 +155,28 @@ on_error do |e|
   case e
   when Excon::Errors::ServiceUnavailable
     error "Api currently unavailable"
+  when Excon::Errors::Error
+    if e.respond_to?(:response) and e.response.respond_to?(:body)
+      r = JSON.parse(e.response.body) rescue {}
+      if r['error']
+        if r['error'].is_a? Hash
+          # Most API errors
+          r = r['error']
+          error "ERROR: #{e.class}: #{r['name']}: #{r['summary']}"
+        else
+          # Auth error
+          error "ERROR: #{e.class}: #{r['error']}: #{r['error_description']}"
+        end
+      else
+        error "ERROR: #{e}"
+      end
+    else
+      error "ERROR: #{e}"
+    end           
   else
     error "ERROR: #{e}"
   end
+  debug e
   debug e.class.to_s
   debug e.backtrace.join("\n")
   exit 1

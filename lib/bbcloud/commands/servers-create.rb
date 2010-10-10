@@ -55,14 +55,10 @@ command [:create] do |c|
     info msg
     servers = []
     options[:i].times do
-      begin
-        servers << Server.create(:image_id => image.id,
-                                 :flavor_id => type.id,
-                                 :zone_id => zone.to_s,
-                                 :name => options[:n])
-      rescue StandardError => e
-        error "Error creating server: #{e}"
-      end
+      servers << Server.create(:image_id => image.id,
+                               :flavor_id => type.id,
+                               :zone_id => zone.to_s,
+                               :name => options[:n])
     end
     render_table(servers, global_options)
   end

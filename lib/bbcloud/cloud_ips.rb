@@ -12,7 +12,9 @@ module Brightbox
       r = conn.create_cloud_ip
       new(JSON.parse(r.body)["id"])
     rescue Excon::Errors::Forbidden => e
-      raise Forbidden, "Cloud IP Limit Reached"
+      response = JSON.parse(e.response.body) rescue {}
+      response = response.fetch("error", {})
+      raise Forbidden, "#{response["details"]}: #{response["summary"]}"
     end
 
     def attributes
