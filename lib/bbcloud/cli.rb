@@ -3,10 +3,18 @@ require "rubygems"
 Dir.glob(File.join(File.dirname(__FILE__), '../../vendor/*')).each do |f|
   $:.unshift File.join(f, 'lib')
 end
+
+begin
+  require 'json/ext'
+rescue LoadError
+  require 'json/pure'
+end
+
 require 'date'
 require 'gli'
 require 'hirb'
 require 'fog'
+
 
 %w{api servers images types zones cloud_ips users accounts config}.each do |f|
   require File.join(File.dirname(__FILE__), f)
