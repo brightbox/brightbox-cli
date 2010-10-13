@@ -1,4 +1,4 @@
 pkg/*
 *.gem
 .bundle
-vendor/
+lib/bbcloud/vendor/

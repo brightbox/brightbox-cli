@@ -1,6 +1,10 @@
-require "rubygems"
+os_config = File.join(File.dirname(__FILE__), 'os_config.rb')
+require os_config if File.exist? os_config
+
+require "rubygems" unless defined?(DISABLE_RUBYGEMS)
+
 # Add any vendored libraries into search path
-Dir.glob(File.join(File.dirname(__FILE__), '../../vendor/*')).each do |f|
+Dir.glob(File.join(File.dirname(__FILE__), 'vendor/*')).each do |f|
   $:.unshift File.join(f, 'lib')
 end
 
