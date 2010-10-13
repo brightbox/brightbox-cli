@@ -1,0 +1,19 @@
+This package was debianized by John Leach <john@brightbox.co.uk>
+Web, 13 Oct 2010 10:50:46 +0100.
+
+Upstream Author:
+
+    John Leach <john@brightbox.co.uk>
+
+Copyright:
+
+    Copyright (C) 2010, Brightbox Systems
+
+License:
+   
+    MIT License
+
+On Debian systems, the complete text of the GNU Lesser General
+Public License can be found in `/usr/share/common-licenses/MIT'.
+
+The Debian packaging is by the same author and under the same copyright.
