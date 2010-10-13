@@ -1,0 +1,7 @@
+diff --git a/lib/bbcloud/os_config.rb b/lib/bbcloud/os_config.rb
+new file mode 100644
+index 0000000..34ae18f
+--- /dev/null
++++ b/lib/bbcloud/os_config.rb
+@@ -0,0 +1 @@
++DISABLE_RUBYGEMS=1
