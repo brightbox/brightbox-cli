@@ -21,7 +21,7 @@ module Brightbox
       a[:type] = server_type
       a[:zone] = Zone.new(zone_id)
       a[:hostname] = hostname
-      a[:public_hostname] = public_hostname
+      a[:public_hostname] = public_hostname unless cloud_ips.empty?
       a
     end
 
