@@ -18,7 +18,7 @@ command [:update] do |c|
     if options[:f] == '-'
       user.ssh_key = STDIN.read
     elsif options[:f]
-      File.open(options[:f]) { |f| user.ssh_key = f.read }
+      File.open(File.expand_path(options[:f])) { |f| user.ssh_key = f.read }
     end
 
     if options[:n]
