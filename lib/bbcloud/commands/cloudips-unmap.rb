@@ -4,7 +4,7 @@ command [:unmap] do |c|
 
   c.action do |global_options,options,args|
 
-    raise "you must specify the cloud ips to unmap as arguments" if args.empty?
+    raise "you must specify the cloud ip ids to unmap as arguments" if args.empty?
 
     ips = CloudIP.find args
 

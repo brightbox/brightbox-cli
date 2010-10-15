@@ -20,7 +20,7 @@ require 'hirb'
 require 'fog'
 
 
-%w{api servers images types zones cloud_ips users accounts config}.each do |f|
+%w{api servers images types zones cloud_ips users accounts config version}.each do |f|
   require File.join(File.dirname(__FILE__), f)
 end
 
@@ -184,6 +184,13 @@ on_error do |e|
   debug e.class.to_s
   debug e.backtrace.join("\n")
   exit 1
+end
+
+desc 'Display version information'
+command [:version] do |c|
+  c.action do |global_options, options, args|
+    info "Brightbox CLI version: #{Brightbox::VERSION}"
+  end
 end
 
 run ARGV

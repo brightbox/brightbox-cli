@@ -10,6 +10,7 @@ module Brightbox
       o[:name] = name
       o[:type] = source_type
       o[:created_at] = created_at
+      o[:description] = description if description
       o
     end
 
