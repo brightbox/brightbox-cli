@@ -19,10 +19,11 @@ Gem::Specification.new do |s|
   s.executables   = `git ls-files -- bin/*`.split("\n").map{ |f| File.basename(f) }
   s.require_paths = ["lib"]
 
-	s.add_dependency 'gli', '1.1.1'
+	s.add_dependency 'gli', '1.1.2'
 	unless File.exists?(File.dirname(__FILE__) + 'lib/bbcloud/vendor/hirb')
 		s.add_dependency 'hirb', '0.3.4'
 	end
 	s.add_dependency 'fog', '0.3.1'
+	s.add_dependency 'excon', '>=0.2.4'
 	s.add_dependency 'ini', '0.1.1'
 end

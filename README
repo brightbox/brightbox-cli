@@ -1,0 +1,34 @@
+= Brightbox Cloud Command Line Interface
+
+bbcloud is a cli tool to interact with the (forthcoming) Brightbox
+cloud API.
+
+http://www.brightbox.co.uk
+
+== Packaging
+
+=== Vendoring libraries
+
+gems can be vendored into lib/bbcloud/vendor for packaging and will be
+prioritized over any gems.
+
+=== GEM packaging
+
+The gem currently has our branch of fog vendored, as the official fog
+gem doesn't have our work merged in yet.
+
+=== Debian/Ubuntu packaging
+
+Any gems that have equivalent packages available are set as
+dependencies to the Debian package.  Any other gems are vendored prior
+to packaging.  These are:
+
+* formatador (required by hirb)
+* excon (required by fog)
+* gli
+* fog
+* hirb
+* ini
+
+Rubygems support can be disabled by defining the DISABLE_RUBYGEMS
+constant in lib/bbcloud/os_config.rb
