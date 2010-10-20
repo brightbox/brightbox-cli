@@ -1,5 +1,5 @@
 desc 'Create servers'
-arg_name 'image_id [server-id...]'
+arg_name 'image_id'
 command [:create] do |c|
   c.desc "Number of servers to create"
   c.default_value 1
@@ -8,11 +8,11 @@ command [:create] do |c|
   c.desc "Zone to create the servers in"
   c.flag [:z, "zone"]
 
-  c.desc "Set the type"
+  c.desc "Type of server to create"
   c.default_value "nano"
   c.flag [:t, :type]
 
-  c.desc "Set the name field"
+  c.desc "Friendly name of server"
   c.flag [:n, :name]
 
 
