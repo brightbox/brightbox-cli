@@ -28,6 +28,7 @@ command [:show] do |c|
       o[:private_ips] = s.interfaces.collect { |i| i['ipv4_address'] }.join(", ")
       o[:cloud_ip_ids] = s.cloud_ips.collect { |i| i['id'] }.join(", ")
       o[:cloud_ips] = s.cloud_ips.collect { |i| i['public_ip'] }.join(", ")
+      o[:snapshots] = s.snapshots.collect { |i| i['id'] }.join(", ")
       rows << o
     end
 
@@ -36,7 +37,7 @@ command [:show] do |c|
       :fields => [:id, :status, :name, :description, :created_at, :deleted_at, 
                   :zone, :type, :type_name, :type_handle, :ram, :cores, 
                   :disk, :image, :image_name, :private_ips, :cloud_ips, 
-                  :cloud_ip_ids, :hostname, :public_hostname
+                  :cloud_ip_ids, :hostname, :public_hostname, :snapshots
                  ]
     })
 
