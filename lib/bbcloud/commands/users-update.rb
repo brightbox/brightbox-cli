@@ -2,6 +2,7 @@ desc 'Update user details'
 arg_name 'user-id...'
 command [:update] do |c|
   c.desc "Path to public ssh key file"
+  c.long_desc "This is the path to the public ssh key that you'd like to use for new servers. You can specify '-' to read from stdin"
   c.flag [:f, "ssh-key"]
 
   c.desc "Name"
