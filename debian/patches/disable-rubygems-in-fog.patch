@@ -1,0 +1,9 @@
+diff --git a/lib/bbcloud/vendor/fog-brightbox/lib/fog.rb b/lib/bbcloud/vendor/fog-brightbox/lib/fog.rb
+index eb53b64..9dd629d 100644
+--- a/lib/bbcloud/vendor/fog-brightbox/lib/fog.rb
++++ b/lib/bbcloud/vendor/fog-brightbox/lib/fog.rb
+@@ -1,4 +1,3 @@
+-require 'rubygems'
+ require 'base64'
+ require 'cgi'
+ require 'digest/md5'
