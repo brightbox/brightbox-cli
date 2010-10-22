@@ -1,3 +1,9 @@
+bbcloud (0.4-0ubuntu0) lucid; urgency=low
+
+  * New upstream version 
+
+ -- Neil Wilson <neil@aldur.co.uk>  Fri, 22 Oct 2010 13:23:45 +0100
+
 bbcloud (0.2-1) unstable; urgency=low
 
   * Initial release
