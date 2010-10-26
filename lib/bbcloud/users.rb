@@ -23,7 +23,7 @@ module Brightbox
     end
 
     def accounts
-      @accounts ||= fog_model.accounts.collect { |a| Account.new(a) }
+      @accounts ||= fog_model.accounts.collect { |a| Account.new(a["id"]) }
     end
 
     def to_s
