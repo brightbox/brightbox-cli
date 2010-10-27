@@ -13245,10 +13245,10 @@ index 0000000..ae5c945
 \ No newline at end of file
 diff --git a/lib/bbcloud/vendor/fog-brightbox/lib/fog/brightbox/bin.rb b/lib/bbcloud/vendor/fog-brightbox/lib/fog/brightbox/bin.rb
 new file mode 100644
-index 0000000..58067f8
+index 0000000..7e55e76
 --- /dev/null
 +++ b/lib/bbcloud/vendor/fog-brightbox/lib/fog/brightbox/bin.rb
-@@ -0,0 +1,19 @@
+@@ -0,0 +1,27 @@
 +class Brightbox < Fog::Bin
 +  class << self
 +
@@ -13266,14 +13266,22 @@ index 0000000..58067f8
 +      [:compute]
 +    end
 +
++    def account
++      # FIXME: Needs a cleaner interface at the API end
++      account_id ||= JSON.parse(@@connections[:compute].list_accounts.body).first["id"]
++      account = Fog::Brightbox::Compute::Account.new(JSON.parse(@@connections[:compute].get_account(account_id).body))
++      account.connection = @@connections[:compute]
++      return account
++    end
++
 +  end
 +end
 diff --git a/lib/bbcloud/vendor/fog-brightbox/lib/fog/brightbox/compute.rb b/lib/bbcloud/vendor/fog-brightbox/lib/fog/brightbox/compute.rb
 new file mode 100644
-index 0000000..cb04ed6
+index 0000000..57bbe2b
 --- /dev/null
 +++ b/lib/bbcloud/vendor/fog-brightbox/lib/fog/brightbox/compute.rb
-@@ -0,0 +1,125 @@
+@@ -0,0 +1,126 @@
 +module Fog
 +  module Brightbox
 +    class Compute < Fog::Service
@@ -13284,6 +13292,7 @@ index 0000000..cb04ed6
 +      requires :brightbox_client_id, :brightbox_secret
 +
 +      model_path 'fog/brightbox/models/compute'
++      model :account # Singluar resource, no collection
 +      collection :servers
 +      model :server
 +      collection :flavors
@@ -13400,6 +13409,65 @@ index 0000000..cb04ed6
 +  end
 +end
 \ No newline at end of file
+diff --git a/lib/bbcloud/vendor/fog-brightbox/lib/fog/brightbox/models/compute/account.rb b/lib/bbcloud/vendor/fog-brightbox/lib/fog/brightbox/models/compute/account.rb
+new file mode 100644
+index 0000000..333d73a
+--- /dev/null
++++ b/lib/bbcloud/vendor/fog-brightbox/lib/fog/brightbox/models/compute/account.rb
+@@ -0,0 +1,52 @@
++require 'fog/model'
++
++module Fog
++  module Brightbox
++    class Compute
++
++      class Account < Fog::Model
++
++        identity :id
++        attribute :resource_type
++        attribute :url
++        attribute :name
++        attribute :status
++        attribute :address_1
++        attribute :address_2
++        attribute :city
++        attribute :county
++        attribute :postcode
++        attribute :country_code
++        attribute :country_name
++        attribute :vat_registration_number
++        attribute :telephone_number
++        attribute :telephone_verified
++        attribute :ram_limit
++        attribute :ram_used
++        attribute :limits_cloudips
++        attribute :library_ftp_host
++        attribute :library_ftp_user
++        # This is always returned as null/nil unless performing a reset_ftp_password request
++        attribute :library_ftp_password
++        attribute :created_at
++
++
++
++        attribute :owner_id, :aliases => "owner", :squash => "id"
++        attribute :clients
++        attribute :images
++        attribute :servers
++        attribute :users
++        attribute :zones
++
++        def reset_ftp_password
++          requires :identity
++          response = connection.reset_ftp_password_account(identity)
++          JSON.parse(response.body)["library_ftp_password"]
++        end
++
++      end
++
++    end
++  end
++end
+\ No newline at end of file
 diff --git a/lib/bbcloud/vendor/fog-brightbox/lib/fog/brightbox/models/compute/cloud_ip.rb b/lib/bbcloud/vendor/fog-brightbox/lib/fog/brightbox/models/compute/cloud_ip.rb
 new file mode 100644
 index 0000000..c6b7bb6
@@ -13488,10 +13556,10 @@ index 0000000..6f8242d
 \ No newline at end of file
 diff --git a/lib/bbcloud/vendor/fog-brightbox/lib/fog/brightbox/models/compute/flavor.rb b/lib/bbcloud/vendor/fog-brightbox/lib/fog/brightbox/models/compute/flavor.rb
 new file mode 100644
-index 0000000..6c5e0ac
+index 0000000..d1c88f0
 --- /dev/null
 +++ b/lib/bbcloud/vendor/fog-brightbox/lib/fog/brightbox/models/compute/flavor.rb
-@@ -0,0 +1,29 @@
+@@ -0,0 +1,28 @@
 +require 'fog/model'
 +
 +module Fog
@@ -13510,7 +13578,6 @@ index 0000000..6c5e0ac
 +        attribute :bits
 +        attribute :cores
 +        attribute :disk, :aliases => "disk_size"
-+        attribute :name
 +        attribute :ram
 +
 +        attribute :resource_type
@@ -13558,10 +13625,10 @@ index 0000000..9f9709e
 \ No newline at end of file
 diff --git a/lib/bbcloud/vendor/fog-brightbox/lib/fog/brightbox/models/compute/image.rb b/lib/bbcloud/vendor/fog-brightbox/lib/fog/brightbox/models/compute/image.rb
 new file mode 100644
-index 0000000..84a44a9
+index 0000000..80dc991
 --- /dev/null
 +++ b/lib/bbcloud/vendor/fog-brightbox/lib/fog/brightbox/models/compute/image.rb
-@@ -0,0 +1,39 @@
+@@ -0,0 +1,53 @@
 +require 'fog/model'
 +
 +module Fog
@@ -13589,6 +13656,20 @@ index 0000000..84a44a9
 +        attribute :virtual_size
 +        attribute :disk_size
 +        attribute :created_at
++
++        def save
++          requires :source, :arch
++          options = {
++            :source => @source,
++            :arch => @arch,
++            :name => @name,
++            :description => @description
++          }.delete_if {|k,v| v.nil? || v == "" }
++          response = connection.create_image(options)
++          data = JSON.parse(response.body)
++          merge_attributes(data)
++          true
++        end
 +
 +        def destroy
 +          requires :identity
