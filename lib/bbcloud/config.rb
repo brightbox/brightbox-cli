@@ -51,9 +51,12 @@ class BBConfig
   end
 
   def client_name
-    ddefault_client = config['core']['default_client']
-    @client_name = ddefault_client if ddefault_client
-    @client_name ||= clients.first
+    if @client_name
+      @client_name
+    else
+      default_client = config['core']['default_client']
+      @client_name = default_client || clients.first
+    end
   end
 
   def to_fog

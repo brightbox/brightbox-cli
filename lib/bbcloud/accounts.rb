@@ -1,33 +1,30 @@
 module Brightbox
   class Account < Api
 
-    def initialize(h)
-      @fog_model = h
-      @id = h["id"]
-    end
-
-    def attributes
-      fog_model.merge({ "ram_free" => ram_free })
-    end
-
     def ram_free
-      [fog_model['ram_limit'].to_i - fog_model['ram_used'].to_i, 0].max
+      [ram_limit.to_i - ram_used.to_i, 0].max
     end
 
     def to_row
-      attributes
+      attributes.merge({ :ram_free => ram_free, 
+                         :cloud_ip_limit => limits_cloudips
+                       })
     end
 
     def self.all
-      conn.users.first.accounts.collect { |a| a }
+      account_ids = JSON.parse(conn.list_accounts.body).collect { |a| a["id"] }
+      account_ids.collect { |id| get(id) }
     end
 
     def self.get(id)
-      all.find { |a| a['id'] == id }
+      h = JSON.parse(conn.get_account(id).body)
+      a = Fog::Brightbox::Compute::Account.new(h)
+      a.connection = conn
+      a
     end
 
     def self.default_field_order
-      ["id", "name", "ram_limit", "ram_used", "ram_free"]
+      [:id, :name, :cloud_ip_limit, :ram_limit, :ram_used, :ram_free]
     end
 
     def to_s
