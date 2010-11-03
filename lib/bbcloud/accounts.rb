@@ -12,15 +12,19 @@ module Brightbox
     end
 
     def self.all
-      account_ids = JSON.parse(conn.list_accounts.body).collect { |a| a["id"] }
-      account_ids.collect { |id| get(id) }
+      a = conn.account
+      a.connection = conn
+      [new(a)]
     end
 
     def self.get(id)
-      h = JSON.parse(conn.get_account(id).body)
-      a = Fog::Brightbox::Compute::Account.new(h)
+      a = conn.account
       a.connection = conn
-      a
+      if a.id == id
+        new(a)
+      else
+        nil
+      end
     end
 
     def self.default_field_order
