@@ -3,10 +3,12 @@ module Brightbox
     
     def to_row
       o = fog_model.attributes
-      o[:id] = fog_model.id 
-      status_row = [status]
-      status_row << (public ? 'public' : 'private')
-      o[:status] = status_row.join '/'
+      o[:id] = fog_model.id
+      if status == "available"
+        o[:status] = (public ? 'public' : 'private')
+      else
+        o[:status] = status
+      end
       o[:arch] = arch
       o[:name] = name.to_s + " (#{arch})"
       o[:owner] = owner_id
@@ -19,6 +21,7 @@ module Brightbox
       o[:created_at] = created_at
       o[:created_on] = created_at.to_s.split('T').first
       o[:description] = description if description
+      o[:size] = virtual_size
       o
     end
 
@@ -35,7 +38,7 @@ module Brightbox
     end
 
     def self.default_field_order
-      [:id, :owner, :type, :created_on, :status, :name]
+      [:id, :owner, :type, :created_on, :status, :size, :name]
     end
   end
 end
