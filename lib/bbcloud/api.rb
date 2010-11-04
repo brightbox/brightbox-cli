@@ -96,5 +96,12 @@ module Brightbox
       find(:all).find { |o| o.handle == h }
     end
 
+    def self.cache_all!
+      @cache = {}
+      all.each do |f|
+        @cache[f.id] = f
+      end
+    end
+
   end
 end
