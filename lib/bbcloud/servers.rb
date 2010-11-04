@@ -56,7 +56,7 @@ module Brightbox
     end
 
     def hostname
-      "#{id}.gb1.eu.brightbox.com"
+      "#{id}.gb1.brightbox.com"
     end
 
     def public_hostname
