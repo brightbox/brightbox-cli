@@ -1627,45 +1627,6 @@ index 0000000..46cbe72
 +  catch(:IRB_EXIT) { @irb.eval_input }
 +
 +end
-diff --git a/lib/bbcloud/vendor/fog-brightbox/examples/bluebox_create.rb b/lib/bbcloud/vendor/fog-brightbox/examples/bluebox_create.rb
-new file mode 100644
-index 0000000..43c76ac
---- /dev/null
-+++ b/lib/bbcloud/vendor/fog-brightbox/examples/bluebox_create.rb
-@@ -0,0 +1,33 @@
-+#!/usr/bin/env ruby
-+
-+# For example only - you'd want to use your own AMI id.
-+unless defined?(GENTOO_AMI)
-+  GENTOO_AMI = 'ami-5ee70037'
-+end
-+
-+require 'rubygems'
-+require 'fog'
-+
-+@bluebox_api_key = "CHANGEME"
-+@aws_access_key_id = "CHANGEME"
-+@aws_secret_access_key = "CHANGEME"
-+
-+@flavor_id = "94fd37a7-2606-47f7-84d5-9000deda52ae" # Block 1GB Virtual Server
-+@image_id = "03807e08-a13d-44e4-b011-ebec7ef2c928"  # Ubuntu 10.04 x64 LTS
-+
-+# Grab our current list of servers
-+@bbg_servers = Fog::Bluebox.new(:bluebox_api_key => @bluebox_api_key).servers
-+@ec2_servers = Fog::AWS::EC2.new(:aws_access_key_id => @aws_access_key_id, :aws_secret_access_key => @aws_secret_access_key).servers
-+
-+# Create a new server.
-+@server = @bbg_servers.new(:flavor_id => @flavor_id, :image_id => @image_id,
-+                           :name => "My Server", :password => "MyPassword")
-+
-+# Save the server, triggering its creation
-+@server.save
-+
-+if @server.status == 'error'
-+  # The create failed - create a new server on Amazon instead
-+  @server = @ec2_servers.new(:image_id => GENTOO_AMI)
-+  @server.save
-+end
 diff --git a/lib/bbcloud/vendor/fog-brightbox/fog.gemspec b/lib/bbcloud/vendor/fog-brightbox/fog.gemspec
 new file mode 100644
 index 0000000..d4df8c9
@@ -13245,10 +13206,10 @@ index 0000000..ae5c945
 \ No newline at end of file
 diff --git a/lib/bbcloud/vendor/fog-brightbox/lib/fog/brightbox/bin.rb b/lib/bbcloud/vendor/fog-brightbox/lib/fog/brightbox/bin.rb
 new file mode 100644
-index 0000000..7e55e76
+index 0000000..90dc99b
 --- /dev/null
 +++ b/lib/bbcloud/vendor/fog-brightbox/lib/fog/brightbox/bin.rb
-@@ -0,0 +1,27 @@
+@@ -0,0 +1,23 @@
 +class Brightbox < Fog::Bin
 +  class << self
 +
@@ -13267,21 +13228,17 @@ index 0000000..7e55e76
 +    end
 +
 +    def account
-+      # FIXME: Needs a cleaner interface at the API end
-+      account_id ||= JSON.parse(@@connections[:compute].list_accounts.body).first["id"]
-+      account = Fog::Brightbox::Compute::Account.new(JSON.parse(@@connections[:compute].get_account(account_id).body))
-+      account.connection = @@connections[:compute]
-+      return account
++      @@connections[:compute].account
 +    end
 +
 +  end
 +end
 diff --git a/lib/bbcloud/vendor/fog-brightbox/lib/fog/brightbox/compute.rb b/lib/bbcloud/vendor/fog-brightbox/lib/fog/brightbox/compute.rb
 new file mode 100644
-index 0000000..57bbe2b
+index 0000000..d1906c4
 --- /dev/null
 +++ b/lib/bbcloud/vendor/fog-brightbox/lib/fog/brightbox/compute.rb
-@@ -0,0 +1,126 @@
+@@ -0,0 +1,128 @@
 +module Fog
 +  module Brightbox
 +    class Compute < Fog::Service
@@ -13292,7 +13249,7 @@ index 0000000..57bbe2b
 +      requires :brightbox_client_id, :brightbox_secret
 +
 +      model_path 'fog/brightbox/models/compute'
-+      model :account # Singluar resource, no collection
++      model :account # Singular resource, no collection
 +      collection :servers
 +      model :server
 +      collection :flavors
@@ -13307,7 +13264,6 @@ index 0000000..57bbe2b
 +      model :user
 +
 +      request_path 'fog/brightbox/requests/compute'
-+      request :create_account
 +      request :create_api_client
 +      request :create_cloud_ip
 +      request :create_image
@@ -13325,7 +13281,6 @@ index 0000000..57bbe2b
 +      request :get_server_type
 +      request :get_user
 +      request :get_zone
-+      request :list_accounts
 +      request :list_api_clients
 +      request :list_cloud_ips
 +      request :list_images
@@ -13375,6 +13330,10 @@ index 0000000..57bbe2b
 +            response = authenticated_request(params)
 +          end
 +          response
++        end
++
++        def account
++          Fog::Brightbox::Compute::Account.new(JSON.parse(get_account.body))
 +        end
 +
 +      private
@@ -13470,10 +13429,10 @@ index 0000000..333d73a
 \ No newline at end of file
 diff --git a/lib/bbcloud/vendor/fog-brightbox/lib/fog/brightbox/models/compute/cloud_ip.rb b/lib/bbcloud/vendor/fog-brightbox/lib/fog/brightbox/models/compute/cloud_ip.rb
 new file mode 100644
-index 0000000..c6b7bb6
+index 0000000..57baaa3
 --- /dev/null
 +++ b/lib/bbcloud/vendor/fog-brightbox/lib/fog/brightbox/models/compute/cloud_ip.rb
-@@ -0,0 +1,38 @@
+@@ -0,0 +1,43 @@
 +require 'fog/model'
 +
 +module Fog
@@ -13507,12 +13466,16 @@ index 0000000..c6b7bb6
 +          connection.unmap_cloud_ip(identity)
 +        end
 +
++        def destroy
++          requires :identity
++          connection.destroy_cloud_ip(identity)
++        end
++
 +      end
 +
 +    end
 +  end
 +end
-\ No newline at end of file
 diff --git a/lib/bbcloud/vendor/fog-brightbox/lib/fog/brightbox/models/compute/cloud_ips.rb b/lib/bbcloud/vendor/fog-brightbox/lib/fog/brightbox/models/compute/cloud_ips.rb
 new file mode 100644
 index 0000000..6f8242d
@@ -14011,40 +13974,6 @@ index 0000000..391751b
 +  end
 +end
 \ No newline at end of file
-diff --git a/lib/bbcloud/vendor/fog-brightbox/lib/fog/brightbox/requests/compute/create_account.rb b/lib/bbcloud/vendor/fog-brightbox/lib/fog/brightbox/requests/compute/create_account.rb
-new file mode 100644
-index 0000000..7dbbfff
---- /dev/null
-+++ b/lib/bbcloud/vendor/fog-brightbox/lib/fog/brightbox/requests/compute/create_account.rb
-@@ -0,0 +1,27 @@
-+module Fog
-+  module Brightbox
-+    class Compute
-+      class Real
-+
-+        def create_account(options = {})
-+          request(
-+            :expects  => [201],
-+            :method   => 'POST',
-+            :path     => "/1.0/accounts",
-+            :headers  => {"Content-Type" => "application/json"},
-+            :body     => options.to_json
-+          )
-+        end
-+
-+      end
-+
-+      class Mock
-+
-+        def create_account(options = {})
-+          Fog::Mock.not_implemented
-+        end
-+
-+      end
-+    end
-+  end
-+end
-\ No newline at end of file
 diff --git a/lib/bbcloud/vendor/fog-brightbox/lib/fog/brightbox/requests/compute/create_api_client.rb b/lib/bbcloud/vendor/fog-brightbox/lib/fog/brightbox/requests/compute/create_api_client.rb
 new file mode 100644
 index 0000000..70ca4e5
@@ -14319,7 +14248,7 @@ index 0000000..083f7b4
 \ No newline at end of file
 diff --git a/lib/bbcloud/vendor/fog-brightbox/lib/fog/brightbox/requests/compute/get_account.rb b/lib/bbcloud/vendor/fog-brightbox/lib/fog/brightbox/requests/compute/get_account.rb
 new file mode 100644
-index 0000000..7621cc9
+index 0000000..0d21a24
 --- /dev/null
 +++ b/lib/bbcloud/vendor/fog-brightbox/lib/fog/brightbox/requests/compute/get_account.rb
 @@ -0,0 +1,27 @@
@@ -14328,11 +14257,11 @@ index 0000000..7621cc9
 +    class Compute
 +      class Real
 +
-+        def get_account(identifier, options = {})
++        def get_account(options = {})
 +          request(
 +            :expects  => [200],
 +            :method   => 'GET',
-+            :path     => "/1.0/accounts/#{identifier}",
++            :path     => "/1.0/account",
 +            :headers  => {"Content-Type" => "application/json"},
 +            :body     => options.to_json
 +          )
@@ -14342,7 +14271,7 @@ index 0000000..7621cc9
 +
 +      class Mock
 +
-+        def get_account(identifier, options = {})
++        def get_account(options = {})
 +          Fog::Mock.not_implemented
 +        end
 +
@@ -14615,40 +14544,6 @@ index 0000000..ad15416
 +      class Mock
 +
 +        def get_zone(identifier, options = {})
-+          Fog::Mock.not_implemented
-+        end
-+
-+      end
-+    end
-+  end
-+end
-\ No newline at end of file
-diff --git a/lib/bbcloud/vendor/fog-brightbox/lib/fog/brightbox/requests/compute/list_accounts.rb b/lib/bbcloud/vendor/fog-brightbox/lib/fog/brightbox/requests/compute/list_accounts.rb
-new file mode 100644
-index 0000000..71e6ad1
---- /dev/null
-+++ b/lib/bbcloud/vendor/fog-brightbox/lib/fog/brightbox/requests/compute/list_accounts.rb
-@@ -0,0 +1,27 @@
-+module Fog
-+  module Brightbox
-+    class Compute
-+      class Real
-+
-+        def list_accounts(options = {})
-+          request(
-+            :expects  => [200],
-+            :method   => 'GET',
-+            :path     => "/1.0/accounts",
-+            :headers  => {"Content-Type" => "application/json"},
-+            :body     => options.to_json
-+          )
-+        end
-+
-+      end
-+
-+      class Mock
-+
-+        def list_accounts(options = {})
 +          Fog::Mock.not_implemented
 +        end
 +
@@ -14965,7 +14860,7 @@ index 0000000..52d0fd5
 \ No newline at end of file
 diff --git a/lib/bbcloud/vendor/fog-brightbox/lib/fog/brightbox/requests/compute/reset_ftp_password_account.rb b/lib/bbcloud/vendor/fog-brightbox/lib/fog/brightbox/requests/compute/reset_ftp_password_account.rb
 new file mode 100644
-index 0000000..005f40c
+index 0000000..007abcf
 --- /dev/null
 +++ b/lib/bbcloud/vendor/fog-brightbox/lib/fog/brightbox/requests/compute/reset_ftp_password_account.rb
 @@ -0,0 +1,27 @@
@@ -14974,11 +14869,11 @@ index 0000000..005f40c
 +    class Compute
 +      class Real
 +
-+        def reset_ftp_password_account(identifier, options = {})
++        def reset_ftp_password_account(options = {})
 +          request(
 +            :expects  => [200],
 +            :method   => 'POST',
-+            :path     => "/1.0/accounts/#{identifier}/reset_ftp_password",
++            :path     => "/1.0/account/reset_ftp_password",
 +            :headers  => {"Content-Type" => "application/json"},
 +            :body     => options.to_json
 +          )
@@ -14988,7 +14883,7 @@ index 0000000..005f40c
 +
 +      class Mock
 +
-+        def reset_ftp_password_account(identifier, options = {})
++        def reset_ftp_password_account(options = {})
 +          Fog::Mock.not_implemented
 +        end
 +
@@ -15237,7 +15132,7 @@ index 0000000..c9e6dc8
 \ No newline at end of file
 diff --git a/lib/bbcloud/vendor/fog-brightbox/lib/fog/brightbox/requests/compute/update_account.rb b/lib/bbcloud/vendor/fog-brightbox/lib/fog/brightbox/requests/compute/update_account.rb
 new file mode 100644
-index 0000000..0df9d3d
+index 0000000..24c5fc6
 --- /dev/null
 +++ b/lib/bbcloud/vendor/fog-brightbox/lib/fog/brightbox/requests/compute/update_account.rb
 @@ -0,0 +1,27 @@
@@ -15246,11 +15141,11 @@ index 0000000..0df9d3d
 +    class Compute
 +      class Real
 +
-+        def update_account(identifier, options = {})
++        def update_account(options = {})
 +          request(
 +            :expects  => [200],
 +            :method   => 'PUT',
-+            :path     => "/1.0/accounts/#{identifier}",
++            :path     => "/1.0/account",
 +            :headers  => {"Content-Type" => "application/json"},
 +            :body     => options.to_json
 +          )
@@ -15260,7 +15155,7 @@ index 0000000..0df9d3d
 +
 +      class Mock
 +
-+        def update_account(identifier, options = {})
++        def update_account(options = {})
 +          Fog::Mock.not_implemented
 +        end
 +
