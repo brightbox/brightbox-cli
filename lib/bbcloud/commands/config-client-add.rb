@@ -10,6 +10,8 @@ command [:client_add] do |c|
 
   c.action do |global_options, options, args|
 
+    info "Using config file #{CONFIG.config_filename}"
+
     client_id = args.shift
     secret = args.shift
     api_url = args.shift || "https://api.gb1.brightbox.com"
@@ -26,7 +28,7 @@ command [:client_add] do |c|
 
     client_config = CONFIG[calias]
     unless client_config.empty?
-      raise "An api client with that id or alias already exists"
+      raise "An api client with the id or alias #{calias} already exists"
     end
 
     info "Creating new api client config #{calias}"

@@ -4,6 +4,7 @@ command [:client_default] do |c|
 
   c.action do |global_options, options, args|
 
+    info "Using config file #{CONFIG.config_filename}"
     calias = args.shift
 
     if calias.nil?
@@ -12,7 +13,7 @@ command [:client_default] do |c|
 
     client_config = CONFIG[calias]
     if client_config.empty?
-      raise "An api client with that alias does not exist in the config"
+      raise "An api client with the alias #{calias} does not exist in the config"
     end
 
     info "Setting #{calias} as default api client"
