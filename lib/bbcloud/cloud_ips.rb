@@ -33,5 +33,8 @@ module Brightbox
       [:id, :status, :public_ip, :server_id, :interface_id, :reverse_dns]
     end
 
+    def <=>(b)
+      self.status <=> b.status
+    end
   end
 end

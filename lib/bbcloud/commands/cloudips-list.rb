@@ -6,6 +6,6 @@ command [:list] do |c|
 
     ips = CloudIP.find args
 
-    render_table(ips, global_options)
+    render_table(ips.sort, global_options)
   end
 end
