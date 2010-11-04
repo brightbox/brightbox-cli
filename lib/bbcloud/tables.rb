@@ -5,19 +5,23 @@ class SimpleTable < Hirb::Helpers::Table
   def render_table_header
     title_row = ' ' + @fields.map {|f|
       format_cell(@headers[f], @field_lengths[f])
-    }.join(' ')
-    [title_row, render_border]
+    }.join('  ')
+    ["", title_row, render_border]
+  end
+
+  def render_footer
+    [render_border, ""]
   end
   
   def render_border
-    '-' + @fields.map {|f| '-' * @field_lengths[f] }.join('-') + '-'
+    '-' + @fields.map {|f| '-' * @field_lengths[f] }.join('--') + '-'
   end
   
   def render_rows
     @rows.map do |row|
       row = ' ' + @fields.map {|f|
         format_cell(row[f], @field_lengths[f])
-      }.join(' ')
+      }.join('  ')
     end
   end
 
