@@ -40,10 +40,23 @@ class BBConfig
     return @config if @config
     return {} if @config == false
     @config ||= Ini.new config_filename
-    raise Ini::Error, "No api client configured" if clients.empty?
     @config
   rescue Ini::Error => e
     raise BBConfigError, "Config problem in #{config_filename}: #{e}"
+  end
+
+  def [](k)
+    config[k]
+  end
+
+  def delete_section(name)
+    config.delete_section name
+  end
+
+  def save!
+    if @config.is_a? Ini
+      @config.write
+    end
   end
 
   def clients
@@ -60,6 +73,7 @@ class BBConfig
   end
 
   def to_fog
+    raise Ini::Error, "No api client configured" if clients.empty?
     c = config[client_name]
     %w{api_url client_id secret}.each do |k|
       if c[k].to_s.empty?
