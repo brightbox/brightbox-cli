@@ -18,6 +18,7 @@ module Brightbox
       a[:image] = image
       a[:description] = description.to_s.strip
       a[:created_at] = created_at
+      a[:created_on] = fog_model.created_at.strftime("%Y-%m-%d")
       a[:type] = server_type
       a[:zone] = Zone.new(zone_id)
       a[:hostname] = hostname
@@ -51,11 +52,11 @@ module Brightbox
     end
 
     def self.default_field_order
-      [:id, :name, :status, :type, :zone, :created_at, :image_id, :cloud_ips]
+      [:id, :status, :type, :zone, :created_on, :image_id, :cloud_ips, :name]
     end
 
     def hostname
-      "#{id}.gb1.eu.brightbox.com"
+      "#{id}.gb1.brightbox.com"
     end
 
     def public_hostname

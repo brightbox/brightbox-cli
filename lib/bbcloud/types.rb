@@ -37,7 +37,7 @@ module Brightbox
     end
 
     def self.default_field_order
-      [:id, :name, :handle, :status, :ram, :disk, :cores, :description]
+      [:id, :name, :handle, :ram, :disk, :cores, :description]
     end
   end
 end

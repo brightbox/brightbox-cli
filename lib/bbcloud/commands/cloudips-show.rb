@@ -8,6 +8,6 @@ command [:show] do |c|
 
     fields = [:id, :status, :public_ip, :reverse_dns, :server_id, :interface_id]
 
-    render_table(ips, global_options.merge({ :vertical => true, :fields => fields}))                                              
+    render_table(ips.compact, global_options.merge({ :vertical => true, :fields => fields}))                                              
   end
 end

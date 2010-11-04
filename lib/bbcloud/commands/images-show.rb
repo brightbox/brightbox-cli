@@ -8,7 +8,7 @@ command [:show] do |c|
 
     table_opts = global_options.merge({
       :vertical => true,
-      :fields => [:id, :type, :created_at, :status, :access, :arch, :name, :description ]
+      :fields => [:id, :type, :owner, :created_at, :status, :arch, :name, :description, :virtual_size, :disk_size, :ancestor_id ]
     })
 
     render_table(images, table_opts)

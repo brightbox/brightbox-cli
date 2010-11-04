@@ -1,17 +1,17 @@
-desc 'Reboot the specified servers'
+desc 'Restart the specified servers'
 arg_name 'server-id...'
-command [:reboot] do |c|
-  c.desc "Soft reboot (default)"
+command [:restart] do |c|
+  c.desc "Soft restart (default)"
   c.switch [:s, "soft"]
 
-  c.desc "Hard reboot"
+  c.desc "Hard restart"
   c.default_value true
   c.switch [:d, "hard"]
 
   c.action do |global_options,options,args|
 
     if options[:soft] and options[:hard]
-      raise "Cannot do both hard and soft reboot at the same time"
+      raise "Cannot do both hard and soft restart at the same time"
     end
 
     type = options[:hard] ? "hard" : "soft"
@@ -19,7 +19,7 @@ command [:reboot] do |c|
     servers = Server.find(args).compact
 
     servers.each do |s|
-      info "Rebooting server #{s}"
+      info "Restarting server #{s}"
       s.reboot(type)
       s.reload
     end

@@ -4,7 +4,7 @@ command [:show] do |c|
 
   c.action do |global_options,options,args|
 
-    accounts = Account.find(args)
+    accounts = Account.find(args).compact
 
     table_opts = global_options.merge({
       :vertical => true,
