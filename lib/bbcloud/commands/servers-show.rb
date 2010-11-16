@@ -4,7 +4,7 @@ command [:show] do |c|
 
   c.action do |global_options,options,args|
     
-    servers = Server.find(args)
+    servers = Server.find(args).compact
     rows = []
     servers.each do |s|
       if s.is_a? String
