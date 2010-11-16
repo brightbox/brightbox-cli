@@ -17,7 +17,7 @@ end
 require 'date'
 require 'gli'
 require 'bbcloud/tables'
-require 'fog'
+require 'brightbox-fog'
 
 %w{api servers images types zones cloud_ips users accounts config version}.each do |f|
   require File.join(File.dirname(__FILE__), f)

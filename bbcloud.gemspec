@@ -8,7 +8,7 @@ Gem::Specification.new do |s|
   s.platform    = Gem::Platform::RUBY
   s.authors     = ["John Leach"]
   s.email       = ["john@brightbox.co.uk"]
-  s.homepage    = "http://rubygems.org/gems/bbcloud"
+  s.homepage    = "http://docs.brightbox.com/cli"
   s.summary     = %q{The Brightbox cloud management system}
   s.description = %q{Scripts to interact with the Brightbox cloud API}
 
@@ -20,10 +20,8 @@ Gem::Specification.new do |s|
   s.require_paths = ["lib"]
 
 	s.add_dependency 'gli', '1.1.2'
-	unless File.exists?(File.dirname(__FILE__) + 'lib/bbcloud/vendor/hirb')
-		s.add_dependency 'hirb', '0.3.4'
-	end
-	s.add_dependency 'fog', '0.3.1'
+	s.add_dependency 'hirb', '0.3.5'
+	s.add_dependency 'brightbox-fog', '0.3.16'
 	s.add_dependency 'excon', '>=0.2.4'
 	s.add_dependency 'ini', '0.1.1'
 end
