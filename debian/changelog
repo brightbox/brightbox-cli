@@ -1,3 +1,10 @@
+bbcloud (0.7.0-0ubuntu0) lucid; urgency=low
+
+  * New upstream version
+  * Vendored new brightbox-fog-0.3.16
+
+ -- John Leach <john@brightbox.co.uk>  Tue, 16 Nov 2010 15:14:40 +0000
+
 bbcloud (0.6.1-0ubuntu0) lucid; urgency=low
 
   * New upstream version
