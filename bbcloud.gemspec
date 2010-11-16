@@ -20,9 +20,7 @@ Gem::Specification.new do |s|
   s.require_paths = ["lib"]
 
 	s.add_dependency 'gli', '1.1.2'
-#	unless File.exists?(File.dirname(__FILE__) + 'lib/bbcloud/vendor/hirb')
-#		s.add_dependency 'hirb', '0.3.4'
-#	end
+	s.add_dependency 'hirb', '0.3.5'
 	s.add_dependency 'brightbox-fog', '0.3.16'
 	s.add_dependency 'excon', '>=0.2.4'
 	s.add_dependency 'ini', '0.1.1'
