@@ -19,6 +19,9 @@ command [:create] do |c|
   c.desc "Specify user data"
   c.flag [:m, :user_data]
 
+  c.desc "Specify the user data from a local file"
+  c.flag [:f, :user_data_file]
+
   c.desc "Don't base64 encode the user data"
   c.flag [:e, :no_base64]
 
@@ -56,21 +59,29 @@ command [:create] do |c|
     end
     raise "Couldn't find server type #{type_id}" unless type
 
-    user_data = nil
-    user_data = options[:m] if options[:m]
+    user_data = options[:m]
+    user_data_file = options[:f]
+
+    if user_data_file
+      raise "Cannot specify user data on command line and in file at same time" if user_data
+      File.open(user_data_file, "r") do |f|
+        raise "User data file too big (>16k)" if f.size > 16 * 1024
+        user_data = f.read
+      end
+    end
 
     if user_data
       unless options[:e]
         require 'base64'
         user_data = Base64.encode64(user_data)
       end
-
       raise "User data too big (>16k)" if user_data.size > 16 * 1024
     end
 
-    msg = "Creating #{options[:i] > 1 ? 'a' : options[:i]} #{type.handle} (#{type.id})"
+    msg = "Creating #{options[:i] > 1 ? options[:i] : 'a'} #{type.handle} (#{type.id})"
     msg << " server#{options[:i] > 1 ? 's' : ''} with image #{image.name.strip} (#{image.id})"
     msg << " in zone #{zone.handle} (#{zone})" if zone
+    msg << " with #{user_data.size / 1024}k of user data" if user_data
     info msg
     servers = []
     options[:i].times do
