@@ -1,6 +1,7 @@
 desc 'Create servers'
 arg_name 'image_id'
 command [:create] do |c|
+
   c.desc "Number of servers to create"
   c.default_value 1
   c.flag [:i, "server-count"]
@@ -15,6 +16,11 @@ command [:create] do |c|
   c.desc "Friendly name of server"
   c.flag [:n, :name]
 
+  c.desc "Specify user data"
+  c.flag [:m, :user_data]
+
+  c.desc "Don't base64 encode the user data"
+  c.flag [:e, :no_base64]
 
   c.action do |global_options, options, args|
 
@@ -50,7 +56,20 @@ command [:create] do |c|
     end
     raise "Couldn't find server type #{type_id}" unless type
 
-    msg = "Creating #{options[:i]} '#{type.handle}' (#{type.id}) server#{options[:i] > 1 ? 's' : ''} with image #{image.name.strip} (#{image.id})"
+    user_data = nil
+    user_data = options[:m] if options[:m]
+
+    if user_data
+      unless options[:e]
+        require 'base64'
+        user_data = Base64.encode64(user_data)
+      end
+
+      raise "User data too big (>16k)" if user_data.size > 16 * 1024
+    end
+
+    msg = "Creating #{options[:i] > 1 ? 'a' : options[:i]} #{type.handle} (#{type.id})"
+    msg << " server#{options[:i] > 1 ? 's' : ''} with image #{image.name.strip} (#{image.id})"
     msg << " in zone #{zone.handle} (#{zone})" if zone
     info msg
     servers = []
@@ -58,7 +77,8 @@ command [:create] do |c|
       servers << Server.create(:image_id => image.id,
                                :flavor_id => type.id,
                                :zone_id => zone.to_s,
-                               :name => options[:n])
+                               :name => options[:n],
+                               :user_data => user_data)
     end
     render_table(servers, global_options)
   end
