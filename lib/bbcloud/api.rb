@@ -53,6 +53,8 @@ module Brightbox
         objects = args.collect do |arg|
           cached_get(arg)
         end
+      elsif args.respond_to? :to_s
+        objects = [cached_get(args.to_s)]
       end
       # wrap in our objects
       objects.collect! { |o| new(o) unless o.nil? }
