@@ -17,7 +17,7 @@ end
 require 'date'
 require 'gli'
 require 'bbcloud/tables'
-require 'brightbox-fog'
+require 'fog'
 
 %w{api servers images types zones cloud_ips users accounts config version}.each do |f|
   require File.join(File.dirname(__FILE__), f)
@@ -120,7 +120,7 @@ end
 desc 'Display version information'
 command [:version] do |c|
   c.action do |global_options, options, args|
-    info "Brightbox CLI version: #{Brightbox::VERSION}"
+    info "Brightbox CLI version: #{Brightbox::VERSION}, Fog version: #{Fog::VERSION}"
   end
 end
 
