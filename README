@@ -1,9 +1,11 @@
 = Brightbox Cloud Command Line Interface
 
-bbcloud is a cli tool to interact with the (forthcoming) Brightbox
-cloud API.
+brightbox-cli is a set of cli tools to interact with the Brightbox
+Cloud API.
 
-http://www.brightbox.co.uk
+http://beta.brightbox.com
+
+http://docs.brightbox.com/cli
 
 == Packaging
 
@@ -11,11 +13,6 @@ http://www.brightbox.co.uk
 
 gems can be vendored into lib/bbcloud/vendor for packaging and will be
 prioritized over any gems.
-
-=== GEM packaging
-
-The gem currently has our branch of fog vendored, as the official fog
-gem doesn't have our work merged in yet.
 
 === Debian/Ubuntu packaging
 
@@ -32,3 +29,28 @@ to packaging.  These are:
 
 Rubygems support can be disabled by defining the DISABLE_RUBYGEMS
 constant in lib/bbcloud/os_config.rb
+
+Ubuntu packaging scripts are available on the packaging-lucid git
+branch.
+
+== License
+
+Copyright (c) 2010 John Leach, Brightbox Systems Ltd <john@brightbox.co.uk>
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in
+all copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+THE SOFTWARE.
