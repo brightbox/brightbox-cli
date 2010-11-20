@@ -36,6 +36,25 @@ class BBConfig
     @config_filename
   end
 
+  def cache_path
+    if @cache_path
+      @cache_path
+    else
+      @cache_path = File.join(@dir, 'cache')
+      unless File.exists? @cache_path
+        begin
+          FileUtils.mkdir @cache_path
+        rescue Errno::EEXIST
+        end
+      end
+      @cache_path
+    end
+  end
+
+  def cache_id(cid)
+    FileUtils.touch(File.join(cache_path, cid)) unless cid.nil?
+  end
+
   def config
     return @config if @config
     return {} if @config == false

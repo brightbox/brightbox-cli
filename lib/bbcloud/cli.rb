@@ -1,7 +1,10 @@
 os_config = File.join(File.dirname(__FILE__), 'os_config.rb')
 require os_config if File.exist? os_config
 
-require "rubygems" unless defined?(DISABLE_RUBYGEMS)
+unless defined?(DISABLE_RUBYGEMS)
+  require "rubygems" 
+  gem "fog", "=0.3.23"
+end
 
 # Add any vendored libraries into search path
 Dir.glob(File.join(File.dirname(__FILE__), 'vendor/*')).each do |f|
@@ -17,7 +20,7 @@ end
 require 'date'
 require 'gli'
 require 'bbcloud/tables'
-require 'brightbox-fog'
+require 'fog'
 
 %w{api servers images types zones cloud_ips users accounts config version}.each do |f|
   require File.join(File.dirname(__FILE__), f)
@@ -120,7 +123,7 @@ end
 desc 'Display version information'
 command [:version] do |c|
   c.action do |global_options, options, args|
-    info "Brightbox CLI version: #{Brightbox::VERSION}"
+    info "Brightbox CLI version: #{Brightbox::VERSION}, Fog version: #{Fog::VERSION}"
   end
 end
 

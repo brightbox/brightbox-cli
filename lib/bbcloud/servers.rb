@@ -16,7 +16,6 @@ module Brightbox
     def attributes
       a = fog_model.attributes
       a[:image] = image
-      a[:description] = description.to_s.strip
       a[:created_at] = created_at
       a[:created_on] = fog_model.created_at.strftime("%Y-%m-%d")
       a[:type] = server_type

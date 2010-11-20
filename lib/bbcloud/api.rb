@@ -24,6 +24,8 @@ module Brightbox
         @fog_model = m
         @id = m.id
       end
+      CONFIG.cache_id @id unless @id.nil?
+      @id
     end
 
     def fog_model
@@ -53,6 +55,8 @@ module Brightbox
         objects = args.collect do |arg|
           cached_get(arg)
         end
+      elsif args.respond_to? :to_s
+        objects = [cached_get(args.to_s)]
       end
       # wrap in our objects
       objects.collect! { |o| new(o) unless o.nil? }
@@ -87,7 +91,7 @@ module Brightbox
       if value
         value
       else
-        debug "writing cache entry #{id}"
+        CONFIG.cache_id id
         @cache[id] = get(id)
       end
     end
@@ -100,6 +104,7 @@ module Brightbox
       @cache = {}
       all.each do |f|
         @cache[f.id] = f
+        CONFIG.cache_id f.id
       end
     end
 
