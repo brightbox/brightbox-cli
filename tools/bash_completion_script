@@ -1,0 +1,92 @@
+# brightbox cli tools completion
+#
+
+_brightbox()
+{
+    local cur prev
+
+    COMPREPLY=()
+		_get_comp_words_by_ref cur prev
+    
+		command=''
+		for (( i=1; i < COMP_CWORD; i++ )); do
+        if [[ "${COMP_WORDS[i]}" != -* ]]; then
+            command=${COMP_WORDS[i]}
+            break
+        fi
+    done
+
+		case $1 in
+			brightbox-servers)
+				case $command in
+					create)
+						if [[ "$cur" == -* ]] ; then
+							COMPREPLY=( $( compgen -W '--name --type --zone --server-count --user-data-file --user-data --no-base64' -- "$cur" ) )
+						else
+							test -d ~/.brightbox/cache && COMPREPLY=( $( compgen -W '`ls ~/.brightbox/cache/`' -- "$cur" ) ) 
+						fi
+						;;
+					destroy|list|show|shutdown|snapshot|start|stop)
+						test -d ~/.brightbox/cache && COMPREPLY=( $( compgen -W '`ls ~/.brightbox/cache/`' -- "$cur" ) ) 
+						;;
+					*)
+						COMPREPLY=( $( compgen -W 'create destroy help list show shutdown snapshot start stop' -- "$cur" ) )
+						;;
+				esac
+			;;
+			brightbox-images)
+				case $command in
+					destroy|list|show)
+						test -d ~/.brightbox/cache && COMPREPLY=( $( compgen -W '`ls ~/.brightbox/cache/`' -- "$cur" ) )
+						;;
+					*)
+						COMPREPLY=( $( compgen -W 'destroy help list show' -- "$cur" ) )
+						;;
+				esac
+			;;		
+			brightbox-cloudips)
+				case $command in
+					map)
+						if [[ "$cur" == -* ]] ; then
+							COMPREPLY=( $( compgen -W '--unmap' -- "$cur" ) )
+						else
+							test -d ~/.brightbox/cache && COMPREPLY=( $( compgen -W '`ls ~/.brightbox/cache/`' -- "$cur" ) ) 
+						fi
+						;;
+					create|destroy|list|unmap|show)
+						test -d ~/.brightbox/cache && COMPREPLY=( $( compgen -W '`ls ~/.brightbox/cache/`' -- "$cur" ) )
+						;;
+					*)
+						COMPREPLY=( $( compgen -W 'create destroy list ummap show map help' -- "$cur" ) )
+						;;
+				esac
+			;;		
+			brightbox-config)
+				case $command in
+					client_add)
+						if [[ "$cur" == -* ]] ; then
+							COMPREPLY=( $( compgen -W '--alias --auth-url' -- "$cur" ) )
+						fi
+						;;
+					client_default|client_remove)
+						;;
+					*)
+						COMPREPLY=( $( compgen -W 'client_add client_remove client_default help' -- "$cur" ) )
+						;;
+				esac
+			;;		
+		esac
+
+}
+complete -F _brightbox -o filenames brightbox-servers
+complete -F _brightbox -o filenames brightbox-images
+complete -F _brightbox -o filenames brightbox-cloudips
+complete -F _brightbox -o filenames brightbox-config
+
+# Local variables:
+# mode: shell-script
+# sh-basic-offset: 4
+# sh-indent-comment: t
+# indent-tabs-mode: nil
+# End:
+# ex: ts=4 sw=4 et filetype=sh
