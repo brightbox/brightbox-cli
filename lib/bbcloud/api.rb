@@ -91,9 +91,8 @@ module Brightbox
       if value
         value
       else
-        debug "writing cache entry #{id}"
-        @cache[id] = get(id)
         CONFIG.cache_id id
+        @cache[id] = get(id)
       end
     end
 
