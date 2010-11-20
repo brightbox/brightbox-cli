@@ -3,7 +3,7 @@ require os_config if File.exist? os_config
 
 unless defined?(DISABLE_RUBYGEMS)
   require "rubygems" 
-  gem "fog", "=0.3.20"
+  gem "fog", "=0.3.23"
 end
 
 # Add any vendored libraries into search path
