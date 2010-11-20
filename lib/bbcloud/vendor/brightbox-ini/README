@@ -1,0 +1,113 @@
+
+= Conventional INI File Parsing and Writing
+
+== Introduction
+
+Ah yes, INI files. We love them. We hate them. We cannot escape
+them. Originally made popular by Windows, INI files are everywhere
+including in Samba[www.samba.org] and Trac[trac.edgewall.org]. This
+gem has one goal: make INI file, structure, and stream manipulation
+as fast, safe, and simple as possible. We take a modal approach
+with a pluggable parser class.
+
+== Sample File
+
+  ; some comment about section1
+  [section1]
+  var1 = foo
+  var2 = doodle
+
+  [section2]
+
+  ; some comment about var1
+  var1 = baz
+
+  ; some comment about var2    
+  var2 = shoodle
+
+== Conventional Format
+
+There is no formal INI specification but most parsers observe the
+following so we do also by default:
+
+=== Sections
+
+Section declarations are wrapped in square brackets
+(<tt>[section1]</tt>) with no spaces surrounding the section
+name. Duplicate sections are discouraged but if included are merged.
+
+=== Parameters
+
+The <tt>var1 = foo</tt> above is an example of a parameter, also
+frequently referred to a property, item, or pair.  Each parameter is
+made up of a key name (<tt>var1</tt>), an equals sign (<tt>=</tt>),
+and a value (<tt>foo</tt>) with optional spaces. Leading spaces
+before the key name are allowed and leading spaces before or after
+the value are trimmed. Values are literally the characters that
+remain, even if quoted (<tt>var1 = "foo"</tt> would include the
+quotes in the value). Duplicate parameters, either in the same
+section or merged duplicate sections, play 'last one wins'.
+
+=== Comments
+
+All lines starting with a semicolon (<tt>;</tt>) are assumed to be
+comments and are ignored. This character must be the first on the line.
+
+=== Blank Lines
+
+All lines that contain nothing but spaces are ignored.
+
+=== Line Endings
+
+Lines end at either a CRLF or just a LF (CR=\015, LF=\012). Files
+may mix the two within the same file to accomodate edits from
+different platforms.
+
+=== Format Variations Supported
+
+Because INI format is not formally specified, many variations exist
+in the wild. Some of these are supported by extra parsers that are
+included and set by changing the <tt>mode</tt> of the <ini> instance.
+
+To maintain backward compatibility with the original 'inifile' gem,
+the following variations are supported by the default parser: 
+
+* <b>Comments:</b> the comment character can be specified when an instance is created
+* <b>Parameters:</b> separator character can be specified when an instance is created
+* <b>Duplicate Sections:</b> merged
+* <b>Duplicate Parameters:</b> the last one wins
+
+=== Currently Unsupported Format Variations
+
+If it isn't listed above, chances are it isn't supported. But here
+are some specific variations in case you are wondering (and, yes,
+we do have plans eventually support them, either as defaults or options):
+
+* Parameter value continuation with backslash (<tt>\\</tt>)
+* Parameter value double-quoting with escapes (<tt>foo = "value with \\n in it"</tt>)
+* Parameter values using braces (<tt>{}</tt>)
+* Parameter values using simple commas parsing into arrays
+
+== Copyright and License
+
+Copyright (c) 2006-2007 The 'ini' and 'inifile' Gem Team
+
+Permission is hereby granted, free of charge, to any person obtaining
+a copy of this software and associated documentation files (the
+"Software"), to deal in the Software without restriction, including
+without limitation the rights to use, copy, modify, merge, publish,
+distribute, sublicense, and/or sell copies of the Software, and to
+permit persons to whom the Software is furnished to do so, subject to
+the following conditions:
+
+The above copyright notice and this permission notice shall be
+included in all copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
+EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
+MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.
+IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY
+CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT,
+TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE
+SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+
