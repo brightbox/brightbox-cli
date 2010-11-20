@@ -23,7 +23,7 @@ command [:create] do |c|
   c.flag [:f, :user_data_file]
 
   c.desc "Don't base64 encode the user data"
-  c.flag [:e, :no_base64]
+  c.switch [:e, :no_base64]
 
   c.action do |global_options, options, args|
 
