@@ -10,7 +10,7 @@ module Brightbox
 
     def self.create
       r = conn.create_cloud_ip
-      new(JSON.parse(r.body)["id"])
+      new(r["id"])
     rescue Excon::Errors::Forbidden => e
       response = JSON.parse(e.response.body) rescue {}
       response = response.fetch("error", {})
