@@ -3,3 +3,6 @@
 include /usr/share/cdbs/1/rules/patchsys-quilt.mk
 include /usr/share/cdbs/1/rules/debhelper.mk
 include /usr/share/ruby-pkg-tools/1/class/ruby-setup-rb.mk
+
+install/libbbcloud-ruby1.8::
+	dh_bash-completion

@@ -2,7 +2,7 @@ Source: bbcloud
 Section: ruby
 Priority: extra
 Maintainer: John Leach <john@brightbox.co.uk>
-Build-Depends: cdbs, debhelper (>= 5.0.0), ruby-pkg-tools (>= 0.14), ruby1.8-dev, pkg-config, ruby1.8, graphviz, quilt
+Build-Depends: cdbs, debhelper (>= 5.0.0), ruby-pkg-tools (>= 0.14), ruby1.8-dev, pkg-config, ruby1.8, graphviz, quilt, bash-completion
 Standards-Version: 3.9.1
 
 Package: bbcloud
