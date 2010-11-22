@@ -39,7 +39,6 @@ command [:create] do |c|
 
     image_id = args.shift
     image = Image.find image_id
-    raise "Couldn't find image #{image_id}" unless image
     
     type_id = options[:t]
     if type_id =~ /^typ\-/
@@ -47,7 +46,6 @@ command [:create] do |c|
     else
       type = Type.find_by_handle type_id
     end
-    raise "Couldn't find server type #{type_id}" unless type
 
     if options[:z]
       zone = options[:z]
@@ -57,7 +55,6 @@ command [:create] do |c|
         zone = Zone.find_by_handle zone
       end
     end
-    raise "Couldn't find server type #{type_id}" unless type
 
     user_data = options[:m]
     user_data_file = options[:f]
@@ -81,7 +78,7 @@ command [:create] do |c|
     msg = "Creating #{options[:i] > 1 ? options[:i] : 'a'} #{type.handle} (#{type.id})"
     msg << " server#{options[:i] > 1 ? 's' : ''} with image #{image.name.strip} (#{image.id})"
     msg << " in zone #{zone.handle} (#{zone})" if zone
-    msg << " with #{user_data.size / 1024}k of user data" if user_data
+    msg << " with %.2fk of user data" % (user_data.size / 1024.0) if user_data
     info msg
     servers = []
     options[:i].times do

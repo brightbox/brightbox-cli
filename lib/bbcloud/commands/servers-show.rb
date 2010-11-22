@@ -3,14 +3,15 @@ arg_name 'server-id...'
 command [:show] do |c|
 
   c.action do |global_options,options,args|
-    
-    servers = Server.find(args).compact
+
+    raise "You must specify servers to show" if args.empty?
+
+    servers = Server.find_or_call(args) do |id|
+      raise "Couldn't find server #{id}"
+    end
+
     rows = []
     servers.each do |s|
-      if s.is_a? String
-        error "Could not find server #{s}"
-        next
-      end
       o = s.to_row
       if s.server_type.exists?
         o[:type] = s.server_type.id

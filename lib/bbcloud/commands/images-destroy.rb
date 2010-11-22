@@ -4,7 +4,13 @@ command [:destroy] do |c|
 
   c.action do |global_options,options,args|
 
-    images = Image.find(args).compact
+    if args.empty?
+      raise "You must specify the images you want to destroy"
+    end
+
+    images = Image.find_or_call(args) do |id|
+      raise "Couldn't find image #{id}"
+    end
 
     images.each do |i|
       info "Destroying image #{i}"

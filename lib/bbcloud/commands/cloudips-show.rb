@@ -4,7 +4,13 @@ command [:show] do |c|
 
   c.action do |global_options,options,args|
 
-    ips = CloudIP.find args
+    if args.empty?
+      raise "You must specify the cloud ips you want to show"
+    end
+
+    ips = CloudIP.find_or_call(args) do |id|
+      warn "Couldn't find cloud ip #{id}"
+    end
 
     fields = [:id, :status, :public_ip, :reverse_dns, :server_id, :interface_id]
 

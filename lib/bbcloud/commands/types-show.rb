@@ -4,11 +4,12 @@ command [:show] do |c|
 
   c.action do |global_options,options,args|
     
-    types = Type.find(args)
-    rows = []
-    types.each do |t|
-      next if t.nil?
-      rows << t
+    if args.empty?
+      raise "You must specify the types you want to show"
+    end
+
+    types = Type.find_or_call(args) do |id|
+      warn "Couldn't find type #{id}"
     end
 
     table_opts = global_options.merge({
@@ -16,7 +17,7 @@ command [:show] do |c|
       :fields => [:id, :handle, :status, :name, :ram, :disk, :cores, :description]
     })
 
-    render_table(rows, table_opts)
+    render_table(types, table_opts)
 
   end
 end

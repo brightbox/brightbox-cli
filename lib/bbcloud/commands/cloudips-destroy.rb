@@ -6,15 +6,15 @@ command [:destroy] do |c|
 
   c.action do |global_options,options,args|
 
-    if args.size < 1
-      raise "You must specify the cloud ip id you want to destroy"
+    if args.empty?
+      raise "You must specify the cloud ips you want to destroy"
     end
 
-    args.each do |ip_id|
+    ips = CloudIP.find_or_call(args) do |id|
+      raise "Couldn't find cloud ip #{id}"
+    end
 
-      ip = CloudIP.find ip_id
-
-      raise "Cannot find cloud ip #{ip_id}" if ip.nil?
+    ips.each do |ip|
 
       if ip.mapped?
         if options[:u]
@@ -29,7 +29,7 @@ command [:destroy] do |c|
           raise "Cannot destroy mapped cloud ip #{ip}"
         end
       end
-      info "Destroying cloud ip #{ip.public_ip} (#{ip})"
+      info "Destroying cloud ip #{ip}"
       ip.destroy
     end
 

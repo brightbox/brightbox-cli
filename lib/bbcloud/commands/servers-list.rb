@@ -6,7 +6,13 @@ command [:list] do |c|
     Type.cache_all!
     Zone.cache_all!
 
-    servers = Server.find(args).compact
+    if args.empty?
+      servers = Server.find(:all)
+    else
+      servers = Server.find_or_call(args) do |id|
+        warn "Couldn't find server #{id}"
+      end
+    end
 
     render_table(servers, global_options)
   end
