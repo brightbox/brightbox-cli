@@ -24,6 +24,16 @@ require 'gli'
 require 'bbcloud/tables'
 require 'fog'
 
+# Hack to force persistent connections in fog
+module Fog
+  class Connection
+    def initialize(url, persistent=false)
+      @excon = Excon.new(url)
+      @persistent = true
+    end
+  end
+end
+
 %w{api servers images types zones cloud_ips users accounts config version}.each do |f|
   require File.join(File.dirname(__FILE__), f)
 end
