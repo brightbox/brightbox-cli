@@ -17,11 +17,11 @@ module Brightbox
     end
 
     def to_s
-      @id
+      id
     end
 
     def render_cell
-      handle if fog_model
+      handle
     end
   end
 end

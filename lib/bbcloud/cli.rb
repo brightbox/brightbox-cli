@@ -3,6 +3,8 @@ require os_config if File.exist? os_config
 
 unless defined?(DISABLE_RUBYGEMS)
   require "rubygems" 
+	gem "json", "=1.4.6"
+	gem "json_pure", "=1.4.6"
   gem "fog", "=0.3.23"
 end
 
@@ -21,6 +23,26 @@ require 'date'
 require 'gli'
 require 'bbcloud/tables'
 require 'fog'
+
+# Hack to force persistent connections in fog
+module Fog
+  class Connection
+    def initialize(url, persistent=false)
+      @excon = Excon.new(url)
+      @persistent = true
+    end
+  end
+end
+
+module Fog
+  module Brightbox
+    class Compute
+      class Real
+        attr_accessor :oauth_token
+      end
+    end
+  end
+end
 
 %w{api servers images types zones cloud_ips users accounts config version}.each do |f|
   require File.join(File.dirname(__FILE__), f)
@@ -128,3 +150,5 @@ command [:version] do |c|
 end
 
 run ARGV
+
+CONFIG.finish

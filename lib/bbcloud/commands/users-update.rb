@@ -13,8 +13,6 @@ command [:update] do |c|
     raise "You must specify the user id as the first argument" if args.empty?
 
     user = User.find args.first
-
-    raise "Could not find user #{args.first}" if user.nil?
       
     if options[:f] == '-'
       user.ssh_key = STDIN.read

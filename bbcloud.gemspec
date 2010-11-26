@@ -19,9 +19,14 @@ Gem::Specification.new do |s|
   s.executables   = `git ls-files -- bin/*`.split("\n").map{ |f| File.basename(f) }
   s.require_paths = ["lib"]
 
+	# To work around a bug with json using the wrong json_pure
+	s.add_dependency 'json', '=1.4.6'
+	s.add_dependency 'json_pure', '=1.4.6'
+
 	s.add_dependency 'gli', '1.1.2'
 	s.add_dependency 'hirb', '0.3.5'
 	s.add_dependency 'fog', '=0.3.23'
 	s.add_dependency 'excon', '>=0.2.4'
 	s.add_dependency 'ini', '0.1.1'
+
 end

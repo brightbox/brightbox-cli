@@ -4,7 +4,13 @@ command [:show] do |c|
 
   c.action do |global_options,options,args|
 
-    images = Image.find(args).compact
+    if args.empty?
+      raise "You must specify the images you want to show"
+    end
+
+    images = Image.find_or_call(args) do |id|
+      warn "Couldn't find image #{id}"
+    end
 
     table_opts = global_options.merge({
       :vertical => true,

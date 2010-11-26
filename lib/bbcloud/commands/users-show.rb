@@ -4,16 +4,12 @@ command [:show] do |c|
 
   c.action do |global_options,options,args|
 
-    users = User.find(args)
+    if args.empty?
+      raise "You must specify the users you want to show"
+    end
 
-    rows = []
-
-    users.each do |s|
-      s.reload # to get ssh_key
-      o = s.to_row
-      o[:ssh_key] = s.ssh_key.to_s.strip
-      o[:accounts] = s.accounts.collect { |a| a.id }.join(", ")
-      rows << o
+    users = User.find_or_call(args) do |id|
+      warn "Couldn't find user #{id}"
     end
 
     table_opts = global_options.merge({
@@ -21,7 +17,7 @@ command [:show] do |c|
       :fields => [:id, :name, :email_address, :accounts, :ssh_key ]
     })
 
-    render_table(rows, table_opts)
+    render_table(users, table_opts)
 
   end
 end

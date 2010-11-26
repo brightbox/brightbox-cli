@@ -4,7 +4,13 @@ command [:reset_ftp_password] do |c|
 
   c.action do |global_options,options,args|
 
-    accounts = Account.find(args)
+    if args.empty?
+      raise "You must specify the accounts to reset ftp passwords for"
+    end
+
+    accounts = Account.find_or_call(args) do |id|
+      raise "Couldn't find account #{id}"
+    end
 
     rows = []
 

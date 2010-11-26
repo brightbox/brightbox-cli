@@ -21,11 +21,7 @@ module Brightbox
     end
 
     def render_cell
-      handle
-    end
-
-    def id
-      fog_model.id
+      fog_model.handle
     end
 
     def self.all

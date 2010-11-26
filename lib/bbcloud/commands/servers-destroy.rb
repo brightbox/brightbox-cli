@@ -3,23 +3,20 @@ arg_name '[server-id...]'
 command [:destroy] do |c|
   c.action do |global_options, options, args|
 
-    if args.empty?
-      raise "you must specify the id of the server(s) you want to destroy"
+    raise "You must specify servers to destroy" if args.empty?
+
+    servers = Server.find_or_call(args) do |id|
+      raise "Couldn't find server #{id}"
     end
 
-    servers = args.collect do |sid|
-      info "Destroying server #{sid}"
-      server = Server.find sid
-      raise "Server #{sid} does not exist" if server.nil?
+    servers.each do |server|
+      info "Destroying server #{server}"
       begin
         server.destroy
       rescue Brightbox::Api::Conflict => e
-        error "Could not destroy #{sid}"
+        error "Could not destroy #{server}"
       end
-      server.reload
-      server
     end
 
-    render_table(servers, global_options)
   end
 end

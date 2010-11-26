@@ -2,7 +2,14 @@ desc 'List available images'
 arg_name '[image-id...]'
 command [:list] do |c|
   c.action do |global_options, options, args|
-    images = Image.find args
+
+    if args.empty?
+      images = Image.find(:all)
+    else
+      images = Image.find_or_call(args) do |id|
+        warn "Couldn't find image #{id}"
+      end
+    end
 
     snapshots = images.select { |i| i.source_type == 'snapshot' }
 

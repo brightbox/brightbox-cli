@@ -4,7 +4,13 @@ command [:show] do |c|
 
   c.action do |global_options,options,args|
 
-    accounts = Account.find(args).compact
+    if args.empty?
+      raise "You must specify the accounts to show"
+    end
+
+    accounts = Account.find_or_call(args) do |id|
+      warn "Couldn't find account #{id}"
+    end
 
     table_opts = global_options.merge({
       :vertical => true,

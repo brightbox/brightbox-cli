@@ -6,6 +6,7 @@ module Brightbox
     class Conflict < ApiError ; end
     class InvalidRecord < ApiError ; end
     class Forbidden < ApiError ; end
+    class InvalidArguments < ApiError ; end
 
     @@api = nil
 
@@ -14,18 +15,21 @@ module Brightbox
         @@api
       else
         @@api = Fog::Brightbox::Compute.new CONFIG.to_fog
+        @@api.oauth_token = CONFIG.oauth_token
+        @@api
       end
     end
 
     def initialize(m = nil)
       if m.is_a? String
         @id = m
-      elsif !m.nil?
+      elsif m.respond_to? :attributes and m.respond_to? :id
         @fog_model = m
         @id = m.id
+      else
+        raise InvalidArguments, "Can't initialize #{self.class} with #{m.inspect}"
       end
-      CONFIG.cache_id @id unless @id.nil?
-      @id
+      CONFIG.cache_id @id
     end
 
     def fog_model
@@ -43,38 +47,58 @@ module Brightbox
     end
 
     def self.find(args = :all, options = {})
-      return nil if args.nil?
+      raise InvalidArguments, "find(nil)" if args.nil?
+      raise InvalidArguments, "find([])" if args.respond_to?(:empty?) and args.empty?
       options = {
         :order => :created_at,
       }.merge options
-      objects = []
+      objects = nil
+      object = nil
       # get the data from the Api
-      if args == :all or (args.respond_to?(:empty?) and args.empty?)
+      if args == :all
         objects = all
+      elsif args.is_a? String
+        object = cached_get(args.to_s)
+        raise NotFound, "Couldn't find '#{args.to_s}'" if object.nil?
       elsif args.respond_to? :collect
         objects = args.collect do |arg|
-          cached_get(arg)
+          o = cached_get(arg.to_s)
+          raise NotFound, "Couldn't find '#{arg.to_s}'" if o.nil?
+          o
         end
-      elsif args.respond_to? :to_s
-        objects = [cached_get(args.to_s)]
-      end
-      # wrap in our objects
-      objects.collect! { |o| new(o) unless o.nil? }
-      # Sort
-      objects.sort! do |a,b| 
-        sort_method = options[:order]
-        begin
-          a.send(sort_method) <=> b.send(sort_method)
-        rescue NoMethodError
-          0
-        end
-      end
-      if objects.size <= 1 and args.is_a? String
-        # This was a single lookup
-        objects.first
       else
-        objects
+        raise InvalidArguments, "Couldn't find '#{arg.class}'"
       end
+      if objects
+        # wrap in our objects
+        objects.collect! { |o| new(o) }
+        # Sort
+        objects.sort! do |a,b| 
+          sort_method = options[:order]
+          begin
+            a.send(sort_method) <=> b.send(sort_method)
+          rescue NoMethodError
+            0
+          end
+        end
+        objects
+      elsif object
+        new(object)
+      end
+    end
+
+    # Find each id in the given array.  Yield the block with any ids
+    # that couldn't be found
+    def self.find_or_call(ids, &block)
+      objects = []
+      ids.each do |id|
+        begin
+          objects << find(id)
+        rescue Api::NotFound
+          yield id
+        end
+      end
+      objects
     end
 
     def method_missing(m, *args)
@@ -97,7 +121,9 @@ module Brightbox
     end
 
     def self.find_by_handle(h)
-      find(:all).find { |o| o.handle == h }
+      object = find(:all).find { |o| o.handle == h }
+      raise Api::NotFound, h if object.nil?
+      object
     end
 
     def self.cache_all!
