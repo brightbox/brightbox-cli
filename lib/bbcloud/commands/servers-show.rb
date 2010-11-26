@@ -22,7 +22,7 @@ command [:show] do |c|
         o[:disk] = s.server_type.disk.to_i
       end
 
-      if s.image.exists? and false
+      if s.image.exists?
         o[:image_name] = s.image.name
         o[:arch] = s.image.arch
       end
