@@ -4,11 +4,11 @@ command [:list] do |c|
   c.action do |global_options,options,args|
 
     if args.empty?
-      raise "You must specify the types you want to show"
-    end
-
-    types = Type.find_or_call(args) do |id|
-      warn "Couldn't find type #{id}"
+      types = Type.find :all
+    else
+      types = Type.find_or_call(args) do |id|
+        warn "Couldn't find type #{id}"
+      end
     end
 
     render_table(types, global_options)
