@@ -25,6 +25,11 @@ module Brightbox
       o
     end
 
+    def self.register(options = {})
+      image = conn.create_image(options)
+      find image['id']
+    end
+
     def public?
       public
     end
