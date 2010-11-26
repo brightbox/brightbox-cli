@@ -34,6 +34,16 @@ module Fog
   end
 end
 
+module Fog
+  module Brightbox
+    class Compute
+      class Real
+        attr_accessor :oauth_token
+      end
+    end
+  end
+end
+
 %w{api servers images types zones cloud_ips users accounts config version}.each do |f|
   require File.join(File.dirname(__FILE__), f)
 end
@@ -140,3 +150,5 @@ command [:version] do |c|
 end
 
 run ARGV
+
+CONFIG.finish

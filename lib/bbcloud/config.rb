@@ -36,6 +36,10 @@ class BBConfig
     @config_filename
   end
 
+  def oauth_token_filename
+    @oauth_token_filename ||= File.join(dir, client_name + '.oauth_token')
+  end
+
   def cache_path
     if @cache_path
       @cache_path
@@ -107,5 +111,33 @@ class BBConfig
     }
   end
 
+  def oauth_token
+    if @oauth_token.nil?
+      if File.exists? oauth_token_filename
+        File.open(oauth_token_filename, "r") do |f|
+          @oauth_token = f.read.chomp
+        end
+        @oauth_token
+      else
+        @oauth_token = false
+      end
+    else
+      @oauth_token ? @oauth_token : nil
+    end
+  end
+
+  def finish
+    begin
+      if @oauth_token != Api.conn.oauth_token
+        File.open(oauth_token_filename + ".#{$$}", "w") do |f|
+          f.write Api.conn.oauth_token
+        end
+        FileUtils.mv oauth_token_filename + ".#{$$}", oauth_token_filename
+      end
+    rescue StandardError => e
+      warn "Error writing auth token #{oauth_token_filename}: #{e.class}: #{e}"
+    end
+
+  end
 
 end

@@ -15,6 +15,8 @@ module Brightbox
         @@api
       else
         @@api = Fog::Brightbox::Compute.new CONFIG.to_fog
+        @@api.oauth_token = CONFIG.oauth_token
+        @@api
       end
     end
 
