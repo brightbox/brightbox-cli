@@ -23,12 +23,13 @@ module Brightbox
     def initialize(m = nil)
       if m.is_a? String
         @id = m
-      elsif !m.nil?
+      elsif m.respond_to? :attributes and m.respond_to? :id
         @fog_model = m
         @id = m.id
+      else
+        raise InvalidArguments, "Can't initialize #{self.class} with #{m.inspect}"
       end
-      CONFIG.cache_id @id unless @id.nil?
-      @id
+      CONFIG.cache_id @id
     end
 
     def fog_model
@@ -56,18 +57,21 @@ module Brightbox
       # get the data from the Api
       if args == :all
         objects = all
-      elsif args.respond_to? :collect
-        objects = args.collect do |arg|
-          o = cached_get(arg)
-          raise NotFound, "Couldn't find '#{args.to_s}'" if o.nil?
-        end
-      elsif args.respond_to? :to_s
+      elsif args.is_a? String
         object = cached_get(args.to_s)
         raise NotFound, "Couldn't find '#{args.to_s}'" if object.nil?
+      elsif args.respond_to? :collect
+        objects = args.collect do |arg|
+          o = cached_get(arg.to_s)
+          raise NotFound, "Couldn't find '#{arg.to_s}'" if o.nil?
+          o
+        end
+      else
+        raise InvalidArguments, "Couldn't find '#{arg.class}'"
       end
       if objects
         # wrap in our objects
-        objects.collect! { |o| new(o) unless o.nil? }
+        objects.collect! { |o| new(o) }
         # Sort
         objects.sort! do |a,b| 
           sort_method = options[:order]
