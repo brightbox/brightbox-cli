@@ -17,10 +17,10 @@ command [:create] do |c|
   c.flag [:n, :name]
 
   c.desc "Specify user data"
-  c.flag [:m, :user_data]
+  c.flag [:m, "user-data"]
 
   c.desc "Specify the user data from a local file"
-  c.flag [:f, :user_data_file]
+  c.flag [:f, "user-data-file"]
 
   c.desc "Don't base64 encode the user data"
   c.switch [:e, :no_base64]
