@@ -14,14 +14,14 @@ module Brightbox
     def self.all
       a = conn.account
       a.connection = conn
-      [new(a)]
+      [a]
     end
 
     def self.get(id)
       a = conn.account
       a.connection = conn
       if a.id == id
-        new(a)
+        a
       else
         nil
       end
