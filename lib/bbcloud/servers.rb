@@ -6,11 +6,11 @@ module Brightbox
     end
 
     def server_type
-      @server_type ||= Type.new(flavor_id)
+      @server_type ||= (Type.new(flavor_id) if flavor_id)
     end
 
     def image
-      @image ||= Image.new(image_id)
+      @image ||= (Image.new(image_id) if image_id)
     end
 
     def attributes
@@ -19,7 +19,7 @@ module Brightbox
       a[:created_at] = created_at
       a[:created_on] = fog_model.created_at.strftime("%Y-%m-%d")
       a[:type] = server_type
-      a[:zone] = Zone.new(zone_id)
+      a[:zone] = Zone.new(zone_id) if zone_id
       a[:hostname] = hostname
       a[:public_hostname] = public_hostname unless cloud_ips.empty?
       a
