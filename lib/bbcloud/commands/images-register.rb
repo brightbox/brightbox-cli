@@ -10,13 +10,20 @@ command [:register] do |c|
   c.desc "Source filename of the image you uploaded to the image library"
   c.flag [:s, "source"]
 
+  c.desc "This image does not support virtio so needs 'compatibility mode'"
+  c.switch [:c, "compatibility"]
+
+  c.desc "Image description"
+  c.flag [:d, "description"]
+
   c.action do |global_options,options,args|
 
     raise "You must specify the architecture" unless options[:a]
     raise "You must specify the source filename" unless options[:s]
 
     image = Image.register :name => options[:n], :arch => options[:a], 
-    :source => options[:s]
+    :source => options[:s], :compatibility_mode => options[:c],
+    :description => options[:d]
 
     render_table([image])
 
