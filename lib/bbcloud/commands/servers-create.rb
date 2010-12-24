@@ -61,8 +61,13 @@ command [:create] do |c|
 
     if user_data_file
       raise "Cannot specify user data on command line and in file at same time" if user_data
-      File.open(user_data_file, "r") do |f|
-        raise "User data file too big (>16k)" if f.stat.size > 16 * 1024
+      require "open-uri"
+      open(user_data_file, "r") do |f|
+        file_size = case f
+        when File then f.stat.size
+        when StringIO then f.size
+        end
+        raise "User data file too big (>16k)" if file_size > 16 * 1024
         user_data = f.read
       end
     end
