@@ -44,7 +44,7 @@ module Fog
   end
 end
 
-%w{api servers images types zones cloud_ips users accounts config version}.each do |f|
+%w{api servers images types zones cloud_ips users accounts config version load_balancers}.each do |f|
   require File.join(File.dirname(__FILE__), f)
 end
 
