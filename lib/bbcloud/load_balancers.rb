@@ -10,9 +10,11 @@ module Brightbox
     end
 
     def to_row
-      attributes.merge :nodes => node_ids,
-      :created_on => created_on,
-      :listeners => listeners
+      attributes.merge({ :nodes => node_ids,
+        :created_on => created_on,
+        :listeners => listeners,
+        :cloud_ips => cloud_ip_ids
+      })
     end
 
     def created_on
@@ -20,7 +22,11 @@ module Brightbox
     end
 
     def node_ids
-      @node_ids ||= attributes[:nodes].collect { |n| n["id"] }
+      @node_ids ||= attributes[:nodes].collect { |n| n["id"] } if attributes[:nodes]
+    end
+
+    def cloud_ip_ids
+      @cloud_ip_ids ||= attributes["cloud_ips"].collect { |n| n["id"] } if attributes["cloud_ips"]
     end
 
     def listeners
@@ -60,7 +66,7 @@ module Brightbox
     end
 
     def self.default_field_order
-      [:id, :status, :created_on, :nodes, :name]
+      [:id, :status, :created_on, :cloud_ips, :nodes, :name]
     end
 
   end

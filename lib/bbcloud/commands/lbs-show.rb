@@ -12,7 +12,7 @@ command [:show] do |c|
 
     table_opts = global_options.merge({
       :vertical => true,
-      :fields => [:id, :status, :name, "created_at", "deleted_at", :policy, :nodes, :listeners, :healthcheck]
+      :fields => [:id, :status, :name, "created_at", "deleted_at", :policy, :cloud_ips, :nodes, :listeners, :healthcheck]
     })
 
     render_table(lbs, table_opts)

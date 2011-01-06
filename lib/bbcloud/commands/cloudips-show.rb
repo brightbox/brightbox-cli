@@ -12,7 +12,7 @@ command [:show] do |c|
       warn "Couldn't find cloud ip #{id}"
     end
 
-    fields = [:id, :status, :public_ip, :reverse_dns, :server_id, :interface_id]
+    fields = [:id, :status, :public_ip, :reverse_dns, :destination, :interface_id]
 
     render_table(ips.compact, global_options.merge({ :vertical => true, :fields => fields}))                                              
   end

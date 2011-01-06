@@ -18,7 +18,13 @@ module Brightbox
     end
 
     def attributes
-      fog_model.attributes
+      a = fog_model.attributes
+      if a["load_balancer"]
+        a[:destination] = a["load_balancer"]["id"]
+      else
+        a[:destination] = a[:server_id]
+      end
+      a
     end
 
     def to_row
@@ -30,7 +36,7 @@ module Brightbox
     end
 
     def self.default_field_order
-      [:id, :status, :public_ip, :server_id, :interface_id, :reverse_dns]
+      [:id, :status, :public_ip, :destination, :reverse_dns]
     end
 
     def <=>(b)

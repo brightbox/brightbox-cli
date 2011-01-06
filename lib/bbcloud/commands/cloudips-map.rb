@@ -1,5 +1,5 @@
 desc 'map Cloud IPs'
-arg_name 'cloudip-id server-id'
+arg_name 'cloudip-id destination'
 command [:map] do |c|
   c.desc "Unmap mapped ips before remapping them"
   c.switch [:u, "unmap"]
@@ -11,16 +11,28 @@ command [:map] do |c|
     end
 
     if args.size < 2
-      raise "You must specify the cloud ip id and the server id"
+      raise "You must specify the cloud ip id and the destination"
     end
 
     ip_id = args.first
 
     ip = CloudIP.find ip_id
 
+    destination_id = args.last
+    case destination_id
+    when /^srv\-/
+      server = Server.find destination_id
+      destination_id = server.interfaces.first["id"]
+      info "Mapping #{ip} to interface #{destination_id} on #{server}"
+    when /^lba\-/
+      lb = LoadBalancer.find destination_id
+      info "Mapping #{ip} to load balancer #{lb}"
+    else
+      raise "Unknown destination '#{destination_id}'" 
+    end
+
     if ip.mapped?
       if options[:u]
-        info "Unmapping ip #{ip}"
         ip.unmap
         3.times do
           break unless ip.mapped?
@@ -32,13 +44,7 @@ command [:map] do |c|
       end
     end
 
-    server_id = args.last
-    server = Server.find server_id
-    
-    interface_id = server.interfaces.first["id"]
-    info "Mapping #{ip} to interface #{interface_id} on #{server}"
-
-    ip.map interface_id
+    ip.map destination_id
 
     # Wait up to 3 seconds for mapping to complete
     3.times do
