@@ -1,4 +1,5 @@
-desc 'Create load balancers'
+desc 'Create a load balancer'
+arg_name 'srv-id...'
 command [:create] do |c|
 
   c.desc "Friendly name of load balancer"
@@ -16,10 +17,9 @@ command [:create] do |c|
   c.default_value "80:80:http,443:443:tcp"
   c.flag [:l, :listeners]
 
-  c.desc "Servers to balance connections to"
-  c.flag [:r, :servers]
-
   c.action do |global_options, options, args|
+
+    raise "You must specify which servers to balance connections to" if args.empty?
 
     listeners = options[:l].split(",").collect do |l|
       inport, output, protocol = l.split ":"
@@ -29,7 +29,7 @@ command [:create] do |c|
     hport, htype = options[:k].split(":")
     healthcheck = { :port => hport, :type => htype }
 
-    nodes = options[:r].split(",").collect { |i| { :node => i } }
+    nodes = args.collect { |i| { :node => i } }
 
     msg = "Creating a load balancer"
     info msg
