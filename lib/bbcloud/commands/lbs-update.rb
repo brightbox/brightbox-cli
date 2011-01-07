@@ -1,53 +1,47 @@
-desc 'Create a load balancer'
-arg_name 'srv-id...'
-command [:create] do |c|
+desc 'Update a load balancer'
+arg_name 'lba-id [node-id...]'
+
+command [:update] do |c|
 
   c.desc "Friendly name of load balancer"
   c.flag [:n, :name]
 
   c.desc "Load balancer policy"
-  c.default_value "least-connections"
   c.flag [:p, :policy]
 
-  c.desc "Listeners. Format: in-port:out-port:type. Comma separate multiple listeners."
-  c.default_value "80:80:http,443:443:tcp"
+  c.desc "Listeners (in-port:out-port:protocol. Comma separate multiple triples)"
   c.flag [:l, :listeners]
 
   c.desc "Healthcheck port"
-  c.default_value "80"
   c.flag [:k, "hc-port"]
 
   c.desc "Healthcheck type"
-  c.default_value "http"
   c.flag [:y, "hc-type"]
 
   c.desc "Healthcheck timeout"
-  c.default_value "5000"
   c.flag [:t, "hc-timeout"]
 
   c.desc "Healthcheck request. When the type is 'http' this is the url to request."
-  c.default_value "/"
   c.flag [:s, "hc-request"]
 
   c.desc "Healthcheck interval"
-  c.default_value "5000"
   c.flag [:e, "hc-interval"]
 
   c.desc "Healthcheck threshold up. Time a healthcheck has to succeed to be considered up."
-  c.default_value "3"
   c.flag [:u, "hc-up"]
 
   c.desc "Healthcheck threshold down. Time a healthcheck has to fail to be considered down."
-  c.default_value "3"
   c.flag [:d, "hc-down"]
 
   c.action do |global_options, options, args|
 
-    raise "You must specify which servers to balance connections to" if args.empty?
+    lb_id = args.shift
+    raise "You must specify the load balancer to update as the first argument" unless lb_id =~ /^lba-/
 
-    listeners = options[:l].split(",").collect do |l|
-      inport, output, protocol = l.split ":"
-      { :in => inport, :out => output, :protocol => protocol }
+    lbopts = {}
+
+    unless args.empty?
+      lbopts[:nodes] = args.collect { |a| { :node => a } }
     end
 
     hc_arg_lookup = { :k => :port, :y => :type, :t => :timeout, :s =>
@@ -62,15 +56,34 @@ command [:create] do |c|
       end
     end
 
-    nodes = args.collect { |i| { :node => i } }
+    unless healthcheck.keys.empty?
+      lbopts[:healthcheck] = healthcheck
+    end
 
-    msg = "Creating a new load balancer"
-    info msg
-    lb = LoadBalancer.create(:policy => options[:policy],
-                        :name => options[:n],
-                        :healthcheck => healthcheck,
-                        :listeners => listeners,
-                        :nodes => nodes)
+    if options[:l]
+      lbopts[:listeners] = options[:l].split(",").collect do |l|
+        inport, output, protocol = l.split ":"
+        { :in => inport, :out => output, :protocol => protocol }
+      end
+    end
+
+    if options[:k]
+      hport, htype = options[:k].split(":")
+      lbopts[:healthcheck] = { :port => hport, :type => htype }
+    end
+
+    if options[:n]
+      lbopts[:name] = options[:n]
+    end
+
+    if options[:p]
+      lbopts[:policy] = options[:p]
+    end 
+
+    lb = LoadBalancer.find lb_id
+
+    info "Updating load balancer #{lb}"
+    lb = lb.update(lbopts)
     render_table([lb], global_options)
   end
 end

@@ -5,7 +5,7 @@ unless defined?(DISABLE_RUBYGEMS)
   require "rubygems" 
 	gem "json", "=1.4.6"
 	gem "json_pure", "=1.4.6"
-  gem "fog", "=0.3.23"
+  gem "fog", "=0.4.0"
 end
 
 # Add any vendored libraries into search path

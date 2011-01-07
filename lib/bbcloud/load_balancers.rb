@@ -57,6 +57,15 @@ module Brightbox
       raise Conflict, JSON.parse(e.response.body)['error']['details']
     end
 
+    def update(options)
+      debug options.inspect
+      LoadBalancer.conn.update_load_balancer(id, options)
+      self.reload
+      self
+    rescue Excon::Errors::BadRequest => e
+      raise Conflict, JSON.parse(e.response.body)['error']['details']
+    end
+
     def self.get(id)
       conn.load_balancers.get id
     end
