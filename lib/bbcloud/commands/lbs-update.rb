@@ -1,4 +1,5 @@
 desc 'Update a load balancer'
+long_desc "All intervals and timeouts are in milliseconds"
 arg_name 'lba-id [node-id...]'
 
 command [:update] do |c|
@@ -9,7 +10,7 @@ command [:update] do |c|
   c.desc "Load balancer policy"
   c.flag [:p, :policy]
 
-  c.desc "Listeners (in-port:out-port:protocol. Comma separate multiple triples)"
+  c.desc "Listeners (in-port:out-port:protocol. Comma separate multiple listeners)"
   c.flag [:l, :listeners]
 
   c.desc "Healthcheck port"
@@ -27,10 +28,10 @@ command [:update] do |c|
   c.desc "Healthcheck interval"
   c.flag [:e, "hc-interval"]
 
-  c.desc "Healthcheck threshold up. Time a healthcheck has to succeed to be considered up."
+  c.desc "Healthcheck threshold up. Number of successful healthchecks for the node to be considered up."
   c.flag [:u, "hc-up"]
 
-  c.desc "Healthcheck threshold down. Time a healthcheck has to fail to be considered down."
+  c.desc "Healthcheck threshold down. Number of failed healthchecks for the node to be considered down."
   c.flag [:d, "hc-down"]
 
   c.action do |global_options, options, args|
@@ -65,11 +66,6 @@ command [:update] do |c|
         inport, output, protocol = l.split ":"
         { :in => inport, :out => output, :protocol => protocol }
       end
-    end
-
-    if options[:k]
-      hport, htype = options[:k].split(":")
-      lbopts[:healthcheck] = { :port => hport, :type => htype }
     end
 
     if options[:n]
