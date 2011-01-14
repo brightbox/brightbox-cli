@@ -23,10 +23,10 @@ Gem::Specification.new do |s|
 	s.add_dependency 'json', '=1.4.6'
 	s.add_dependency 'json_pure', '=1.4.6'
 
-	s.add_dependency 'gli', '1.1.2'
+	s.add_dependency 'gli', '1.2.5'
 	s.add_dependency 'hirb', '0.3.5'
-	s.add_dependency 'fog', '=0.3.23'
-	s.add_dependency 'excon', '>=0.2.4'
+	s.add_dependency 'fog', '=0.4.0'
+	s.add_dependency 'excon', '>=0.3.7'
 	s.add_dependency 'ini', '0.1.1'
 
 end

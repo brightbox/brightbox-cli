@@ -5,7 +5,7 @@ unless defined?(DISABLE_RUBYGEMS)
   require "rubygems" 
 	gem "json", "=1.4.6"
 	gem "json_pure", "=1.4.6"
-  gem "fog", "=0.3.23"
+  gem "fog", "=0.4.0"
 end
 
 # Add any vendored libraries into search path
@@ -44,7 +44,7 @@ module Fog
   end
 end
 
-%w{api servers images types zones cloud_ips users accounts config version}.each do |f|
+%w{api servers images types zones cloud_ips users accounts config version load_balancers}.each do |f|
   require File.join(File.dirname(__FILE__), f)
 end
 

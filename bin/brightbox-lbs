@@ -1,0 +1,9 @@
+#!/usr/bin/env ruby
+
+begin
+  require "bbcloud/cli"
+rescue LoadError
+  bbcloud_path = File.expand_path('../../lib', __FILE__)
+  $:.unshift(bbcloud_path)
+  require "bbcloud/cli"
+end

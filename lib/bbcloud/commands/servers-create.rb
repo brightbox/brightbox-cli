@@ -61,9 +61,16 @@ command [:create] do |c|
 
     if user_data_file
       raise "Cannot specify user data on command line and in file at same time" if user_data
-      File.open(user_data_file, "r") do |f|
-        raise "User data file too big (>16k)" if f.stat.size > 16 * 1024
-        user_data = f.read
+      # Wot we use to read the data, be it from stdin or a file on disk
+      file_handler = lambda do |fh|
+        raise "User data file too big (>16k)" if fh.stat.size > 16 * 1024
+        user_data = fh.read
+      end
+      # Figure out how to invoke file_handler, and then invoke it
+      if user_data_file == "-"
+        file_handler[$stdin]
+      else
+        File.open user_data_file, "r", &file_handler
       end
     end
 
