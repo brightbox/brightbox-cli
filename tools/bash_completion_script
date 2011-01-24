@@ -85,7 +85,7 @@ _brightbox()
 					client_default|client_remove|client_list)
 						;;
 					*)
-						COMPREPLY=( $( compgen -W 'client_add client_remove client_default help' -- "$cur" ) )
+						COMPREPLY=( $( compgen -W 'client_add client_remove client_default client_list help' -- "$cur" ) )
 						;;
 				esac
 			;;
@@ -115,6 +115,24 @@ _brightbox()
 						;;
 				esac
 			;;
+			brightbox-lbs)
+				case $command in
+					create|update)
+						if [[ "$cur" == -* ]] ; then
+							COMPREPLY=( $( compgen -W '--hc-down --hc-interval --port --listeners --name --policy --hc-request --hc-timeout --hc-up --hc-type' -- "$cur" ) )
+						else
+							test -d ~/.brightbox/cache && COMPREPLY=( $( compgen -W '`ls ~/.brightbox/cache/`' -- "$cur" ) ) 
+						fi
+						;;
+					destroy|list|show|remove_nodes|add_nodes)
+						test -d ~/.brightbox/cache && COMPREPLY=( $( compgen -W '`ls ~/.brightbox/cache/`' -- "$cur" ) ) 
+						;;
+					*)
+						COMPREPLY=( $( compgen -W 'create destroy help list show shutdown snapshot start stop' -- "$cur" ) )
+						;;
+				esac
+			;;
+
 		esac
 
 }
@@ -123,10 +141,11 @@ complete -F _brightbox -o filenames brightbox-images
 complete -F _brightbox -o filenames brightbox-cloudips
 complete -F _brightbox -o filenames brightbox-config
 complete -F _brightbox -o filenames brightbox-users
+complete -F _brightbox -o filenames brightbox-lbs
 
 # Local variables:
 # mode: shell-script
-# sh-basic-offset: 4
+# sh-basic-offset: 2
 # sh-indent-comment: t
 # indent-tabs-mode: nil
 # End:
