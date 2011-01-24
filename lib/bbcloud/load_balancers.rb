@@ -13,7 +13,7 @@ module Brightbox
       attributes.merge({ :nodes => node_ids,
         :created_on => created_on,
         :listeners => listeners,
-        :cloud_ips => cloud_ip_ids
+        :cloud_ips => cloud_ips
       })
     end
 
@@ -27,6 +27,10 @@ module Brightbox
 
     def cloud_ip_ids
       @cloud_ip_ids ||= attributes["cloud_ips"].collect { |n| n["id"] } if attributes["cloud_ips"]
+    end
+
+    def cloud_ips
+      @cloud_ips ||= attributes["cloud_ips"].collect { |n| n["public_ip"] } if attributes["cloud_ips"]
     end
 
     def listeners
