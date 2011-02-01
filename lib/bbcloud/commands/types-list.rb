@@ -11,6 +11,6 @@ command [:list] do |c|
       end
     end
 
-    render_table(types, global_options)
+    render_table(types.sort, global_options)
   end
 end
