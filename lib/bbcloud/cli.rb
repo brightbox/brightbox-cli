@@ -98,6 +98,9 @@ switch [:s, :simple]
 desc "Set the api client to use (named in #{CONFIG.config_filename})"
 flag [:c, :client]
 
+desc "Disable peer SSL certificate verification"
+switch [:k, :insecure]
+
 # Load the command libraries for the current group
 cmd_group_name = File.basename($0).gsub(/brightbox\-/,'')
 cmd_group_files = File.join(File.dirname(__FILE__), "commands/#{cmd_group_name}*.rb")
@@ -107,6 +110,7 @@ end
 
 pre do |global_options,command,options,args|
   CONFIG.client_name = global_options[:c] if global_options[:c]
+  Excon.ssl_verify_peer = false if global_options[:k]
   info "INFO: client_id: #{CONFIG.client_name}" if CONFIG.clients.size > 1
   true
 end
