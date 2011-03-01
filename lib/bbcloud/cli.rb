@@ -1,15 +1,17 @@
 os_config = File.join(File.dirname(__FILE__), 'os_config.rb')
 require os_config if File.exist? os_config
 
+vendor_dir = File.join(File.dirname(__FILE__), 'vendor/')
+
 unless defined?(DISABLE_RUBYGEMS)
   require "rubygems" 
 	gem "json", "=1.4.6"
 	gem "json_pure", "=1.4.6"
-  gem "fog", "=0.4.0"
+  gem "fog", "=0.4.0" unless File.exist? vendor_dir + 'fog'
 end
 
 # Add any vendored libraries into search path
-Dir.glob(File.join(File.dirname(__FILE__), 'vendor/*')).each do |f|
+Dir.glob(vendor_dir + '*').each do |f|
   $:.unshift File.join(f, 'lib')
 end
 
