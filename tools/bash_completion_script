@@ -6,7 +6,8 @@ _brightbox()
     local cur prev
 
     COMPREPLY=()
-		_get_comp_words_by_ref cur prev
+		cur=`_get_cword`
+		prev=${COMP_WORDS[COMP_CWORD-1]}
     
 		command=''
 		for (( i=1; i < COMP_CWORD; i++ )); do
