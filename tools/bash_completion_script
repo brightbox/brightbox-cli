@@ -22,7 +22,7 @@ _brightbox()
 				case $command in
 					create)
 						case $prev in
-							-f|--user_data_file)
+							-f|--user-data-file)
 								_filedir
 								return 0
 								;;
@@ -36,7 +36,7 @@ _brightbox()
 							test -d ~/.brightbox/cache && COMPREPLY=( $( compgen -W '`ls ~/.brightbox/cache/`' -- "$cur" ) ) 
 						fi
 						;;
-					destroy|list|show|shutdown|snapshot|start|stop)
+					destroy|list|show|shutdown|snapshot|start|stop|activate_console)
 						test -d ~/.brightbox/cache && COMPREPLY=( $( compgen -W '`ls ~/.brightbox/cache/`' -- "$cur" ) ) 
 						;;
 					*)
