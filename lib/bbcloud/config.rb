@@ -104,6 +104,7 @@ class BBConfig
       end
     end
     { 
+      :provider => 'Brightbox',
       :brightbox_api_url => c['api_url'],
       :brightbox_auth_url => c['auth_url'] || c['api_url'],
       :brightbox_client_id => c['client_id'],

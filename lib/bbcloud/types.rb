@@ -35,5 +35,13 @@ module Brightbox
     def self.default_field_order
       [:id, :name, :handle, :ram, :disk, :cores, :description]
     end
+
+    def <=>(b)
+      if b.is_a? Type
+        self.ram <=> b.ram
+      else
+        self.ram <=> b
+      end
+    end
   end
 end

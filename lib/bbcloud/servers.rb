@@ -42,6 +42,10 @@ module Brightbox
       raise Conflict, "Cannot delete server #{id}"
     end
 
+    def activate_console
+      self.class.conn.activate_console_server id
+    end
+
     def self.get(id)
       conn.servers.get id
     end
