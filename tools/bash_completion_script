@@ -6,7 +6,8 @@ _brightbox()
     local cur prev
 
     COMPREPLY=()
-		_get_comp_words_by_ref cur prev
+		cur=`_get_cword`
+		prev=${COMP_WORDS[COMP_CWORD-1]}
     
 		command=''
 		for (( i=1; i < COMP_CWORD; i++ )); do
@@ -21,7 +22,7 @@ _brightbox()
 				case $command in
 					create)
 						case $prev in
-							-f|--user_data_file)
+							-f|--user-data-file)
 								_filedir
 								return 0
 								;;
@@ -35,7 +36,7 @@ _brightbox()
 							test -d ~/.brightbox/cache && COMPREPLY=( $( compgen -W '`ls ~/.brightbox/cache/`' -- "$cur" ) ) 
 						fi
 						;;
-					destroy|list|show|shutdown|snapshot|start|stop)
+					destroy|list|show|shutdown|snapshot|start|stop|activate_console)
 						test -d ~/.brightbox/cache && COMPREPLY=( $( compgen -W '`ls ~/.brightbox/cache/`' -- "$cur" ) ) 
 						;;
 					*)

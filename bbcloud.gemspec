@@ -1,6 +1,5 @@
 # -*- encoding: utf-8 -*-
-$:.push File.expand_path("../lib", __FILE__)
-require "bbcloud/version"
+require File.join(File.dirname(__FILE__), "lib/bbcloud/version")
 
 Gem::Specification.new do |s|
   s.name        = "bbcloud"
@@ -25,8 +24,8 @@ Gem::Specification.new do |s|
 
 	s.add_dependency 'gli', '1.2.5'
 	s.add_dependency 'hirb', '0.3.5'
-	s.add_dependency 'fog', '=0.7.0'
-	s.add_dependency 'excon', '>=0.5.6'
+	s.add_dependency 'formatador', '=0.0.16'
+	s.add_dependency 'excon', '=0.5.6'
 	s.add_dependency 'ini', '0.1.1'
 
 end
