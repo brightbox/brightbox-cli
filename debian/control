@@ -7,13 +7,13 @@ Standards-Version: 3.9.1
 
 Package: bbcloud
 Architecture: all
-Depends: libbbcloud-ruby
+Depends: libbbcloud-ruby (= ${binary:Version})
 Description: CLI for the Brightbox cloud computing platform
  bbcloud provides tools for interacting with the Brightbox cloud platform
 
 Package: libbbcloud-ruby
 Architecture: all
-Depends: libbbcloud-ruby1.8, ${misc:Depends}
+Depends: libbbcloud-ruby1.8(= ${binary:Version}), ${misc:Depends}
 Description: CLI for the Brightbox cloud computing platform
  bbcloud provides tools for interacting with the Brightbox cloud platform
  .
