@@ -1,3 +1,9 @@
+bbcloud (0.11.2-0ubuntu0) lucid; urgency=low
+
+  * New upstream version
+
+ -- John Leach <john@brightbox.co.uk>  Wed, 02 Mar 2011 18:35:35 +0000
+
 bbcloud (0.11.0-0ubuntu0) lucid; urgency=low
 
   * New upstream version
