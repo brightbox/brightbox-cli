@@ -25,8 +25,8 @@ Gem::Specification.new do |s|
 
 	s.add_dependency 'gli', '1.2.5'
 	s.add_dependency 'hirb', '0.3.5'
-	s.add_dependency 'fog', '=0.4.0'
-	s.add_dependency 'excon', '>=0.3.7'
+	s.add_dependency 'fog', '=0.7.0'
+	s.add_dependency 'excon', '>=0.5.6'
 	s.add_dependency 'ini', '0.1.1'
 
 end
