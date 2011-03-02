@@ -96,7 +96,7 @@ class BBConfig
   end
 
   def to_fog
-    raise Ini::Error, "No api client configured" if clients.empty?
+    raise Ini::Error, "No api client configured" unless configured?
     c = config[client_name]
     %w{api_url client_id secret}.each do |k|
       if c[k].to_s.empty?
@@ -129,7 +129,7 @@ class BBConfig
 
   def finish
     begin
-      if @oauth_token != Api.conn.oauth_token
+      if configured? and @oauth_token != Api.conn.oauth_token
         File.open(oauth_token_filename + ".#{$$}", "w") do |f|
           f.write Api.conn.oauth_token
         end
@@ -139,6 +139,10 @@ class BBConfig
       warn "Error writing auth token #{oauth_token_filename}: #{e.class}: #{e}"
     end
 
+  end
+
+  def configured?
+    client_name != nil and !clients.empty?
   end
 
 end
