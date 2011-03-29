@@ -112,7 +112,16 @@ end
 
 pre do |global_options,command,options,args|
   CONFIG.client_name = global_options[:c] if global_options[:c]
-  Excon.ssl_verify_peer = false if global_options[:k]
+  if global_options[:k]
+    Excon.ssl_verify_peer = false
+    # FIXME: Overriding this here is not good.  Excon calls
+    # post_connection_check so it should have an option not to.
+    class OpenSSL::SSL::SSLSocket
+      def post_connection_check(hostname)
+        true
+      end
+    end
+  end
   info "INFO: client_id: #{CONFIG.client_name}" if CONFIG.clients.size > 1
   true
 end
