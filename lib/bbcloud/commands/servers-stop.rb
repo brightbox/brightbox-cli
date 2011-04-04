@@ -1,4 +1,4 @@
-desc 'Stop the specified servers'
+desc 'Stop the specified servers, aka turning the power off'
 arg_name 'server-id...'
 command [:stop] do |c|
 

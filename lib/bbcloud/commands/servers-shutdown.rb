@@ -1,4 +1,4 @@
-desc 'Shutdown the specified servers'
+desc 'Shutdown the specified servers, aka clicking "shutdown" in the OS'
 arg_name 'server-id...'
 command [:shutdown] do |c|
   c.action do |global_options,options,args|
