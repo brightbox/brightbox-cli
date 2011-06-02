@@ -111,8 +111,9 @@ Dir.glob(cmd_group_files).each do |f|
 end
 
 pre do |global_options,command,options,args|
+  CONFIG.client_name = ENV["CLIENT"] if ENV["CLIENT"]
   CONFIG.client_name = global_options[:c] if global_options[:c]
-  if global_options[:k]
+  if global_options[:k] or ENV["INSECURE"]
     Excon.ssl_verify_peer = false
     # FIXME: Overriding this here is not good.  Excon calls
     # post_connection_check so it should have an option not to.
