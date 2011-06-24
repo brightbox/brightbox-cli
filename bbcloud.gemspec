@@ -13,20 +13,21 @@ Gem::Specification.new do |s|
 
   s.rubyforge_project = "bbcloud"
 
-  s.files         = `git ls-files`.split("\n") + `find lib/bbcloud/vendor`.split("\n")
+  s.files         = `git ls-files`.split("\n") + `find vendor`.split("\n")
   s.test_files    = `git ls-files -- {test,spec,features}/*`.split("\n")
   s.executables   = `git ls-files -- bin/*`.split("\n").map{ |f| File.basename(f) }
   s.require_paths = ["lib"]
 
-  # To work around a bug with json using the wrong json_pure
-  s.add_dependency 'json', '=1.4.6'
-  s.add_dependency 'json_pure', '=1.4.6'
+  s.add_dependency 'json', ' ~> 1.4.6'
 
   s.add_dependency 'gli', '1.2.5'
   s.add_dependency 'hirb', '0.3.5'
-  s.add_dependency 'formatador', '=0.0.16'
-  s.add_dependency 'excon', '=0.5.6'
-  s.add_dependency 'ini', '0.1.1'
+  s.add_dependency 'formatador', '~> 0.1.4'
+  s.add_dependency 'excon', '~> 0.6.1'
+  s.add_dependency 'fog', '~> 0.8.0'
   s.add_development_dependency('rake', '~> 0.8.0')
+  s.add_development_dependency('vcr')
+  s.add_development_dependency('rspec')
+  s.add_development_dependency('mocha')
 end
 

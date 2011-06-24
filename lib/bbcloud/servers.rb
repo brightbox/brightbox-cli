@@ -19,6 +19,7 @@ module Brightbox
       a[:created_at] = created_at
       a[:created_on] = fog_model.created_at.strftime("%Y-%m-%d")
       a[:type] = server_type
+      a[:status] = fog_model.state
       a[:zone] = Zone.new(zone_id) if zone_id
       a[:hostname] = hostname
       a[:public_hostname] = public_hostname unless cloud_ips.empty?

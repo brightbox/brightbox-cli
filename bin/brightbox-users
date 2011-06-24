@@ -1,9 +1,14 @@
 #!/usr/bin/env ruby
 
 begin
-  require "bbcloud/cli"
+  require "bbcloud"
 rescue LoadError
   bbcloud_path = File.expand_path('../../lib', __FILE__)
   $:.unshift(bbcloud_path)
-  require "bbcloud/cli"
+  require "bbcloud"
+end
+
+Brightbox::BBConfig.config do
+  include GLI
+  run ARGV
 end

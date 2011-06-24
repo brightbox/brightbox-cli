@@ -6,9 +6,7 @@ module Brightbox
     end
 
     def to_row
-      attributes.merge({ :ram_free => ram_free, 
-                         :cloud_ip_limit => limits_cloudips
-                       })
+      attributes.merge(:ram_free => ram_free, :cloud_ip_limit => limits_cloudips)
     end
 
     def self.all
