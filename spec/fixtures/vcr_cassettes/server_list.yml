@@ -1,0 +1,117 @@
+---
+- !ruby/struct:VCR::HTTPInteraction
+  request: !ruby/struct:VCR::Request
+    method: GET
+    uri: https://api.gb1.brightbox.com:443/1.0/servers
+    body: ! '{}'
+    headers:
+      content-type:
+      - application/json
+      authorization:
+      - OAuth sandbox_oauth
+  response: !ruby/struct:VCR::Response
+    status: !ruby/struct:VCR::ResponseStatus
+      code: 200
+      message: !!null 
+    headers:
+      date:
+      - Mon, 27 Jun 2011 11:52:18 GMT
+      server:
+      - Apache
+      etag:
+      - ! '"61f3cce5286f818e30b9b4dca6420a14"'
+      x-runtime:
+      - '97'
+      cache-control:
+      - private, max-age=0, must-revalidate
+      access-control-allow-origin:
+      - ! '*'
+      access-control-allow-headers:
+      - Authorization
+      content-length:
+      - '1678'
+      status:
+      - '200'
+      content-type:
+      - application/json; charset=utf-8
+    body: ! '[{"id":"test-server","resource_type":"server","url":"https://api.gb1.brightbox.com/1.0/servers/test-server","name":"earth_simulator","created_at":"2011-06-23T03:42:59Z","deleted_at":null,"hostname":"test-server","started_at":null,"status":"active","server_type":{"id":"typ-qdiwq","resource_type":"server_type","url":"https://api.gb1.brightbox.com/1.0/server_types/typ-qdiwq","name":"Brightbox
+      Medium Instance","cores":8,"handle":"medium","disk_size":163840,"ram":4096,"status":"available"},"zone":{"id":"zon-o6xle","resource_type":"zone","url":"https://api.gb1.brightbox.com/1.0/zones/zon-o6xle","handle":"gb1-b"},"cloud_ips":[{"id":"cip-6hp95","resource_type":"cloud_ip","url":"https://api.gb1.brightbox.com/1.0/cloud_ips/cip-6hp95","reverse_dns":"cip-109-107-38-50.gb1.brightbox.com","status":"mapped","public_ip":"109.107.38.50"}],"account":{"id":"acc-hhsrh","resource_type":"account","url":"https://api.gb1.brightbox.com/1.0/account","name":"Hemant
+      Kumar","ram_used":4096,"ram_limit":30000,"load_balancers_limit":2,"load_balancers_used":0,"cloud_ips_used":1,"status":"pending","cloud_ips_limit":10},"snapshots":[],"interfaces":[{"id":"int-t41vt","resource_type":"interface","url":"https://api.gb1.brightbox.com/1.0/interfaces/int-t41vt","mac_address":"02:24:19:10:06:96","ipv4_address":"10.16.6.150"}],"image":{"id":"img-7p3wu","resource_type":"image","url":"https://api.gb1.brightbox.com/1.0/images/img-7p3wu","name":"Ubuntu
+      Natty 11.04 server","created_at":"2011-05-09T14:34:21Z","arch":"x86_64","description":"Expands
+      root partition automatically. login: ubuntu using stored ssh key","status":"available","source":"ubuntu-natty-daily-i64-server-20110509","owner":"acc-juq13"}}]'
+    http_version: !!null 
+- !ruby/struct:VCR::HTTPInteraction
+  request: !ruby/struct:VCR::Request
+    method: GET
+    uri: https://api.gb1.brightbox.com:443/1.0/server_types/typ-qdiwq
+    body: ! '{}'
+    headers:
+      content-type:
+      - application/json
+      authorization:
+      - OAuth sandbox_oauth
+  response: !ruby/struct:VCR::Response
+    status: !ruby/struct:VCR::ResponseStatus
+      code: 200
+      message: !!null 
+    headers:
+      date:
+      - Mon, 27 Jun 2011 11:52:20 GMT
+      server:
+      - Apache
+      etag:
+      - ! '"70240a4f0aef923b66c06785012e5306"'
+      x-runtime:
+      - '9'
+      cache-control:
+      - private, max-age=0, must-revalidate
+      access-control-allow-origin:
+      - ! '*'
+      access-control-allow-headers:
+      - Authorization
+      content-length:
+      - '227'
+      status:
+      - '200'
+      content-type:
+      - application/json; charset=utf-8
+    body: ! '{"id":"typ-qdiwq","resource_type":"server_type","url":"https://api.gb1.brightbox.com/1.0/server_types/typ-qdiwq","cores":8,"name":"Brightbox
+      Medium Instance","handle":"medium","disk_size":163840,"ram":4096,"status":"available"}'
+    http_version: !!null 
+- !ruby/struct:VCR::HTTPInteraction
+  request: !ruby/struct:VCR::Request
+    method: GET
+    uri: https://api.gb1.brightbox.com:443/1.0/zones/zon-o6xle
+    body: ! '{}'
+    headers:
+      content-type:
+      - application/json
+      authorization:
+      - OAuth sandbox_oauth
+  response: !ruby/struct:VCR::Response
+    status: !ruby/struct:VCR::ResponseStatus
+      code: 200
+      message: !!null 
+    headers:
+      date:
+      - Mon, 27 Jun 2011 11:52:21 GMT
+      server:
+      - Apache
+      etag:
+      - ! '"143bfb90226becc6486aa090ba6d30c4"'
+      x-runtime:
+      - '11'
+      cache-control:
+      - private, max-age=0, must-revalidate
+      access-control-allow-origin:
+      - ! '*'
+      access-control-allow-headers:
+      - Authorization
+      content-length:
+      - '116'
+      status:
+      - '200'
+      content-type:
+      - application/json; charset=utf-8
+    body: ! '{"id":"zon-o6xle","resource_type":"zone","url":"https://api.gb1.brightbox.com/1.0/zones/zon-o6xle","handle":"gb1-b"}'
+    http_version: !!null 
