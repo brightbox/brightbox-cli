@@ -1,6 +1,10 @@
 module Brightbox
   class Server < Api
 
+    def self.create_servers(count,options)
+      (0...count).map {|i| create(options) }
+    end
+
     def self.create(options)
       new(conn.servers.create(options))
     end

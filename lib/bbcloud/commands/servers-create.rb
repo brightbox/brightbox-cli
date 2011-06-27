@@ -88,14 +88,15 @@ module Brightbox
       msg << " in zone #{zone.handle} (#{zone})" if zone
       msg << " with %.2fk of user data" % (user_data.size / 1024.0) if user_data
       info msg
-      servers = []
-      options[:i].times do
-        servers << Server.create(:image_id => image.id,
-                          :flavor_id => type.id,
-                          :zone_id => zone.to_s,
-                          :name => options[:n],
-                          :user_data => user_data)
-      end
+
+      servers = Server.create_servers( options[:i], {
+          :image_id => image.id,
+          :flavor_id => type.id,
+          :zone_id => zone.to_s,
+          :name => options[:n],
+          :user_data => user_data
+        }
+      )
       render_table(servers, global_options)
     end
   end

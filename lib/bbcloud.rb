@@ -22,6 +22,7 @@ require 'date'
 require 'gli'
 require 'fog'
 
+
 require 'bbcloud/tables'
 require "bbcloud/fog_extensions"
 require "bbcloud/logging"
@@ -37,5 +38,5 @@ require "bbcloud/config"
 require "bbcloud/version"
 require "bbcloud/load_balancers"
 require "bbcloud/ruby_core_ext"
-
+require "bbcloud/error_parser"
 
