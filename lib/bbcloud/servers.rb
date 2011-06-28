@@ -32,7 +32,7 @@ module Brightbox
 
     def to_row
       o = attributes
-      o[:cloud_ips] = cloud_ips.collect { |i| i['public_ip'] }
+      o[:cloud_ip_ids] = cloud_ips.collect { |i| i['id'] }
       o[:ips] = interfaces.collect { |i| i['ipv4_address'] }.join(', ')
       o
     end
@@ -60,7 +60,7 @@ module Brightbox
     end
 
     def self.default_field_order
-      [:id, :status, :type, :zone, :created_on, :image_id, :cloud_ips, :name]
+      [:id, :status, :type, :zone, :created_on, :image_id,:cloud_ip_ids,:name]
     end
 
     def hostname
