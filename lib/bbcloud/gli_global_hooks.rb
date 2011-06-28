@@ -10,6 +10,9 @@ module Brightbox
   desc "Disable peer SSL certificate verification"
   switch [:k, :insecure]
 
+  desc "Display Help"
+  switch [:h, :help]
+
   # Load the command libraries for the current group
   cmd_group_name = File.basename($0).gsub(/brightbox\-/, '')
   cmd_group_files = File.join(File.dirname(__FILE__), "commands/#{cmd_group_name}*.rb")
@@ -31,7 +34,9 @@ module Brightbox
         end
       end
     end
-    
+    if global_options[:h]
+      command = commands[:help]
+    end
     info "INFO: client_id: #{CONFIG.client_name}" if CONFIG.clients.size > 1
     true
   end
