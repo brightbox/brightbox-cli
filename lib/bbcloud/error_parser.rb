@@ -14,7 +14,7 @@ module Brightbox
       when Excon::Errors::Error
         parse_http_error(socket_error)
       else
-        error "ERROR: #{e}"
+        error "ERROR: #{socket_error}"
       end
     end
 
