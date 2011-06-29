@@ -1,7 +1,7 @@
-diff --git a/lib/bbcloud/vendor/fog/lib/fog/core.rb b/lib/bbcloud/vendor/fog-0.6.0/lib/fog/core.rb
-index dfa61c3..13870f8 100644
---- a/lib/bbcloud/vendor/fog/lib/fog/core.rb
-+++ b/lib/bbcloud/vendor/fog/lib/fog/core.rb
+diff --git a/vendor/fog-0.8.2/lib/fog/core.rb b/vendor/fog-0.8.2/lib/fog/core.rb
+index 2c5fe2e..f504fa0 100644
+--- a/vendor/fog-0.8.2/lib/fog/core.rb
++++ b/vendor/fog-0.8.2/lib/fog/core.rb
 @@ -5,7 +5,6 @@ $LOAD_PATH.unshift __LIB_DIR__ unless
    $LOAD_PATH.include?(File.expand_path(__LIB_DIR__))
  
@@ -9,4 +9,4 @@ index dfa61c3..13870f8 100644
 -require 'rubygems'
  require 'base64'
  require 'cgi'
- require 'excon'
+ require 'uri'
