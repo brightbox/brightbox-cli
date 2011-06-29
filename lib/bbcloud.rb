@@ -5,7 +5,7 @@ $LOAD_PATH.unshift lib_dir unless $LOAD_PATH.include?(lib_dir)
 os_config = File.join(lib_dir,"bbcloud","os_config.rb")
 require os_config if File.exist? os_config
 
-vendor_dir = File.join(lib_dir, 'bbcloud','vendor')
+vendor_dir = File.expand_path(File.join(lib_dir, 'bbcloud','vendor'))
 
 unless defined?(DISABLE_RUBYGEMS)
   require "rubygems"
