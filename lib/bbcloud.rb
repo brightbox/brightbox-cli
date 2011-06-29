@@ -1,13 +1,11 @@
-__LIB_DIR__ = File.expand_path(File.dirname(__FILE__))
+lib_dir = File.expand_path(File.dirname(__FILE__))
 
-$LOAD_PATH.unshift __LIB_DIR__ unless
-  $LOAD_PATH.include?(__LIB_DIR__) ||
-  $LOAD_PATH.include?(File.expand_path(__LIB_DIR__))
+$LOAD_PATH.unshift lib_dir unless $LOAD_PATH.include?(lib_dir)
 
-os_config = File.join("bbcloud", 'os_config.rb')
+os_config = File.join(lib_dir,"bbcloud","os_config.rb")
 require os_config if File.exist? os_config
 
-vendor_dir = File.join(__LIB_DIR__, '../vendor/')
+vendor_dir = File.join(lib_dir, 'bbcloud','vendor')
 
 unless defined?(DISABLE_RUBYGEMS)
   require "rubygems"
