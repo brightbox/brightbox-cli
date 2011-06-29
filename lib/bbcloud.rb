@@ -8,7 +8,7 @@ vendor_dir = File.join(__LIB_DIR__, '../vendor/')
 
 unless defined?(DISABLE_RUBYGEMS)
   require "rubygems"
-  gem "json", "~> 1.4.6"
+  gem "json", "~> 1.5.3"
   gem "fog", "~> 0.8.0" unless File.exist? vendor_dir + 'fog'
 end
 
