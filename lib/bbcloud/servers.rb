@@ -1,6 +1,10 @@
 module Brightbox
   class Server < Api
 
+    def self.create_servers(count,options)
+      (0...count).map {|i| create(options) }
+    end
+
     def self.create(options)
       new(conn.servers.create(options))
     end
@@ -19,6 +23,7 @@ module Brightbox
       a[:created_at] = created_at
       a[:created_on] = fog_model.created_at.strftime("%Y-%m-%d")
       a[:type] = server_type
+      a[:status] = fog_model.state
       a[:zone] = Zone.new(zone_id) if zone_id
       a[:hostname] = hostname
       a[:public_hostname] = public_hostname unless cloud_ips.empty?
@@ -27,7 +32,7 @@ module Brightbox
 
     def to_row
       o = attributes
-      o[:cloud_ips] = cloud_ips.collect { |i| i['public_ip'] }
+      o[:cloud_ip_ids] = cloud_ips.collect { |i| i['id'] }
       o[:ips] = interfaces.collect { |i| i['ipv4_address'] }.join(', ')
       o
     end
@@ -55,7 +60,7 @@ module Brightbox
     end
 
     def self.default_field_order
-      [:id, :status, :type, :zone, :created_on, :image_id, :cloud_ips, :name]
+      [:id, :status, :type, :zone, :created_on, :image_id,:cloud_ip_ids,:name]
     end
 
     def hostname
