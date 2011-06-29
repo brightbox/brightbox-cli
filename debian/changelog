@@ -1,3 +1,8 @@
+bbcloud (0.12.0-0ubuntu0) lucid; urgency=low
+
+  * Upgrades fog, gli and fixes --help issues
+
+ -- Hemant Kumar <hemant@brightbox.co.uk>  Wed, 29 Jun 2011 18:43:31 +0000
 bbcloud (0.11.2-0ubuntu1) lucid; urgency=low
 
   * Fixed dependencies so bbcloud and libbbcloud-ruby depend on latest version
