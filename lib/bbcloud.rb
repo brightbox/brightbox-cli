@@ -1,8 +1,11 @@
-__LIB_DIR__ = File.expand_path(File.join(File.dirname(__FILE__)))
+__LIB_DIR__ = File.expand_path(File.dirname(__FILE__))
 
 $LOAD_PATH.unshift __LIB_DIR__ unless
   $LOAD_PATH.include?(__LIB_DIR__) ||
   $LOAD_PATH.include?(File.expand_path(__LIB_DIR__))
+
+os_config = File.join("bbcloud", 'os_config.rb')
+require os_config if File.exist? os_config
 
 vendor_dir = File.join(__LIB_DIR__, '../vendor/')
 
