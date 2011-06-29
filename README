@@ -7,11 +7,21 @@ http://beta.brightbox.com
 
 http://docs.brightbox.com/cli
 
+== Dependencies
+
+It has following dependencies and if you are trying to install the gem from 
+a gem file (rather than via gem command), you might have to install the 
+following:
+
+* fog - 0.8.2
+* json - 1.5.3
+* hirb - 0.3.5
+
 == Packaging
 
 === Vendoring libraries
 
-gems can be vendored into lib/bbcloud/vendor for packaging and will be
+gems can be vendored into vendor/ for packaging and will be
 prioritized over any gems.
 
 === Debian/Ubuntu packaging
