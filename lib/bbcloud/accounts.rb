@@ -5,8 +5,12 @@ module Brightbox
       [ram_limit.to_i - ram_used.to_i, 0].max
     end
 
+    def cloud_ip_limit
+      attributes['cloud_ips_limit']
+    end
+
     def to_row
-      attributes.merge(:ram_free => ram_free, :cloud_ip_limit => limits_cloudips)
+      attributes.merge(:ram_free => ram_free, :cloud_ip_limit => cloud_ip_limit)
     end
 
     def self.all
