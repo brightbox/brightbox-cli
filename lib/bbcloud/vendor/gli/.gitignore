@@ -1,0 +1,10 @@
+doc
+html
+*.sw?
+pkg
+coverage
+.bundle
+cruddo.rdoc
+gli.wiki
+Gemfile.lock
+results.html
