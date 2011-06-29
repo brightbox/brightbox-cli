@@ -14,7 +14,7 @@ unless defined?(DISABLE_RUBYGEMS)
 end
 
 # Add any vendored libraries into search path
-Dir.glob(vendor_dir + '*').each do |f|
+Dir.glob(vendor_dir + '/*').each do |f|
   $:.unshift File.join(f, 'lib')
 end
 
