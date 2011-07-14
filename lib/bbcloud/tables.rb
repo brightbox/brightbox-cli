@@ -9,7 +9,7 @@ module Brightbox
       }.join('  ')
       ["", title_row, render_border]
     end
-  
+
     def render_footer
       [render_border, ""]
     end

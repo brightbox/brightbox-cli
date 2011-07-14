@@ -33,5 +33,5 @@ module Brightbox
       render_table(ips, global_options)
     end
   end
-  
+
 end

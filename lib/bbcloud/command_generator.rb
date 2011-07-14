@@ -45,6 +45,6 @@ end
     def cli_binary_path
       File.join(@bbcloud_path,"..","bin")
     end
-    
+
   end
 end

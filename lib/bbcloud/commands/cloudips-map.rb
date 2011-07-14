@@ -29,7 +29,7 @@ module Brightbox
         lb = LoadBalancer.find destination_id
         info "Mapping #{ip} to load balancer #{lb}"
       else
-        raise "Unknown destination '#{destination_id}'" 
+        raise "Unknown destination '#{destination_id}'"
       end
 
       if ip.mapped?

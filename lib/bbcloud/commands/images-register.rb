@@ -22,7 +22,7 @@ module Brightbox
       raise "You must specify the architecture" unless options[:a]
       raise "You must specify the source filename" unless options[:s]
 
-      image = Image.register :name => options[:n], :arch => options[:a], 
+      image = Image.register :name => options[:n], :arch => options[:a],
       :source => options[:s], :compatibility_mode => options[:c],
       :description => options[:d]
 

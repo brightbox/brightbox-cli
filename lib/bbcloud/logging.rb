@@ -4,7 +4,7 @@ module Brightbox
       base.extend MixinMethods
       base.send(:include, MixinMethods)
     end
-    
+
     module MixinMethods
       def error(s='')
         $stderr.write s

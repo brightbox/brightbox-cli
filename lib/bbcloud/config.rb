@@ -31,7 +31,7 @@ module Brightbox
         rescue Errno::EEXIST
         end
       end
-      # 
+      #
       if File.directory? @dir
         @dir
       else
@@ -112,7 +112,7 @@ module Brightbox
           raise BBConfigError, "#{k} option missing from config in section #{client_name}"
         end
       end
-      { 
+      {
         :provider => 'Brightbox',
         :brightbox_api_url => c['api_url'],
         :brightbox_auth_url => c['auth_url'] || c['api_url'],

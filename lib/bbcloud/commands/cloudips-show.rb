@@ -15,8 +15,8 @@ module Brightbox
 
       fields = [:id, :status, :public_ip, :reverse_dns, :destination, :interface_id]
 
-      render_table(ips.compact, global_options.merge({ :vertical => true, :fields => fields}))                                              
+      render_table(ips.compact, global_options.merge({ :vertical => true, :fields => fields}))
     end
   end
-  
+
 end

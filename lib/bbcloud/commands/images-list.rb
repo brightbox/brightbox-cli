@@ -21,7 +21,7 @@ module Brightbox
       end
 
       snapshots.sort! { |a, b| a.created_at <=> b.created_at }
-      
+
       render_table(images + snapshots, global_options)
     end
   end

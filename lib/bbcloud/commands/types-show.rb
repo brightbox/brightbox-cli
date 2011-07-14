@@ -4,7 +4,7 @@ module Brightbox
   command [:show] do |c|
 
     c.action do |global_options,options,args|
-      
+
       if args.empty?
         raise "You must specify the types you want to show"
       end

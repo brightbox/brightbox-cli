@@ -36,5 +36,5 @@ module Brightbox
 
     end
   end
-  
+
 end

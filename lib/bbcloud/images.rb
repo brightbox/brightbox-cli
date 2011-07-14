@@ -1,6 +1,6 @@
 module Brightbox
   class Image < Api
-    
+
     def to_row
       o = fog_model.attributes
       o[:id] = fog_model.id

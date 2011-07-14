@@ -40,7 +40,7 @@ module Brightbox
 
       image_id = args.shift
       image = Image.find image_id
-      
+
       type_id = options[:t]
       if type_id =~ /^typ\-/
         type = Type.find type_id

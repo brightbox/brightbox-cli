@@ -4,7 +4,7 @@ module Brightbox
   command [:start] do |c|
 
     c.action do |global_options,options,args|
-      
+
       raise "You must specify servers to start" if args.empty?
 
       servers = Server.find_or_call(args) do |id|

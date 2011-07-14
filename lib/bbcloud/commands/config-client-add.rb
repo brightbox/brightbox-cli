@@ -34,7 +34,7 @@ module Brightbox
 
       info "Creating new api client config #{calias}"
 
-      client_config['alias'] = calias    
+      client_config['alias'] = calias
       client_config['client_id'] = client_id
       client_config['secret'] = secret
       client_config['api_url'] = api_url

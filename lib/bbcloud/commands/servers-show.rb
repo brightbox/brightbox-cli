@@ -37,15 +37,16 @@ module Brightbox
         rows << o
       end
 
-      table_opts = global_options.merge({
-                                          :vertical => true,
-                                          :fields => [:id, :status, :name, :description, :created_at, :deleted_at, 
-                                            :zone, :type, :type_name, :type_handle, :ram, :cores, 
-                                            :disk, :image, :image_name, :private_ips, :cloud_ips, :ipv6_address,
-                                            :cloud_ip_ids, :hostname, :public_hostname, :snapshots
-                                          ]
-                                        })
+      display_options = {
+        :vertical => true,
+        :fields => [:id, :status, :name, :description, :created_at, :deleted_at,
+          :zone, :type, :type_name, :type_handle, :ram, :cores,
+          :disk, :image, :image_name, :private_ips, :cloud_ips, :ipv6_address,
+          :cloud_ip_ids, :hostname, :public_hostname, :snapshots
+        ]
+      }
 
+      table_opts = global_options.merge(display_options)
       render_table(rows, table_opts)
 
     end

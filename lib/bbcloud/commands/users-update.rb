@@ -14,7 +14,7 @@ module Brightbox
       raise "You must specify the user id as the first argument" if args.empty?
 
       user = User.find args.first
-      
+
       if options[:f] == '-'
         user.ssh_key = STDIN.read
       elsif options[:f]
