@@ -20,6 +20,10 @@ module Brightbox
       end
     end
 
+    def self.klass_name
+      name.split("::").last()
+    end
+
     def initialize(m = nil)
       if m.is_a? String
         @id = m
@@ -122,7 +126,7 @@ module Brightbox
 
     def self.find_by_handle(h)
       object = find(:all).find { |o| o.handle == h }
-      raise Api::NotFound, h if object.nil?
+      raise Api::NotFound, "Invalid #{klass_name} #{h}" if object.nil?
       object
     end
 
