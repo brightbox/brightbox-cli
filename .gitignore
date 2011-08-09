@@ -2,3 +2,4 @@
 Gemfile.lock
 local
 vendor/fog-0.8.2/
+pkg/
