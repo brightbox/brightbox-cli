@@ -13,7 +13,7 @@ module Brightbox
       attributes.merge({ :nodes => node_ids,
         :created_on => created_on,
         :listeners => listeners,
-        :cloud_ips => cloud_ips
+        :cloud_ips => cloud_ip_ids
       })
     end
 
