@@ -6,7 +6,7 @@ module Brightbox
     end
 
     def cloud_ip_limit
-      attributes['cloud_ips_limit']
+      attributes[:cloud_ips_limit]
     end
 
     def to_row
