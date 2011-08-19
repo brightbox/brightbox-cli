@@ -15,7 +15,7 @@ module Brightbox
 
       table_opts = global_options.merge({
         :vertical => true,
-        :fields => [:id, :name, :cloud_ip_limit, :ram_limit, :ram_used,
+        :fields => [:id, :name, :cloud_ip_limit, :ram_limit, :ram_used, :lb_limit,
                     :ram_free, :library_ftp_host, :library_ftp_user ]
       })
 

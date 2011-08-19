@@ -9,8 +9,12 @@ module Brightbox
       attributes[:cloud_ips_limit]
     end
 
+    def lb_limit
+      attributes[:load_balancers_limit]
+    end
+
     def to_row
-      attributes.merge(:ram_free => ram_free, :cloud_ip_limit => cloud_ip_limit)
+      attributes.merge(:ram_free => ram_free, :cloud_ip_limit => cloud_ip_limit, :lb_limit => lb_limit)
     end
 
     def self.all
@@ -30,7 +34,7 @@ module Brightbox
     end
 
     def self.default_field_order
-      [:id, :name, :cloud_ip_limit, :ram_limit, :ram_used, :ram_free]
+      [:id, :name, :cloud_ips_limit, :lb_limit, :ram_limit, :ram_used, :ram_free]
     end
 
     def to_s
