@@ -7,12 +7,6 @@ require os_config if File.exist? os_config
 
 vendor_dir = File.expand_path(File.join(lib_dir, 'bbcloud','vendor'))
 
-unless defined?(DISABLE_RUBYGEMS)
-  require "rubygems"
-  gem "json", "~> 1.5.3"
-  gem "fog", "~> 0.8.0"
-end
-
 # Add any vendored libraries into search path
 Dir.glob(vendor_dir + '/*').each do |f|
   $:.unshift File.join(f, 'lib')
