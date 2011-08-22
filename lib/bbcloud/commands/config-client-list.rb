@@ -6,9 +6,10 @@ module Brightbox
 
       info "Using config file #{CONFIG.config_filename}"
 
-      clients = CONFIG.clients.collect do |calias|
-        c = CONFIG[calias]
-        calias = calias + "*" if CONFIG.client_name == calias and CONFIG.clients.size > 1
+      clients = CONFIG.clients.collect do |cid|
+        c = CONFIG[cid]
+        calias = c['alias']
+        calias = calias + "*" if CONFIG.client_name == cid and CONFIG.clients.size > 1
         {
           :alias => calias,
           :client_id => c["client_id"],
