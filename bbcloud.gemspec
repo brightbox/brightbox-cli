@@ -22,7 +22,7 @@ Gem::Specification.new do |s|
   s.add_dependency 'hirb', '0.3.5'
   s.add_dependency 'formatador', '~> 0.1.4'
   s.add_dependency 'excon', '~> 0.6.1'
-  s.add_dependency 'fog', '= 0.8.2'
+  s.add_dependency 'fog', '= 0.11.0'
   s.add_development_dependency('rake', '~> 0.8.0')
   s.add_development_dependency('vcr')
   s.add_development_dependency('rspec')

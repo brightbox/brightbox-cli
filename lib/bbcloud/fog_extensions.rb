@@ -8,12 +8,6 @@ module Fog
   end
 end
 
-module Fog
-  module Brightbox
-    class Compute
-      class Real
-        attr_accessor :oauth_token
-      end
-    end
-  end
+Fog::Compute::Brightbox::Real.class_eval do |klass|
+  klass.send(:attr_accessor, :oauth_token)
 end
