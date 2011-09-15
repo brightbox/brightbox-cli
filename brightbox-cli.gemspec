@@ -1,8 +1,8 @@
 # -*- encoding: utf-8 -*-
-require File.join(File.dirname(__FILE__), "lib/bbcloud/version")
+require File.join(File.dirname(__FILE__), "lib/brightbox-cli/version")
 
 Gem::Specification.new do |s|
-  s.name        = "bbcloud"
+  s.name        = "brightbox-cli"
   s.version     = Brightbox::VERSION
   s.platform    = Gem::Platform::RUBY
   s.authors     = ["John Leach"]
@@ -11,9 +11,9 @@ Gem::Specification.new do |s|
   s.summary     = %q{The Brightbox cloud management system}
   s.description = %q{Scripts to interact with the Brightbox cloud API}
 
-  s.rubyforge_project = "bbcloud"
+  s.rubyforge_project = "brightbox-cli"
 
-  s.files         = `git ls-files`.split("\n") + `find lib/bbcloud/vendor`.split("\n")
+  s.files         = `git ls-files`.split("\n") + `find lib/brightbox-cli/vendor`.split("\n")
   s.test_files    = `git ls-files -- {test,spec,features}/*`.split("\n")
   s.executables   = `git ls-files -- bin/*`.split("\n").map{ |f| File.basename(f) }
   s.require_paths = ["lib"]
