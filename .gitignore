@@ -3,3 +3,4 @@ Gemfile.lock
 local
 vendor/
 pkg/
+spec/brightbox/config
