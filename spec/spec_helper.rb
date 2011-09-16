@@ -15,6 +15,18 @@ RSpec.configure do |config|
   config.mock_framework = :mocha
   config.extend VCR::RSpec::Macros
   config.include CommonHelpers
+  config.before(:each) do
+    connection_data = {
+      :provider => "Brightbox",
+      :brightbox_api_url => "https://api.gb1s.brightbox.com",
+      :brightbox_auth_url => "https://api.gb1s.brightbox.com",
+      :brightbox_client_id => "hello",
+      :brightbox_secret => "world"
+    }
+    Brightbox::BBConfig.any_instance.stubs(:to_fog).returns(connection_data)
+    Brightbox::BBConfig.any_instance.stubs(:oauth_token).returns("hello_world")
+    Brightbox::BBConfig.any_instance.stubs(:configured?).returns(true)
+  end
 end
 
 VCR.config do |c|
