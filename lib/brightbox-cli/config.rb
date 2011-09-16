@@ -129,7 +129,7 @@ module Brightbox
           end
           @oauth_token
         else
-          @oauth_token = false
+          @oauth_token = nil
         end
       else
         @oauth_token ? @oauth_token : nil
