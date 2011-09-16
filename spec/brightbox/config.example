@@ -1,0 +1,7 @@
+[hello]
+alias = hello
+client_id = world
+secret = hello_world
+api_url = https://api.gb1s.brightbox.com
+auth_url = https://api.gb1s.brightbox.com
+
