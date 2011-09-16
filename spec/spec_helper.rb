@@ -16,16 +16,7 @@ RSpec.configure do |config|
   config.extend VCR::RSpec::Macros
   config.include CommonHelpers
   config.before(:each) do
-    connection_data = {
-      :provider => "Brightbox",
-      :brightbox_api_url => "https://api.gb1s.brightbox.com",
-      :brightbox_auth_url => "https://api.gb1s.brightbox.com",
-      :brightbox_client_id => "hello",
-      :brightbox_secret => "world"
-    }
-    Brightbox::BBConfig.any_instance.stubs(:to_fog).returns(connection_data)
-    Brightbox::BBConfig.any_instance.stubs(:oauth_token).returns("hello_world")
-    Brightbox::BBConfig.any_instance.stubs(:configured?).returns(true)
+    Brightbox::BBConfig.any_instance.stubs(:default_config_dir).returns(File.join(File.dirname(__FILE__),"brightbox"))
   end
 end
 

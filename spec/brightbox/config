@@ -1,0 +1,21 @@
+[cli-qt66n]
+alias = cli-qt66n
+client_id = cli-qt66n
+secret = i61djozjnumy8nd
+api_url = https://api.gb1.brightbox.com
+auth_url = https://api.gb1.brightbox.com
+
+[cli-dmygq]
+alias = cli-dmygq
+client_id = cli-dmygq
+secret = 5cdy4vp4zizrgpu
+api_url = https://api.gb1s.brightbox.com
+auth_url = https://api.gb1s.brightbox.com
+
+
+[cli-vzqg6]
+alias = cli-vzqg6
+client_id = cli-vzqg6
+secret = baaot6aq0kqcjmw
+api_url = http://localhost:5100
+auth_url = http://localhost:5100
