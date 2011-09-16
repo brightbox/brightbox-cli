@@ -3,7 +3,7 @@ Bundler::GemHelper.install_tasks
 
 bbcloud_path = File.expand_path('./lib', File.dirname(__FILE__))
 $:.unshift(bbcloud_path)
-require "bbcloud/command_generator"
+require "brightbox-cli/command_generator"
 
 desc "generate brightbox-commands"
 task :generate_commands do

@@ -13,7 +13,7 @@ module Brightbox
 
     def self.config
       Brightbox.const_set(:CONFIG, new())
-      require "brightbox_cli/gli_global_hooks"
+      require "brightbox-cli/gli_global_hooks"
       yield
     ensure
       CONFIG.finish()

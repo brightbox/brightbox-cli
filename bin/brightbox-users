@@ -1,11 +1,11 @@
 #!/usr/bin/env ruby
 
 begin
-  require "bbcloud"
+  require "brightbox_cli"
 rescue LoadError
-  bbcloud_path = File.expand_path('../../lib', __FILE__)
-  $:.unshift(bbcloud_path)
-  require "bbcloud"
+  brightbox_cli_path = File.expand_path('../../lib', __FILE__)
+  $:.unshift(brightbox_cli_path)
+  require "brightbox_cli"
 end
 
 Brightbox::BBConfig.config do
