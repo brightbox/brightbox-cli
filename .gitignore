@@ -1,4 +1,6 @@
 .bundle
 Gemfile.lock
 local
-vendor/fog-0.8.2/
+pkg/
+spec/brightbox/config
+spec/brightbox/cache/

@@ -10,7 +10,7 @@ module CommonHelpers
     fake.string
   end
 
-def capture_stderr(&block)
+  def capture_stderr(&block)
     original_stderr = $stderr
     $stderr = fake = StringIO.new
     begin

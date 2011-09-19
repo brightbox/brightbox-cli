@@ -1,117 +1,174 @@
 ---
 - !ruby/struct:VCR::HTTPInteraction
   request: !ruby/struct:VCR::Request
-    method: GET
-    uri: https://api.gb1.brightbox.com:443/1.0/servers
-    body: ! '{}'
+    method: POST
+    uri: https://api.gb1s.brightbox.com:443/token
+    body: ! '{"client_id":"cli-dmygq","grant_type":"none"}'
     headers:
+      authorization:
+      - Basic Y2xpLWRteWdxOjVjZHk0dnA0eml6cmdwdQ==
       content-type:
       - application/json
-      authorization:
-      - OAuth sandbox_oauth
   response: !ruby/struct:VCR::Response
     status: !ruby/struct:VCR::ResponseStatus
       code: 200
       message: !!null 
     headers:
       date:
-      - Mon, 27 Jun 2011 11:52:18 GMT
+      - Fri, 16 Sep 2011 09:58:21 GMT
       server:
       - Apache
-      etag:
-      - ! '"61f3cce5286f818e30b9b4dca6420a14"'
-      x-runtime:
-      - '97'
       cache-control:
-      - private, max-age=0, must-revalidate
-      access-control-allow-origin:
-      - ! '*'
-      access-control-allow-headers:
-      - Authorization
+      - no-store
       content-length:
-      - '1678'
+      - '77'
       status:
       - '200'
       content-type:
-      - application/json; charset=utf-8
-    body: ! '[{"id":"test-server","resource_type":"server","url":"https://api.gb1.brightbox.com/1.0/servers/test-server","name":"earth_simulator","created_at":"2011-06-23T03:42:59Z","deleted_at":null,"hostname":"test-server","started_at":null,"status":"active","server_type":{"id":"typ-qdiwq","resource_type":"server_type","url":"https://api.gb1.brightbox.com/1.0/server_types/typ-qdiwq","name":"Brightbox
-      Medium Instance","cores":8,"handle":"medium","disk_size":163840,"ram":4096,"status":"available"},"zone":{"id":"zon-o6xle","resource_type":"zone","url":"https://api.gb1.brightbox.com/1.0/zones/zon-o6xle","handle":"gb1-b"},"cloud_ips":[{"id":"cip-6hp95","resource_type":"cloud_ip","url":"https://api.gb1.brightbox.com/1.0/cloud_ips/cip-6hp95","reverse_dns":"cip-109-107-38-50.gb1.brightbox.com","status":"mapped","public_ip":"109.107.38.50"}],"account":{"id":"acc-hhsrh","resource_type":"account","url":"https://api.gb1.brightbox.com/1.0/account","name":"Hemant
-      Kumar","ram_used":4096,"ram_limit":30000,"load_balancers_limit":2,"load_balancers_used":0,"cloud_ips_used":1,"status":"pending","cloud_ips_limit":10},"snapshots":[],"interfaces":[{"id":"int-t41vt","resource_type":"interface","url":"https://api.gb1.brightbox.com/1.0/interfaces/int-t41vt","mac_address":"02:24:19:10:06:96","ipv4_address":"10.16.6.150"}],"image":{"id":"img-7p3wu","resource_type":"image","url":"https://api.gb1.brightbox.com/1.0/images/img-7p3wu","name":"Ubuntu
-      Natty 11.04 server","created_at":"2011-05-09T14:34:21Z","arch":"x86_64","description":"Expands
-      root partition automatically. login: ubuntu using stored ssh key","status":"available","source":"ubuntu-natty-daily-i64-server-20110509","owner":"acc-juq13"}}]'
+      - application/json
+    body: ! '{"expires_in":7200,"access_token":"ae5d663283e87a7bd4be809607b5d4d9264af1b8"}'
     http_version: !!null 
 - !ruby/struct:VCR::HTTPInteraction
   request: !ruby/struct:VCR::Request
     method: GET
-    uri: https://api.gb1.brightbox.com:443/1.0/server_types/typ-qdiwq
-    body: ! '{}'
+    uri: https://api.gb1s.brightbox.com:443/1.0/servers
+    body: !!null 
     headers:
+      authorization:
+      - OAuth ae5d663283e87a7bd4be809607b5d4d9264af1b8
       content-type:
       - application/json
-      authorization:
-      - OAuth sandbox_oauth
   response: !ruby/struct:VCR::Response
     status: !ruby/struct:VCR::ResponseStatus
       code: 200
       message: !!null 
     headers:
       date:
-      - Mon, 27 Jun 2011 11:52:20 GMT
+      - Fri, 16 Sep 2011 09:58:22 GMT
       server:
       - Apache
       etag:
-      - ! '"70240a4f0aef923b66c06785012e5306"'
+      - ! '"169cb6f51cf4d3b8c629eb26580f22da"'
       x-runtime:
-      - '9'
+      - '370'
       cache-control:
       - private, max-age=0, must-revalidate
-      access-control-allow-origin:
-      - ! '*'
-      access-control-allow-headers:
-      - Authorization
       content-length:
-      - '227'
+      - '6179'
       status:
       - '200'
       content-type:
       - application/json; charset=utf-8
-    body: ! '{"id":"typ-qdiwq","resource_type":"server_type","url":"https://api.gb1.brightbox.com/1.0/server_types/typ-qdiwq","cores":8,"name":"Brightbox
-      Medium Instance","handle":"medium","disk_size":163840,"ram":4096,"status":"available"}'
+    body: ! '[{"id":"srv-7yilp","resource_type":"server","url":"https://api.gb1s.brightbox.com/1.0/servers/srv-7yilp","name":"","created_at":"2011-08-18T03:43:30Z","deleted_at":null,"hostname":"srv-7yilp","started_at":null,"status":"active","server_type":{"id":"typ-eir7x","resource_type":"server_type","url":"https://api.gb1s.brightbox.com/1.0/server_types/typ-eir7x","name":"nano","cores":2,"handle":"nano","disk_size":20480,"ram":512,"status":"available"},"zone":{"id":"zon-nzn7l","resource_type":"zone","url":"https://api.gb1s.brightbox.com/1.0/zones/zon-nzn7l","handle":"gb1s-b"},"cloud_ips":[{"id":"cip-33fjw","resource_type":"cloud_ip","url":"https://api.gb1s.brightbox.com/1.0/cloud_ips/cip-33fjw","reverse_dns":"cip-109-107-39-5.gb1s.brightbox.com","status":"mapped","public_ip":"109.107.39.5"}],"account":{"id":"acc-8gq0k","resource_type":"account","url":"https://api.gb1s.brightbox.com/1.0/account","name":"Hemant
+      Account","status":"pending"},"snapshots":[],"interfaces":[{"id":"int-p6vyz","resource_type":"interface","url":"https://api.gb1s.brightbox.com/1.0/interfaces/int-p6vyz","mac_address":"02:24:19:fb:11:ea","ipv4_address":"10.251.17.234","ipv6_address":"2a02:1348:14b:c47a:24:19ff:fefb:11ea"}],"server_groups":[{"id":"grp-qf4jo","resource_type":"server_group","url":"https://api.gb1s.brightbox.com/1.0/server_groups/grp-qf4jo","name":"hemant_group","default":false,"description":null}],"image":{"id":"img-ymfuq","resource_type":"image","url":"https://api.gb1s.brightbox.com/1.0/images/img-ymfuq","name":"Ubuntu
+      Lucid 10.04 server","created_at":"2011-06-01T15:43:38Z","arch":"i686","description":"login:
+      ubuntu using stored ssh key","status":"available","source":"lucid.img","owner":"acc-kg71m"}},{"id":"srv-kz1wq","resource_type":"server","url":"https://api.gb1s.brightbox.com/1.0/servers/srv-kz1wq","name":"s1","created_at":"2011-09-12T11:10:51Z","deleted_at":null,"hostname":"srv-kz1wq","started_at":null,"status":"active","server_type":{"id":"typ-eir7x","resource_type":"server_type","url":"https://api.gb1s.brightbox.com/1.0/server_types/typ-eir7x","name":"nano","cores":2,"handle":"nano","disk_size":20480,"ram":512,"status":"available"},"zone":{"id":"zon-x20w1","resource_type":"zone","url":"https://api.gb1s.brightbox.com/1.0/zones/zon-x20w1","handle":"gb1s-a"},"cloud_ips":[],"account":{"id":"acc-8gq0k","resource_type":"account","url":"https://api.gb1s.brightbox.com/1.0/account","name":"Hemant
+      Account","status":"pending"},"snapshots":[],"interfaces":[{"id":"int-dyjrs","resource_type":"interface","url":"https://api.gb1s.brightbox.com/1.0/interfaces/int-dyjrs","mac_address":"02:24:19:fa:07:3a","ipv4_address":"10.250.7.58","ipv6_address":"2a02:1348:14a:81ce:24:19ff:fefa:73a"}],"server_groups":[{"id":"grp-b0uqb","resource_type":"server_group","url":"https://api.gb1s.brightbox.com/1.0/server_groups/grp-b0uqb","name":"default","default":true,"description":null}],"image":{"id":"img-ymfuq","resource_type":"image","url":"https://api.gb1s.brightbox.com/1.0/images/img-ymfuq","name":"Ubuntu
+      Lucid 10.04 server","created_at":"2011-06-01T15:43:38Z","arch":"i686","description":"login:
+      ubuntu using stored ssh key","status":"available","source":"lucid.img","owner":"acc-kg71m"}},{"id":"srv-de1jb","resource_type":"server","url":"https://api.gb1s.brightbox.com/1.0/servers/srv-de1jb","name":"s2","created_at":"2011-09-12T11:10:59Z","deleted_at":null,"hostname":"srv-de1jb","started_at":null,"status":"active","server_type":{"id":"typ-eir7x","resource_type":"server_type","url":"https://api.gb1s.brightbox.com/1.0/server_types/typ-eir7x","name":"nano","cores":2,"handle":"nano","disk_size":20480,"ram":512,"status":"available"},"zone":{"id":"zon-x20w1","resource_type":"zone","url":"https://api.gb1s.brightbox.com/1.0/zones/zon-x20w1","handle":"gb1s-a"},"cloud_ips":[],"account":{"id":"acc-8gq0k","resource_type":"account","url":"https://api.gb1s.brightbox.com/1.0/account","name":"Hemant
+      Account","status":"pending"},"snapshots":[],"interfaces":[{"id":"int-azidh","resource_type":"interface","url":"https://api.gb1s.brightbox.com/1.0/interfaces/int-azidh","mac_address":"02:24:19:fa:8c:92","ipv4_address":"10.250.140.146","ipv6_address":"2a02:1348:14a:a324:24:19ff:fefa:8c92"}],"server_groups":[{"id":"grp-b0uqb","resource_type":"server_group","url":"https://api.gb1s.brightbox.com/1.0/server_groups/grp-b0uqb","name":"default","default":true,"description":null}],"image":{"id":"img-ymfuq","resource_type":"image","url":"https://api.gb1s.brightbox.com/1.0/images/img-ymfuq","name":"Ubuntu
+      Lucid 10.04 server","created_at":"2011-06-01T15:43:38Z","arch":"i686","description":"login:
+      ubuntu using stored ssh key","status":"available","source":"lucid.img","owner":"acc-kg71m"}},{"id":"srv-gbgb1","resource_type":"server","url":"https://api.gb1s.brightbox.com/1.0/servers/srv-gbgb1","name":"","created_at":"2011-09-13T17:42:18Z","deleted_at":null,"hostname":"srv-gbgb1","started_at":null,"status":"active","server_type":{"id":"typ-eir7x","resource_type":"server_type","url":"https://api.gb1s.brightbox.com/1.0/server_types/typ-eir7x","name":"nano","cores":2,"handle":"nano","disk_size":20480,"ram":512,"status":"available"},"zone":{"id":"zon-x20w1","resource_type":"zone","url":"https://api.gb1s.brightbox.com/1.0/zones/zon-x20w1","handle":"gb1s-a"},"cloud_ips":[],"account":{"id":"acc-8gq0k","resource_type":"account","url":"https://api.gb1s.brightbox.com/1.0/account","name":"Hemant
+      Account","status":"pending"},"snapshots":[],"interfaces":[{"id":"int-55zra","resource_type":"interface","url":"https://api.gb1s.brightbox.com/1.0/interfaces/int-55zra","mac_address":"02:24:19:fa:69:96","ipv4_address":"10.250.105.150","ipv6_address":"2a02:1348:14a:9a65:24:19ff:fefa:6996"}],"server_groups":[{"id":"grp-b0uqb","resource_type":"server_group","url":"https://api.gb1s.brightbox.com/1.0/server_groups/grp-b0uqb","name":"default","default":true,"description":null}],"image":{"id":"img-ymfuq","resource_type":"image","url":"https://api.gb1s.brightbox.com/1.0/images/img-ymfuq","name":"Ubuntu
+      Lucid 10.04 server","created_at":"2011-06-01T15:43:38Z","arch":"i686","description":"login:
+      ubuntu using stored ssh key","status":"available","source":"lucid.img","owner":"acc-kg71m"}}]'
     http_version: !!null 
 - !ruby/struct:VCR::HTTPInteraction
   request: !ruby/struct:VCR::Request
     method: GET
-    uri: https://api.gb1.brightbox.com:443/1.0/zones/zon-o6xle
-    body: ! '{}'
+    uri: https://api.gb1s.brightbox.com:443/1.0/server_types/typ-eir7x
+    body: !!null 
     headers:
+      authorization:
+      - OAuth ae5d663283e87a7bd4be809607b5d4d9264af1b8
       content-type:
       - application/json
-      authorization:
-      - OAuth sandbox_oauth
   response: !ruby/struct:VCR::Response
     status: !ruby/struct:VCR::ResponseStatus
       code: 200
       message: !!null 
     headers:
       date:
-      - Mon, 27 Jun 2011 11:52:21 GMT
+      - Fri, 16 Sep 2011 09:58:23 GMT
       server:
       - Apache
       etag:
-      - ! '"143bfb90226becc6486aa090ba6d30c4"'
+      - ! '"a6ac3245dcbc0325a44634d46cf30391"'
       x-runtime:
-      - '11'
+      - '18'
       cache-control:
       - private, max-age=0, must-revalidate
-      access-control-allow-origin:
-      - ! '*'
-      access-control-allow-headers:
-      - Authorization
       content-length:
-      - '116'
+      - '203'
       status:
       - '200'
       content-type:
       - application/json; charset=utf-8
-    body: ! '{"id":"zon-o6xle","resource_type":"zone","url":"https://api.gb1.brightbox.com/1.0/zones/zon-o6xle","handle":"gb1-b"}'
+    body: ! '{"id":"typ-eir7x","resource_type":"server_type","url":"https://api.gb1s.brightbox.com/1.0/server_types/typ-eir7x","cores":2,"name":"nano","handle":"nano","disk_size":20480,"ram":512,"status":"available"}'
+    http_version: !!null 
+- !ruby/struct:VCR::HTTPInteraction
+  request: !ruby/struct:VCR::Request
+    method: GET
+    uri: https://api.gb1s.brightbox.com:443/1.0/zones/zon-nzn7l
+    body: !!null 
+    headers:
+      authorization:
+      - OAuth ae5d663283e87a7bd4be809607b5d4d9264af1b8
+      content-type:
+      - application/json
+  response: !ruby/struct:VCR::Response
+    status: !ruby/struct:VCR::ResponseStatus
+      code: 200
+      message: !!null 
+    headers:
+      date:
+      - Fri, 16 Sep 2011 09:58:24 GMT
+      server:
+      - Apache
+      etag:
+      - ! '"fbb15380193f964083459bd9c34b05bd"'
+      x-runtime:
+      - '18'
+      cache-control:
+      - private, max-age=0, must-revalidate
+      content-length:
+      - '118'
+      status:
+      - '200'
+      content-type:
+      - application/json; charset=utf-8
+    body: ! '{"id":"zon-nzn7l","resource_type":"zone","url":"https://api.gb1s.brightbox.com/1.0/zones/zon-nzn7l","handle":"gb1s-b"}'
+    http_version: !!null 
+- !ruby/struct:VCR::HTTPInteraction
+  request: !ruby/struct:VCR::Request
+    method: GET
+    uri: https://api.gb1s.brightbox.com:443/1.0/zones/zon-x20w1
+    body: !!null 
+    headers:
+      authorization:
+      - OAuth ae5d663283e87a7bd4be809607b5d4d9264af1b8
+      content-type:
+      - application/json
+  response: !ruby/struct:VCR::Response
+    status: !ruby/struct:VCR::ResponseStatus
+      code: 200
+      message: !!null 
+    headers:
+      date:
+      - Fri, 16 Sep 2011 09:58:25 GMT
+      server:
+      - Apache
+      etag:
+      - ! '"a9180e4e4668bbe3887c6d8d8517775c"'
+      x-runtime:
+      - '10'
+      cache-control:
+      - private, max-age=0, must-revalidate
+      content-length:
+      - '118'
+      status:
+      - '200'
+      content-type:
+      - application/json; charset=utf-8
+    body: ! '{"id":"zon-x20w1","resource_type":"zone","url":"https://api.gb1s.brightbox.com/1.0/zones/zon-x20w1","handle":"gb1s-a"}'
     http_version: !!null 
