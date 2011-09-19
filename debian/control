@@ -24,7 +24,7 @@ Description: CLI for the Brightbox cloud computing platform
 Package: libbbcloud-ruby1.8
 Architecture: all
 Depends: ${shlibs:Depends}, ${misc:Depends}, ruby1.8,
- libnet-ssh2-ruby, libnokogiri-ruby, libjson-ruby, libmime-types-ruby,
+ libnet-scp-ruby, libnet-ssh2-ruby, libnokogiri-ruby, libjson-ruby, libmime-types-ruby,
  libhmac-ruby, libbuilder-ruby, libopenssl-ruby1.8
 Description: CLI for the Brightbox cloud computing platform
  bbcloud1.8 provides tools for interacting with the Brightbox cloud platform
