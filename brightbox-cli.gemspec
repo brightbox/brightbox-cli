@@ -13,11 +13,7 @@ Gem::Specification.new do |s|
 
   s.rubyforge_project = "brightbox-cli"
 
-<<<<<<< HEAD
-  s.files         = `git ls-files`.split("\n") + `find lib/bbcloud/vendor`.split("\n")
-=======
   s.files         = `git ls-files`.split("\n") + `find lib/brightbox-cli/vendor`.split("\n")
->>>>>>> master
   s.test_files    = `git ls-files -- {test,spec,features}/*`.split("\n")
   s.executables   = `git ls-files -- bin/*`.split("\n").map{ |f| File.basename(f) }
   s.require_paths = ["lib"]
