@@ -18,6 +18,12 @@ Gem::Specification.new do |s|
   s.executables   = `git ls-files -- bin/*`.split("\n").map{ |f| File.basename(f) }
   s.require_paths = ["lib"]
 
+  s.post_install_message = %q{
+********** You are running/updating deprecated bbcloud gem ***********************
+To get the updated version, please run gem install brightbox-cli
+**********************************************************************************
+}
+
   s.add_dependency 'json', '~> 1.5.3'
   s.add_dependency 'hirb', '0.3.5'
   s.add_dependency 'formatador', '~> 0.1.4'
