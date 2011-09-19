@@ -4,6 +4,7 @@ module Brightbox
       'brightbox-accounts',
       'brightbox-cloudips',
       'brightbox-config',
+      'brightbox-groups',
       'brightbox-images',
       'brightbox-lbs',
       'brightbox-servers',
