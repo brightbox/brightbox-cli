@@ -32,7 +32,6 @@ require "brightbox-cli/accounts"
 require "brightbox-cli/config"
 require "brightbox-cli/version"
 require "brightbox-cli/load_balancers"
+require "brightbox-cli/server_groups"
 require "brightbox-cli/ruby_core_ext"
 require "brightbox-cli/error_parser"
-
-
