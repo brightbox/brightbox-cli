@@ -34,7 +34,7 @@ module Brightbox
     end
 
     def self.get(id)
-      conn.server_groups.get id
+      conn.get_server_group id
     end
 
     def self.all
