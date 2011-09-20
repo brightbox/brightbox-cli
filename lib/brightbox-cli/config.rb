@@ -117,7 +117,8 @@ module Brightbox
         :brightbox_api_url => c['api_url'],
         :brightbox_auth_url => c['auth_url'] || c['api_url'],
         :brightbox_client_id => c['client_id'],
-        :brightbox_secret => c['secret']
+        :brightbox_secret => c['secret'],
+        :persistent => (c["persistent"] != nil ? c["persistent"] : true)
       }
     end
 
