@@ -11,16 +11,19 @@ module Brightbox
 
     def attributes
       a = fog_model.attributes
-      a[:image] = image
-      a[:created_at] = created_at
-      a[:created_on] = fog_model.created_at.strftime("%Y-%m-%d")
+      # a[:created_at] = created_at
+      # a[:created_on] = fog_model.created_at.strftime("%Y-%m-%d")
       a
     end
 
     def to_row
       o = attributes
-      o[:servers] = servers.collect { |i| i['id'] }
+      o[:servers] = server_ids
       o
+    end
+
+    def server_ids
+      @server_ids ||= attributes[:servers].collect { |s| s["id"] } if attributes[:servers]
     end
 
     # def deleted?
@@ -34,11 +37,11 @@ module Brightbox
     end
 
     def self.get(id)
-      conn.get_server_group id
+      conn.server_groups.get(id)
     end
 
     def self.all
-      conn.list_server_groups
+      conn.server_groups
     end
 
     def self.default_field_order
