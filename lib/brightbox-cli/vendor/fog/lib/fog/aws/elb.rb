@@ -1,9 +1,12 @@
+require File.expand_path(File.join(File.dirname(__FILE__), '..', 'aws'))
+
 module Fog
   module AWS
     class ELB < Fog::Service
 
       class IdentifierTaken < Fog::Errors::Error; end
       class InvalidInstance < Fog::Errors::Error; end
+      class Throttled       < Fog::Errors::Error; end
 
       requires :aws_access_key_id, :aws_secret_access_key
       recognizes :region, :host, :path, :port, :scheme, :persistent
@@ -100,6 +103,7 @@ module Fog
 
           @aws_access_key_id      = options[:aws_access_key_id]
           @aws_secret_access_key  = options[:aws_secret_access_key]
+          @connection_options     = options[:connection_options] || {}
           @hmac = Fog::HMAC.new('sha256', @aws_secret_access_key)
 
           options[:region] ||= 'us-east-1'
@@ -117,10 +121,11 @@ module Fog
           else
             raise ArgumentError, "Unknown region: #{options[:region].inspect}"
           end
-          @path       = options[:path]      || '/'
-          @port       = options[:port]      || 443
-          @scheme     = options[:scheme]    || 'https'
-          @connection = Fog::Connection.new("#{@scheme}://#{@host}:#{@port}#{@path}", options[:persistent])
+          @path       = options[:path]        || '/'
+          @persistent = options[:persistent]  || false
+          @port       = options[:port]        || 443
+          @scheme     = options[:scheme]      || 'https'
+          @connection = Fog::Connection.new("#{@scheme}://#{@host}:#{@port}#{@path}", @persistent, @connection_options)
         end
 
         def reload
@@ -165,6 +170,8 @@ module Fog
               raise Fog::AWS::ELB::IdentifierTaken.slurp(error, match[2])
             when 'InvalidInstance'
               raise Fog::AWS::ELB::InvalidInstance.slurp(error, match[2])
+            when 'Throttling'
+              raise Fog::AWS::ELB::Throttled.slurp(error, match[2])
             else
               raise
             end
