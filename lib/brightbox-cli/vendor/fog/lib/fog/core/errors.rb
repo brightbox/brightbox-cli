@@ -65,6 +65,13 @@ An alternate file may be used by placing its path in the FOG_RC environment vari
   :dnsimple_password:
   :dnsmadeeasy_api_key:
   :dnsmadeeasy_secret_key:
+  :vsphere_server:
+  :vsphere_username:
+  :vsphere_password:
+  :libvirt_username:
+  :libvirt_password:
+  :libvirt_uri:
+  :libvirt_ip_command:
 #
 # End of Fog Credentials File
 #######################################################
