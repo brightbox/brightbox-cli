@@ -1,18 +1,12 @@
 module Brightbox
   class ServerGroup < Api
 
-    def self.create_server_groups(count,options)
-      (0...count).map {|i| create(options) }
-    end
-
     def self.create(options)
       new(conn.server_groups.create(options))
     end
 
     def attributes
       a = fog_model.attributes
-      # a[:created_at] = created_at
-      # a[:created_on] = fog_model.created_at.strftime("%Y-%m-%d")
       a
     end
 
@@ -23,12 +17,8 @@ module Brightbox
     end
 
     def server_ids
-      @server_ids ||= attributes[:servers].collect { |s| s["id"] } if attributes[:servers]
+      @server_ids ||= attributes["servers"].collect { |s| s["id"] } if attributes["servers"]
     end
-
-    # def deleted?
-    #   fog_model.status == "deleted"
-    # end
 
     def destroy
       fog_model.destroy
