@@ -30,6 +30,8 @@ module Brightbox
       elsif m.respond_to? :attributes and m.respond_to? :id
         @fog_model = m
         @id = m.id
+      elsif m.is_a?(Hash) && m["id"]
+        @id = m["id"]
       else
         raise InvalidArguments, "Can't initialize #{self.class} with #{m.inspect}"
       end
