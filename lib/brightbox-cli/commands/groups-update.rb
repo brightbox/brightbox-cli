@@ -1,6 +1,7 @@
 module Brightbox
   desc 'Update a server group'
   arg_name 'grp-id'
+  # arg_name 'grp-id [srv-ids...]'
   command [:update] do |c|
 
     c.desc "Friendly name of server group"
@@ -13,8 +14,12 @@ module Brightbox
       grp_id = args.shift
       raise "You must specify the server group to update as the first argument" unless grp_id =~ /^grp-/
 
-      sg = ServerGroup.find grp_id
-      info "Updating server group #{sg.id}"
+      params = {}
+
+      # unless args.empty?
+      #   params[:servers] = args.collect { |a| { :server => a } }
+      # end
+
       if options[:n]
         params[:name] = options[:n]
       end
@@ -23,10 +28,11 @@ module Brightbox
         params[:description] = options[:d]
       end
 
-      sg = ServerGroup.create(
-        params
-      )
+      sg = ServerGroup.find grp_id
+      info "Updating server group #{sg}"
+      sg = sg.update(params)
       render_table([sg], global_options)
     end
+
   end
 end
