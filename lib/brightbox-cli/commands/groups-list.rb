@@ -1,6 +1,5 @@
 module Brightbox
   desc 'List server groups'
-  arg_name '[server-group-id...]'
   command [:list] do |c|
     c.action do |global_options,options,args|
 

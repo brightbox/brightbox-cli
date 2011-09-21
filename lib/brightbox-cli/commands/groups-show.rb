@@ -1,6 +1,6 @@
 module Brightbox
-  desc 'Update a server group'
-  arg_name 'grp-id'
+  desc 'Show detailed server group info'
+  arg_name '[grp-id..]'
   command [:show] do |c|
     c.action do |global_options, options, args|
       raise "You must specify server groups to show" if args.empty?
