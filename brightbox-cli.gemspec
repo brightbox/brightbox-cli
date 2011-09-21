@@ -24,7 +24,6 @@ Gem::Specification.new do |s|
   s.add_dependency 'excon', '~> 0.6.1'
   s.add_dependency 'builder'
   s.add_dependency 'mime-types'
-  s.add_dependency 'multi_json', '~> 1.0.3'
   s.add_dependency 'net-scp', '~> 1.0.4'
   s.add_dependency 'net-ssh', '~> 2.2.1'
   s.add_dependency 'nokogiri', '~> 1.5.0'
