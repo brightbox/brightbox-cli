@@ -11,7 +11,7 @@ module Brightbox
 
       table_opts = global_options.merge({
         :vertical => true,
-        :fields => [:id, :name, :description, "servers"]
+        :fields => [:id, :name, :description, :servers]
       })
       render_table(sgs, table_opts)
     end
