@@ -9,11 +9,13 @@ module Brightbox
       name = args.shift
       raise "You must specify a name for the server group" unless name && name != ""
 
+      params = {}
+
+      params[:name] = name
+      params[:description] = options[:d] if options[:d]
+
       info "Creating a new server group"
-      sg = ServerGroup.create(
-        :name => name,
-        :description => options[:d]
-      )
+      sg = ServerGroup.create(params)
       render_table([sg], global_options)
     end
 
