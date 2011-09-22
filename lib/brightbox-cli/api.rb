@@ -71,7 +71,7 @@ module Brightbox
           o
         end
       else
-        raise InvalidArguments, "Couldn't find '#{arg.class}'"
+        raise InvalidArguments, "Couldn't find '#{args.class}'"
       end
       if objects
         # wrap in our objects
