@@ -60,7 +60,7 @@ module Brightbox
     end
 
     def self.default_field_order
-      [:id, :status, :type, :zone, :created_on, :image_id,:cloud_ip_ids,:name]
+      [:id, :status, :type, :zone, :created_on, :image_id, :cloud_ip_ids, :name]
     end
 
     def hostname
