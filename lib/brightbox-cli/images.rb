@@ -1,6 +1,31 @@
 module Brightbox
   class Image < Api
 
+    def self.all
+      conn.images
+    end
+
+    def self.get(id)
+      conn.images.get(id)
+    end
+
+    def self.register(options = {})
+      image = conn.create_image(options)
+      find image['id']
+    end
+
+    def self.default_field_order
+      [:id, :owner, :type, :created_on, :status, :size, :name]
+    end
+
+    def update options
+      self.class.conn.update_image(id, options)
+      self.reload
+      self
+    rescue Excon::Errors::BadRequest => e
+      raise Conflict, JSON.parse(e.response.body)['error']['details']
+    end
+
     def to_row
       o = fog_model.attributes
       o[:id] = fog_model.id
@@ -25,25 +50,9 @@ module Brightbox
       o
     end
 
-    def self.register(options = {})
-      image = conn.create_image(options)
-      find image['id']
-    end
-
     def public?
       public
     end
 
-    def self.all
-      conn.images
-    end
-
-    def self.get(id)
-      conn.images.get(id)
-    end
-
-    def self.default_field_order
-      [:id, :owner, :type, :created_on, :status, :size, :name]
-    end
   end
 end
