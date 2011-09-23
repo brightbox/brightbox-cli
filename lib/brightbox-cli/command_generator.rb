@@ -8,6 +8,8 @@ module Brightbox
       'brightbox-images',
       'brightbox-lbs',
       'brightbox-servers',
+      'brightbox-firewall-policies',
+      'brightbox-firewall-rules',
       'brightbox-types',
       'brightbox-users',
       'brightbox-zones'
