@@ -83,7 +83,7 @@ module Brightbox
         if options[:vertical]
           data options[:fields].collect { |k| [k, row[k]].join("\t") }.join("\n")
         else
-          data options[:fields].collect { |k| row[k] }.join("\t")
+          data options[:fields].collect { |k| row[k].is_a?(Array) ? row[k].join(',') : row[k] }.join("\t")
         end
       end
     else
