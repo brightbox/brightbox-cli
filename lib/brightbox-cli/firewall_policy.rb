@@ -1,5 +1,10 @@
 module Brightbox
   class FirewallPolicy < Api
+
+    def self.create(options)
+      new(conn.firewall_policies.create(options))
+    end
+
     def self.get(id)
       conn.firewall_policy.get(id)
     end
