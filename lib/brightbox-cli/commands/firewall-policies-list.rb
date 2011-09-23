@@ -5,14 +5,14 @@ module Brightbox
     c.action do |global_options,options,args|
 
       if args.empty?
-        lbs = FirewallPolicy.find(:all)
+        firewall_policies = FirewallPolicy.find(:all)
       else
-        lbs = FirewallPolicy.find_or_call(args) do |id|
+        firewall_policies = FirewallPolicy.find_or_call(args) do |id|
           warn "Couldn't find firewall policy #{id}"
         end
       end
 
-      render_table(lbs, global_options)
+      render_table(firewall_policies, global_options)
     end
   end
 end
