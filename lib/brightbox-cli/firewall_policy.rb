@@ -7,5 +7,21 @@ module Brightbox
     def self.all
       conn.firewall_policies
     end
+
+    def attributes
+      t = fog_model.attributes
+      t[:name] = name
+      t[:description] = description
+      t[:server_group] = server_group_id
+      t
+    end
+
+    def to_row
+      attributes
+    end
+
+    def self.default_field_order
+      [:id, :name, :server_group]
+    end
   end
 end

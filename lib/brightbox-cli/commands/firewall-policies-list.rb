@@ -11,7 +11,6 @@ module Brightbox
           warn "Couldn't find firewall policy #{id}"
         end
       end
-
       render_table(firewall_policies, global_options)
     end
   end
