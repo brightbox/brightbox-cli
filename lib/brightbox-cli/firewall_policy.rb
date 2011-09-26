@@ -6,7 +6,7 @@ module Brightbox
     end
 
     def self.get(id)
-      conn.firewall_policy.get(id)
+      conn.firewall_policies.get(id)
     end
 
     def self.all

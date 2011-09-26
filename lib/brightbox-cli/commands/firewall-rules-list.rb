@@ -5,13 +5,14 @@ module Brightbox
     c.action do |global_options,options,args|
 
       if args.empty?
-        firewall_policies = FirewallPolicy.find(:all)
+        raise "You must specify the firewall_policy_id as the first argument"
       else
-        firewall_policies = FirewallPolicy.find_or_call(args) do |id|
+        firewall_policy_id = args.shift
+        firewall_policy = FirewallPolicy.find_or_call(firewall_policy_id) do |id|
           warn "Couldn't find firewall policy #{id}"
         end
       end
-      render_table(firewall_policies, global_options)
+      render_table(FirewallRules.from_policy(firewall_policy.first), global_options)
     end
   end
 end

@@ -56,6 +56,7 @@ module Brightbox
       options = {
         :order => :created_at,
       }.merge options
+
       objects = nil
       object = nil
       # get the data from the Api
