@@ -6,6 +6,10 @@ module Brightbox
       new(conn.firewall_rules.create(options))
     end
 
+    def self.get(id)
+      conn.firewall_rules.get(id)
+    end
+
     def attributes
       t = @attributes || fog_model.attributes
       t[:sport] = t[:source_port]
