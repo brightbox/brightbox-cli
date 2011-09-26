@@ -14,6 +14,8 @@ module Fog
       model       :account # Singular resource, no collection
       collection  :servers
       model       :server
+      collection  :server_groups
+      model       :server_group
       collection  :flavors
       model       :flavor
       collection  :images
@@ -32,14 +34,19 @@ module Fog
       request :add_listeners_load_balancer
       request :add_nodes_load_balancer
       request :add_servers_server_group
+      request :apply_to_firewall_policy
       request :create_api_client
       request :create_cloud_ip
+      request :create_firewall_policy
+      request :create_firewall_rule
       request :create_image
       request :create_load_balancer
       request :create_server
       request :create_server_group
       request :destroy_api_client
       request :destroy_cloud_ip
+      request :destroy_firewall_policy
+      request :destroy_firewall_rule
       request :destroy_image
       request :destroy_load_balancer
       request :destroy_server
@@ -47,6 +54,8 @@ module Fog
       request :get_account
       request :get_api_client
       request :get_cloud_ip
+      request :get_firewall_policy
+      request :get_firewall_rule
       request :get_image
       request :get_interface
       request :get_load_balancer
@@ -57,6 +66,7 @@ module Fog
       request :get_zone
       request :list_api_clients
       request :list_cloud_ips
+      request :list_firewall_policies
       request :list_images
       request :list_load_balancers
       request :list_server_groups
@@ -78,6 +88,7 @@ module Fog
       request :unmap_cloud_ip
       request :update_account
       request :update_api_client
+      request :update_cloud_ip
       request :update_image
       request :update_load_balancer
       request :update_server
