@@ -39,7 +39,7 @@ module Brightbox
 
       display_options = {
         :vertical => true,
-        :fields => [:id, :status, :name, :description, :created_at, :deleted_at,
+        :fields => [:id, :status, :name, :created_at, :deleted_at,
           :zone, :type, :type_name, :type_handle, :ram, :cores,
           :disk, :image, :image_name, :private_ips, :cloud_ips, :ipv6_address,
           :cloud_ip_ids, :hostname, :public_hostname, :snapshots

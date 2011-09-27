@@ -9,6 +9,36 @@ module Brightbox
       new(conn.servers.create(options))
     end
 
+    def self.all
+      conn.servers
+    end
+
+    def self.get(id)
+      conn.servers.get id
+    end
+
+    def self.default_field_order
+      [:id, :status, :type, :zone, :created_on, :image_id, :cloud_ip_ids, :name]
+    end
+
+    def update options
+      self.class.conn.update_server id, options
+      self.reload
+      self
+    rescue Excon::Errors::BadRequest => e
+      raise Conflict, JSON.parse(e.response.body)['error']['details']
+    end
+
+    def destroy
+      fog_model.destroy
+    rescue Excon::Errors::Conflict => e
+      raise Conflict, "Cannot delete server #{id}"
+    end
+
+    def activate_console
+      self.class.conn.activate_console_server id
+    end
+
     def server_type
       @server_type ||= (Type.new(flavor_id) if flavor_id)
     end
@@ -39,28 +69,6 @@ module Brightbox
 
     def deleted?
       fog_model.status == "deleted"
-    end
-
-    def destroy
-      fog_model.destroy
-    rescue Excon::Errors::Conflict => e
-      raise Conflict, "Cannot delete server #{id}"
-    end
-
-    def activate_console
-      self.class.conn.activate_console_server id
-    end
-
-    def self.get(id)
-      conn.servers.get id
-    end
-
-    def self.all
-      conn.servers
-    end
-
-    def self.default_field_order
-      [:id, :status, :type, :zone, :created_on, :image_id,:cloud_ip_ids,:name]
     end
 
     def hostname
