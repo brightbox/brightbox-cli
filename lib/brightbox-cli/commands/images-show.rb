@@ -15,7 +15,7 @@ module Brightbox
 
       table_opts = global_options.merge({
                                           :vertical => true,
-                                          :fields => [:id, :type, :owner, :created_at, :status, :arch, :name, :description, :virtual_size, :disk_size, "compatibility_mode", :official, :ancestor_id ]
+                                          :fields => [:id, :type, :owner, :created_at, :status, :arch, :name, :description, :virtual_size, :disk_size, :public, :"compatibility_mode", :official, :ancestor_id ]
                                         })
 
       render_table(images, table_opts)

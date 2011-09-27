@@ -11,8 +11,13 @@ module Brightbox
     c.desc "Source filename of the image you uploaded to the image library"
     c.flag [:s, "source"]
 
-    c.desc "This image does not support virtio so needs 'compatibility mode'"
-    c.switch [:c, "compatibility"]
+    c.desc "Set image mode to be either 'virtio' or 'compatibility'"
+    c.default_value "virtio"
+    c.flag [:m, "mode"]
+
+    c.desc "Set image to be publically visible (true or false)"
+    c.default_value "false"
+    c.flag [:p, "public"]
 
     c.desc "Image description"
     c.flag [:d, "description"]
@@ -21,10 +26,24 @@ module Brightbox
 
       raise "You must specify the architecture" unless options[:a]
       raise "You must specify the source filename" unless options[:s]
+      raise "Mode must be 'virtio' or 'compatibility'" unless options[:m] == "virtio" || options[:m] == "compatibility"
+      raise "Public must be true or false" unless options[:p] == "true" || options[:p] == "false"
+
+      if options[:m] == "compatibility"
+        compatibility_flag = true
+      else
+        compatibility_flag = false
+      end
+
+      if options[:p] == "true"
+        public_flag = true
+      else
+        public_flag = false
+      end
 
       image = Image.register :name => options[:n], :arch => options[:a],
-      :source => options[:s], :compatibility_mode => options[:c],
-      :description => options[:d]
+      :source => options[:s], :compatibility_mode => compatibility_flag,
+      :description => options[:d], :public => public_flag
 
       render_table([image])
 
