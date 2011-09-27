@@ -23,7 +23,7 @@ module Brightbox
 
     c.action do |global_options,options,args|
       img_id = args.shift
-      raise "You must specify the load balancer to update as the first argument" unless img_id =~ /^img-/
+      raise "You must specify the image to update as the first argument" unless img_id =~ /^img-/
       raise "You must specify public or private, not both" if options[:public] && options[:private]
 
       params = {}
