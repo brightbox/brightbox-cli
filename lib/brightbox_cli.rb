@@ -15,7 +15,7 @@ end
 require "json"
 require 'date'
 require 'gli'
-require 'fog'
+require 'fog/brightbox'
 
 
 require 'brightbox-cli/tables'
