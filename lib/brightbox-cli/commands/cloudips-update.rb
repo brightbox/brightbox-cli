@@ -10,7 +10,7 @@ module Brightbox
 
     c.action do |global_options,options,args|
       cip_id = args.shift
-      raise "You must specify the cloud ip id as the last argument" unless cip_id =~ /^cip-/
+      raise "You must specify the cloud ip id as the first argument" unless cip_id =~ /^cip-/
 
       if options[:r] && options[:r] != "" && options[:"delete-reverse-dns"]
         raise "You must either specify a reverse dns record or --delete-reverse-dns"
