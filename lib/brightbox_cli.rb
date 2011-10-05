@@ -17,24 +17,26 @@ require 'date'
 require 'gli'
 require 'fog/brightbox'
 
+module Brightbox
+  autoload :Server, "brightbox-cli/servers"
+  autoload :Image, "brightbox-cli/images"
+  autoload :Type, "brightbox-cli/types"
+  autoload :Zone, "brightbox-cli/zones"
+  autoload :CloudIP, "brightbox-cli/cloud_ips"
+  autoload :User, "brightbox-cli/users"
+  autoload :Account, "brightbox-cli/accounts"
+  autoload :LoadBalancer, "brightbox-cli/load_balancers"
+  autoload :ServerGroup, "brightbox-cli/server_groups"
+  autoload :FirewallPolicy, "brightbox-cli/firewall_policy"
+  autoload :FirewallRule, "brightbox-cli/firewall_rule"
+  autoload :FirewallRules, "brightbox-cli/firewall_rules"
+end
 
 require 'brightbox-cli/tables'
 require "brightbox-cli/fog_extensions"
 require "brightbox-cli/logging"
 require "brightbox-cli/api"
-require "brightbox-cli/servers"
-require "brightbox-cli/images"
-require "brightbox-cli/types"
-require "brightbox-cli/zones"
-require "brightbox-cli/cloud_ips"
-require "brightbox-cli/users"
-require "brightbox-cli/accounts"
 require "brightbox-cli/config"
 require "brightbox-cli/version"
-require "brightbox-cli/load_balancers"
-require "brightbox-cli/server_groups"
-require "brightbox-cli/firewall_policy"
-require "brightbox-cli/firewall_rules"
-require "brightbox-cli/firewall_rule"
 require "brightbox-cli/ruby_core_ext"
 require "brightbox-cli/error_parser"
