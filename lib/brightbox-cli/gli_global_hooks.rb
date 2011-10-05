@@ -50,7 +50,7 @@ module Brightbox
   desc 'Display version information'
   command [:version] do |c|
     c.action do |global_options, options, args|
-      info "Brightbox CLI version: #{Brightbox::VERSION}, Fog version: #{Fog::VERSION}"
+      info "Brightbox CLI version: #{Brightbox::VERSION}"
     end
   end
 end
