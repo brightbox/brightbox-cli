@@ -35,7 +35,8 @@ module Fog
           options = {
             :server_group => server_group_id
           }
-          data = connection.apply_to_firewall_policy(options)
+          requires :identity
+          data = connection.apply_to_firewall_policy(identity,options)
           merge_attributes(data)
           true
         end
