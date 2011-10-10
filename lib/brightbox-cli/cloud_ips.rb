@@ -42,5 +42,14 @@ module Brightbox
     def <=>(b)
       self.status <=> b.status
     end
+
+    def update(options)
+      self.class.conn.update_cloud_ip(id, options)
+      self.reload
+      self
+    rescue Excon::Errors::BadRequest => e
+      raise Conflict, JSON.parse(e.response.body)['error']['details']
+    end
+
   end
 end

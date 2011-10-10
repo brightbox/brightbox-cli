@@ -6,7 +6,7 @@ module Brightbox
     c.desc "Name to give the image"
     c.flag [:n, "name"]
 
-    c.desc "Archtecture of the image (i686 or x86_64)"
+    c.desc "Architecture of the image (i686 or x86_64)"
     c.flag [:a, "arch"]
 
     c.desc "Set image mode to be either 'virtio' or 'compatibility'"
