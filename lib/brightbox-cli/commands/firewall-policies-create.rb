@@ -16,7 +16,7 @@ module Brightbox
         server_group_id = args.shift
       end
 
-      if server_group_id && server_group_id.empty?
+      if server_group_id && !server_group_id.empty?
         server_group = ServerGroup.find(server_group_id)
       end
 
@@ -24,7 +24,6 @@ module Brightbox
       name = options[:n]
       description = options[:d]
 
-      server_group_id = server_group.id
       firewall_options = {
         :name => name, :description => description
       }
@@ -32,7 +31,6 @@ module Brightbox
       if server_group
         firewall_options.update(:server_group_id => server_group.id)
       end
-
 
       firewall_policy = FirewallPolicy.create(firewall_options)
       render_table([firewall_policy], global_options)
