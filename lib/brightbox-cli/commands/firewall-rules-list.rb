@@ -9,7 +9,7 @@ module Brightbox
       else
         firewall_policy_id = args.shift
         firewall_policy = FirewallPolicy.find_or_call(firewall_policy_id) do |id|
-          warn "Couldn't find firewall policy #{id}"
+          raise "Couldn't find firewall policy #{id}"
         end
       end
       render_table(FirewallRules.from_policy(firewall_policy.first), global_options)
