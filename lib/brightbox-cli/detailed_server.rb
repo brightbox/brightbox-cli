@@ -15,10 +15,9 @@ module Brightbox
         row_attributes[:image_name] = image.name
         row_attributes[:arch] = image.arch
       end
-      tmp_interfaces = interfaces
 
-      row_attributes[:private_ips] = tmp_interfaces.collect { |i| i['ipv4_address'] }.join(", ")
-      row_attributes[:ipv6_address] = tmp_interfaces.collect { |i| i['ipv6_address'] }.join(", ")
+      row_attributes[:private_ips] = interfaces.collect { |i| i['ipv4_address'] }.join(", ")
+      row_attributes[:ipv6_address] = interfaces.collect { |i| i['ipv6_address'] }.join(", ")
 
       row_attributes[:cloud_ip_ids] = cloud_ips.collect { |i| i['id'] }.join(", ")
       row_attributes[:cloud_ips] = cloud_ips.collect { |i| i['public_ip'] }.join(", ")
