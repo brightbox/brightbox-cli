@@ -1,12 +1,25 @@
 module Brightbox
   desc 'Move servers from one server group to another'
-  arg_name 'grp-id grp-id [srv-id...]'
-  command [:move_servers] do |c|
+  arg_name 'srv-id ...'
+  command [:move] do |c|
+    c.desc "Source Server Group"
+    c.flag [:f, :from]
+
+    c.desc "Target Server Group"
+    c.flag [:t, :to]
+
 
     c.action do |global_options, options, args|
-      source_id = args.shift
-      destination_id = args.shift
-      raise "You must specify the source server group, destination server group and the server ids to remove" unless source_id && source_id[/^grp-/] && destination_id && destination_id[/^grp-/] && !args.empty?
+      unless args && !args.empty?
+        raise "You must specify server ids to move"
+      end
+
+      source_id = options[:f]
+      destination_id = options[:t]
+
+      unless source_id && source_id[/^grp-/] && destination_id && destination_id[/^grp-/]
+        raise "You must specify the source server group and destination server group"
+      end
 
       source_group = ServerGroup.find source_id
       destination_group = ServerGroup.find destination_id
