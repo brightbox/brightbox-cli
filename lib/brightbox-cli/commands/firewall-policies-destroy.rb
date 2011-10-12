@@ -6,6 +6,7 @@ module Brightbox
 
       raise "You must specify firewall-policy-id to destroy" if args.empty?
       firewall_policy_id = args.shift
+      raise "Invalid firewall policy id" unless firewall_policy_id[/^fwp-/]
 
       firewall_policy = FirewallPolicy.find(firewall_policy_id) do |id|
         raise "Couldn't find Firewall Policy #{id}"

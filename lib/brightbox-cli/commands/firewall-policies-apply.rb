@@ -9,12 +9,16 @@ module Brightbox
       end
 
       firewall_policy_id = args.shift
+      raise "Invalid firewall policy id" unless firewall_policy_id[/^fwp-/]
+      server_group_id = args.shift
+      raise "Invalid Server Group id" unless server_group_id[/^grp-/]
+
       firewall_policy = FirewallPolicy.find(firewall_policy_id)
 
       unless firewall_policy
         raise "Could not find firewall policy with #{firewall_policy_id}"
       end
-      server_group_id = args.shift
+
 
       server_group = ServerGroup.find(server_group_id)
       unless server_group

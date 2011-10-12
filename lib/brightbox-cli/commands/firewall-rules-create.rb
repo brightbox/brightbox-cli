@@ -27,6 +27,8 @@ module Brightbox
       end
 
       firewall_policy_id = args.shift
+      raise "Invalid firewall policy id" unless firewall_policy_id[/^fwp-/]
+
       firewall_policy = FirewallPolicy.find(firewall_policy_id)
 
       unless firewall_policy
