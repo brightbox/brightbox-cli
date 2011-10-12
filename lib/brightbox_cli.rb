@@ -19,6 +19,7 @@ require 'fog/brightbox'
 
 module Brightbox
   autoload :Server, "brightbox-cli/servers"
+  autoload :DetailedServer, "brightbox-cli/detailed_server"
   autoload :Image, "brightbox-cli/images"
   autoload :Type, "brightbox-cli/types"
   autoload :Zone, "brightbox-cli/zones"
