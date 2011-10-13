@@ -14,7 +14,7 @@ module Brightbox
     end
 
     def self.default_field_order
-      [:id, :name, :servers, :description]
+      [:id, :servers, :name]
     end
 
     def update(options)
