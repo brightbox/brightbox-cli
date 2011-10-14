@@ -1,14 +1,11 @@
 require "spec_helper"
 
 describe "Firewall Policy" do
-  before(:all) do
-    params = { :name => "rspec_tests"}
-    @group = Brightbox::ServerGroup.create(params)
-  end
-
   describe "Creating firewall policy" do
     use_vcr_cassette('create_firewall_policy')
     it "should create firewall policy" do
+      params = { :name => "rspec_tests"}
+      @group = Brightbox::ServerGroup.create(params)
       lambda do
         firewall_options = {
           :name => "rspec_firewall_policy",
@@ -20,12 +17,15 @@ describe "Firewall Policy" do
         Brightbox.render_table([@firewall_policy],:vertical => true)
       }
       output.should match(/rspec_firewall_policy/)
+      @group.destroy()
     end
   end
 
   describe "Destroying firewall policy" do
     use_vcr_cassette('destroy_firewall_policy')
     it "should destroy firewall policy" do
+      params = { :name => "rspec_tests"}
+      @group = Brightbox::ServerGroup.create(params)
       lambda do
         firewall_options = {
           :name => "rspec_firewall_policy",
@@ -34,6 +34,7 @@ describe "Firewall Policy" do
         @firewall_policy = Brightbox::FirewallPolicy.create(firewall_options)
         @firewall_policy.destroy
       end.should_not raise_error
+      @group.destroy()
     end
   end
 
@@ -60,7 +61,7 @@ describe "Firewall Policy" do
   end
 
   describe "apply firewall policy" do
-    use_vcr_cassette('apply_firewall_policy')
+
     it "should apply firewall policy" do
       lambda {
         params = { :name => "rspec_tests_apply"}
@@ -72,9 +73,5 @@ describe "Firewall Policy" do
         firewall_policy.apply_to(group.id)
       }.should_not raise_error
     end
-  end
-
-  after(:all) do
-    @group.destroy()
   end
 end
