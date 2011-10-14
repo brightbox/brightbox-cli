@@ -61,7 +61,7 @@ describe "Firewall Policy" do
   end
 
   describe "apply firewall policy" do
-
+    use_vcr_cassette('apply_firewall_policy')
     it "should apply firewall policy" do
       lambda {
         params = { :name => "rspec_tests_apply"}
@@ -71,6 +71,7 @@ describe "Firewall Policy" do
         }
         firewall_policy = Brightbox::FirewallPolicy.create(firewall_options)
         firewall_policy.apply_to(group.id)
+        group.destroy
       }.should_not raise_error
     end
   end
