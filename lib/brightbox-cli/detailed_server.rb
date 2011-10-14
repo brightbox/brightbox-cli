@@ -2,16 +2,16 @@ module Brightbox
   class DetailedServer < Server
     def to_row
       row_attributes = attributes
-      if server_type.exists?
-        row_attributes[:type] = server_type.id
-        row_attributes[:type_handle] = server_type.handle
-        row_attributes[:type_name] = server_type.name
-        row_attributes[:ram] = server_type.ram
-        row_attributes[:cores] = server_type.cores
-        row_attributes[:disk] = server_type.disk.to_i
+      if server_type
+        row_attributes[:type] = server_type['id']
+        row_attributes[:type_handle] = server_type['handle']
+        row_attributes[:type_name] = server_type['name']
+        row_attributes[:ram] = server_type['ram']
+        row_attributes[:cores] = server_type['cores']
+        row_attributes[:disk] = server_type['disk'].to_i
       end
 
-      if image.exists?
+      if image
         row_attributes[:image_name] = image.name
         row_attributes[:arch] = image.arch
       end
