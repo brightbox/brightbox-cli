@@ -3,9 +3,6 @@ module Brightbox
   arg_name '[server-id...]'
   command [:list] do |c|
     c.action do |global_options,options,args|
-
-      Type.cache_all!
-      Zone.cache_all!
       if args.empty?
         servers = Server.find(:all)
       else
