@@ -1,0 +1,36 @@
+--- 
+- !ruby/struct:VCR::HTTPInteraction 
+  request: !ruby/struct:VCR::Request 
+    method: GET
+    uri: https://api.gb1s.brightbox.com:443/1.0/firewall_rules/fwr-ohc9w
+    body: 
+    headers: 
+      content-type: 
+      - application/json
+      authorization: 
+      - OAuth e717de9faa2aaeacd8b55c38def2c53e72b42f06
+  response: !ruby/struct:VCR::Response 
+    status: !ruby/struct:VCR::ResponseStatus 
+      code: 200
+      message: 
+    headers: 
+      etag: 
+      - "\"d820b542dda7b06f079ae1de490e4ca2\""
+      content-type: 
+      - application/json; charset=utf-8
+      server: 
+      - Apache
+      date: 
+      - Fri, 14 Oct 2011 13:42:09 GMT
+      x-runtime: 
+      - "16"
+      content-length: 
+      - "461"
+      cache-control: 
+      - private, max-age=0, must-revalidate
+      status: 
+      - "200"
+      vary: 
+      - Accept-Encoding
+    body: "{\"id\":\"fwr-ohc9w\",\"resource_type\":\"firewall_rule\",\"url\":\"https://api.gb1s.brightbox.com/1.0/firewall_rules/fwr-ohc9w\",\"destination\":null,\"protocol\":\"tcp\",\"icmp_type_name\":null,\"source_port\":null,\"description\":null,\"destination_port\":\"22,80,443\",\"source\":\"0.0.0.0/0\",\"firewall_policy\":{\"id\":\"fwp-30kea\",\"resource_type\":\"firewall_policy\",\"url\":\"https://api.gb1s.brightbox.com/1.0/firewall_policies/fwp-30kea\",\"name\":\"the_wall\",\"default\":false,\"description\":null}}"
+    http_version: 
