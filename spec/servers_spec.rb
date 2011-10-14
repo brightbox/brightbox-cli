@@ -16,6 +16,20 @@ describe "Server" do
     end
   end
 
+  describe "Server show" do
+    use_vcr_cassette('server_show')
+    before do
+      @servers = Brightbox::DetailedServer.find_or_call(["srv-7yilp"])
+    end
+    it "should show detailed attributes of a server" do
+      output = capture_stdout {
+        Brightbox.render_table(@servers,{:vertical => true})
+      }
+      output.should match("10.251.17.234")
+      output.should match(/ram: 512/)
+    end
+  end
+
   describe "creating new servers" do
     it "should print error if account limit reached" do
       options = {

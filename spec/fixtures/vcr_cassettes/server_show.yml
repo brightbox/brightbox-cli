@@ -1,0 +1,141 @@
+--- 
+- !ruby/struct:VCR::HTTPInteraction 
+  request: !ruby/struct:VCR::Request 
+    method: GET
+    uri: https://api.gb1s.brightbox.com:443/1.0/servers/srv-7yilp
+    body: 
+    headers: 
+      content-type: 
+      - application/json
+      authorization: 
+      - OAuth e717de9faa2aaeacd8b55c38def2c53e72b42f06
+  response: !ruby/struct:VCR::Response 
+    status: !ruby/struct:VCR::ResponseStatus 
+      code: 200
+      message: 
+    headers: 
+      etag: 
+      - "\"59c4db35962e0c395e5d3708907731a0\""
+      content-type: 
+      - application/json; charset=utf-8
+      server: 
+      - Apache
+      date: 
+      - Fri, 14 Oct 2011 13:12:55 GMT
+      x-runtime: 
+      - "39"
+      content-length: 
+      - "1779"
+      cache-control: 
+      - private, max-age=0, must-revalidate
+      status: 
+      - "200"
+      vary: 
+      - Accept-Encoding
+    body: "{\"id\":\"srv-7yilp\",\"resource_type\":\"server\",\"url\":\"https://api.gb1s.brightbox.com/1.0/servers/srv-7yilp\",\"name\":\"\",\"created_at\":\"2011-08-18T03:43:30Z\",\"deleted_at\":null,\"console_token_expires\":null,\"console_url\":null,\"console_token\":null,\"started_at\":null,\"hostname\":\"srv-7yilp\",\"status\":\"active\",\"user_data\":null,\"server_type\":{\"id\":\"typ-eir7x\",\"resource_type\":\"server_type\",\"url\":\"https://api.gb1s.brightbox.com/1.0/server_types/typ-eir7x\",\"name\":\"nano\",\"cores\":2,\"handle\":\"nano\",\"disk_size\":20480,\"ram\":512,\"status\":\"available\"},\"zone\":{\"id\":\"zon-nzn7l\",\"resource_type\":\"zone\",\"url\":\"https://api.gb1s.brightbox.com/1.0/zones/zon-nzn7l\",\"handle\":\"gb1s-b\"},\"cloud_ips\":[{\"id\":\"cip-33fjw\",\"resource_type\":\"cloud_ip\",\"url\":\"https://api.gb1s.brightbox.com/1.0/cloud_ips/cip-33fjw\",\"reverse_dns\":\"cip-109-107-39-5.gb1s.brightbox.com\",\"status\":\"mapped\",\"public_ip\":\"109.107.39.5\"}],\"account\":{\"id\":\"acc-8gq0k\",\"resource_type\":\"account\",\"url\":\"https://api.gb1s.brightbox.com/1.0/account\",\"name\":\"Hemant Account\",\"status\":\"active\"},\"snapshots\":[],\"interfaces\":[{\"id\":\"int-p6vyz\",\"resource_type\":\"interface\",\"url\":\"https://api.gb1s.brightbox.com/1.0/interfaces/int-p6vyz\",\"mac_address\":\"02:24:19:fb:11:ea\",\"ipv4_address\":\"10.251.17.234\",\"ipv6_address\":\"2a02:1348:14b:c47a:24:19ff:fefb:11ea\"}],\"server_groups\":[{\"id\":\"grp-pb7oa\",\"resource_type\":\"server_group\",\"url\":\"https://api.gb1s.brightbox.com/1.0/server_groups/grp-pb7oa\",\"name\":\"proxy\",\"default\":false,\"description\":null}],\"image\":{\"id\":\"img-ymfuq\",\"resource_type\":\"image\",\"url\":\"https://api.gb1s.brightbox.com/1.0/images/img-ymfuq\",\"name\":\"Ubuntu Lucid 10.04 server\",\"created_at\":\"2011-06-01T15:43:38Z\",\"arch\":\"i686\",\"description\":\"login: ubuntu using stored ssh key\",\"status\":\"available\",\"source\":\"lucid.img\",\"owner\":\"acc-kg71m\"}}"
+    http_version: 
+- !ruby/struct:VCR::HTTPInteraction 
+  request: !ruby/struct:VCR::Request 
+    method: GET
+    uri: https://api.gb1s.brightbox.com:443/1.0/images/img-ymfuq
+    body: 
+    headers: 
+      content-type: 
+      - application/json
+      authorization: 
+      - OAuth e717de9faa2aaeacd8b55c38def2c53e72b42f06
+  response: !ruby/struct:VCR::Response 
+    status: !ruby/struct:VCR::ResponseStatus 
+      code: 200
+      message: 
+    headers: 
+      etag: 
+      - "\"6e6f8f223836a3fe402757fe35982a9d\""
+      content-type: 
+      - application/json; charset=utf-8
+      server: 
+      - Apache
+      date: 
+      - Fri, 14 Oct 2011 13:12:56 GMT
+      x-runtime: 
+      - "11"
+      content-length: 
+      - "432"
+      cache-control: 
+      - private, max-age=0, must-revalidate
+      status: 
+      - "200"
+      vary: 
+      - Accept-Encoding
+    body: "{\"id\":\"img-ymfuq\",\"resource_type\":\"image\",\"url\":\"https://api.gb1s.brightbox.com/1.0/images/img-ymfuq\",\"name\":\"Ubuntu Lucid 10.04 server\",\"created_at\":\"2011-06-01T15:43:38Z\",\"public\":true,\"disk_size\":538,\"official\":true,\"arch\":\"i686\",\"compatibility_mode\":false,\"source_type\":\"upload\",\"description\":\"login: ubuntu using stored ssh key\",\"source\":\"lucid.img\",\"status\":\"available\",\"owner\":\"acc-kg71m\",\"virtual_size\":1409,\"ancestor\":null}"
+    http_version: 
+- !ruby/struct:VCR::HTTPInteraction 
+  request: !ruby/struct:VCR::Request 
+    method: GET
+    uri: https://api.gb1s.brightbox.com:443/1.0/images/img-ymfuq
+    body: 
+    headers: 
+      content-type: 
+      - application/json
+      authorization: 
+      - OAuth e717de9faa2aaeacd8b55c38def2c53e72b42f06
+  response: !ruby/struct:VCR::Response 
+    status: !ruby/struct:VCR::ResponseStatus 
+      code: 200
+      message: 
+    headers: 
+      etag: 
+      - "\"6e6f8f223836a3fe402757fe35982a9d\""
+      content-type: 
+      - application/json; charset=utf-8
+      server: 
+      - Apache
+      date: 
+      - Fri, 14 Oct 2011 13:12:57 GMT
+      x-runtime: 
+      - "12"
+      content-length: 
+      - "432"
+      cache-control: 
+      - private, max-age=0, must-revalidate
+      status: 
+      - "200"
+      vary: 
+      - Accept-Encoding
+    body: "{\"id\":\"img-ymfuq\",\"resource_type\":\"image\",\"url\":\"https://api.gb1s.brightbox.com/1.0/images/img-ymfuq\",\"name\":\"Ubuntu Lucid 10.04 server\",\"created_at\":\"2011-06-01T15:43:38Z\",\"public\":true,\"disk_size\":538,\"official\":true,\"arch\":\"i686\",\"compatibility_mode\":false,\"source_type\":\"upload\",\"description\":\"login: ubuntu using stored ssh key\",\"source\":\"lucid.img\",\"status\":\"available\",\"owner\":\"acc-kg71m\",\"virtual_size\":1409,\"ancestor\":null}"
+    http_version: 
+- !ruby/struct:VCR::HTTPInteraction 
+  request: !ruby/struct:VCR::Request 
+    method: GET
+    uri: https://api.gb1s.brightbox.com:443/1.0/images/img-ymfuq
+    body: 
+    headers: 
+      content-type: 
+      - application/json
+      authorization: 
+      - OAuth e717de9faa2aaeacd8b55c38def2c53e72b42f06
+  response: !ruby/struct:VCR::Response 
+    status: !ruby/struct:VCR::ResponseStatus 
+      code: 200
+      message: 
+    headers: 
+      etag: 
+      - "\"6e6f8f223836a3fe402757fe35982a9d\""
+      content-type: 
+      - application/json; charset=utf-8
+      server: 
+      - Apache
+      date: 
+      - Fri, 14 Oct 2011 13:12:57 GMT
+      x-runtime: 
+      - "12"
+      content-length: 
+      - "432"
+      cache-control: 
+      - private, max-age=0, must-revalidate
+      status: 
+      - "200"
+      vary: 
+      - Accept-Encoding
+    body: "{\"id\":\"img-ymfuq\",\"resource_type\":\"image\",\"url\":\"https://api.gb1s.brightbox.com/1.0/images/img-ymfuq\",\"name\":\"Ubuntu Lucid 10.04 server\",\"created_at\":\"2011-06-01T15:43:38Z\",\"public\":true,\"disk_size\":538,\"official\":true,\"arch\":\"i686\",\"compatibility_mode\":false,\"source_type\":\"upload\",\"description\":\"login: ubuntu using stored ssh key\",\"source\":\"lucid.img\",\"status\":\"available\",\"owner\":\"acc-kg71m\",\"virtual_size\":1409,\"ancestor\":null}"
+    http_version: 
