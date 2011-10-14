@@ -56,14 +56,6 @@ module Fog
           attributes[:flavor_id] = incoming_flavour_id
         end
 
-        def zone_handle
-          zone[:handle] || zone['handle']
-        end
-
-        def server_type_handle
-          server_type[:handle] || server_type['handle']
-        end
-
         def snapshot
           requires :identity
           connection.snapshot_server(identity)
