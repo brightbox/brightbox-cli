@@ -41,11 +41,19 @@ module Fog
         end
 
         def zone_id
-          zone[:id] || zone['id']
+          attributes[:zone_id] || zone[:id] || zone['id']
         end
 
         def flavor_id
-          server_type[:id] || server_type['id']
+          attributes[:flavor_id] || server_type[:id] || server_type['id']
+        end
+
+        def zone_id=(incoming_zone_id)
+          attributes[:zone_id] = incoming_zone_id
+        end
+
+        def flavor_id=(incoming_flavour_id)
+          attributes[:flavor_id] = incoming_flavour_id
         end
 
         def zone_handle
