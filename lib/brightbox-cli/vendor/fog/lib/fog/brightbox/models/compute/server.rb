@@ -27,16 +27,33 @@ module Fog
         # Links - to be replaced
         attribute :account_id,  :aliases => "account",      :squash => "id"
         attribute :image_id,    :aliases => "image",        :squash => "id"
-        attribute :flavor_id,   :aliases => "server_type",  :squash => "id"
-        attribute :zone_id,     :aliases => "zone",         :squash => "id"
+
         attribute :snapshots
         attribute :cloud_ips
         attribute :interfaces
         attribute :server_groups
+        attribute :zone
+        attribute :server_type
 
         def initialize(attributes={})
           self.image_id   ||= 'img-2ab98' # Ubuntu Lucid 10.04 server (i686)
           super
+        end
+
+        def zone_id
+          zone[:id] || zone['id']
+        end
+
+        def flavor_id
+          server_type[:id] || server_type['id']
+        end
+
+        def zone_handle
+          zone[:handle] || zone['handle']
+        end
+
+        def server_type_handle
+          server_type[:handle] || server_type['handle']
         end
 
         def snapshot
