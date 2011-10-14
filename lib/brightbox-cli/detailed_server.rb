@@ -24,7 +24,7 @@ module Brightbox
       row_attributes[:snapshots] = snapshots.collect { |i| i['id'] }.join(", ")
 
       if server_groups
-        row_attributes[:server_groups] = server_groups.map { |sg| sg['name']}.join(", ")
+        row_attributes[:server_groups] = server_groups.map { |sg| sg['id']}.join(", ")
       end
 
 
