@@ -15,6 +15,7 @@ module Brightbox
       t[:sport] = t[:source_port]
       t[:dport] = t[:destination_port]
       t[:firewall_policy] = t[:firewall_policy_id]
+      t[:icmp_type] = t[:icmp_type_name]
       t
     end
 
@@ -23,7 +24,7 @@ module Brightbox
     end
 
     def self.default_field_order
-      [:id, :protocol,:source, :sport,:destination, :dport, :icmp_type_name, :firewall_policy]
+      [:id, :protocol,:source, :sport,:destination, :dport, :icmp_type]
     end
   end
 end
