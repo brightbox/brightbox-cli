@@ -8,4 +8,5 @@ spec/brightbox/cache/
 .rbx/
 *.patch
 *.html
+*.gem
 
