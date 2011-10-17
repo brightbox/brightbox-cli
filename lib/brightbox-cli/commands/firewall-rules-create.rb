@@ -6,13 +6,13 @@ module Brightbox
     c.desc "Protocol - [tcp/udp/all]"
     c.flag [:p, :protocol]
 
-    c.desc "Source - Ip Address, server group, server identifier"
+    c.desc "Source - IP address, server group, server identifier"
     c.flag [:s, :source]
 
     c.desc "Source Port"
     c.flag [:c, :sport]
 
-    c.desc "Destination - Ip Address, server group, server identifier"
+    c.desc "Destination - IP address, server group, server identifier"
     c.flag [:d, :destination]
 
     c.desc "Destination Port"
