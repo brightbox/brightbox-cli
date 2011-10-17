@@ -47,4 +47,45 @@ describe "Server" do
       output.should match(/Account limit reached, please contact support for more information/i)
     end
   end
+
+  describe "destroying servers" do
+    use_vcr_cassette('server_destroy')
+    it "should work" do
+      type = Brightbox::Type.find_by_handle "nano"
+      options = {
+        :image_id      => "img-ymfuq",
+        :name          => "wow",
+        :zone_id       => nil.to_s,
+        :flavor_id     => type.id,
+        :user_data     => nil
+      }
+
+      @servers = Brightbox::Server.create_servers 1, options
+      output = capture_stdout {
+        Brightbox::render_table(@servers,:vertical => true)
+      }
+      output.should match("wow")
+      output.should match("img-ymfuq")
+    end
+  end
+
+  describe "shutdown servers" do
+
+  end
+
+  describe "stop servers" do
+
+  end
+
+  describe "start server" do
+
+  end
+
+  describe "snapshot a server" do
+
+  end
+
+  describe "update a server" do
+
+  end
 end
