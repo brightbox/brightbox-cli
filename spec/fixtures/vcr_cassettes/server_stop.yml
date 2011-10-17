@@ -1,0 +1,104 @@
+--- 
+- !ruby/struct:VCR::HTTPInteraction 
+  request: !ruby/struct:VCR::Request 
+    method: GET
+    uri: https://api.gb1s.brightbox.com:443/1.0/server_types
+    body: 
+    headers: 
+      content-type: 
+      - application/json
+      authorization: 
+      - OAuth c923ea36a25a60304c10a21ec4864ee9545e21b4
+  response: !ruby/struct:VCR::Response 
+    status: !ruby/struct:VCR::ResponseStatus 
+      code: 200
+      message: 
+    headers: 
+      etag: 
+      - "\"9a2f48d208ccd4251565c000c0e822a6\""
+      content-type: 
+      - application/json; charset=utf-8
+      server: 
+      - Apache
+      date: 
+      - Mon, 17 Oct 2011 10:28:58 GMT
+      x-runtime: 
+      - "15"
+      content-length: 
+      - "412"
+      cache-control: 
+      - private, max-age=0, must-revalidate
+      status: 
+      - "200"
+      vary: 
+      - Accept-Encoding
+    body: "[{\"id\":\"typ-eir7x\",\"resource_type\":\"server_type\",\"url\":\"https://api.gb1s.brightbox.com/1.0/server_types/typ-eir7x\",\"name\":\"nano\",\"cores\":2,\"handle\":\"nano\",\"disk_size\":20480,\"ram\":512,\"status\":\"available\"},{\"id\":\"typ-nrsxl\",\"resource_type\":\"server_type\",\"url\":\"https://api.gb1s.brightbox.com/1.0/server_types/typ-nrsxl\",\"name\":\"fatboy\",\"cores\":4,\"handle\":\"lard\",\"disk_size\":40960,\"ram\":2048,\"status\":\"available\"}]"
+    http_version: 
+- !ruby/struct:VCR::HTTPInteraction 
+  request: !ruby/struct:VCR::Request 
+    method: POST
+    uri: https://api.gb1s.brightbox.com:443/1.0/servers
+    body: "{\"server_type\":\"typ-eir7x\",\"image\":\"img-ymfuq\",\"name\":\"rspec_server_stop\"}"
+    headers: 
+      content-type: 
+      - application/json
+      authorization: 
+      - OAuth c923ea36a25a60304c10a21ec4864ee9545e21b4
+  response: !ruby/struct:VCR::Response 
+    status: !ruby/struct:VCR::ResponseStatus 
+      code: 202
+      message: 
+    headers: 
+      location: 
+      - https://api.gb1s.brightbox.com/1.0/servers/srv-xexxa
+      content-type: 
+      - application/json; charset=utf-8
+      server: 
+      - Apache
+      date: 
+      - Mon, 17 Oct 2011 10:28:58 GMT
+      x-runtime: 
+      - "756"
+      content-length: 
+      - "1595"
+      cache-control: 
+      - no-cache
+      status: 
+      - "202"
+      vary: 
+      - Accept-Encoding
+    body: "{\"id\":\"srv-xexxa\",\"resource_type\":\"server\",\"url\":\"https://api.gb1s.brightbox.com/1.0/servers/srv-xexxa\",\"name\":\"rspec_server_stop\",\"created_at\":\"2011-10-17T10:28:59Z\",\"deleted_at\":null,\"console_token_expires\":null,\"console_url\":null,\"console_token\":null,\"started_at\":null,\"hostname\":\"srv-xexxa\",\"status\":\"creating\",\"user_data\":null,\"server_type\":{\"id\":\"typ-eir7x\",\"resource_type\":\"server_type\",\"url\":\"https://api.gb1s.brightbox.com/1.0/server_types/typ-eir7x\",\"name\":\"nano\",\"cores\":2,\"handle\":\"nano\",\"disk_size\":20480,\"ram\":512,\"status\":\"available\"},\"zone\":{\"id\":\"zon-x20w1\",\"resource_type\":\"zone\",\"url\":\"https://api.gb1s.brightbox.com/1.0/zones/zon-x20w1\",\"handle\":\"gb1s-a\"},\"cloud_ips\":[],\"account\":{\"id\":\"acc-8gq0k\",\"resource_type\":\"account\",\"url\":\"https://api.gb1s.brightbox.com/1.0/account\",\"name\":\"Hemant Account\",\"status\":\"active\"},\"snapshots\":[],\"interfaces\":[{\"id\":\"int-xnkdk\",\"resource_type\":\"interface\",\"url\":\"https://api.gb1s.brightbox.com/1.0/interfaces/int-xnkdk\",\"mac_address\":\"02:24:19:fa:c0:72\",\"ipv4_address\":\"10.250.192.114\",\"ipv6_address\":\"2a02:1348:14a:b01c:24:19ff:fefa:c072\"}],\"server_groups\":[{\"id\":\"grp-b0uqb\",\"resource_type\":\"server_group\",\"url\":\"https://api.gb1s.brightbox.com/1.0/server_groups/grp-b0uqb\",\"name\":\"default\",\"default\":true,\"description\":null}],\"image\":{\"id\":\"img-ymfuq\",\"resource_type\":\"image\",\"url\":\"https://api.gb1s.brightbox.com/1.0/images/img-ymfuq\",\"name\":\"Ubuntu Lucid 10.04 server\",\"created_at\":\"2011-06-01T15:43:38Z\",\"arch\":\"i686\",\"description\":\"login: ubuntu using stored ssh key\",\"status\":\"available\",\"source\":\"lucid.img\",\"owner\":\"acc-kg71m\"}}"
+    http_version: 
+- !ruby/struct:VCR::HTTPInteraction 
+  request: !ruby/struct:VCR::Request 
+    method: POST
+    uri: https://api.gb1s.brightbox.com:443/1.0/servers/srv-xexxa/stop
+    body: 
+    headers: 
+      content-type: 
+      - application/json
+      authorization: 
+      - OAuth c923ea36a25a60304c10a21ec4864ee9545e21b4
+  response: !ruby/struct:VCR::Response 
+    status: !ruby/struct:VCR::ResponseStatus 
+      code: 202
+      message: 
+    headers: 
+      content-type: 
+      - application/json; charset=utf-8
+      server: 
+      - Apache
+      date: 
+      - Mon, 17 Oct 2011 10:30:10 GMT
+      x-runtime: 
+      - "109"
+      content-length: 
+      - "1593"
+      cache-control: 
+      - no-cache
+      status: 
+      - "202"
+      vary: 
+      - Accept-Encoding
+    body: "{\"id\":\"srv-xexxa\",\"resource_type\":\"server\",\"url\":\"https://api.gb1s.brightbox.com/1.0/servers/srv-xexxa\",\"name\":\"rspec_server_stop\",\"created_at\":\"2011-10-17T10:28:59Z\",\"deleted_at\":null,\"console_token_expires\":null,\"console_url\":null,\"console_token\":null,\"started_at\":null,\"hostname\":\"srv-xexxa\",\"status\":\"active\",\"user_data\":null,\"server_type\":{\"id\":\"typ-eir7x\",\"resource_type\":\"server_type\",\"url\":\"https://api.gb1s.brightbox.com/1.0/server_types/typ-eir7x\",\"name\":\"nano\",\"cores\":2,\"handle\":\"nano\",\"disk_size\":20480,\"ram\":512,\"status\":\"available\"},\"zone\":{\"id\":\"zon-x20w1\",\"resource_type\":\"zone\",\"url\":\"https://api.gb1s.brightbox.com/1.0/zones/zon-x20w1\",\"handle\":\"gb1s-a\"},\"cloud_ips\":[],\"account\":{\"id\":\"acc-8gq0k\",\"resource_type\":\"account\",\"url\":\"https://api.gb1s.brightbox.com/1.0/account\",\"name\":\"Hemant Account\",\"status\":\"active\"},\"snapshots\":[],\"interfaces\":[{\"id\":\"int-xnkdk\",\"resource_type\":\"interface\",\"url\":\"https://api.gb1s.brightbox.com/1.0/interfaces/int-xnkdk\",\"mac_address\":\"02:24:19:fa:c0:72\",\"ipv4_address\":\"10.250.192.114\",\"ipv6_address\":\"2a02:1348:14a:b01c:24:19ff:fefa:c072\"}],\"server_groups\":[{\"id\":\"grp-b0uqb\",\"resource_type\":\"server_group\",\"url\":\"https://api.gb1s.brightbox.com/1.0/server_groups/grp-b0uqb\",\"name\":\"default\",\"default\":true,\"description\":null}],\"image\":{\"id\":\"img-ymfuq\",\"resource_type\":\"image\",\"url\":\"https://api.gb1s.brightbox.com/1.0/images/img-ymfuq\",\"name\":\"Ubuntu Lucid 10.04 server\",\"created_at\":\"2011-06-01T15:43:38Z\",\"arch\":\"i686\",\"description\":\"login: ubuntu using stored ssh key\",\"status\":\"available\",\"source\":\"lucid.img\",\"owner\":\"acc-kg71m\"}}"
+    http_version: 
