@@ -18,6 +18,9 @@ module Brightbox
     c.desc "Image description"
     c.flag [:d, "description"]
 
+    c.desc "Image Usernmae"
+    c.flag [:u, "username"]
+
     c.action do |global_options,options,args|
       img_id = args.shift
       raise "You must specify the image to update as the first argument" unless img_id =~ /^img-/
@@ -33,6 +36,7 @@ module Brightbox
       params[:arch]               = options[:a] if options[:a]
       params[:source]             = options[:s] if options[:s]
       params[:description]        = options[:d] if options[:d]
+      params[:username]           = options[:u] if options[:u]
 
       params[:compatibility_mode] = true if options[:m] == "compatibility"
       params[:compatibility_mode] = false if options[:m] == "virtio"
