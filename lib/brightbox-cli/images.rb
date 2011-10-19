@@ -15,7 +15,7 @@ module Brightbox
     end
 
     def self.default_field_order
-      [:id, :owner, :type, :created_on, :status, :size, :name]
+      [:id, :owner, :type, :created_on, :status, :size, :username,:name]
     end
 
     def update options
@@ -34,6 +34,7 @@ module Brightbox
       else
         o[:status] = status
       end
+      o[:username] = username
       o[:arch] = arch
       o[:name] = name.to_s + " (#{arch})"
       o[:owner] = owner_id

@@ -5,6 +5,9 @@ module Brightbox
     c.desc "Name to give the image"
     c.flag [:n, "name"]
 
+    c.desc "Image Usernmae"
+    c.flag [:u, "username"]
+
     c.desc "Archtecture of the image (i686 or x86_64)"
     c.flag [:a, "arch"]
 
@@ -41,9 +44,14 @@ module Brightbox
         public_flag = false
       end
 
-      image = Image.register :name => options[:n], :arch => options[:a],
-      :source => options[:s], :compatibility_mode => compatibility_flag,
-      :description => options[:d], :public => public_flag
+      image_options = {
+        :name => options[:n], :arch => options[:a],
+        :username => options[:u], :source => options[:s],
+        :compatibility_mode => compatibility_flag,
+        :description => options[:d], :public => public_flag
+      }
+
+      image = Image.register(image_options)
 
       render_table([image])
 
