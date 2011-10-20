@@ -1,0 +1,104 @@
+--- 
+- !ruby/struct:VCR::HTTPInteraction 
+  request: !ruby/struct:VCR::Request 
+    method: POST
+    uri: https://api.gb1s.brightbox.com:443/1.0/server_groups
+    body: "{\"name\":\"rspec_tests\"}"
+    headers: 
+      content-type: 
+      - application/json
+      authorization: 
+      - OAuth 0612996d7447d4869fed2a8dd349d077daaae53e
+  response: !ruby/struct:VCR::Response 
+    status: !ruby/struct:VCR::ResponseStatus 
+      code: 202
+      message: 
+    headers: 
+      location: 
+      - https://api.gb1s.brightbox.com/1.0/server_groups/grp-q4upg
+      content-type: 
+      - application/json; charset=utf-8
+      server: 
+      - Apache
+      date: 
+      - Fri, 14 Oct 2011 16:30:26 GMT
+      x-runtime: 
+      - "34"
+      content-length: 
+      - "333"
+      cache-control: 
+      - no-cache
+      status: 
+      - "202"
+      vary: 
+      - Accept-Encoding
+    body: "{\"id\":\"grp-q4upg\",\"resource_type\":\"server_group\",\"url\":\"https://api.gb1s.brightbox.com/1.0/server_groups/grp-q4upg\",\"name\":\"rspec_tests\",\"default\":false,\"description\":null,\"account\":{\"id\":\"acc-8gq0k\",\"resource_type\":\"account\",\"url\":\"https://api.gb1s.brightbox.com/1.0/account\",\"name\":\"Hemant Account\",\"status\":\"active\"},\"servers\":[]}"
+    http_version: 
+- !ruby/struct:VCR::HTTPInteraction 
+  request: !ruby/struct:VCR::Request 
+    method: POST
+    uri: https://api.gb1s.brightbox.com:443/1.0/firewall_policies
+    body: "{\"name\":\"rspec_firewall_policy\",\"server_group\":\"grp-q4upg\"}"
+    headers: 
+      content-type: 
+      - application/json
+      authorization: 
+      - OAuth 0612996d7447d4869fed2a8dd349d077daaae53e
+  response: !ruby/struct:VCR::Response 
+    status: !ruby/struct:VCR::ResponseStatus 
+      code: 201
+      message: 
+    headers: 
+      location: 
+      - https://api.gb1s.brightbox.com/1.0/firewall_policies/fwp-j4fhq
+      content-type: 
+      - application/json; charset=utf-8
+      server: 
+      - Apache
+      date: 
+      - Fri, 14 Oct 2011 16:30:27 GMT
+      x-runtime: 
+      - "62"
+      content-length: 
+      - "388"
+      cache-control: 
+      - no-cache
+      status: 
+      - "201"
+      vary: 
+      - Accept-Encoding
+    body: "{\"id\":\"fwp-j4fhq\",\"resource_type\":\"firewall_policy\",\"url\":\"https://api.gb1s.brightbox.com/1.0/firewall_policies/fwp-j4fhq\",\"name\":\"rspec_firewall_policy\",\"default\":false,\"description\":null,\"rules\":[],\"server_group\":{\"id\":\"grp-q4upg\",\"resource_type\":\"server_group\",\"url\":\"https://api.gb1s.brightbox.com/1.0/server_groups/grp-q4upg\",\"name\":\"rspec_tests\",\"default\":false,\"description\":null}}"
+    http_version: 
+- !ruby/struct:VCR::HTTPInteraction 
+  request: !ruby/struct:VCR::Request 
+    method: DELETE
+    uri: https://api.gb1s.brightbox.com:443/1.0/server_groups/grp-q4upg
+    body: 
+    headers: 
+      content-type: 
+      - application/json
+      authorization: 
+      - OAuth 0612996d7447d4869fed2a8dd349d077daaae53e
+  response: !ruby/struct:VCR::Response 
+    status: !ruby/struct:VCR::ResponseStatus 
+      code: 202
+      message: 
+    headers: 
+      content-type: 
+      - application/json; charset=utf-8
+      server: 
+      - Apache
+      date: 
+      - Fri, 14 Oct 2011 16:30:28 GMT
+      x-runtime: 
+      - "30"
+      content-length: 
+      - "333"
+      cache-control: 
+      - no-cache
+      status: 
+      - "202"
+      vary: 
+      - Accept-Encoding
+    body: "{\"id\":\"grp-q4upg\",\"resource_type\":\"server_group\",\"url\":\"https://api.gb1s.brightbox.com/1.0/server_groups/grp-q4upg\",\"name\":\"rspec_tests\",\"default\":false,\"description\":null,\"account\":{\"id\":\"acc-8gq0k\",\"resource_type\":\"account\",\"url\":\"https://api.gb1s.brightbox.com/1.0/account\",\"name\":\"Hemant Account\",\"status\":\"active\"},\"servers\":[]}"
+    http_version: 

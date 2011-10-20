@@ -1,0 +1,14 @@
+#!/usr/bin/env ruby
+
+begin
+  require "brightbox_cli"
+rescue LoadError
+  brightbox_cli_path = File.expand_path('../../lib', __FILE__)
+  $:.unshift(brightbox_cli_path)
+  require "brightbox_cli"
+end
+
+Brightbox::BBConfig.config do
+  include GLI
+  run ARGV
+end

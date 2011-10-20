@@ -3,3 +3,10 @@ local
 pkg/
 spec/brightbox/config
 spec/brightbox/cache/
+.bundle/
+.rbenv-version
+.rbx/
+*.patch
+*.html
+*.gem
+

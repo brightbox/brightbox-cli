@@ -26,6 +26,9 @@ module Brightbox
     c.desc "Don't base64 encode the user data"
     c.switch [:e, :no_base64]
 
+    c.desc "Server groups to place server in - comma delimited list"
+    c.flag [:g, "server-groups"]
+
     c.action do |global_options, options, args|
 
       if args.empty?
@@ -83,20 +86,28 @@ module Brightbox
         raise "User data too big (>16k)" if user_data.size > 16 * 1024
       end
 
+      # Split server groups into array of identifiers (or empty array)
+      server_groups = ServerGroup.find_or_call(options[:g].to_s.split(/,\s*/)) do |id|
+        raise "Couldn't find server #{id}"
+      end
+
       msg = "Creating #{options[:i] > 1 ? options[:i] : 'a'} #{type.handle} (#{type.id})"
       msg << " server#{options[:i] > 1 ? 's' : ''} with image #{image.name.strip} (#{image.id})"
       msg << " in zone #{zone.handle} (#{zone})" if zone
+      msg << " in groups #{server_groups.map(&:id).join(", ")}" unless server_groups.empty?
       msg << " with %.2fk of user data" % (user_data.size / 1024.0) if user_data
       info msg
 
-      servers = Server.create_servers( options[:i], {
-          :image_id => image.id,
-          :flavor_id => type.id,
-          :zone_id => zone.to_s,
-          :name => options[:n],
-          :user_data => user_data
-        }
-      )
+      params = {
+        :image_id      => image.id,
+        :flavor_id     => type.id,
+        :zone_id       => zone.to_s,
+        :name          => options[:n],
+        :user_data     => user_data,
+        :server_groups => server_groups.map(&:id)
+      }
+
+      servers = Server.create_servers options[:i], params
       render_table(servers, global_options)
     end
   end

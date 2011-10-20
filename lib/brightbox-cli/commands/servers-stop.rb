@@ -4,7 +4,7 @@ module Brightbox
   command [:stop] do |c|
 
     c.action do |global_options,options,args|
-      
+
       raise "You must specify servers to stop" if args.empty?
 
       servers = Server.find_or_call(args) do |id|

@@ -1,0 +1,36 @@
+--- 
+- !ruby/struct:VCR::HTTPInteraction 
+  request: !ruby/struct:VCR::Request 
+    method: GET
+    uri: https://api.gb1s.brightbox.com:443/1.0/firewall_policies/fwp-30kea
+    body: 
+    headers: 
+      content-type: 
+      - application/json
+      authorization: 
+      - OAuth e717de9faa2aaeacd8b55c38def2c53e72b42f06
+  response: !ruby/struct:VCR::Response 
+    status: !ruby/struct:VCR::ResponseStatus 
+      code: 200
+      message: 
+    headers: 
+      etag: 
+      - "\"336f30b8a362f354980a4ab847223827\""
+      content-type: 
+      - application/json; charset=utf-8
+      server: 
+      - Apache
+      date: 
+      - Fri, 14 Oct 2011 13:30:05 GMT
+      x-runtime: 
+      - "20"
+      content-length: 
+      - "1428"
+      cache-control: 
+      - private, max-age=0, must-revalidate
+      status: 
+      - "200"
+      vary: 
+      - Accept-Encoding
+    body: "{\"id\":\"fwp-30kea\",\"resource_type\":\"firewall_policy\",\"url\":\"https://api.gb1s.brightbox.com/1.0/firewall_policies/fwp-30kea\",\"name\":\"the_wall\",\"default\":false,\"description\":null,\"rules\":[{\"id\":\"fwr-ohc9w\",\"resource_type\":\"firewall_rule\",\"url\":\"https://api.gb1s.brightbox.com/1.0/firewall_rules/fwr-ohc9w\",\"destination\":null,\"protocol\":\"tcp\",\"source_port\":null,\"icmp_type_name\":null,\"description\":null,\"source\":\"0.0.0.0/0\",\"destination_port\":\"22,80,443\"},{\"id\":\"fwr-78775\",\"resource_type\":\"firewall_rule\",\"url\":\"https://api.gb1s.brightbox.com/1.0/firewall_rules/fwr-78775\",\"destination\":\"0.0.0.0/0\",\"protocol\":\"tcp\",\"source_port\":null,\"icmp_type_name\":null,\"description\":null,\"source\":null,\"destination_port\":\"1080\"},{\"id\":\"fwr-49emn\",\"resource_type\":\"firewall_rule\",\"url\":\"https://api.gb1s.brightbox.com/1.0/firewall_rules/fwr-49emn\",\"destination\":\"0.0.0.0/0\",\"protocol\":\"tcp\",\"source_port\":null,\"icmp_type_name\":null,\"description\":null,\"source\":null,\"destination_port\":\"1080\"},{\"id\":\"fwr-tkklm\",\"resource_type\":\"firewall_rule\",\"url\":\"https://api.gb1s.brightbox.com/1.0/firewall_rules/fwr-tkklm\",\"destination\":\"0.0.0.0/0\",\"protocol\":\"tcp\",\"source_port\":null,\"icmp_type_name\":null,\"description\":null,\"source\":null,\"destination_port\":\"1080\"}],\"server_group\":{\"id\":\"grp-qf4jo\",\"resource_type\":\"server_group\",\"url\":\"https://api.gb1s.brightbox.com/1.0/server_groups/grp-qf4jo\",\"name\":\"hemant_group\",\"default\":false,\"description\":null}}"
+    http_version: 

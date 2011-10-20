@@ -4,9 +4,12 @@ module Brightbox
       'brightbox-accounts',
       'brightbox-cloudips',
       'brightbox-config',
+      'brightbox-groups',
       'brightbox-images',
       'brightbox-lbs',
       'brightbox-servers',
+      'brightbox-firewall-policies',
+      'brightbox-firewall-rules',
       'brightbox-types',
       'brightbox-users',
       'brightbox-zones'
