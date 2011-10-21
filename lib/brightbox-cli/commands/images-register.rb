@@ -5,7 +5,7 @@ module Brightbox
     c.desc "Name to give the image"
     c.flag [:n, "name"]
 
-    c.desc "Image Usernmae"
+    c.desc "Image Username"
     c.flag [:u, "username"]
 
     c.desc "Archtecture of the image (i686 or x86_64)"
