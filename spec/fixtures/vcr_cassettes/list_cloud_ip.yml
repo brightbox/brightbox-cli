@@ -1,0 +1,36 @@
+--- 
+- !ruby/struct:VCR::HTTPInteraction 
+  request: !ruby/struct:VCR::Request 
+    method: GET
+    uri: https://api.gb1s.brightbox.com:443/1.0/cloud_ips
+    body: 
+    headers: 
+      content-type: 
+      - application/json
+      authorization: 
+      - OAuth 3f373f2fdb5f3b84101607e69f82b5a810905b67
+  response: !ruby/struct:VCR::Response 
+    status: !ruby/struct:VCR::ResponseStatus 
+      code: 200
+      message: 
+    headers: 
+      etag: 
+      - "\"941714dc085643e75d2d19f01554aa6b\""
+      content-type: 
+      - application/json; charset=utf-8
+      server: 
+      - Apache
+      date: 
+      - Fri, 21 Oct 2011 12:13:56 GMT
+      x-runtime: 
+      - "56"
+      content-length: 
+      - "2980"
+      cache-control: 
+      - private, max-age=0, must-revalidate
+      status: 
+      - "200"
+      vary: 
+      - Accept-Encoding
+    body: "[{\"id\":\"cip-33fjw\",\"resource_type\":\"cloud_ip\",\"url\":\"https://api.gb1s.brightbox.com/1.0/cloud_ips/cip-33fjw\",\"reverse_dns\":\"cip-109-107-39-5.gb1s.brightbox.com\",\"status\":\"mapped\",\"public_ip\":\"109.107.39.5\",\"account\":{\"id\":\"acc-8gq0k\",\"resource_type\":\"account\",\"url\":\"https://api.gb1s.brightbox.com/1.0/account\",\"name\":\"Hemant Account\",\"status\":\"active\"},\"server\":{\"id\":\"srv-7yilp\",\"resource_type\":\"server\",\"url\":\"https://api.gb1s.brightbox.com/1.0/servers/srv-7yilp\",\"name\":\"\",\"created_at\":\"2011-08-18T03:43:30Z\",\"deleted_at\":null,\"hostname\":\"srv-7yilp\",\"started_at\":null,\"status\":\"active\"},\"interface\":{\"id\":\"int-p6vyz\",\"resource_type\":\"interface\",\"url\":\"https://api.gb1s.brightbox.com/1.0/interfaces/int-p6vyz\",\"mac_address\":\"02:24:19:fb:11:ea\",\"ipv4_address\":\"10.251.17.234\",\"ipv6_address\":\"2a02:1348:14b:c47a:24:19ff:fefb:11ea\"},\"load_balancer\":null},{\"id\":\"cip-inku6\",\"resource_type\":\"cloud_ip\",\"url\":\"https://api.gb1s.brightbox.com/1.0/cloud_ips/cip-inku6\",\"reverse_dns\":\"cip-109-107-39-12.gb1s.brightbox.com\",\"status\":\"mapped\",\"public_ip\":\"109.107.39.12\",\"account\":{\"id\":\"acc-8gq0k\",\"resource_type\":\"account\",\"url\":\"https://api.gb1s.brightbox.com/1.0/account\",\"name\":\"Hemant Account\",\"status\":\"active\"},\"server\":{\"id\":\"srv-l3lxf\",\"resource_type\":\"server\",\"url\":\"https://api.gb1s.brightbox.com/1.0/servers/srv-l3lxf\",\"name\":\"ipv61\",\"created_at\":\"2011-09-16T11:12:48Z\",\"deleted_at\":null,\"hostname\":\"srv-l3lxf\",\"started_at\":null,\"status\":\"active\"},\"interface\":{\"id\":\"int-metlu\",\"resource_type\":\"interface\",\"url\":\"https://api.gb1s.brightbox.com/1.0/interfaces/int-metlu\",\"mac_address\":\"02:24:19:fb:25:56\",\"ipv4_address\":\"10.251.37.86\",\"ipv6_address\":\"2a02:1348:14b:c955:24:19ff:fefb:2556\"},\"load_balancer\":null},{\"id\":\"cip-61a9w\",\"resource_type\":\"cloud_ip\",\"url\":\"https://api.gb1s.brightbox.com/1.0/cloud_ips/cip-61a9w\",\"reverse_dns\":\"cip-109-107-39-15.gb1s.brightbox.com\",\"status\":\"mapped\",\"public_ip\":\"109.107.39.15\",\"account\":{\"id\":\"acc-8gq0k\",\"resource_type\":\"account\",\"url\":\"https://api.gb1s.brightbox.com/1.0/account\",\"name\":\"Hemant Account\",\"status\":\"active\"},\"server\":{\"id\":\"srv-ddw5x\",\"resource_type\":\"server\",\"url\":\"https://api.gb1s.brightbox.com/1.0/servers/srv-ddw5x\",\"name\":\"\",\"created_at\":\"2011-09-20T11:12:58Z\",\"deleted_at\":null,\"hostname\":\"srv-ddw5x\",\"started_at\":null,\"status\":\"active\"},\"interface\":{\"id\":\"int-69l2r\",\"resource_type\":\"interface\",\"url\":\"https://api.gb1s.brightbox.com/1.0/interfaces/int-69l2r\",\"mac_address\":\"02:24:19:fb:63:5e\",\"ipv4_address\":\"10.251.99.94\",\"ipv6_address\":\"2a02:1348:14b:d8d7:24:19ff:fefb:635e\"},\"load_balancer\":null},{\"id\":\"cip-nztk5\",\"resource_type\":\"cloud_ip\",\"url\":\"https://api.gb1s.brightbox.com/1.0/cloud_ips/cip-nztk5\",\"reverse_dns\":\"cip-109-107-46-63.gb1s.brightbox.com\",\"status\":\"unmapped\",\"public_ip\":\"109.107.46.63\",\"account\":{\"id\":\"acc-8gq0k\",\"resource_type\":\"account\",\"url\":\"https://api.gb1s.brightbox.com/1.0/account\",\"name\":\"Hemant Account\",\"status\":\"active\"},\"server\":null,\"interface\":null,\"load_balancer\":null}]"
+    http_version: 

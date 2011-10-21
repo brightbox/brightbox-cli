@@ -19,8 +19,8 @@ module Brightbox
 
     def attributes
       a = fog_model.attributes
-      if a["load_balancer"]
-        a[:destination] = a["load_balancer"]["id"]
+      if(lb_id = a[:load_balancer] || a["load_balancer"])
+        a[:destination] = lb_id
       else
         a[:destination] = a[:server_id]
       end
