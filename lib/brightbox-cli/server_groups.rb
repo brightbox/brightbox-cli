@@ -17,6 +17,12 @@ module Brightbox
       [:id, :servers, :name]
     end
 
+    def firewall_policy
+      FirewallPolicy.all.detect do |policy|
+        policy.server_group_id == self.id
+      end
+    end
+
     def update(options)
       self.class.conn.update_server_group(id, options)
       self.reload

@@ -28,6 +28,7 @@ module Brightbox
   autoload :Account, "brightbox-cli/accounts"
   autoload :LoadBalancer, "brightbox-cli/load_balancers"
   autoload :ServerGroup, "brightbox-cli/server_groups"
+  autoload :DetailedServerGroup, "brightbox-cli/detailed_server_group"
   autoload :FirewallPolicy, "brightbox-cli/firewall_policy"
   autoload :FirewallRule, "brightbox-cli/firewall_rule"
   autoload :FirewallRules, "brightbox-cli/firewall_rules"
