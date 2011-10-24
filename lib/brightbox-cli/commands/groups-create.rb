@@ -1,13 +1,15 @@
 module Brightbox
   desc 'Create a server group'
-  arg_name 'name'
   command [:create] do |c|
+    c.desc "Name of Server Group"
+    c.flag [:n, :name]
+
     c.desc "Server group description"
     c.flag [:d, :description]
 
     c.action do |global_options, options, args|
-      name = args.shift
-      raise "You must specify a name for the server group" unless name && name != ""
+      name = options[:n]
+      raise "You must specify a name for the server group" if !name || name.empty?
 
       params = {}
 
