@@ -3,16 +3,16 @@ module Brightbox
   arg_name '[firewall-policy-id...]'
 
   command [:create] do |c|
-    c.desc "Protocol - [tcp/udp/all]"
+    c.desc "Protocol - [tcp/udp/all/Protocol numbers]"
     c.flag [:p, :protocol]
 
-    c.desc "Source - IP address, server group, server identifier"
+    c.desc "Source - IP address(CIDR Notation or 'any' for wildcard ipv4/ipv6), server group, server identifier"
     c.flag [:s, :source]
 
     c.desc "Source Port"
     c.flag [:c, :sport]
 
-    c.desc "Destination - IP address, server group, server identifier"
+    c.desc "Destination - IP address(CIDR Notation or 'any' for wildcard ipv4/ipv6), server group, server identifier"
     c.flag [:d, :destination]
 
     c.desc "Destination Port"
