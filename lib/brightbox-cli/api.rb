@@ -115,7 +115,7 @@ module Brightbox
     end
 
     def self.cached_get(id)
-      @cache = {} if @cache.nil?
+      @cache ||= {}
       value = @cache[id]
       if value
         value

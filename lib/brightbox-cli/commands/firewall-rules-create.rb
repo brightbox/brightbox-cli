@@ -6,13 +6,13 @@ module Brightbox
     c.desc "Protocol - [tcp/udp/all/Protocol numbers]"
     c.flag [:p, :protocol]
 
-    c.desc "Source - IP address(CIDR Notation or 'any' for wildcard ipv4/ipv6), server group, server identifier"
+    c.desc "Source - IPv4/IPv6 address or range (CIDR notation), 'any' for combined IPv4/IPv6 wildcard, server group identifer, server identifie."
     c.flag [:s, :source]
 
     c.desc "Source Port"
     c.flag [:c, :sport]
 
-    c.desc "Destination - IP address(CIDR Notation or 'any' for wildcard ipv4/ipv6), server group, server identifier"
+    c.desc "Destination. IPv4/IPv6 address or range (CIDR notation), 'any' for combined IPv4/IPv6 wildcard, server group identifer, server identifie."
     c.flag [:d, :destination]
 
     c.desc "Destination Port"
