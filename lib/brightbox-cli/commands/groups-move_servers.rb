@@ -1,7 +1,7 @@
 module Brightbox
   desc 'Move servers from one server group to another'
   arg_name 'srv-id ...'
-  command [:move] do |c|
+  command [:move_servers] do |c|
     c.desc "Source Server Group"
     c.flag [:f, :from]
 
