@@ -10,7 +10,7 @@ module Brightbox
     c.flag [:s, :source]
 
     c.desc "Source Port"
-    c.flag [:c, :sport]
+    c.flag [:t, :sport]
 
     c.desc "Destination. IPv4/IPv6 address or range (CIDR notation), 'any' for combined IPv4/IPv6 wildcard, server group identifer, server identifier."
     c.flag [:d, :destination]
@@ -36,7 +36,7 @@ module Brightbox
       end
 
       create_options = {}
-      create_options[:source_port] = options[:c] if options[:c]
+      create_options[:source_port] = options[:t] if options[:t]
       create_options[:source] = options[:s] if options[:s]
       create_options[:destination] = options[:d] if options[:d]
       create_options[:destination_port] = options[:e] if options[:e]
