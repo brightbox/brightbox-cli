@@ -14,7 +14,7 @@ module Brightbox
     end
 
     def self.default_field_order
-      [:id, :servers, :name]
+      [:id, :server_count, :name]
     end
 
     def firewall_policy
@@ -44,7 +44,12 @@ module Brightbox
     def to_row
       o = attributes
       o[:servers] = server_ids
+      o[:server_count] = server_count
       o
+    end
+
+    def server_count
+      server_ids.respond_to?(:size) ? server_ids.size : 0
     end
 
     def server_ids
