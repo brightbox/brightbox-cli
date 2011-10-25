@@ -8,12 +8,9 @@ module Brightbox
     c.flag [:d, :description]
 
     c.action do |global_options, options, args|
-      name = options[:n]
-      raise "You must specify a name for the server group" if !name || name.empty?
-
       params = {}
 
-      params[:name] = name
+      params[:name] = options[:n] if options[:n]
       params[:description] = options[:d] if options[:d]
 
       info "Creating a new server group"
