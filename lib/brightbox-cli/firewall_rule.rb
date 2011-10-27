@@ -20,6 +20,14 @@ module Brightbox
     end
 
     def to_row
+      # attrs = attributes
+      # attrs[:protocol] = attributes[:protocol] || '-'
+      # attrs[:source]   = attributes[:source] || '-'
+      # attrs[:sport]    = attributes[:sport] || '-'
+      # attrs[:destination] = attributes[:destination] || '-'
+      # attrs[:dport]    = attributes[:dport] || '-'
+      # attrs[:icmp_type] = attributes[:icmp_type] || '-'
+      # attrs
       attributes
     end
 
