@@ -3,7 +3,7 @@ module Brightbox
   arg_name '[firewall-policy-id...]'
 
   command [:create] do |c|
-    c.desc "Protocol - [tcp/udp/all/Protocol numbers]"
+    c.desc "Protocol - [tcp/udp/icmp/Protocol numbers]"
     c.flag [:p, :protocol]
 
     c.desc "Source - IPv4/IPv6 address or range (CIDR notation), 'any' for combined IPv4/IPv6 wildcard, server group identifer, server identifier."
