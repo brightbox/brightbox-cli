@@ -26,7 +26,7 @@ module Brightbox
     end
 
     def self.default_field_order
-      [:id, :server_group, :default,:name]
+      [:id, :server_group, :name]
     end
   end
 end
