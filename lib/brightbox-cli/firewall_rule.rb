@@ -12,7 +12,7 @@ module Brightbox
     end
 
     def attributes
-      t = @attributes
+      t = @attributes || fog_model.attributes
       t[:sport] = t[:source_port]
       t[:dport] = t[:destination_port]
       t[:firewall_policy] = t[:firewall_policy_id]
