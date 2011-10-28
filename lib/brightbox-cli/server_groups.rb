@@ -33,8 +33,6 @@ module Brightbox
 
     def destroy
       fog_model.destroy
-    rescue Excon::Errors::Conflict => e
-      raise Conflict, "Cannot delete server group #{id}"
     end
 
     def attributes

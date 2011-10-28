@@ -31,8 +31,6 @@ module Brightbox
 
     def destroy
       fog_model.destroy
-    rescue Excon::Errors::Conflict => e
-      raise Conflict, "Cannot delete server #{id}"
     end
 
     def activate_console
