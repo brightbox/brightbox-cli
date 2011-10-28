@@ -1,3 +1,4 @@
+require "pp"
 module Brightbox
   class FirewallRule < Api
     attr_writer :attributes
@@ -11,7 +12,7 @@ module Brightbox
     end
 
     def attributes
-      t = @attributes || fog_model.attributes
+      t = @attributes
       t[:sport] = t[:source_port]
       t[:dport] = t[:destination_port]
       t[:firewall_policy] = t[:firewall_policy_id]
@@ -20,11 +21,15 @@ module Brightbox
     end
 
     def to_row
-      attrs = attributes
+      attrs = attributes.dup
       [:protocol,:source,:sport, :destination, :dport, :icmp_type].each do |key|
         attrs[key] = attributes[key] || '-'
       end
       attrs
+    end
+
+    def ret_val(attributes,key)
+      attributes[key] || "-"
     end
 
     def self.default_field_order
