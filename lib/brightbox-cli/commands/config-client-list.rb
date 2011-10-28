@@ -8,7 +8,7 @@ module Brightbox
 
       clients = CONFIG.clients.collect do |cid|
         c = CONFIG[cid]
-        calias = c['alias']
+        calias = c['alias'] || cid
         calias = calias + "*" if CONFIG.client_name == cid and CONFIG.clients.size > 1
         {
           :alias => calias,
