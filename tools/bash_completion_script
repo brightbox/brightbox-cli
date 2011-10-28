@@ -1,140 +1,237 @@
 # brightbox cli tools completion
 #
 
+__brightbox_list_ids()
+{
+  test -d ~/.brightbox/cache && COMPREPLY=( $( compgen -W '`cd ~/.brightbox/cache/ && ls $1 2>/dev/null`' -- "$cur" ) ) 
+}
+
 _brightbox()
 {
-    local cur prev
+    local cur prev alist
 
     COMPREPLY=()
-		cur=`_get_cword`
-		prev=${COMP_WORDS[COMP_CWORD-1]}
+    cur=`_get_cword`
+    prev=${COMP_WORDS[COMP_CWORD-1]}
     
-		command=''
-		for (( i=1; i < COMP_CWORD; i++ )); do
+    command=''
+    for (( i=1; i < COMP_CWORD; i++ )); do
         if [[ "${COMP_WORDS[i]}" != -* ]]; then
             command=${COMP_WORDS[i]}
             break
         fi
     done
 
-		case $1 in
-			brightbox-servers)
-				case $command in
-					create)
-						case $prev in
-							-f|--user-data-file)
-								_filedir
-								return 0
-								;;
-							-n|--name|-m|--user-data|-i|--server-count)
-								return 0
-								;;
-						esac
-						if [[ "$cur" == -* ]] ; then
-							COMPREPLY=( $( compgen -W '--name --type --zone --server-count --user-data-file --user-data --no-base64' -- "$cur" ) )
-						else
-							test -d ~/.brightbox/cache && COMPREPLY=( $( compgen -W '`ls ~/.brightbox/cache/`' -- "$cur" ) ) 
-						fi
-						;;
-					destroy|list|show|shutdown|snapshot|start|stop|activate_console)
-						test -d ~/.brightbox/cache && COMPREPLY=( $( compgen -W '`ls ~/.brightbox/cache/`' -- "$cur" ) ) 
-						;;
-					*)
-						COMPREPLY=( $( compgen -W 'create destroy help list show shutdown snapshot start stop' -- "$cur" ) )
-						;;
-				esac
-			;;
-			brightbox-images)
-				case $command in
-					register)
-						if [[ "$cur" == -* ]] ; then
-							COMPREPLY=( $( compgen -W '--unmap' -- "$cur" ) )
-						fi
-						;;
-					destroy|list|show)
-						test -d ~/.brightbox/cache && COMPREPLY=( $( compgen -W '`ls ~/.brightbox/cache/`' -- "$cur" ) )
-						;;
-					*)
-						COMPREPLY=( $( compgen -W 'destroy help list show register' -- "$cur" ) )
-						;;
-				esac
-			;;		
-			brightbox-cloudips)
-				case $command in
-					map)
-						if [[ "$cur" == -* ]] ; then
-							COMPREPLY=( $( compgen -W '--unmap' -- "$cur" ) )
-						else
-							test -d ~/.brightbox/cache && COMPREPLY=( $( compgen -W '`ls ~/.brightbox/cache/`' -- "$cur" ) ) 
-						fi
-						;;
-					create|destroy|list|unmap|show)
-						test -d ~/.brightbox/cache && COMPREPLY=( $( compgen -W '`ls ~/.brightbox/cache/`' -- "$cur" ) )
-						;;
-					*)
-						COMPREPLY=( $( compgen -W 'create destroy list ummap show map help' -- "$cur" ) )
-						;;
-				esac
-			;;		
-			brightbox-config)
-				case $command in
-					client_add)
-						if [[ "$cur" == -* ]] ; then
-							COMPREPLY=( $( compgen -W '--alias --auth-url' -- "$cur" ) )
-						fi
-						;;
-					client_default|client_remove|client_list)
-						;;
-					*)
-						COMPREPLY=( $( compgen -W 'client_add client_remove client_default client_list help' -- "$cur" ) )
-						;;
-				esac
-			;;
-			brightbox-users)
-				case $command in
-					update)
-						case $prev in
-							-f|--ssh-key)
-								_filedir
-								return 0
-							;;
-							-n|--name)
-								return 0
-							;;
-						esac
-						if [[ "$cur" == -* ]] ; then
-							COMPREPLY=( $( compgen -W '--ssh-key --name' -- "$cur" ) )
-						else
-							test -d ~/.brightbox/cache && COMPREPLY=( $( compgen -W '`ls ~/.brightbox/cache/`' -- "$cur" ) ) 
-						fi
-						;;
-					list|show)
-						test -d ~/.brightbox/cache && COMPREPLY=( $( compgen -W '`ls ~/.brightbox/cache/`' -- "$cur" ) ) 
-						;;
-					*)
-						COMPREPLY=( $( compgen -W 'list show update help' -- "$cur" ) )
-						;;
-				esac
-			;;
-			brightbox-lbs)
-				case $command in
-					create|update)
-						if [[ "$cur" == -* ]] ; then
-							COMPREPLY=( $( compgen -W '--hc-down --hc-interval --port --listeners --name --policy --hc-request --hc-timeout --hc-up --hc-type' -- "$cur" ) )
-						else
-							test -d ~/.brightbox/cache && COMPREPLY=( $( compgen -W '`ls ~/.brightbox/cache/`' -- "$cur" ) ) 
-						fi
-						;;
-					destroy|list|show|remove_nodes|add_nodes)
-						test -d ~/.brightbox/cache && COMPREPLY=( $( compgen -W '`ls ~/.brightbox/cache/`' -- "$cur" ) ) 
-						;;
-					*)
-						COMPREPLY=( $( compgen -W 'create destroy help list show shutdown snapshot start stop' -- "$cur" ) )
-						;;
-				esac
-			;;
+    case $1 in
+      brightbox-servers)
+        case $command in
+          create)
+            case $prev in
+              -f|--user-data-file)
+                _filedir
+                return 0
+                ;;
+              -n|--name|-m|--user-data|-i|--server-count)
+                return 0
+                ;;
+              -g|--server-groups)
+                __brightbox_list_ids "grp-*"
+                return 0
+                ;;
+              -z|--zone)
+                COMPREPLY=( $( compgen -W 'gb1-a gb1-b' -- "$cur" ) )
+                return 0
+                ;;
+              -t|--type)
+                COMPREPLY=( $( compgen -W 'nano mini small medium large' -- "$cur" ) )
+                return 0
+                ;;
+            esac
+            if [[ "$cur" == -* ]] ; then
+              COMPREPLY=( $( compgen -W '--name --type --zone --server-count --user-data-file --user-data --no-base64 --server-groups' -- "$cur" ) )
+            else
+              __brightbox_list_ids "img-*"
+            fi
+            ;;
+          destroy|list|show|shutdown|snapshot|start|stop|activate_console)
+            __brightbox_list_ids "srv-*"
+            ;;
+          *)
+            COMPREPLY=( $( compgen -W 'create destroy help list show shutdown snapshot start stop update activate_console' -- "$cur" ) )
+            ;;
+        esac
+      ;;
+      brightbox-images)
+        case $command in
+          register|update)
+            case $prev in
+              -a|--arch)
+                COMPREPLY=( $( compgen -W 'i686 x86_64' -- "$cur" ) )
+                return 0
+                ;;
+              -m|--mode)
+                COMPREPLY=( $( compgen -W 'virtio compatability' -- "$cur" ) )
+                return 0
+                ;;
+              -p|--public)
+                COMPREPLY=( $( compgen -W 'true false' -- "$cur" ) )
+                return 0
+                ;;
+            esac
+            if [[ "$cur" == -* ]] ; then
+              alist="--arch --description --mode --name --public --username"
+              if [[ $command == "register" ]] ; then
+                alist="$alist --source"
+              fi
+              COMPREPLY=( $( compgen -W '$alist' -- "$cur" ) )
+            fi
+            ;;
+          destroy|list|show)
+            __brightbox_list_ids "img-*"
+            ;;
+          *)
+            COMPREPLY=( $( compgen -W 'destroy help list show register update' -- "$cur" ) )
+            ;;
+        esac
+      ;;    
+      brightbox-cloudips)
+        case $command in
+          map)
+            if [[ "$cur" == -* ]] ; then
+              COMPREPLY=( $( compgen -W '--unmap' -- "$cur" ) )
+            else
+              __brightbox_list_ids "cip-* srv-* lba-*"
+            fi
+            ;;
+          update)
+            if [[ "$cur" == -* ]] ; then
+              COMPREPLY=( $( compgen -W '--delete-reverse-dns --reverse-dns' -- "$cur" ) )
+            else
+              __brightbox_list_ids "cip-* srv-*"
+            fi
+            ;;
+          destroy|list|unmap|show)
+            __brightbox_list_ids "cip-*"
+            ;;
+          *)
+            COMPREPLY=( $( compgen -W 'create destroy list ummap show map help update' -- "$cur" ) )
+            ;;
+        esac
+      ;;    
+      brightbox-config)
+        case $command in
+          client_add)
+            if [[ "$cur" == -* ]] ; then
+              COMPREPLY=( $( compgen -W '--alias --auth-url' -- "$cur" ) )
+            fi
+            ;;
+          client_default|client_remove|client_list)
+            ;;
+          *)
+            COMPREPLY=( $( compgen -W 'client_add client_remove client_default client_list help' -- "$cur" ) )
+            ;;
+        esac
+      ;;
+      brightbox-users)
+        case $command in
+          update)
+            case $prev in
+              -f|--ssh-key)
+                _filedir
+                return 0
+              ;;
+              -n|--name)
+                return 0
+              ;;
+            esac
+            if [[ "$cur" == -* ]] ; then
+              COMPREPLY=( $( compgen -W '--ssh-key --name' -- "$cur" ) )
+            else
+              __brightbox_list_ids "usr-*"
+            fi
+            ;;
+          list|show)
+            __brightbox_list_ids "usr-*"
+            ;;
+          *)
+            COMPREPLY=( $( compgen -W 'list show update help' -- "$cur" ) )
+            ;;
+        esac
+      ;;
+      brightbox-lbs)
+        case $command in
+          create|update)
+            if [[ "$cur" == -* ]] ; then
+              COMPREPLY=( $( compgen -W '--hc-down --hc-interval --port --listeners --name --policy --hc-request --hc-timeout --hc-up --hc-type' -- "$cur" ) )
+            else
+              if [[ $command == "update" ]] ; then 
+                __brightbox_list_ids "lba-*"
+              fi
+            fi
+            ;;
+          destroy|list|show)
+              __brightbox_list_ids "lba-*"
+            ;;
+          remove_nodes|add_nodes)
+              __brightbox_list_ids "lba-* srv-*"
+            ;;
+          *)
+            COMPREPLY=( $( compgen -W 'create destroy help list show shutdown snapshot start stop add_nodes remove_nodes update' -- "$cur" ) )
+            ;;
+        esac
+      ;;
+      brightbox-groups)
+        case $command in
+          create)
+            if [[ "$cur" == -* ]] ; then
+              COMPREPLY=( $( compgen -W '--name --description' -- "$cur" ) )
+            fi
+            ;;
+          update)
+            if [[ "$cur" == -* ]] ; then
+              COMPREPLY=( $( compgen -W '--name --description' -- "$cur" ) )
+            else
+              __brightbox_list_ids "grp-*"
+            fi
+            ;;
+          destroy|list|show)
+              __brightbox_list_ids "grp-*"
+            ;;
+          move_servers|remove_servers|add_servers)
+              __brightbox_list_ids "grp-* srv-*"
+            ;;
+          *)
+            COMPREPLY=( $( compgen -W 'add_servers create destroy list show move_servers remove_servers update' -- "$cur" ) )
+            ;;
+        esac
+      ;;
+      brightbox-firewall-policies)
+        case $command in
+          create)
+            if [[ "$cur" == -* ]] ; then
+              COMPREPLY=( $( compgen -W '--name --description' -- "$cur" ) )
+            fi
+            ;;
+          update)
+            if [[ "$cur" == -* ]] ; then
+              COMPREPLY=( $( compgen -W '--name --description' -- "$cur" ) )
+            else
+              __brightbox_list_ids "fwp-*"
+            fi
+            ;;
+          destroy|list|show)
+              __brightbox_list_ids "fwp-*"
+            ;;
+          apply|remove)
+              __brightbox_list_ids "fwp-* grp-*"
+            ;;
+          *)
+            COMPREPLY=( $( compgen -W 'create apply destroy list remove show help' -- "$cur" ) )
+            ;;
+        esac
+      ;;
 
-		esac
+    esac
 
 }
 complete -F _brightbox -o filenames brightbox-servers
@@ -143,6 +240,8 @@ complete -F _brightbox -o filenames brightbox-cloudips
 complete -F _brightbox -o filenames brightbox-config
 complete -F _brightbox -o filenames brightbox-users
 complete -F _brightbox -o filenames brightbox-lbs
+complete -F _brightbox -o filenames brightbox-groups
+complete -F _brightbox -o filenames brightbox-firewall-policies
 
 # Local variables:
 # mode: shell-script
