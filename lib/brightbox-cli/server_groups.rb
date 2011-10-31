@@ -41,7 +41,7 @@ module Brightbox
 
     def to_row
       o = attributes
-      o[:servers] = server_ids
+      o[:servers] = server_string
       o[:server_count] = server_count
       o
     end
@@ -50,9 +50,13 @@ module Brightbox
       server_ids.respond_to?(:size) ? server_ids.size : 0
     end
 
+    def server_string
+      server_ids.respond_to?(:join) ? server_ids.join(" ") : ""
+    end
+
     def server_ids
       if attributes["servers"]
-        @server_ids ||= attributes["servers"].collect { |s| s["id"] }.join(" ")
+        @server_ids ||= attributes["servers"].collect { |s| s["id"] }
       end
     end
 
