@@ -51,7 +51,9 @@ module Brightbox
     end
 
     def server_ids
-      @server_ids ||= attributes["servers"].collect { |s| s["id"] } if attributes["servers"]
+      if attributes["servers"]
+        @server_ids ||= attributes["servers"].collect { |s| s["id"] }.join(" ")
+      end
     end
 
   end
