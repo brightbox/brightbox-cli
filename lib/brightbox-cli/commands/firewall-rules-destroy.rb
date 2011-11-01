@@ -5,18 +5,18 @@ module Brightbox
     c.action do |global_options, options, args|
 
       raise "You must specify firewall-rule-id to destroy" if args.empty?
-      firewall_rule_id = args.shift
-      raise "Invalid FirewallRule id" unless firewall_rule_id[/^fwr-/]
 
-      firewall_rule = FirewallRule.find(firewall_rule_id) do |id|
+      firewall_rules = FirewallRule.find_or_call(args) do |id|
         raise "Couldn't find Firewall Rule #{id}"
       end
 
-      info "Destroying firewall rule #{firewall_rule}"
-      begin
-        firewall_rule.destroy
-      rescue Brightbox::Api::Conflict => e
-        error "Could not destroy #{firewall_rule}"
+      firewall_rules.each do |firewall_rule|
+        info "Destroying firewall rule #{firewall_rule}"
+        begin
+          firewall_rule.destroy
+        rescue Brightbox::Api::Conflict => e
+          error "Could not destroy #{firewall_rule}"
+        end
       end
 
     end
