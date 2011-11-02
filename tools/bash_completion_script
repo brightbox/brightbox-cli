@@ -3,7 +3,9 @@
 
 __brightbox_list_ids()
 {
-  test -d ~/.brightbox/cache && COMPREPLY=( $( compgen -W '`cd ~/.brightbox/cache/ && ls $1 2>/dev/null`' -- "$cur" ) ) 
+  local plist
+  test -d ~/.brightbox/cache && plist=`cd ~/.brightbox/cache/ && ls -t $1 2>/dev/null`
+  COMPREPLY=( $( compgen -W '$2 $plist $3' -- "$cur" ) ) 
 }
 
 _brightbox()
@@ -230,6 +232,51 @@ _brightbox()
             ;;
         esac
       ;;
+      brightbox-firewall-rules)
+        case $command in
+          create)
+            case $prev in
+              -d|--destination)
+                __brightbox_list_ids "grp-* srv-* lba-*" "any"
+                return 0
+                ;;
+              -s|--source)
+                __brightbox_list_ids "grp-* srv-* lba-*" "any"
+                return 0
+                ;;
+              -e|--dport)
+                COMPREPLY=( $( compgen -W '22 80,443 6667-6669' -- "$cur" ) )
+                return 0
+                ;;
+              -t|--sport)
+                return 0
+                ;;
+              -i|--icmptype)
+                COMPREPLY=( $( compgen -W 'echo-request echo-reply port-unreachable destination-unreachable time-exceeded' -- "$cur" ) )
+                return 0
+                ;;
+              -p|--protocol)
+                COMPREPLY=( $( compgen -W 'tcp udp icmp' -- "$cur" ) )
+                return 0
+                ;;
+            esac
+            if [[ "$cur" == -* ]] ; then
+              COMPREPLY=( $( compgen -W '--destination --dport --icmptype --protocol --source --sport' -- "$cur" ) )
+            else
+              __brightbox_list_ids "fwp-*"
+            fi
+            ;;
+          list)
+              __brightbox_list_ids "fwp-*"
+            ;;
+          destroy|show)
+              __brightbox_list_ids "fwr-*"
+            ;;
+          *)
+            COMPREPLY=( $( compgen -W 'create destroy list show help' -- "$cur" ) )
+            ;;
+        esac
+      ;;
 
     esac
 
@@ -242,6 +289,7 @@ complete -F _brightbox -o filenames brightbox-users
 complete -F _brightbox -o filenames brightbox-lbs
 complete -F _brightbox -o filenames brightbox-groups
 complete -F _brightbox -o filenames brightbox-firewall-policies
+complete -F _brightbox -o filenames brightbox-firewall-rules
 
 # Local variables:
 # mode: shell-script
