@@ -23,6 +23,10 @@ module Brightbox
         raise "You must specify the api client-id"
       end
 
+      unless client_id[/^cli-.{5}$/]
+        raise "You must specify a valid api client-id in the format cli-xxxxx"
+      end
+
       if secret.nil?
         raise "You must specify the api secret"
       end
