@@ -32,8 +32,6 @@ module Brightbox
 
     def save
       fog_model.save
-    rescue Excon::Errors::UnprocessableEntity
-      raise InvalidRecord, "Could not save user #{self.id}"
     end
 
     def ssh_key_set?

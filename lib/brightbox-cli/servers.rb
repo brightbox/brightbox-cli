@@ -25,8 +25,6 @@ module Brightbox
       self.class.conn.update_server id, options
       self.reload
       self
-    rescue Excon::Errors::BadRequest => e
-      raise Conflict, JSON.parse(e.response.body)['error']['details']
     end
 
     def destroy

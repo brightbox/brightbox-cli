@@ -22,8 +22,6 @@ module Brightbox
       self.class.conn.update_image(id, options)
       self.reload
       self
-    rescue Excon::Errors::BadRequest => e
-      raise Conflict, JSON.parse(e.response.body)['error']['details']
     end
 
     def to_row
