@@ -5,7 +5,7 @@ module Brightbox
 
     c.action do |global_options, options, args|
       grp_id = args.shift
-      raise "You must specify the server group and the server ids to add" unless grp_id && grp_id[/^grp-/] && !args.empty?
+      raise "You must specify the server group and then the server ids to add" unless grp_id && grp_id[/^grp-/] && !args.empty?
 
       sg = ServerGroup.find grp_id
 
