@@ -12,13 +12,13 @@ module Brightbox
     c.desc "Set image mode to be either 'virtio' or 'compatibility'"
     c.flag [:m, "mode"]
 
-    c.desc "Set image to be publically visible (true or false)"
+    c.desc "Set image to be publicly visible (true or false)"
     c.flag [:p, "public"]
 
     c.desc "Image description"
     c.flag [:d, "description"]
 
-    c.desc "Image Usernmae"
+    c.desc "Image Username"
     c.flag [:u, "username"]
 
     c.action do |global_options,options,args|
