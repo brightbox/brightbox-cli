@@ -58,7 +58,6 @@ module Brightbox
     end
 
     def update(options)
-      debug options.inspect
       LoadBalancer.conn.update_load_balancer(id, options)
       self.reload
       self
