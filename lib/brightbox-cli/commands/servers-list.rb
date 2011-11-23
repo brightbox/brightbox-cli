@@ -8,7 +8,7 @@ module Brightbox
 
     c.action do |global_options,options,args|
       # Check this here before we make any network connections
-      raise "A valid server group identifier is required for the group argument" unless options[:g] =~ /^grp-.{5}$/
+      raise "A valid server group identifier is required for the group argument" unless options[:g].nil? || options[:g] =~ /^grp-.{5}$/
 
       if args.empty?
         servers = Server.find(:all)
