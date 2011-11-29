@@ -10,7 +10,7 @@ module Brightbox
       end
 
       display_options = { :fields => [
-          :id, :protocol,:source, :sport,:destination, :dport, :icmp_type, :firewall_policy
+          :id, :protocol,:source, :sport, :destination, :dport, :icmp_type, :firewall_policy, :description
         ],
         :vertical => true
       }

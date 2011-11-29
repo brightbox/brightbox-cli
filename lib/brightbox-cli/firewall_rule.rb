@@ -33,7 +33,7 @@ module Brightbox
     end
 
     def self.default_field_order
-      [:id, :protocol,:source, :sport,:destination, :dport, :icmp_type]
+      [:id, :protocol,:source, :sport, :destination, :dport, :icmp_type, :description]
     end
   end
 end
