@@ -3,7 +3,7 @@ module Brightbox
   arg_name '[image-id...]'
   command [:list] do |c|
     c.action do |global_options, options, args|
-
+      
       if args.empty?
         images = Image.find(:all)
       else
@@ -16,9 +16,7 @@ module Brightbox
 
       images = images - snapshots
 
-      images.sort! do |a,b|
-        [a.official ? 0 : 1, a.name, a.arch] <=> [b.official ? 0 : 1, b.name, b.arch]
-      end
+      images.sort! { |a, b| a.default_sort_fields <=> b.default_sort_fields }
 
       snapshots.sort! { |a, b| a.created_at <=> b.created_at }
 

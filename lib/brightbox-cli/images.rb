@@ -53,5 +53,26 @@ module Brightbox
       public
     end
 
+    def status_sort_code
+      case self.status
+      when 'available'
+        (self.public ? 1 : 2)
+      when 'deprecated'
+        3
+      else
+        4
+      end
+    end
+
+    def default_sort_fields
+      [
+        self.official ? 0 : 1,
+        self.name,
+        self.arch,
+        self.status_sort_code,
+        - self.created_at.to_i
+      ]
+    end
+
   end
 end
