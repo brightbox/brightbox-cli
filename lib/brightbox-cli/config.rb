@@ -104,6 +104,10 @@ module Brightbox
       end
     end
 
+    def alias
+      config[client_name]['alias']
+    end
+
     def to_fog
       raise Ini::Error, "No api client configured" unless configured?
       c = config[client_name]

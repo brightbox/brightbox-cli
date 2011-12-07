@@ -35,7 +35,8 @@ module Brightbox
       end
     end
     command = commands[:help] if global_options[:h]
-    info "INFO: client_id: #{CONFIG.client_name}" if CONFIG.clients.size > 1
+    config_alias = CONFIG.alias == CONFIG.client_name ? nil : "(#{CONFIG.alias})"
+    info "INFO: client_id: #{CONFIG.client_name} #{config_alias}" if CONFIG.clients.size > 1
     true
   end
 
