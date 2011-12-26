@@ -19,7 +19,7 @@ module Brightbox
         }
       end
 
-      render_table clients, :fields => [:alias, :client_id, :secret, :api_url, :auth_url]
+      render_table clients, global_options.merge(:fields => [:alias, :client_id, :secret, :api_url, :auth_url])
     end
   end
 

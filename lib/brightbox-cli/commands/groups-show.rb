@@ -8,7 +8,7 @@ module Brightbox
       sgs = DetailedServerGroup.find_or_call(args) do |id|
         raise "Couldn't find server group #{id}"
       end
-      render_table(sgs, :vertical => true)
+      render_table(sgs, global_options.merge(:vertical => true))
     end
   end
 end

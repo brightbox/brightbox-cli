@@ -19,7 +19,7 @@ module Brightbox
         i.reload
       end
 
-      render_table(images)
+      render_table(images, global_options)
 
     end
   end

@@ -53,7 +53,7 @@ module Brightbox
 
       image = Image.register(image_options)
 
-      render_table([image])
+      render_table([image], global_options)
 
     end
   end
