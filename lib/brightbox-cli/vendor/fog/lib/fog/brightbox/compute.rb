@@ -85,6 +85,7 @@ module Fog
       request :remove_nodes_load_balancer
       request :remove_servers_server_group
       request :reset_ftp_password_account
+      request :reset_secret_api_client
       request :resize_server
       request :shutdown_server
       request :snapshot_server
@@ -94,6 +95,7 @@ module Fog
       request :update_account
       request :update_api_client
       request :update_cloud_ip
+      request :update_firewall_rule
       request :update_image
       request :update_load_balancer
       request :update_server
