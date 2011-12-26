@@ -21,6 +21,9 @@ module Brightbox
     c.desc "Icmp Type name"
     c.flag [:i, :icmptype]
 
+    c.desc "Description"
+    c.flag :description
+
     c.action do |global_options, options, args|
       if args && args.empty?
         raise "You must specify the firewall_policy_id as the first argument"
@@ -42,6 +45,7 @@ module Brightbox
       create_options[:destination_port] = options[:e] if options[:e]
       create_options[:icmp_type_name] = options[:i] if options[:i]
       create_options[:protocol] = options[:p]
+      create_options[:description] = options[:description] if options[:description]
 
       create_options[:firewall_policy_id] = firewall_policy.id
       firewall_rule = FirewallRule.create(create_options)
