@@ -149,19 +149,24 @@ module Brightbox
 
     def finish
       begin
-        if configured? and @oauth_token != Api.conn.oauth_token
+        if configured? && @oauth_token != Api.conn.oauth_token
           File.open(oauth_token_filename + ".#{$$}", "w") do |f|
             f.write Api.conn.oauth_token
           end
           FileUtils.mv oauth_token_filename + ".#{$$}", oauth_token_filename
         end
+      rescue BBConfigError
       rescue StandardError => e
         warn "Error writing auth token #{oauth_token_filename}: #{e.class}: #{e}"
       end
     end
 
     def configured?
-      client_name != nil and !clients.empty?
+      configured = client_name != nil && !clients.empty?
+      if configured && (config[client_name].nil? || config[client_name].empty?)
+        raise BBConfigError, "client id or alias #{client_name.inspect} not defined in config"
+      end
+      configured
     end
 
     private
