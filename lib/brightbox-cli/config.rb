@@ -126,6 +126,12 @@ module Brightbox
       }
     end
 
+    def api_hostname
+      URI(to_fog[:brightbox_api_url]).host
+    rescue StandardError
+      "api.gb1.brightbox.com"
+    end
+
     def oauth_token
       if @oauth_token.nil?
         if File.exists? oauth_token_filename

@@ -60,7 +60,7 @@ module Brightbox
     end
 
     def hostname
-      "#{id}.gb1.brightbox.com"
+      "#{id}.#{Brightbox::CONFIG.api_hostname}"
     end
 
     def public_hostname
