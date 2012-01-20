@@ -14,7 +14,7 @@ module Brightbox
       grp_id = args.shift
       raise "You must specify the server group to update as the first argument" unless grp_id =~ /^grp-/
 
-      params = {}
+      params = NilableHash.new
 
       # unless args.empty?
       #   params[:servers] = args.collect { |a| { :server => a } }
@@ -27,6 +27,8 @@ module Brightbox
       if options[:d]
         params[:description] = options[:d]
       end
+
+      params.nilify_blanks
 
       sg = ServerGroup.find grp_id
       info "Updating server group #{sg}"
