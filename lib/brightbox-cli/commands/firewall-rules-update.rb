@@ -30,7 +30,7 @@ module Brightbox
       firewall_rule = FirewallRule.find fwr_id
       raise "Could not find firewall rule with #{firewall_rule_id}" unless firewall_rule
 
-      params = {}
+      params = NilableHash.new
       params[:source_port]      = options[:t] if options[:t]
       params[:source]           = options[:s] if options[:s]
       params[:destination]      = options[:d] if options[:d]
@@ -38,6 +38,7 @@ module Brightbox
       params[:icmp_type_name]   = options[:i] if options[:i]
       params[:protocol]         = options[:p] if options[:p]
       params[:description]      = options[:description] if options[:description]
+      params.nilify_blanks
 
       info "Updating firewall rule #{firewall_rule}"
       firewall_rule.update(params)
