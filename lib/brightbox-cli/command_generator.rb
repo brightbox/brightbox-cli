@@ -29,6 +29,10 @@ module Brightbox
       brightbox_command =<<-EOF
 #!/usr/bin/env ruby
 
+# When calling this command with a different prefix we use that value as if -c had been called with it
+cmd_prefix = File.basename($0)[/\\A(.+)-[^\\z]+/, 1]
+ARGV.unshift *["-c", cmd_prefix] if cmd_prefix != "brightbox"
+
 begin
   require "brightbox_cli"
 rescue LoadError
