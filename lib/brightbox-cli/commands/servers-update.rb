@@ -46,9 +46,10 @@ module Brightbox
         raise "User data too big (>16k)" if user_data.size > 16 * 1024
       end
 
-      params = {}
+      params = NilableHash.new
       params[:name] = options[:n] if options[:n]
       params[:user_data] = user_data if user_data
+      params.nilify_blanks
 
       info "Updating server #{server}#{" with %.2fk of user data" % (user_data.size / 1024.0) if user_data}"
       server.update params

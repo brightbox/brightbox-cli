@@ -34,7 +34,7 @@ module Brightbox
         raise "Public must be true or false" unless options[:p] == "true" || options[:p] == "false"
       end
 
-      params = {}
+      params = NilableHash.new
       params[:name]               = options[:n] if options[:n]
       params[:arch]               = options[:a] if options[:a]
       params[:source]             = options[:s] if options[:s]
@@ -50,6 +50,8 @@ module Brightbox
       # If options[:deprecated] isn't specified, leave the status alone
       params[:status] = "deprecated" if options[:deprecated] == "true"
       params[:status] = "available" if options[:deprecated] == "false"
+
+      params.nilify_blanks
 
       image = Image.find img_id
 
