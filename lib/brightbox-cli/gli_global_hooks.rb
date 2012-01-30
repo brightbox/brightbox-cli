@@ -34,6 +34,12 @@ module Brightbox
         end
       end
     end
+
+    unless global_options[:s]
+      Hirb.enable
+      Hirb::View.resize
+    end
+
     command = commands[:help] if global_options[:h]
     config_alias = CONFIG.alias == CONFIG.client_name ? nil : "(#{CONFIG.alias})"
     info "INFO: client_id: #{CONFIG.client_name} #{config_alias}" if CONFIG.clients.size > 1
