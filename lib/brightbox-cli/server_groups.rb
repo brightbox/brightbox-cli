@@ -53,9 +53,7 @@ module Brightbox
     end
 
     def server_ids
-      if attributes["servers"]
-        @server_ids ||= attributes["servers"].collect { |s| s["id"] }
-      end
+      servers.map(&:id)
     end
 
   end
