@@ -23,6 +23,13 @@ module Brightbox
       [a]
     end
 
+    # The account associated with this connection
+    def self.conn_account
+      a = conn.account
+      a.connection = conn
+      a
+    end
+
     def self.get(id)
       a = conn.account
       a.connection = conn
