@@ -40,7 +40,7 @@ module Brightbox
       lb_id = args.shift
       raise "You must specify the load balancer to update as the first argument" unless lb_id =~ /^lba-/
 
-      lbopts = {}
+      lbopts = NilableHash.new
 
       unless args.empty?
         lbopts[:nodes] = args.collect { |a| { :node => a } }
@@ -75,7 +75,9 @@ module Brightbox
 
       if options[:p]
         lbopts[:policy] = options[:p]
-      end 
+      end
+
+      lbopts.nilify_blanks
 
       lb = LoadBalancer.find lb_id
 
