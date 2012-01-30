@@ -3,26 +3,21 @@
 brightbox-cli is a set of cli tools to interact with the Brightbox
 Cloud API.
 
-http://beta.brightbox.com
+http://brightbox.com
 
-http://docs.brightbox.com/cli
+http://docs.brightbox.com/reference/cli
 
-== Dependencies
-
-It has following dependencies and if you are trying to install the gem from 
-a gem file (rather than via gem command), you might have to install the 
-following:
-
-* fog - 0.8.2
-* json - 1.5.3
-* hirb - 0.3.5
+http://docs.brightbox.com/reference/api/
 
 == Packaging
 
 === Vendoring libraries
 
-gems can be vendored into vendor/ for packaging and will be
-prioritized over any gems.
+gems can be vendored into `lib/brightbox-cli/vendor/` for packaging
+and will be prioritised over any gems.
+
+We've customized some gems and they're permanently vendored (i.e: in
+the git tree).
 
 === Debian/Ubuntu packaging
 
@@ -36,16 +31,17 @@ to packaging.  These are:
 * fog
 * hirb
 * ini
+* multi_json
 
-Rubygems support can be disabled by defining the DISABLE_RUBYGEMS
-constant in lib/bbcloud/os_config.rb
+Rubygems support can be disabled by defining the `DISABLE_RUBYGEMS`
+constant in `lib/bbcloud/os_config.rb`
 
 Ubuntu packaging scripts are available on the packaging-lucid git
 branch.
 
 == License
 
-Copyright (c) 2010,2011 John Leach, Brightbox Systems Ltd <john@brightbox.co.uk>
+Copyright (c) 2010,2011,2012 John Leach, Brightbox Systems Ltd <john@brightbox.co.uk>
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
