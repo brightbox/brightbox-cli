@@ -14,7 +14,7 @@ module Brightbox
   switch [:h, :help]
 
   # Load the command libraries for the current group
-  cmd_group_name = File.basename($0).gsub(/brightbox\-/, '')
+  cmd_group_name = File.basename($0)[/-([^\z]+)/, 1]
   cmd_group_files = File.join(File.dirname(__FILE__), "commands/#{cmd_group_name}*.rb")
   Dir.glob(cmd_group_files).each do |f|
     load f
