@@ -52,9 +52,5 @@ module Brightbox
       server_ids.respond_to?(:join) ? server_ids.join(" ") : ""
     end
 
-    def server_ids
-      servers.map(&:id)
-    end
-
   end
 end
