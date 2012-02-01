@@ -26,6 +26,12 @@ module Brightbox
       end
     end
 
+  def enforce_field_constraints
+    max_fields.each {|k,max| @field_lengths[k] = max if @field_lengths[k].to_i > max }
+    # Never shrink the id field
+    @field_lengths[:id] = IDENTIFIER_SIZE if @field_lengths[:id]
+  end
+
   end
 
   # Vertical table for "show" views

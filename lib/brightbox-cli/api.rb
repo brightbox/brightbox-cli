@@ -1,4 +1,7 @@
 module Brightbox
+  # The length of the identifier string.
+  IDENTIFIER_SIZE = 9
+
   class Api
     attr_reader :id
     class ApiError < StandardError ; end
