@@ -105,6 +105,7 @@ module Brightbox
     end
 
     def alias
+      return nil if config[client_name].nil?
       config[client_name]['alias']
     end
 
