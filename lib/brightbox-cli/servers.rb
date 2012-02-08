@@ -43,7 +43,7 @@ module Brightbox
       a[:type] = server_type['handle']
       a[:status] = fog_model.state
       a[:zone] = zone && zone['handle']
-      a[:hostname] = id
+      a[:hostname] = fqdn
       a[:public_hostname] = fqdn unless cloud_ips.empty?
       a[:ipv6_hostname] = ipv6_hostname if interfaces.any? {|i| i['ipv6_address'] }
       a

@@ -64,7 +64,8 @@ class Brightbox
         LB_LISTENER = {
           "in"              => Integer,
           "out"             => Integer,
-          "protocol"        => String
+          "protocol"        => String,
+          "timeout"         => Integer
         }
         LB_HEALTHCHECK = {
           "type"            => String,
@@ -111,7 +112,7 @@ class Brightbox
           "name"            => String,
           "default"         => Fog::Boolean,
           "created_at"      => String,
-          "description"     => String
+          "description"     => Fog::Nullable::String
         }
 
         FIREWALL_RULE = {
@@ -279,6 +280,7 @@ class Brightbox
           "compatibility_mode" => Fog::Boolean,
           "virtual_size"    => Integer,
           "disk_size"       => Integer,
+          "min_ram"         => Fog::Nullable::Integer,
           "ancestor"        => Fog::Brightbox::Nullable::Image,
           "username"        => Fog::Nullable::String
         }
@@ -293,6 +295,7 @@ class Brightbox
           "deleted_at"      => Fog::Nullable::String,
           "cloud_ips"       => [Brightbox::Compute::Formats::Nested::CLOUD_IP],
           "account"         => Brightbox::Compute::Formats::Nested::ACCOUNT,
+          "listeners"       => [Brightbox::Compute::Formats::Struct::LB_LISTENER],
           "nodes"           => [Brightbox::Compute::Formats::Nested::SERVER]
         }
 
@@ -471,6 +474,7 @@ class Brightbox
           "compatibility_mode"   => Fog::Boolean,
           "virtual_size"    => Integer,
           "disk_size"       => Integer,
+          "min_ram"         => Fog::Nullable::Integer,
           "ancestor"        => Fog::Brightbox::Nullable::Image,
           "username"        => Fog::Nullable::String
         }
