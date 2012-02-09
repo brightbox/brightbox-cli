@@ -55,6 +55,10 @@ module Brightbox
       o[:ips] = interfaces.collect { |i| i['ipv4_address'] }.join(', ')
       o
     end
+    
+    def public_hostname
+      "public.#{fqdn}"
+    end
 
     def deleted?
       fog_model.status == "deleted"
