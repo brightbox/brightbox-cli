@@ -42,7 +42,7 @@ module Brightbox
       url = "#{console_response["console_url"]}/?password=#{console_response["console_token"]}"
       Launchy.open(url)
     rescue LoadError
-      puts <<-EOD
+      Brightbox.info <<-EOD
         ---------------------------------------------
         Install rubygem launchy to automatically open
         console in your preferred browser.
