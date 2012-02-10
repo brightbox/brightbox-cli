@@ -108,7 +108,7 @@ describe "Server" do
       require "launchy"
       Launchy.expects(:open).returns(true)
       server = Brightbox::Server.new("hello")
-      server.activate_console
+      server.activate_console(true)
     end
   end
 

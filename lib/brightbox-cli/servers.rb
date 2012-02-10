@@ -31,9 +31,11 @@ module Brightbox
       fog_model.destroy
     end
 
-    def activate_console
+    def activate_console(open_console)
       console_response = self.class.conn.activate_console_server id
-      prompt_launchy_install(console_response) if Object.const_defined?(:Gem)
+      if(Object.const_defined?(:Gem) && open_console)
+        prompt_launchy_install(console_response)
+      end
       console_response
     end
 
