@@ -44,6 +44,10 @@ module Brightbox
       o
     end
 
+    def server_ids
+      attributes[:server_ids].map{|id| id.is_a?(Hash) ? id['id'] : id }
+    end
+
     def server_count
       server_ids.respond_to?(:size) ? server_ids.size : 0
     end
