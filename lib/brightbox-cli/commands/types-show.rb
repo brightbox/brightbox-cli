@@ -13,11 +13,12 @@ module Brightbox
         warn "Couldn't find type #{id}"
       end
 
-      table_opts = global_options.merge({
-                                          :vertical => true,
-                                          :fields => [:id, :handle, :status, :name, :ram, :disk, :cores, :description]
-                                        })
+      display_options = {
+        :vertical => true,
+        :fields => [:id, :handle, :status, :name, :ram, :disk, :cores]
+      }
 
+      table_opts = global_options.merge(display_options)
       render_table(types, table_opts)
 
     end

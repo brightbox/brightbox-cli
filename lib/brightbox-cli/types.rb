@@ -33,7 +33,7 @@ module Brightbox
     end
 
     def self.default_field_order
-      [:id, :name, :handle, :ram, :disk, :cores, :description]
+      [:id, :name, :handle, :ram, :disk, :cores]
     end
 
     def <=>(b)
