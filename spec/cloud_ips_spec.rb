@@ -10,7 +10,7 @@ describe "Cloud IP" do
       output = capture_stdout {
         Brightbox.render_table(ips.sort, :vertical => true)
       }
-      output.should match(/cip-33fjw/)
+      output.should match(/cip-6r5a4/)
     end
   end
 

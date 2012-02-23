@@ -19,14 +19,15 @@ describe "Server" do
   describe "Server show" do
     use_vcr_cassette('server_show')
     before do
-      @servers = Brightbox::DetailedServer.find_or_call(["srv-7yilp"])
+      @servers = Brightbox::DetailedServer.find_or_call(["srv-egjzh"])
     end
     it "should show detailed attributes of a server" do
       output = capture_stdout {
         Brightbox.render_table(@servers,{:vertical => true})
       }
-      output.should match("10.251.17.234")
+      output.should match("10.250.188.238")
       output.should match(/ram: 512/)
+      output.should match(/disk: 20480/)
     end
   end
 

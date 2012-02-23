@@ -53,7 +53,7 @@ module Brightbox
       if @cache_path
         @cache_path
       else
-        @cache_path = File.join(@dir, 'cache')
+        @cache_path = File.join(dir, 'cache')
         unless File.exists? @cache_path
           begin
             FileUtils.mkdir @cache_path

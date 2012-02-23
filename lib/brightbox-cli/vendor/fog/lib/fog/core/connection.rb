@@ -16,7 +16,6 @@ module Fog
           block = lambda { |chunk, remaining, total| body << chunk }
         end
       end
-
       response = @excon.request(params, &block)
       
       if parser
