@@ -4,6 +4,7 @@ $LOAD_PATH.unshift __LIB_DIR__ unless
   $LOAD_PATH.include?(__LIB_DIR__) ||
   $LOAD_PATH.include?(File.expand_path(__LIB_DIR__))
 
+require "pry"
 require "brightbox_cli"
 require "mocha"
 require "vcr"
@@ -15,6 +16,10 @@ RSpec.configure do |config|
   config.mock_framework = :mocha
   config.extend VCR::RSpec::Macros
   config.include CommonHelpers
+  config.before {
+    test_config = File.join(File.dirname(__FILE__),"brightbox")
+    Brightbox::BBConfig.any_instance.stubs(:default_config_dir).returns(test_config)
+  }
 end
 
 VCR.config do |c|
