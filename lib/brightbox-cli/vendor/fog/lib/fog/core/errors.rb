@@ -38,6 +38,8 @@ An alternate file may be used by placing its path in the FOG_RC environment vari
   :bluebox_customer_id:
   :brightbox_client_id:
   :brightbox_secret:
+  :clodo_api_key:
+  :clodo_username:
   :go_grid_api_key:
   :go_grid_shared_secret:
   :google_storage_access_key_id:
@@ -69,6 +71,9 @@ An alternate file may be used by placing its path in the FOG_RC environment vari
   :dnsimple_password:
   :dnsmadeeasy_api_key:
   :dnsmadeeasy_secret_key:
+  :cloudstack_host:
+  :cloudstack_api_key:
+  :cloudstack_secret_access_key:
   :vsphere_server:
   :vsphere_username:
   :vsphere_password:
