@@ -43,9 +43,9 @@ module Brightbox
       a[:type] = server_type['handle']
       a[:status] = fog_model.state
       a[:zone] = zone && zone['handle']
-      a[:hostname] = fqdn
+      a[:hostname] = id
       a[:public_hostname] = fqdn unless cloud_ips.empty?
-      a[:ipv6_hostname] = ipv6_hostname if interfaces.any? {|i| i['ipv6_address'] }
+      a[:ipv6_hostname] = ipv6_fqdn if interfaces.any? {|i| i['ipv6_address'] }
       a
     end
 
@@ -55,16 +55,12 @@ module Brightbox
       o[:ips] = interfaces.collect { |i| i['ipv4_address'] }.join(', ')
       o
     end
-    
-    def public_hostname
-      "public.#{fqdn}"
-    end
 
     def deleted?
       fog_model.status == "deleted"
     end
 
-    def ipv6_hostname
+    def ipv6_fqdn
       "ipv6.#{fqdn}"
     end
   end
