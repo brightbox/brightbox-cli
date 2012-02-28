@@ -3,6 +3,9 @@ module Brightbox
   arg_name 'server-id...'
   command [:activate_console] do |c|
 
+    c.desc "Open the console in browser automatically"
+    c.switch [:o, :open_browser]
+
     c.action do |global_options,options,args|
 
       raise "You must specify servers to activate the console for" if args.empty?
@@ -15,7 +18,7 @@ module Brightbox
 
       servers.each do |s|
         info "Activating console for server #{s}"
-        r = s.activate_console
+        r = s.activate_console(options[:o])
         url = "#{r["console_url"]}/?password=#{r["console_token"]}"
         consoles << { :url => url, :token => r["console_token"], :expires => r["console_token_expires"] }
       end

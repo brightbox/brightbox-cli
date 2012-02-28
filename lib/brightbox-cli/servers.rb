@@ -31,8 +31,27 @@ module Brightbox
       fog_model.destroy
     end
 
-    def activate_console
-      self.class.conn.activate_console_server id
+    def activate_console(open_console)
+      console_response = self.class.conn.activate_console_server id
+      if(Object.const_defined?(:Gem) && open_console)
+        prompt_launchy_install(console_response)
+      end
+      console_response
+    end
+
+    def prompt_launchy_install(console_response)
+      require "launchy"
+      url = "#{console_response["console_url"]}/?password=#{console_response["console_token"]}"
+      Launchy.open(url)
+    rescue LoadError
+      Brightbox.info <<-EOD
+        ---------------------------------------------
+        Install rubygem launchy to automatically open
+        console in your preferred browser.
+        You can install the gem using the command:
+            gem install launchy
+        -------------------------------------------------
+      EOD
     end
 
     def attributes

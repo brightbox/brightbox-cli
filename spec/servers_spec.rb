@@ -100,6 +100,19 @@ describe "Server" do
     end
   end
 
+  describe "when activating console" do
+    it "should use launchy if available" do
+      Brightbox::BBConfig.any_instance.expects(:cache_id).returns("foo")
+      mock_connection = mock()
+      mock_connection.expects(:activate_console_server).returns({"console_url" => "http://www.google.com", "console_token" => "foobar"})
+      Brightbox::Server.expects(:conn).returns(mock_connection)
+      require "launchy"
+      Launchy.expects(:open).returns(true)
+      server = Brightbox::Server.new("hello")
+      server.activate_console(true)
+    end
+  end
+
   def server_params(name,type)
     {
       :image_id      => "img-ymfuq",
