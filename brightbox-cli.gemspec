@@ -25,7 +25,7 @@ Gem::Specification.new do |s|
   s.add_dependency('mime-types')
   s.add_dependency('net-ssh', '>=2.1.3')
   s.add_dependency('net-scp', '~>1.0.4')
-  s.add_dependency('nokogiri', '~>1.5.0')
+  s.add_dependency('nokogiri', '>=1.4.0')
   s.add_dependency('ruby-hmac')
   s.add_dependency('hirb','~> 0.6.0')
 
