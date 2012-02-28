@@ -28,6 +28,7 @@ Gem::Specification.new do |s|
   s.add_dependency('net-scp', '~>1.0.4')
   s.add_dependency('nokogiri', '~>1.5.0')
   s.add_dependency('ruby-hmac')
+  s.add_dependency('hirb','~> 0.6.0')
 
   s.add_dependency 'formatador', '~> 0.2.0'
   s.add_development_dependency('rake', '~> 0.8.0')
