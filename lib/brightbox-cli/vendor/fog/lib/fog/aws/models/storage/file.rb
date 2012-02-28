@@ -1,4 +1,5 @@
 require 'fog/core/model'
+require 'fog/aws/models/storage/versions'
 
 module Fog
   module Storage
@@ -21,6 +22,8 @@ module Fog
         attribute :metadata
         attribute :owner,               :aliases => 'Owner'
         attribute :storage_class,       :aliases => ['x-amz-storage-class', 'StorageClass']
+        attribute :encryption,          :aliases => 'x-amz-server-side-encryption'
+        attribute :version,             :aliases => 'x-amz-version-id'
 
         def acl=(new_acl)
           valid_acls = ['private', 'public-read', 'public-read-write', 'authenticated-read']
@@ -50,12 +53,13 @@ module Fog
           requires :directory, :key
           connection.copy_object(directory.key, key, target_directory_key, target_file_key, options)
           target_directory = connection.directories.new(:key => target_directory_key)
-          target_directory.files.get(target_file_key)
+          target_directory.files.head(target_file_key)
         end
 
-        def destroy
+        def destroy(options = {})
           requires :directory, :key
-          connection.delete_object(directory.key, key)
+          attributes[:body] = nil if options['versionId'] == version
+          connection.delete_object(directory.key, key, options)
           true
         end
 
@@ -115,6 +119,7 @@ module Fog
           options['Expires'] = expires if expires
           options.merge!(metadata)
           options['x-amz-storage-class'] = storage_class if storage_class
+          options['x-amz-server-side-encryption'] = encryption if encryption
 
           data = connection.put_object(directory.key, key, body, options)
           data.headers['ETag'].gsub!('"','')
@@ -123,9 +128,18 @@ module Fog
           true
         end
 
-        def url(expires)
+        def url(expires, options = {})
           requires :key
-          collection.get_https_url(key, expires)
+          collection.get_https_url(key, expires, options)
+        end
+
+        def versions
+          @versions ||= begin
+            Fog::Storage::AWS::Versions.new(
+              :file         => self,
+              :connection   => connection
+            )
+          end
         end
 
         private

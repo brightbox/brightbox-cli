@@ -5,7 +5,7 @@ module Fog
     class SimpleDB < Fog::Service
 
       requires :aws_access_key_id, :aws_secret_access_key
-      recognizes :host, :nil_string, :path, :port, :scheme, :persistent, :region
+      recognizes :host, :nil_string, :path, :port, :scheme, :persistent, :region, :aws_session_token
 
       request_path 'fog/aws/requests/simpledb'
       request :batch_put_attributes
@@ -70,27 +70,13 @@ module Fog
 
           @aws_access_key_id      = options[:aws_access_key_id]
           @aws_secret_access_key  = options[:aws_secret_access_key]
+          @aws_session_token      = options[:aws_session_token]
           @connection_options     = options[:connection_options] || {}
           @hmac       = Fog::HMAC.new('sha256', @aws_secret_access_key)
           @nil_string = options[:nil_string]|| 'nil'
 
           options[:region] ||= 'us-east-1'
-          @host = options[:host] || case options[:region]
-          when 'ap-northeast-1'
-            'sdb.ap-northeast-1.amazonaws.com'
-          when 'ap-southeast-1'
-            'sdb.ap-southeast-1.amazonaws.com'
-          when 'eu-west-1'
-            'sdb.eu-west-1.amazonaws.com'
-          when 'us-east-1'
-            'sdb.amazonaws.com'
-          when 'us-west-1'
-            'sdb.us-west-1.amazonaws.com'
-          when 'us-west-2'
-            'sdb.us-west-2.amazonaws.com'
-          else
-            raise ArgumentError, "Unknown region: #{options[:region].inspect}"
-          end
+          @host = options[:host] || "sdb.#{options[:region]}.amazonaws.com"
           @path       = options[:path]        || '/'
           @persistent = options[:persistent]  || false
           @port       = options[:port]        || 443
@@ -165,6 +151,7 @@ module Fog
             params,
             {
               :aws_access_key_id  => @aws_access_key_id,
+              :aws_session_token  => @aws_session_token,
               :hmac               => @hmac,
               :host               => @host,
               :path               => @path,

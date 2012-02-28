@@ -1,6 +1,8 @@
 require 'fog/aws'
 require 'fog/bluebox'
 require 'fog/brightbox'
+require 'fog/cloudstack'
+require 'fog/clodo'
 require 'fog/dnsimple'
 require 'fog/dnsmadeeasy'
 require 'fog/dynect'
