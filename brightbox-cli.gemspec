@@ -22,7 +22,6 @@ Gem::Specification.new do |s|
   s.add_dependency('builder')
   s.add_dependency('excon', '~>0.9.0')
   s.add_dependency('formatador', '~>0.2.0')
-  s.add_dependency('multi_json', '~>1.0.3')
   s.add_dependency('mime-types')
   s.add_dependency('net-ssh', '>=2.1.3')
   s.add_dependency('net-scp', '~>1.0.4')
@@ -30,7 +29,6 @@ Gem::Specification.new do |s|
   s.add_dependency('ruby-hmac')
   s.add_dependency('hirb','~> 0.6.0')
 
-  s.add_dependency 'formatador', '~> 0.2.0'
   s.add_development_dependency('rake', '~> 0.8.0')
   s.add_development_dependency('vcr')
   s.add_development_dependency('rspec')
