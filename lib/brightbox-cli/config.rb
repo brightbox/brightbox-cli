@@ -100,6 +100,9 @@ module Brightbox
         @client_name
       else
         default_client = config['core']['default_client']
+        if default_client.nil? && clients.length > 1
+          raise BBConfigError, "You must specify a default client using brightbox-config client_default"
+        end
         @client_name = default_client || clients.first
       end
     end
