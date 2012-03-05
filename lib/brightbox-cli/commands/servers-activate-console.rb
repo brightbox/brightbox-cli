@@ -20,7 +20,7 @@ module Brightbox
         consoles << { :url => url, :token => r["console_token"], :expires => r["console_token_expires"] }
       end
 
-      render_table(consoles, global_options.merge(:fields => [:url, :token, :expires]))
+      render_table(consoles, global_options.merge(:fields => [:url, :token, :expires], :resize => false))
     end
   end
 end
