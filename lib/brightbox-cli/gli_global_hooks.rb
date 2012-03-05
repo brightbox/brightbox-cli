@@ -26,13 +26,6 @@ module Brightbox
 
     if global_options[:k] or ENV["INSECURE"]
       Excon.defaults[:ssl_verify_peer] = false
-      # FIXME: Overriding this here is not good.  Excon calls
-      # post_connection_check so it should have an option not to.
-      class OpenSSL::SSL::SSLSocket
-        def post_connection_check(hostname)
-          true
-        end
-      end
     end
 
     unless global_options[:s]
