@@ -11,8 +11,8 @@ module Brightbox
       @options = options
     end
 
-    def self.config
-      Brightbox.const_set(:CONFIG, new())
+    def self.config(force_default_config = true)
+      Brightbox.const_set(:CONFIG, new(:force_default_config => force_default_config))
       require "brightbox-cli/gli_global_hooks"
       yield
     ensure
@@ -100,7 +100,7 @@ module Brightbox
         @client_name
       else
         default_client = config['core']['default_client']
-        if default_client.nil? && clients.length > 1
+        if @options[:force_default_config] && default_client.nil? && clients.length > 1
           raise BBConfigError, "You must specify a default client using brightbox-config client_default"
         end
         @client_name = default_client || clients.first

@@ -8,7 +8,7 @@ rescue LoadError
   require "brightbox_cli"
 end
 
-Brightbox::BBConfig.config do
+Brightbox::BBConfig.config(false) do
   include GLI
   run ARGV
 end
