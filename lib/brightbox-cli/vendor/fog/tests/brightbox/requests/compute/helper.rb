@@ -168,6 +168,7 @@ class Brightbox
           "name"            => String,
           "status"          => String,
           "hostname"        => String,
+          "fqdn"            => String,
           "created_at"      => String,
           "started_at"      => Fog::Nullable::String,
           "deleted_at"      => Fog::Nullable::String,
@@ -306,6 +307,7 @@ class Brightbox
           "name"            => String,
           "status"          => String,
           "hostname"        => String,
+          "fqdn"            => String,
           "created_at"      => String,
           "started_at"      => Fog::Nullable::String,
           "deleted_at"      => Fog::Nullable::String,
@@ -476,7 +478,8 @@ class Brightbox
           "disk_size"       => Integer,
           "min_ram"         => Fog::Nullable::Integer,
           "ancestor"        => Fog::Brightbox::Nullable::Image,
-          "username"        => Fog::Nullable::String
+          "username"        => Fog::Nullable::String,
+          "licence_name"    => String
         }
 
         INTERFACE = {
@@ -512,6 +515,7 @@ class Brightbox
           "name"            => String,
           "status"          => String,
           "hostname"        => String,
+          "fqdn"            => String,
           "created_at"      => String,
           "started_at"      => Fog::Nullable::String,
           "deleted_at"      => Fog::Nullable::String,
