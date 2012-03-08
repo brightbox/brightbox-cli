@@ -168,6 +168,7 @@ class Brightbox
           "name"            => String,
           "status"          => String,
           "hostname"        => String,
+          "fqdn"            => String,
           "created_at"      => String,
           "started_at"      => Fog::Nullable::String,
           "deleted_at"      => Fog::Nullable::String,
@@ -306,6 +307,7 @@ class Brightbox
           "name"            => String,
           "status"          => String,
           "hostname"        => String,
+          "fqdn"            => String,
           "created_at"      => String,
           "started_at"      => Fog::Nullable::String,
           "deleted_at"      => Fog::Nullable::String,
@@ -512,6 +514,7 @@ class Brightbox
           "name"            => String,
           "status"          => String,
           "hostname"        => String,
+          "fqdn"            => String,
           "created_at"      => String,
           "started_at"      => Fog::Nullable::String,
           "deleted_at"      => Fog::Nullable::String,
@@ -527,6 +530,7 @@ class Brightbox
           "server_groups"   => [Brightbox::Compute::Formats::Nested::SERVER_GROUP],
           "interfaces"      => [Brightbox::Compute::Formats::Nested::INTERFACE],
           "zone"            => Fog::Brightbox::Nullable::Zone,
+          "licence_name"    => Fog::Nullable::String,
           "username"        => Fog::Nullable::String
         }
 
