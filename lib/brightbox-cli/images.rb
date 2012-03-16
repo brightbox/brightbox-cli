@@ -45,6 +45,7 @@ module Brightbox
       o[:created_at] = created_at
       o[:created_on] = created_at.to_s.split('T').first
       o[:description] = description if description
+      o[:licence_name] = licence_name
       o[:size] = virtual_size
       o
     end

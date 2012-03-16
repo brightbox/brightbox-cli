@@ -13,10 +13,17 @@ module Brightbox
         warn "Couldn't find image #{id}"
       end
 
-      table_opts = global_options.merge({
-                                          :vertical => true,
-                                          :fields => [:id, :type, :owner, :created_at, :status, :arch, :name, :description, :username, :virtual_size, :disk_size, :public, :"compatibility_mode", :official, :ancestor_id ]
-                                        })
+
+      display_options = {
+        :vertical => true,
+        :fields => [
+          :id, :type, :owner, :created_at, :status, :arch, :name,
+          :description, :username, :virtual_size, :disk_size, :public,
+          :"compatibility_mode", :official, :ancestor_id, :licence_name
+        ]
+      }
+
+      table_opts = global_options.merge(display_options)
 
       render_table(images, table_opts)
 

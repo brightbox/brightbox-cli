@@ -9,4 +9,5 @@ spec/brightbox/cache/
 *.patch
 *.html
 *.gem
-vendor/
+/vendor/
+
