@@ -24,24 +24,32 @@ module Brightbox
       self
     end
 
+    def type
+      if official
+        "official"
+      else
+        source_type
+      end
+    end
+
+    def status
+      if fog_model.attributes[:status] == "available"
+        public ? 'public' : 'private'
+      else
+        fog_model.attributes[:status]
+      end
+    end
+
     def to_row
       o = fog_model.attributes
       o[:id] = fog_model.id
-      if status == "available"
-        o[:status] = (public ? 'public' : 'private')
-      else
-        o[:status] = status
-      end
+      o[:status] = status
       o[:username] = username
       o[:arch] = arch
       o[:name] = name.to_s + " (#{arch})"
       o[:owner] = owner_id
-      if official
-        o[:type] = "official"
-        o[:owner] = "brightbox"
-      else
-        o[:type] = source_type
-      end
+      o[:owner] = "brightbox" if official
+      o[:type] = type
       o[:created_at] = created_at
       o[:created_on] = created_at.to_s.split('T').first
       o[:description] = description if description
