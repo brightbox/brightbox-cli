@@ -35,7 +35,7 @@ module Brightbox
 
     def listeners
       if attributes[:listeners]
-        attributes[:listeners].collect { |l| [l["in"], l["out"], l["protocol"]].join(":") }
+        attributes[:listeners].collect { |l| [l["in"], l["out"], l["protocol"], l['timeout']].join(":") }
       else
         nil
       end
