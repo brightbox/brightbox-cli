@@ -11,7 +11,7 @@ module Brightbox
     c.desc "Load balancer policy"
     c.flag [:p, :policy]
 
-    c.desc "Listeners (in-port:out-port:protocol. Comma separate multiple listeners)"
+    c.desc "Listeners (in-port:out-port:protocol:timeout. Comma separate multiple listeners)"
     c.flag [:l, :listeners]
 
     c.desc "Healthcheck port"
@@ -64,8 +64,8 @@ module Brightbox
 
       if options[:l]
         lbopts[:listeners] = options[:l].split(",").collect do |l|
-          inport, output, protocol = l.split ":"
-          { :in => inport, :out => output, :protocol => protocol }
+          inport, output, protocol, timeout = l.split ":"
+          { :in => inport, :out => output, :protocol => protocol, :timeout => timeout }
         end
       end
 

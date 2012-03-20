@@ -11,8 +11,8 @@ module Brightbox
     c.default_value "least-connections"
     c.flag [:p, :policy]
 
-    c.desc "Listeners. Format: in-port:out-port:type. Comma separate multiple listeners."
-    c.default_value "80:80:http,443:443:tcp"
+    c.desc "Listeners. Format: in-port:out-port:type:timeout. Comma separate multiple listeners. Protocols can be tcp, http or http+ws and timeouts are in milliseconds."
+    c.default_value "80:80:http:50000,443:443:tcp:50000"
     c.flag [:l, :listeners]
 
     c.desc "Healthcheck port. Defaults to first listener out port."
@@ -46,9 +46,9 @@ module Brightbox
       raise "You must specify which servers to balance connections to" if args.empty?
 
       listeners = options[:l].split(",").collect do |l|
-        inport, outport, protocol = l.split ":"
+        inport, outport, protocol, timeout = l.split ":"
         raise "listener '#{l}' is invalid" if inport.nil? or outport.nil? or protocol.nil?
-        { :in => inport, :out => outport, :protocol => protocol }
+        { :in => inport, :out => outport, :protocol => protocol, :timeout => timeout }
       end
 
       raise "You must specify at least one listener" if listeners.empty?
