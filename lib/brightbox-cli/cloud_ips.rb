@@ -17,7 +17,7 @@ module Brightbox
     end
 
     def self.translators(translators,options)
-      if translators && !translators.empty?
+      if translators
         options[:port_translators] = translators.split(",").map do |t|
           incoming,outgoing,protocol = t.split(":")
           raise "translator #{t} is invalid" if incoming.nil? || outgoing.nil? || protocol.nil?
