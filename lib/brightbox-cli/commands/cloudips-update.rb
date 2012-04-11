@@ -8,6 +8,12 @@ module Brightbox
     c.desc "Delete the reverse DNS for this cloud ip"
     c.switch ["delete-reverse-dns"]
 
+    c.desc "Friendly name of Cloud ip"
+    c.flag [:n, :name]
+
+    c.desc "Cloud ip translators"
+    c.flag [:t, :port_translators]
+
     c.action do |global_options,options,args|
       cip_id = args.shift
       raise "You must specify the cloud ip id as the first argument" unless cip_id =~ /^cip-/
@@ -18,16 +24,8 @@ module Brightbox
 
       cip = CloudIP.find cip_id
 
-      params = {}
-      if options[:r]
-        params[:reverse_dns] = options[:r]
-      end
 
-      if options[:"delete-reverse-dns"]
-        params[:reverse_dns] = ""
-      end
-
-      cip.update(params)
+      cip.update(options)
       cip.reload
 
       render_table([cip], global_options)

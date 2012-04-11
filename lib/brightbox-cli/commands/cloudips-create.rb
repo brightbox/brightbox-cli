@@ -5,6 +5,12 @@ module Brightbox
     c.default_value 1
     c.flag [:i, "count"]
 
+    c.desc "Friendly name of Cloud ip"
+    c.flag [:n, :name]
+
+    c.desc "Cloud ip translators"
+    c.flag [:t, :port_translators]
+
     c.action do |global_options, options, args|
 
       if options[:i].to_s !~ /^[0-9]+$/
@@ -15,7 +21,7 @@ module Brightbox
 
       ips = []
       options[:i].times do
-        ips << CloudIP.create
+        ips << CloudIP.create(options)
       end
       render_table(ips, global_options)
     end
