@@ -2,7 +2,7 @@ module Brightbox
   desc 'map Cloud IPs'
   arg_name 'cloudip-id destination'
   command [:map] do |c|
-    c.desc "Unmap mapped ips before remapping them"
+    c.desc "Unmap mapped IPs before remapping them"
     c.switch [:u, "unmap"]
 
     c.action do |global_options,options,args|
@@ -41,7 +41,7 @@ module Brightbox
             ip.reload
           end
         else
-          raise "Refusing to map already mapped ip #{ip}"
+          raise "Refusing to map already mapped IP #{ip}"
         end
       end
 

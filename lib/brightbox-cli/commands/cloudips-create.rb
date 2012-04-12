@@ -1,14 +1,14 @@
 module Brightbox
-  desc 'Create a new cloud ip'
+  desc 'Create a new Cloud IP address'
   command [:create] do |c|
-    c.desc "Number of cloud ips to create"
+    c.desc "Number of Cloud IPs to create"
     c.default_value 1
     c.flag [:i, "count"]
 
-    c.desc "Friendly name of Cloud ip"
+    c.desc "Friendly name of the Cloud IP"
     c.flag [:n, :name]
 
-    c.desc "Cloud ip translators.Format: in-port:out-port:protocol. Comma separated multiple translators. Protocol can be tcp or udp."
+    c.desc "Cloud IP translators. Format: in-port:out-port:protocol. Comma separate multiple translators. Protocol can be tcp or udp."
     c.flag [:t, :port_translators]
 
     c.action do |global_options, options, args|

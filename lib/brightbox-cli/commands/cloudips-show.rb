@@ -10,7 +10,7 @@ module Brightbox
       end
 
       ips = CloudIP.find_or_call(args) do |id|
-        warn "Couldn't find cloud ip #{id}"
+        warn "Couldn't find Cloud IP #{id}"
       end
 
       fields = [:id, :name,:status, :public_ip, :reverse_dns, :destination, :interface_id, :port_translators]
