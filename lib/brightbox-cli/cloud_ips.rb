@@ -10,31 +10,27 @@ module Brightbox
 
     def self.create(options = {})
       create_options = {}
-      translators(options[:t],create_options)
-      name(options[:n],create_options)
+      if options[:t]
+        create_options[:port_translators] = format_translators_for_api(options[:t])
+      end
+
+      if options[:n] && !options[:name].empty?
+        create_options[:name] = options[:n]
+      end
       r = conn.create_cloud_ip(create_options)
       new(r["id"])
     end
 
-    def self.translators(translators,options)
-      if translators
-        options[:port_translators] = translators.split(",").map do |t|
-          incoming,outgoing,protocol = t.split(":")
-          raise "translator #{t} is invalid" if incoming.nil? || outgoing.nil? || protocol.nil?
-          {:incoming => incoming, :outgoing => outgoing, :protocol => protocol}
-        end
-      end
-    end
-
-    def self.name(name,options)
-      if name && !name.empty?
-        options[:name] = name
+    def self.format_translators_for_api(translators)
+      translators.split(",").map do |t|
+        incoming,outgoing,protocol = t.split(":")
+        raise "translator #{t} is invalid" if incoming.nil? || outgoing.nil? || protocol.nil?
+        {:incoming => incoming, :outgoing => outgoing, :protocol => protocol}
       end
     end
 
     def attributes
       a = fog_model.attributes
-      add_name_to_dns(a)
       if(lb_id = a[:load_balancer] || a["load_balancer"])
         a[:destination] = lb_id
       else
@@ -46,13 +42,16 @@ module Brightbox
     def add_name_to_dns(raw_attributes)
       reverse_dns = raw_attributes[:reverse_dns] || raw_attributes['reverse_dns']
       if name = (raw_attributes[:name] || raw_attributes['name'])
-        raw_attributes[:reverse_dns] = "#{name} (#{reverse_dns})"
+        "#{name} (#{reverse_dns})"
+      else
+        reverse_dns
       end
     end
 
     def to_row
       o = attributes
       o[:port_translators] = translators(o)
+      o[:reverse_dns] = add_name_to_dns(o)
       o
     end
 
@@ -86,9 +85,13 @@ module Brightbox
         params[:reverse_dns] = ""
       end
 
+      if options[:n] && !options[:name].empty?
+        params[:name] = options[:n]
+      end
 
-      CloudIP.name(options[:n],params)
-      CloudIP.translators(options[:t],params)
+      if options[:t]
+        params[:port_translators] = CloudIP.format_translators_for_api(options[:t])
+      end
 
       self.class.conn.update_cloud_ip(id, params)
       self.reload

@@ -11,7 +11,7 @@ module Brightbox
     c.default_value "least-connections"
     c.flag [:p, :policy]
 
-    c.desc "Listeners. Format: in-port:out-port:type:timeout. Comma separate multiple listeners. Protocols can be tcp, http or http+ws and timeouts are in milliseconds."
+    c.desc "Listeners. Format: in-port:out-port:type:timeout. Comma separated multiple listeners. Protocols can be tcp, http or http+ws and timeouts are in milliseconds."
     c.default_value "80:80:http:50000,443:443:tcp:50000"
     c.flag [:l, :listeners]
 

@@ -8,7 +8,7 @@ module Brightbox
     c.desc "Friendly name of Cloud ip"
     c.flag [:n, :name]
 
-    c.desc "Cloud ip translators"
+    c.desc "Cloud ip translators.Format: in-port:out-port:protocol. Comma separated multiple translators. Protocol can be tcp or udp."
     c.flag [:t, :port_translators]
 
     c.action do |global_options, options, args|
