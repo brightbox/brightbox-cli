@@ -1,6 +1,6 @@
 class Time
   def rfc8601
-    self.strftime("%Y-%m-%dT%H:%M")
+    self.strftime(self.utc? ? "%Y-%m-%dT%H:%MZ" : "%Y-%m-%dT%H:%M")
   end
 
   def to_s
