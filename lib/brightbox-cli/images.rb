@@ -18,30 +18,72 @@ module Brightbox
       [:id, :owner, :type, :created_on, :status, :size, :name]
     end
 
+    # Filter out images that are not of the right type, account or status if the option is passed
+    def self.filter_images(images, options={})
+      # Remove images that don't match the given type
+      if options[:t]
+        images.reject! { |i| i.type != options[:t] }
+      end
+
+      # Remove statuses that don't match the argument
+      if options[:s]
+        images.reject! { |i| i.status != options[:s] }
+      end
+
+      # Remove images that don't belong to the specified owner id
+      if options[:l]
+        if options[:l] == 'brightbox'
+          images.reject! { |i| !i.official }
+        else
+          images.reject! { |i| i.owner_id != options[:l] }
+        end
+      end
+
+      snapshots = images.select { |i| i.source_type == 'snapshot' }
+      images = images - snapshots
+
+      unless options[:a]
+        account = Account.conn_account
+        images.reject! { |i| !i.official and i.owner_id != account.id  }
+      end
+
+      images.sort! { |a, b| a.default_sort_fields <=> b.default_sort_fields }
+      snapshots.sort! { |a, b| a.created_at <=> b.created_at }
+      images + snapshots
+    end
+
     def update options
       self.class.conn.update_image(id, options)
       self.reload
       self
     end
 
+    def type
+      if official
+        "official"
+      else
+        source_type
+      end
+    end
+
+    def status
+      if fog_model.attributes[:status] == "available"
+        public ? 'public' : 'private'
+      else
+        fog_model.attributes[:status]
+      end
+    end
+
     def to_row
       o = fog_model.attributes
       o[:id] = fog_model.id
-      if status == "available"
-        o[:status] = (public ? 'public' : 'private')
-      else
-        o[:status] = status
-      end
+      o[:status] = status
       o[:username] = username
       o[:arch] = arch
       o[:name] = name.to_s + " (#{arch})"
       o[:owner] = owner_id
-      if official
-        o[:type] = "official"
-        o[:owner] = "brightbox"
-      else
-        o[:type] = source_type
-      end
+      o[:owner] = "brightbox" if official
+      o[:type] = type
       o[:created_at] = created_at
       o[:created_on] = created_at.to_s.split('T').first
       o[:description] = description if description
