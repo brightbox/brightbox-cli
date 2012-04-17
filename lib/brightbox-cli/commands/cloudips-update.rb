@@ -12,7 +12,7 @@ module Brightbox
     c.flag [:n, :name]
 
     c.desc "Cloud IP translators. Format: in-port:out-port:protocol. Comma separate multiple translators. Protocol can be tcp or udp."
-    c.flag [:t, :port_translators]
+    c.flag [:t, :'port-translators']
 
     c.action do |global_options,options,args|
       cip_id = args.shift
