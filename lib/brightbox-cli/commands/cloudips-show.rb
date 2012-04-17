@@ -10,10 +10,10 @@ module Brightbox
       end
 
       ips = CloudIP.find_or_call(args) do |id|
-        warn "Couldn't find cloud ip #{id}"
+        warn "Couldn't find Cloud IP #{id}"
       end
 
-      fields = [:id, :status, :public_ip, :reverse_dns, :destination, :interface_id]
+      fields = [:id, :name,:status, :public_ip, :reverse_dns, :destination, :interface_id, :port_translators]
 
       render_table(ips.compact, global_options.merge({ :vertical => true, :fields => fields}))
     end

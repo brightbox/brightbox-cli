@@ -23,6 +23,8 @@ module Fog
         attribute :server_id, :aliases => "server", :squash => "id"
         attribute :load_balancer, :alias => "load_balancer", :squash => "id"
         attribute :server_group, :alias => "server_group", :squash => "id"
+        attribute :port_translators
+        attribute :name
 
         def map(destination)
           requires :identity

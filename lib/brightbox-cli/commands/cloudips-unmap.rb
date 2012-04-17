@@ -6,20 +6,20 @@ module Brightbox
     c.action do |global_options,options,args|
 
       if args.empty?
-        raise "You must specify the cloud ips you want to unmap"
+        raise "You must specify the Cloud IPs you want to unmap"
       end
 
       ips = CloudIP.find_or_call(args) do |id|
-        raise "Couldn't find cloud ip #{id}"
+        raise "Couldn't find Cloud IP #{id}"
       end
 
       ips.each do |ip|
         if ip.mapped?
-          info "Unmapping cloud ip #{ip}"
+          info "Unmapping Cloud IP #{ip}"
           ip.unmap
           ip.reload
         else
-          warn "Cloud ip #{ip} already unmapped"
+          warn "Cloud IP #{ip} already unmapped"
         end
       end
 

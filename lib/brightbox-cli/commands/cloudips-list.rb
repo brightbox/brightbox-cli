@@ -1,5 +1,5 @@
 module Brightbox
-  desc 'List CloudIPs'
+  desc 'List Cloud IPs'
   arg_name '[cloudip-id...]'
   command [:list] do |c|
 
@@ -9,7 +9,7 @@ module Brightbox
         ips = CloudIP.find(:all)
       else
         ips = CloudIP.find_or_call(args) do |id|
-          warn "Couldn't find cloud ip #{id}"
+          warn "Couldn't find Cloud IP #{id}"
         end
       end
 
