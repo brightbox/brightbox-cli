@@ -41,19 +41,9 @@ module Brightbox
       a
     end
 
-    def add_name_to_dns(raw_attributes)
-      reverse_dns = raw_attributes[:reverse_dns] || raw_attributes['reverse_dns']
-      if name = (raw_attributes[:name] || raw_attributes['name'])
-        "#{name} (#{reverse_dns})"
-      else
-        reverse_dns
-      end
-    end
-
     def to_row
       o = attributes
       o[:port_translators] = translators(o)
-      o[:reverse_dns] = add_name_to_dns(o)
       o
     end
 
@@ -70,7 +60,7 @@ module Brightbox
     end
 
     def self.default_field_order
-      [:id, :status, :public_ip, :destination, :reverse_dns]
+      [:id, :status, :public_ip, :destination, :reverse_dns, :name]
     end
 
     def <=>(b)
