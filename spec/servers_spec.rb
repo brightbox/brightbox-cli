@@ -28,6 +28,8 @@ describe "Server" do
       output.should match("10.250.188.238")
       output.should match(/ram: 512/)
       output.should match(/disk: 20480/)
+      output.should match(/public_hostname: public.srv-egjzh.gb1s.brightbox.com/)
+      output.should match(/fqdn: srv-egjzh.gb1s.brightbox.com/)
     end
   end
 
