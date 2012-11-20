@@ -5,6 +5,8 @@ class AWS < Fog::Bin
       case key
       when :auto_scaling
         Fog::AWS::AutoScaling
+      when :beanstalk
+        Fog::AWS::ElasticBeanstalk
       when :cdn
         Fog::CDN::AWS
       when :cloud_formation
@@ -23,6 +25,8 @@ class AWS < Fog::Bin
         Fog::AWS::ELB
       when :emr
         Fog::AWS::EMR
+      when :glacier
+        Fog::AWS::Glacier
       when :iam
         Fog::AWS::IAM
       when :sdb, :simpledb
@@ -52,6 +56,8 @@ class AWS < Fog::Bin
         hash[key] = case key
         when :auto_scaling
           Fog::AWS::AutoScaling.new
+        when :beanstalk
+          Fog::AWS::ElasticBeanstalk.new
         when :cdn
           Fog::Logger.warning("AWS[:cdn] is not recommended, use CDN[:aws] for portability")
           Fog::CDN.new(:provider => 'AWS')
@@ -73,6 +79,8 @@ class AWS < Fog::Bin
           Fog::AWS::ELB.new
         when :emr
           Fog::AWS::EMR.new
+        when :glacier
+          Fog::AWS::Glacier.new
         when :iam
           Fog::AWS::IAM.new
         when :rds

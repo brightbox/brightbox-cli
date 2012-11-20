@@ -12,12 +12,15 @@ module Fog
         attribute :dataset
         attribute :ips
         attribute :memory
-        attribute :ips
         attribute :disk
         attribute :metadata
 
         attribute :created, :type => :time
         attribute :updated, :type => :time
+
+        def public_ip_address
+          ips.empty? ? nil : ips.first
+        end
 
         def ready?
           self.state == 'running'
@@ -50,7 +53,7 @@ module Fog
 
         def resize(flavor)
           requires :id
-          self.connection.resize(id, flavor)
+          self.connection.resize_machine(id, flavor)
           true
         end
 

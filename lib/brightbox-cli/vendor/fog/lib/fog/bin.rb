@@ -4,7 +4,12 @@ module Fog
   class << self
 
     def available_providers
+	  Kernel.const_get('Ninefold')
       @available_providers ||= Fog.providers.values.select {|provider| Kernel.const_get(provider).available?}.sort
+    end
+
+    def registered_providers
+      @registered_providers ||= Fog.providers.values.sort
     end
 
   end
@@ -52,6 +57,7 @@ module Fog
 
 end
 
+require 'fog/bin/atmos'
 require 'fog/bin/aws'
 require 'fog/bin/bluebox'
 require 'fog/bin/brightbox'
@@ -64,6 +70,8 @@ require 'fog/bin/ecloud'
 require 'fog/bin/glesys'
 require 'fog/bin/go_grid'
 require 'fog/bin/google'
+require 'fog/bin/hp'
+require 'fog/bin/ibm'
 require 'fog/bin/joyent'
 require 'fog/bin/libvirt'
 require 'fog/bin/linode'
@@ -73,7 +81,7 @@ require 'fog/bin/ninefold'
 require 'fog/bin/rackspace'
 require 'fog/bin/openstack'
 require 'fog/bin/ovirt'
-require 'fog/bin/slicehost'
+require 'fog/bin/serverlove'
 require 'fog/bin/stormondemand'
 require 'fog/bin/terremark'
 require 'fog/bin/vcloud'
@@ -81,4 +89,5 @@ require 'fog/bin/virtual_box'
 require 'fog/bin/vmfusion'
 require 'fog/bin/vsphere'
 require 'fog/bin/voxel'
+require 'fog/bin/xenserver'
 require 'fog/bin/zerigo'

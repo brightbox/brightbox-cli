@@ -18,8 +18,10 @@ module Fog
           def end_element(name)
             if @section == :resource_record_set
               case name
-              when 'Name', 'Type', 'TTL'
+              when 'Type', 'TTL', 'SetIdentifier', 'Weight', 'Region'
                 @resource_record_set[name] = value
+              when 'Name'
+                @resource_record_set[name] = value.gsub('\\052', '*')
               when 'Value'
                 @resource_record_set['ResourceRecords'] << value
               when 'AliasTarget'
@@ -38,8 +40,10 @@ module Fog
               case name
               when 'MaxItems'
                 @response[name] = value.to_i
-              when 'IsTruncated', 'NextRecordName', 'NextRecordType'
+              when 'NextRecordName', 'NextRecordType', 'NextRecordIdentifier'
                 @response[name] = value
+              when 'IsTruncated'
+                @response[name] = value == 'true'
               end
             end
           end

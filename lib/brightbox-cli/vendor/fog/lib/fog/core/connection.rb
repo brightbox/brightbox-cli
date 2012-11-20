@@ -2,6 +2,7 @@ module Fog
   class Connection
 
     def initialize(url, persistent=false, params={})
+      Excon.defaults[:headers]['User-Agent'] ||= "fog/#{Fog::VERSION}"
       @excon = Excon.new(url, params)
       @persistent = persistent
     end
@@ -13,7 +14,7 @@ module Fog
       unless block_given?
         if (parser = params.delete(:parser))
           body = Nokogiri::XML::SAX::PushParser.new(parser)
-          block = lambda { |chunk, remaining, total| body << chunk }
+          params[:response_block] = lambda { |chunk, remaining, total| body << chunk }
         end
       end
 

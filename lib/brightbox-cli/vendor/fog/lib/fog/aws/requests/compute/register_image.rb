@@ -73,10 +73,10 @@ module Fog
               'imageOwnerId' => self.data[:owner_id],
               'isPublic' => false,
               'productCodes' => [],
-              'architecture' => 'i386',
+              'architecture' => options['Architecture'] || 'i386',
               'imageType' => 'machine',
-              'kernelId' => Fog::AWS::Mock.kernel_id,
-              'ramdiskId' => Fog::AWS::Mock.ramdisk_id,
+              'kernelId' => options['KernelId'] || Fog::AWS::Mock.kernel_id,
+              'ramdiskId' => options['RamdiskId'] || Fog::AWS::Mock.ramdisk_id,
               'platform' => 'Linux',
               'stateReason' => {},
               'imageOwnerAlias' => self.data[:owner_id],
@@ -102,7 +102,7 @@ module Fog
                 'ebs' => {}
               }
               ["DeviceName","VirtualName"].each do |n|
-                block_device_mapping = bd[n] if bd[n]
+                block_device_mapping[n] = bd[n] if bd[n]
               end
               ["SnapshotId","VolumeSize","NoDevice","DeleteOnTermination"].each do |n|
                 block_device_mapping['ebs'][n] = bd[n] if bd[n]

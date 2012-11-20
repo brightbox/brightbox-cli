@@ -15,10 +15,12 @@ require 'time'
 require 'timeout'
 
 # internal core dependencies
+require "fog/version"
 require 'fog/core/attributes'
 require 'fog/core/collection'
 require 'fog/core/connection'
 require 'fog/core/credentials'
+require 'fog/core/current_machine'
 require 'fog/core/deprecation'
 require 'fog/core/errors'
 require 'fog/core/hmac'

@@ -1,10 +1,10 @@
-require 'fog/core/model'
+require 'fog/compute/models/server'
 
 module Fog
   module Compute
     class VirtualBox
 
-      class Server < Fog::Model
+      class Server < Fog::Compute::Server
 
         identity :id
 
@@ -69,8 +69,6 @@ module Fog
         # property :usb_controller, :USBController, :readonly => true
         # property :vrde_server, :VRDEServer, :readonly => true
 
-        attr_writer :private_key, :private_key_path, :public_key, :public_key_path, :username
-
         def initialize(attributes={})
           self.memory_size = 256
           self.rtc_use_utc = true
@@ -102,26 +100,8 @@ module Fog
           nil
         end
 
-        def private_key_path
-          @private_key_path ||= Fog.credentials[:private_key_path]
-          @private_key_path &&= File.expand_path(@private_key_path)
-        end
-
-        def private_key
-          @private_key ||= private_key_path && File.read(private_key_path)
-        end
-
         def public_ip_address
           nil
-        end
-
-        def public_key_path
-          @public_key_path ||= Fog.credentials[:public_key_path]
-          @public_key_path &&= File.expand_path(@public_key_path)
-        end
-
-        def public_key
-          @public_key ||= public_key_path && File.read(public_key_path)
         end
 
         def ready?
@@ -151,15 +131,6 @@ module Fog
           end
         end
 
-        def scp(local_path, remote_path, upload_options = {})
-          raise 'Not Implemented'
-          # requires :addresses, :username
-          #
-          # options = {}
-          # options[:key_data] = [private_key] if private_key
-          # Fog::SCP.new(addresses['public'].first, username, options).upload(local_path, remote_path, scp_options)
-        end
-
         def setup(credentials = {})
           raise 'Not Implemented'
         #   requires :addresses, :identity, :public_key, :username
@@ -167,21 +138,12 @@ module Fog
         #     %{mkdir .ssh},
         #     %{echo "#{public_key}" >> ~/.ssh/authorized_keys},
         #     %{passwd -l #{username}},
-        #     %{echo "#{MultiJson.encode(attributes)}" >> ~/attributes.json},
-        #     %{echo "#{MultiJson.encode(metadata)}" >> ~/metadata.json}
+        #     %{echo "#{Fog::JSON.encode(attributes)}" >> ~/attributes.json},
+        #     %{echo "#{Fog::JSON.encode(metadata)}" >> ~/metadata.json}
         #   ])
         # rescue Errno::ECONNREFUSED
         #   sleep(1)
         #   retry
-        end
-
-        def ssh(commands)
-          raise 'Not Implemented'
-          # requires :addresses, :identity, :username
-          #
-          # options = {}
-          # options[:key_data] = [private_key] if private_key
-          # Fog::SSH.new(addresses['public'].first, username, options).run(commands)
         end
 
         def start(type = 'headless')
@@ -202,10 +164,6 @@ module Fog
             :connection => connection,
             :machine    => self
           )
-        end
-
-        def username
-          @username ||= 'root'
         end
 
         private

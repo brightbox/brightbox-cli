@@ -58,6 +58,23 @@ module Fog
           nodes.load(new_nodes)
         end
 
+        def ssl_termination
+          requires :identity
+          ssl_termination = connection.get_ssl_termination(identity).body['sslTermination']
+        rescue Fog::Rackspace::LoadBalancers::NotFound
+          nil
+        end
+
+        def enable_ssl_termination(securePort, privatekey, certificate, options = {})
+          requires :identity
+          connection.set_ssl_termination(identity, securePort, privatekey, certificate, options)
+        end
+
+        def disable_ssl_termination
+          requires :identity
+          connection.remove_ssl_termination(identity)
+        end
+
         def virtual_ips
           @virtual_ips ||= begin
             Fog::Rackspace::LoadBalancers::VirtualIps.new({
@@ -178,7 +195,14 @@ module Fog
         private
         def create
           requires :name, :protocol, :port, :virtual_ips, :nodes
-          data = connection.create_load_balancer(name, protocol, port, virtual_ips_hash, nodes_hash)
+
+          if algorithm
+            options = { :algorithm => algorithm }
+          else
+            options = {}
+          end
+
+          data = connection.create_load_balancer(name, protocol, port, virtual_ips_hash, nodes_hash, options)
           merge_attributes(data.body['loadBalancer'])
         end
 

@@ -14,10 +14,22 @@ class AWS
         "DNSName" => String,
         "HealthCheck" => {"HealthyThreshold" => Integer, "Timeout" => Integer, "UnhealthyThreshold" => Integer, "Interval" => Integer, "Target" => String},
         "Instances" => Array,
-        "ListenerDescriptions" => Array,
+        "ListenerDescriptions" => [{
+          'PolicyNames' => Array,
+          'Listener' => {
+            'InstancePort' => Integer,
+            'InstanceProtocol' => String,
+            'LoadBalancerPort' => Integer,
+            'Protocol' => String,
+            'SSLCertificateId' => Fog::Nullable::String
+          }
+        }],
         "LoadBalancerName" => String,
         "Policies" => {"LBCookieStickinessPolicies" => Array, "AppCookieStickinessPolicies" => Array},
+        "Scheme" => String,
+        "SecurityGroups" => [Fog::Nullable::String],
         "SourceSecurityGroup" => {"GroupName" => String, "OwnerAlias" => String},
+        "Subnets" => [Fog::Nullable::String]
       }
 
       CREATE_LOAD_BALANCER = BASIC.merge({
@@ -25,7 +37,7 @@ class AWS
       })
 
       DESCRIBE_LOAD_BALANCERS = BASIC.merge({
-        'DescribeLoadBalancersResult' => {'LoadBalancerDescriptions' => [LOAD_BALANCER]}
+        'DescribeLoadBalancersResult' => {'LoadBalancerDescriptions' => [LOAD_BALANCER], 'NextMarker' => Fog::Nullable::String}
       })
 
       POLICY_ATTRIBUTE_DESCRIPTION = {
@@ -58,7 +70,7 @@ class AWS
       }
 
       DESCRIBE_LOAD_BALANCER_POLICY_TYPES = BASIC.merge({
-        'DescribeLoadBalancerPolicyTypesResult' => { 'PolicyTypeDescriptions' => [POLICY_TYPE] }
+        'DescribeLoadBalancerPolicyTypesResult' => {'PolicyTypeDescriptions' => [POLICY_TYPE] }
       })
 
       CONFIGURE_HEALTH_CHECK = BASIC.merge({

@@ -14,6 +14,7 @@ module Fog
         attribute :state,       :aliases => 'status'
 
         attribute :hostname
+        attribute :fqdn
         attribute :user_data
         attribute :console_url
         attribute :fqdn
@@ -37,8 +38,10 @@ module Fog
         attribute :server_type
 
         def initialize(attributes={})
-          self.image_id   ||= 'img-4gqhs' # Ubuntu Lucid 10.04 server (i686)
+          # Call super first to initialize the 'connection' object for our default image
           super
+          # FIXME connection is actually <Fog::Compute::Brightbox::Real> not <Fog::Connection>
+          self.image_id ||= connection.default_image
         end
 
         def zone_id
@@ -70,8 +73,26 @@ module Fog
           connection.snapshot_server(identity)
         end
 
-        def reboot
-          false
+        # Directly requesting a server reboot is not supported in the API
+        # so needs to attempt a shutdown/stop, wait and start again.
+        #
+        # Default behaviour is a hard reboot because it is more reliable
+        # because the state of the server's OS is irrelevant.
+        #
+        # @param [Boolean] use_hard_reboot
+        # @return [Boolean]
+        def reboot(use_hard_reboot = true)
+          requires :identity
+          if ready?
+            unless use_hard_reboot
+              soft_reboot
+            else
+              hard_reboot
+            end
+          else
+            # Not able to reboot if not ready in the first place
+            false
+          end
         end
 
         def start
@@ -151,7 +172,32 @@ module Fog
           merge_attributes(data)
           true
         end
+
+      private
+        # Hard reboots are fast, avoiding the OS by doing a "power off"
+        def hard_reboot
+          stop
+          wait_for { ! ready? }
+          start
+        end
+
+        # Soft reboots often timeout if the OS missed the request so we do more
+        # error checking trying to detect the timeout
+        #
+        # @todo Needs cleaner error handling when the OS times out
+        def soft_reboot
+          shutdown
+          # FIXME Using side effect of wait_for's (evaluated block) to detect timeouts
+          if wait_for(20) { ! ready? }
+            # Server is now down, start it up again
+            start
+          else
+            # We timed out
+            false
+          end
+        end
       end
+
     end
   end
 end

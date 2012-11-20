@@ -20,12 +20,13 @@ Gem::Specification.new do |s|
 
   s.add_dependency 'json', '~> 1.5.3'
   s.add_dependency('builder')
-  s.add_dependency('excon', '~>0.9.0')
+  s.add_dependency('excon', '~>0.14')
   s.add_dependency('formatador', '~>0.2.0')
+  s.add_dependency('multi_json', '~>1.0')
   s.add_dependency('mime-types')
   s.add_dependency('net-ssh', '>=2.1.3')
   s.add_dependency('net-scp', '~>1.0.4')
-  s.add_dependency('nokogiri', '>=1.4.0')
+  s.add_dependency('nokogiri', '>=1.5.0')
   s.add_dependency('ruby-hmac')
   s.add_dependency('hirb','~> 0.6.0')
   s.add_dependency('highline', '~> 1.6.2')

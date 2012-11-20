@@ -26,6 +26,14 @@ Shindo.tests('AWS::Storage | object requests', ['aws']) do
       data
     end
 
+    tests("#get_object('#{@directory.identity}', 'fog_object', {'Range' => 'bytes=0-20'})").returns(lorem_file.read[0..20]) do
+      Fog::Storage[:aws].get_object(@directory.identity, 'fog_object', {'Range' => 'bytes=0-20'}).body
+    end
+
+    tests("#get_object('#{@directory.identity}', 'fog_object', {'Range' => 'bytes=0-0'})").returns(lorem_file.read[0..0]) do
+      Fog::Storage[:aws].get_object(@directory.identity, 'fog_object', {'Range' => 'bytes=0-0'}).body
+    end
+
     tests("#head_object('#{@directory.identity}', 'fog_object')").succeeds do
       Fog::Storage[:aws].head_object(@directory.identity, 'fog_object')
     end
@@ -82,6 +90,11 @@ Shindo.tests('AWS::Storage | object requests', ['aws']) do
 
     tests("#delete_object('#{@directory.identity}', 'fog_object')").succeeds do
       Fog::Storage[:aws].delete_object(@directory.identity, 'fog_object')
+    end
+    
+    tests("#get_object_http_url('#{@directory.identity}', 'fog_object', expiration timestamp)").returns(true) do
+      object_url = Fog::Storage[:aws].get_object_http_url(@directory.identity, 'fog_object', (Time.now + 60))
+      (object_url =~ /http:\/\/#{Regexp.quote(@directory.identity)}\.s3\.amazonaws\.com\/fog_object/) != nil
     end
 
   end

@@ -29,6 +29,7 @@ module Fog
         attribute :db_parameter_groups, :aliases => 'DBParameterGroups'
         attribute :backup_retention_period, :aliases => 'BackupRetentionPeriod', :type => :integer
         attribute :license_model, :aliases => 'LicenseModel'
+        attribute :db_subnet_group_name, :aliases => 'DBSubnetGroupName'
 
         attr_accessor :password, :parameter_group_name, :security_group_names, :port
 
@@ -57,6 +58,24 @@ module Fog
         def snapshots
           requires :id
           connection.snapshots(:server => self)
+        end
+
+        def tags
+          requires :id
+          connection.list_tags_for_resource(id).
+            body['ListTagsForResourceResult']['TagList']
+        end
+
+        def add_tags(new_tags)
+          requires :id
+          connection.add_tags_to_resource(id, new_tags)
+          tags
+        end
+
+        def remove_tags(tag_keys)
+          requires :id
+          connection.remove_tags_from_resource(id, tag_keys)
+          tags
         end
 
         def modify(immediately, options)
@@ -100,7 +119,8 @@ module Fog
             'PreferredMaintenanceWindow'    => preferred_maintenance_window,
             'PreferredBackupWindow'         => preferred_backup_window,
             'MultiAZ'                       => multi_az,
-            'LicenseModel'                  => license_model
+            'LicenseModel'                  => license_model,
+            'DBSubnetGroupName'             => db_subnet_group_name
           }
 
           options.delete_if {|key, value| value.nil?}

@@ -4,7 +4,6 @@ module Fog
   module AWS
     class AutoScaling
       class Group < Fog::Model
-
         identity  :id,                        :aliases => 'AutoScalingGroupName'
         attribute :arn,                       :aliases => 'AutoScalingGroupARN'
         attribute :availability_zones,        :aliases => 'AvailabilityZones'
@@ -21,10 +20,12 @@ module Fog
         attribute :min_size,                  :aliases => 'MinSize'
         attribute :placement_group,           :aliases => 'PlacementGroup'
         attribute :suspended_processes,       :aliases => 'SuspendedProcesses'
+        attribute :tags,                      :aliases => 'Tags'
+        attribute :termination_policies,      :aliases => 'TerminationPolicies'
         attribute :vpc_zone_identifier,       :aliases => 'VPCZoneIdentifier'
 
         def initialize(attributes={})
-          attributes['DefaultCooldown'] ||= 0
+          attributes['DefaultCooldown'] ||= 300
           attributes['DesiredCapacity'] ||= 0
           attributes['EnabledMetrics'] ||= []
           attributes['HealthCheckGracePeriod'] ||= 0
@@ -34,6 +35,8 @@ module Fog
           attributes['MaxSize'] ||= 0
           attributes['MinSize'] ||= 0
           attributes['SuspendedProcesses'] ||= []
+          attributes['Tags'] ||= []
+          attributes['TerminationPolicies'] ||= ['Default']
           super
         end
 
@@ -72,10 +75,7 @@ module Fog
         end
 
         def instances
-          Fog::AWS::AutoScaling::Instances.new({
-            :data => attributes['Instances'],
-            :connection => connection
-          })
+          Fog::AWS::AutoScaling::Instances.new(:connection => connection).load(attributes[:instances])
         end
 
         def instances_in_service
@@ -112,7 +112,7 @@ module Fog
           requires :max_size
           requires :min_size
 
-          connection.create_auto_scaling_group(id, availability_zones, launch_configuration_name, max_size, min_size)
+          connection.create_auto_scaling_group(id, availability_zones, launch_configuration_name, max_size, min_size, options)
           reload
         end
 
@@ -121,19 +121,26 @@ module Fog
         #  self
         #end
 
-        def destroy
+        def destroy(options = { :force => false })
           requires :id
-          connection.delete_auto_scaling_group(id)
+
+          opts = {}
+          opts.merge!({'ForceDelete' => true}) if options[:force]
+          
+          connection.delete_auto_scaling_group(id, opts)
         end
 
-      private
-
-        def update(options)
+        def update
           requires :id
           connection.update_auto_scaling_group(id, options)
           reload
         end
 
+        def options
+          ret = Hash[self.class.aliases.map { |key, value| [key, send(value)] }]
+          ret.delete_if { |key, value| value.nil? }
+          ret
+        end
       end
     end
   end
