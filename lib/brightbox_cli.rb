@@ -15,6 +15,7 @@ end
 require "json"
 require 'date'
 require 'gli'
+require "highline"
 require 'fog/brightbox'
 
 module Brightbox
@@ -38,6 +39,10 @@ require 'brightbox-cli/tables'
 require "brightbox-cli/fog_extensions"
 require "brightbox-cli/logging"
 require "brightbox-cli/api"
+require "brightbox-cli/config/cache"
+require "brightbox-cli/config/api_client"
+require "brightbox-cli/config/user_application"
+require "brightbox-cli/config/to_fog"
 require "brightbox-cli/config"
 require "brightbox-cli/version"
 require "brightbox-cli/ruby_core_ext"
