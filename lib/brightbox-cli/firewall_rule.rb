@@ -1,6 +1,7 @@
 require "pp"
 module Brightbox
   class FirewallRule < Api
+    def self.require_account?; true; end
     attr_writer :attributes
 
     def self.create(options)

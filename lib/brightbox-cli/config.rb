@@ -7,7 +7,7 @@ module Brightbox
     include Brightbox::Config::Cache
     include Brightbox::Config::ToFog
 
-    attr_writer :client_name
+    attr_writer :client_name, :account
 
     def initialize(options = {})
       @options = options
@@ -98,18 +98,20 @@ module Brightbox
 
     def finish
       begin
-        if configured? && @oauth_token != Api.conn.oauth_token
+        save_refresh_token
+        if configured? && @oauth_token != Api.conn.access_token
           File.open(oauth_token_filename + ".#{$$}", "w") do |f|
-            f.write Api.conn.oauth_token
+            f.write Api.conn.access_token
           end
           FileUtils.mv oauth_token_filename + ".#{$$}", oauth_token_filename
         end
       rescue BBConfigError
       rescue StandardError => e
+        puts e.message
+        puts e.backtrace
         warn "Error writing auth token #{oauth_token_filename}: #{e.class}: #{e}"
       end
     end
-
 
     private
     def default_config_dir

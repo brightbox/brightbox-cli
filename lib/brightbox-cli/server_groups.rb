@@ -1,6 +1,6 @@
 module Brightbox
   class ServerGroup < Api
-
+    def self.require_account?; true; end
     def self.all
       conn.server_groups
     end

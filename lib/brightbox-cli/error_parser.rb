@@ -1,13 +1,22 @@
 module Brightbox
   class ErrorParser
     include Brightbox::Logging
-    attr_accessor :socket_error
+    attr_accessor :socket_error, :token_error
 
     def initialize(socket_error)
       @socket_error = socket_error
+      @token_error = update_token()
+    end
+
+    def update_token
+      return false unless socket_error.is_a?(Excon::Errors::Unauthorized)
+      CONFIG.update_refresh_token
+    rescue
+      false
     end
 
     def pretty_print
+      return if token_error
       case socket_error
       when Excon::Errors::ServiceUnavailable
         error "Api currently unavailable"

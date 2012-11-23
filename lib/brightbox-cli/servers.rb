@@ -1,6 +1,6 @@
 module Brightbox
   class Server < Api
-
+    def self.require_account?; true; end
     def self.create_servers(count,options)
       (0...count).map {|i| create(options) }
     end

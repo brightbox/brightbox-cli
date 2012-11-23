@@ -1,6 +1,6 @@
 module Brightbox
   class FirewallPolicy < Api
-
+    def self.require_account?; true; end
     def self.create(options)
       new(conn.firewall_policies.create(options))
     end

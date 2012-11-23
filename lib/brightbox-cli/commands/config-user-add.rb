@@ -51,7 +51,7 @@ module Brightbox
 
       client_config['alias'] = calias
       client_config['app_id'] = app_id
-      client_config['secret'] = app_secret
+      client_config['app_secret'] = app_secret
       client_config['api_url'] = api_url
       client_config['auth_url'] = auth_url
 

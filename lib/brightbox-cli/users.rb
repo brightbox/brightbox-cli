@@ -1,6 +1,5 @@
 module Brightbox
   class User < Api
-
     def attributes
       fog_model.attributes
     end

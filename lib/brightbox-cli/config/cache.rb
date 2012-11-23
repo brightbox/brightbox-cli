@@ -18,9 +18,31 @@ module Brightbox
 
       def save!(options = {})
         unless options.empty?
-          client_config['refresh_token'] = fetch_refresh_token(options)
+          fetch_refresh_token(options)
         end
         write_config_file
+      end
+
+      def save_default_account(account_id)
+        selected_config['default_account'] = account_id
+        save!
+      end
+
+      def save_refresh_token
+        selected_config['refresh_token'] = Api.conn.refresh_token
+        save!
+      end
+
+      def update_refresh_token
+        return false unless using_application?
+        highline = HighLine.new()
+        highline.say("Your API credentials have expired, enter your username & password to update them.")
+        username = highline.ask("Enter your username : ")
+        password = highline.ask("Enter your password : ") { |q| q.echo = false }
+        fetch_refresh_token(:client_id => client_name, :username => username, :password => password)
+        save!
+        highline.say("Your API credentials have been updated, please re-run your command.")
+        true
       end
 
       def fetch_refresh_token(options)
@@ -28,7 +50,7 @@ module Brightbox
         client_config = config[client_name]
         user_application = Brightbox::Config::UserApplication.new(client_config, client_name)
         # replace this portion with code that actually fetches a token
-        user_application.fetch_refresh_token(options)
+        client_config['refresh_token'] = user_application.fetch_refresh_token(options)
       end
 
       def write_config_file

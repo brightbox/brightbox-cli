@@ -18,9 +18,13 @@ module Brightbox
     end
 
     def self.all
-      a = conn.account
-      a.connection = conn
-      [a]
+      if CONFIG.using_application?
+        conn.accounts.all.map {|a| a.connection = conn;a }
+      else
+        a = conn.account
+        a.connection = conn
+        [a]
+      end
     end
 
     # The account associated with this connection
@@ -31,7 +35,12 @@ module Brightbox
     end
 
     def self.get(id)
-      a = conn.account
+      if CONFIG.using_application?
+        a = conn.accounts.get(id)
+      else
+        a = conn.account
+      end
+
       a.connection = conn
       if a.id == id
         a

@@ -11,17 +11,18 @@ module Brightbox
     class Forbidden < ApiError ; end
     class InvalidArguments < ApiError ; end
 
-    @@api = nil
+    @@connection_manager = nil
 
     def self.conn
-      if @@api
-        @@api
+      if @@connection_manager
+        @@connection_manager.fetch_connection(require_account?)
       else
-        @@api = Fog::Compute.new CONFIG.to_fog
-        @@api.oauth_token = CONFIG.oauth_token
-        @@api
+        @@connection_manager = Brightbox::ConnectionManager.new(CONFIG.to_fog)
+        @@connection_manager.fetch_connection(require_account?)
       end
     end
+
+    def self.require_account?; false; end
 
     def self.klass_name
       name.split("::").last()
