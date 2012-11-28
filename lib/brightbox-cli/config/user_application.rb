@@ -22,7 +22,7 @@ module Brightbox
       end
 
       def fetch_refresh_token(options)
-        default_fog_options = password_auth_params.merge(:brightbox_username => options[:username], :brightbox_password => options[:password])
+        default_fog_options = password_auth_params.merge(:brightbox_username => options[:email], :brightbox_password => options[:password])
         connection = Fog::Compute.new(default_fog_options)
         begin
           connection.get_access_token!

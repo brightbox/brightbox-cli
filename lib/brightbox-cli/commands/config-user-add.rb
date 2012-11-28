@@ -1,6 +1,6 @@
 module Brightbox
   desc 'Add new user credentials to config'
-  arg_name 'username app-id app-secret [api_url auth_url]'
+  arg_name 'email app-id app-secret [api_url auth_url]'
   command [:user_add] do |c|
 
     c.desc "user alias, for local reference (defaults to app-id)"
@@ -12,7 +12,7 @@ module Brightbox
     c.action do |global_options, options, args|
       info "Using config file #{CONFIG.config_filename}"
 
-      username = args.shift
+      email = args.shift
       app_id = args.shift
       app_secret = args.shift
       api_url = args.shift || "https://api.gb1.brightbox.com"
@@ -55,7 +55,7 @@ module Brightbox
       client_config['api_url'] = api_url
       client_config['auth_url'] = auth_url
 
-      CONFIG.save!(:username => username, :password => password, :client_id => calias)
+      CONFIG.save!(:email => email, :password => password, :client_id => calias)
     end
   end
 end
