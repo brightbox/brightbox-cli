@@ -24,7 +24,11 @@ module Brightbox
       def fetch_refresh_token(options)
         default_fog_options = password_auth_params.merge(:brightbox_username => options[:username], :brightbox_password => options[:password])
         connection = Fog::Compute.new(default_fog_options)
-        connection.get_access_token
+        begin
+          connection.get_access_token!
+        rescue Excon::Errors::Unauthorized => e
+          raise Brightbox::Api::ApiError, "Invalid credentials"
+        end
         connection.refresh_token
       end
 

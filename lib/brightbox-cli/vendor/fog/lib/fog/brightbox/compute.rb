@@ -340,6 +340,13 @@ module Fog
           get_oauth_token(@auth_connection, @credentials)
         end
 
+        # Requests a new access token and raises if there is a problem
+        #
+        # @return [String] New access token
+        def get_access_token!
+          get_oauth_token(@auth_connection, @credentials, false)
+        end
+
       private
 
         # This makes a request of the API based on the configured setting for

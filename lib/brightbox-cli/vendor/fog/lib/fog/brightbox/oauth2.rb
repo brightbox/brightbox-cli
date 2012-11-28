@@ -10,20 +10,23 @@ module Fog::Brightbox::OAuth2
   #
   # @param [Fog::Connection] connection The connection to use for the request
   # @param [CredentialSet] credentials The credentials to use and update
+  # @param [Boolean] safe_mode Should the method handle bad authorization requests (true) or raise (false)
   #
-  # @return [String] New access token
+  # @return [String, nil] New access token
   #
-  def get_oauth_token(connection, credentials)
-    token_strategy = credentials.best_grant_strategy
-
+  def get_oauth_token(connection, credentials, safe_mode = true)
     basic_header_to_encode = "#{credentials.client_id}:#{credentials.client_secret}"
     begin
-      response = request_access_token(connection, credentials, token_strategy.authorization_body_data)
+      response = request_access_token(connection, credentials)
       response_data = Fog::JSON.decode(response.body)
       credentials.update_tokens(response_data["access_token"], response_data["refresh_token"])
     rescue Excon::Errors::Unauthorized, Excon::Errors::BadRequest
-      # We need to clear any refresh token to prevent getting stuck trying to reuse it
-      credentials.update_tokens(nil, nil)
+      if safe_mode
+        # We need to clear any refresh token to prevent getting stuck trying to reuse it
+        credentials.update_tokens(nil, nil)
+      else
+        raise
+      end
     end
     credentials.access_token
   end
@@ -33,9 +36,11 @@ module Fog::Brightbox::OAuth2
   #
   # @param [Fog::Connection] connection
   # @param [CredentialSet] credentials
-  # @param [Hash] grant_type_data
   #
-  def request_access_token(connection, credentials, grant_type_data)
+  # @return [Excon::Response]
+  def request_access_token(connection, credentials)
+    token_strategy = credentials.best_grant_strategy
+
     header_content = "#{credentials.client_id}:#{credentials.client_secret}"
     encoded_credentials = Base64.encode64(header_content).chomp
 
@@ -47,7 +52,7 @@ module Fog::Brightbox::OAuth2
         'Content-Type' => 'application/json'
       },
       :method   => 'POST',
-      :body     => Fog::JSON.encode(grant_type_data)
+      :body     => Fog::JSON.encode(token_strategy.authorization_body_data)
     })
   end
 
