@@ -107,8 +107,6 @@ module Brightbox
         end
       rescue BBConfigError
       rescue StandardError => e
-        puts e.message
-        puts e.backtrace
         warn "Error writing auth token #{oauth_token_filename}: #{e.class}: #{e}"
       end
     end

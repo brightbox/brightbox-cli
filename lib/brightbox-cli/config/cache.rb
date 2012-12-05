@@ -29,17 +29,18 @@ module Brightbox
       end
 
       def save_refresh_token
-        selected_config['refresh_token'] = Api.conn.refresh_token
-        save!
+        if Api.conn.refresh_token && !Api.conn.refresh_token.empty?
+          selected_config['refresh_token'] = Api.conn.refresh_token
+          save!
+        end
       end
 
       def update_refresh_token
         return false unless using_application?
         highline = HighLine.new()
-        highline.say("Your API credentials have expired, enter your email & password to update them.")
-        email = highline.ask("Enter your email : ")
+        highline.say("Your API credentials have expired, enter your password to update them.")
         password = highline.ask("Enter your password : ") { |q| q.echo = false }
-        fetch_refresh_token(:client_id => client_name, :email => email, :password => password)
+        fetch_refresh_token(:client_id => client_name, :email => selected_config['email'], :password => password)
         save!
         highline.say("Your API credentials have been updated, please re-run your command.")
         true

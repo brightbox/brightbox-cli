@@ -48,7 +48,16 @@ describe Brightbox::BBConfig do
         }.should raise_error(Brightbox::BBConfigError)
       end
     end
+  end
 
+  describe "updating refresh token on exit" do
+    it "should only update the token if it is non-empty" do
+      config = Brightbox::BBConfig.new()
+      config.stubs(:config_filename).returns(client_base_config.path)
+
+      config.expects(:save!).never
+      config.finish
+    end
   end
 
   def app_base_config
