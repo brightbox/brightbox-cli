@@ -34,8 +34,8 @@ module Brightbox
       a = fog_model.attributes
       if(lb_id = a[:load_balancer] || a["load_balancer"])
         a[:destination] = lb_id
-      elsif(server_group_id = a[:server_group] || a["server_group"])
-        a[:destination] = server_group
+      elsif(server_group = a[:server_group] || a["server_group"])
+        a[:destination] = server_group['id']
       else
         a[:destination] = a[:server_id]
       end
