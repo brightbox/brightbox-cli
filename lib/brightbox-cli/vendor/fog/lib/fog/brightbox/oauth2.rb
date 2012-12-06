@@ -5,32 +5,6 @@
 #
 module Fog::Brightbox::OAuth2
 
-  # This will request a new API access token based on the credentials available
-  # to the service.
-  #
-  # @param [Fog::Connection] connection The connection to use for the request
-  # @param [CredentialSet] credentials The credentials to use and update
-  # @param [Boolean] safe_mode Should the method handle bad authorization requests (true) or raise (false)
-  #
-  # @return [String, nil] New access token
-  #
-  def get_oauth_token(connection, credentials, safe_mode = true)
-    basic_header_to_encode = "#{credentials.client_id}:#{credentials.client_secret}"
-    begin
-      response = request_access_token(connection, credentials)
-      response_data = Fog::JSON.decode(response.body)
-      credentials.update_tokens(response_data["access_token"], response_data["refresh_token"])
-    rescue Excon::Errors::Unauthorized, Excon::Errors::BadRequest
-      if safe_mode
-        # We need to clear any refresh token to prevent getting stuck trying to reuse it
-        credentials.update_tokens(nil, nil)
-      else
-        raise
-      end
-    end
-    credentials.access_token
-  end
-
   # This builds the simplest form of requesting an access token
   # based on the arguments passed in
   #
@@ -163,6 +137,9 @@ module Fog::Brightbox::OAuth2
     end
   end
 
+  # This strategy attempts to use a refresh_token gained during an earlier
+  # request to reuse the credentials given originally
+  #
   class RefreshTokenStrategy < GrantTypeStrategy
     def authorization_body_data
       {
@@ -171,5 +148,17 @@ module Fog::Brightbox::OAuth2
         "refresh_token" => @credentials.refresh_token
       }
     end
+  end
+
+private
+
+  # This updates the current credentials if passed a valid response
+  #
+  # @param [CredentialSet] credentials Credentials to update
+  # @param [Excon::Response] response Response object to parse value from
+  #
+  def update_credentials_from_response(credentials, response)
+    response_data = Fog::JSON.decode(response.body)
+    credentials.update_tokens(response_data["access_token"], response_data["refresh_token"])
   end
 end

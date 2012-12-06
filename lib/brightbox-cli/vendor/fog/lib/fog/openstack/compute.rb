@@ -190,15 +190,19 @@ module Fog
               :security_groups => {},
               :addresses => {},
               :quota => {
-                'metadata_items' => 128,
+                'security_group_rules' => 20,
+                'security_groups' => 10,
                 'injected_file_content_bytes' => 10240,
+                'injected_file_path_bytes' => 256,
                 'injected_files' => 5,
-                'gigabytes' => 1000,
-                'ram' => 51200,
-                'floating_ips' => 10,
-                'instances' => 10,
-                'volumes' => 10,
-                'cores' => 20,
+                'metadata_items' => 128,
+                'floating_ips'   => 10,
+                'instances'      => 10,
+                'key_pairs'      => 10,
+                'gigabytes'      => 5000,
+                'volumes'        => 10,
+                'cores'          => 20,
+                'ram'            => 51200
               }
             }
           end
@@ -210,8 +214,9 @@ module Fog
 
         def initialize(options={})
           @openstack_username = options[:openstack_username]
-          @openstack_tenant   = options[:openstack_tenant]
           @openstack_auth_uri = URI.parse(options[:openstack_auth_url])
+
+          @current_tenant = options[:openstack_tenant]
 
           @auth_token = Fog::Mock.random_base64(64)
           @auth_token_expiration = (Time.now.utc + 86400).iso8601
@@ -227,11 +232,11 @@ module Fog
         end
 
         def data
-          self.class.data["#{@openstack_username}-#{@openstack_tenant}"]
+          self.class.data["#{@openstack_username}-#{@current_tenant}"]
         end
 
         def reset_data
-          self.class.data.delete("#{@openstack_username}-#{@openstack_tenant}")
+          self.class.data.delete("#{@openstack_username}-#{@current_tenant}")
         end
 
         def credentials

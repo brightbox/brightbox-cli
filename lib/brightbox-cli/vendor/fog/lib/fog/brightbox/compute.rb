@@ -147,44 +147,12 @@ module Fog
       request :update_user
 
       module Shared
-        # Returns an identifier for the default image for use
-        #
-        # Currently tries to find the latest version Ubuntu LTS (i686) widening
-        # up to the latest, official version of Ubuntu available.
-        #
-        # Highly recommended that you actually select the image you want to run
-        # on your servers yourself!
-        #
-        # @return [String, nil]
-        def default_image
-          return @default_image_id unless @default_image_id.nil?
-          @default_image_id = Fog.credentials[:brightbox_default_image] || select_default_image
-        end
-      end
-
-      class Mock
-        include Shared
-
-        def initialize(options)
-          @brightbox_client_id = options[:brightbox_client_id] || Fog.credentials[:brightbox_client_id]
-          @brightbox_secret = options[:brightbox_secret] || Fog.credentials[:brightbox_secret]
-        end
-
-        def request(options)
-          raise "Not implemented"
-        end
-
-      private
-        def select_default_image
-          "img-mockd"
-        end
-      end
-
-      class Real
-        include Shared
         include Fog::Brightbox::OAuth2
 
         # Creates a new instance of the Brightbox Compute service
+        #
+        # @note If you open a connection using just a refresh token when it
+        #   expires the service will no longer be able to authenticate.
         #
         # @param [Hash] options
         # @option options [String] :brightbox_api_url   Override the default (or configured) API endpoint
@@ -224,57 +192,13 @@ module Fog
           @credentials         = CredentialSet.new(client_id, client_secret, credential_options)
 
           # If existing tokens have been cached, allow continued use of them in the service
-          # Note - if you use ONLY client and existing USER tokens as soon as the tokens expire
-          # then the authentication will break because it will be unable to get use the
-          # refresh token (due to code path) or request new user tokens (altering the connection)
           @credentials.update_tokens(options[:brightbox_access_token], options[:brightbox_refresh_token])
 
           @token_management    = options.fetch(:brightbox_token_management, true)
         end
 
-        # Makes an API request to the given path using passed options or those
-        # set with the service setup
-        #
-        # @todo Standard Fog behaviour is to return the Excon::Response but
-        #   this was unintentionally changed to be the Hash version of the
-        #   data in the body. This loses access to some details and should
-        #   be corrected in a backwards compatible manner
-        #
-        # @param [String] method HTTP method to use for the request
-        # @param [String] path   The absolute path for the request
-        # @param [Array<Fixnum>] expected_responses HTTP response codes that have been successful
-        # @param [Hash]  parameters Keys and values for JSON
-        # @option parameters [String] :account_id The scoping account if required
-        #
-        # @return [Hash]
-        def request(method, path, expected_responses, parameters = {})
-          request_options = {
-            :method   => method.to_s.upcase,
-            :path     => path,
-            :expects  => expected_responses
-          }
-
-          # Select the account to scope for this request
-          account = scoped_account(parameters.fetch(:account_id, nil))
-          if account
-            request_options[:query] = { :account_id => account }
-          end
-
-          request_options[:body] = Fog::JSON.encode(parameters) unless parameters.empty?
-
-          response = make_request(request_options)
-
-          # FIXME We should revert to returning the Excon::Request after a suitable
-          # configuration option is in place to switch back to this incorrect behaviour
-          unless response.body.empty?
-            Fog::JSON.decode(response.body)
-          else
-            response
-          end
-        end
-
         # Sets the scoped account for future requests
-        # @param [String]
+        # @param [String] scoped_account Identifier of the account to scope request to
         def scoped_account=(scoped_account)
           @scoped_account = scoped_account
         end
@@ -337,14 +261,37 @@ module Fog
         #
         # @return [String] New access token
         def get_access_token
-          get_oauth_token(@auth_connection, @credentials)
+          begin
+            get_access_token!
+          rescue Excon::Errors::Unauthorized, Excon::Errors::BadRequest
+            @credentials.update_tokens(nil, nil)
+          end
+          @credentials.access_token
         end
 
         # Requests a new access token and raises if there is a problem
         #
         # @return [String] New access token
+        # @raise [Excon::Errors::BadRequest] The credentials are expired or incorrect
+        #
         def get_access_token!
-          get_oauth_token(@auth_connection, @credentials, false)
+          response = request_access_token(@auth_connection, @credentials)
+          update_credentials_from_response(@credentials, response)
+          @credentials.access_token
+        end
+
+        # Returns an identifier for the default image for use
+        #
+        # Currently tries to find the latest version Ubuntu LTS (i686) widening
+        # up to the latest, official version of Ubuntu available.
+        #
+        # Highly recommended that you actually select the image you want to run
+        # on your servers yourself!
+        #
+        # @return [String, nil]
+        def default_image
+          return @default_image_id unless @default_image_id.nil?
+          @default_image_id = Fog.credentials[:brightbox_default_image] || select_default_image
         end
 
       private
@@ -396,6 +343,83 @@ module Fog
           #   credentials and options
           @connection.request(options)
         end
+      end
+
+      # The Mock Service allows you to run a fake instance of the Service
+      # which makes no real connections.
+      #
+      # @todo Implement
+      #
+      class Mock
+        include Shared
+
+        def request(method, path, expected_responses, parameters = {})
+          _request
+        end
+
+        def request_access_token(connection, credentials)
+          _request
+        end
+
+      private
+
+        def _request
+          raise Fog::Errors::MockNotImplemented
+        end
+
+        def select_default_image
+          "img-mockd"
+        end
+      end
+
+      # The Real Service actually makes real connections to the Brightbox
+      # service.
+      #
+      class Real
+        include Shared
+
+        # Makes an API request to the given path using passed options or those
+        # set with the service setup
+        #
+        # @todo Standard Fog behaviour is to return the Excon::Response but
+        #   this was unintentionally changed to be the Hash version of the
+        #   data in the body. This loses access to some details and should
+        #   be corrected in a backwards compatible manner
+        #
+        # @param [String] method HTTP method to use for the request
+        # @param [String] path   The absolute path for the request
+        # @param [Array<Fixnum>] expected_responses HTTP response codes that have been successful
+        # @param [Hash]  parameters Keys and values for JSON
+        # @option parameters [String] :account_id The scoping account if required
+        #
+        # @return [Hash]
+        def request(method, path, expected_responses, parameters = {})
+          request_options = {
+            :method   => method.to_s.upcase,
+            :path     => path,
+            :expects  => expected_responses
+          }
+
+          # Select the account to scope for this request
+          account = scoped_account(parameters.fetch(:account_id, nil))
+          if account
+            request_options[:query] = { :account_id => account }
+          end
+
+          request_options[:body] = Fog::JSON.encode(parameters) unless parameters.empty?
+
+          response = make_request(request_options)
+
+          # FIXME We should revert to returning the Excon::Request after a suitable
+          # configuration option is in place to switch back to this incorrect behaviour
+          unless response.body.empty?
+            Fog::JSON.decode(response.body)
+          else
+            response
+          end
+        end
+
+      private
 
         # Queries the API and tries to select the most suitable official Image
         # to use if the user chooses not to select their own.
