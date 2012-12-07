@@ -24,6 +24,8 @@ module Brightbox
     CONFIG.client_name = ENV["CLIENT"] if ENV["CLIENT"]
     CONFIG.client_name = global_options[:c] if global_options[:c]
 
+    Excon.defaults[:headers]['User-Agent'] ||= "brightbox-cli/#{Brightbox::VERSION}"
+
     if global_options[:k] or ENV["INSECURE"]
       Excon.defaults[:ssl_verify_peer] = false
     end
