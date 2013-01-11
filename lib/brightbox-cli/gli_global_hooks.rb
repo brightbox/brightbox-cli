@@ -29,7 +29,7 @@ module Brightbox
     CONFIG.account = ENV["ACCOUNT"] if ENV["ACCOUNT"]
     CONFIG.account = global_options[:account] if global_options[:account]
 
-    Excon.defaults[:headers]['User-Agent'] ||= "brightbox-cli/#{Brightbox::VERSION}"
+    Excon.defaults[:headers]['User-Agent'] = "brightbox-cli/#{Brightbox::VERSION} Fog/#{Fog::VERSION}"
 
     if global_options[:k] or ENV["INSECURE"]
       Excon.defaults[:ssl_verify_peer] = false
