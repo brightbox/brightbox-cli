@@ -7,17 +7,23 @@ module Fog
     class AWS
 
       class Directory < Fog::Model
+        VALID_ACLS = ['private', 'public-read', 'public-read-write', 'authenticated-read']
+
+        # See http://docs.amazonwebservices.com/AmazonS3/latest/API/RESTBucketPUT.html
+        INVALID_LOCATIONS = ['us-east-1']
+
+        attr_reader :acl
 
         identity  :key,           :aliases => ['Name', 'name']
 
         attribute :creation_date, :aliases => 'CreationDate'
 
         def acl=(new_acl)
-          valid_acls = ['private', 'public-read', 'public-read-write', 'authenticated-read']
-          unless valid_acls.include?(new_acl)
-            raise ArgumentError.new("acl must be one of [#{valid_acls.join(', ')}]")
+          unless VALID_ACLS.include?(new_acl)
+            raise ArgumentError.new("acl must be one of [#{VALID_ACLS.join(', ')}]")
+          else
+            @acl = new_acl
           end
-          @acl = new_acl
         end
 
         def destroy
@@ -30,21 +36,19 @@ module Fog
 
         def location
           requires :key
-          data = connection.get_bucket_location(key)
-          data.body['LocationConstraint']
+          attributes[:location] || bucket_location || self.connection.region
         end
 
         def location=(new_location)
-          @location = new_location
+          if INVALID_LOCATIONS.include?(new_location)
+            raise ArgumentError, "location must not include any of #{INVALID_LOCATIONS.join(', ')}. See http://docs.amazonwebservices.com/AmazonS3/latest/API/RESTBucketPUT.html"
+          else
+            merge_attributes(:location => new_location)
+          end
         end
 
         def files
-          @files ||= begin
-            Fog::Storage::AWS::Files.new(
-              :directory    => self,
-              :connection   => connection
-            )
-          end
+          @files ||= Fog::Storage::AWS::Files.new(:directory => self, :connection => connection)
         end
 
         def payer
@@ -71,27 +75,18 @@ module Fog
         end
 
         def versions
-          @versions ||= begin
-            Fog::Storage::AWS::Versions.new(
-                :directory    => self,
-                :connection   => connection
-            )
-          end
+          @versions ||= Fog::Storage::AWS::Versions.new(:directory => self, :connection => connection)
         end
 
         def public=(new_public)
-          if new_public
-            @acl = 'public-read'
-          else
-            @acl = 'private'
-          end
+          self.acl = new_public ? 'public-read' : 'private'
           new_public
         end
 
         def public_url
           requires :key
           if connection.get_bucket_acl(key).body['AccessControlList'].detect {|grant| grant['Grantee']['URI'] == 'http://acs.amazonaws.com/groups/global/AllUsers' && grant['Permission'] == 'READ'}
-            if key.to_s =~ /^(?:[a-z]|\d(?!\d{0,2}(?:\.\d{1,3}){3}$))(?:[a-z0-9]|\-(?![\.])){1,61}[a-z0-9]$/
+            if key.to_s =~ Fog::AWS::COMPLIANT_BUCKET_NAMES
               "https://#{key}.s3.amazonaws.com"
             else
               "https://s3.amazonaws.com/#{key}"
@@ -103,13 +98,25 @@ module Fog
 
         def save
           requires :key
+
           options = {}
-          if @acl
-            options['x-amz-acl'] = @acl
+
+          options['x-amz-acl'] = acl if acl
+
+          if location = attributes[:location] || (self.connection.region != 'us-east-1' && self.connection.region)
+            options['LocationConstraint'] = location
           end
-          options['LocationConstraint'] = @location || self.connection.region
+
           connection.put_bucket(key, options)
+
           true
+        end
+
+        private
+
+        def bucket_location
+          data = connection.get_bucket_location(key)
+          data.body['LocationConstraint']
         end
 
       end

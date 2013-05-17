@@ -1,5 +1,6 @@
 module Brightbox
   class CloudIP < Api
+    def self.require_account?; true; end
     def self.get id
       conn.cloud_ips.get id
     end

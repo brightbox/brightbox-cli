@@ -4,8 +4,10 @@ module Brightbox
   class BBConfig
     require 'fileutils'
     require 'ini'
+    include Brightbox::Config::Cache
+    include Brightbox::Config::ToFog
 
-    attr_writer :client_name
+    attr_writer :client_name, :account
 
     def initialize(options = {})
       @options = options
@@ -22,15 +24,7 @@ module Brightbox
     def dir
       return @dir if @dir
       return nil if @dir == false
-      @dir = File.expand_path(@options[:dir] || default_config_dir)
-      @config_filename = File.join(@dir, 'config')
-      # Make the directory if necessary
-      unless File.exists? @dir
-        begin
-          FileUtils.mkdir @dir
-        rescue Errno::EEXIST
-        end
-      end
+      create_directory
       #
       if File.directory? @dir
         @dir
@@ -47,25 +41,6 @@ module Brightbox
 
     def oauth_token_filename
       @oauth_token_filename ||= File.join(dir, client_name + '.oauth_token')
-    end
-
-    def cache_path
-      if @cache_path
-        @cache_path
-      else
-        @cache_path = File.join(dir, 'cache')
-        unless File.exists? @cache_path
-          begin
-            FileUtils.mkdir @cache_path
-          rescue Errno::EEXIST
-          end
-        end
-        @cache_path
-      end
-    end
-
-    def cache_id(cid)
-      FileUtils.touch(File.join(cache_path, cid)) unless cid.nil?
     end
 
     def config
@@ -85,12 +60,6 @@ module Brightbox
       config.delete_section name
     end
 
-    def save!
-      if @config.is_a? Ini
-        @config.write
-      end
-    end
-
     def clients
       config.sections.find_all { |s| s != 'core' }
     end
@@ -108,26 +77,8 @@ module Brightbox
     end
 
     def alias
-      return nil if config[client_name].nil?
-      config[client_name]['alias']
-    end
-
-    def to_fog
-      raise Ini::Error, "No api client configured" unless configured?
-      c = config[client_name]
-      %w{api_url client_id secret}.each do |k|
-        if c[k].to_s.empty?
-          raise BBConfigError, "#{k} option missing from config in section #{client_name}"
-        end
-      end
-      {
-        :provider => 'Brightbox',
-        :brightbox_api_url => c['api_url'],
-        :brightbox_auth_url => c['auth_url'] || c['api_url'],
-        :brightbox_client_id => c['client_id'],
-        :brightbox_secret => c['secret'],
-        :persistent => (c["persistent"] != nil ? c["persistent"] : true)
-      }
+      return nil if selected_config.nil?
+      selected_config['alias']
     end
 
     def api_hostname
@@ -137,25 +88,20 @@ module Brightbox
     end
 
     def oauth_token
-      if @oauth_token.nil?
-        if File.exists? oauth_token_filename
-          File.open(oauth_token_filename, "r") do |f|
-            @oauth_token = f.read.chomp
-          end
-          @oauth_token
-        else
-          @oauth_token = nil
-        end
+      return @oauth_token if defined?(@oauth_token)
+      if File.exists?(oauth_token_filename)
+        @oauth_token = read_cached_token
       else
-        @oauth_token ? @oauth_token : nil
+        @oauth_token = nil
       end
     end
 
     def finish
       begin
-        if configured? && @oauth_token != Api.conn.oauth_token
+        save_refresh_token
+        if configured? && @oauth_token != Api.conn.access_token
           File.open(oauth_token_filename + ".#{$$}", "w") do |f|
-            f.write Api.conn.oauth_token
+            f.write Api.conn.access_token
           end
           FileUtils.mv oauth_token_filename + ".#{$$}", oauth_token_filename
         end
@@ -165,17 +111,37 @@ module Brightbox
       end
     end
 
+    private
+    def default_config_dir
+      File.join(ENV['HOME'],'.brightbox')
+    end
+
+    def selected_config
+      config[client_name]
+    end
+
     def configured?
       configured = client_name != nil && !clients.empty?
-      if configured && (config[client_name].nil? || config[client_name].empty?)
+      if configured && (selected_config.nil? || selected_config.empty?)
         raise BBConfigError, "client id or alias #{client_name.inspect} not defined in config"
       end
       configured
     end
 
-    private
-    def default_config_dir
-      File.join(ENV['HOME'],'.brightbox')
+    def create_directory
+      @dir = File.expand_path(@options[:dir] || default_config_dir)
+      @config_filename = File.join(@dir, 'config')
+      # Make the directory if necessary
+      unless File.exists? @dir
+        begin
+          FileUtils.mkdir @dir
+        rescue Errno::EEXIST
+        end
+      end
+    end
+
+    def read_cached_token
+      File.open(oauth_token_filename, "r") { |fl| fl.read.chomp }
     end
 
   end

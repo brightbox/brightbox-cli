@@ -1,4 +1,4 @@
-require(File.expand_path(File.join(File.dirname(__FILE__), 'core')))
+require 'fog/core'
 
 module Fog
   module Rackspace
@@ -13,8 +13,11 @@ module Fog
             data = nil
             message = nil
           else
-            data = MultiJson.decode(error.response.body)
+            data = Fog::JSON.decode(error.response.body)
             message = data['message']
+            if message.nil? and !data.values.first.nil?
+              message = data.values.first['message']
+            end
           end
 
           new_error = super(error, message)
@@ -29,24 +32,28 @@ module Fog
       class ServiceUnavailable < ServiceError; end
 
       class BadRequest < ServiceError
-        #TODO - Need to find a bette way to print out these validation errors when they are thrown
+        #TODO - Need to find a better way to print out these validation errors when they are thrown
         attr_reader :validation_errors
 
         def self.slurp(error)
           new_error = super(error)
-          unless new_error.response_data.nil?
-            new_error.instance_variable_set(:@validation_errors, new_error.response_data['validationErrors'])
+          unless new_error.response_data.nil? or new_error.response_data['badRequest'].nil?
+            new_error.instance_variable_set(:@validation_errors, new_error.response_data['badRequest']['validationErrors'])
           end
           new_error
         end
       end
     end
 
-    service(:cdn,             'rackspace/cdn',            'CDN')
-    service(:compute,         'rackspace/compute',        'Compute')
-    service(:dns,             'rackspace/dns',            'DNS')
-    service(:storage,         'rackspace/storage',        'Storage')
-    service(:load_balancers,  'rackspace/load_balancers', 'LoadBalancers')
+    service(:block_storage,    'rackspace/block_storage',     'BlockStorage')
+    service(:cdn,              'rackspace/cdn',               'CDN')
+    service(:compute,          'rackspace/compute',           'Compute')
+    service(:compute_v2,       'rackspace/compute_v2',        'Compute v2')
+    service(:dns,              'rackspace/dns',               'DNS')
+    service(:storage,          'rackspace/storage',           'Storage')
+    service(:load_balancers,   'rackspace/load_balancers',    'LoadBalancers')
+    service(:identity,         'rackspace/identity',          'Identity')
+    service(:databases,        'rackspace/databases',         'Databases')
 
     def self.authenticate(options, connection_options = {})
       rackspace_auth_url = options[:rackspace_auth_url] || "auth.api.rackspacecloud.com"

@@ -1,6 +1,6 @@
 module Brightbox
   class LoadBalancer < Api
-
+    def self.require_account?; true; end
     def self.create(options)
       new(conn.load_balancers.create(options))
     end

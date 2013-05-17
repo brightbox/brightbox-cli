@@ -7,6 +7,9 @@ module Brightbox
   desc "Set the api client to use (named in #{CONFIG.config_filename})"
   flag [:c, :client]
 
+  desc "Set the account to use"
+  flag :account
+
   desc "Disable peer SSL certificate verification"
   switch [:k, :insecure]
 
@@ -23,6 +26,10 @@ module Brightbox
   pre do |global_options, command, options, args|
     CONFIG.client_name = ENV["CLIENT"] if ENV["CLIENT"]
     CONFIG.client_name = global_options[:c] if global_options[:c]
+    CONFIG.account = ENV["ACCOUNT"] if ENV["ACCOUNT"]
+    CONFIG.account = global_options[:account] if global_options[:account]
+
+    Excon.defaults[:headers]['User-Agent'] = "brightbox-cli/#{Brightbox::VERSION} Fog/#{Fog::VERSION}"
 
     Excon.defaults[:headers]['User-Agent'] ||= "brightbox-cli/#{Brightbox::VERSION}"
 

@@ -1,6 +1,6 @@
 module Brightbox
   class Type < Api
-
+    def self.require_account?; true; end
     def attributes
       o = fog_model.attributes
       o[:ram] = ram

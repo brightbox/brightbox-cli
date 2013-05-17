@@ -7,7 +7,9 @@ module Fog
 
     def self.new(attributes)
       attributes = attributes.dup # prevent delete from having side effects
-      case provider = attributes.delete(:provider).to_s.downcase.to_sym
+      provider = attributes.delete(:provider).to_s.downcase.to_sym
+
+      case provider
       when :aws
         require 'fog/aws/compute'
         Fog::Compute::AWS.new(attributes)
@@ -32,6 +34,12 @@ module Fog
       when :gogrid
         require 'fog/go_grid/compute'
         Fog::Compute::GoGrid.new(attributes)
+      when :hp
+        require 'fog/hp/compute'
+        Fog::Compute::HP.new(attributes)
+      when :ibm
+        require 'fog/ibm/compute'
+        Fog::Compute::IBM.new(attributes)
       when :joyent
         require 'fog/joyent/compute'
         Fog::Compute::Joyent.new(attributes)
@@ -58,11 +66,18 @@ module Fog
         require 'fog/ovirt/compute'
         Fog::Compute::Ovirt.new(attributes)
       when :rackspace
-        require 'fog/rackspace/compute'
-        Fog::Compute::Rackspace.new(attributes)
-      when :slicehost
-        require 'fog/slicehost/compute'
-        Fog::Compute::Slicehost.new(attributes)
+        version = attributes.delete(:version) 
+        version = version.to_s.downcase.to_sym unless version.nil?
+        if version == :v2
+          require 'fog/rackspace/compute_v2'
+          Fog::Compute::RackspaceV2.new(attributes)
+        else
+          require 'fog/rackspace/compute'
+          Fog::Compute::Rackspace.new(attributes)
+        end
+      when :serverlove
+        require 'fog/serverlove/compute'
+        Fog::Compute::Serverlove.new(attributes)
       when :stormondemand
         require 'fog/storm_on_demand/compute'
         Fog::Compute::StormOnDemand.new(attributes)
@@ -81,6 +96,9 @@ module Fog
       when :vsphere
         require 'fog/vsphere/compute'
         Fog::Compute::Vsphere.new(attributes)
+      when :xenserver
+        require 'fog/xenserver/compute'
+        Fog::Compute::XenServer.new(attributes)
       else
         raise ArgumentError.new("#{provider} is not a recognized compute provider")
       end

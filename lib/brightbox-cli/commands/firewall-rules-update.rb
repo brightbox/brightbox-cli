@@ -1,6 +1,6 @@
 module Brightbox
   desc 'Update Firewall Rule'
-  arg_name '[firewall-policy-id...]'
+  arg_name '[firewall-rule-id...]'
 
   command [:update] do |c|
     c.desc "Protocol - [tcp/udp/icmp/Protocol numbers]"

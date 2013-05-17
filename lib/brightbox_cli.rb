@@ -15,7 +15,8 @@ end
 require "json"
 require 'date'
 require 'gli'
-require 'fog/brightbox'
+require "highline"
+require 'fog'
 
 module Brightbox
   autoload :Server, "brightbox-cli/servers"
@@ -34,10 +35,14 @@ module Brightbox
   autoload :FirewallRules, "brightbox-cli/firewall_rules"
 end
 
+require "brightbox-cli/connection_manager"
 require 'brightbox-cli/tables'
-require "brightbox-cli/fog_extensions"
 require "brightbox-cli/logging"
 require "brightbox-cli/api"
+require "brightbox-cli/config/cache"
+require "brightbox-cli/config/api_client"
+require "brightbox-cli/config/user_application"
+require "brightbox-cli/config/to_fog"
 require "brightbox-cli/config"
 require "brightbox-cli/version"
 require "brightbox-cli/ruby_core_ext"

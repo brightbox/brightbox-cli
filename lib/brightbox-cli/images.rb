@@ -1,6 +1,6 @@
 module Brightbox
   class Image < Api
-
+    def self.require_account?; true; end
     def self.all
       conn.images
     end
