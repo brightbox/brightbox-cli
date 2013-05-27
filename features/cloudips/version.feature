@@ -3,5 +3,5 @@ Feature: Version
   Users should be able to discover the version of the "brightbox-cloudips" command
 
   Scenario: Get version
-    When I run `brightbox-cloudips version`
+    When I run `brightbox-cloudips -v`
     Then the output should contain the version information

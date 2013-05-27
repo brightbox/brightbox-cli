@@ -3,5 +3,5 @@ Feature: Version
   Users should be able to discover the version of the "brightbox-lbs" command
 
   Scenario: Get version
-    When I run `brightbox-lbs version`
+    When I run `brightbox-lbs -v`
     Then the output should contain the version information

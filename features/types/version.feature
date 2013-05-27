@@ -3,5 +3,5 @@ Feature: Version
   Users should be able to discover the version of the "brightbox-types" command
 
   Scenario: Get version
-    When I run `brightbox-types version`
+    When I run `brightbox-types -v`
     Then the output should contain the version information

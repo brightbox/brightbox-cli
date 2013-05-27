@@ -3,5 +3,5 @@ Feature: Version
   Users should be able to discover the version of the "brightbox-config" command
 
   Scenario: Get version
-    When I run `brightbox-config version`
+    When I run `brightbox-config -v`
     Then the output should contain the version information

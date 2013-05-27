@@ -3,5 +3,5 @@ Feature: Version
   Users should be able to discover the version of the "brightbox-accounts" command
 
   Scenario: Get version
-    When I run `brightbox-accounts version`
+    When I run `brightbox-accounts -v`
     Then the output should contain the version information
