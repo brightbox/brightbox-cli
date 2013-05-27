@@ -11,8 +11,10 @@ module Brightbox
     c.desc "Specify the user data from a local file"
     c.flag [:f, "user-data-file"]
 
-    c.desc "Don't base64 encode the user data"
-    c.switch [:e, :no_base64]
+    c.desc "base64 encode the user data"
+    c.default_value true
+    c.switch [:e, :base64], :negatable => true
+
 
     c.desc "Use compatibility mode"
     c.switch [:c, :compatibility_mode]
@@ -42,7 +44,7 @@ module Brightbox
       end
 
       if user_data
-        unless options[:e]
+        if options[:e]
           require 'base64'
           user_data = Base64.encode64(user_data)
         end
