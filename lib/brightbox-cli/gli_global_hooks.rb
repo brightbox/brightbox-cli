@@ -6,7 +6,7 @@ module Brightbox
 
   # Global options
   desc "Simple output (tab separated, don't draw fancy tables)"
-  switch [:s, :simple]
+  switch [:s, :simple], :negatable => false
 
   desc "Set the api client to use (named in #{CONFIG.config_filename})"
   flag [:c, :client]
@@ -15,7 +15,7 @@ module Brightbox
   flag :account
 
   desc "Disable peer SSL certificate verification"
-  switch [:k, :insecure]
+  switch [:k, :insecure], :negatable => false
 
   # Load the command libraries for the current group
   cmd_group_name = File.basename($0).gsub(/brightbox\-/, '')

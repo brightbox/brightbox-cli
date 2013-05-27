@@ -5,7 +5,7 @@ module Brightbox
 
     c.desc "Number of servers to create"
     c.default_value 1
-    c.flag [:i, "server-count"]
+    c.flag [:i, "server-count"], :type => Integer
 
     c.desc "Zone to create the servers in"
     c.flag [:z, "zone"]
@@ -34,12 +34,6 @@ module Brightbox
       if args.empty?
         raise "You must specify the image_id as the first argument"
       end
-
-      if options[:i].to_s !~ /^[0-9]+$/
-        raise "server-count must be a number"
-      end
-
-      options[:i] = options[:i].to_i
 
       image_id = args.shift
       image = Image.find image_id

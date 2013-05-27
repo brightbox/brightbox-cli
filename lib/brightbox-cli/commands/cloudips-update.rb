@@ -6,7 +6,7 @@ module Brightbox
     c.flag [:r, "reverse-dns"]
 
     c.desc "Delete the reverse DNS for this Cloud IP"
-    c.switch ["delete-reverse-dns"]
+    c.switch ["delete-reverse-dns"], :negatable => false
 
     c.desc "Friendly name of the Cloud IP"
     c.flag [:n, :name]

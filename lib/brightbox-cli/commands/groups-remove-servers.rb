@@ -4,7 +4,7 @@ module Brightbox
   command [:remove_servers] do |c|
 
     c.desc "Remove all servers from group"
-    c.switch [:a, :all]
+    c.switch [:a, :all], :negatable => false
 
     c.action do |global_options, options, args|
       grp_id = args.shift
