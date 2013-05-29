@@ -14,9 +14,8 @@ module Brightbox
     c.desc "Don't base64 encode the user data"
     c.switch [:e, :no_base64]
 
-    c.desc "Set the compatibility mode (true or false)"
-    c.default_value "false"
-    c.flag [:c, :compatibility_mode]
+    c.desc "Use compatibility mode"
+    c.switch [:c, :compatibility_mode]
 
     c.action do |global_options, options, args|
       srv_id = args.shift
@@ -50,16 +49,10 @@ module Brightbox
         raise "User data too big (>16k)" if user_data.size > 16 * 1024
       end
 
-      if options[:c] == "true"
-        compatibility_flag = true
-      else
-        compatibility_flag = false
-      end
-
       params = NilableHash.new
       params[:name] = options[:n] if options[:n]
       params[:user_data] = user_data if user_data
-      params[:compatibility_mode] = compatibility_flag
+      params[:compatibility_mode] = options[:c]
       params.nilify_blanks
 
       info "Updating server #{server}#{" with %.2fk of user data" % (user_data.size / 1024.0) if user_data}"
