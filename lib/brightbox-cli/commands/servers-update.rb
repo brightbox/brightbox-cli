@@ -14,7 +14,8 @@ module Brightbox
     c.desc "Don't base64 encode the user data"
     c.switch [:e, :no_base64]
 
-    c.desc "Set the compatibility mode (true or false) (default: false)"
+    c.desc "Set the compatibility mode (true or false)"
+    c.default_value "false"
     c.flag [:c, :compatibility_mode]
 
     c.action do |global_options, options, args|
