@@ -14,6 +14,9 @@ module Brightbox
     c.desc "Don't base64 encode the user data"
     c.switch [:e, :no_base64]
 
+    c.desc "Use compatibility mode"
+    c.switch [:c, :compatibility_mode]
+
     c.action do |global_options, options, args|
       srv_id = args.shift
       raise "You must specify a valid server id as the first argument" unless srv_id =~ /^srv-/
@@ -49,6 +52,7 @@ module Brightbox
       params = NilableHash.new
       params[:name] = options[:n] if options[:n]
       params[:user_data] = user_data if user_data
+      params[:compatibility_mode] = options[:c]
       params.nilify_blanks
 
       info "Updating server #{server}#{" with %.2fk of user data" % (user_data.size / 1024.0) if user_data}"
