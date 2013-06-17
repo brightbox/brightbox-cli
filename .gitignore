@@ -1,8 +1,14 @@
 Gemfile.lock
 local
 pkg/
+
+# Testing config fixtures
+spec/fixtures/config_files/cache/*
+
+# Old versions
 spec/brightbox/config
 spec/brightbox/cache/
+
 .bundle/
 .rbenv-version
 .rbx/

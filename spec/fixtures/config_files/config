@@ -1,0 +1,8 @@
+[core]
+default_client = testing
+
+[testing]
+api_url = https://api.gb1s.brightbox.com
+alias = testing
+client_id = cli-testr
+secret = notsosecret
