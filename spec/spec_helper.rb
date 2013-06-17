@@ -5,7 +5,7 @@ $LOAD_PATH.unshift __LIB_DIR__ unless
   $LOAD_PATH.include?(File.expand_path(__LIB_DIR__))
 
 require "brightbox_cli"
-require "mocha"
+require "mocha/api"
 require "vcr"
 require "support/common_helpers"
 
