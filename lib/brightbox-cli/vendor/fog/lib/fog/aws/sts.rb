@@ -1,4 +1,4 @@
-require File.expand_path(File.join(File.dirname(__FILE__), '..', 'aws'))
+require 'fog/aws'
 
 module Fog
   module AWS
@@ -66,7 +66,6 @@ module Fog
         # * STS object with connection to AWS.
         def initialize(options={})
           require 'fog/core/parser'
-          require 'multi_json'
 
           @aws_access_key_id      = options[:aws_access_key_id]
           @aws_secret_access_key  = options[:aws_secret_access_key]
@@ -115,7 +114,7 @@ module Fog
 
             response
           rescue Excon::Errors::HTTPStatusError => error
-            if match = error.message.match(/<Code>(.*)<\/Code>(?:.*<Message>(.*)<\/Message>)?/m)
+            if match = error.message.match(/(?:.*<Code>(.*)<\/Code>)(?:.*<Message>(.*)<\/Message>)/m)
               case match[1]
               when 'EntityAlreadyExists', 'KeyPairMismatch', 'LimitExceeded', 'MalformedCertificate', 'ValidationError'
                 raise Fog::AWS::STS.const_get(match[1]).slurp(error, match[2])

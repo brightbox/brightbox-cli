@@ -1,8 +1,3 @@
-__LIB_DIR__ = File.expand_path(File.join(File.dirname(__FILE__), '..'))
-
-$LOAD_PATH.unshift __LIB_DIR__ unless
-  $LOAD_PATH.include?(__LIB_DIR__)
-
 # external core dependencies
 require 'base64'
 require 'cgi'
@@ -15,10 +10,12 @@ require 'time'
 require 'timeout'
 
 # internal core dependencies
+require "fog/version"
 require 'fog/core/attributes'
 require 'fog/core/collection'
 require 'fog/core/connection'
 require 'fog/core/credentials'
+require 'fog/core/current_machine'
 require 'fog/core/deprecation'
 require 'fog/core/errors'
 require 'fog/core/hmac'
@@ -34,3 +31,13 @@ require 'fog/core/scp'
 require 'fog/core/time'
 require 'fog/core/timeout'
 require 'fog/core/wait_for'
+
+# service wrappers
+require 'fog/compute'
+require 'fog/identity'
+require 'fog/image'
+require 'fog/volume'
+require 'fog/cdn'
+require 'fog/dns'
+require 'fog/network'
+require 'fog/storage'

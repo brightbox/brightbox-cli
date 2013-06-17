@@ -6,6 +6,8 @@ module Fog
 
         identity :id
 
+        attr_accessor :raw
+
         attribute :name
         attribute :description
         attribute :profile
@@ -17,18 +19,34 @@ module Fog
         attribute :cores,         :aliases => 'cpus'
         attribute :memory
         attribute :cluster
+        attribute :interfaces
+        attribute :volumes
+
+        def interfaces
+          attributes[:interfaces] ||= id.nil? ? [] : Fog::Compute::Ovirt::Interfaces.new(
+              :service => service,
+              :vm => self
+          )
+        end
+
+        def volumes
+          attributes[:volumes] ||= id.nil? ? [] : Fog::Compute::Ovirt::Volumes.new(
+              :service => service,
+              :vm => self
+          )
+        end
 
         def ready?
           !(status =~ /down/i)
         end
 
         def destroy(options = {})
-          connection.client.destroy_template(id)
+          service.client.destroy_template(id)
         end
 
         def save
-          raise Fog::Errors::Error.new('Resaving an existing object may create a duplicate') if identity
-          connection.client.create_template(attributes)
+          raise Fog::Errors::Error.new('Resaving an existing object may create a duplicate') if persisted?
+          service.client.create_template(attributes)
         end
 
         def to_s

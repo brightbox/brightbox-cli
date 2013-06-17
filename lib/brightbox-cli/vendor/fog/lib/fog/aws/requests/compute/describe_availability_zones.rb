@@ -50,6 +50,7 @@ module Fog
             {"messageSet" => [], "regionName" => "us-east-1", "zoneName" => "us-east-1b", "zoneState" => "available"},
             {"messageSet" => [], "regionName" => "us-east-1", "zoneName" => "us-east-1c", "zoneState" => "available"},
             {"messageSet" => [], "regionName" => "us-east-1", "zoneName" => "us-east-1d", "zoneState" => "available"},
+            {"messageSet" => [], "regionName" => "us-east-1", "zoneName" => "us-east-1e", "zoneState" => "available"},
 
             {"messageSet" => [], "regionName" => "us-west-1", "zoneName" => "us-west-1a", "zoneState" => "available"},
             {"messageSet" => [], "regionName" => "us-west-1", "zoneName" => "us-west-1b", "zoneState" => "available"},
@@ -70,6 +71,9 @@ module Fog
 
             {"messageSet" => [], "regionName" => "ap-southeast-1", "zoneName" => "ap-southeast-1a", "zoneState" => "available"},
             {"messageSet" => [], "regionName" => "ap-southeast-1", "zoneName" => "ap-southeast-1b", "zoneState" => "available"},
+
+            {"messageSet" => [], "regionName" => "ap-southeast-2", "zoneName" => "ap-southeast-2a", "zoneState" => "available"},
+            {"messageSet" => [], "regionName" => "ap-southeast-2", "zoneName" => "ap-southeast-2b", "zoneState" => "available"},
           ]
 
           availability_zone_info = all_zones.select { |zoneinfo| zoneinfo["regionName"] == @region }

@@ -1,4 +1,3 @@
-
 module Fog
   module Compute
     class Ovirt < Fog::Service
@@ -13,6 +12,12 @@ module Fog
       collection :templates
       model      :cluster
       collection :clusters
+      model      :interface
+      collection :interfaces
+      model      :volume
+      collection :volumes
+      model      :quota
+      collection :quotas
 
       request_path 'fog/ovirt/requests/compute'
 
@@ -28,6 +33,20 @@ module Fog
       request :get_template
       request :list_clusters
       request :get_cluster
+      request :add_interface
+      request :destroy_interface
+      request :update_interface
+      request :list_vm_interfaces
+      request :list_template_interfaces
+      request :list_networks
+      request :vm_ticket
+      request :list_vm_volumes
+      request :list_template_volumes
+      request :add_volume
+      request :destroy_volume
+      request :get_api_version
+      request :list_quotas
+      request :get_quota
 
       module Shared
         # converts an OVIRT object into an hash for fog to consume.
@@ -42,6 +61,8 @@ module Fog
             opts[key] = case value
                         when OVIRT::Link
                           value.id
+                        when Array
+                          value
                         when Hash
                           value
                         else
@@ -54,16 +75,17 @@ module Fog
 
       class Mock
         include Shared
-        attr_reader :client
 
         def initialize(options={})
           require 'rbovirt'
-          username = options[:ovirt_username]
-          password = options[:ovirt_password]
-          url      = options[:ovirt_url]
         end
 
         private
+
+        def client
+          return @client if defined?(@client)
+        end
+
         #read mocks xml
         def read_xml(file_name)
           file_path = File.join(File.dirname(__FILE__),"requests","compute","mock_files",file_name)
@@ -73,7 +95,7 @@ module Fog
 
       class Real
         include Shared
-        attr_reader :client
+
 
         def initialize(options={})
           require 'rbovirt'
@@ -86,6 +108,12 @@ module Fog
           datacenter = options[:ovirt_datacenter]
 
           @client = OVIRT::Client.new(username, password, url, datacenter)
+        end
+
+        private
+
+        def client
+          @client
         end
       end
     end

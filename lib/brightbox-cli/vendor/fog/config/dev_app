@@ -1,0 +1,12 @@
+# Localhost development credentials
+# Account: acc-pauls
+# User: usr-pauls
+# API Client based
+:default:
+  :brightbox_auth_url:    "http://honcho.dev"
+  :brightbox_api_url:     "http://honcho.dev"
+  :brightbox_client_id:   app-pauls
+  :brightbox_secret:      ho04hondtzjjdf4
+  :brightbox_username:    usr-pauls
+  :brightbox_password:    x7bL~OgR5r
+  :brightbox_account:     acc-pauls

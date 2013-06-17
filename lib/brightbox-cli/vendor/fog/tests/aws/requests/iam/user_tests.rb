@@ -6,10 +6,11 @@ Shindo.tests('AWS::IAM | user requests', ['aws']) do
 
     @user_format = {
       'User' => {
-        'Arn'       => String,
-        'Path'      => String,
-        'UserId'    => String,
-        'UserName'  => String
+        'Arn'        => String,
+        'Path'       => String,
+        'UserId'     => String,
+        'UserName'   => String,
+        'CreateDate' => Time
       },
       'RequestId' => String
     }
@@ -20,10 +21,11 @@ Shindo.tests('AWS::IAM | user requests', ['aws']) do
 
     @users_format = {
       'Users' => [{
-        'Arn'       => String,
-        'Path'      => String,
-        'UserId'    => String,
-        'UserName'  => String
+        'Arn'        => String,
+        'Path'       => String,
+        'UserId'     => String,
+        'UserName'   => String,
+        'CreateDate' => Time
       }],
       'IsTruncated' => Fog::Boolean,
       'RequestId'   => String
@@ -31,6 +33,10 @@ Shindo.tests('AWS::IAM | user requests', ['aws']) do
 
     tests("#list_users").formats(@users_format) do
       Fog::AWS[:iam].list_users.body
+    end
+
+    tests("#get_user").formats(@user_format) do
+      Fog::AWS[:iam].get_user('fog_user').body
     end
 
     tests("#add_user_to_group('fog_user_tests', 'fog_user')").formats(AWS::IAM::Formats::BASIC) do

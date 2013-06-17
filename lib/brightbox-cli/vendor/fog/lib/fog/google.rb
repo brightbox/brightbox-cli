@@ -1,10 +1,11 @@
-require(File.expand_path(File.join(File.dirname(__FILE__), 'core')))
+require 'fog/core'
 
 module Fog
   module Google
 
     extend Fog::Provider
 
+    service(:compute, 'google/compute', 'Compute')
     service(:storage, 'google/storage', 'Storage')
 
     class Mock

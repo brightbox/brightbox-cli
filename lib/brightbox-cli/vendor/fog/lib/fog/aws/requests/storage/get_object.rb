@@ -5,28 +5,26 @@ module Fog
 
         # Get an object from S3
         #
-        # ==== Parameters
-        # * bucket_name<~String> - Name of bucket to read from
-        # * object_name<~String> - Name of object to read
-        # * options<~Hash>:
-        #   * 'If-Match'<~String> - Returns object only if its etag matches this value, otherwise returns 412 (Precondition Failed).
-        #   * 'If-Modified-Since'<~Time> - Returns object only if it has been modified since this time, otherwise returns 304 (Not Modified).
-        #   * 'If-None-Match'<~String> - Returns object only if its etag differs from this value, otherwise returns 304 (Not Modified)
-        #   * 'If-Unmodified-Since'<~Time> - Returns object only if it has not been modified since this time, otherwise returns 412 (Precodition Failed).
-        #   * 'Range'<~String> - Range of object to download
-        #   * 'versionId'<~String> - specify a particular version to retrieve
+        # @param bucket_name [String] Name of bucket to read from
+        # @param object_name [String] Name of object to read
+        # @param options [Hash]
+        # @option options If-Match [String] Returns object only if its etag matches this value, otherwise returns 412 (Precondition Failed).
+        # @option options If-Modified-Since [Time] Returns object only if it has been modified since this time, otherwise returns 304 (Not Modified).
+        # @option options If-None-Match [String] Returns object only if its etag differs from this value, otherwise returns 304 (Not Modified)
+        # @option options If-Unmodified-Since [Time] Returns object only if it has not been modified since this time, otherwise returns 412 (Precodition Failed).
+        # @option options Range [String] Range of object to download
+        # @option options versionId [String] specify a particular version to retrieve
+        # @option options query[Hash] specify additional query string
         #
-        # ==== Returns
-        # * response<~Excon::Response>:
-        #   * body<~String> - Contents of object
-        #   * headers<~Hash>:
-        #     * 'Content-Length'<~String> - Size of object contents
-        #     * 'Content-Type'<~String> - MIME type of object
-        #     * 'ETag'<~String> - Etag of object
-        #     * 'Last-Modified'<~String> - Last modified timestamp for object
+        # @return [Excon::Response] response:
+        #   * body [String]- Contents of object
+        #   * headers [Hash]:
+        #     * Content-Length [String] - Size of object contents
+        #     * Content-Type [String] - MIME type of object
+        #     * ETag [String] - Etag of object
+        #     * Last-Modified [String] - Last modified timestamp for object
         #
-        # ==== See Also
-        # http://docs.amazonwebservices.com/AmazonS3/latest/API/RESTObjectGET.html
+        # @see http://docs.amazonwebservices.com/AmazonS3/latest/API/RESTObjectGET.html
 
         def get_object(bucket_name, object_name, options = {}, &block)
           unless bucket_name
@@ -35,26 +33,33 @@ module Fog
           unless object_name
             raise ArgumentError.new('object_name is required')
           end
+
+          params = { :headers => {} }
+
+          params[:query] = options.delete('query') || {}
+
           if version_id = options.delete('versionId')
-            query = {'versionId' => version_id}
+            params[:query] = params[:query].merge({'versionId' => version_id})
           end
-          headers = {}
-          headers.merge!(options)
-          if headers['If-Modified-Since']
-            headers['If-Modified-Since'] = Fog::Time.at(headers['If-Modified-Since'].to_i).to_date_header
+          params[:headers].merge!(options)
+          if options['If-Modified-Since']
+            params[:headers]['If-Modified-Since'] = Fog::Time.at(options['If-Modified-Since'].to_i).to_date_header
           end
-          if headers['If-Unmodified-Since']
-            headers['If-Unmodified-Since'] = Fog::Time.at(headers['If-Unmodified-Since'].to_i).to_date_header
+          if options['If-Unmodified-Since']
+            params[:headers]['If-Unmodified-Since'] = Fog::Time.at(options['If-Unmodified-Since'].to_i).to_date_header
           end
-          request({
+
+          if block_given?
+            params[:response_block] = Proc.new
+          end
+
+          request(params.merge!({
             :expects  => [ 200, 206 ],
-            :headers  => headers,
-            :host     => "#{bucket_name}.#{@host}",
+            :bucket_name => bucket_name,
+            :object_name => object_name,
             :idempotent => true,
             :method   => 'GET',
-            :path     => CGI.escape(object_name),
-            :query    => query
-          }, &block)
+          }))
         end
 
       end
@@ -99,10 +104,20 @@ module Fog
 
                 response.headers['x-amz-version-id'] = object['VersionId'] if bucket[:versioning]
 
+                body = object[:body]
+                if options['Range']
+                  # since AWS S3 itself does not support multiple range headers, we will use only the first
+                  ranges = byte_ranges(options['Range'], body.size)
+                  unless ranges.nil? || ranges.empty?
+                    response.status = 206
+                    body = body[ranges.first]
+                  end
+                end
+
                 unless block_given?
-                  response.body = object[:body]
+                  response.body = body
                 else
-                  data = StringIO.new(object[:body])
+                  data = StringIO.new(body)
                   remaining = data.length
                   while remaining > 0
                     chunk = data.read([remaining, Excon::CHUNK_SIZE].min)
@@ -138,6 +153,39 @@ module Fog
           response
         end
 
+        private
+
+        # === Borrowed from rack
+        # Parses the "Range:" header, if present, into an array of Range objects.
+        # Returns nil if the header is missing or syntactically invalid.
+        # Returns an empty array if none of the ranges are satisfiable.
+        def byte_ranges(http_range, size)
+          # See <http://www.w3.org/Protocols/rfc2616/rfc2616-sec14.html#sec14.35>
+          return nil unless http_range
+          ranges = []
+          http_range.split(/,\s*/).each do |range_spec|
+            matches = range_spec.match(/bytes=(\d*)-(\d*)/)
+            return nil  unless matches
+            r0,r1 = matches[1], matches[2]
+            if r0.empty?
+              return nil  if r1.empty?
+              # suffix-byte-range-spec, represents trailing suffix of file
+              r0 = [size - r1.to_i, 0].max
+              r1 = size - 1
+            else
+              r0 = r0.to_i
+              if r1.empty?
+                r1 = size - 1
+              else
+                r1 = r1.to_i
+                return nil  if r1 < r0  # backwards range is syntactically invalid
+                r1 = size-1  if r1 >= size
+              end
+            end
+            ranges << (r0..r1)  if r0 <= r1
+          end
+          ranges
+        end
       end
     end
   end
