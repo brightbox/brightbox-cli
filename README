@@ -9,6 +9,13 @@ http://docs.brightbox.com/reference/cli
 
 http://docs.brightbox.com/reference/api/
 
+== Testing
+
+You should be able to run the specs with the following steps:
+
+    bundle install
+    bundle exec rake
+
 == Packaging
 
 === Vendoring libraries

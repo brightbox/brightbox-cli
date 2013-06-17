@@ -15,10 +15,11 @@ RSpec.configure do |config|
   config.mock_framework = :mocha
   config.extend VCR::RSpec::Macros
   config.include CommonHelpers
-  config.before {
-    test_config = File.join(File.dirname(__FILE__),"brightbox")
-    Brightbox::BBConfig.any_instance.stubs(:default_config_dir).returns(test_config)
-  }
+
+  config.before(:suite) do
+    config_dir = File.join(File.dirname(__FILE__), "fixtures/config_files")
+    Brightbox::BBConfig.any_instance.stubs(:default_config_dir).returns(config_dir)
+  end
 end
 
 VCR.config do |c|
