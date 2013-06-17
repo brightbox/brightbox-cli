@@ -1,0 +1,10 @@
+# Fog's production testing credentials
+# Account: acc-rdwdj
+# User: usr-zsr7w
+# User application based
+:default:
+  :brightbox_client_id:   app-joev9
+  :brightbox_secret:      sc1p6ub3q0blsga
+  :brightbox_username:    usr-zsr7w
+  :brightbox_password:    ACsaTAlWr6anN6mq
+  :brightbox_account:     acc-rdwdj

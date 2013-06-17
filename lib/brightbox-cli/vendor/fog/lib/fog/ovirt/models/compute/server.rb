@@ -24,10 +24,17 @@ module Fog
         attribute :host
         attribute :cluster
         attribute :template
+        attribute :interfaces
+        attribute :volumes
         attribute :raw
-
+        attribute :quota
+ 
         def ready?
           !(status =~ /down/i)
+        end
+
+        def locked?
+          !!(status =~ /locked/i) || (attributes[:volumes]=nil) || volumes.any?{|v| !!(v.status =~ /locked/i)}
         end
 
         def stopped?
@@ -35,17 +42,56 @@ module Fog
         end
 
         def mac
-          raw.interfaces.first.mac if raw.interfaces
+          interfaces.first.mac unless interfaces.empty?
+        end
+
+        def interfaces
+          attributes[:interfaces] ||= id.nil? ? [] : Fog::Compute::Ovirt::Interfaces.new(
+              :service => service,
+              :vm => self
+          )
+        end
+
+        def add_interface attrs
+          wait_for { stopped? } if attrs[:blocking]
+          service.add_interface(id, attrs)
+        end
+
+        def update_interface attrs
+          wait_for { stopped? } if attrs[:blocking]
+          service.update_interface(id, attrs)
+        end
+
+        def destroy_interface attrs
+          wait_for { stopped? } if attrs[:blocking]
+          service.destroy_interface(id, attrs)
+        end
+
+        def volumes
+          attributes[:volumes] ||= id.nil? ? [] : Fog::Compute::Ovirt::Volumes.new(
+              :service => service,
+              :vm => self
+          )
+        end
+
+        def add_volume attrs
+          wait_for { stopped? } if attrs[:blocking]
+          service.add_volume(id, attrs)
+        end
+
+        def destroy_volume attrs
+          wait_for { stopped? } if attrs[:blocking]
+          service.destroy_volume(id, attrs)
         end
 
         def start(options = {})
-          wait_for { stopped? } if options[:blocking]
-          connection.vm_action(:id =>id, :action => :start)
+          wait_for { !locked? } if options[:blocking]
+          service.vm_action(:id =>id, :action => :start)
           reload
         end
 
         def stop(options = {})
-          connection.vm_action(:id =>id, :action => :stop)
+          service.vm_action(:id =>id, :action => :stop)
           reload
         end
 
@@ -55,21 +101,26 @@ module Fog
         end
 
         def suspend(options = {})
-          connection.vm_action(:id =>id, :action => :suspend)
+          service.vm_action(:id =>id, :action => :suspend)
           reload
         end
 
         def destroy(options = {})
           (stop unless stopped?) rescue nil #ignore failure, destroy the machine anyway.
           wait_for { stopped? }
-          connection.destroy_vm(:id => id)
+          service.destroy_vm(:id => id)
+        end
+
+        def ticket(options = {})
+          raise "Can not set console ticket, Server is not ready. Server status: #{status}" unless ready?
+          service.vm_ticket(id, options)
         end
 
         def save
-          if identity
-            connection.update_vm(attributes)
+          if persisted?
+            service.update_vm(attributes)
           else
-            self.id = connection.create_vm(attributes).id
+            self.id = service.create_vm(attributes).id
           end
           reload
         end

@@ -8,22 +8,18 @@ module Fog
     def self.new(attributes)
       attributes = attributes.dup # prevent delete from having side effects
       case provider = attributes.delete(:provider).to_s.downcase.to_sym
-      when :aws
-        require 'fog/aws/storage'
-        Fog::Storage::AWS.new(attributes)
-      when :google
-        require 'fog/google/storage'
-        Fog::Storage::Google.new(attributes)
-      when :local
-        require 'fog/local/storage'
-        Fog::Storage::Local.new(attributes)
-      when :ninefold
-        require 'fog/ninefold/storage'
-        Fog::Storage::Ninefold.new(attributes)
-      when :rackspace
-        require 'fog/rackspace/storage'
-        Fog::Storage::Rackspace.new(attributes)
+      when :internetarchive
+        require 'fog/internet_archive/storage'
+        Fog::Storage::InternetArchive.new(attributes)
+      when :stormondemand
+        require 'fog/storm_on_demand/storage'
+        Fog::Storage::StormOnDemand.new(attributes)
       else
+        if self.providers.include?(provider)
+          require "fog/#{provider}/storage"
+          return Fog::Storage.const_get(Fog.providers[provider]).new(attributes)
+        end
+
         raise ArgumentError.new("#{provider} is not a recognized storage provider")
       end
     end
@@ -54,23 +50,24 @@ module Fog
       end
     end
 
-    def self.parse_data(data)
-      metadata = {
-        :body => nil,
-        :headers => {}
-      }
-
-      metadata[:body] = data
-      metadata[:headers]['Content-Length'] = get_body_size(data)
-
+    def self.get_content_type(data)
       if data.respond_to?(:path) and !data.path.nil?
         filename = ::File.basename(data.path)
         unless (mime_types = MIME::Types.of(filename)).empty?
-          metadata[:headers]['Content-Type'] = mime_types.first.content_type
+          mime_types.first.content_type
         end
       end
-      # metadata[:headers]['Content-MD5'] = Base64.encode64(Digest::MD5.digest(metadata[:body])).strip
-      metadata
+    end
+
+    def self.parse_data(data)
+      {
+        :body     => data,
+        :headers  => {
+          'Content-Length'  => get_body_size(data),
+          'Content-Type'    => get_content_type(data)
+          #'Content-MD5' => Base64.encode64(Digest::MD5.digest(metadata[:body])).strip
+        }
+      }
     end
 
     def self.providers

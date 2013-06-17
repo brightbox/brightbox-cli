@@ -17,6 +17,10 @@ module Fog
     class NotFound < Fog::Errors::Error; end
 
     class LoadError < LoadError; end
+    
+    class TimeoutError< Fog::Errors::Error; end
+    
+    class NotImplemented < Fog::Errors::Error; end
 
     # @return [String] The error message that will be raised, if credentials cannot be found
     def self.missing_credentials
@@ -42,8 +46,15 @@ An alternate file may be used by placing its path in the FOG_RC environment vari
   :clodo_username:
   :go_grid_api_key:
   :go_grid_shared_secret:
+  :google_client_email:
+  :google_key_location:
+  :google_project:
   :google_storage_access_key_id:
   :google_storage_secret_access_key:
+  :hp_access_key:
+  :hp_secret_key:
+  :hp_tenant_id:
+  :hp_avl_zone:
   :linode_api_key:
   :local_root:
   :bare_metal_cloud_password:
@@ -54,14 +65,17 @@ An alternate file may be used by placing its path in the FOG_RC environment vari
   :openstack_username:
   :openstack_auth_url:
   :openstack_tenant:
+  :openstack_region:
   :ovirt_username:
   :ovirt_password:
   :ovirt_url:
+  :libvirt_uri:
   :rackspace_api_key:
   :rackspace_username:
   :rackspace_servicenet:
   :rackspace_cdn_ssl:
-  :slicehost_password:
+  :riakcs_access_key_id:
+  :riakcs_secret_access_key:
   :stormondemand_username:
   :stormondemand_password:
   :terremark_username:
@@ -74,6 +88,7 @@ An alternate file may be used by placing its path in the FOG_RC environment vari
   :dnsimple_password:
   :dnsmadeeasy_api_key:
   :dnsmadeeasy_secret_key:
+  :dreamhost_api_key:
   :cloudstack_host:
   :cloudstack_api_key:
   :cloudstack_secret_access_key:
@@ -84,13 +99,15 @@ An alternate file may be used by placing its path in the FOG_RC environment vari
   :libvirt_password:
   :libvirt_uri:
   :libvirt_ip_command:
+  :ibm_username:
+  :ibm_password:
 #
 # End of Fog Credentials File
 #######################################################
 
     YML
-    raise(Fog::Errors::LoadError.new(missing_credentials_message))
-  end
+      raise(Fog::Errors::LoadError.new(missing_credentials_message))
+    end
 
   end
 end

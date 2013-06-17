@@ -3,7 +3,7 @@ module Fog
     module Terremark
       module Shared
 
-        class GetCatalog < Fog::Parsers::Base
+        class GetCatalog < TerremarkParser
 
           def reset
             @response = { 'CatalogItems' => [] }
@@ -13,21 +13,12 @@ module Fog
             super
             case name
             when 'CatalogItem'
-              catalog_item = {}
-              until attributes.empty?
-                catalog_item[attributes.shift] = attributes.shift
-              end            
+              catalog_item = extract_attributes(attributes)
+              catalog_item["id"] = catalog_item["href"].split('/').last
               @response['CatalogItems'] << catalog_item
+
             when 'Catalog'
-              catalog = {}
-              until attributes.empty?
-                if attributes.first.is_a?(Array)
-                  attribute = attributes.shift
-                  catalog[attribute.first] = attribute.last
-                else
-                  catalog[attributes.shift] = attributes.shift
-                end
-              end
+              catalog = extract_attributes(attributes)
               @response['name'] = catalog['name']
             end
           end

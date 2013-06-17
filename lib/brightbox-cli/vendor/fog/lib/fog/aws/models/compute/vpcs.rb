@@ -29,12 +29,12 @@ module Fog
         # tenancy=nil
         # >
         #
-        
+
         def initialize(attributes)
           self.filters ||= {}
           super
         end
-        
+
         # Returns an array of all VPCs that have been created
         #
         # AWS.vpcs.all
@@ -61,11 +61,11 @@ module Fog
             filters = {'vpc-id' => [*filters]}
           end
           self.filters = filters
-          data = connection.describe_vpcs(filters).body
+          data = service.describe_vpcs(filters).body
           load(data['vpcSet'])
         end
 
-        # Used to retreive a VPC
+        # Used to retrieve a VPC
         # vpc_id is required to get the associated VPC information.
         #
         # You can run the following command to get the details:
@@ -79,10 +79,10 @@ module Fog
         # TODO
         # >
         #
-        
+
         def get(vpc_id)
           if vpc_id
-            self.class.new(:connection => connection).all('vpc-id' => vpc_id).first
+            self.class.new(:service => service).all('vpc-id' => vpc_id).first
           end
         end
 

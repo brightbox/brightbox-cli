@@ -1,0 +1,7 @@
+# Fog's production testing credentials
+# Account: acc-rdwdj
+# User: usr-zsr7w
+# API Client based
+:default:
+  :brightbox_client_id:   cli-q4sm4
+  :brightbox_secret:      baoxce8rq22z30g
