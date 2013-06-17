@@ -8,11 +8,12 @@ module Fog
               'name' => options[:name],
               'port' => options[:port],
               'protocol' => options[:protocol],
-              'algorithm' => options[:algorithm]
+              'algorithm' => options[:algorithm],
+              'timeout' => options[:timeout]
             }
           }
           request(
-            :body     => MultiJson.encode(data),
+            :body     => Fog::JSON.encode(data),
             :expects  => 202,
             :method   => 'PUT',
             :path     => "loadbalancers/#{load_balancer_id}.json"

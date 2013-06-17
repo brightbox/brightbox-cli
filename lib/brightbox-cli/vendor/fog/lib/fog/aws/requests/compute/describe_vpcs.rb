@@ -38,23 +38,22 @@ module Fog
           }.merge!(params))
         end
       end
-      
+
       class Mock
         def describe_vpcs(filters = {})
-          Excon::Response.new.tap do |response|
-            response.status = 200
-            response.body = {
-              'requestId' => Fog::AWS::Mock.request_id,
-              'vpcSet'    => [
-                'vpcId'           => Fog::AWS::Mock.request_id,
-                'state'           => 'pending',
-                'cidrBlock'       => '10.255.255.0/24',
-                'dhcpOptionsId'   => Fog::AWS::Mock.request_id,
-                'instanceTenancy' => 'default',
-                'tagSet'          =>  {}
-              ]
-            }
+          vpcs = self.data[:vpcs]
+
+          if filters['vpc-id']
+            vpcs = vpcs.reject {|vpc| vpc['vpcId'] != filters['vpc-id']}
           end
+
+          Excon::Response.new(
+            :status => 200,
+            :body   => {
+              'requestId' => Fog::AWS::Mock.request_id,
+              'vpcSet'    => vpcs
+            }
+          )
         end
       end
     end

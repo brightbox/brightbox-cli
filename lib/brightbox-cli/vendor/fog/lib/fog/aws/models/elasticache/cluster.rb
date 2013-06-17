@@ -35,7 +35,7 @@ module Fog
 
         def destroy
           requires :id
-          connection.delete_cache_cluster(id)
+          service.delete_cache_cluster(id)
           true
         end
 
@@ -45,7 +45,7 @@ module Fog
           parameter_group     ||= Hash.new
           notification_config ||= Hash.new
 
-          connection.create_cache_cluster(
+          service.create_cache_cluster(
             id, {
               :node_type                    => node_type,
               :security_group_names         => security_groups,
@@ -53,7 +53,7 @@ module Fog
               :auto_minor_version_upgrade   => auto_upgrade,
               :engine                       => engine,
               :engine_version               => engine_version,
-              :notification_topic_arn       => (notification_config['TopicArn']).strip,
+              :notification_topic_arn       => notification_config['TopicArn'],
               :port                         => port,
               :preferred_availablility_zone => zone,
               :preferred_maintenance_window => maintenance_window,

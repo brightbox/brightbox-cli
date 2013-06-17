@@ -7,10 +7,10 @@ module Fog
         #
         # ==== Returns
         # * response<~Excon::Response>:
-        #   * body<~Array>:
-        #     * 'id'<~String>  - Id of the image
-        #     * 'name'<~String> - Name of the image
-        #     * 'size'<~String> - Size of the image
+        #   * body<~Hash>:
+        #     * 'image'<~Array>        
+        #       * 'Size'<~String>  - Size of the image
+        #       * 'Name'<~String>  - Name of the image
         #
         def list_images
           request(

@@ -5,8 +5,8 @@ module Fog
 
         def resize_server(options = {})
           request(
-            :path     => "/storm/server/resize",
-            :body     => MultiJson.encode({:params => options})
+            :path     => "/Storm/Server/resize",
+            :body     => Fog::JSON.encode({:params => options})
           )
         end
 

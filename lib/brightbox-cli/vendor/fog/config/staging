@@ -1,0 +1,12 @@
+# Fog's staging testing credentials
+# Account: acc-8tgbq
+# User: usr-zsr7w
+# API Client based
+:default:
+  :brightbox_auth_url:    "https://api.gb1s.brightbox.com"
+  :brightbox_api_url:     "https://api.gb1s.brightbox.com"
+  :brightbox_client_id:   cli-l2ze9
+  :brightbox_secret:      3hhtn2kqjfoc017
+  :brightbox_username:    usr-wufe2
+  :brightbox_password:    Nh$2u4eRQnmW
+  :brightbox_account:     acc-8tgbq

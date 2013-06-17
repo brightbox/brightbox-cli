@@ -1,11 +1,12 @@
-require File.expand_path(File.join(File.dirname(__FILE__), '..', 'aws'))
+require 'fog/aws'
 
 module Fog
   module AWS
     class CloudFormation < Fog::Service
+      extend Fog::AWS::CredentialFetcher::ServiceMethods
 
       requires :aws_access_key_id, :aws_secret_access_key
-      recognizes :host, :path, :port, :scheme, :persistent, :region
+      recognizes :host, :path, :port, :scheme, :persistent, :region, :use_iam_profile, :aws_session_token, :aws_credentials_expire_at
 
       request_path 'fog/aws/requests/cloud_formation'
       request :create_stack
@@ -16,6 +17,8 @@ module Fog
       request :describe_stacks
       request :get_template
       request :validate_template
+      request :list_stacks
+      request :list_stack_resources
 
       class Mock
 
@@ -26,7 +29,7 @@ module Fog
       end
 
       class Real
-
+        include Fog::AWS::CredentialFetcher::ConnectionMethods
         # Initialize connection to CloudFormation
         #
         # ==== Notes
@@ -46,11 +49,9 @@ module Fog
         # * CloudFormation object with connection to AWS.
         def initialize(options={})
           require 'fog/core/parser'
-          require 'multi_json'
 
-          @aws_access_key_id      = options[:aws_access_key_id]
-          @aws_secret_access_key  = options[:aws_secret_access_key]
-          @hmac       = Fog::HMAC.new('sha256', @aws_secret_access_key)
+          @use_iam_profile = options[:use_iam_profile]
+          setup_credentials(options)
 
           @connection_options = options[:connection_options] || {}
           options[:region] ||= 'us-east-1'
@@ -68,7 +69,18 @@ module Fog
 
         private
 
+        def setup_credentials(options)
+          @aws_access_key_id      = options[:aws_access_key_id]
+          @aws_secret_access_key  = options[:aws_secret_access_key]
+          @aws_session_token      = options[:aws_session_token]
+          @aws_credentials_expire_at = options[:aws_credentials_expire_at]
+
+          @hmac       = Fog::HMAC.new('sha256', @aws_secret_access_key)
+        end
+
         def request(params)
+          refresh_credentials_if_expired
+
           idempotent  = params.delete(:idempotent)
           parser      = params.delete(:parser)
 
@@ -76,6 +88,7 @@ module Fog
             params,
             {
               :aws_access_key_id  => @aws_access_key_id,
+              :aws_session_token  => @aws_session_token,
               :hmac               => @hmac,
               :host               => @host,
               :path               => @path,
@@ -95,12 +108,12 @@ module Fog
               :parser     => parser
             })
           rescue Excon::Errors::HTTPStatusError => error
-            if match = error.message.match(/<Code>(.*)<\/Code><Message>(.*)<\/Message>/)
+            if match = error.message.match(/(?:.*<Code>(.*)<\/Code>)(?:.*<Message>(.*)<\/Message>)/m)
               raise case match[1].split('.').last
-              when 'NotFound'
-                Fog::AWS::Compute::NotFound.slurp(error, match[2])
+              when 'NotFound', 'ValidationError'
+                Fog::AWS::CloudFormation::NotFound.slurp(error, match[2])
               else
-                Fog::AWS::Compute::Error.slurp(error, "#{match[1]} => #{match[2]}")
+                Fog::AWS::CloudFormation::Error.slurp(error, "#{match[1]} => #{match[2]}")
               end
             else
               raise error

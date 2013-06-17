@@ -6,6 +6,12 @@ def storage_providers
     :google     => {
       :mocked => true
     },
+    :hp         => {
+      :mocked => true
+    },
+    :internetarchive => {
+      :mocked => true
+    },
     :local      => {
       :mocked => false
     },

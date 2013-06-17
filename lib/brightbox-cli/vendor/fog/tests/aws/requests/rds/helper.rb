@@ -52,6 +52,26 @@ class AWS
         }
       })
 
+      DB_SUBNET_GROUP = {
+        'DBSubnetGroupName' => String,
+        'DBSubnetGroupDescription' => String,
+        'SubnetGroupStatus' => String,
+        'VpcId' => String,
+        'Subnets' => [String]
+      }
+
+      CREATE_DB_SUBNET_GROUP = BASIC.merge({
+        'CreateDBSubnetGroupResult' => {
+          'DBSubnetGroup' => DB_SUBNET_GROUP
+        }
+      })
+
+      DESCRIBE_DB_SUBNET_GROUPS = BASIC.merge({
+        'DescribeDBSubnetGroupsResult' => {
+          'DBSubnetGroups' => [DB_SUBNET_GROUP]
+        }
+      })
+
       DESCRIBE_DB_PARAMETER_GROUP = {
         'ResponseMetadata' => {'RequestId' => String},
         'DescribeDBParameterGroupsResult' =>{
@@ -96,7 +116,8 @@ class AWS
         'MasterUsername' => String,
         'Port' => Integer,
         'SnapshotCreateTime' => Fog::Nullable::Time,
-        'Status' => String
+        'Status' => String,
+        'SnapshotType' => String
       }
       INSTANCE = {
         'AllocatedStorage' => Integer,
@@ -115,6 +136,7 @@ class AWS
             'Status' => String,
             'DBSecurityGroupName' => String
           }],
+        'DBSubnetGroupName' => Fog::Nullable::String,
         'Endpoint' => {
           'Address' => Fog::Nullable::String,
           'Port' => Fog::Nullable::Integer
@@ -137,10 +159,14 @@ class AWS
         },
         'PreferredBackupWindow'=> String,
         'PreferredMaintenanceWindow'=> String,
-        'ReadReplicaDBInstanceIdentifiers'=> [String],
-        'ReadReplicaDBInstanceIdentifiers'=> [Fog::Nullable::String],
-        'ReadReplicaSourceDBInstanceIdentifier'=> Fog::Nullable::String
+        'ReadReplicaDBInstanceIdentifiers'=> [Fog::Nullable::String]
       }
+
+      REPLICA_INSTANCE = INSTANCE.merge({
+        'BackupRetentionPeriod' => Fog::Nullable::String,
+        'PreferredBackupWindow' => Fog::Nullable::String,
+        'ReadReplicaSourceDBInstanceIdentifier'=> String
+      })
 
       CREATE_DB_INSTANCE = BASIC.merge({
         'CreateDBInstanceResult' => {
@@ -175,7 +201,7 @@ class AWS
 
       CREATE_READ_REPLICA = BASIC.merge({
         'CreateDBInstanceReadReplicaResult' => {
-          'DBInstance' => INSTANCE
+          'DBInstance' => REPLICA_INSTANCE
         }
       })
 
@@ -196,6 +222,12 @@ class AWS
           'DBSnapshot' => SNAPSHOT
         }
       })
+
+      LIST_TAGS_FOR_RESOURCE = {
+        'ListTagsForResourceResult' => {
+          'TagList' => Fog::Nullable::Hash
+        }
+      }
 
     end
 

@@ -23,8 +23,11 @@ module Fog
         #       * 'RequestId'<~String> - Id of request
         #     * 'CreateLoadBalancerResult'<~Hash>:
         #       * 'DNSName'<~String> - DNS name for the newly created ELB
-        def create_load_balancer(availability_zones, lb_name, listeners)
+        def create_load_balancer(availability_zones, lb_name, listeners, options = {})
           params = Fog::AWS.indexed_param('AvailabilityZones.member', [*availability_zones])
+          params.merge!(Fog::AWS.indexed_param('Subnets.member.%d', options[:subnet_ids]))
+          params.merge!(Fog::AWS.serialize_keys('Scheme', options[:scheme]))
+          params.merge!(Fog::AWS.indexed_param('SecurityGroups.member.%d', options[:security_groups])) 
 
           listener_protocol = []
           listener_lb_port = []
@@ -54,7 +57,7 @@ module Fog
       end
 
       class Mock
-        def create_load_balancer(availability_zones, lb_name, listeners = [])
+        def create_load_balancer(availability_zones, lb_name, listeners = [], options = {})
           response = Excon::Response.new
           response.status = 200
 
@@ -70,8 +73,21 @@ module Fog
           end
 
           dns_name = Fog::AWS::ELB::Mock.dns_name(lb_name, @region)
+
+          Fog::Compute::AWS::Mock.data[@region][@aws_access_key_id][:security_groups]['amazon-elb-sg'] ||= {
+            'groupDescription'   => 'amazon-elb-sg',
+            'groupName'          => 'amazon-elb-sg',
+            'groupId'            => 'amazon-elb',
+            'ownerId'            => 'amazon-elb',
+            'ipPermissionsEgree' => [],
+            'ipPermissions'      => [],
+          }
+
           self.data[:load_balancers][lb_name] = {
             'AvailabilityZones' => availability_zones,
+            'Subnets' => options[:subnet_ids] || [],
+            'Scheme' => options[:scheme].nil? ? 'internet-facing' : options[:scheme],
+            'SecurityGroups' => options[:security_groups].nil? ? [] : options[:security_groups],
             'CanonicalHostedZoneName' => '',
             'CanonicalHostedZoneNameID' => '',
             'CreatedTime' => Time.now,
@@ -96,7 +112,6 @@ module Fog
               'OwnerAlias' => ''
             }
           }
-
           response.body = {
             'ResponseMetadata' => {
               'RequestId' => Fog::AWS::Mock.request_id

@@ -5,6 +5,8 @@ class AWS < Fog::Bin
       case key
       when :auto_scaling
         Fog::AWS::AutoScaling
+      when :beanstalk
+        Fog::AWS::ElasticBeanstalk
       when :cdn
         Fog::CDN::AWS
       when :cloud_formation
@@ -13,6 +15,8 @@ class AWS < Fog::Bin
         Fog::AWS::CloudWatch
       when :compute
         Fog::Compute::AWS
+      when :data_pipeline
+        Fog::AWS::DataPipeline
       when :ddb, :dynamodb
         Fog::AWS::DynamoDB
       when :dns
@@ -23,6 +27,8 @@ class AWS < Fog::Bin
         Fog::AWS::ELB
       when :emr
         Fog::AWS::EMR
+      when :glacier
+        Fog::AWS::Glacier
       when :iam
         Fog::AWS::IAM
       when :sdb, :simpledb
@@ -52,6 +58,8 @@ class AWS < Fog::Bin
         hash[key] = case key
         when :auto_scaling
           Fog::AWS::AutoScaling.new
+        when :beanstalk
+          Fog::AWS::ElasticBeanstalk.new
         when :cdn
           Fog::Logger.warning("AWS[:cdn] is not recommended, use CDN[:aws] for portability")
           Fog::CDN.new(:provider => 'AWS')
@@ -62,6 +70,8 @@ class AWS < Fog::Bin
         when :compute
           Fog::Logger.warning("AWS[:compute] is not recommended, use Compute[:aws] for portability")
           Fog::Compute.new(:provider => 'AWS')
+        when :data_pipeline
+          Fog::AWS::DataPipeline
         when :ddb, :dynamodb
           Fog::AWS::DynamoDB.new
         when :dns
@@ -73,6 +83,8 @@ class AWS < Fog::Bin
           Fog::AWS::ELB.new
         when :emr
           Fog::AWS::EMR.new
+        when :glacier
+          Fog::AWS::Glacier.new
         when :iam
           Fog::AWS::IAM.new
         when :rds

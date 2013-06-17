@@ -1,10 +1,16 @@
 Shindo.tests("AWS::RDS | server", ['aws', 'rds']) do
+  # Disabled due to https://github.com/fog/fog/1546
+  pending
 
   model_tests(Fog::AWS[:rds].servers, rds_default_server_params) do
     # We'll need this later; create it early to avoid waiting
     @instance_with_final_snapshot = Fog::AWS[:rds].servers.create(rds_default_server_params.merge(:id => uniq_id("fog-snapshot-test"), :backup_retention_period => 1))
 
     @instance.wait_for(20*60) { ready? }
+
+    test('#read_replica_identifiers is []') do
+      returns([]) { @instance.read_replica_identifiers }
+    end
 
     tests('#snapshots') do
       snapshot = nil
@@ -13,9 +19,8 @@ Shindo.tests("AWS::RDS | server", ['aws', 'rds']) do
         snapshot = @instance.snapshots.create(:id => 'fog-test-snapshot')
       end
 
-      snapshot.wait_for {ready?}
+      snapshot.wait_for { ready?}
 
-      @instance.reload
       @instance.wait_for { ready? }
 
       returns(true) { @instance.snapshots.map{|s| s.id}.include?(snapshot.id) }
@@ -26,7 +31,7 @@ Shindo.tests("AWS::RDS | server", ['aws', 'rds']) do
       pending if Fog.mocking?
 
       orig_parameter_group = @instance.db_parameter_groups.first['DBParameterGroupName']
-      parameter_group = Fog::AWS[:rds].parameter_groups.create(:id => uniq_id, :family => 'mysql5.1', :description => 'fog-test')
+      parameter_group = Fog::AWS[:rds].parameter_groups.create(:id => uniq_id, :family => 'mysql5.5', :description => 'fog-test')
 
       orig_security_groups = @instance.db_security_groups.map{|h| h['DBSecurityGroupName']}
       security_group = Fog::AWS[:rds].security_groups.create(:id => uniq_id, :description => 'fog-test')
@@ -37,7 +42,7 @@ Shindo.tests("AWS::RDS | server", ['aws', 'rds']) do
       }
 
       @instance.modify(true, modify_options)
-      @instance.reload
+      @instance.wait_for { ready? }
 
       returns(parameter_group.id, 'new parameter group') do
         @instance.db_parameter_groups.first['DBParameterGroupName']
@@ -48,8 +53,8 @@ Shindo.tests("AWS::RDS | server", ['aws', 'rds']) do
       end
 
       @instance.reboot
-      @instance.reload.wait_for { state == 'rebooting' }
-      @instance.reload.wait_for { ready? }
+      @instance.wait_for { state == 'rebooting' }
+      @instance.wait_for { ready? }
 
       # Restore back to original state using symbols
       restore_options = {
@@ -59,8 +64,8 @@ Shindo.tests("AWS::RDS | server", ['aws', 'rds']) do
       @instance.modify(true, restore_options)
 
       @instance.reboot
-      @instance.reload.wait_for { state == 'rebooting' }
-      @instance.reload.wait_for do
+      @instance.wait_for { state == 'rebooting' }
+      @instance.wait_for do
         ready? &&
           db_security_groups.all? {|hash| hash['Status'] == 'active'} &&
           db_parameter_groups.all? {|hash| hash['ParameterApplyStatus'] == 'in-sync' }
@@ -73,11 +78,10 @@ Shindo.tests("AWS::RDS | server", ['aws', 'rds']) do
     tests("#reboot").succeeds do
       @instance.reboot
     end
-    @instance.reload.wait_for {state == 'rebooting'}
-    @instance.reload.wait_for { ready? }
+    @instance.wait_for { state == 'rebooting' }
+    @instance.wait_for { ready? }
 
     tests('#create_read_replica').succeeds do
-      pending if Fog.mocking?
 
       replica = @instance_with_final_snapshot.create_read_replica(uniq_id('fog-replica'))
       @instance_with_final_snapshot.reload
