@@ -32,7 +32,7 @@ Gem::Specification.new do |s|
   s.add_dependency('highline', '~> 1.6.2')
 
   s.add_development_dependency('rake', '~> 0.8.0')
-  s.add_development_dependency('vcr', '~> 2.3.0')
+  s.add_development_dependency('vcr', '~> 1.11.3')
   s.add_development_dependency('rspec', '~> 2.12.0')
   s.add_development_dependency('mocha')
 end
