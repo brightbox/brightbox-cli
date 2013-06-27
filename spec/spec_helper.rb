@@ -9,8 +9,6 @@ require "mocha/api"
 require "vcr"
 require "support/common_helpers"
 
-Brightbox.const_set(:CONFIG,Brightbox::BBConfig.new())
-
 RSpec.configure do |config|
   config.mock_framework = :mocha
   config.extend VCR::RSpec::Macros
@@ -18,12 +16,16 @@ RSpec.configure do |config|
 
   config.before(:suite) do
     config_dir = File.join(File.dirname(__FILE__), "fixtures/config_files")
-    Brightbox::BBConfig.any_instance.stubs(:default_config_dir).returns(config_dir)
+    test_config = Brightbox::BBConfig.new(:dir => config_dir)
+    Brightbox.const_set(:CONFIG, test_config)
   end
 end
 
-VCR.config do |c|
-  c.cassette_library_dir = File.join(File.dirname(__FILE__),"fixtures/vcr_cassettes")
-  c.allow_http_connections_when_no_cassette = true
-  c.stub_with :excon
+VCR.configure do |vcr|
+  vcr.cassette_library_dir = File.join(File.dirname(__FILE__),"fixtures/vcr_cassettes")
+  vcr.allow_http_connections_when_no_cassette = false
+  vcr.hook_into :excon
+  vcr.default_cassette_options = {
+    :match_requests_on => [:method, :path]
+  }
 end

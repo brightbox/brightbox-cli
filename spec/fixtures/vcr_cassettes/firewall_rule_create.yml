@@ -1,36 +1,40 @@
 --- 
-- !ruby/struct:VCR::HTTPInteraction 
-  request: !ruby/struct:VCR::Request 
+http_interactions: 
+- request: 
     method: POST
-    uri: https://api.gb1s.brightbox.com:443/1.0/firewall_rules
-    body: "{\"destination\":\"0.0.0.0/0\",\"destination_port\":\"1080\",\"protocol\":\"tcp\",\"firewall_policy\":\"fwp-30kea\"}"
+    uri: https://api.gb1s.brightbox.com/1.0/firewall_rules
+    body: 
+      string: "{\"destination\":\"0.0.0.0/0\",\"destination_port\":\"1080\",\"protocol\":\"tcp\",\"firewall_policy\":\"fwp-30kea\"}"
     headers: 
-      content-type: 
-      - application/json
-      authorization: 
+      Authorization: 
       - OAuth e717de9faa2aaeacd8b55c38def2c53e72b42f06
-  response: !ruby/struct:VCR::Response 
-    status: !ruby/struct:VCR::ResponseStatus 
+      Content-Type: 
+      - application/json
+  response: 
+    status: 
       code: 202
       message: 
     headers: 
-      location: 
-      - https://api.gb1s.brightbox.com/1.0/firewall_rules/fwr-tkklm
-      content-type: 
-      - application/json; charset=utf-8
-      server: 
-      - Apache
-      date: 
-      - Fri, 14 Oct 2011 13:30:04 GMT
-      x-runtime: 
-      - "44"
-      content-length: 
+      Content-Length: 
       - "456"
-      cache-control: 
+      Cache-Control: 
       - no-cache
-      status: 
-      - "202"
-      vary: 
+      Date: 
+      - Fri, 14 Oct 2011 13:30:04 GMT
+      Content-Type: 
+      - application/json; charset=utf-8
+      X-Runtime: 
+      - "44"
+      Vary: 
       - Accept-Encoding
-    body: "{\"id\":\"fwr-tkklm\",\"resource_type\":\"firewall_rule\",\"url\":\"https://api.gb1s.brightbox.com/1.0/firewall_rules/fwr-tkklm\",\"destination\":\"0.0.0.0/0\",\"protocol\":\"tcp\",\"icmp_type_name\":null,\"source_port\":null,\"description\":null,\"destination_port\":\"1080\",\"source\":null,\"firewall_policy\":{\"id\":\"fwp-30kea\",\"resource_type\":\"firewall_policy\",\"url\":\"https://api.gb1s.brightbox.com/1.0/firewall_policies/fwp-30kea\",\"name\":\"the_wall\",\"default\":false,\"description\":null}}"
+      Location: 
+      - https://api.gb1s.brightbox.com/1.0/firewall_rules/fwr-tkklm
+      Status: 
+      - "202"
+      Server: 
+      - Apache
+    body: 
+      string: "{\"id\":\"fwr-tkklm\",\"resource_type\":\"firewall_rule\",\"url\":\"https://api.gb1s.brightbox.com/1.0/firewall_rules/fwr-tkklm\",\"destination\":\"0.0.0.0/0\",\"protocol\":\"tcp\",\"icmp_type_name\":null,\"source_port\":null,\"description\":null,\"destination_port\":\"1080\",\"source\":null,\"firewall_policy\":{\"id\":\"fwp-30kea\",\"resource_type\":\"firewall_policy\",\"url\":\"https://api.gb1s.brightbox.com/1.0/firewall_policies/fwp-30kea\",\"name\":\"the_wall\",\"default\":false,\"description\":null}}"
     http_version: 
+  recorded_at: Wed, 26 Jun 2013 14:56:22 GMT
+recorded_with: VCR 2.5.0

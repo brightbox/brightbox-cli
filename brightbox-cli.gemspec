@@ -20,7 +20,7 @@ Gem::Specification.new do |s|
 
   s.add_dependency 'json', '~> 1.5.3'
   s.add_dependency('builder')
-  s.add_dependency('excon', '~>0.23')
+  s.add_dependency('excon', "= 0.22.0")
   s.add_dependency('formatador', '~>0.2.0')
   s.add_dependency('multi_json', '~>1.0')
   s.add_dependency('mime-types')
@@ -32,9 +32,8 @@ Gem::Specification.new do |s|
   s.add_dependency('highline', '~> 1.6.2')
 
   s.add_development_dependency('rake')
-  s.add_development_dependency('vcr', '~> 1.11.3')
+  s.add_development_dependency('vcr', '~> 2.5')
   s.add_development_dependency('rspec', '~> 2.8')
   s.add_development_dependency('mocha')
-  s.add_development_dependency('aruba')
 end
 
