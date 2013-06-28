@@ -9,6 +9,9 @@ Before do
   @puts = true
   @original_rubylib = ENV["RUBYLIB"]
   ENV["RUBYLIB"] = LIB_DIR + File::PATH_SEPARATOR + ENV["RUBYLIB"].to_s
+
+  # Give commands a bit more breathing space before fail them
+  @aruba_timeout_seconds = 7
 end
 
 After do
