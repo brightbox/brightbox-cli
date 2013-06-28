@@ -30,7 +30,7 @@ describe Brightbox::BBConfig do
     context "For User applications" do
       it "should return correct fog options" do
         config = Brightbox::BBConfig.new()
-        config.stubs(:config_filename).returns(app_base_config)
+        config.stubs(:config_filename).returns(app_base_config.path)
 
         config.client_name = "app-12345"
         fog_config = config.to_fog
@@ -40,7 +40,7 @@ describe Brightbox::BBConfig do
       end
       it "should throw error if user application is not configured" do
         config = Brightbox::BBConfig.new()
-        config.stubs(:config_filename).returns(app_base_config)
+        config.stubs(:config_filename).returns(app_base_config.path)
 
         config.client_name = "app-abcde"
         lambda {
