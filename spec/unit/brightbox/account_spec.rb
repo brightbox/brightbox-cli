@@ -1,0 +1,13 @@
+require "spec_helper"
+
+describe Brightbox::Account do
+  subject(:account) do
+    Brightbox::Account.new("acc-12345")
+  end
+
+  it { should respond_to(:ram_free) }
+  it { should respond_to(:cloud_ip_limit) }
+  it { should respond_to(:lb_limit) }
+  it { should respond_to(:to_row) }
+  it { should respond_to(:to_s) }
+end
