@@ -9,6 +9,8 @@ require "mocha/api"
 require "vcr"
 require "support/common_helpers"
 
+Dir["./spec/support/**/*.rb"].sort.each {|f| require f}
+
 RSpec.configure do |config|
   config.mock_framework = :mocha
   config.extend VCR::RSpec::Macros
