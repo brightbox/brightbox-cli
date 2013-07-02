@@ -13,6 +13,11 @@ module Brightbox
 
     @@connection_manager = nil
 
+    # Returns the current connection to the Brightbox API, creating a new
+    # {ConnectionManager} and connection if necessary.
+    #
+    # @return [Fog::Compute::Brightbox::Real]
+    #
     def self.conn
       if @@connection_manager
         @@connection_manager.fetch_connection(require_account?)
@@ -22,8 +27,18 @@ module Brightbox
       end
     end
 
+    # Returns +true+ if instances of this class require account details to be
+    # used. This changes the type of connection needed and the authentication
+    # details.
+    #
+    # @return [Boolean]
+    #
     def self.require_account?; false; end
 
+    #
+    #
+    # @return [String] the 'name' of the class
+    #
     def self.klass_name
       name.split("::").last()
     end
@@ -54,6 +69,19 @@ module Brightbox
       @id
     end
 
+    # General finder to return instances based on identifiers or all.
+    #
+    # @param args    [Array<Object>, Object] Search settings. Passing +:all+
+    #   will return all resources. An identifier (String) will return that one
+    #   and a collection of strings will return those resources.
+    # @param options [Hash]
+    #
+    # @return [Array<Object>] A collection of API models
+    # @return [Object] A single API model if requested with a single identifier
+    #
+    # @raise [Brightbox::Api::InvalidArguments] if +args+ can not be used to
+    #   search for.
+    #
     def self.find(args = :all, options = {})
       raise InvalidArguments, "find(nil)" if args.nil?
       raise InvalidArguments, "find([])" if args.respond_to?(:empty?) and args.empty?
