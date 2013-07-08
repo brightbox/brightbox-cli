@@ -1,5 +1,6 @@
 module Brightbox
-  extend GLI
+  extend GLI::App
+
   # Global options
   desc "Simple output (tab separated, don't draw fancy tables)"
   switch [:s, :simple]
