@@ -16,7 +16,7 @@ require "json"
 require 'date'
 require 'gli'
 require "highline"
-require 'fog'
+require "fog/brightbox/compute"
 
 module Brightbox
   autoload :Server, "brightbox-cli/servers"
