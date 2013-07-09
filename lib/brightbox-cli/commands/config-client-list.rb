@@ -1,26 +1,28 @@
 module Brightbox
-  desc 'Lists the api clients defined in the config'
-  command [:client_list] do |c|
+  command [:config] do |cmd|
 
-    c.action do |global_options, options, args|
+    cmd.desc "Lists the api clients defined in the config"
+    cmd.command [:client_list] do |c|
 
-      info "Using config file #{$config.config_filename}"
+      c.action do |global_options, options, args|
 
-      clients = $config.clients.collect do |cid|
-        c = $config[cid]
-        calias = c['alias'] || cid
-        calias = calias + "*" if $config.client_name == cid and $config.clients.size > 1
-        {
-          :alias => calias,
-          :client_id => c["client_id"],
-          :secret => c["secret"],
-          :api_url => c["api_url"],
-          :auth_url => c["auth_url"] || c["api_url"]
-        }
+        info "Using config file #{$config.config_filename}"
+
+        clients = $config.clients.collect do |cid|
+          c = $config[cid]
+          calias = c["alias"] || cid
+          calias = calias + "*" if $config.client_name == cid and $config.clients.size > 1
+          {
+            :alias => calias,
+            :client_id => c["client_id"],
+            :secret => c["secret"],
+            :api_url => c["api_url"],
+            :auth_url => c["auth_url"] || c["api_url"]
+          }
+        end
+
+        render_table clients, global_options.merge(:fields => [:alias, :client_id, :secret, :api_url, :auth_url])
       end
-
-      render_table clients, global_options.merge(:fields => [:alias, :client_id, :secret, :api_url, :auth_url])
     end
   end
-
 end

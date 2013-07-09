@@ -1,39 +1,44 @@
 module Brightbox
-  desc 'Update user details'
-  arg_name 'user-id...'
-  command [:update] do |c|
-    c.desc "Path to public ssh key file"
-    c.long_desc "This is the path to the public ssh key that you'd like to use for new servers. You can specify '-' to read from stdin"
-    c.flag [:f, "ssh-key"]
+  command [:users] do |cmd|
 
-    c.desc "Name"
-    c.flag [:n, "name"]
+    cmd.desc "Update user details"
+    cmd.arg_name "user-id..."
+    cmd.command [:update] do |c|
 
-    c.action do |global_options, options, args|
+      c.desc "Path to public ssh key file"
+      c.long_desc "This is the path to the public ssh key that you'd like to use
+      for new servers. You can specify '-' to read from stdin"
+        c.flag [:f, "ssh-key"]
 
-      raise "You must specify the user id as the first argument" if args.empty?
+        c.desc "Name"
+        c.flag [:n, "name"]
 
-      user = User.find args.first
+        c.action do |global_options, options, args|
 
-      if options[:f] == '-'
-        user.ssh_key = STDIN.read
-      elsif options[:f]
-        File.open(File.expand_path(options[:f])) { |f| user.ssh_key = f.read }
+          raise "You must specify the user id as the first argument" if args.empty?
+
+          user = User.find args.first
+
+          if options[:f] == "-"
+            user.ssh_key = STDIN.read
+          elsif options[:f]
+            File.open(File.expand_path(options[:f])) { |f| user.ssh_key = f.read }
+          end
+
+          if options[:n]
+            user.name = options[:n]
+          end
+
+          user.save
+
+          table_opts = global_options.merge({
+            :vertical => true,
+            :fields => [:id, :name, :email_address, :ssh_key ]
+          })
+
+          render_table([user], table_opts)
+
+        end
       end
-
-      if options[:n]
-        user.name = options[:n]
-      end
-
-      user.save
-
-      table_opts = global_options.merge({
-                                          :vertical => true,
-                                          :fields => [:id, :name, :email_address, :ssh_key ]
-                                        })
-
-      render_table([user], table_opts)
-
     end
   end
-end

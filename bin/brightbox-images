@@ -8,4 +8,4 @@ rescue LoadError
   require "brightbox_cli"
 end
 
-Brightbox::run ARGV
+Brightbox::run ARGV.unshift("images")

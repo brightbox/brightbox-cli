@@ -1,27 +1,30 @@
 module Brightbox
-  desc 'Remove api client details from config'
-  arg_name 'alias'
-  command [:client_remove] do |c|
+  command [:config] do |cmd|
 
-    c.action do |global_options, options, args|
+    cmd.desc "Remove api client details from config"
+    cmd.arg_name "alias"
+    cmd.command [:client_remove] do |c|
 
-      info "Using config file #{$config.config_filename}"
+      c.action do |global_options, options, args|
 
-      calias = args.shift
+        info "Using config file #{$config.config_filename}"
 
-      if calias.nil?
-        raise "You must specify the api alias you want to remove"
+        calias = args.shift
+
+        if calias.nil?
+          raise "You must specify the api alias you want to remove"
+        end
+
+        client_config = $config.clients.detect{|c| $config[c]["alias"] == calias}
+        if client_config.nil?
+          raise "An api client with the alias #{calias} does not exist in the config"
+        end
+
+        info "Removing api client #{calias}"
+        $config.delete_section client_config
+        $config.save!
+
       end
-
-      client_config = $config.clients.detect{|c| $config[c]['alias'] == calias}
-      if client_config.nil?
-        raise "An api client with the alias #{calias} does not exist in the config"
-      end
-
-      info "Removing api client #{calias}"
-      $config.delete_section client_config
-      $config.save!
-
     end
   end
 end

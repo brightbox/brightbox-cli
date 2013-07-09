@@ -1,21 +1,24 @@
 module Brightbox
-  desc 'Start the specified servers'
-  arg_name 'server-id...'
-  command [:start] do |c|
+  command [:servers] do |cmd|
 
-    c.action do |global_options,options,args|
+    cmd.desc "Start the specified servers"
+    cmd.arg_name "server-id..."
+    cmd.command [:start] do |c|
 
-      raise "You must specify servers to start" if args.empty?
+      c.action do |global_options, options, args|
 
-      servers = Server.find_or_call(args) do |id|
-        raise "Couldn't find server #{id}"
+        raise "You must specify servers to start" if args.empty?
+
+        servers = Server.find_or_call(args) do |id|
+          raise "Couldn't find server #{id}"
+        end
+
+        servers.each do |s|
+          info "Starting server #{s}"
+          s.start
+        end
+
       end
-
-      servers.each do |s|
-        info "Starting server #{s}"
-        s.start
-      end
-
     end
   end
 end

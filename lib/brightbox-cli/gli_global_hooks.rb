@@ -1,5 +1,20 @@
+require "brightbox-cli/version"
+
 module Brightbox
   extend GLI::App
+
+  subcommand_option_handling :normal
+
+  # FIXME The official "commands_from" will try and reload them without
+  # correctly having the subcommand_option_handling set to :normal
+  # This generates errors that flags are in use BY THE SAME command!
+  #
+  # Need to locate the source of double loading under Aruba
+  #
+  begin
+    commands_from "brightbox-cli/commands"
+  rescue ArgumentError
+  end
 
   sort_help :manually
   version Brightbox::VERSION
@@ -17,19 +32,13 @@ module Brightbox
   desc "Disable peer SSL certificate verification"
   switch [:k, :insecure], :negatable => false
 
-  # Load the command libraries for the current group
-  cmd_group_name = File.basename($0).gsub(/brightbox\-/, '')
-  cmd_group_files = File.join(File.dirname(__FILE__), "commands/#{cmd_group_name}*.rb")
-  Dir.glob(cmd_group_files).each do |f|
-    load f
-  end
-
   pre do |global_options, command, options, args|
-    if command == "brightbox-config"
+    if command.topmost_ancestor.name == :config
       force_default_config = false
     else
       force_default_config = true
     end
+
     $config = BBConfig.new(:force_default_config => force_default_config)
     $config.client_name = ENV["CLIENT"] if ENV["CLIENT"]
     $config.client_name = global_options[:c] if global_options[:c]
