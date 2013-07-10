@@ -11,7 +11,7 @@ module Brightbox
 
     c.action do |global_options, options, args|
 
-      info "Using config file #{CONFIG.config_filename}"
+      info "Using config file #{$config.config_filename}"
 
       client_id = args.shift
       secret = args.shift
@@ -31,7 +31,7 @@ module Brightbox
         raise "You must specify the api secret"
       end
 
-      client_config = CONFIG[calias]
+      client_config = $config[calias]
       unless client_config.empty?
         raise "An api client with the id or alias #{calias} already exists"
       end
@@ -44,7 +44,7 @@ module Brightbox
       client_config['api_url'] = api_url
       client_config['auth_url'] = auth_url
 
-      CONFIG.save!
+      $config.save!
 
     end
   end

@@ -19,7 +19,7 @@ RSpec.configure do |config|
   config.before(:suite) do
     config_dir = File.join(File.dirname(__FILE__), "fixtures/config_files")
     test_config = Brightbox::BBConfig.new(:dir => config_dir)
-    Brightbox.const_set(:CONFIG, test_config)
+    $config = test_config
   end
 end
 

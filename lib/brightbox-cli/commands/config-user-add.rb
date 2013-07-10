@@ -10,7 +10,7 @@ module Brightbox
     c.flag [:p, "password"]
 
     c.action do |global_options, options, args|
-      info "Using config file #{CONFIG.config_filename}"
+      info "Using config file #{$config.config_filename}"
 
       email = args.shift
       app_id = args.shift
@@ -42,7 +42,7 @@ module Brightbox
         raise "You must specify your Brightbox password."
       end
 
-      client_config = CONFIG[calias]
+      client_config = $config[calias]
       unless client_config.empty?
         raise "A user application with the id or alias #{calias} already exists"
       end
@@ -56,7 +56,7 @@ module Brightbox
       client_config['api_url'] = api_url
       client_config['auth_url'] = auth_url
 
-      CONFIG.save!(:email => email, :password => password, :client_id => calias)
+      $config.save!(:email => email, :password => password, :client_id => calias)
     end
   end
 end

@@ -10,7 +10,7 @@ module Brightbox
 
     def update_token
       return false unless socket_error.is_a?(Excon::Errors::Unauthorized)
-      CONFIG.update_refresh_token
+      $config.update_refresh_token
     rescue
       false
     end
