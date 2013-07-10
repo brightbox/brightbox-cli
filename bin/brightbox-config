@@ -9,6 +9,5 @@ rescue LoadError
 end
 
 Brightbox::BBConfig.config(false) do
-  include GLI
-  run ARGV
+  Brightbox::run ARGV
 end

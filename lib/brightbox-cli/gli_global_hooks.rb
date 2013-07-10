@@ -1,8 +1,12 @@
 module Brightbox
-  extend GLI
+  extend GLI::App
+
+  sort_help :manually
+  version Brightbox::VERSION
+
   # Global options
   desc "Simple output (tab separated, don't draw fancy tables)"
-  switch [:s, :simple]
+  switch [:s, :simple], :negatable => false
 
   desc "Set the api client to use (named in #{CONFIG.config_filename})"
   flag [:c, :client]
@@ -11,10 +15,7 @@ module Brightbox
   flag :account
 
   desc "Disable peer SSL certificate verification"
-  switch [:k, :insecure]
-
-  desc "Display Help"
-  switch [:h, :help]
+  switch [:k, :insecure], :negatable => false
 
   # Load the command libraries for the current group
   cmd_group_name = File.basename($0).gsub(/brightbox\-/, '')
@@ -42,7 +43,6 @@ module Brightbox
       Hirb::View.resize
     end
 
-    command = commands[:help] if global_options[:h]
     config_alias = CONFIG.alias == CONFIG.client_name ? nil : "(#{CONFIG.alias})"
     info "INFO: client_id: #{CONFIG.client_name} #{config_alias}" if CONFIG.clients.size > 1
     true
@@ -54,12 +54,5 @@ module Brightbox
     debug e.class.to_s
     debug e.backtrace.join("\n")
     exit 1
-  end
-
-  desc 'Display version information'
-  command [:version] do |c|
-    c.action do |global_options, options, args|
-      info "Brightbox CLI version: #{Brightbox::VERSION}"
-    end
   end
 end

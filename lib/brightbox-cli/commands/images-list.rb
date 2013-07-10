@@ -3,7 +3,7 @@ module Brightbox
   arg_name '[image-id...]'
   command [:list] do |c|
     c.desc "Show all public images from all accounts"
-    c.switch [:a, "show-all"]
+    c.switch [:a, "show-all"], :negatable => false
 
     c.desc "Show only images of a given type"
     c.flag [:t, :type]

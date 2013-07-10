@@ -5,7 +5,7 @@ module Brightbox
 
     c.desc "Number of servers to create"
     c.default_value 1
-    c.flag [:i, "server-count"]
+    c.flag [:i, "server-count"], :type => Integer
 
     c.desc "Zone to create the servers in"
     c.flag [:z, "zone"]
@@ -23,8 +23,9 @@ module Brightbox
     c.desc "Specify the user data from a local file"
     c.flag [:f, "user-data-file"]
 
-    c.desc "Don't base64 encode the user data"
-    c.switch [:e, :no_base64]
+    c.desc "base64 encode the user data"
+    c.default_value true
+    c.switch [:e, :base64], :negatable => true
 
     c.desc "Server groups to place server in - comma delimited list"
     c.flag [:g, "server-groups"]
@@ -34,12 +35,6 @@ module Brightbox
       if args.empty?
         raise "You must specify the image_id as the first argument"
       end
-
-      if options[:i].to_s !~ /^[0-9]+$/
-        raise "server-count must be a number"
-      end
-
-      options[:i] = options[:i].to_i
 
       image_id = args.shift
       image = Image.find image_id
@@ -79,7 +74,7 @@ module Brightbox
       end
 
       if user_data
-        unless options[:e]
+        if options[:e]
           require 'base64'
           user_data = Base64.encode64(user_data)
         end

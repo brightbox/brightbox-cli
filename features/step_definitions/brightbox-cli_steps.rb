@@ -15,6 +15,6 @@ When /^I get help for "([^"]*)"$/ do |app_name|
 end
 
 Then /^the output should contain the version information$/ do
-  expected = "Brightbox CLI version: #{Brightbox::VERSION}"
+  expected = "#{@app_name} version #{Brightbox::VERSION}"
   assert_partial_output(expected, all_output)
 end

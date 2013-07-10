@@ -3,7 +3,7 @@ module Brightbox
   arg_name '[cloudip-id...]'
   command [:destroy] do |c|
     c.desc "Unmap mapped IPs before destroying them"
-    c.switch [:u, "unmap"]
+    c.switch [:u, "unmap"], :negatable => false
 
     c.action do |global_options,options,args|
 

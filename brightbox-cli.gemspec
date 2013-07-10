@@ -18,7 +18,7 @@ Gem::Specification.new do |s|
   s.executables   = `git ls-files -- bin/*`.split("\n").map{ |f| File.basename(f) }
   s.require_paths = ["lib"]
 
-  s.add_dependency "gli", "~> 1.3"
+  s.add_dependency "gli", "~> 2.7"
   s.add_dependency "ini"
   s.add_dependency "fog", "~> 1.8.0"
   s.add_dependency "json"
