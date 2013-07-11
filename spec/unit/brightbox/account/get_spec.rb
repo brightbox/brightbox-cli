@@ -16,7 +16,7 @@ describe Brightbox::Account do
         end
 
         it "returns the resource on the same connection" do
-          expect(@account.connection).to eql(Brightbox::Account.conn)
+          expect(@account.service).to eql(Brightbox::Account.conn)
         end
       end
 
@@ -40,7 +40,7 @@ describe Brightbox::Account do
         end
 
         it "returns the resource on the same connection" do
-          expect(@account.connection).to eql(Brightbox::Account.conn)
+          expect(@account.service).to eql(Brightbox::Account.conn)
         end
       end
 

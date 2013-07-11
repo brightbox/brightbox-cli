@@ -18,7 +18,7 @@ describe Brightbox::Account do
 
       it "returns resources on the same connection" do
         Brightbox::Account.all.each do |account|
-          expect(account.connection).to eql(Brightbox::Account.conn)
+          expect(account.service).to eql(Brightbox::Account.conn)
         end
       end
     end
@@ -38,7 +38,7 @@ describe Brightbox::Account do
 
       it "returns resources on the same connection" do
         Brightbox::Account.all.each do |account|
-          expect(account.connection).to eql(Brightbox::Account.conn)
+          expect(account.service).to eql(Brightbox::Account.conn)
         end
       end
     end
