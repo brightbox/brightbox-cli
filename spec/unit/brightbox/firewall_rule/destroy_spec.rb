@@ -1,21 +1,27 @@
 require "spec_helper"
 
 describe Brightbox::FirewallRule do
-  before do
-    @policy_id = "fwp-30kea"
-  end
 
-  describe "#destroy" do
-    use_vcr_cassette("firewall_rule_destroy")
+  describe "#destroy", :vcr do
+    context "when rule exists" do
+      before do
+        policy_options = {}
+        @policy = Brightbox::FirewallPolicy.create(policy_options)
 
-    before do
-      @firewall_rule = Brightbox::FirewallRule.find("fwr-tkklm")
-    end
+        rule_options = {
+          :destination => "0.0.0.0/0",
+          :destination_port => "1080",
+          :protocol => "tcp",
+          :firewall_policy_id => @policy.id
+        }
+        @rule = Brightbox::FirewallRule.create(rule_options)
+      end
 
-    it "should destroy a rule" do
-      lambda do
-        @firewall_rule.destroy
-      end.should_not raise_error
+      it "destroys a rule" do
+        expect {
+          @rule.destroy
+        }.to_not raise_error
+      end
     end
   end
 end

@@ -1,28 +1,22 @@
 require "spec_helper"
 
 describe Brightbox::Server do
+  include ServerHelpers
 
-  describe "#start" do
-    use_vcr_cassette("server_start")
-
+  describe "#start", :vcr do
     it "should work" do
       type = Brightbox::Type.find_by_handle "nano"
       options = server_params("rspec_server_start",type)
       server = (Brightbox::Server.create_servers 1, options).first
+
+      server.fog_model.wait_for { ready? }
+
       lambda {
         server.stop
-        server.start()
+        server.fog_model.wait_for { ! ready? }
+
+        server.start
       }.should_not raise_error
     end
-  end
-
-  def server_params(name,type)
-    {
-      :image_id      => "img-ymfuq",
-      :name          => name,
-      :zone_id       => nil.to_s,
-      :flavor_id     => type.id,
-      :user_data     => nil
-    }
   end
 end

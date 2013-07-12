@@ -6,8 +6,11 @@ describe Brightbox::Server do
     context "when account limit reached" do
       it "should print error if account limit reached" do
         options = {
-          :image_id => "img-4gqhs", :name => "medium servers",
-          :zone_id => "", :user_data => nil, :flavor_id => "typ-qdiwq"
+          :image_id => "img-12345",
+          :name => "medium servers",
+          :zone_id => "",
+          :user_data => nil,
+          :flavor_id => "typ-12345"
         }
         expect(Brightbox::Server).to receive(:create).and_raise(limit_exceeded_exception)
         error = nil

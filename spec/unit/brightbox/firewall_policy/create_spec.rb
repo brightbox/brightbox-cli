@@ -2,8 +2,7 @@ require "spec_helper"
 
 describe Brightbox::FirewallPolicy do
 
-  describe "#create" do
-    use_vcr_cassette('create_firewall_policy')
+  describe "#create", :vcr do
 
     it "should create firewall policy" do
       params = { :name => "rspec_tests"}

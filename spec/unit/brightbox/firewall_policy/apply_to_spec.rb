@@ -2,8 +2,7 @@ require "spec_helper"
 
 describe Brightbox::FirewallPolicy do
 
-  describe "#apply_to" do
-    use_vcr_cassette('apply_firewall_policy')
+  describe "#apply_to", :vcr do
 
     it "should apply firewall policy" do
       lambda {

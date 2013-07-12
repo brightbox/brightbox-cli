@@ -1,30 +1,24 @@
 require "spec_helper"
 
 describe Brightbox::Server do
+  include ServerHelpers
 
   describe "#destroy" do
-    use_vcr_cassette('server_destroy')
+    context "when server exists", :vcr do
+      it "should work" do
+        #FIXME Spec never actually calls destroy, just checks output of creation!!
 
-    it "should work" do
-      #FIXME Spec never actually calls destroy, just checks output of creation!!
-      type = Brightbox::Type.find_by_handle "nano"
-      options = server_params("wow",type)
-      @servers = Brightbox::Server.create_servers 1, options
-      output = capture_stdout {
-        Brightbox::render_table(@servers,:vertical => true)
-      }
-      output.should match("wow")
-      output.should match("img-ymfuq")
+        type = Brightbox::Type.find_by_handle "nano"
+
+        options = server_params("wow",type)
+        @servers = Brightbox::Server.create_servers 1, options
+
+        output = capture_stdout {
+          Brightbox::render_table(@servers, :vertical => true)
+        }
+        expect(output).to include("wow")
+        expect(output).to include("img-12345")
+      end
     end
-  end
-
-  def server_params(name,type)
-    {
-      :image_id      => "img-ymfuq",
-      :name          => name,
-      :zone_id       => nil.to_s,
-      :flavor_id     => type.id,
-      :user_data     => nil
-    }
   end
 end

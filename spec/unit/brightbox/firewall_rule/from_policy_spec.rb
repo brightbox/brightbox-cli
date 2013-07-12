@@ -1,23 +1,44 @@
 require "spec_helper"
 
 describe Brightbox::FirewallRule do
-  before do
-    @policy_id = "fwp-30kea"
-  end
 
-  describe ".from_policy" do
-    use_vcr_cassette('firewall_rule_list')
+  describe ".from_policy", :vcr do
+    context "when policy exists with a rule" do
+      before do
+        policy_options = {}
+        @policy = Brightbox::FirewallPolicy.create(policy_options)
 
-    before do
-      @firewall_policy = Brightbox::FirewallPolicy.find(@policy_id)
-      @firewall_rules = Brightbox::FirewallRules.from_policy(@firewall_policy)
-    end
+        rule_options = {
+          :destination => "0.0.0.0/0",
+          :protocol => "tcp",
+          :firewall_policy_id => @policy.id
+        }
+        rule_1_options = rule_options.merge(:destination_port => "1080")
+        @rule_1 = Brightbox::FirewallRule.create rule_1_options
 
-    it "should list all rules" do
-      output = capture_stdout {
-        Brightbox.render_table(@firewall_rules,:vertical => true)
-      }
-      output.should match(/1080/)
+        rule_2_options = rule_options.merge(:destination_port => "1081")
+        @rule_2 = Brightbox::FirewallRule.create rule_2_options
+      end
+
+      it "lists all rules" do
+        # FIXME from_policy does not seem to reload from API so uses a stale
+        # representation of the rules (Policy creation above)
+        @policy.reload
+        @policy_rules = Brightbox::FirewallRules.from_policy(@policy)
+
+        output = capture_stdout {
+          Brightbox.render_table(@policy_rules, :vertical => true)
+        }
+        expect(output).to include("id: #{@rule_1.id}")
+        expect(output).to include("dport: 1080")
+
+        expect(output).to include("id: #{@rule_2.id}")
+        expect(output).to include("dport: 1081")
+      end
+
+      after do
+        @policy.destroy
+      end
     end
   end
 end

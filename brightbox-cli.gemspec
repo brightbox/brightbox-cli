@@ -21,6 +21,7 @@ Gem::Specification.new do |s|
   s.add_dependency "gli", "~> 2.7"
   s.add_dependency "ini"
   s.add_dependency "fog", "~> 1.8.0"
+  s.add_dependency "excon", "~> 0.22.0"
   s.add_dependency "json"
 
   s.add_dependency('hirb','~> 0.6.0')

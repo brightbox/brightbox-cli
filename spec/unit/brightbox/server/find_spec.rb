@@ -1,19 +1,30 @@
 require "spec_helper"
 
 describe Brightbox::Server do
+  let(:image_id) { "img-12345" }
 
   describe "#find(:all)" do
-    use_vcr_cassette('server_list')
+    context "when a server exists", :vcr do
+      before do
+        options = {
+          :image_id => image_id
+        }
+        @server = Brightbox::Server.create(options)
+      end
 
-    before do
-      @servers = Brightbox::Server.find(:all)
-    end
+      it "should print server list" do
+        @servers = Brightbox::Server.find(:all)
 
-    it "should print server list" do
-      output = capture_stdout {
-        Brightbox.render_table(@servers, {})
-      }
-      output.should match(/active/)
+        output = capture_stdout {
+          Brightbox.render_table(@servers, {})
+        }
+        expect(output).to include(@server.id)
+      end
+
+      after do
+        @server.fog_model.wait_for { ready? }
+        @server.destroy
+      end
     end
   end
 end

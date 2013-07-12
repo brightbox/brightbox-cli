@@ -3,14 +3,25 @@ require "spec_helper"
 describe Brightbox::FirewallPolicy do
 
   describe "#find_or_call" do
-    use_vcr_cassette('show_firewall_policy')
 
-    it "should show firewall policy" do
-      output = capture_stdout {
-        firewall_policy = Brightbox::FirewallPolicy.find_or_call(["fwp-3q9jp"])
-        Brightbox.render_table(firewall_policy,:vertical => true)
-      }
-      output.should match(/default_permissive_policy/)
+    context "when a policy exists" do
+      before do
+        options = {
+        }
+        @policy = Brightbox::FirewallPolicy.create(options)
+      end
+
+      it "should show firewall policy", :vcr do
+        output = capture_stdout {
+          firewall_policy = Brightbox::FirewallPolicy.find_or_call([@policy.id])
+          Brightbox.render_table(firewall_policy,:vertical => true)
+        }
+        expect(output).to include(@policy.id)
+      end
+
+      after do
+        @policy.destroy
+      end
     end
   end
 end
