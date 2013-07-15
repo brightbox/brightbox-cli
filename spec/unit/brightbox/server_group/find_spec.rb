@@ -1,7 +1,8 @@
 require "spec_helper"
 
-describe "Server Group" do
-  describe "listing server groups" do
+describe Brightbox::ServerGroup do
+
+  describe "#find(:all)" do
     use_vcr_cassette('list_server_groups')
 
     it "should list server groups" do

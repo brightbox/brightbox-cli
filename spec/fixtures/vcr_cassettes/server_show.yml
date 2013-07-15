@@ -35,6 +35,38 @@ http_interactions:
   recorded_at: Wed, 26 Jun 2013 14:56:22 GMT
 - request: 
     method: GET
+    uri: https://api.gb1s.brightbox.com/1.0/account
+    headers: 
+      Authorization: 
+      - OAuth 9b1d6a22503562503acde9740b410b89e2444009
+      Content-Type: 
+      - application/json
+  response: 
+    status: 
+      code: 200
+      message: !!null 
+        str: ""
+        "@taguri": x-private:null
+    headers: 
+      Content-Length: 
+      - ""
+      Cache-Control: 
+      - private, max-age=0, must-revalidate
+      Date: 
+      - Thu, 23 Feb 2012 11:19:11 GMT
+      Content-Type: 
+      - application/json; charset=utf-8
+      Vary: 
+      - Accept-Encoding
+      Status: 
+      - "200"
+      Server: 
+      - Apache
+    body: 
+      string: "{\"id\":\"acc-998rf\",\"resource_type\":\"account\",\"url\":\"https://api.gb1.brightbox.com/1.0/account\",\"name\":\"Brighbox Systems\",\"status\":\"active\"}"
+  recorded_at: Wed, 26 Jun 2013 14:56:22 GMT
+- request: 
+    method: GET
     uri: https://api.gb1s.brightbox.com/1.0/servers/srv-egjzh
     body: 
       string: ""

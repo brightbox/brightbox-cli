@@ -1,8 +1,74 @@
 --- 
 http_interactions: 
 - request: 
+    method: POST
+    uri: https://api.gb1s.brightbox.com/token
+    body: 
+      string: "{\"client_id\":\"cli-cfv8i\",\"grant_type\":\"none\"}"
+    headers: 
+      Authorization: 
+      - Basic Y2xpLWNmdjhpOjMwcjE3cWJ3cWFsb2VtZw==
+      Content-Type: 
+      - application/json
+  response: 
+    status: 
+      code: 200
+      message: 
+    headers: 
+      Content-Length: 
+      - "77"
+      Cache-Control: 
+      - no-store
+      Date: 
+      - Thu, 23 Feb 2012 11:19:10 GMT
+      Content-Type: 
+      - application/json
+      Vary: 
+      - Accept-Encoding
+      Status: 
+      - "200"
+      Server: 
+      - Apache
+    body: 
+      string: "{\"expires_in\":7200,\"access_token\":\"9b1d6a22503562503acde9740b410b89e2444009\"}"
+    http_version: 
+  recorded_at: Wed, 26 Jun 2013 14:56:22 GMT 
+- request: 
     method: GET
-    uri: https://api.gb1s.brightbox.com/1.0/server_types
+    uri: https://api.gb1s.brightbox.com/1.0/account
+    headers: 
+      Authorization: 
+      - OAuth 9b1d6a22503562503acde9740b410b89e2444009
+      Content-Type: 
+      - application/json
+  response: 
+    status: 
+      code: 200
+      message: !!null 
+        str: ""
+        "@taguri": x-private:null
+    headers: 
+      Content-Length: 
+      - ""
+      Cache-Control: 
+      - private, max-age=0, must-revalidate
+      Date: 
+      - Thu, 23 Feb 2012 11:19:11 GMT
+      Content-Type: 
+      - application/json; charset=utf-8
+      Vary: 
+      - Accept-Encoding
+      Status: 
+      - "200"
+      Server: 
+      - Apache
+    body: 
+      string: "{\"id\":\"acc-998rf\",\"resource_type\":\"account\",\"url\":\"https://api.gb1.brightbox.com/1.0/account\",\"name\":\"Brighbox Systems\",\"status\":\"active\"}"
+  recorded_at: Wed, 26 Jun 2013 14:56:22 GMT
+- request: 
+    method: GET
+    uri: https://api.gb1s.brightbox.com/1.0/server_types?account_id=acc-998rf
+
     body: 
       string: ""
     headers: 
