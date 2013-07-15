@@ -5,7 +5,7 @@ describe Brightbox::Api, "#fog_model" do
   context "when initialised with a fog model" do
     before do
       @identifier = "api-12345"
-      @fog_model = mock
+      @fog_model = double
       expect(@fog_model).to receive(:id).and_return(@identifier)
       allow(@fog_model).to receive(:attributes).and_return({})
     end
@@ -19,7 +19,7 @@ describe Brightbox::Api, "#fog_model" do
   context "when initialised with an identifier string" do
     it "attempts to find a resource" do
       @identifier = "api-12345"
-      @fog_model = mock
+      @fog_model = double
 
       @api_instance = Brightbox::Api.new(@identifier)
       expect(Brightbox::Api).to receive(:find).with(@identifier).and_return(@fog_model)
