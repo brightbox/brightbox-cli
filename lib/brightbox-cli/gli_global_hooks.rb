@@ -8,7 +8,7 @@ module Brightbox
   desc "Simple output (tab separated, don't draw fancy tables)"
   switch [:s, :simple], :negatable => false
 
-  desc "Set the api client to use (named in #{CONFIG.config_filename})"
+  desc "Set the api client to use (named in #{$config.config_filename})"
   flag [:c, :client]
 
   desc "Set the account to use"
@@ -25,10 +25,10 @@ module Brightbox
   end
 
   pre do |global_options, command, options, args|
-    CONFIG.client_name = ENV["CLIENT"] if ENV["CLIENT"]
-    CONFIG.client_name = global_options[:c] if global_options[:c]
-    CONFIG.account = ENV["ACCOUNT"] if ENV["ACCOUNT"]
-    CONFIG.account = global_options[:account] if global_options[:account]
+    $config.client_name = ENV["CLIENT"] if ENV["CLIENT"]
+    $config.client_name = global_options[:c] if global_options[:c]
+    $config.account = ENV["ACCOUNT"] if ENV["ACCOUNT"]
+    $config.account = global_options[:account] if global_options[:account]
 
     Excon.defaults[:headers]['User-Agent'] = "brightbox-cli/#{Brightbox::VERSION} Fog/#{Fog::VERSION}"
 
@@ -43,8 +43,8 @@ module Brightbox
       Hirb::View.resize
     end
 
-    config_alias = CONFIG.alias == CONFIG.client_name ? nil : "(#{CONFIG.alias})"
-    info "INFO: client_id: #{CONFIG.client_name} #{config_alias}" if CONFIG.clients.size > 1
+    config_alias = $config.alias == $config.client_name ? nil : "(#{$config.alias})"
+    info "INFO: client_id: #{$config.client_name} #{config_alias}" if $config.clients.size > 1
     true
   end
 

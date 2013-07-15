@@ -5,21 +5,21 @@ module Brightbox
 
     c.action do |global_options, options, args|
 
-      info "Using config file #{CONFIG.config_filename}"
+      info "Using config file #{$config.config_filename}"
       calias = args.shift
 
       if calias.nil?
         raise "You must specify the api alias you want to set as the default"
       end
 
-      client_config = CONFIG.clients.detect{|c| CONFIG[c]['alias'] == calias}
+      client_config = $config.clients.detect{|c| $config[c]['alias'] == calias}
       if client_config.nil?
         raise "An api client with the alias #{calias} does not exist in the config"
       end
 
       info "Setting #{calias} as default api client"
-      CONFIG['core']['default_client'] = client_config
-      CONFIG.save!
+      $config['core']['default_client'] = client_config
+      $config.save!
 
     end
   end

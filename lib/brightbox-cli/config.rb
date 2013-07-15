@@ -14,11 +14,11 @@ module Brightbox
     end
 
     def self.config(force_default_config = true)
-      Brightbox.const_set(:CONFIG, new(:force_default_config => force_default_config))
+      $config = new(:force_default_config => force_default_config)
       require "brightbox-cli/gli_global_hooks"
       yield
     ensure
-      CONFIG.finish()
+      $config.finish()
     end
 
     def dir

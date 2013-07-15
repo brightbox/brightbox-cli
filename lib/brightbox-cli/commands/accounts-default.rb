@@ -15,7 +15,7 @@ module Brightbox
         raise "Invalid account-id"
       end
 
-      CONFIG.save_default_account(account_id)
+      $config.save_default_account(account_id)
     end
   end
 end
