@@ -6,8 +6,8 @@ describe Brightbox::Api, "#fog_model" do
     before do
       @identifier = "api-12345"
       @fog_model = mock
-      @fog_model.expects(:id).returns(@identifier)
-      @fog_model.stubs(:attributes).returns({})
+      expect(@fog_model).to receive(:id).and_return(@identifier)
+      allow(@fog_model).to receive(:attributes).and_return({})
     end
 
     it "returns the object" do
@@ -22,7 +22,7 @@ describe Brightbox::Api, "#fog_model" do
       @fog_model = mock
 
       @api_instance = Brightbox::Api.new(@identifier)
-      Brightbox::Api.expects(:find).with(@identifier).returns(@fog_model)
+      expect(Brightbox::Api).to receive(:find).with(@identifier).and_return(@fog_model)
       expect(@api_instance.fog_model).to eql(@fog_model)
     end
   end

@@ -9,7 +9,7 @@ describe Brightbox::Server do
           :image_id => "img-4gqhs", :name => "medium servers",
           :zone_id => "", :user_data => nil, :flavor_id => "typ-qdiwq"
         }
-        Brightbox::Server.expects(:create).raises(limit_exceeded_exception)
+        expect(Brightbox::Server).to receive(:create).and_raise(limit_exceeded_exception)
         error = nil
         begin
           Brightbox::Server.create(options)

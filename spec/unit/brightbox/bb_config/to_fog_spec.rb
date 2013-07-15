@@ -6,7 +6,7 @@ describe Brightbox::BBConfig do
     context "For Api Clients" do
       it "should return correct fog options" do
         config = Brightbox::BBConfig.new()
-        config.stubs(:config_filename).returns(client_base_config.path)
+        allow(config).to receive(:config_filename).and_return(client_base_config.path)
 
         config.client_name = "cli-abcde"
         config.to_fog.should_not be_empty
@@ -18,7 +18,7 @@ describe Brightbox::BBConfig do
       end
       it "should throw error if api client is not configured" do
         config = Brightbox::BBConfig.new()
-        config.stubs(:config_filename).returns(client_base_config.path)
+        allow(config).to receive(:config_filename).and_return(client_base_config.path)
 
         config.client_name = "cli-12345"
         lambda {
@@ -30,7 +30,7 @@ describe Brightbox::BBConfig do
     context "For User applications" do
       it "should return correct fog options" do
         config = Brightbox::BBConfig.new()
-        config.stubs(:config_filename).returns(app_base_config.path)
+        allow(config).to receive(:config_filename).and_return(app_base_config.path)
 
         config.client_name = "app-12345"
         fog_config = config.to_fog
@@ -40,7 +40,7 @@ describe Brightbox::BBConfig do
       end
       it "should throw error if user application is not configured" do
         config = Brightbox::BBConfig.new()
-        config.stubs(:config_filename).returns(app_base_config.path)
+        allow(config).to receive(:config_filename).and_return(app_base_config.path)
 
         config.client_name = "app-abcde"
         lambda {
@@ -53,9 +53,9 @@ describe Brightbox::BBConfig do
   describe "updating refresh token on exit" do
     it "should only update the token if it is non-empty" do
       config = Brightbox::BBConfig.new()
-      config.stubs(:config_filename).returns(client_base_config.path)
+      allow(config).to receive(:config_filename).and_return(client_base_config.path)
 
-      config.expects(:save!).never
+      expect(config).to receive(:save!).never
       config.finish
     end
   end

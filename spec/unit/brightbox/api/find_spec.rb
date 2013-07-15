@@ -22,8 +22,8 @@ describe Brightbox::Api, ".find" do
     it "returns a collection" do
       @fog_model = mock
       @resource = mock
-      Brightbox::Api.expects(:all).returns([@fog_model])
-      Brightbox::Api.expects(:new).with(@fog_model).returns(@resource)
+      expect(Brightbox::Api).to receive(:all).and_return([@fog_model])
+      expect(Brightbox::Api).to receive(:new).with(@fog_model).and_return(@resource)
       expect(Brightbox::Api.find(:all)).to eql([@resource])
     end
   end
@@ -33,8 +33,8 @@ describe Brightbox::Api, ".find" do
       @identifier = "api-12345"
       @fog_model = mock
       @resource = mock
-      Brightbox::Api.expects(:get).with(@identifier).returns(@fog_model)
-      Brightbox::Api.expects(:new).with(@fog_model).returns(@resource)
+      expect(Brightbox::Api).to receive(:get).with(@identifier).and_return(@fog_model)
+      expect(Brightbox::Api).to receive(:new).with(@fog_model).and_return(@resource)
       expect(Brightbox::Api.find(@identifier)).to eql(@resource)
     end
   end
@@ -47,8 +47,8 @@ describe Brightbox::Api, ".find" do
     end
 
     it "returns collection of found resources" do
-      Brightbox::Api.expects(:cached_get).with(@identifier).returns(@fog_model)
-      Brightbox::Api.expects(:new).with(@fog_model).returns(@resource)
+      expect(Brightbox::Api).to receive(:cached_get).with(@identifier).and_return(@fog_model)
+      expect(Brightbox::Api).to receive(:new).with(@fog_model).and_return(@resource)
       expect(Brightbox::Api.find([@identifier])).to eq([@resource])
     end
   end
