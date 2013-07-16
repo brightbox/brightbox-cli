@@ -21,6 +21,7 @@ Gem::Specification.new do |s|
   s.add_dependency "gli", "~> 2.7"
   s.add_dependency "ini"
   s.add_dependency "fog", "~> 1.8.0"
+  s.add_dependency "excon", "~> 0.22.0"
   s.add_dependency "json"
 
   s.add_dependency('hirb','~> 0.6.0')
@@ -29,7 +30,7 @@ Gem::Specification.new do |s|
   s.add_development_dependency('rake')
   s.add_development_dependency('vcr', '~> 2.5')
   s.add_development_dependency('aruba')
-  s.add_development_dependency('rspec', '~> 2.8')
+  s.add_development_dependency('rspec', '~> 2.14')
   s.add_development_dependency('mocha')
 end
 

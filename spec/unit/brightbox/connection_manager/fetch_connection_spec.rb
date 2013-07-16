@@ -31,7 +31,7 @@ describe Brightbox::ConnectionManager, "#fetch_connection" do
         connection = connection_manager.fetch_connection(false)
         connection.should_not be_nil
 
-        $config.expects(:account).returns("acc-abcde")
+        expect($config).to receive(:account).and_return("acc-abcde")
         connection2 = connection_manager.fetch_connection(true)
         connection2.should == connection
         connection2.scoped_account.should_not be_nil

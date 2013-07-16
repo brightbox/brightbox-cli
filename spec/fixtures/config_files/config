@@ -1,8 +1,16 @@
 [core]
-default_client = testing
+default_client = dev
 
 [testing]
-api_url = https://api.gb1s.brightbox.com
+api_url = https://api.dev.brightbox.com
 alias = testing
-client_id = cli-testr
-secret = notsosecret
+client_id = cli-12345
+secret = qy6xxnvy4o0tgv5
+
+[dev]
+api_url = http://honcho.dev
+auth_url = http://honcho.dev
+client_id = cli-12345
+secret = qy6xxnvy4o0tgv5
+alias = dev
+refresh_token =
