@@ -1,6 +1,8 @@
 module Brightbox
   command [:images] do |cmd|
 
+    cmd.default_command :list
+
     cmd.desc "List available images"
     cmd.arg_name "[image-id...]"
     cmd.command [:list] do |c|

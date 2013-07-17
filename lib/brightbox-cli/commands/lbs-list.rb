@@ -1,6 +1,8 @@
 module Brightbox
   command [:lbs] do |cmd|
 
+    cmd.default_command :list
+
     cmd.desc "List load balancers"
     cmd.arg_name "[lb-id...]"
     cmd.command [:list] do |c|

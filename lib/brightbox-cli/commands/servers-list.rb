@@ -1,6 +1,8 @@
 module Brightbox
   command [:servers] do |cmd|
 
+    cmd.default_command :list
+
     cmd.desc "List servers"
     cmd.arg_name "[server-id...]"
     cmd.command [:list] do |c|

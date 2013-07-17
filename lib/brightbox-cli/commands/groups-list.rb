@@ -1,6 +1,8 @@
 module Brightbox
   command [:groups] do |cmd|
 
+    cmd.default_command :list
+
     cmd.desc "List server groups"
     cmd.command [:list] do |c|
       c.action do |global_options, options, args|

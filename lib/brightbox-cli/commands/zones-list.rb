@@ -1,6 +1,8 @@
 module Brightbox
   command [:zones] do |cmd|
 
+    cmd.default_command :list
+
     cmd.desc "List zones"
     cmd.arg_name "[zone-id...]"
     cmd.command [:list] do |c|

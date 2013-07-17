@@ -1,6 +1,8 @@
 module Brightbox
   command [:types] do |cmd|
 
+    cmd.default_command :list
+
     cmd.desc "List types"
     cmd.arg_name "[type-id...]"
     cmd.command [:list] do |c|

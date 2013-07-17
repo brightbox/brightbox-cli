@@ -1,6 +1,8 @@
 module Brightbox
   command [:accounts] do |cmd|
 
+    cmd.default_command :list
+
     cmd.desc "List accounts"
     cmd.arg_name "[account-id...]"
     cmd.command [:list] do |c|

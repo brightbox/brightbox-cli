@@ -1,6 +1,8 @@
 module Brightbox
   command [:config] do |cmd|
 
+    cmd.default_command :client_list
+
     cmd.desc "Lists the api clients defined in the config"
     cmd.command [:client_list] do |c|
 
