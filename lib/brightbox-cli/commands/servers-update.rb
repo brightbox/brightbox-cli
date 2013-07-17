@@ -21,6 +21,9 @@ module Brightbox
       c.desc "Use compatibility mode"
       c.switch [:"compatibility-mode"], :negatable => true
 
+      c.desc "Server groups to place server in - comma delimited list"
+      c.flag [:g, "server-groups"]
+
       c.action do |global_options, options, args|
         srv_id = args.shift
         raise "You must specify a valid server id as the first argument" unless srv_id =~ /^srv-/

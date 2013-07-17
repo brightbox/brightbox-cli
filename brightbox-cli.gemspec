@@ -34,4 +34,3 @@ Gem::Specification.new do |s|
   s.add_development_dependency('rspec', '~> 2.14')
   s.add_development_dependency('mocha')
 end
-
