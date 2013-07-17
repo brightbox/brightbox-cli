@@ -48,3 +48,5 @@ require "brightbox-cli/version"
 require "brightbox-cli/ruby_core_ext"
 require "brightbox-cli/nilable_hash"
 require "brightbox-cli/error_parser"
+
+require "brightbox-cli/gli_global_hooks"

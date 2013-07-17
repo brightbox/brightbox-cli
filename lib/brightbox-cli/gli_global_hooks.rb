@@ -8,7 +8,7 @@ module Brightbox
   desc "Simple output (tab separated, don't draw fancy tables)"
   switch [:s, :simple], :negatable => false
 
-  desc "Set the api client to use (named in #{$config.config_filename})"
+  desc "Set the api client to use"
   flag [:c, :client]
 
   desc "Set the account to use"
@@ -25,6 +25,12 @@ module Brightbox
   end
 
   pre do |global_options, command, options, args|
+    if command == "brightbox-config"
+      force_default_config = false
+    else
+      force_default_config = true
+    end
+    $config = BBConfig.new(:force_default_config => force_default_config)
     $config.client_name = ENV["CLIENT"] if ENV["CLIENT"]
     $config.client_name = global_options[:c] if global_options[:c]
     $config.account = ENV["ACCOUNT"] if ENV["ACCOUNT"]
@@ -46,6 +52,10 @@ module Brightbox
     config_alias = $config.alias == $config.client_name ? nil : "(#{$config.alias})"
     info "INFO: client_id: #{$config.client_name} #{config_alias}" if $config.clients.size > 1
     true
+  end
+
+  post do |global_options, command, options, args|
+    $config.finish
   end
 
   on_error do |e|
