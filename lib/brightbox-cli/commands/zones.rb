@@ -1,4 +1,5 @@
 module Brightbox
+  desc "Lists the zones available to an account or see more details"
   command [:zones] do |cmd|
 
     cmd.default_command :list

@@ -1,4 +1,5 @@
 module Brightbox
+  desc "Manages an account's cloud IP addresses"
   command [:cloudips] do |cmd|
 
     cmd.desc "Create a new Cloud IP address"

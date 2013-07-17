@@ -1,4 +1,5 @@
 module Brightbox
+  desc "List official and public images and also manages an account's"
   command [:images] do |cmd|
 
     cmd.desc "Destroy images"

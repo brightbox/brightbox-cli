@@ -1,4 +1,5 @@
 module Brightbox
+  desc "Manages local configuration settings and credentials"
   command [:config] do |cmd|
 
     cmd.desc "Add new api client details to config"

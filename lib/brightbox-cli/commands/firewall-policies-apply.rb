@@ -1,4 +1,5 @@
 module Brightbox
+  desc "Manages an account's firewall policies"
   command [:"firewall-policies"] do |cmd|
 
     cmd.desc "Apply firewall policy to a server group"

@@ -1,4 +1,5 @@
 module Brightbox
+  desc "Manages an account's load balancers"
   command [:lbs] do |cmd|
 
     cmd.desc "Add nodes to a load balancer"

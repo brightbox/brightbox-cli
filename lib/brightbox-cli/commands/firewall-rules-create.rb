@@ -1,4 +1,5 @@
 module Brightbox
+  desc "Manages an account's firewall rules for a policy"
   command [:"firewall-rules"] do |cmd|
 
     cmd.desc "Create Firewall Rule"

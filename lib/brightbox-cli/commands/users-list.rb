@@ -1,4 +1,5 @@
 module Brightbox
+  desc "Lists the users associated with an account"
   command [:users] do |cmd|
 
     cmd.default_command :list

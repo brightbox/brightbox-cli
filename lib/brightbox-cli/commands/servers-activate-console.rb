@@ -1,4 +1,5 @@
 module Brightbox
+  desc "Manages an account's servers"
   command [:servers] do |cmd|
 
     cmd.desc "Activate the console service for one or more servers"

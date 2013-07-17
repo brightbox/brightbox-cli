@@ -1,4 +1,5 @@
 module Brightbox
+  desc "Manages an account's server groups"
   command [:groups] do |cmd|
 
     cmd.desc "Add servers to a server group"
