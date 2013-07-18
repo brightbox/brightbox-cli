@@ -7,6 +7,8 @@ these tools.
 
 You can sign up at https://manage.brightbox.com
 
+{<img src="https://travis-ci.org/brightbox/brightbox-cli.png?branch=master" alt="Build Status" />}[https://travis-ci.org/brightbox/brightbox-cli]
+
 == UPGRADE NOTES
 
 Version 0.19.0 adds a new top level `brightbox` command for the suite.
