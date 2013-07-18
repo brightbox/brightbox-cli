@@ -10,6 +10,7 @@ Gem::Specification.new do |s|
   s.homepage    = "http://docs.brightbox.com/cli"
   s.summary     = %q{The Brightbox cloud management system}
   s.description = %q{Scripts to interact with the Brightbox cloud API}
+  s.license     = "MIT"
 
   s.rubyforge_project = "brightbox-cli"
 
