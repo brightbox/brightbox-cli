@@ -32,13 +32,15 @@ module Brightbox
 
 begin
   require "brightbox_cli"
+  require "brightbox-cli/legacy/args_adjuster"
 rescue LoadError
   brightbox_cli_path = File.expand_path('../../lib', __FILE__)
   $:.unshift(brightbox_cli_path)
   require "brightbox_cli"
+  require "brightbox-cli/legacy/args_adjuster"
 end
 
-Brightbox::run ARGV.unshift("#{cmd_name}")
+Brightbox::run Brightbox::Legacy::ArgsAdjuster.new(ARGV).for_command("#{cmd_name}")
       EOF
       brightbox_command
     end
