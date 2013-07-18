@@ -8,6 +8,4 @@ rescue LoadError
   require "brightbox_cli"
 end
 
-Brightbox::BBConfig.config do
-  Brightbox::run ARGV
-end
+Brightbox::run ARGV.unshift("zones")

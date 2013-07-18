@@ -1,40 +1,41 @@
 module Brightbox
-  desc 'Update a server group'
-  arg_name 'grp-id'
-  # arg_name 'grp-id [srv-ids...]'
-  command [:update] do |c|
+  command [:groups] do |cmd|
 
-    c.desc "Friendly name of server group"
-    c.flag [:n, :name]
+    cmd.desc "Update a server group"
+    cmd.arg_name "grp-id"
+    cmd.command [:update] do |c|
 
-    c.desc "Server group description"
-    c.flag [:d, :description]
+      c.desc "Friendly name of server group"
+      c.flag [:n, :name]
 
-    c.action do |global_options, options, args|
-      grp_id = args.shift
-      raise "You must specify the server group to update as the first argument" unless grp_id =~ /^grp-/
+      c.desc "Server group description"
+      c.flag [:d, :description]
 
-      params = NilableHash.new
+      c.action do |global_options, options, args|
+        grp_id = args.shift
+        raise "You must specify the server group to update as the first argument" unless grp_id =~ /^grp-/
 
-      # unless args.empty?
-      #   params[:servers] = args.collect { |a| { :server => a } }
-      # end
+          params = NilableHash.new
 
-      if options[:n]
-        params[:name] = options[:n]
-      end
+        # unless args.empty?
+        #   params[:servers] = args.collect { |a| { :server => a } }
+        # end
 
-      if options[:d]
-        params[:description] = options[:d]
-      end
+        if options[:n]
+          params[:name] = options[:n]
+        end
 
-      params.nilify_blanks
+        if options[:d]
+          params[:description] = options[:d]
+        end
 
-      sg = ServerGroup.find grp_id
-      info "Updating server group #{sg}"
-      sg = sg.update(params)
-      render_table([sg], global_options)
+        params.nilify_blanks
+
+        sg = ServerGroup.find grp_id
+        info "Updating server group #{sg}"
+        sg = sg.update(params)
+        render_table([sg], global_options)
     end
-
   end
+end
 end

@@ -1,20 +1,23 @@
 module Brightbox
-  desc 'Shutdown the specified servers, aka clicking "shutdown" in the OS'
-  arg_name 'server-id...'
-  command [:shutdown] do |c|
-    c.action do |global_options,options,args|
+  command [:servers] do |cmd|
 
-      raise "You must specify servers to shutdown" if args.empty?
+    cmd.desc "Shutdown the specified servers, aka clicking 'shutdown' in the OS"
+    cmd.arg_name "server-id..."
+    cmd.command [:shutdown] do |c|
+      c.action do |global_options, options, args|
 
-      servers = Server.find_or_call(args) do |id|
-        raise "Couldn't find server #{id}"
+        raise "You must specify servers to shutdown" if args.empty?
+
+        servers = Server.find_or_call(args) do |id|
+          raise "Couldn't find server #{id}"
+        end
+
+        servers.each do |s|
+          info "Shutting down server #{s}"
+          s.shutdown
+        end
+
       end
-
-      servers.each do |s|
-        info "Shutting down server #{s}"
-        s.shutdown
-      end
-
     end
   end
 end

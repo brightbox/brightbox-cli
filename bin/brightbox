@@ -8,4 +8,4 @@ rescue LoadError
   require "brightbox_cli"
 end
 
-Brightbox::run ARGV.unshift("servers")
+Brightbox::run ARGV

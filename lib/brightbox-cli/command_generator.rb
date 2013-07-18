@@ -19,13 +19,14 @@ module Brightbox
       @brightbox_cli_path = brightbox_cli_path
       COMMAND_LIST.each do |command|
         File.open("#{cli_binary_path}/#{command}","w+") do |fl|
-          fl.write(command_template)
+          fl.write(command_template(command))
         end
       end
     end
 
     private
-    def command_template
+    def command_template(file_name)
+      cmd_name = file_name.sub("brightbox-", "")
       brightbox_command =<<-EOF
 #!/usr/bin/env ruby
 
@@ -37,10 +38,7 @@ rescue LoadError
   require "brightbox_cli"
 end
 
-Brightbox::BBConfig.config do
-  include GLI
-  run ARGV
-end
+Brightbox::run ARGV.unshift("#{cmd_name}")
       EOF
       brightbox_command
     end

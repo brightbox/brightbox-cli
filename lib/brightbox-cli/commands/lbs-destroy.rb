@@ -1,19 +1,22 @@
 module Brightbox
-  desc 'Destroy load balancers'
-  arg_name 'lb-id...'
-  command [:destroy] do |c|
+  command [:lbs] do |cmd|
 
-    c.action do |global_options, options, args|
+    cmd.desc "Destroy load balancers"
+    cmd.arg_name "lb-id..."
+    cmd.command [:destroy] do |c|
 
-      raise "You must specify the load balancers to destroy" if args.empty?
+      c.action do |global_options, options, args|
 
-      lbs = LoadBalancer.find_or_call(args) do |id|
-        raise "Couldn't find load balancer #{id}"
-      end
+        raise "You must specify the load balancers to destroy" if args.empty?
 
-      lbs.each do |lb|
-        info "Destroying load balancer #{lb}"
-        lb.destroy
+        lbs = LoadBalancer.find_or_call(args) do |id|
+          raise "Couldn't find load balancer #{id}"
+        end
+
+        lbs.each do |lb|
+          info "Destroying load balancer #{lb}"
+          lb.destroy
+        end
       end
     end
   end

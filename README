@@ -1,54 +1,95 @@
 = Brightbox Cloud Command Line Interface
 
-brightbox-cli is a set of cli tools to interact with the Brightbox
-Cloud API.
+`brightbox-cli` is a set of cli tools to interact with the Brightbox Cloud API.
 
-http://brightbox.com
+You will need a user account on the Brightbox Cloud in order to make use of
+these tools.
 
-http://docs.brightbox.com/reference/cli
+You can sign up at https://manage.brightbox.com
 
-http://docs.brightbox.com/reference/api/
+{<img src="https://travis-ci.org/brightbox/brightbox-cli.png?branch=master" alt="Build Status" />}[https://travis-ci.org/brightbox/brightbox-cli]
+
+== UPGRADE NOTES
+
+Version 0.19.0 adds a new top level `brightbox` command for the suite.
+
+This may clash with our `brightbox` (brightbox-deployment) gem which, before
+version 2.4.0, used `brightbox` as the name for it's binary. Please ensure you
+update your `brightbox` gem to avoid using the wrong command.
+
+We have included backwards compatible binaries for all the older CLI commands
+(brightbox-accounts, brightbox-servers etc...) but recommend getting used to the
+new form.
+
+== Installation instructions
+
+Install from Rubygems
+
+    $ gem install brightbox-cli
+
+== Usage
+
+The Brightbox CLI is a suite of tools that are accessible through the
+`brightbox` command in a similar way to how you access `git` commands.
+
+For a list of available commands use:
+
+   $ brightbox help
+
+To add client (account based) credentials use:
+
+   $ brightbox config client_add cli-2igtb theclientsecret
+   Using config file /home/ubuntu/.brightbox/config
+   Creating new api client config cli-2igtb
+
+To browse available resources use the resource name as the command:
+
+   $ brightbox servers
+   ... List of servers
+   $ brightbox images
+   ... List of images
+
+Command structure may be subject to change.
+
+== Usage guides
+
+* http://docs.brightbox.com/reference/cli
+* http://brightbox.com
+* http://docs.brightbox.com/reference/api/
 
 == Testing
 
-You should be able to run the specs with the following steps:
+You should be able to run the specs and features with the following steps:
 
-    bundle install
-    bundle exec rake
+    $ bundle install
+    $ bundle exec rake
+
+The specs use VCR to playback filtered recordings from real API sessions. This
+process is not perfect, please report an issue
+
+== Alternatives
+
+There are a number of alternative ways to interact with the Brightbox Cloud.
+
+* The Web GUI - https://manage.brightbox.com/
+* fog - https://github.com/fog/fog
+* knife plugin - https://github.com/rubiojr/knife-brightbox
+* Vagrant plugin - https://github.com/NeilW/vagrant-brightbox
 
 == Packaging
 
 === Vendoring libraries
 
-gems can be vendored into `lib/brightbox-cli/vendor/` for packaging
-and will be prioritised over any gems.
-
-We've customized some gems and they're permanently vendored (i.e: in
-the git tree).
+gems can be vendored into `lib/brightbox-cli/vendor/` for packaging and will be
+prioritised over any gems.
 
 === Debian/Ubuntu packaging
 
-Any gems that have equivalent packages available are set as
-dependencies to the Debian package.  Any other gems are vendored prior
-to packaging.  These are:
-
-* formatador (required by hirb)
-* excon (required by fog)
-* gli
-* fog
-* hirb
-* ini
-* multi_json
-
-Rubygems support can be disabled by defining the `DISABLE_RUBYGEMS`
-constant in `lib/bbcloud/os_config.rb`
-
-Ubuntu packaging scripts are available on the packaging-lucid git
-branch.
+Packaging scripts are available in https://github.com/NeilW/brightbox-cli-debian-packaging
 
 == License
 
-Copyright (c) 2010,2011,2012 John Leach, Brightbox Systems Ltd <john@brightbox.co.uk>
+Copyright (c) 2010-2013 John Leach, Brightbox Systems Ltd <john@brightbox.co.uk>
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal

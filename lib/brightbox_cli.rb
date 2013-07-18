@@ -12,6 +12,7 @@ Dir.glob(vendor_dir + '/*').each do |f|
   $:.unshift File.join(f, 'lib')
 end
 
+
 require "json"
 require 'date'
 require 'gli'
@@ -48,3 +49,5 @@ require "brightbox-cli/version"
 require "brightbox-cli/ruby_core_ext"
 require "brightbox-cli/nilable_hash"
 require "brightbox-cli/error_parser"
+
+require "brightbox-cli/gli_global_hooks"
