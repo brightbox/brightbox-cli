@@ -1,4 +1,4 @@
-require "brightbox-cli/version"
+require_relative "version"
 
 module Brightbox
   extend GLI::App
@@ -12,7 +12,7 @@ module Brightbox
   # Need to locate the source of double loading under Aruba
   #
   begin
-    commands_from "brightbox-cli/commands"
+    commands_from File.expand_path("../commands", __FILE__)
   rescue ArgumentError
   end
 
