@@ -5,15 +5,14 @@ module Brightbox
 
   subcommand_option_handling :normal
 
-  # FIXME The official "commands_from" will try and reload them without
-  # correctly having the subcommand_option_handling set to :normal
-  # This generates errors that flags are in use BY THE SAME command!
+  # FIXME The official "commands_from" uses require which is slower
+  # than require_relative when running under ruby gems. So we'll just
+  # implement this ourselves.
   #
   # Need to locate the source of double loading under Aruba
   #
-  begin
-    commands_from File.expand_path("../commands", __FILE__)
-  rescue ArgumentError
+  Dir.glob(File.expand_path("../commands/*.rb", __FILE__)) do |f|
+    require_relative File.join('commands', File.basename(f))
   end
 
   sort_help :manually
