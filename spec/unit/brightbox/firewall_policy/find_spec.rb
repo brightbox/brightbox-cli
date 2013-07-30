@@ -11,12 +11,12 @@ describe Brightbox::FirewallPolicy do
       end
 
       it "should list firewall policy", :vcr do
-        output = capture_stdout {
+        output = FauxIO.new do
           firewall_policies = Brightbox::FirewallPolicy.find(:all)
           Brightbox.render_table(firewall_policies,:vertical => true)
-        }
+        end
 
-        expect(output).to include(@policy.id)
+        expect(output.stdout).to include(@policy.id)
       end
 
       after do

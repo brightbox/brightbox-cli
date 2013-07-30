@@ -19,8 +19,8 @@ describe Brightbox::Server do
         rescue Exception => e
           error = Brightbox::ErrorParser.new(e)
         end
-        output = capture_stderr { error.pretty_print() }
-        output.should match(/Account limit reached, please contact support for more information/i)
+        output = FauxIO.new { error.pretty_print() }
+        expect(output.stderr).to match(/Account limit reached, please contact support for more information/i)
       end
     end
   end

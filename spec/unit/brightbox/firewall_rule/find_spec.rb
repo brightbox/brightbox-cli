@@ -36,12 +36,12 @@ describe Brightbox::FirewallRule do
             :vertical => true
         }
 
-        output = capture_stdout {
+        output = FauxIO.new do
           Brightbox.render_table([@rule], display_options)
-        }
+        end
 
-        expect(output).to include("firewall_policy: #{@policy.id}")
-        expect(output).to include("dport: 1080")
+        expect(output.stdout).to include("firewall_policy: #{@policy.id}")
+        expect(output.stdout).to include("dport: 1080")
       end
     end
   end

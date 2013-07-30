@@ -13,11 +13,11 @@ describe Brightbox::Server do
         options = server_params("wow",type)
         @servers = Brightbox::Server.create_servers 1, options
 
-        output = capture_stdout {
+        output = FauxIO.new do
           Brightbox::render_table(@servers, :vertical => true)
-        }
-        expect(output).to include("wow")
-        expect(output).to include("img-12345")
+        end
+        expect(output.stdout).to include("wow")
+        expect(output.stdout).to include("img-12345")
       end
     end
   end

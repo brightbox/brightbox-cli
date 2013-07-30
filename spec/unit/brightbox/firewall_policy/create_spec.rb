@@ -14,10 +14,12 @@ describe Brightbox::FirewallPolicy do
         }
         @firewall_policy = Brightbox::FirewallPolicy.create(firewall_options)
       end.should_not raise_error
-      output = capture_stdout {
+
+      output = FauxIO.new do
         Brightbox.render_table([@firewall_policy],:vertical => true)
-      }
-      output.should match(/rspec_firewall_policy/)
+      end
+
+      expect(output.stdout).to match(/rspec_firewall_policy/)
       @group.destroy()
     end
   end

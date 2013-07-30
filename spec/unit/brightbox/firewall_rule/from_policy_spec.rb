@@ -26,14 +26,14 @@ describe Brightbox::FirewallRule do
         @policy.reload
         @policy_rules = Brightbox::FirewallRules.from_policy(@policy)
 
-        output = capture_stdout {
+        output = FauxIO.new do
           Brightbox.render_table(@policy_rules, :vertical => true)
-        }
-        expect(output).to include("id: #{@rule_1.id}")
-        expect(output).to include("dport: 1080")
+        end
+        expect(output.stdout).to include("id: #{@rule_1.id}")
+        expect(output.stdout).to include("dport: 1080")
 
-        expect(output).to include("id: #{@rule_2.id}")
-        expect(output).to include("dport: 1081")
+        expect(output.stdout).to include("id: #{@rule_2.id}")
+        expect(output.stdout).to include("dport: 1081")
       end
 
       after do

@@ -15,10 +15,10 @@ describe Brightbox::Server do
       it "should print server list" do
         @servers = Brightbox::Server.find(:all)
 
-        output = capture_stdout {
+        output = FauxIO.new do
           Brightbox.render_table(@servers, {})
-        }
-        expect(output).to include(@server.id)
+        end
+        expect(output.stdout).to include(@server.id)
       end
 
       after do

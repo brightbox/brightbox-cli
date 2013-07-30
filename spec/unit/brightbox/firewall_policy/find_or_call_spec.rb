@@ -12,11 +12,11 @@ describe Brightbox::FirewallPolicy do
       end
 
       it "should show firewall policy", :vcr do
-        output = capture_stdout {
+        output = FauxIO.new do
           firewall_policy = Brightbox::FirewallPolicy.find_or_call([@policy.id])
           Brightbox.render_table(firewall_policy,:vertical => true)
-        }
-        expect(output).to include(@policy.id)
+        end
+        expect(output.stdout).to include(@policy.id)
       end
 
       after do

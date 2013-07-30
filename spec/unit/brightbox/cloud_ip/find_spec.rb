@@ -10,10 +10,10 @@ describe Brightbox::CloudIP do
 
       it "returns a suitable", :vcr do
         ips = Brightbox::CloudIP.find(:all)
-        output = capture_stdout {
+        output = FauxIO.new do
           Brightbox.render_table(ips.sort, :vertical => true)
-        }
-        expect(output).to include(@cip.id)
+        end
+        expect(output.stdout).to include(@cip.id)
       end
 
       after do
