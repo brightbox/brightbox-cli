@@ -13,9 +13,9 @@ module Brightbox
       end
 
       def info(s='')
-        STDERR.write s
-        STDERR.write "\n"
-        STDERR.flush
+        $stderr.write s
+        $stderr.write "\n"
+        $stderr.flush
       end
 
       def warn(s='')
@@ -29,9 +29,9 @@ module Brightbox
 
       def debug(s)
         if ENV['DEBUG']
-          STDERR.write "DEBUG: "
-          STDERR.write s
-          STDERR.write "\n"
+          $stderr.write "DEBUG: "
+          $stderr.write s
+          $stderr.write "\n"
         end
       end
     end
