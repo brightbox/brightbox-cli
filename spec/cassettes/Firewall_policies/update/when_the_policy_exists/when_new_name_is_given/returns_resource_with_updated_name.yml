@@ -1,0 +1,159 @@
+--- 
+recorded_with: VCR 2.5.0
+http_interactions: 
+- request: 
+    method: post
+    uri: https://api.dev.brightbox.com/1.0/firewall_policies?account_id=acc-12345
+    body: 
+      string: ""
+    headers: 
+      Content-Type: 
+      - application/json
+      User-Agent: 
+      - fog/1.13.0
+      Authorization: 
+      - OAuth <TOKEN>
+  response: 
+    status: 
+      code: 201
+      message: 
+    headers: 
+      Connection: 
+      - keep-alive
+      Content-Type: 
+      - application/json; charset=utf-8
+      X-Runtime: 
+      - "0.101861"
+      Location: 
+      - https://api.gb1.brightbox.com/1.0/firewall_policies/fwp-ay5yn
+      Server: 
+      - nginx
+      Transfer-Encoding: 
+      - chunked
+      Cache-Control: 
+      - max-age=0, private, must-revalidate
+      Status: 
+      - 201 Created
+      ETag: 
+      - "\"a1a60699c38acaad9e5307d1de9c3097\""
+      Date: 
+      - Wed, 31 Jul 2013 11:27:50 GMT
+    body: 
+      string: "{\"id\":\"fwp-12345\",\"resource_type\":\"firewall_policy\",\"url\":\"https://api.gb1.brightbox.com/1.0/firewall_policies/fwp-12345\",\"default\":false,\"name\":null,\"created_at\":\"2013-07-31T11:27:50Z\",\"description\":null,\"server_group\":null,\"rules\":[]}"
+    http_version: 
+  recorded_at: Wed, 31 Jul 2013 11:27:50 GMT
+- request: 
+    method: get
+    uri: https://api.dev.brightbox.com/1.0/account?account_id=acc-12345
+    body: 
+      string: ""
+    headers: 
+      Content-Type: 
+      - application/json
+      User-Agent: 
+      - fog/1.13.0
+      Authorization: 
+      - OAuth <TOKEN>
+  response: 
+    status: 
+      code: 200
+      message: 
+    headers: 
+      Connection: 
+      - keep-alive
+      Content-Type: 
+      - application/json; charset=utf-8
+      X-Runtime: 
+      - "0.094285"
+      Server: 
+      - nginx
+      Transfer-Encoding: 
+      - chunked
+      Cache-Control: 
+      - must-revalidate, private, max-age=0
+      Status: 
+      - 200 OK
+      ETag: 
+      - "\"7f5012d7b78ce2944e092c923610f2b3\""
+      Date: 
+      - Wed, 31 Jul 2013 11:27:51 GMT
+    body: 
+      string: "{\"id\":\"acc-12345\",\"resource_type\":\"account\",\"url\":\"https://api.gb1.brightbox.com/1.0/accounts/acc-12345\",\"name\":\"Paul's Dev Account\",\"status\":\"active\",\"address_1\":\"Leeds Media Centre\",\"address_2\":\"21 Savile Mount\",\"city\":\"Leeds\",\"county\":\"\",\"postcode\":\"LS7 3HZ\",\"country_code\":\"GB\",\"country_name\":\"United Kingdom\",\"vat_registration_number\":\"\",\"telephone_number\":\"+448456585545\",\"telephone_verified\":true,\"verified_telephone\":\"+447968385533\",\"verified_at\":\"2011-05-17T14:58:29Z\",\"verified_ip\":\"10.132.138.182\",\"created_at\":\"2010-09-09T15:10:07Z\",\"ram_limit\":32768,\"ram_used\":4096,\"cloud_ips_limit\":10,\"cloud_ips_used\":2,\"load_balancers_limit\":5,\"load_balancers_used\":0,\"valid_credit_card\":true,\"library_ftp_host\":\"ftp.library.gb1.brightbox.com\",\"library_ftp_user\":\"acc-12345\",\"library_ftp_password\":null,\"clients\":[{\"id\":\"cli-vodcf\",\"resource_type\":\"api_client\",\"url\":\"https://api.gb1.brightbox.com/1.0/api_clients/cli-vodcf\",\"name\":\"label\",\"description\":\"Paul's API test client\",\"revoked_at\":null}],\"images\":[],\"servers\":[{\"id\":\"srv-12345\",\"resource_type\":\"server\",\"url\":\"https://api.gb1.brightbox.com/1.0/servers/srv-12345\",\"name\":\"Honcho spec runner\",\"status\":\"active\",\"hostname\":\"srv-12345\",\"fqdn\":\"srv-12345.gb1.brightbox.com\",\"created_at\":\"2012-05-10T12:04:15Z\",\"started_at\":\"2013-07-23T14:54:24Z\",\"deleted_at\":null}],\"load_balancers\":[],\"cloud_ips\":[{\"id\":\"cip-12345\",\"resource_type\":\"cloud_ip\",\"url\":\"https://api.gb1.brightbox.com/1.0/cloud_ips/cip-12345\",\"status\":\"unmapped\",\"public_ip\":\"109.107.35.44\",\"reverse_dns\":\"cip-12345-107-35-44.gb1.brightbox.com\",\"name\":null},{\"id\":\"cip-12345\",\"resource_type\":\"cloud_ip\",\"url\":\"https://api.gb1.brightbox.com/1.0/cloud_ips/cip-12345\",\"status\":\"unmapped\",\"public_ip\":\"109.107.37.226\",\"reverse_dns\":\"cip-12345-107-37-226.gb1.brightbox.com\",\"name\":null}],\"server_groups\":[{\"id\":\"grp-12345\",\"resource_type\":\"server_group\",\"url\":\"https://api.gb1.brightbox.com/1.0/server_groups/grp-12345\",\"name\":\"default\",\"description\":\"All new servers are added to this group unless specified otherwise.\",\"created_at\":\"2011-08-24T08:41:58Z\",\"default\":true}],\"firewall_policies\":[{\"id\":\"fwp-12345\",\"resource_type\":\"firewall_policy\",\"url\":\"https://api.gb1.brightbox.com/1.0/firewall_policies/fwp-12345\",\"default\":true,\"name\":\"default\",\"created_at\":\"2011-08-24T08:41:58Z\",\"description\":\"Applied to the default server group.\"},{\"id\":\"fwp-12345\",\"resource_type\":\"firewall_policy\",\"url\":\"https://api.gb1.brightbox.com/1.0/firewall_policies/fwp-12345\",\"default\":false,\"name\":\"fnord\",\"created_at\":\"2013-07-30T13:15:11Z\",\"description\":null},{\"id\":\"fwp-12345\",\"resource_type\":\"firewall_policy\",\"url\":\"https://api.gb1.brightbox.com/1.0/firewall_policies/fwp-12345\",\"default\":false,\"name\":null,\"created_at\":\"2013-07-31T11:27:50Z\",\"description\":null}],\"owner\":{\"id\":\"usr-12345\",\"resource_type\":\"user\",\"url\":\"https://api.gb1.brightbox.com/1.0/users/usr-12345\",\"name\":\"Example User\",\"email_address\":\"paul@brightbox.co.uk\"},\"users\":[],\"zones\":[{\"id\":\"zon-12345\",\"resource_type\":\"zone\",\"url\":\"https://api.gb1.brightbox.com/1.0/zones/zon-12345\",\"handle\":\"gb1-a\"},{\"id\":\"zon-12345\",\"resource_type\":\"zone\",\"url\":\"https://api.gb1.brightbox.com/1.0/zones/zon-12345\",\"handle\":\"gb1-b\"}]}"
+    http_version: 
+  recorded_at: Wed, 31 Jul 2013 11:27:51 GMT
+- request: 
+    method: put
+    uri: https://api.dev.brightbox.com/1.0/firewall_policies/fwp-12345?account_id=acc-12345
+    body: 
+      string: "{\"name\":\"fnord\"}"
+    headers: 
+      Content-Type: 
+      - application/json
+      User-Agent: 
+      - fog/1.13.0
+      Authorization: 
+      - OAuth <TOKEN>
+  response: 
+    status: 
+      code: 200
+      message: 
+    headers: 
+      Connection: 
+      - keep-alive
+      Content-Type: 
+      - application/json; charset=utf-8
+      X-Runtime: 
+      - "0.081056"
+      Server: 
+      - nginx
+      Transfer-Encoding: 
+      - chunked
+      Cache-Control: 
+      - max-age=0, private, must-revalidate
+      Status: 
+      - 200 OK
+      ETag: 
+      - "\"a633b3dc2eec14c8dae324cf82ee314a\""
+      Date: 
+      - Wed, 31 Jul 2013 11:27:51 GMT
+    body: 
+      string: "{\"id\":\"fwp-12345\",\"resource_type\":\"firewall_policy\",\"url\":\"https://api.gb1.brightbox.com/1.0/firewall_policies/fwp-12345\",\"default\":false,\"name\":\"fnord\",\"created_at\":\"2013-07-31T11:27:50Z\",\"description\":null,\"server_group\":null,\"rules\":[]}"
+    http_version: 
+  recorded_at: Wed, 31 Jul 2013 11:27:51 GMT
+- request: 
+    method: delete
+    uri: https://api.dev.brightbox.com/1.0/firewall_policies/fwp-12345?account_id=acc-12345
+    body: 
+      string: ""
+    headers: 
+      Content-Type: 
+      - application/json
+      User-Agent: 
+      - fog/1.13.0
+      Authorization: 
+      - OAuth <TOKEN>
+  response: 
+    status: 
+      code: 202
+      message: 
+    headers: 
+      Connection: 
+      - keep-alive
+      Content-Type: 
+      - application/json; charset=utf-8
+      X-Runtime: 
+      - "0.182994"
+      Server: 
+      - nginx
+      Transfer-Encoding: 
+      - chunked
+      Cache-Control: 
+      - no-cache
+      Status: 
+      - 202 Accepted
+      Date: 
+      - Wed, 31 Jul 2013 11:27:51 GMT
+    body: 
+      string: "{\"id\":\"fwp-12345\",\"resource_type\":\"firewall_policy\",\"url\":\"https://api.gb1.brightbox.com/1.0/firewall_policies/fwp-12345\",\"default\":false,\"name\":\"fnord\",\"created_at\":\"2013-07-31T11:27:50Z\",\"description\":null,\"server_group\":null,\"rules\":[]}"
+    http_version: 
+  recorded_at: Wed, 31 Jul 2013 11:27:51 GMT
