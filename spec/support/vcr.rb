@@ -2,26 +2,16 @@ require "vcr"
 
 RSpec.configure do |config|
   config.treat_symbols_as_metadata_keys_with_true_values = true
-
-  # Interesting approach from
-  # http://www.drurly.com/blog/2013/07/08/practical-rspec-wrapping/
-  config.around(:each, :vcr) do |example|
-    name = example.metadata[:full_description].
-      split(/\s+/, 2).
-      join("/").
-      gsub(/[^\w\/]+/, "_")
-
-    VCR.use_cassette(name, :record => :new_episodes) do
-      example.call
-    end
-  end
 end
 
 VCR.configure do |vcr|
-  vcr.cassette_library_dir = File.join(File.dirname(__FILE__), "../fixtures/vcr_cassettes")
+  vcr.cassette_library_dir = File.join(File.dirname(__FILE__), "../cassettes")
   vcr.allow_http_connections_when_no_cassette = false
   vcr.hook_into :excon
+
+  vcr.configure_rspec_metadata!
   vcr.default_cassette_options = {
+    :record => :new_episodes,
     :match_requests_on => [:method, :path]
   }
 
