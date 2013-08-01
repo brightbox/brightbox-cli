@@ -3,6 +3,8 @@ module Brightbox
     def to_row
       row_attributes = attributes
 
+      row_attributes[:compatibility_mode] = attributes["compatibility_mode"]
+
       if server_type
         row_attributes[:type] = server_type['id']
         row_attributes[:type_handle] = server_type['handle']
@@ -28,15 +30,34 @@ module Brightbox
         row_attributes[:server_groups] = server_groups.map { |sg| sg['id']}.join(", ")
       end
 
-
       row_attributes
     end
 
     def self.default_field_order
-      [:id, :status, :name, :created_at, :deleted_at,
-        :zone, :type, :type_name, :type_handle, :ram, :cores,
-        :disk, :image, :image_name, :private_ips, :cloud_ips, :ipv6_address,
-        :cloud_ip_ids, :hostname, :fqdn,:public_hostname, :ipv6_hostname, :snapshots,
+      [
+        :id,
+        :status,
+        :name,
+        :created_at,
+        :deleted_at,
+        :zone,
+        :type,
+        :type_name,
+        :type_handle,
+        :ram,
+        :cores,
+        :disk,
+        :compatibility_mode,
+        :image,
+        :image_name,
+        :private_ips,
+        :cloud_ips,
+        :ipv6_address,
+        :cloud_ip_ids,
+        :hostname,
+        :fqdn,:public_hostname,
+        :ipv6_hostname,
+        :snapshots,
         :server_groups
       ]
     end
