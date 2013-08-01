@@ -50,6 +50,7 @@ module Brightbox
         :compatibility_mode,
         :image,
         :image_name,
+        :arch,
         :private_ips,
         :cloud_ips,
         :ipv6_address,
