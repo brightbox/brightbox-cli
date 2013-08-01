@@ -2,7 +2,7 @@ module Brightbox
   command [:servers] do |cmd|
 
     cmd.desc "Update a server"
-    cmd.arg_name "srv-id"
+    cmd.arg_name "server-id"
     cmd.command [:update] do |c|
 
       c.desc "Friendly name of server"
@@ -19,7 +19,7 @@ module Brightbox
       c.switch [:e, :base64], :negatable => true
 
       c.desc "Use compatibility mode"
-      c.switch [:c, :compatibility_mode]
+      c.switch [:"compatibility-mode"], :negatable => true
 
       c.action do |global_options, options, args|
         srv_id = args.shift
@@ -56,7 +56,11 @@ module Brightbox
         params = NilableHash.new
         params[:name] = options[:n] if options[:n]
         params[:user_data] = user_data if user_data
-        params[:compatibility_mode] = options[:c]
+
+        unless options[:"compatibility-mode"].nil?
+          params[:compatibility_mode] = options[:"compatibility-mode"]
+        end
+
         params.nilify_blanks
 
         info "Updating server #{server}#{" with %.2fk of user data" % (user_data.size / 1024.0) if user_data}"
