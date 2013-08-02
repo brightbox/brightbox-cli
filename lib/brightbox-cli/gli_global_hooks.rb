@@ -71,6 +71,6 @@ module Brightbox
     debug e
     debug e.class.to_s
     debug e.backtrace.join("\n")
-    exit 1
+    false # GLI will exit
   end
 end
