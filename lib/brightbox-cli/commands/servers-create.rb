@@ -85,7 +85,7 @@ module Brightbox
 
         # Split server groups into array of identifiers (or empty array)
         server_groups = ServerGroup.find_or_call(options[:g].to_s.split(/,\s*/)) do |id|
-          raise "Couldn't find server #{id}"
+          raise "Couldn't find server group with #{id}"
         end
 
         msg = "Creating #{options[:i] > 1 ? options[:i] : 'a'} #{type.handle} (#{type.id})"

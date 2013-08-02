@@ -21,6 +21,9 @@ module Brightbox
       c.desc "Use compatibility mode"
       c.switch [:"compatibility-mode"], :negatable => true
 
+      c.desc "Server groups to place server in - comma delimited list"
+      c.flag [:g, "server-groups"]
+
       c.action do |global_options, options, args|
         srv_id = args.shift
         raise "You must specify a valid server id as the first argument" unless srv_id =~ /^srv-/
@@ -59,6 +62,15 @@ module Brightbox
 
         unless options[:"compatibility-mode"].nil?
           params[:compatibility_mode] = options[:"compatibility-mode"]
+        end
+
+        if options[:g]
+          # Split server groups into array of identifiers (or empty array)
+          server_groups = ServerGroup.find_or_call(options[:g].to_s.split(/,\s*/)) do |id|
+            raise "Couldn't find server group with #{id}"
+          end
+
+          params[:server_groups] = server_groups.map(&:id)
         end
 
         params.nilify_blanks
