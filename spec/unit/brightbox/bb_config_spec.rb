@@ -6,7 +6,7 @@ describe Brightbox::BBConfig do
   # These are initial specs that need fleshing out. We don't really need any of
   # these when whe actually are testing each by themselves!
   it { expect(config).to respond_to(:config) }
-  it { expect(config).to respond_to(:dir) }
+  it { expect(config).to respond_to(:config_directory) }
   it { expect(config).to respond_to(:config_filename) }
   it { expect(config).to respond_to(:delete_section) }
   it { expect(config).to respond_to(:clients) }

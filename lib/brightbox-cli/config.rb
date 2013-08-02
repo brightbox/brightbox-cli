@@ -9,35 +9,56 @@ module Brightbox
 
     attr_writer :client_name, :account
 
+    # @params [Hash] options Options to control loading and settings
+    # @option options [String] :directory A path to the directory where config and
+    #   cached and located. Otherwise a default of +$HOME/.brightbox+ is used
+    # @option options [Boolean] :force_default_config
+    #
     def initialize(options = {})
       @options = options
     end
 
-    def dir
+    # The String path to the configuration directory
+    #
+    # @return [String]
+    def config_directory
       return @dir if @dir
-      return nil if @dir == false
-      create_directory
-      #
-      if File.directory? @dir
-        @dir
-      else
-        @dir = false
-        nil
-      end
+      path = @options[:directory] || default_config_dir
+      @dir = File.expand_path(path)
     end
 
-    def config_filename
-      dir
-      @config_filename
+    # Returns +true+ if the +config_directory+ exists on disk
+    #
+    # @return [Boolean]
+    def config_directory_exists?
+      File.exists?(config_directory) && File.directory?(config_directory)
     end
+
+    # The String path to the configuration file itself (in .ini format)
+    #
+    # @return [String]
+    def config_filename
+      return @config_filename if @config_filename
+      @config_filename = File.join(config_directory, 'config')
+    end
+
 
     def oauth_token_filename
-      @oauth_token_filename ||= File.join(dir, client_name + '.oauth_token')
+      @oauth_token_filename ||= File.join(config_directory, client_name + '.oauth_token')
     end
 
+    # The loads the configuration from disk or creates the directory if missing
+    # and caches the details.
+    #
+    # @return [Ini] The raw settings from the ini configuration file
     def config
       return @config if @config
       return {} if @config == false
+
+      unless config_directory_exists?
+        create_directory
+      end
+
       @config ||= Ini.new config_filename
       @config
     rescue Ini::Error => e
@@ -103,7 +124,8 @@ module Brightbox
       end
     end
 
-    private
+  private
+
     def default_config_dir
       File.join(ENV['HOME'],'.brightbox')
     end
@@ -120,13 +142,13 @@ module Brightbox
       configured
     end
 
+    # Attempts to create the directory the config is expecting to find it's file
+    # in
+    #
     def create_directory
-      @dir = File.expand_path(@options[:dir] || default_config_dir)
-      @config_filename = File.join(@dir, 'config')
-      # Make the directory if necessary
-      unless File.exists? @dir
+      unless File.exists? config_directory
         begin
-          FileUtils.mkdir @dir
+          FileUtils.mkdir config_directory
         rescue Errno::EEXIST
         end
       end
