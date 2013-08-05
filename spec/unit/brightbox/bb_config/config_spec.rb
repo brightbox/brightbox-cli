@@ -55,7 +55,7 @@ describe Brightbox::BBConfig do
     context "when config dir exists as a file" do
       it "does not raise an error" do
         Tempfile.open("tmp") do |target_dir|
-          @config = Brightbox::BBConfig.new :directory => target_dir.to_path
+          @config = Brightbox::BBConfig.new :directory => target_dir.path
           expect { @config.config }.to_not raise_error
         end
       end
