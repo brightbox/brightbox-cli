@@ -2,9 +2,10 @@ local
 pkg/
 
 # Testing config fixtures
-spec/fixtures/config_files/cache/*
+spec/configs/*/cache/*
 
 # Old versions
+spec/fixtures/config_files/cache/*
 spec/brightbox/config
 spec/brightbox/cache/
 
