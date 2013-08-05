@@ -8,7 +8,7 @@ module Brightbox
           @cache_path = File.join(config_directory, 'cache')
           unless File.exists? @cache_path
             begin
-              FileUtils.mkdir @cache_path
+              FileUtils.mkpath @cache_path
             rescue Errno::EEXIST
             end
           end
