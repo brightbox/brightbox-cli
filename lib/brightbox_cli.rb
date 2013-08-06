@@ -41,6 +41,8 @@ module Brightbox
   autoload :FirewallPolicy, File.expand_path("../brightbox-cli/firewall_policy", __FILE__)
   autoload :FirewallRule, File.expand_path("../brightbox-cli/firewall_rule", __FILE__)
   autoload :FirewallRules, File.expand_path("../brightbox-cli/firewall_rules", __FILE__)
+  autoload :Collaboration, File.expand_path("../brightbox-cli/collaboration", __FILE__)
+  autoload :UserCollaboration, File.expand_path("../brightbox-cli/user_collaboration", __FILE__)
 end
 
 require_relative "brightbox-cli/connection_manager"
