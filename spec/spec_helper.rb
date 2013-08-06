@@ -10,7 +10,7 @@ require "support/common_helpers"
 Dir["./spec/support/**/*.rb"].sort.each {|f| require f}
 
 API_CLIENT_CONFIG = File.join(File.dirname(__FILE__), "configs/api_client")
-USER_APP_CONFIG   = File.join(File.dirname(__FILE__), "configs/user_app_config")
+USER_APP_CONFIG   = File.join(File.dirname(__FILE__), "configs/user_application")
 
 RSpec.configure do |config|
   config.include CommonHelpers

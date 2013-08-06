@@ -2,7 +2,11 @@
 default_client = testing
 
 [testing]
-api_url = https://api.dev.brightbox.com
 alias = testing
-client_id = app-12345
-secret = mocbuipbiaa6k6c
+app_id = app-12345
+email = tester@example.com
+app_secret = mocbuipbiaa6k6c
+api_url = https://api.dev.brightbox.com
+auth_url = https://api.dev.brightbox.com
+refresh_token = 43j2lkjlk43j2l
+
