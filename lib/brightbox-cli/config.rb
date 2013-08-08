@@ -5,6 +5,7 @@ module Brightbox
     require 'fileutils'
     require 'ini'
     include Brightbox::Config::Cache
+    include Brightbox::Config::AuthenticationTokens
     include Brightbox::Config::ToFog
 
     attr_writer :client_name, :account
@@ -42,10 +43,6 @@ module Brightbox
       @config_filename = File.join(config_directory, 'config')
     end
 
-
-    def oauth_token_filename
-      @oauth_token_filename ||= File.join(config_directory, client_name + '.oauth_token')
-    end
 
     # The loads the configuration from disk or creates the directory if missing
     # and caches the details.
@@ -100,15 +97,6 @@ module Brightbox
       "api.gb1.brightbox.com"
     end
 
-    def oauth_token
-      return @oauth_token if defined?(@oauth_token)
-      if File.exists?(oauth_token_filename)
-        @oauth_token = read_cached_token
-      else
-        @oauth_token = nil
-      end
-    end
-
     def finish
       begin
         save_refresh_token
@@ -153,10 +141,5 @@ module Brightbox
         end
       end
     end
-
-    def read_cached_token
-      File.open(oauth_token_filename, "r") { |fl| fl.read.chomp }
-    end
-
   end
 end
