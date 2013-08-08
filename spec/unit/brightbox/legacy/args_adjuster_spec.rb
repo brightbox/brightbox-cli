@@ -68,5 +68,14 @@ describe Brightbox::Legacy::ArgsAdjuster do
         expect(adjuster.for_command "command").to eql(expected)
       end
     end
+
+    context "when subcommands have their own options" do
+      let(:args) { ["-k", "create", "-n", "Disk test", "img-12345"] }
+
+      it "doesn't raise an error" do
+        expected = ["-k", "command", "create", "-n", "Disk test", "img-12345"]
+        expect(adjuster.for_command "command").to eql(expected)
+      end
+    end
   end
 end
