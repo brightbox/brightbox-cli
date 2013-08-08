@@ -41,7 +41,6 @@ module Brightbox
   autoload :FirewallPolicy, File.expand_path("../brightbox-cli/firewall_policy", __FILE__)
   autoload :FirewallRule, File.expand_path("../brightbox-cli/firewall_rule", __FILE__)
   autoload :FirewallRules, File.expand_path("../brightbox-cli/firewall_rules", __FILE__)
-  autoload :HighLine, "highline"
 end
 
 require_relative "brightbox-cli/connection_manager"

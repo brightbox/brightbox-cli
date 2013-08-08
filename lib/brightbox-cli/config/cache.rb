@@ -37,6 +37,7 @@ module Brightbox
 
       def update_refresh_token
         return false unless using_application?
+        require 'highline'
         highline = HighLine.new()
         highline.say("Your API credentials have expired, enter your password to update them.")
         password = highline.ask("Enter your password : ") { |q| q.echo = false }
