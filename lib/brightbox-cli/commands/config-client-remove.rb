@@ -22,8 +22,6 @@ module Brightbox
 
         info "Removing api client #{calias}"
         $config.delete_section client_config
-        $config.save!
-
       end
     end
   end

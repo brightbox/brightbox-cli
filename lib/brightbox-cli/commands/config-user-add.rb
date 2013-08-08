@@ -61,7 +61,8 @@ module Brightbox
         client_config["api_url"] = api_url
         client_config["auth_url"] = auth_url
 
-        $config.save!(:email => email, :password => password, :client_id => calias)
+        refresh_token_options = {:email => email, :password => password, :client_id => calias}
+        fetch_refresh_token(refresh_token_options)
       end
     end
   end

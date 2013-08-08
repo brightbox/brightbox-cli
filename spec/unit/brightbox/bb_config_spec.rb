@@ -25,7 +25,6 @@ describe Brightbox::BBConfig do
 
   # From Brightbox::Config::Cache
   it { expect(config).to respond_to(:cache_path) }
-  it { expect(config).to respond_to(:save!) }
   it { expect(config).to respond_to(:save_default_account) }
   it { expect(config).to respond_to(:save_refresh_token) }
   it { expect(config).to respond_to(:update_refresh_token) }

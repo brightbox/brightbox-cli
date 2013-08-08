@@ -16,22 +16,8 @@ module Brightbox
         end
       end
 
-      def save!(options = {})
-        unless options.empty?
-          fetch_refresh_token(options)
-        end
-        write_config_file
-      end
-
       def save_default_account(account_id)
         selected_config['default_account'] = account_id
-        save!
-      end
-
-      def write_config_file
-        if @config.is_a? Ini
-          @config.write
-        end
       end
 
       def cache_id(cid)

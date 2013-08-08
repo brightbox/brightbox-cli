@@ -47,7 +47,6 @@ module Brightbox
         client_config["api_url"] = api_url
         client_config["auth_url"] = auth_url
 
-        $config.save!
       end
     end
   end

@@ -21,7 +21,6 @@ module Brightbox
 
         info "Setting #{calias} as default api client"
         $config["core"]["default_client"] = client_config
-        $config.save!
       end
     end
   end

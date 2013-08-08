@@ -97,15 +97,18 @@ module Brightbox
       "api.gb1.brightbox.com"
     end
 
+    # Write out the configuration file to disk
+    def write_config_file
+      if @config.is_a? Ini
+        @config.write
+      end
+    end
+
     def finish
       begin
+        save_access_token
         save_refresh_token
-        if configured? && @oauth_token != Api.conn.access_token
-          File.open(oauth_token_filename + ".#{$$}", "w") do |f|
-            f.write Api.conn.access_token
-          end
-          FileUtils.mv oauth_token_filename + ".#{$$}", oauth_token_filename
-        end
+        write_config_file
       rescue BBConfigError
       rescue StandardError => e
         warn "Error writing auth token #{oauth_token_filename}: #{e.class}: #{e}"

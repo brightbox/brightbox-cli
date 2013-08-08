@@ -15,10 +15,26 @@ module Brightbox
         end
       end
 
+      # This stores the access token for the Fog service currently in use to
+      # authenticate with the API.
+      #
+      def save_access_token
+        if configured? && @oauth_token != Api.conn.access_token
+          File.open(oauth_token_filename + ".#{$$}", "w") do |f|
+            f.write Api.conn.access_token
+          end
+          FileUtils.mv oauth_token_filename + ".#{$$}", oauth_token_filename
+        end
+      end
+
+      # This stores the refresh token for the Fog service currently in use to
+      # request a new access token when current one has expired.
+      #
+      # @todo Store refresh token in file
+      #
       def save_refresh_token
         if Api.conn.refresh_token && !Api.conn.refresh_token.empty?
           selected_config['refresh_token'] = Api.conn.refresh_token
-          save!
         end
       end
 
@@ -29,7 +45,6 @@ module Brightbox
         highline.say("Your API credentials have expired, enter your password to update them.")
         password = highline.ask("Enter your password : ") { |q| q.echo = false }
         fetch_refresh_token(:client_id => client_name, :email => selected_config['email'], :password => password)
-        save!
         highline.say("Your API credentials have been updated, please re-run your command.")
         true
       end
