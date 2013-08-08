@@ -24,7 +24,7 @@ module Brightbox
           opts.on("--account ACCOUNT") {|op| @globals << "--account" << op }
         end
 
-        remaining = parser.parse(@args)
+        remaining = parser.order(@args)
 
         [] + @globals + [command] + remaining
       end
