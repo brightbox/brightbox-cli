@@ -40,7 +40,7 @@ module Brightbox
       end
 
       unless options[:a]
-        account = Account.conn_account
+        account = Account.conn.account
         images.reject! { |i| !i.official and i.owner_id != account.id  }
       end
 
