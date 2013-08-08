@@ -12,6 +12,9 @@ module Brightbox
       c.flag [:p, "password"]
 
       c.action do |global_options, options, args|
+
+        require 'highline'
+
         info "Using config file #{$config.config_filename}"
 
         email = args.shift
