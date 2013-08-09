@@ -9,15 +9,17 @@ require "support/common_helpers"
 
 Dir["./spec/support/**/*.rb"].sort.each {|f| require f}
 
-API_CLIENT_CONFIG = File.join(File.dirname(__FILE__), "configs/api_client")
-USER_APP_CONFIG   = File.join(File.dirname(__FILE__), "configs/user_application")
+API_CLIENT_CONFIG_DIR = File.join(File.dirname(__FILE__), "configs/api_client")
+USER_APP_CONFIG_DIR   = File.join(File.dirname(__FILE__), "configs/user_application")
+
+API_CLIENT_CONFIG = Brightbox::BBConfig.new(:directory => API_CLIENT_CONFIG_DIR)
+USER_APP_CONFIG   = Brightbox::BBConfig.new(:directory => USER_APP_CONFIG_DIR)
 
 RSpec.configure do |config|
   config.include CommonHelpers
 
   config.before(:suite) do
     # Globally use API client credentials by default
-    test_config = Brightbox::BBConfig.new(:directory => API_CLIENT_CONFIG)
-    $config = test_config
+    $config = API_CLIENT_CONFIG
   end
 end
