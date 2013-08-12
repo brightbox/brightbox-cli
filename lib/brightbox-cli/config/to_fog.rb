@@ -18,26 +18,6 @@ module Brightbox
         default_fog_options
       end
 
-      def account
-        return @account if defined?(@account) && @account
-        find_or_set_default_account
-        default_account = selected_config['default_account']
-        if !default_account || default_account.empty?
-          raise BBConfigError, "You must specify account to be used with --account option or set default account to use"
-        end
-        default_account
-      end
-
-      def find_or_set_default_account
-        if !selected_config['default_account'] || selected_config['default_account'].empty?
-          accounts = Account.all
-          if accounts.size == 1
-            @account = accounts.first.id
-            selected_config['default_account'] = @account
-          end
-        end
-      end
-
       def using_api_client?
         selected_config['client_id']
       end

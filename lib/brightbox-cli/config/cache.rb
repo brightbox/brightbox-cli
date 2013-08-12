@@ -16,14 +16,9 @@ module Brightbox
         end
       end
 
-      def save_default_account(account_id)
-        selected_config['default_account'] = account_id
-      end
-
       def cache_id(cid)
         FileUtils.touch(File.join(cache_path, cid)) unless cid.nil?
       end
-
     end
   end
 end

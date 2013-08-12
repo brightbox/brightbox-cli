@@ -6,6 +6,7 @@ module Brightbox
     require 'ini'
     include Brightbox::Config::Cache
     include Brightbox::Config::AuthenticationTokens
+    include Brightbox::Config::Accounts
     include Brightbox::Config::ToFog
 
     attr_writer :client_name, :account
