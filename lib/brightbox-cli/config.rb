@@ -74,14 +74,38 @@ module Brightbox
       config.sections.find_all { |s| s != 'core' }
     end
 
+    # Returns a client name or raises depending on a number of factors.
+    #
+    # FIXME This combines too much decision making into what appears to be a
+    # getter.
+    #
+    # If a default_client is not set and there are more than one client it
+    # raises an error because it is ambiguous which to use.
+    #
+    # If +force_default_config+ is passed in as false (for +config+ commands)
+    # then it attempts to use the first config but this becomes random on 1.8.7
+    #
+    # Calling +client_name+ within the +config+ command will break the config
+    # command because you can no longer manage your config (and set a default)
+    #
+    # This has been fixed by short circuiting to return +nil+ in that case which
+    # should never exist now.
+    #
     def client_name
       if @client_name
         @client_name
       else
-        if @options[:force_default_config] && default_client.nil? && clients.length > 1
-          raise BBConfigError, "You must specify a default client using brightbox-config client_default"
+        # If we do not require a default client do not error if one is not set
+        # TODO Remove when certain unused
+        if @options[:force_default_config] == false
+          @client_name = default_client
+        else
+          # Is client ambigious?
+          if default_client.nil? && clients.length > 1
+            raise BBConfigError, "You must specify a default client using brightbox-config client_default"
+          end
+          @client_name = default_client || clients.first
         end
-        @client_name = default_client || clients.first
       end
     end
 
