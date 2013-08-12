@@ -78,7 +78,6 @@ module Brightbox
       if @client_name
         @client_name
       else
-        default_client = config['core']['default_client']
         if @options[:force_default_config] && default_client.nil? && clients.length > 1
           raise BBConfigError, "You must specify a default client using brightbox-config client_default"
         end
@@ -112,6 +111,23 @@ module Brightbox
       rescue BBConfigError
       rescue StandardError => e
         warn "Error writing auth token #{oauth_token_filename}: #{e.class}: #{e}"
+      end
+    end
+
+    # Returns the currently CONFIGURED default client (ignoring which client is
+    # asked for in this request)
+    #
+    # @return [String, NilClass] The client identifier or nil if not set
+    #
+    def default_client
+      if @default_client
+        @default_client
+      else
+        if config["core"]
+          @default_client = config["core"]["default_client"]
+        else
+          nil
+        end
       end
     end
 

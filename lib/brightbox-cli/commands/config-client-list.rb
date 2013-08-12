@@ -13,7 +13,12 @@ module Brightbox
         clients = $config.clients.collect do |cid|
           c = $config[cid]
           calias = c["alias"] || cid
-          calias = calias + "*" if $config.client_name == cid and $config.clients.size > 1
+
+          # Append a star for the configured default client
+          if $config.default_client == cid and $config.clients.size > 1
+            calias = calias + "*"
+          end
+
           {
             :alias => calias,
             :client_id => c["client_id"],
