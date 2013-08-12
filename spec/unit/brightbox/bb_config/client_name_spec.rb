@@ -70,7 +70,7 @@ describe Brightbox::BBConfig do
         it "raises an error" do
           expect {
             @config.client_name
-          }.to raise_error(Brightbox::BBConfigError, "You must specify a default client using brightbox-config client_default")
+          }.to raise_error(Brightbox::BBConfigError, "You must specify a default client using brightbox config client_default")
         end
       end
 

@@ -102,7 +102,7 @@ module Brightbox
         else
           # Is client ambigious?
           if default_client.nil? && clients.length > 1
-            raise BBConfigError, "You must specify a default client using brightbox-config client_default"
+            raise BBConfigError, "You must specify a default client using brightbox config client_default"
           end
           @client_name = default_client || clients.first
         end
