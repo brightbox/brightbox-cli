@@ -38,11 +38,13 @@ module Brightbox
       force_default_config = true
     end
 
-    $config = BBConfig.new(:force_default_config => force_default_config)
-    $config.client_name = ENV["CLIENT"] if ENV["CLIENT"]
-    $config.client_name = global_options[:c] if global_options[:c]
-    $config.account = ENV["ACCOUNT"] if ENV["ACCOUNT"]
-    $config.account = global_options[:account] if global_options[:account]
+    # Configuration options
+    config_opts = {
+      :force_default_config => force_default_config,
+      :client_name => ENV["CLIENT"] || global_options[:client],
+      :account => ENV["ACCOUNT"] || global_options[:account]
+    }
+    $config = BBConfig.new(config_opts)
 
     Excon.defaults[:headers]['User-Agent'] = "brightbox-cli/#{Brightbox::VERSION} Fog/#{Fog::VERSION}"
 

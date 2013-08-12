@@ -3,6 +3,17 @@ require "spec_helper"
 describe Brightbox::BBConfig do
 
   describe "#client_name" do
+    context "when passed as an option" do
+      before do
+        @client_name = "app-kl342"
+        @config = Brightbox::BBConfig.new(:client_name => @client_name)
+      end
+
+      it "returns the passed version" do
+        expect(@config.client_name).to eql(@client_name)
+      end
+    end
+
     context "when config file contains a default client" do
       before do
         @client_name = "app-b3n5b"

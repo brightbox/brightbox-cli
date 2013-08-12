@@ -15,9 +15,15 @@ module Brightbox
     # @option options [String] :directory A path to the directory where config and
     #   cached and located. Otherwise a default of +$HOME/.brightbox+ is used
     # @option options [Boolean] :force_default_config
+    # @option options [String] :client_name The name of the client whose config
+    #   section to use
+    # @option options [String] :account The scoped account to use overriding the
+    #   saved configuration
     #
     def initialize(options = {})
       @options = options
+      @client_name = options[:client_name]
+      @account = options[:account]
     end
 
     # The String path to the configuration directory

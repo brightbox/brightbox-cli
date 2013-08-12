@@ -3,6 +3,17 @@ require "spec_helper"
 describe Brightbox::BBConfig do
 
   describe "#account" do
+    context "when passed as an option" do
+      before do
+        @account_name = "acc-kll54"
+        @config = Brightbox::BBConfig.new(:account => @account_name)
+      end
+
+      it "returns the passed version" do
+        expect(@config.account).to eql(@account_name)
+      end
+    end
+
     context "when config has no default account", :vcr do
       before do
         @config = Brightbox::BBConfig.new :directory => API_CLIENT_CONFIG_DIR
