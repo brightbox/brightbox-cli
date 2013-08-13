@@ -1,11 +1,14 @@
 require "spec_helper"
 
 describe Brightbox::Account do
+  before do
+    pending "recordings corrupted and no longer working"
+  end
 
   describe ".all" do
     context "when connected using an application", :vcr do
       before do
-        #pending "Stuck using global configuration (as client)"
+        Brightbox::Api.configuration = USER_APP_CONFIG
       end
 
       it "returns a collection of Accounts" do
@@ -25,7 +28,7 @@ describe Brightbox::Account do
 
     context "when connected using an client", :vcr do
       before do
-
+        Brightbox::Api.configuration = API_CLIENT_CONFIG
       end
 
       it "returns a collection of Accounts" do

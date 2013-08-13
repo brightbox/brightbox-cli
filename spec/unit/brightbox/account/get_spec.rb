@@ -1,9 +1,16 @@
 require "spec_helper"
 
 describe Brightbox::Account do
+  before do
+    pending "recordings corrupted and no longer working"
+  end
 
   describe ".get" do
     context "when connected using an application" do
+      before do
+        Brightbox::Api.configuration = USER_APP_CONFIG
+      end
+
       context "and the account is accessible", :vcr do
         before do
           @account_id = "acc-12345"
@@ -28,6 +35,10 @@ describe Brightbox::Account do
     end
 
     context "when connected using an client", :vcr do
+      before do
+        Brightbox::Api.configuration = API_CLIENT_CONFIG
+      end
+
       context "and the account is accessible", :vcr do
         before do
           @account_id = "acc-12345"
