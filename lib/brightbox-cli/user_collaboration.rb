@@ -35,6 +35,16 @@ module Brightbox
       fog_model.destroy
     end
 
+    # "removes" the invite by either rejecting or ending it based on the state
+    # of the collaboration
+    def remove
+      if status == "pending"
+        reject
+      else
+        destroy
+      end
+    end
+
     def to_row
       row_attributes = attributes
       row_attributes[:account] = attributes[:account]["id"]
