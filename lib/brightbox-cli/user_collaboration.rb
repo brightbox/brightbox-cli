@@ -13,6 +13,30 @@ module Brightbox
       conn.user_collaborations.get(id)
     end
 
+    # This returns the OPEN collaboration based on an account ID to work in with
+    # the UI.
+    #
+    # @todo Ensure filtering works when many collaborations exist between
+    #   accounts, and correct states are honoured.
+    #
+    # @param [String] account_id The identifier of the account
+    # @return [Brightbox::UserCollaboration] if a valid collaboration is found
+    # @return [NilClass] if no collaboration exists for account
+    #
+    def self.get_for_account(account_id)
+      collaborations = conn.user_collaborations
+      open_collaborations = collaborations.select {|col| ["pending", "accepted"].include?(col.status) }
+      collaboration = open_collaborations.find do |col|
+        col.account_id == account_id
+      end
+
+      if collaboration
+        new(collaboration)
+      else
+        nil
+      end
+    end
+
     def self.default_field_order
       [:id, :status, :account, :role]
     end
