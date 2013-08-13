@@ -16,12 +16,18 @@ describe Brightbox::BBConfig do
 
     context "when config has no default account", :vcr do
       before do
-        @config = Brightbox::BBConfig.new :directory => API_CLIENT_CONFIG_DIR
+        contents = File.read(API_CLIENT_CONFIG.config_filename)
+        @tmp_config = TmpConfig.new(contents)
+        @config = Brightbox::BBConfig.new :directory => @tmp_config.path
       end
 
       it "returns the configured default" do
         # Embedded in VCR recording
         expect(@config.account).to eql("acc-12345")
+      end
+
+      after do
+        @tmp_config.close
       end
     end
 
