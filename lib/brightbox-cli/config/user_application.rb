@@ -32,8 +32,7 @@ module Brightbox
         connection.refresh_token
       end
 
-    private
-
+      private
       def password_auth_params
         {
           :provider => 'Brightbox',
@@ -44,14 +43,14 @@ module Brightbox
           :persistent => (selected_config["persistent"] != nil ? selected_config["persistent"] : true)
         }
       end
-
       def check_required_params
-        %w{api_url app_id app_secret}.each do |k|
+        %w{api_url app_id app_secret refresh_token}.each do |k|
           if selected_config[k].to_s.empty?
             raise Brightbox::BBConfigError, "#{k} option missing from config in section #{client_name}"
           end
         end
       end
+
     end
   end
 end
