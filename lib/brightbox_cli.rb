@@ -35,6 +35,7 @@ module Brightbox
   autoload :CloudIP, File.expand_path("../brightbox-cli/cloud_ips", __FILE__)
   autoload :User, File.expand_path("../brightbox-cli/users", __FILE__)
   autoload :Account, File.expand_path("../brightbox-cli/accounts", __FILE__)
+  autoload :CollaboratingAccount, File.expand_path("../brightbox-cli/collaborating_account", __FILE__)
   autoload :LoadBalancer, File.expand_path("../brightbox-cli/load_balancers", __FILE__)
   autoload :ServerGroup, File.expand_path("../brightbox-cli/server_groups", __FILE__)
   autoload :DetailedServerGroup, File.expand_path("../brightbox-cli/detailed_server_group", __FILE__)

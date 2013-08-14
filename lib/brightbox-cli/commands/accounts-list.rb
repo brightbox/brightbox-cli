@@ -8,13 +8,11 @@ module Brightbox
     cmd.command [:list] do |c|
 
       c.action do |global_options, options, args|
-
-        if args.empty?
-          accounts = Account.find(:all)
+        if $config.using_application?
+          # Collaborating Accounts are combined from owned and collaborations
+          accounts = CollaboratingAccount.all
         else
-          accounts = Account.find_or_call(args) do |id|
-            warn "Couldn't find account #{id}"
-          end
+          accounts = Account.find(:all)
         end
 
         render_table(accounts, global_options)
