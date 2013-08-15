@@ -6,6 +6,7 @@ $LOAD_PATH.unshift __LIB_DIR__ unless
 
 require "brightbox_cli"
 require "support/common_helpers"
+require "tmpdir"
 
 Dir["./spec/support/**/*.rb"].sort.each {|f| require f}
 
@@ -15,11 +16,24 @@ USER_APP_CONFIG_DIR   = File.join(File.dirname(__FILE__), "configs/user_applicat
 API_CLIENT_CONFIG = Brightbox::BBConfig.new(:directory => API_CLIENT_CONFIG_DIR)
 USER_APP_CONFIG   = Brightbox::BBConfig.new(:directory => USER_APP_CONFIG_DIR)
 
+# Remember the $HOME of the test runner
+TEST_RUNNER_HOME = ENV["HOME"]
+
 RSpec.configure do |config|
   config.include CommonHelpers
 
   config.before(:suite) do
     # Globally use API client credentials by default
     $config = API_CLIENT_CONFIG
+  end
+
+  # For each test, isolate the testing users $HOME so that we control the config
+  # and any cached values completely.
+  config.around(:each) do |example|
+    Dir.mktmpdir do |tmp_home|
+      ENV["HOME"] = tmp_home
+      example.run
+      ENV["HOME"] = TEST_RUNNER_HOME
+    end
   end
 end
