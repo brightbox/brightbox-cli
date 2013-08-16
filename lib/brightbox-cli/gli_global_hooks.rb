@@ -46,6 +46,9 @@ module Brightbox
     }
     $config = BBConfig.new(config_opts)
 
+    # Outputs a snapshot of the tokens known by the client
+    $config.debug_tokens
+
     Excon.defaults[:headers]['User-Agent'] = "brightbox-cli/#{Brightbox::VERSION} Fog/#{Fog::VERSION}"
 
     Excon.defaults[:headers]['User-Agent'] ||= "brightbox-cli/#{Brightbox::VERSION}"
@@ -65,6 +68,7 @@ module Brightbox
   end
 
   post do |global_options, command, options, args|
+    $config.debug_tokens
     $config.finish
   end
 

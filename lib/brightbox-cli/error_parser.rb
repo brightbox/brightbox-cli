@@ -10,9 +10,12 @@ module Brightbox
 
     def update_token
       return false unless socket_error.is_a?(Excon::Errors::Unauthorized)
+      debug "Refused access token: #{$config.oauth_token}"
       $config.update_refresh_token
     rescue
       false
+    ensure
+      $config.debug_tokens
     end
 
     def pretty_print

@@ -4,6 +4,7 @@ module Brightbox
   class BBConfig
     require 'fileutils'
     require 'ini'
+    include Brightbox::Logging
     include Brightbox::Config::Cache
     include Brightbox::Config::AuthenticationTokens
     include Brightbox::Config::Accounts
@@ -158,6 +159,19 @@ module Brightbox
           @default_client = config["core"]["default_client"]
         else
           nil
+        end
+      end
+    end
+
+    # Outputs to debug the current values of the config/client's tokens
+    #
+    def debug_tokens
+      if ENV["DEBUG"]
+        debug "Access token: #{oauth_token}"
+        if using_application?
+          debug "Refresh token: #{config[client_name]['refresh_token']}"
+        else
+          debug "Refresh token: <NOT EXPECTED FOR CLIENT>"
         end
       end
     end
