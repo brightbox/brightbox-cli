@@ -68,15 +68,43 @@ module Brightbox
   end
 
   post do |global_options, command, options, args|
-    $config.debug_tokens
-    $config.finish
+    begin
+      # Api.conn is another global which holds the authentication tokens so
+      # we need to shuffle data between globals at a higher level rather than
+      # force one inside the other
+      access_token = Api.conn.access_token
+      refresh_token = Api.conn.refresh_token
+
+      $config.update_stored_tokens(access_token, refresh_token)
+      $config.write_config_file
+    rescue BBConfigError
+    rescue StandardError => e
+      # FIXME Other StandardErrors are available
+      warn "Error writing auth token #{$config.access_token_filename}: #{e.class}: #{e}"
+    end
   end
 
   on_error do |e|
-    ErrorParser.new(e).pretty_print()
-    debug e
-    debug e.class.to_s
-    debug e.backtrace.join("\n")
-    false # GLI will exit
+    # Try to handle invalid/expired credentials
+    if e.is_a?(Excon::Errors::Unauthorized)
+      begin
+        debug "Refused access token: #{$config.access_token}"
+        $config.reauthenticate
+      rescue
+        false
+      ensure
+        $config.debug_tokens
+      end
+    else
+      # Handle the rest
+      ErrorParser.new(e).pretty_print
+
+      if ENV["DEBUG"]
+        debug e
+        debug e.class.to_s
+        debug e.backtrace.join("\n")
+      end
+      false # GLI will exit
+    end
   end
 end

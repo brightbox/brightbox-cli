@@ -22,7 +22,6 @@ describe Brightbox::ErrorParser do
       let(:error_to_parse) { Excon::Errors::Unauthorized.new(msg, request, response) }
 
       it "returns the response from the JSON" do
-        expect($config).to receive(:update_refresh_token)
         expect(parser).to receive(:error).with("ERROR: invalid_token")
         parser.pretty_print
       end

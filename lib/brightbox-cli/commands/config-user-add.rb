@@ -61,8 +61,10 @@ module Brightbox
         client_config["api_url"] = api_url
         client_config["auth_url"] = auth_url
 
-        refresh_token_options = {:password => password}
-        fetch_refresh_token(refresh_token_options)
+        $config.write_config_file
+
+        # Renew tokens via config...
+        $config.renew_tokens(:client_name => calias, :password => password)
       end
     end
   end

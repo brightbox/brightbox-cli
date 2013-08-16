@@ -45,4 +45,48 @@ http_interactions:
         Ullrich","email_address":"jason.null@brightbox.com"},"users":[],"zones":[{"id":"zon-12345","resource_type":"zone","url":"https://api.gb1.brightbox.com/1.0/zones/zon-12345","handle":"gb1-a"},{"id":"zon-12345","resource_type":"zone","url":"https://api.gb1.brightbox.com/1.0/zones/zon-12345","handle":"gb1-b"}]}'
     http_version: 
   recorded_at: Tue, 27 Aug 2013 16:12:40 GMT
+- request:
+    method: post
+    uri: http://api.brightbox.dev/token
+    body:
+      encoding: UTF-8
+      string: '{"grant_type":"none","client_id":"app-12345"}'
+    headers:
+      User-Agent:
+      - fog/1.15.0
+      Authorization:
+      - Basic YXBwLTEyMzQ1Om1vY2J1aXBiaWFhNms2Yw==
+      Content-Type:
+      - application/json
+  response:
+    status:
+      code: 400
+      message: 
+    headers:
+      X-Frame-Options:
+      - sameorigin
+      X-XSS-Protection:
+      - 1; mode=block
+      Content-Type:
+      - application/json;charset=utf-8
+      Cache-Control:
+      - no-store
+      Content-Length:
+      - '135'
+      X-UA-Compatible:
+      - IE=Edge
+      X-Request-Id:
+      - 21e37f72e39ecdc960cb846acd4ff731
+      X-Runtime:
+      - '0.097651'
+      Date:
+      - Tue, 27 Aug 2013 17:09:57 GMT
+      Connection:
+      - keep-alive
+    body:
+      encoding: UTF-8
+      string: '{"error":"unauthorized_client","error_description":"The authenticated
+        client is not authorized to use the access grant type provided."}'
+    http_version: 
+  recorded_at: Tue, 27 Aug 2013 17:09:57 GMT
 recorded_with: VCR 2.5.0

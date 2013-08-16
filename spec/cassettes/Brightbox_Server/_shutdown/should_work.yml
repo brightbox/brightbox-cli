@@ -243,4 +243,313 @@ http_interactions:
         new servers are added to this group unless specified otherwise.","created_at":"2013-08-27T15:47:00Z","default":true}]}'
     http_version: 
   recorded_at: Tue, 27 Aug 2013 16:13:57 GMT
+- request:
+    method: post
+    uri: http://api.brightbox.dev/token
+    body:
+      encoding: UTF-8
+      string: '{"grant_type":"none","client_id":"app-12345"}'
+    headers:
+      User-Agent:
+      - fog/1.15.0
+      Authorization:
+      - Basic YXBwLTEyMzQ1Om1vY2J1aXBiaWFhNms2Yw==
+      Content-Type:
+      - application/json
+  response:
+    status:
+      code: 400
+      message: 
+    headers:
+      X-Frame-Options:
+      - sameorigin
+      X-XSS-Protection:
+      - 1; mode=block
+      Content-Type:
+      - application/json;charset=utf-8
+      Cache-Control:
+      - no-store
+      Content-Length:
+      - '135'
+      X-UA-Compatible:
+      - IE=Edge
+      X-Request-Id:
+      - a475ac48f3d4b28320d44e7cc44cf2ae
+      X-Runtime:
+      - '0.099672'
+      Date:
+      - Tue, 27 Aug 2013 17:10:01 GMT
+      Connection:
+      - keep-alive
+    body:
+      encoding: UTF-8
+      string: '{"error":"unauthorized_client","error_description":"The authenticated
+        client is not authorized to use the access grant type provided."}'
+    http_version: 
+  recorded_at: Tue, 27 Aug 2013 17:10:01 GMT
+- request:
+    method: post
+    uri: http://api.brightbox.dev/token
+    body:
+      encoding: UTF-8
+      string: '{"grant_type":"none","client_id":"app-12345"}'
+    headers:
+      User-Agent:
+      - fog/1.15.0
+      Authorization:
+      - Basic YXBwLTEyMzQ1Om1vY2J1aXBiaWFhNms2Yw==
+      Content-Type:
+      - application/json
+  response:
+    status:
+      code: 400
+      message: 
+    headers:
+      X-Frame-Options:
+      - sameorigin
+      X-XSS-Protection:
+      - 1; mode=block
+      Content-Type:
+      - application/json;charset=utf-8
+      Cache-Control:
+      - no-store
+      Content-Length:
+      - '135'
+      X-UA-Compatible:
+      - IE=Edge
+      X-Request-Id:
+      - ef852ccaad11280c967ae5e8089f0990
+      X-Runtime:
+      - '0.098809'
+      Date:
+      - Tue, 27 Aug 2013 17:10:01 GMT
+      Connection:
+      - keep-alive
+    body:
+      encoding: UTF-8
+      string: '{"error":"unauthorized_client","error_description":"The authenticated
+        client is not authorized to use the access grant type provided."}'
+    http_version: 
+  recorded_at: Tue, 27 Aug 2013 17:10:01 GMT
+- request:
+    method: post
+    uri: http://api.brightbox.dev/token
+    body:
+      encoding: UTF-8
+      string: '{"grant_type":"none","client_id":"app-12345"}'
+    headers:
+      User-Agent:
+      - fog/1.15.0
+      Authorization:
+      - Basic YXBwLTEyMzQ1Om1vY2J1aXBiaWFhNms2Yw==
+      Content-Type:
+      - application/json
+  response:
+    status:
+      code: 400
+      message: 
+    headers:
+      X-Frame-Options:
+      - sameorigin
+      X-XSS-Protection:
+      - 1; mode=block
+      Content-Type:
+      - application/json;charset=utf-8
+      Cache-Control:
+      - no-store
+      Content-Length:
+      - '135'
+      X-UA-Compatible:
+      - IE=Edge
+      X-Request-Id:
+      - 18ce1bbbc68f9fbadfcaf7446c6aa168
+      X-Runtime:
+      - '0.099472'
+      Date:
+      - Tue, 27 Aug 2013 17:10:02 GMT
+      Connection:
+      - keep-alive
+    body:
+      encoding: UTF-8
+      string: '{"error":"unauthorized_client","error_description":"The authenticated
+        client is not authorized to use the access grant type provided."}'
+    http_version: 
+  recorded_at: Tue, 27 Aug 2013 17:10:02 GMT
+- request:
+    method: post
+    uri: http://api.brightbox.dev/token
+    body:
+      encoding: UTF-8
+      string: '{"grant_type":"none","client_id":"app-12345"}'
+    headers:
+      User-Agent:
+      - fog/1.15.0
+      Authorization:
+      - Basic YXBwLTEyMzQ1Om1vY2J1aXBiaWFhNms2Yw==
+      Content-Type:
+      - application/json
+  response:
+    status:
+      code: 400
+      message: 
+    headers:
+      X-Frame-Options:
+      - sameorigin
+      X-XSS-Protection:
+      - 1; mode=block
+      Content-Type:
+      - application/json;charset=utf-8
+      Cache-Control:
+      - no-store
+      Content-Length:
+      - '135'
+      X-UA-Compatible:
+      - IE=Edge
+      X-Request-Id:
+      - 9cd8554a152adccaf1dacf5748b3745c
+      X-Runtime:
+      - '0.098569'
+      Date:
+      - Tue, 27 Aug 2013 17:10:02 GMT
+      Connection:
+      - keep-alive
+    body:
+      encoding: UTF-8
+      string: '{"error":"unauthorized_client","error_description":"The authenticated
+        client is not authorized to use the access grant type provided."}'
+    http_version: 
+  recorded_at: Tue, 27 Aug 2013 17:10:02 GMT
+- request:
+    method: post
+    uri: http://api.brightbox.dev/token
+    body:
+      encoding: UTF-8
+      string: '{"grant_type":"none","client_id":"app-12345"}'
+    headers:
+      User-Agent:
+      - fog/1.15.0
+      Authorization:
+      - Basic YXBwLTEyMzQ1Om1vY2J1aXBiaWFhNms2Yw==
+      Content-Type:
+      - application/json
+  response:
+    status:
+      code: 400
+      message: 
+    headers:
+      X-Frame-Options:
+      - sameorigin
+      X-XSS-Protection:
+      - 1; mode=block
+      Content-Type:
+      - application/json;charset=utf-8
+      Cache-Control:
+      - no-store
+      Content-Length:
+      - '135'
+      X-UA-Compatible:
+      - IE=Edge
+      X-Request-Id:
+      - d2affb56cd86e6348117434f078cc022
+      X-Runtime:
+      - '0.102341'
+      Date:
+      - Tue, 27 Aug 2013 17:10:03 GMT
+      Connection:
+      - keep-alive
+    body:
+      encoding: UTF-8
+      string: '{"error":"unauthorized_client","error_description":"The authenticated
+        client is not authorized to use the access grant type provided."}'
+    http_version: 
+  recorded_at: Tue, 27 Aug 2013 17:10:03 GMT
+- request:
+    method: post
+    uri: http://api.brightbox.dev/token
+    body:
+      encoding: UTF-8
+      string: '{"grant_type":"none","client_id":"app-12345"}'
+    headers:
+      User-Agent:
+      - fog/1.15.0
+      Authorization:
+      - Basic YXBwLTEyMzQ1Om1vY2J1aXBiaWFhNms2Yw==
+      Content-Type:
+      - application/json
+  response:
+    status:
+      code: 400
+      message: 
+    headers:
+      X-Frame-Options:
+      - sameorigin
+      X-XSS-Protection:
+      - 1; mode=block
+      Content-Type:
+      - application/json;charset=utf-8
+      Cache-Control:
+      - no-store
+      Content-Length:
+      - '135'
+      X-UA-Compatible:
+      - IE=Edge
+      X-Request-Id:
+      - ecf76ea2564715fc5b8219c081cc184f
+      X-Runtime:
+      - '0.112142'
+      Date:
+      - Tue, 27 Aug 2013 17:10:03 GMT
+      Connection:
+      - keep-alive
+    body:
+      encoding: UTF-8
+      string: '{"error":"unauthorized_client","error_description":"The authenticated
+        client is not authorized to use the access grant type provided."}'
+    http_version: 
+  recorded_at: Tue, 27 Aug 2013 17:10:03 GMT
+- request:
+    method: post
+    uri: http://api.brightbox.dev/token
+    body:
+      encoding: UTF-8
+      string: '{"grant_type":"none","client_id":"cli-12345"}'
+    headers:
+      User-Agent:
+      - fog/1.15.0
+      Authorization:
+      - Basic Y2xpLTEyMzQ1OnF5Nnh4bnZ5NG8wdGd2NQ==
+      Content-Type:
+      - application/json
+  response:
+    status:
+      code: 200
+      message: 
+    headers:
+      X-Frame-Options:
+      - sameorigin
+      X-XSS-Protection:
+      - 1; mode=block
+      Content-Type:
+      - application/json;charset=utf-8
+      Cache-Control:
+      - no-store
+      Content-Length:
+      - '77'
+      X-UA-Compatible:
+      - IE=Edge
+      ETag:
+      - '"0bf70fef989c85fde951737e96aa2b68"'
+      X-Request-Id:
+      - 52f7f0219c320fc0d1194389f226699e
+      X-Runtime:
+      - '0.110896'
+      Date:
+      - Tue, 27 Aug 2013 17:20:46 GMT
+      Connection:
+      - keep-alive
+    body:
+      encoding: UTF-8
+      string: '{"access_token":"0fd6171a9e6a6406d6b30e79befbf54128865e3f","expires_in":7200}'
+    http_version: 
+  recorded_at: Tue, 27 Aug 2013 17:20:46 GMT
 recorded_with: VCR 2.5.0

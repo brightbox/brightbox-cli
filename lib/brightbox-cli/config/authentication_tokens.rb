@@ -39,39 +39,170 @@ module Brightbox
         access_token
       end
 
+      # We have been told our tokens are bad so we need to correct that
+      #
+      def reauthenticate
+        # Don't hold on to the current access token it's worthless
+        flush_access_token!
+
+        renew_tokens
+
+        false # Skip GLI error handling
+      end
+
+      # This attempts to renew access (and refresh) tokens for the current
+      # configuration based on the current connection.
+      #
+      # @note $config and Api.conn are actually two different worlds and should
+      #   be merged (so a configuration holds the current connection)
+      #
+      def renew_tokens(options = {})
+        # This monster is basically a worse version of automatically getting the
+        # best grant strategy from our fog service itself.
+        #
+        # If/when the fog connection is correctly initialised all of this can go
+        # because passing all the config and all the cached tokens lets fog do
+        # it's thing rather than us trying to micromanage it.
+        #
+        # The only problem is wanting to send a password but prompting halfway
+        # through the process.
+        #
+        password = options[:password] if options[:password]
+
+        # To prevent refreshing tokens for the wrong client (using client_name
+        # is pretty random) we set it specially
+        self.client_name = options[:client_name]
+
+        begin
+          if using_application?
+            if refresh_token
+              begin
+                service = update_tokens_with_refresh_token
+              rescue Excon::Errors::BadRequest, Excon::Errors::Unauthorized
+                service = update_tokens_with_user_credentials
+              end
+            else
+              service = update_tokens_with_user_credentials(password)
+            end
+          else
+            service = update_tokens_with_client_credentials
+          end
+
+          new_access_token = service.access_token
+          new_refresh_token = service.refresh_token
+          update_stored_tokens(new_access_token, new_refresh_token)
+        rescue Excon::Errors::BadRequest, Excon::Errors::Unauthorized
+          error "ERROR: Unable to reauthenticate!"
+        ensure
+          debug_tokens
+        end
+      end
+
+      #
+      def update_stored_tokens(new_access_token, new_refresh_token = nil)
+        save_access_token(new_access_token)
+        unless new_refresh_token.nil?
+          save_refresh_token(new_refresh_token)
+        end
+        debug_tokens
+      end
+
+    private
+
       # This stores the access token for the Fog service currently in use to
       # authenticate with the API.
       #
-      def save_access_token
-        if configured? && @oauth_token != Api.conn.access_token
-          File.open(access_token_filename + ".#{$$}", "w") do |f|
-            f.write Api.conn.access_token
-          end
-          FileUtils.mv access_token_filename + ".#{$$}", access_token_filename
+      def save_access_token(current_access_token)
+        if access_token != current_access_token
+          @access_token = current_access_token
+          debug "Attempting to save new access token: #{current_access_token}"
+          debug "In memory access token: #{@access_token}"
+
+          # Save to disk
+          persist_token(access_token_filename, current_access_token)
+
+          current_access_token
+        else
+          debug "Access token remains #{access_token}"
         end
       end
 
       # This stores the refresh token for the Fog service currently in use to
       # request a new access token when current one has expired.
       #
-      def save_refresh_token
-        if configured? && @refresh_token != Api.conn.refresh_token
-          File.open(refresh_token_filename + ".#{$$}", "w") do |f|
-            f.write Api.conn.refresh_token
-          end
-          FileUtils.mv refresh_token_filename + ".#{$$}", refresh_token_filename
+      def save_refresh_token(current_token)
+        if refresh_token != current_token
+          @refresh_token = current_token
+          debug "Attempting to save new refresh token: #{current_token}"
+          debug "In memory refresh token: #{@refresh_token}"
+
+          # Save to disk
+          persist_token(refresh_token_filename, current_token)
+
+          current_token
+        else
+          debug "Refresh token remains #{refresh_token}"
         end
       end
 
-      def update_refresh_token
-        return false unless using_application?
-        require 'highline'
-        highline = HighLine.new()
+      # WIP - classic API authentication
+      def update_tokens_with_client_credentials
+        client = Brightbox::Config::ApiClient.new(selected_config, client_name)
+
+        default_fog_options = client.to_fog
+        connection = Fog::Compute.new(default_fog_options)
+        begin
+          connection.get_access_token!
+        rescue Excon::Errors::Unauthorized
+          raise Brightbox::Api::ApiError, "Invalid credentials"
+        end
+
+        connection
+      end
+
+      # WIP - use a refresh token to request new tokens
+      def update_tokens_with_refresh_token
+        user_application = Brightbox::Config::UserApplication.new(selected_config, client_name)
+
+        fog_options = user_application.to_fog
+        # FIXME UserApplication#to_fog should include refresh token but does not
+        # have the correct scope to it
+        fog_options.merge!(:brightbox_refresh_token => refresh_token)
+
+        connection = Fog::Compute.new(fog_options)
+        # If this goes wrong raise and handle above
+        connection.get_access_token!
+        connection
+      end
+
+      # This asks the user to input their password
+      def prompt_for_password
+        require "highline"
+        highline = HighLine.new
         highline.say("Your API credentials have expired, enter your password to update them.")
-        password = highline.ask("Enter your password : ") { |q| q.echo = false }
-        fetch_refresh_token(:password => password)
-        highline.say("Your API credentials have been updated, please re-run your command.")
-        true
+        # FIXME Capture interupts if user aborts
+        highline.ask("Enter your password : ") { |q| q.echo = false }
+      end
+
+      def update_tokens_with_user_credentials(password = nil)
+        user_application = Brightbox::Config::UserApplication.new(selected_config, client_name)
+
+        unless password
+          password = prompt_for_password
+        end
+
+        # FIXME options are required to work
+        options = {
+          :client_id => client_name,
+          :email => selected_config["username"],
+          :password => password
+        }
+        connection = user_application.fetch_refresh_token(options)
+
+        # FIXME Really should say this only if they have been!
+        info "Your API credentials have been updated, please re-run your command."
+
+        connection
       end
 
       def fetch_refresh_token(options)
@@ -80,10 +211,25 @@ module Brightbox
         user_application = Brightbox::Config::UserApplication.new(client_config, client_name)
         # replace this portion with code that actually fetches a token
         client_config['refresh_token'] = user_application.fetch_refresh_token(options)
-        save_fresh_token
+        save_refresh_token
       end
 
-    private
+      # Blanks access token in memory and on disk
+      def flush_access_token!
+        @access_token = nil
+        #persist_token(oauth_token_filename, nil)
+      end
+
+      # Saves
+      def persist_token(filename, token)
+        token = "" if token.nil?
+        # Write out a token file for this process
+        File.open(filename + ".#{$$}", "w") do |f|
+          f.write token
+        end
+        # Move process version into place
+        FileUtils.mv filename + ".#{$$}", filename
+      end
 
       def cached_access_token
         File.open(access_token_filename, "r") { |fl| fl.read.chomp }

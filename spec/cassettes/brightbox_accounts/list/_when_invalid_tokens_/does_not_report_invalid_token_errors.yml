@@ -1,0 +1,309 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: http://api.brightbox.dev/1.0/accounts
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      User-Agent:
+      - fog/1.15.0
+      Authorization:
+      - OAuth 23b0e1da3d19e10a85247fffe0e488435b1c5861
+      Content-Type:
+      - application/json
+  response:
+    status:
+      code: 401
+      message: 
+    headers:
+      WWW-Authenticate:
+      - OAuth error="expired_token"
+      Content-Type:
+      - application/json; charset=utf-8
+      X-UA-Compatible:
+      - IE=Edge
+      Cache-Control:
+      - no-cache
+      X-Request-Id:
+      - 312069715635c44307d2785653ab3120
+      X-Runtime:
+      - '0.019050'
+      Date:
+      - Wed, 28 Aug 2013 14:18:22 GMT
+      Connection:
+      - close
+    body:
+      encoding: UTF-8
+      string: '{"error":"expired_token","error_description":"OAuth token presented
+        has expired and is no longer valid"}'
+    http_version: 
+  recorded_at: Wed, 28 Aug 2013 14:18:22 GMT
+- request:
+    method: post
+    uri: http://api.brightbox.dev/token
+    body:
+      encoding: UTF-8
+      string: '{"grant_type":"refresh_token","client_id":"app-12345","refresh_token":"c08bd7973ddf8493d878b22fe69c1044bbb3abb1"}'
+    headers:
+      User-Agent:
+      - fog/1.15.0
+      Authorization:
+      - Basic YXBwLTEyMzQ1Om1vY2J1aXBiaWFhNms2Yw==
+      Content-Type:
+      - application/json
+  response:
+    status:
+      code: 401
+      message: 
+    headers:
+      X-Frame-Options:
+      - sameorigin
+      X-XSS-Protection:
+      - 1; mode=block
+      Content-Type:
+      - application/json;charset=utf-8
+      Cache-Control:
+      - no-store
+      WWW-Authenticate:
+      - Basic realm="api.gb1.brightbox.com"
+      Content-Length:
+      - '26'
+      X-UA-Compatible:
+      - IE=Edge
+      X-Request-Id:
+      - 2a6a483d52fc579c0c993e76dc394e16
+      X-Runtime:
+      - '0.104330'
+      Date:
+      - Wed, 28 Aug 2013 14:18:22 GMT
+      Connection:
+      - keep-alive
+    body:
+      encoding: UTF-8
+      string: '{"error":"invalid_client"}'
+    http_version: 
+  recorded_at: Wed, 28 Aug 2013 14:18:22 GMT
+- request:
+    method: get
+    uri: http://api.brightbox.dev/1.0/accounts
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      User-Agent:
+      - fog/1.15.0
+      Authorization:
+      - 'OAuth '
+      Content-Type:
+      - application/json
+  response:
+    status:
+      code: 401
+      message: 
+    headers:
+      WWW-Authenticate:
+      - OAuth error="invalid_token"
+      Content-Type:
+      - application/json; charset=utf-8
+      X-UA-Compatible:
+      - IE=Edge
+      Cache-Control:
+      - no-cache
+      X-Request-Id:
+      - 312bd177e4189e727e6e08f6cb9f43a8
+      X-Runtime:
+      - '0.018619'
+      Date:
+      - Wed, 28 Aug 2013 14:18:22 GMT
+      Connection:
+      - close
+    body:
+      encoding: UTF-8
+      string: '{"error":"invalid_token","error_description":"The OAuth token can not
+        be found"}'
+    http_version: 
+  recorded_at: Wed, 28 Aug 2013 14:18:22 GMT
+- request:
+    method: post
+    uri: http://api.brightbox.dev/token
+    body:
+      encoding: UTF-8
+      string: '{"grant_type":"refresh_token","client_id":"app-12345","refresh_token":"c08bd7973ddf8493d878b22fe69c1044bbb3abb1"}'
+    headers:
+      User-Agent:
+      - fog/1.15.0
+      Authorization:
+      - Basic YXBwLTEyMzQ1Om1vY2J1aXBiaWFhNms2Yw==
+      Content-Type:
+      - application/json
+  response:
+    status:
+      code: 401
+      message: 
+    headers:
+      X-Frame-Options:
+      - sameorigin
+      X-XSS-Protection:
+      - 1; mode=block
+      Content-Type:
+      - application/json;charset=utf-8
+      Cache-Control:
+      - no-store
+      WWW-Authenticate:
+      - Basic realm="api.gb1.brightbox.com"
+      Content-Length:
+      - '26'
+      X-UA-Compatible:
+      - IE=Edge
+      X-Request-Id:
+      - 4ff612bc0c0659868c3ba7eb11d5d0e1
+      X-Runtime:
+      - '0.109086'
+      Date:
+      - Wed, 28 Aug 2013 14:18:27 GMT
+      Connection:
+      - keep-alive
+    body:
+      encoding: UTF-8
+      string: '{"error":"invalid_client"}'
+    http_version: 
+  recorded_at: Wed, 28 Aug 2013 14:18:27 GMT
+- request:
+    method: post
+    uri: http://api.brightbox.dev/token
+    body:
+      encoding: UTF-8
+      string: '{"grant_type":"password","client_id":"app-12345","username":"jason.null@brightbox.com","password":"N:B3e%7Cmh"}'
+    headers:
+      User-Agent:
+      - fog/1.15.0
+      Authorization:
+      - Basic YXBwLTEyMzQ1Om1vY2J1aXBiaWFhNms2Yw==
+      Content-Type:
+      - application/json
+  response:
+    status:
+      code: 200
+      message: 
+    headers:
+      X-Frame-Options:
+      - sameorigin
+      X-XSS-Protection:
+      - 1; mode=block
+      Content-Type:
+      - application/json;charset=utf-8
+      Cache-Control:
+      - no-store
+      Content-Length:
+      - '136'
+      X-UA-Compatible:
+      - IE=Edge
+      ETag:
+      - '"5d33c0cc4c42319a00bebbc357792641"'
+      X-Request-Id:
+      - bc695f1fdff655d55f101c1aa7df10d1
+      X-Runtime:
+      - '0.199658'
+      Date:
+      - Wed, 28 Aug 2013 14:18:27 GMT
+      Connection:
+      - keep-alive
+    body:
+      encoding: UTF-8
+      string: '{"access_token":"0308fad90dfe9707232c4479bdb4dae470c54565","expires_in":7200,"refresh_token":"a704d91a3e687e9f248d4ee4c69abbba1c7a3a69"}'
+    http_version: 
+  recorded_at: Wed, 28 Aug 2013 14:18:27 GMT
+- request:
+    method: post
+    uri: http://api.brightbox.dev/token
+    body:
+      encoding: UTF-8
+      string: '{"grant_type":"none","client_id":"cli-12345"}'
+    headers:
+      User-Agent:
+      - fog/1.15.0
+      Authorization:
+      - Basic Y2xpLTEyMzQ1OnF5Nnh4bnZ5NG8wdGd2NQ==
+      Content-Type:
+      - application/json
+  response:
+    status:
+      code: 200
+      message: 
+    headers:
+      X-Frame-Options:
+      - sameorigin
+      X-XSS-Protection:
+      - 1; mode=block
+      Content-Type:
+      - application/json;charset=utf-8
+      Cache-Control:
+      - no-store
+      Content-Length:
+      - '77'
+      X-UA-Compatible:
+      - IE=Edge
+      ETag:
+      - '"df37caa45e1da1af2bcfdfe64c5e9d2f"'
+      X-Request-Id:
+      - 8be4935ed83bba7e7ac4258443b8cffa
+      X-Runtime:
+      - '0.109363'
+      Date:
+      - Wed, 28 Aug 2013 14:19:48 GMT
+      Connection:
+      - keep-alive
+    body:
+      encoding: UTF-8
+      string: '{"access_token":"c307e3045674038c889b8f8356217a9482498682","expires_in":7200}'
+    http_version: 
+  recorded_at: Wed, 28 Aug 2013 14:19:48 GMT
+- request:
+    method: post
+    uri: http://api.brightbox.dev/token
+    body:
+      encoding: UTF-8
+      string: '{"grant_type":"none","client_id":"cli-12345"}'
+    headers:
+      User-Agent:
+      - fog/1.15.0
+      Authorization:
+      - Basic Y2xpLTEyMzQ1OnF5Nnh4bnZ5NG8wdGd2NQ==
+      Content-Type:
+      - application/json
+  response:
+    status:
+      code: 400
+      message: 
+    headers:
+      X-Frame-Options:
+      - sameorigin
+      X-XSS-Protection:
+      - 1; mode=block
+      Content-Type:
+      - application/json;charset=utf-8
+      Cache-Control:
+      - no-store
+      Content-Length:
+      - '246'
+      X-UA-Compatible:
+      - IE=Edge
+      X-Request-Id:
+      - d0a54b5631f88303cb8ed1452f05cab4
+      X-Runtime:
+      - '0.019568'
+      Date:
+      - Wed, 28 Aug 2013 14:22:49 GMT
+      Connection:
+      - keep-alive
+    body:
+      encoding: UTF-8
+      string: '{"error":"invalid_client","error_description":"The client identifier
+        provided is invalid, the client failed to authenticate, the client did not
+        include its credentials, provided multiple client credentials, or used unsupported
+        credentials type."}'
+    http_version: 
+  recorded_at: Wed, 28 Aug 2013 14:22:49 GMT
+recorded_with: VCR 2.5.0

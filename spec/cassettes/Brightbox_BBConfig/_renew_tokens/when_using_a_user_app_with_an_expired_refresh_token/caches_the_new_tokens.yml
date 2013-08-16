@@ -1,0 +1,94 @@
+---
+http_interactions:
+- request:
+    method: post
+    uri: http://api.brightbox.dev/token
+    body:
+      encoding: UTF-8
+      string: '{"grant_type":"refresh_token","client_id":"app-12345","refresh_token":"aeed54b3487019931b04010b0b39715eb4e729e8"}'
+    headers:
+      User-Agent:
+      - fog/1.15.0
+      Authorization:
+      - Basic YXBwLTEyMzQ1Om1vY2J1aXBiaWFhNms2Yw==
+      Content-Type:
+      - application/json
+  response:
+    status:
+      code: 400
+      message: 
+    headers:
+      X-Frame-Options:
+      - sameorigin
+      X-XSS-Protection:
+      - 1; mode=block
+      Content-Type:
+      - application/json;charset=utf-8
+      Cache-Control:
+      - no-store
+      Content-Length:
+      - '250'
+      X-UA-Compatible:
+      - IE=Edge
+      X-Request-Id:
+      - cfa7a86d8d56a39550ccba3221440b99
+      X-Runtime:
+      - '0.106574'
+      Date:
+      - Wed, 28 Aug 2013 11:11:43 GMT
+      Connection:
+      - keep-alive
+    body:
+      encoding: UTF-8
+      string: '{"error":"invalid_grant","error_description":"The provided access grant
+        is invalid, expired, or revoked (e.g. invalid assertion, expired authorization
+        token, bad end-user password credentials, or mismatching authorization code
+        and redirection URI)."}'
+    http_version: 
+  recorded_at: Wed, 28 Aug 2013 11:11:43 GMT
+- request:
+    method: post
+    uri: http://api.brightbox.dev/token
+    body:
+      encoding: UTF-8
+      string: '{"grant_type":"password","client_id":"app-12345","username":"jason.null@brightbox.com","password":"N:B3e%7Cmh"}'
+    headers:
+      User-Agent:
+      - fog/1.15.0
+      Authorization:
+      - Basic YXBwLTEyMzQ1Om1vY2J1aXBiaWFhNms2Yw==
+      Content-Type:
+      - application/json
+  response:
+    status:
+      code: 200
+      message: 
+    headers:
+      X-Frame-Options:
+      - sameorigin
+      X-XSS-Protection:
+      - 1; mode=block
+      Content-Type:
+      - application/json;charset=utf-8
+      Cache-Control:
+      - no-store
+      Content-Length:
+      - '136'
+      X-UA-Compatible:
+      - IE=Edge
+      ETag:
+      - '"915f9c0ecdddd947968550bf5751a719"'
+      X-Request-Id:
+      - f50be6f19e9fa7b1493eb592c6f7359d
+      X-Runtime:
+      - '0.334832'
+      Date:
+      - Wed, 28 Aug 2013 11:11:44 GMT
+      Connection:
+      - keep-alive
+    body:
+      encoding: UTF-8
+      string: '{"access_token":"f0cf301ba7d82e6b6bbd61e3f40929b7fbd55a6b","expires_in":7200,"refresh_token":"2d5f189f75c4359131262716a9ad0144877e9f27"}'
+    http_version: 
+  recorded_at: Wed, 28 Aug 2013 11:11:44 GMT
+recorded_with: VCR 2.5.0

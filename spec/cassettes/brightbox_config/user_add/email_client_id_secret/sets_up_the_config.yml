@@ -1,0 +1,48 @@
+---
+http_interactions:
+- request:
+    method: post
+    uri: http://api.brightbox.dev/token
+    body:
+      encoding: UTF-8
+      string: '{"grant_type":"password","client_id":"app-12345","username":"jason.null@brightbox.com","password":"N:B3e%7Cmh"}'
+    headers:
+      User-Agent:
+      - fog/1.15.0
+      Authorization:
+      - Basic YXBwLTEyMzQ1Om1vY2J1aXBiaWFhNms2Yw==
+      Content-Type:
+      - application/json
+  response:
+    status:
+      code: 200
+      message: 
+    headers:
+      X-Frame-Options:
+      - sameorigin
+      X-XSS-Protection:
+      - 1; mode=block
+      Content-Type:
+      - application/json;charset=utf-8
+      Cache-Control:
+      - no-store
+      Content-Length:
+      - '136'
+      X-UA-Compatible:
+      - IE=Edge
+      ETag:
+      - '"ca48bf9e5274e6d445ffc2311650a091"'
+      X-Request-Id:
+      - 00651ace47c9cf3336074e93cca64e34
+      X-Runtime:
+      - '0.201773'
+      Date:
+      - Tue, 27 Aug 2013 16:51:30 GMT
+      Connection:
+      - keep-alive
+    body:
+      encoding: UTF-8
+      string: '{"access_token":"f81477becc6b5ed36063461ba02466c25c07ce99","expires_in":7200,"refresh_token":"ad9aa1f13fc478ee6408372a92b8bbbfa80830b8"}'
+    http_version: 
+  recorded_at: Tue, 27 Aug 2013 16:51:30 GMT
+recorded_with: VCR 2.5.0

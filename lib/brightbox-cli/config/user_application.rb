@@ -14,6 +14,7 @@ module Brightbox
 
       def to_fog
         check_required_params
+        # Note we have to merge in refresh token at the higher level
         {
           :provider => 'Brightbox',
           :brightbox_api_url => selected_config['api_url'],
@@ -38,14 +39,18 @@ module Brightbox
       # token but this method does not expose that token.
       #
       def fetch_refresh_token(options)
-        default_fog_options = password_auth_params.merge(:brightbox_password => options[:password])
+        password_options = {
+          :brightbox_password => options[:password]
+        }
+
+        default_fog_options = password_auth_params.merge(password_options)
         connection = Fog::Compute.new(default_fog_options)
         begin
           connection.get_access_token!
         rescue Excon::Errors::Unauthorized
           raise Brightbox::Api::ApiError, "Invalid credentials"
         end
-        connection.refresh_token
+        connection
       end
 
     private

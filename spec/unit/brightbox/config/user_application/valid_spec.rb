@@ -92,6 +92,7 @@ describe Brightbox::Config::UserApplication do
         [#{client_name}]
         api_url = http://api.brightbox.dev
         client_id = #{client_name}
+        secret = #{random_token}
         EOS
       end
 
