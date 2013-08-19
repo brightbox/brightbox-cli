@@ -21,6 +21,7 @@ TEST_RUNNER_HOME = ENV["HOME"]
 
 RSpec.configure do |config|
   config.include CommonHelpers
+  config.include ConfigHelpers
 
   config.before(:suite) do
     # Globally use API client credentials by default
