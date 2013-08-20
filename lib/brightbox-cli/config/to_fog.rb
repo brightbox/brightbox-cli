@@ -17,14 +17,6 @@ module Brightbox
         end
         default_fog_options
       end
-
-      def using_api_client?
-        selected_config['client_id']
-      end
-
-      def using_application?
-        selected_config['app_id']
-      end
     end
   end
 end
