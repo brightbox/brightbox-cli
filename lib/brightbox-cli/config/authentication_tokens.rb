@@ -1,18 +1,38 @@
 module Brightbox
   module Config
     module AuthenticationTokens
+      attr_writer :access_token, :refresh_token
 
       def oauth_token_filename
-        @oauth_token_filename ||= File.join(config_directory, client_name + '.oauth_token')
+        @access_token_filename ||= File.join(config_directory, client_name + '.oauth_token')
       end
 
-      def oauth_token
-        return @oauth_token if defined?(@oauth_token)
-        if File.exists?(oauth_token_filename)
-          @oauth_token = read_cached_token
-        else
-          @oauth_token = nil
+      def access_token
+        if defined?(@access_token) && !@access_token.nil?
+          return @access_token
         end
+        if File.exists?(oauth_token_filename)
+          @access_token = read_cached_token
+        else
+          @access_token = nil
+        end
+      end
+
+      def refresh_token
+        if defined?(@refresh_token) && !@refresh_token.nil?
+          return @refresh_token
+        end
+        if selected_config["refresh_token"]
+          @refresh_token = selected_config["refresh_token"]
+         else
+          @refresh_token = nil
+        end
+      end
+
+      # @deprecation use access_token instead
+      def oauth_token
+        debug "WARN: oauth_token is deprecated, use access_token instead"
+        access_token
       end
 
       # This stores the access token for the Fog service currently in use to

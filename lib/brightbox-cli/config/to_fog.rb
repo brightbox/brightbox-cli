@@ -13,7 +13,7 @@ module Brightbox
             Brightbox::Config::UserApplication.new(selected_config, client_name).to_fog
           end
         if oauth_token
-          default_fog_options.update(:brightbox_access_token => oauth_token)
+          default_fog_options.update(:brightbox_access_token => access_token)
         end
         default_fog_options
       end
