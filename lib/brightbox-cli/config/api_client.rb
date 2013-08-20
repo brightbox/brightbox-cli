@@ -5,12 +5,13 @@ module Brightbox
 
       attr_accessor :selected_config, :client_name
 
-      def initialize(incoming_config,client_name)
+      def initialize(incoming_config, client_name)
         @selected_config = incoming_config
         @client_name = client_name
       end
 
       def to_fog
+        check_required_params
         {
           :provider => 'Brightbox',
           :brightbox_api_url => selected_config['api_url'],
@@ -27,7 +28,7 @@ module Brightbox
         end
       end
 
-      private
+    private
 
       def check_required_params
         unless valid?
