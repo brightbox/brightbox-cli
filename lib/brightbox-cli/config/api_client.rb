@@ -1,7 +1,10 @@
 module Brightbox
   module Config
     class ApiClient
+      NON_BLANK_KEYS = %w{api_url client_id secret}
+
       attr_accessor :selected_config, :client_name
+
       def initialize(incoming_config,client_name)
         @selected_config = incoming_config
         @client_name = client_name
@@ -18,15 +21,23 @@ module Brightbox
         }
       end
 
-      private
-      def check_required_params
-        %w{api_url client_id secret}.each do |k|
-          if selected_config[k].to_s.empty?
-            raise Brightbox::BBConfigError, "#{k} option missing from config in section #{client_name}"
-          end
+      def valid?
+        NON_BLANK_KEYS.all? do |key|
+          selected_config.has_key?(key) && ! selected_config[key].to_s.empty?
         end
       end
 
+      private
+
+      def check_required_params
+        unless valid?
+          NON_BLANK_KEYS.each do |key|
+            if selected_config.has_key?(key) && ! selected_config[key].to_s.empty?
+              raise Brightbox::BBConfigError, "#{key} option missing from config in section #{client_name}"
+            end
+          end
+        end
+      end
     end
   end
 end

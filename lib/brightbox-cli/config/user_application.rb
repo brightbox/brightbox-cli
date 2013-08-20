@@ -1,6 +1,11 @@
 module Brightbox
   module Config
     class UserApplication
+      # FIXME api_url should use fog's underlying default
+      # FIXME refresh_token should not be in the config
+      #
+      NON_BLANK_KEYS = %w{api_url app_id app_secret refresh_token}
+
       attr_accessor :selected_config, :client_name
 
       def initialize(incoming_config, client_name)
@@ -21,6 +26,19 @@ module Brightbox
         }
       end
 
+      # Returns +true+ if the config section passed in has expected keys
+      #
+      # @todo Implementation requires keys that are really optional
+      #
+      def valid?
+        NON_BLANK_KEYS.all? do |key|
+          selected_config.has_key?(key) && ! selected_config[key].to_s.empty?
+        end
+      end
+
+      # FIXME This calls the underlying fog methods which also resets the access
+      # token but this method does not expose that token.
+      #
       def fetch_refresh_token(options)
         default_fog_options = password_auth_params.merge(:brightbox_username => options[:email], :brightbox_password => options[:password])
         connection = Fog::Compute.new(default_fog_options)
@@ -32,7 +50,8 @@ module Brightbox
         connection.refresh_token
       end
 
-      private
+    private
+
       def password_auth_params
         {
           :provider => 'Brightbox',
@@ -43,14 +62,16 @@ module Brightbox
           :persistent => (selected_config["persistent"] != nil ? selected_config["persistent"] : true)
         }
       end
+
       def check_required_params
-        %w{api_url app_id app_secret refresh_token}.each do |k|
-          if selected_config[k].to_s.empty?
-            raise Brightbox::BBConfigError, "#{k} option missing from config in section #{client_name}"
+        unless valid?
+          NON_BLANK_KEYS.each do |key|
+            if selected_config.has_key?(key) && ! selected_config[key].to_s.empty?
+              raise Brightbox::BBConfigError, "#{key} option missing from config in section #{client_name}"
+            end
           end
         end
       end
-
     end
   end
 end
