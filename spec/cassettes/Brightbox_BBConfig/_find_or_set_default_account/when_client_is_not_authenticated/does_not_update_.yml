@@ -1,0 +1,173 @@
+---
+http_interactions:
+- request:
+    method: post
+    uri: http://api.dev.brightbox.com/token
+    body:
+      encoding: UTF-8
+      string: '{"grant_type":"none","client_id":"cli-12345"}'
+    headers:
+      User-Agent:
+      - fog/1.15.0
+      Authorization:
+      - OAuth <TOKEN>
+      Content-Type:
+      - application/json
+  response:
+    status:
+      code: 401
+      message: 
+    headers:
+      X-Frame-Options:
+      - sameorigin
+      X-XSS-Protection:
+      - 1; mode=block
+      Content-Type:
+      - application/json;charset=utf-8
+      Cache-Control:
+      - no-store
+      WWW-Authenticate:
+      - Basic realm="api.gb1.brightbox.com"
+      Content-Length:
+      - '26'
+      X-UA-Compatible:
+      - IE=Edge
+      X-Request-Id:
+      - e0857b471249ca617db4fd2c589092e3
+      X-Runtime:
+      - '0.128206'
+      Date:
+      - Wed, 21 Aug 2013 11:30:57 GMT
+      Connection:
+      - keep-alive
+    body:
+      encoding: UTF-8
+      string: '{"error":"invalid_client"}'
+    http_version: 
+  recorded_at: Wed, 21 Aug 2013 11:30:57 GMT
+- request:
+    method: get
+    uri: http://api.dev.brightbox.com/1.0/account
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      User-Agent:
+      - fog/1.15.0
+      Authorization:
+      - OAuth <TOKEN>
+      Content-Type:
+      - application/json
+  response:
+    status:
+      code: 401
+      message: 
+    headers:
+      WWW-Authenticate:
+      - OAuth error="invalid_token"
+      Content-Type:
+      - application/json; charset=utf-8
+      X-UA-Compatible:
+      - IE=Edge
+      Cache-Control:
+      - no-cache
+      X-Request-Id:
+      - 312d06fde92989bba50ab23c079e7c57
+      X-Runtime:
+      - '0.035680'
+      Date:
+      - Wed, 21 Aug 2013 11:30:57 GMT
+      Connection:
+      - close
+    body:
+      encoding: UTF-8
+      string: '{"error":"invalid_token","error_description":"The OAuth token can not
+        be found"}'
+    http_version: 
+  recorded_at: Wed, 21 Aug 2013 11:30:57 GMT
+- request:
+    method: post
+    uri: http://api.dev.brightbox.com/token
+    body:
+      encoding: UTF-8
+      string: '{"grant_type":"none","client_id":"cli-12345"}'
+    headers:
+      User-Agent:
+      - fog/1.15.0
+      Authorization:
+      - OAuth <TOKEN>
+      Content-Type:
+      - application/json
+  response:
+    status:
+      code: 401
+      message: 
+    headers:
+      X-Frame-Options:
+      - sameorigin
+      X-XSS-Protection:
+      - 1; mode=block
+      Content-Type:
+      - application/json;charset=utf-8
+      Cache-Control:
+      - no-store
+      WWW-Authenticate:
+      - Basic realm="api.gb1.brightbox.com"
+      Content-Length:
+      - '26'
+      X-UA-Compatible:
+      - IE=Edge
+      X-Request-Id:
+      - f1eac485e176237a0626d9253817c729
+      X-Runtime:
+      - '0.134473'
+      Date:
+      - Wed, 21 Aug 2013 11:30:57 GMT
+      Connection:
+      - keep-alive
+    body:
+      encoding: UTF-8
+      string: '{"error":"invalid_client"}'
+    http_version: 
+  recorded_at: Wed, 21 Aug 2013 11:30:57 GMT
+- request:
+    method: get
+    uri: http://api.dev.brightbox.com/1.0/account
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      User-Agent:
+      - fog/1.15.0
+      Authorization:
+      - OAuth <TOKEN>
+      Content-Type:
+      - application/json
+  response:
+    status:
+      code: 401
+      message: 
+    headers:
+      WWW-Authenticate:
+      - OAuth error="invalid_token"
+      Content-Type:
+      - application/json; charset=utf-8
+      X-UA-Compatible:
+      - IE=Edge
+      Cache-Control:
+      - no-cache
+      X-Request-Id:
+      - 02e431c74942c59ca3e126735faeb57b
+      X-Runtime:
+      - '0.035644'
+      Date:
+      - Wed, 21 Aug 2013 11:30:57 GMT
+      Connection:
+      - close
+    body:
+      encoding: UTF-8
+      string: '{"error":"invalid_token","error_description":"The OAuth token can not
+        be found"}'
+    http_version: 
+  recorded_at: Wed, 21 Aug 2013 11:30:57 GMT
+recorded_with: VCR 2.5.0
