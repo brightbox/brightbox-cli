@@ -67,8 +67,8 @@ describe Brightbox::BBConfig do
         <<-EOS
         [app-12345]
         api_url = http://honcho.dev
-        app_id = app-12345
-        app_secret = mocbuipbiaa6k6c
+        client_id = app-12345
+        secret = mocbuipbiaa6k6c
         refresh_token = #{random_token}
         EOS
       end

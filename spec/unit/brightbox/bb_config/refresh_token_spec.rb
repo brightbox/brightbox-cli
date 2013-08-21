@@ -21,7 +21,7 @@ describe Brightbox::BBConfig do
       let(:contents) do
         <<-EOS
         [app-12345]
-        app_id = app-12345
+        client_id = app-12345
         refresh_token = #{expected_token}
         EOS
       end

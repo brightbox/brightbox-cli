@@ -6,7 +6,7 @@ describe Brightbox::BBConfig do
   before do
     contents = <<-EOS
     [app-12345]
-    app_id = app-12345
+    client_id = app-12345
     EOS
     @config = config_from_contents(contents)
   end

@@ -10,8 +10,7 @@ module Brightbox
 
       # Is the currently selected config using user application details?
       def using_application?
-        # For transition, also support prototype "app_id" form
-        client_id = selected_config["client_id"] || selected_config["app_id"]
+        client_id = selected_config["client_id"]
         !! /\Aapp-.*/.match(client_id)
       end
     end

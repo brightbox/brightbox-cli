@@ -13,8 +13,8 @@ describe Brightbox::Config::UserApplication do
         <<-EOS
         [#{client_name}]
         api_url = http://api.dev.brightbox.com
-        app_id = #{client_name}
-        app_secret = #{random_token}
+        client_id = #{client_name}
+        secret = #{random_token}
         refresh_token = #{random_token}
         EOS
       end
@@ -29,8 +29,8 @@ describe Brightbox::Config::UserApplication do
         <<-EOS
         [#{client_name}]
         api_url = http://api.dev.brightbox.com
-        app_id = #{client_name}
-        app_secret = #{random_token}
+        client_id = #{client_name}
+        secret = #{random_token}
         refresh_token = #{random_token}
         theme = blue
         EOS
@@ -45,8 +45,8 @@ describe Brightbox::Config::UserApplication do
       let(:contents) do
         <<-EOS
         [#{client_name}]
-        app_id = #{client_name}
-        app_secret = #{random_token}
+        client_id = #{client_name}
+        secret = #{random_token}
         refresh_token = #{random_token}
         EOS
       end
@@ -56,12 +56,12 @@ describe Brightbox::Config::UserApplication do
       end
     end
 
-    context "when config is missing app_id" do
+    context "when config is missing client_id" do
       let(:contents) do
         <<-EOS
         [#{client_name}]
         api_url = http://api.dev.brightbox.com
-        app_secret = #{random_token}
+        secret = #{random_token}
         refresh_token = #{random_token}
         EOS
       end
@@ -71,12 +71,12 @@ describe Brightbox::Config::UserApplication do
       end
     end
 
-    context "when config is missing app_secret" do
+    context "when config is missing secret" do
       let(:contents) do
         <<-EOS
         [#{client_name}]
         api_url = http://api.dev.brightbox.com
-        app_id = #{client_name}
+        client_id = #{client_name}
         refresh_token = #{random_token}
         EOS
       end
@@ -91,8 +91,8 @@ describe Brightbox::Config::UserApplication do
         <<-EOS
         [#{client_name}]
         api_url = http://api.dev.brightbox.com
-        app_id = #{client_name}
-        app_secret = #{random_token}
+        client_id = #{client_name}
+        secret = #{random_token}
         EOS
       end
 

@@ -2,10 +2,10 @@ module Brightbox
   command [:config] do |cmd|
 
     cmd.desc "Add new user credentials to config"
-    cmd.arg_name "email app-id app-secret [api_url auth_url]"
+    cmd.arg_name "email client-id secret [api_url auth_url]"
     cmd.command [:user_add] do |c|
 
-      c.desc "user alias, for local reference (defaults to app-id)"
+      c.desc "user alias, for local reference (defaults to client-id)"
       c.flag [:a, "alias"]
 
       c.desc "password, if not specified you will be prompted"
@@ -18,23 +18,23 @@ module Brightbox
         info "Using config file #{$config.config_filename}"
 
         email = args.shift
-        app_id = args.shift
-        app_secret = args.shift
+        client_id = args.shift
+        secret = args.shift
         api_url = args.shift || "https://api.gb1.brightbox.com"
         auth_url = args.shift || api_url
 
-        calias = options[:a] || app_id
+        calias = options[:a] || client_id
         password = options[:p]
 
-        if app_id.nil?
-          raise "You must specify the app-id"
+        if client_id.nil?
+          raise "You must specify the client-id"
         end
 
-        unless app_id[/^app-.{5}$/]
-          raise "You must specify a valid app-id in the format app-xxxxx"
+        unless client_id[/^app-.{5}$/]
+          raise "You must specify a valid client-id in the format app-xxxxx"
         end
 
-        if app_secret.nil?
+        if secret.nil?
           raise "You must specify the api secret"
         end
 
@@ -55,9 +55,9 @@ module Brightbox
         info "Creating new user application config #{calias}"
 
         client_config["alias"] = calias
-        client_config["app_id"] = app_id
+        client_config["client_id"] = client_id
         client_config["email"] = email
-        client_config["app_secret"] = app_secret
+        client_config["secret"] = secret
         client_config["api_url"] = api_url
         client_config["auth_url"] = auth_url
 

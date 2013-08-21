@@ -37,7 +37,7 @@ describe Brightbox::BBConfig do
         default_client = #{@client_name}
 
         [app-12345]
-        app_id = app-12345
+        client_id = app-12345
         EOS
         @config = config_from_contents(contents)
       end
@@ -51,7 +51,7 @@ describe Brightbox::BBConfig do
       before do
         contents =<<-EOS
         [app-first]
-        app_id = app-first
+        client_id = app-first
 
         [cli-12345]
         client_id = cli-12345

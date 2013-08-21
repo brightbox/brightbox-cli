@@ -18,8 +18,8 @@ describe Brightbox::Config::UserApplication do
         <<-EOS
         [#{client_name}]
         api_url = http://api.dev.brightbox.com
-        app_id = #{client_name}
-        app_secret = #{secret}
+        client_id = #{client_name}
+        secret = #{secret}
         refresh_token = #{refresh_token}
         EOS
       end
@@ -55,8 +55,8 @@ describe Brightbox::Config::UserApplication do
         [#{client_name}]
         api_url = http://api.dev.brightbox.com
         auth_url = http://auth.dev.brightbox.com
-        app_id = #{client_name}
-        app_secret = #{secret}
+        client_id = #{client_name}
+        secret = #{secret}
         refresh_token = #{refresh_token}
         EOS
       end
@@ -75,8 +75,8 @@ describe Brightbox::Config::UserApplication do
         <<-EOS
         [#{client_name}]
         api_url = http://api.dev.brightbox.com
-        app_id = #{client_name}
-        app_secret = #{secret}
+        client_id = #{client_name}
+        secret = #{secret}
         refresh_token = #{refresh_token}
         persistent = false
         EOS
@@ -91,8 +91,8 @@ describe Brightbox::Config::UserApplication do
       let(:contents) do
         <<-EOS
         [#{client_name}]
-        app_id = #{client_name}
-        app_secret = #{secret}
+        client_id = #{client_name}
+        secret = #{secret}
         refresh_token = #{refresh_token}
         EOS
       end
@@ -107,7 +107,7 @@ describe Brightbox::Config::UserApplication do
         <<-EOS
         [#{client_name}]
         api_url = http://api.dev.brightbox.com
-        app_secret = #{secret}
+        secret = #{secret}
         refresh_token = #{refresh_token}
         EOS
       end
@@ -122,7 +122,7 @@ describe Brightbox::Config::UserApplication do
         <<-EOS
         [#{client_name}]
         api_url = http://api.dev.brightbox.com
-        app_id = #{client_name}
+        client_id = #{client_name}
         refresh_token = #{refresh_token}
         EOS
       end
@@ -137,8 +137,8 @@ describe Brightbox::Config::UserApplication do
         <<-EOS
         [#{client_name}]
         api_url = http://api.dev.brightbox.com
-        app_id = #{client_name}
-        app_secret = #{secret}
+        client_id = #{client_name}
+        secret = #{secret}
         EOS
       end
 
