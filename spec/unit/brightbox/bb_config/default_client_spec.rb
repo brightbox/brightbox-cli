@@ -6,16 +6,11 @@ describe Brightbox::BBConfig do
     context "when config file is empty" do
       before do
         contents = ""
-        @tmp_config = TmpConfig.new(contents)
-        @config = Brightbox::BBConfig.new :directory => @tmp_config.path
+        @config = config_from_contents(contents)
       end
 
       it "returns the configured default" do
         expect(@config.default_client).to be_nil
-      end
-
-      after do
-        @tmp_config.close
       end
     end
 
@@ -25,15 +20,11 @@ describe Brightbox::BBConfig do
         [core]
         EOS
         @tmp_config = TmpConfig.new(contents)
-        @config = Brightbox::BBConfig.new :directory => @tmp_config.path
+        @config = config_from_contents(contents)
       end
 
       it "returns the configured default" do
         expect(@config.default_client).to be_nil
-      end
-
-      after do
-        @tmp_config.close
       end
     end
 
@@ -44,16 +35,11 @@ describe Brightbox::BBConfig do
         [core]
         default_client = #{@client_name}
         EOS
-        @tmp_config = TmpConfig.new(contents)
-        @config = Brightbox::BBConfig.new :directory => @tmp_config.path
+        @config = config_from_contents(contents)
       end
 
       it "returns the configured default" do
         expect(@config.default_client).to eql(@client_name)
-      end
-
-      after do
-        @tmp_config.close
       end
     end
   end

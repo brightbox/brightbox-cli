@@ -21,16 +21,11 @@ describe Brightbox::BBConfig do
         [core]
         default_client = #{@client_name}
         EOS
-        @tmp_config = TmpConfig.new(contents)
-        @config = Brightbox::BBConfig.new :directory => @tmp_config.path
+        @config = config_from_contents(contents)
       end
 
       it "returns the configured default" do
         expect(@config.client_name).to eql(@client_name)
-      end
-
-      after do
-        @tmp_config.close
       end
     end
 
@@ -44,8 +39,7 @@ describe Brightbox::BBConfig do
         [app-12345]
         app_id = app-12345
         EOS
-        @tmp_config = TmpConfig.new(contents)
-        @config = Brightbox::BBConfig.new :directory => @tmp_config.path
+        @config = config_from_contents(contents)
       end
 
       it "returns the name of that client" do

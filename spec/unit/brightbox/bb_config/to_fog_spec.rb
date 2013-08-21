@@ -3,10 +3,10 @@ require "tempfile"
 
 describe Brightbox::BBConfig do
   describe "#to_fog" do
-    let(:fog_config) { Brightbox::BBConfig.new(:directory => config_dir).to_fog }
+    let(:fog_config) { config_from_contents(contents).to_fog }
 
     context "For Api Clients" do
-      let(:config_dir) { API_CLIENT_CONFIG_DIR }
+      let(:contents) { API_CLIENT_CONFIG_CONTENTS }
 
       it "should return correct fog options" do
         fog_config[:brightbox_secret].should == "qy6xxnvy4o0tgv5"
@@ -26,7 +26,7 @@ describe Brightbox::BBConfig do
     end
 
     context "For User applications" do
-      let(:config_dir) { USER_APP_CONFIG_DIR }
+      let(:contents) { USER_APP_CONFIG_CONTENTS }
 
       it "should return correct fog options" do
         fog_config.should_not be_empty
