@@ -4,7 +4,7 @@ module Brightbox
       # FIXME api_url should use fog's underlying default
       # FIXME refresh_token should not be in the config
       #
-      NON_BLANK_KEYS = %w{api_url client_id secret refresh_token}
+      NON_BLANK_KEYS = %w{api_url client_id secret username refresh_token}
 
       attr_accessor :selected_config, :client_name
 
@@ -40,11 +40,11 @@ module Brightbox
       # token but this method does not expose that token.
       #
       def fetch_refresh_token(options)
-        default_fog_options = password_auth_params.merge(:brightbox_username => options[:email], :brightbox_password => options[:password])
+        default_fog_options = password_auth_params.merge(:brightbox_password => options[:password])
         connection = Fog::Compute.new(default_fog_options)
         begin
           connection.get_access_token!
-        rescue Excon::Errors::Unauthorized => e
+        rescue Excon::Errors::Unauthorized
           raise Brightbox::Api::ApiError, "Invalid credentials"
         end
         connection.refresh_token
@@ -59,6 +59,7 @@ module Brightbox
           :brightbox_auth_url => selected_config['auth_url'] || selected_config['api_url'],
           :brightbox_client_id => selected_config['client_id'],
           :brightbox_secret => selected_config['secret'],
+          :brightbox_username => selected_config["username"],
           :persistent => (selected_config["persistent"] != nil ? selected_config["persistent"] : true)
         }
       end

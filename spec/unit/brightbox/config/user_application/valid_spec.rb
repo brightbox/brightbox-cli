@@ -15,6 +15,7 @@ describe Brightbox::Config::UserApplication do
         api_url = http://api.dev.brightbox.com
         client_id = #{client_name}
         secret = #{random_token}
+        username = user@example.com
         refresh_token = #{random_token}
         EOS
       end
@@ -31,6 +32,7 @@ describe Brightbox::Config::UserApplication do
         api_url = http://api.dev.brightbox.com
         client_id = #{client_name}
         secret = #{random_token}
+        username = user@example.com
         refresh_token = #{random_token}
         theme = blue
         EOS
@@ -47,6 +49,7 @@ describe Brightbox::Config::UserApplication do
         [#{client_name}]
         client_id = #{client_name}
         secret = #{random_token}
+        username = user@example.com
         refresh_token = #{random_token}
         EOS
       end
@@ -62,6 +65,7 @@ describe Brightbox::Config::UserApplication do
         [#{client_name}]
         api_url = http://api.dev.brightbox.com
         secret = #{random_token}
+        username = user@example.com
         refresh_token = #{random_token}
         EOS
       end
@@ -72,6 +76,22 @@ describe Brightbox::Config::UserApplication do
     end
 
     context "when config is missing secret" do
+      let(:contents) do
+        <<-EOS
+        [#{client_name}]
+        api_url = http://api.dev.brightbox.com
+        client_id = #{client_name}
+        username = user@example.com
+        refresh_token = #{random_token}
+        EOS
+      end
+
+      it "is invalid" do
+       expect(section).to_not be_valid
+      end
+    end
+
+    context "when config is missing username" do
       let(:contents) do
         <<-EOS
         [#{client_name}]

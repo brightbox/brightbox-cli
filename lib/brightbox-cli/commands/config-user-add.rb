@@ -56,12 +56,12 @@ module Brightbox
 
         client_config["alias"] = calias
         client_config["client_id"] = client_id
-        client_config["email"] = email
+        client_config["username"] = email
         client_config["secret"] = secret
         client_config["api_url"] = api_url
         client_config["auth_url"] = auth_url
 
-        refresh_token_options = {:email => email, :password => password, :client_id => calias}
+        refresh_token_options = {:password => password}
         fetch_refresh_token(refresh_token_options)
       end
     end
