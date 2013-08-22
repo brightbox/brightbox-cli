@@ -3,46 +3,60 @@ require "tempfile"
 
 describe Brightbox::BBConfig do
   describe "#to_fog" do
-    let(:fog_config) { config_from_contents(contents).to_fog }
+    let(:config) { config_from_contents(contents) }
+    let(:fog_config) { config.to_fog }
 
-    context "For Api Clients" do
-      let(:contents) { API_CLIENT_CONFIG_CONTENTS }
+    context "when not configured correctly" do
+      let(:contents) { "" }
 
-      it "should return correct fog options" do
-        fog_config[:brightbox_secret].should == "qy6xxnvy4o0tgv5"
-        fog_config[:provider].should == "Brightbox"
-        fog_config[:brightbox_client_id].should == "cli-12345"
-      end
-
-      it "should throw error if api client is not configured" do
-        config = Brightbox::BBConfig.new
-        #allow(config).to receive(:config_filename).and_return(client_base_config.path)
-
-        config.client_name = "cli-12345"
+      it "raises an error" do
         expect {
-          config.to_fog
+          fog_config.to_fog
         }.to raise_error(Brightbox::BBConfigError)
       end
     end
 
-    context "For User applications" do
+    context "when access token is known" do
+      let(:contents) { API_CLIENT_CONFIG_CONTENTS }
+      let(:access_token) { random_token }
+
+      it "includes the token" do
+        config.access_token = access_token
+        expect(fog_config[:brightbox_access_token]).to eql(access_token)
+      end
+    end
+
+    context "when access token is known" do
+      let(:contents) { USER_APP_CONFIG_CONTENTS }
+      let(:access_token) { random_token }
+      let(:refresh_token) { random_token }
+
+      it "includes the token" do
+        config.access_token = access_token
+        config.refresh_token = refresh_token
+        expect(fog_config[:brightbox_refresh_token]).to eql(refresh_token)
+      end
+    end
+
+    context "when API client config used" do
+      let(:contents) { API_CLIENT_CONFIG_CONTENTS }
+
+      it "returns correct fog options" do
+        expect(fog_config[:provider]).to eql("Brightbox")
+        expect(fog_config[:brightbox_api_url]).to eql("https://api.dev.brightbox.com")
+        expect(fog_config[:brightbox_client_id]).to eql("cli-12345")
+        expect(fog_config[:brightbox_secret]).to eql("qy6xxnvy4o0tgv5")
+      end
+    end
+
+    context "when user app config used" do
       let(:contents) { USER_APP_CONFIG_CONTENTS }
 
-      it "should return correct fog options" do
-        fog_config.should_not be_empty
-        fog_config[:provider].should == "Brightbox"
-      end
-
-      it "should throw error if user application is not configured" do
-        config = Brightbox::BBConfig.new
-
-        # FIXME In order to get the error, the client name must be set
-        #   not having a client name should also be a configuration error
-        config.client_name = "app-12345"
-
-        expect {
-          config.to_fog
-        }.to raise_error(Brightbox::BBConfigError)
+      it "returns correct fog options" do
+        expect(fog_config[:provider]).to eql("Brightbox")
+        expect(fog_config[:brightbox_api_url]).to eql("https://api.dev.brightbox.com")
+        expect(fog_config[:brightbox_client_id]).to eql("app-12345")
+        expect(fog_config[:brightbox_secret]).to eql("mocbuipbiaa6k6c")
       end
     end
   end

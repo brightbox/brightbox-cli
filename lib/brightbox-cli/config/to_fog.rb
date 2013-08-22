@@ -1,14 +1,14 @@
 module Brightbox
   module Config
     module ToFog
-      def to_fog(require_account_flag = false)
+      def to_fog
         unless configured?
           raise Brightbox::BBConfigError, "No api client configured"
         end
 
         default_fog_options =
           if using_api_client?
-            Brightbox::Config::ApiClient.new(selected_config,client_name).to_fog
+            Brightbox::Config::ApiClient.new(selected_config, client_name).to_fog
           else
             Brightbox::Config::UserApplication.new(selected_config, client_name).to_fog
           end
