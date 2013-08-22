@@ -143,7 +143,7 @@ module Brightbox
         write_config_file
       rescue BBConfigError
       rescue StandardError => e
-        warn "Error writing auth token #{oauth_token_filename}: #{e.class}: #{e}"
+        warn "Error writing auth token #{access_token_filename}: #{e.class}: #{e}"
       end
     end
 

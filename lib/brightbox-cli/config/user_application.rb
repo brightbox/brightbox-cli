@@ -2,9 +2,8 @@ module Brightbox
   module Config
     class UserApplication
       # FIXME api_url should use fog's underlying default
-      # FIXME refresh_token should not be in the config
       #
-      NON_BLANK_KEYS = %w{api_url client_id secret username refresh_token}
+      NON_BLANK_KEYS = %w{api_url client_id secret username}
 
       attr_accessor :selected_config, :client_name
 
@@ -21,7 +20,6 @@ module Brightbox
           :brightbox_auth_url => selected_config['auth_url'] || selected_config['api_url'],
           :brightbox_client_id => selected_config['client_id'],
           :brightbox_secret => selected_config['secret'],
-          :brightbox_refresh_token => selected_config['refresh_token'],
           :persistent => (selected_config["persistent"] != nil ? selected_config["persistent"] : true)
         }
       end

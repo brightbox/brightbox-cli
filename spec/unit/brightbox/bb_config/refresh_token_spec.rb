@@ -22,11 +22,11 @@ describe Brightbox::BBConfig do
         <<-EOS
         [app-12345]
         client_id = app-12345
-        refresh_token = #{expected_token}
         EOS
       end
 
       it "returns value from config" do
+        cache_refresh_token(@config, expected_token)
         expect(@config.refresh_token).to eql(expected_token)
       end
     end

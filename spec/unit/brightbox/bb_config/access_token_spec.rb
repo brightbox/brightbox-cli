@@ -21,10 +21,7 @@ describe Brightbox::BBConfig do
 
     context "when cache file exists" do
       it "returns value from file" do
-        File.open(@config.oauth_token_filename, "w") do |f|
-          f.write expected_token
-        end
-
+        cache_access_token(@config, expected_token)
         expect(@config.access_token).to eql(expected_token)
       end
     end

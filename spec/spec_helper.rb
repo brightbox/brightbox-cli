@@ -26,6 +26,7 @@ TEST_RUNNER_HOME = ENV["HOME"]
 RSpec.configure do |config|
   config.include CommonHelpers
   config.include ConfigHelpers
+  config.include TokenHelpers
 
   # For each test, isolate the testing users $HOME so that we control the config
   # and any cached values completely.
