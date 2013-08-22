@@ -1,9 +1,5 @@
 module Brightbox
   class ConnectionManager
-    attr_accessor :account
-    attr_accessor :access_token, :refresh_token
-
-    @@connection_manager = nil
 
     def initialize(connection_options)
       @connection_options = connection_options
@@ -18,7 +14,8 @@ module Brightbox
       end
     end
 
-    private
+  private
+
     def connection_with_account
       if @connection
         @connection.scoped_account = $config.account
