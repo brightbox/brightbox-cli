@@ -18,32 +18,6 @@ VCR.configure do |vcr|
   # Gives lots of clues about how VCR is running
   #vcr.debug_logger = $stderr
 
-  # Filters for token grants
-  vcr.filter_sensitive_data("Basic <BASIC AUTH>") do |interaction|
-    interaction.request.headers['Authorization'].first
-  end
-  vcr.filter_sensitive_data("cli-12345") do |interaction|
-    begin
-      json = JSON.parse(interaction.request.body)
-      json["client_id"]
-    rescue
-      nil
-    end
-  end
-
-  vcr.filter_sensitive_data("<TOKEN>") do |interaction|
-    begin
-      json = JSON.parse(interaction.response.body)
-      json["access_token"]
-    rescue
-      nil
-    end
-  end
-
-  vcr.filter_sensitive_data("OAuth <TOKEN>") do |interaction|
-    interaction.request.headers['Authorization'].first
-  end
-
   vcr.before_record do |interaction|
     host = URI.parse(interaction.request.uri).host
     interaction.request.uri.gsub!(host, "api.brightbox.dev")
