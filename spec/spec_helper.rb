@@ -27,6 +27,7 @@ RSpec.configure do |config|
   config.include CommonHelpers
   config.include ConfigHelpers
   config.include TokenHelpers
+  config.include PasswordPromptHelpers
 
   # For each test, isolate the testing users $HOME so that we control the config
   # and any cached values completely.
