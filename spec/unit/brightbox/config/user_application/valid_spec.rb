@@ -12,7 +12,7 @@ describe Brightbox::Config::UserApplication do
       let(:contents) do
         <<-EOS
         [#{client_name}]
-        api_url = http://api.dev.brightbox.com
+        api_url = http://api.brightbox.dev
         client_id = #{client_name}
         secret = #{random_token}
         username = user@example.com
@@ -28,7 +28,7 @@ describe Brightbox::Config::UserApplication do
       let(:contents) do
         <<-EOS
         [#{client_name}]
-        api_url = http://api.dev.brightbox.com
+        api_url = http://api.brightbox.dev
         client_id = #{client_name}
         secret = #{random_token}
         username = user@example.com
@@ -60,7 +60,7 @@ describe Brightbox::Config::UserApplication do
       let(:contents) do
         <<-EOS
         [#{client_name}]
-        api_url = http://api.dev.brightbox.com
+        api_url = http://api.brightbox.dev
         secret = #{random_token}
         username = user@example.com
         EOS
@@ -75,7 +75,7 @@ describe Brightbox::Config::UserApplication do
       let(:contents) do
         <<-EOS
         [#{client_name}]
-        api_url = http://api.dev.brightbox.com
+        api_url = http://api.brightbox.dev
         client_id = #{client_name}
         username = user@example.com
         EOS
@@ -90,7 +90,7 @@ describe Brightbox::Config::UserApplication do
       let(:contents) do
         <<-EOS
         [#{client_name}]
-        api_url = http://api.dev.brightbox.com
+        api_url = http://api.brightbox.dev
         client_id = #{client_name}
         EOS
       end

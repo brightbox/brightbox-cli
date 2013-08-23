@@ -2,7 +2,7 @@
 http_interactions:
 - request:
     method: post
-    uri: https://api.dev.brightbox.com/1.0/firewall_policies?account_id=acc-12345
+    uri: http://api.brightbox.dev/1.0/firewall_policies?account_id=acc-12345
     body:
       encoding: UTF-8
       string: ''
@@ -45,7 +45,7 @@ http_interactions:
   recorded_at: Wed, 31 Jul 2013 11:27:53 GMT
 - request:
     method: get
-    uri: https://api.dev.brightbox.com/1.0/account?account_id=acc-12345
+    uri: http://api.brightbox.dev/1.0/account?account_id=acc-12345
     body:
       encoding: UTF-8
       string: ''
@@ -94,7 +94,7 @@ http_interactions:
   recorded_at: Wed, 31 Jul 2013 11:27:53 GMT
 - request:
     method: put
-    uri: https://api.dev.brightbox.com/1.0/firewall_policies/fwp-12345?account_id=acc-12345
+    uri: http://api.brightbox.dev/1.0/firewall_policies/fwp-12345?account_id=acc-12345
     body:
       encoding: UTF-8
       string: '{"description":"New policy description"}'
@@ -136,7 +136,7 @@ http_interactions:
   recorded_at: Wed, 31 Jul 2013 11:27:53 GMT
 - request:
     method: get
-    uri: https://api.dev.brightbox.com/1.0/firewall_policies/fwp-12345?account_id=acc-12345
+    uri: http://api.brightbox.dev/1.0/firewall_policies/fwp-12345?account_id=acc-12345
     body:
       encoding: UTF-8
       string: ''
@@ -178,7 +178,7 @@ http_interactions:
   recorded_at: Wed, 31 Jul 2013 11:27:53 GMT
 - request:
     method: delete
-    uri: https://api.dev.brightbox.com/1.0/firewall_policies/fwp-12345?account_id=acc-12345
+    uri: http://api.brightbox.dev/1.0/firewall_policies/fwp-12345?account_id=acc-12345
     body:
       encoding: UTF-8
       string: ''
@@ -218,7 +218,7 @@ http_interactions:
   recorded_at: Wed, 31 Jul 2013 11:27:53 GMT
 - request:
     method: post
-    uri: http://api.dev.brightbox.com/token
+    uri: http://api.brightbox.dev/token
     body:
       encoding: UTF-8
       string: '{"grant_type":"none","client_id":"cli-12345"}'
@@ -263,7 +263,7 @@ http_interactions:
   recorded_at: Wed, 31 Jul 2013 12:48:52 GMT
 - request:
     method: get
-    uri: http://api.dev.brightbox.com/1.0/account?account_id=acc-12345
+    uri: http://api.brightbox.dev/1.0/account?account_id=acc-12345
     body:
       encoding: US-ASCII
       string: ''

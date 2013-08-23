@@ -3,7 +3,7 @@ recorded_with: VCR 2.5.0
 http_interactions: 
 - request: 
     method: post
-    uri: http://api.dev.brightbox.com/token
+    uri: http://api.brightbox.dev/token
     body: 
       string: "{\"grant_type\":\"none\",\"client_id\":\"cli-12345\"}"
     headers: 
@@ -46,7 +46,7 @@ http_interactions:
   recorded_at: Wed, 31 Jul 2013 14:31:18 GMT
 - request: 
     method: get
-    uri: http://api.dev.brightbox.com/1.0/account
+    uri: http://api.brightbox.dev/1.0/account
     body: 
       string: ""
     headers: 
@@ -83,7 +83,7 @@ http_interactions:
   recorded_at: Wed, 31 Jul 2013 14:31:19 GMT
 - request: 
     method: post
-    uri: http://api.dev.brightbox.com/1.0/servers?account_id=acc-12345
+    uri: http://api.brightbox.dev/1.0/servers?account_id=acc-12345
     body: 
       string: "{\"image\":\"img-12345\"}"
     headers: 
@@ -109,7 +109,7 @@ http_interactions:
       X-Request-Id: 
       - b287524f8b162b38bb103e356dc9ca1e
       Location: 
-      - http://honcho.dev/1.0/servers/srv-5ebpv
+      - http://api.brightbox.dev/1.0/servers/srv-5ebpv
       Cache-Control: 
       - no-cache
       Date: 
@@ -120,7 +120,7 @@ http_interactions:
   recorded_at: Wed, 31 Jul 2013 14:31:20 GMT
 - request: 
     method: post
-    uri: http://api.dev.brightbox.com/1.0/server_groups?account_id=acc-12345
+    uri: http://api.brightbox.dev/1.0/server_groups?account_id=acc-12345
     body: 
       string: "{\"name\":\"test\"}"
     headers: 
@@ -146,7 +146,7 @@ http_interactions:
       X-Request-Id: 
       - 7e010672a1a6a5c4f04e23722ee904db
       Location: 
-      - http://honcho.dev/1.0/server_groups/grp-pz3yl
+      - http://api.brightbox.dev/1.0/server_groups/grp-pz3yl
       Cache-Control: 
       - no-cache
       Date: 
@@ -157,7 +157,7 @@ http_interactions:
   recorded_at: Wed, 31 Jul 2013 14:31:21 GMT
 - request: 
     method: put
-    uri: http://api.dev.brightbox.com/1.0/servers/srv-12345?account_id=acc-12345
+    uri: http://api.brightbox.dev/1.0/servers/srv-12345?account_id=acc-12345
     body: 
       string: "{\"server_groups\":[\"grp-pz3yl\"]}"
     headers: 
@@ -194,7 +194,7 @@ http_interactions:
   recorded_at: Wed, 31 Jul 2013 14:31:24 GMT
 - request: 
     method: get
-    uri: http://api.dev.brightbox.com/1.0/servers/srv-12345?account_id=acc-12345
+    uri: http://api.brightbox.dev/1.0/servers/srv-12345?account_id=acc-12345
     body: 
       string: ""
     headers: 
@@ -231,7 +231,7 @@ http_interactions:
   recorded_at: Wed, 31 Jul 2013 14:31:24 GMT
 - request: 
     method: get
-    uri: http://api.dev.brightbox.com/1.0/servers/srv-12345?account_id=acc-12345
+    uri: http://api.brightbox.dev/1.0/servers/srv-12345?account_id=acc-12345
     body: 
       string: ""
     headers: 
@@ -268,7 +268,7 @@ http_interactions:
   recorded_at: Wed, 31 Jul 2013 14:31:24 GMT
 - request: 
     method: get
-    uri: http://api.dev.brightbox.com/1.0/servers/srv-12345?account_id=acc-12345
+    uri: http://api.brightbox.dev/1.0/servers/srv-12345?account_id=acc-12345
     body: 
       string: ""
     headers: 
@@ -305,7 +305,7 @@ http_interactions:
   recorded_at: Wed, 31 Jul 2013 14:31:25 GMT
 - request: 
     method: get
-    uri: http://api.dev.brightbox.com/1.0/servers/srv-12345?account_id=acc-12345
+    uri: http://api.brightbox.dev/1.0/servers/srv-12345?account_id=acc-12345
     body: 
       string: ""
     headers: 
@@ -342,7 +342,7 @@ http_interactions:
   recorded_at: Wed, 31 Jul 2013 14:31:25 GMT
 - request: 
     method: delete
-    uri: http://api.dev.brightbox.com/1.0/servers/srv-12345?account_id=acc-12345
+    uri: http://api.brightbox.dev/1.0/servers/srv-12345?account_id=acc-12345
     body: 
       string: ""
     headers: 

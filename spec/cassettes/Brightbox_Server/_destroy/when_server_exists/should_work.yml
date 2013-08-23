@@ -3,7 +3,7 @@ recorded_with: VCR 2.5.0
 http_interactions: 
 - request: 
     method: post
-    uri: http://api.dev.brightbox.com/token
+    uri: http://api.brightbox.dev/token
     body: 
       string: "{\"client_id\":\"cli-12345\",\"grant_type\":\"none\"}"
     headers: 
@@ -44,7 +44,7 @@ http_interactions:
   recorded_at: Tue, 16 Jul 2013 10:17:05 GMT
 - request: 
     method: get
-    uri: http://api.dev.brightbox.com/1.0/account
+    uri: http://api.brightbox.dev/1.0/account
     body: 
       string: ""
     headers: 
@@ -79,7 +79,7 @@ http_interactions:
   recorded_at: Tue, 16 Jul 2013 10:17:05 GMT
 - request: 
     method: get
-    uri: http://api.dev.brightbox.com/1.0/server_types?account_id=acc-12345
+    uri: http://api.brightbox.dev/1.0/server_types?account_id=acc-12345
     body: 
       string: ""
     headers: 
@@ -114,7 +114,7 @@ http_interactions:
   recorded_at: Tue, 16 Jul 2013 10:17:06 GMT
 - request: 
     method: post
-    uri: http://api.dev.brightbox.com/1.0/servers?account_id=acc-12345
+    uri: http://api.brightbox.dev/1.0/servers?account_id=acc-12345
     body: 
       string: "{\"image\":\"img-12345\",\"server_type\":\"typ-12345\",\"name\":\"wow\"}"
     headers: 
@@ -138,7 +138,7 @@ http_interactions:
       X-UA-Compatible: 
       - IE=Edge
       Location: 
-      - http://honcho.dev/1.0/servers/srv-oiskp
+      - http://api.brightbox.dev/1.0/servers/srv-oiskp
       Content-Type: 
       - application/json; charset=utf-8
       X-Request-Id: 

@@ -3,7 +3,7 @@ recorded_with: VCR 2.5.0
 http_interactions: 
 - request: 
     method: post
-    uri: http://api.dev.brightbox.com/1.0/firewall_policies?account_id=acc-12345
+    uri: http://api.brightbox.dev/1.0/firewall_policies?account_id=acc-12345
     body: 
       string: ""
     headers: 
@@ -21,7 +21,7 @@ http_interactions:
       X-Request-Id: 
       - 8bed6e43c4ecc7597194a5af7269a0f3
       Location: 
-      - http://honcho.dev/1.0/firewall_policies/fwp-9l2zz
+      - http://api.brightbox.dev/1.0/firewall_policies/fwp-9l2zz
       Connection: 
       - close
       Cache-Control: 
@@ -40,7 +40,7 @@ http_interactions:
   recorded_at: Tue, 16 Jul 2013 09:20:08 GMT
 - request: 
     method: post
-    uri: http://api.dev.brightbox.com/1.0/firewall_rules?account_id=acc-12345
+    uri: http://api.brightbox.dev/1.0/firewall_rules?account_id=acc-12345
     body: 
       string: "{\"protocol\":\"tcp\",\"destination_port\":\"1080\",\"destination\":\"0.0.0.0/0\",\"firewall_policy\":\"fwp-9l2zz\"}"
     headers: 
@@ -58,7 +58,7 @@ http_interactions:
       X-Request-Id: 
       - 88689a46d71c3ee4f5b6752833484abb
       Location: 
-      - http://honcho.dev/1.0/firewall_rules/fwr-n0w5x
+      - http://api.brightbox.dev/1.0/firewall_rules/fwr-n0w5x
       Connection: 
       - close
       Cache-Control: 
@@ -75,7 +75,7 @@ http_interactions:
   recorded_at: Tue, 16 Jul 2013 09:20:08 GMT
 - request: 
     method: get
-    uri: http://api.dev.brightbox.com/1.0/firewall_rules/fwr-12345?account_id=acc-12345
+    uri: http://api.brightbox.dev/1.0/firewall_rules/fwr-12345?account_id=acc-12345
     body: 
       string: ""
     headers: 
@@ -110,7 +110,7 @@ http_interactions:
   recorded_at: Tue, 16 Jul 2013 09:20:08 GMT
 - request: 
     method: post
-    uri: http://api.dev.brightbox.com/token
+    uri: http://api.brightbox.dev/token
     body: 
       string: "{\"grant_type\":\"none\",\"client_id\":\"cli-12345\"}"
     headers: 
@@ -151,7 +151,7 @@ http_interactions:
   recorded_at: Tue, 16 Jul 2013 10:13:38 GMT
 - request: 
     method: get
-    uri: http://api.dev.brightbox.com/1.0/account
+    uri: http://api.brightbox.dev/1.0/account
     body: 
       string: ""
     headers: 

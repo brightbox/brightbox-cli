@@ -2,7 +2,7 @@
 http_interactions: 
 - request: 
     method: post
-    uri: http://api.dev.brightbox.com/token
+    uri: http://api.brightbox.dev/token
     body: 
       string: "{\"client_id\":\"cli-12345\",\"grant_type\":\"none\"}"
     headers: 
@@ -43,7 +43,7 @@ http_interactions:
   recorded_at: Tue, 16 Jul 2013 09:20:01 GMT
 - request: 
     method: get
-    uri: http://api.dev.brightbox.com/1.0/account
+    uri: http://api.brightbox.dev/1.0/account
     body: 
       string: ""
     headers: 
@@ -78,7 +78,7 @@ http_interactions:
   recorded_at: Tue, 16 Jul 2013 09:20:01 GMT
 - request: 
     method: post
-    uri: http://api.dev.brightbox.com/1.0/cloud_ips?account_id=acc-12345
+    uri: http://api.brightbox.dev/1.0/cloud_ips?account_id=acc-12345
     body: 
       string: ""
     headers: 
@@ -94,7 +94,7 @@ http_interactions:
       message: 
     headers: 
       Location: 
-      - http://honcho.dev/1.0/cloud_ips/cip-yv43v
+      - http://api.brightbox.dev/1.0/cloud_ips/cip-yv43v
       ETag: 
       - "\"c5e91218922f295fa18e8678e3b736dd\""
       Content-Type: 
@@ -115,7 +115,7 @@ http_interactions:
   recorded_at: Tue, 16 Jul 2013 09:20:01 GMT
 - request: 
     method: get
-    uri: http://api.dev.brightbox.com/1.0/cloud_ips?account_id=acc-12345
+    uri: http://api.brightbox.dev/1.0/cloud_ips?account_id=acc-12345
     body: 
       string: ""
     headers: 
@@ -150,7 +150,7 @@ http_interactions:
   recorded_at: Tue, 16 Jul 2013 09:20:02 GMT
 - request: 
     method: get
-    uri: http://api.dev.brightbox.com/1.0/cloud_ips/cip-12345?account_id=acc-12345
+    uri: http://api.brightbox.dev/1.0/cloud_ips/cip-12345?account_id=acc-12345
     body: 
       string: ""
     headers: 
@@ -185,7 +185,7 @@ http_interactions:
   recorded_at: Tue, 16 Jul 2013 09:20:02 GMT
 - request: 
     method: delete
-    uri: http://api.dev.brightbox.com/1.0/cloud_ips/cip-12345?account_id=acc-12345
+    uri: http://api.brightbox.dev/1.0/cloud_ips/cip-12345?account_id=acc-12345
     body: 
       string: ""
     headers: 

@@ -2,7 +2,7 @@
 http_interactions:
 - request:
     method: post
-    uri: http://api.dev.brightbox.com/token
+    uri: http://api.brightbox.dev/token
     body:
       encoding: UTF-8
       string: '{"grant_type":"refresh_token","client_id":"app-12345","refresh_token":"c8de5c674e2c7c7458ee78a4ff288d7fcfb2f0e4"}'
@@ -47,7 +47,7 @@ http_interactions:
   recorded_at: Wed, 21 Aug 2013 11:33:18 GMT
 - request:
     method: get
-    uri: http://api.dev.brightbox.com/1.0/accounts
+    uri: http://api.brightbox.dev/1.0/accounts
     body:
       encoding: US-ASCII
       string: ''

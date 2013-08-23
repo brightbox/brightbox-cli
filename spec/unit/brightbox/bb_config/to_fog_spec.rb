@@ -43,7 +43,7 @@ describe Brightbox::BBConfig do
 
       it "returns correct fog options" do
         expect(fog_config[:provider]).to eql("Brightbox")
-        expect(fog_config[:brightbox_api_url]).to eql("https://api.dev.brightbox.com")
+        expect(fog_config[:brightbox_api_url]).to eql("http://api.brightbox.dev")
         expect(fog_config[:brightbox_client_id]).to eql("cli-12345")
         expect(fog_config[:brightbox_secret]).to eql("qy6xxnvy4o0tgv5")
       end
@@ -54,7 +54,7 @@ describe Brightbox::BBConfig do
 
       it "returns correct fog options" do
         expect(fog_config[:provider]).to eql("Brightbox")
-        expect(fog_config[:brightbox_api_url]).to eql("https://api.dev.brightbox.com")
+        expect(fog_config[:brightbox_api_url]).to eql("http://api.brightbox.dev")
         expect(fog_config[:brightbox_client_id]).to eql("app-12345")
         expect(fog_config[:brightbox_secret]).to eql("mocbuipbiaa6k6c")
       end

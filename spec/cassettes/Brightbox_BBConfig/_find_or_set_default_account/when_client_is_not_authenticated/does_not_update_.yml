@@ -2,7 +2,7 @@
 http_interactions:
 - request:
     method: post
-    uri: http://api.dev.brightbox.com/token
+    uri: http://api.brightbox.dev/token
     body:
       encoding: UTF-8
       string: '{"grant_type":"none","client_id":"cli-12345"}'
@@ -47,7 +47,7 @@ http_interactions:
   recorded_at: Wed, 21 Aug 2013 11:30:57 GMT
 - request:
     method: get
-    uri: http://api.dev.brightbox.com/1.0/account
+    uri: http://api.brightbox.dev/1.0/account
     body:
       encoding: US-ASCII
       string: ''
@@ -87,7 +87,7 @@ http_interactions:
   recorded_at: Wed, 21 Aug 2013 11:30:57 GMT
 - request:
     method: post
-    uri: http://api.dev.brightbox.com/token
+    uri: http://api.brightbox.dev/token
     body:
       encoding: UTF-8
       string: '{"grant_type":"none","client_id":"cli-12345"}'
@@ -132,7 +132,7 @@ http_interactions:
   recorded_at: Wed, 21 Aug 2013 11:30:57 GMT
 - request:
     method: get
-    uri: http://api.dev.brightbox.com/1.0/account
+    uri: http://api.brightbox.dev/1.0/account
     body:
       encoding: US-ASCII
       string: ''

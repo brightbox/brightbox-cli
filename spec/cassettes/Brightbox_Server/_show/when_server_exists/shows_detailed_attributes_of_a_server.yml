@@ -2,7 +2,7 @@
 http_interactions: 
 - request: 
     method: post
-    uri: http://api.dev.brightbox.com/1.0/servers?account_id=acc-12345
+    uri: http://api.brightbox.dev/1.0/servers?account_id=acc-12345
     body: 
       string: "{\"image\":\"img-12345\",\"server_type\":\"typ-12345\",\"name\":\"medium servers\"}"
     headers: 
@@ -22,7 +22,7 @@ http_interactions:
       X-UA-Compatible: 
       - IE=Edge
       Location: 
-      - http://honcho.dev/1.0/servers/srv-43r41
+      - http://api.brightbox.dev/1.0/servers/srv-43r41
       X-Request-Id: 
       - f6cbb58c985ae638811eaf9f4621a15c
       Content-Type: 
@@ -37,7 +37,7 @@ http_interactions:
   recorded_at: Tue, 16 Jul 2013 09:20:12 GMT
 - request: 
     method: get
-    uri: http://api.dev.brightbox.com/1.0/servers/srv-12345?account_id=acc-12345
+    uri: http://api.brightbox.dev/1.0/servers/srv-12345?account_id=acc-12345
     body: 
       string: ""
     headers: 
@@ -72,7 +72,7 @@ http_interactions:
   recorded_at: Tue, 16 Jul 2013 09:20:13 GMT
 - request: 
     method: get
-    uri: http://api.dev.brightbox.com/1.0/images/img-12345?account_id=acc-12345
+    uri: http://api.brightbox.dev/1.0/images/img-12345?account_id=acc-12345
     body: 
       string: ""
     headers: 
@@ -107,7 +107,7 @@ http_interactions:
   recorded_at: Tue, 16 Jul 2013 09:20:13 GMT
 - request: 
     method: get
-    uri: http://api.dev.brightbox.com/1.0/images/img-12345?account_id=acc-12345
+    uri: http://api.brightbox.dev/1.0/images/img-12345?account_id=acc-12345
     body: 
       string: ""
     headers: 
@@ -142,7 +142,7 @@ http_interactions:
   recorded_at: Tue, 16 Jul 2013 09:20:13 GMT
 - request: 
     method: get
-    uri: http://api.dev.brightbox.com/1.0/images/img-12345?account_id=acc-12345
+    uri: http://api.brightbox.dev/1.0/images/img-12345?account_id=acc-12345
     body: 
       string: ""
     headers: 
@@ -177,7 +177,7 @@ http_interactions:
   recorded_at: Tue, 16 Jul 2013 09:20:13 GMT
 - request: 
     method: post
-    uri: http://api.dev.brightbox.com/token
+    uri: http://api.brightbox.dev/token
     body: 
       string: "{\"client_id\":\"cli-12345\",\"grant_type\":\"none\"}"
     headers: 
@@ -218,7 +218,7 @@ http_interactions:
   recorded_at: Tue, 16 Jul 2013 10:13:12 GMT
 - request: 
     method: get
-    uri: http://api.dev.brightbox.com/1.0/account
+    uri: http://api.brightbox.dev/1.0/account
     body: 
       string: ""
     headers: 

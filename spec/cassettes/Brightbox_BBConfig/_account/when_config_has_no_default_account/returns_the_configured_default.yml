@@ -2,7 +2,7 @@
 http_interactions: 
 - request: 
     method: post
-    uri: http://api.dev.brightbox.com/token
+    uri: http://api.brightbox.dev/token
     body: 
       string: "{\"grant_type\":\"none\",\"client_id\":\"cli-12345\"}"
     headers: 
@@ -45,7 +45,7 @@ http_interactions:
   recorded_at: Wed, 31 Jul 2013 11:24:08 GMT
 - request: 
     method: get
-    uri: http://api.dev.brightbox.com/1.0/account
+    uri: http://api.brightbox.dev/1.0/account
     body: 
       string: ""
     headers: 
@@ -82,7 +82,7 @@ http_interactions:
   recorded_at: Wed, 31 Jul 2013 11:24:10 GMT
 - request: 
     method: get
-    uri: http://api.dev.brightbox.com/1.0/account
+    uri: http://api.brightbox.dev/1.0/account
     body: 
       string: ""
     headers: 

@@ -3,7 +3,7 @@ recorded_with: VCR 2.5.0
 http_interactions: 
 - request: 
     method: get
-    uri: https://api.dev.brightbox.com/1.0/account
+    uri: http://api.brightbox.dev/1.0/account
     body: 
       string: ""
     headers: 
@@ -42,7 +42,7 @@ http_interactions:
   recorded_at: Wed, 31 Jul 2013 11:27:50 GMT
 - request: 
     method: post
-    uri: https://api.dev.brightbox.com/token
+    uri: http://api.brightbox.dev/token
     body: 
       string: "{\"client_id\":\"cli-12345\",\"grant_type\":\"none\"}"
     headers: 
@@ -85,7 +85,7 @@ http_interactions:
   recorded_at: Wed, 31 Jul 2013 11:27:50 GMT
 - request: 
     method: get
-    uri: https://api.dev.brightbox.com/1.0/account
+    uri: http://api.brightbox.dev/1.0/account
     body: 
       string: ""
     headers: 
@@ -124,7 +124,7 @@ http_interactions:
   recorded_at: Wed, 31 Jul 2013 11:27:50 GMT
 - request: 
     method: put
-    uri: https://api.dev.brightbox.com/1.0/firewall_policies/fwp-12345?account_id=acc-12345
+    uri: http://api.brightbox.dev/1.0/firewall_policies/fwp-12345?account_id=acc-12345
     body: 
       string: "{\"name\":\"missing\"}"
     headers: 
