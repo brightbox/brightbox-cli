@@ -2,14 +2,14 @@ require "spec_helper"
 
 describe Brightbox::Account do
   before do
-    pending "recordings corrupted and no longer working"
+    # Unfortunately need to change $config for Api.conn to work until we can
+    # eliminate the global class method
+    $config = config_from_contents(contents)
   end
 
   describe ".all" do
     context "when connected using an application", :vcr do
-      before do
-        Brightbox::Api.configuration = USER_APP_CONFIG
-      end
+      let(:contents) { USER_APP_CONFIG_CONTENTS }
 
       it "returns a collection of Accounts" do
         expect(Brightbox::Account.all).to be_kind_of(Array)
@@ -27,9 +27,7 @@ describe Brightbox::Account do
     end
 
     context "when connected using an client", :vcr do
-      before do
-        Brightbox::Api.configuration = API_CLIENT_CONFIG
-      end
+      let(:contents) { API_CLIENT_CONFIG_CONTENTS }
 
       it "returns a collection of Accounts" do
         expect(Brightbox::Account.all).to be_kind_of(Array)
