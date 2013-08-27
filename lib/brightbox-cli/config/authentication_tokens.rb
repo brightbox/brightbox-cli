@@ -27,9 +27,9 @@ module Brightbox
           return @refresh_token
         end
         if File.exists?(refresh_token_filename)
-          @access_token = cached_refresh_token
+          @refresh_token = cached_refresh_token
         else
-          @access_token = nil
+          @refresh_token = nil
         end
       end
 
