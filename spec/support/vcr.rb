@@ -12,7 +12,8 @@ VCR.configure do |vcr|
   vcr.configure_rspec_metadata!
   vcr.default_cassette_options = {
     :record => :new_episodes,
-    :match_requests_on => [:method, :path]
+    :match_requests_on => [:method, :path, :body],
+    :update_content_length_header => true
   }
 
   # Gives lots of clues about how VCR is running
@@ -27,6 +28,7 @@ VCR.configure do |vcr|
     %w(acc col cip fwp fwr grp img lba srv typ usr zon).each do |prefix|
       id_pattern = /#{prefix}-[0-9a-z]+/
       interaction.request.uri.gsub!(id_pattern, "#{prefix}-12345")
+      interaction.request.body.gsub!(id_pattern, "#{prefix}-12345")
       interaction.response.body.gsub!(id_pattern, "#{prefix}-12345")
     end
   end

@@ -1,49 +1,6 @@
 ---
 http_interactions:
 - request:
-    method: post
-    uri: http://api.brightbox.dev/token
-    body:
-      encoding: UTF-8
-      string: '{"client_id":"cli-12345","grant_type":"none"}'
-    headers:
-      User-Agent:
-      - fog/1.8.0
-      Authorization:
-      - OAuth <TOKEN>
-      Content-Type:
-      - application/json
-  response:
-    status:
-      code: 200
-      message: 
-    headers:
-      Connection:
-      - keep-alive
-      ETag:
-      - '"e4ec9fe1134bace1f1c195449944a3f0"'
-      Cache-Control:
-      - no-store
-      Content-Length:
-      - '77'
-      X-Runtime:
-      - '0.289782'
-      X-UA-Compatible:
-      - IE=Edge
-      Content-Type:
-      - application/json;charset=utf-8
-      X-Frame-Options:
-      - sameorigin
-      X-XSS-Protection:
-      - 1; mode=block
-      X-Request-Id:
-      - c333013b58ea4228083a6c43b534a095
-    body:
-      encoding: UTF-8
-      string: '{"access_token":"<TOKEN>","expires_in":7200}'
-    http_version: 
-  recorded_at: Tue, 16 Jul 2013 10:17:05 GMT
-- request:
     method: get
     uri: http://api.brightbox.dev/1.0/account?account_id=acc-12345
     body:
@@ -53,7 +10,7 @@ http_interactions:
       User-Agent:
       - fog/1.15.0
       Authorization:
-      - OAuth 73dd93478d5bf98c1803b43bd3aeb8640cc90639
+      - OAuth 63a4f6dbf53263e7468d3084ae9c50ecdcdf1714
       Content-Type:
       - application/json
   response:
@@ -66,31 +23,28 @@ http_interactions:
       X-UA-Compatible:
       - IE=Edge
       ETag:
-      - '"e8e90b04e8f784518cdbd4bb8f48b7d4"'
+      - '"3a2c1365e2f14b58b7abab033a3e9d6c"'
       Cache-Control:
       - max-age=0, private, must-revalidate
       X-Request-Id:
-      - 764cf7a38d8a766f70a489e841ef64f9
+      - 5d3b953e43f1ca084f6ac55bace0ca89
       X-Runtime:
-      - '0.316363'
+      - '0.109998'
       Date:
-      - Fri, 23 Aug 2013 15:37:36 GMT
+      - Tue, 27 Aug 2013 16:12:51 GMT
       Connection:
       - close
     body:
       encoding: UTF-8
-      string: '{"id":"acc-12345","resource_type":"account","url":"https://api.gb1.brightbox.com/1.0/accounts/acc-12345","name":"Adlxfrxwdxvgsuiae","status":"active","address_1":"Runolfsson
-        Course","address_2":"","city":"Lubowitzton","county":"","postcode":"39940-6114","country_code":"GB","country_name":"United
-        Kingdom","vat_registration_number":"","telephone_number":"+443049386317","telephone_verified":false,"verified_telephone":null,"verified_at":null,"verified_ip":null,"created_at":"2013-08-23T11:35:50Z","ram_limit":32768,"ram_used":22528,"cloud_ips_limit":20,"cloud_ips_used":1,"load_balancers_limit":5,"load_balancers_used":0,"valid_credit_card":false,"library_ftp_host":"ftp.library.gb1.brightbox.com","library_ftp_user":"acc-12345","library_ftp_password":null,"clients":[{"id":"cli-12345","resource_type":"api_client","url":"https://api.gb1.brightbox.com/1.0/api_clients/cli-12345","name":null,"description":null,"revoked_at":null}],"images":[],"servers":[{"id":"srv-12345","resource_type":"server","url":"https://api.gb1.brightbox.com/1.0/servers/srv-12345","name":"wow","status":"active","hostname":"srv-12345","fqdn":"srv-12345.gb1.brightbox.com","created_at":"2013-08-23T15:10:05Z","started_at":"2013-08-23T15:10:26Z","deleted_at":null},{"id":"srv-12345","resource_type":"server","url":"https://api.gb1.brightbox.com/1.0/servers/srv-12345","name":"medium
-        servers","status":"active","hostname":"srv-12345","fqdn":"srv-12345.gb1.brightbox.com","created_at":"2013-08-23T15:10:08Z","started_at":"2013-08-23T15:10:28Z","deleted_at":null},{"id":"srv-12345","resource_type":"server","url":"https://api.gb1.brightbox.com/1.0/servers/srv-12345","name":"","status":"active","hostname":"srv-12345","fqdn":"srv-12345.gb1.brightbox.com","created_at":"2013-08-23T15:10:11Z","started_at":"2013-08-23T15:10:31Z","deleted_at":null},{"id":"srv-12345","resource_type":"server","url":"https://api.gb1.brightbox.com/1.0/servers/srv-12345","name":"rspec_server_shutdown","status":"active","hostname":"srv-12345","fqdn":"srv-12345.gb1.brightbox.com","created_at":"2013-08-23T15:11:28Z","started_at":"2013-08-23T15:11:33Z","deleted_at":null},{"id":"srv-12345","resource_type":"server","url":"https://api.gb1.brightbox.com/1.0/servers/srv-12345","name":"rspec_server_start","status":"active","hostname":"srv-12345","fqdn":"srv-12345.gb1.brightbox.com","created_at":"2013-08-23T15:11:35Z","started_at":"2013-08-23T15:11:45Z","deleted_at":null},{"id":"srv-12345","resource_type":"server","url":"https://api.gb1.brightbox.com/1.0/servers/srv-12345","name":"rspec_server_stop","status":"inactive","hostname":"srv-12345","fqdn":"srv-12345.gb1.brightbox.com","created_at":"2013-08-23T15:11:46Z","started_at":"2013-08-23T15:11:52Z","deleted_at":null},{"id":"srv-12345","resource_type":"server","url":"https://api.gb1.brightbox.com/1.0/servers/srv-12345","name":"","status":"deleted","hostname":"srv-12345","fqdn":"srv-12345.gb1.brightbox.com","created_at":"2013-08-23T15:11:53Z","started_at":"2013-08-23T15:11:58Z","deleted_at":"2013-08-23T15:12:02Z"},{"id":"srv-12345","resource_type":"server","url":"https://api.gb1.brightbox.com/1.0/servers/srv-12345","name":"wow","status":"active","hostname":"srv-12345","fqdn":"srv-12345.gb1.brightbox.com","created_at":"2013-08-23T15:14:36Z","started_at":"2013-08-23T15:14:42Z","deleted_at":null},{"id":"srv-12345","resource_type":"server","url":"https://api.gb1.brightbox.com/1.0/servers/srv-12345","name":"medium
-        servers","status":"active","hostname":"srv-12345","fqdn":"srv-12345.gb1.brightbox.com","created_at":"2013-08-23T15:14:39Z","started_at":"2013-08-23T15:14:49Z","deleted_at":null},{"id":"srv-12345","resource_type":"server","url":"https://api.gb1.brightbox.com/1.0/servers/srv-12345","name":"","status":"deleted","hostname":"srv-12345","fqdn":"srv-12345.gb1.brightbox.com","created_at":"2013-08-23T15:14:44Z","started_at":"2013-08-23T15:14:57Z","deleted_at":"2013-08-23T15:15:02Z"},{"id":"srv-12345","resource_type":"server","url":"https://api.gb1.brightbox.com/1.0/servers/srv-12345","name":"rspec_server_shutdown","status":"active","hostname":"srv-12345","fqdn":"srv-12345.gb1.brightbox.com","created_at":"2013-08-23T15:15:00Z","started_at":"2013-08-23T15:15:11Z","deleted_at":null},{"id":"srv-12345","resource_type":"server","url":"https://api.gb1.brightbox.com/1.0/servers/srv-12345","name":"rspec_server_start","status":"active","hostname":"srv-12345","fqdn":"srv-12345.gb1.brightbox.com","created_at":"2013-08-23T15:15:12Z","started_at":"2013-08-23T15:15:27Z","deleted_at":null},{"id":"srv-12345","resource_type":"server","url":"https://api.gb1.brightbox.com/1.0/servers/srv-12345","name":"rspec_server_stop","status":"inactive","hostname":"srv-12345","fqdn":"srv-12345.gb1.brightbox.com","created_at":"2013-08-23T15:15:28Z","started_at":"2013-08-23T15:15:40Z","deleted_at":null},{"id":"srv-12345","resource_type":"server","url":"https://api.gb1.brightbox.com/1.0/servers/srv-12345","name":"","status":"deleted","hostname":"srv-12345","fqdn":"srv-12345.gb1.brightbox.com","created_at":"2013-08-23T15:15:41Z","started_at":"2013-08-23T15:15:53Z","deleted_at":"2013-08-23T15:15:59Z"},{"id":"srv-12345","resource_type":"server","url":"https://api.gb1.brightbox.com/1.0/servers/srv-12345","name":"","status":"deleted","hostname":"srv-12345","fqdn":"srv-12345.gb1.brightbox.com","created_at":"2013-08-23T15:18:04Z","started_at":"2013-08-23T15:18:21Z","deleted_at":"2013-08-23T15:18:31Z"},{"id":"srv-12345","resource_type":"server","url":"https://api.gb1.brightbox.com/1.0/servers/srv-12345","name":"rspec_server_stop","status":"inactive","hostname":"srv-12345","fqdn":"srv-12345.gb1.brightbox.com","created_at":"2013-08-23T15:18:31Z","started_at":"2013-08-23T15:19:02Z","deleted_at":null},{"id":"srv-12345","resource_type":"server","url":"https://api.gb1.brightbox.com/1.0/servers/srv-12345","name":"rspec_server_shutdown","status":"active","hostname":"srv-12345","fqdn":"srv-12345.gb1.brightbox.com","created_at":"2013-08-23T15:19:06Z","started_at":"2013-08-23T15:19:23Z","deleted_at":null},{"id":"srv-12345","resource_type":"server","url":"https://api.gb1.brightbox.com/1.0/servers/srv-12345","name":"","status":"deleted","hostname":"srv-12345","fqdn":"srv-12345.gb1.brightbox.com","created_at":"2013-08-23T15:19:23Z","started_at":"2013-08-23T15:19:45Z","deleted_at":"2013-08-23T15:20:00Z"},{"id":"srv-12345","resource_type":"server","url":"https://api.gb1.brightbox.com/1.0/servers/srv-12345","name":"medium
-        servers","status":"active","hostname":"srv-12345","fqdn":"srv-12345.gb1.brightbox.com","created_at":"2013-08-23T15:20:02Z","started_at":"2013-08-23T15:20:14Z","deleted_at":null},{"id":"srv-12345","resource_type":"server","url":"https://api.gb1.brightbox.com/1.0/servers/srv-12345","name":"rspec_server_start","status":"active","hostname":"srv-12345","fqdn":"srv-12345.gb1.brightbox.com","created_at":"2013-08-23T15:20:16Z","started_at":"2013-08-23T15:20:57Z","deleted_at":null},{"id":"srv-12345","resource_type":"server","url":"https://api.gb1.brightbox.com/1.0/servers/srv-12345","name":"wow","status":"active","hostname":"srv-12345","fqdn":"srv-12345.gb1.brightbox.com","created_at":"2013-08-23T15:21:03Z","started_at":"2013-08-23T15:21:30Z","deleted_at":null},{"id":"srv-12345","resource_type":"server","url":"https://api.gb1.brightbox.com/1.0/servers/srv-12345","name":"","status":"deleted","hostname":"srv-12345","fqdn":"srv-12345.gb1.brightbox.com","created_at":"2013-08-23T15:28:52Z","started_at":"2013-08-23T15:29:08Z","deleted_at":"2013-08-23T15:29:12Z"},{"id":"srv-12345","resource_type":"server","url":"https://api.gb1.brightbox.com/1.0/servers/srv-12345","name":"rspec_server_shutdown","status":"active","hostname":"srv-12345","fqdn":"srv-12345.gb1.brightbox.com","created_at":"2013-08-23T15:29:20Z","started_at":"2013-08-23T15:29:32Z","deleted_at":null},{"id":"srv-12345","resource_type":"server","url":"https://api.gb1.brightbox.com/1.0/servers/srv-12345","name":"","status":"deleted","hostname":"srv-12345","fqdn":"srv-12345.gb1.brightbox.com","created_at":"2013-08-23T15:29:33Z","started_at":"2013-08-23T15:29:48Z","deleted_at":"2013-08-23T15:29:55Z"},{"id":"srv-12345","resource_type":"server","url":"https://api.gb1.brightbox.com/1.0/servers/srv-12345","name":"rspec_server_stop","status":"inactive","hostname":"srv-12345","fqdn":"srv-12345.gb1.brightbox.com","created_at":"2013-08-23T15:30:03Z","started_at":"2013-08-23T15:30:14Z","deleted_at":null},{"id":"srv-12345","resource_type":"server","url":"https://api.gb1.brightbox.com/1.0/servers/srv-12345","name":"medium
-        servers","status":"active","hostname":"srv-12345","fqdn":"srv-12345.gb1.brightbox.com","created_at":"2013-08-23T15:30:18Z","started_at":"2013-08-23T15:30:28Z","deleted_at":null},{"id":"srv-12345","resource_type":"server","url":"https://api.gb1.brightbox.com/1.0/servers/srv-12345","name":"rspec_server_start","status":"active","hostname":"srv-12345","fqdn":"srv-12345.gb1.brightbox.com","created_at":"2013-08-23T15:30:28Z","started_at":"2013-08-23T15:31:05Z","deleted_at":null},{"id":"srv-12345","resource_type":"server","url":"https://api.gb1.brightbox.com/1.0/servers/srv-12345","name":"wow","status":"active","hostname":"srv-12345","fqdn":"srv-12345.gb1.brightbox.com","created_at":"2013-08-23T15:31:05Z","started_at":"2013-08-23T15:31:26Z","deleted_at":null},{"id":"srv-12345","resource_type":"server","url":"https://api.gb1.brightbox.com/1.0/servers/srv-12345","name":"rspec_server_stop","status":"active","hostname":"srv-12345","fqdn":"srv-12345.gb1.brightbox.com","created_at":"2013-08-23T15:37:30Z","started_at":null,"deleted_at":null}],"load_balancers":[],"cloud_ips":[{"id":"cip-12345","resource_type":"cloud_ip","url":"https://api.gb1.brightbox.com/1.0/cloud_ips/cip-12345","status":"unmapped","public_ip":"247.196.189.87","reverse_dns":"cip-12345-196-189-87.gb1.brightbox.com","name":null}],"server_groups":[{"id":"grp-12345","resource_type":"server_group","url":"https://api.gb1.brightbox.com/1.0/server_groups/grp-12345","name":"default","description":"All
-        new servers are added to this group unless specified otherwise.","created_at":"2013-08-23T11:35:50Z","default":true},{"id":"grp-12345","resource_type":"server_group","url":"https://api.gb1.brightbox.com/1.0/server_groups/grp-12345","name":"test","description":null,"created_at":"2013-08-23T15:11:55Z","default":false},{"id":"grp-12345","resource_type":"server_group","url":"https://api.gb1.brightbox.com/1.0/server_groups/grp-12345","name":"test","description":null,"created_at":"2013-08-23T15:15:44Z","default":false},{"id":"grp-12345","resource_type":"server_group","url":"https://api.gb1.brightbox.com/1.0/server_groups/grp-12345","name":"test","description":null,"created_at":"2013-08-23T15:19:28Z","default":false},{"id":"grp-12345","resource_type":"server_group","url":"https://api.gb1.brightbox.com/1.0/server_groups/grp-12345","name":"test","description":null,"created_at":"2013-08-23T15:29:36Z","default":false}],"firewall_policies":[{"id":"fwp-12345","resource_type":"firewall_policy","url":"https://api.gb1.brightbox.com/1.0/firewall_policies/fwp-12345","default":true,"name":"default","created_at":"2013-08-23T11:35:50Z","description":"Applied
-        to the default server group."},{"id":"fwp-12345","resource_type":"firewall_policy","url":"https://api.gb1.brightbox.com/1.0/firewall_policies/fwp-12345","default":false,"name":"rspec_firewall_policy_apply","created_at":"2013-08-23T15:09:30Z","description":null},{"id":"fwp-12345","resource_type":"firewall_policy","url":"https://api.gb1.brightbox.com/1.0/firewall_policies/fwp-12345","default":false,"name":"rspec_firewall_policy","created_at":"2013-08-23T15:09:45Z","description":null},{"id":"fwp-12345","resource_type":"firewall_policy","url":"https://api.gb1.brightbox.com/1.0/firewall_policies/fwp-12345","default":false,"name":null,"created_at":"2013-08-23T15:09:57Z","description":null},{"id":"fwp-12345","resource_type":"firewall_policy","url":"https://api.gb1.brightbox.com/1.0/firewall_policies/fwp-12345","default":false,"name":null,"created_at":"2013-08-23T15:09:58Z","description":null},{"id":"fwp-12345","resource_type":"firewall_policy","url":"https://api.gb1.brightbox.com/1.0/firewall_policies/fwp-12345","default":false,"name":"rspec_firewall_policy_apply","created_at":"2013-08-23T15:14:16Z","description":null},{"id":"fwp-12345","resource_type":"firewall_policy","url":"https://api.gb1.brightbox.com/1.0/firewall_policies/fwp-12345","default":false,"name":"rspec_firewall_policy","created_at":"2013-08-23T15:14:19Z","description":null},{"id":"fwp-12345","resource_type":"firewall_policy","url":"https://api.gb1.brightbox.com/1.0/firewall_policies/fwp-12345","default":false,"name":null,"created_at":"2013-08-23T15:14:30Z","description":null},{"id":"fwp-12345","resource_type":"firewall_policy","url":"https://api.gb1.brightbox.com/1.0/firewall_policies/fwp-12345","default":false,"name":null,"created_at":"2013-08-23T15:14:31Z","description":null},{"id":"fwp-12345","resource_type":"firewall_policy","url":"https://api.gb1.brightbox.com/1.0/firewall_policies/fwp-12345","default":false,"name":"rspec_firewall_policy","created_at":"2013-08-23T15:17:50Z","description":null},{"id":"fwp-12345","resource_type":"firewall_policy","url":"https://api.gb1.brightbox.com/1.0/firewall_policies/fwp-12345","default":false,"name":null,"created_at":"2013-08-23T15:17:53Z","description":null},{"id":"fwp-12345","resource_type":"firewall_policy","url":"https://api.gb1.brightbox.com/1.0/firewall_policies/fwp-12345","default":false,"name":"rspec_firewall_policy_apply","created_at":"2013-08-23T15:19:54Z","description":null},{"id":"fwp-12345","resource_type":"firewall_policy","url":"https://api.gb1.brightbox.com/1.0/firewall_policies/fwp-12345","default":false,"name":null,"created_at":"2013-08-23T15:21:14Z","description":null},{"id":"fwp-12345","resource_type":"firewall_policy","url":"https://api.gb1.brightbox.com/1.0/firewall_policies/fwp-12345","default":false,"name":null,"created_at":"2013-08-23T15:28:46Z","description":null},{"id":"fwp-12345","resource_type":"firewall_policy","url":"https://api.gb1.brightbox.com/1.0/firewall_policies/fwp-12345","default":false,"name":null,"created_at":"2013-08-23T15:28:50Z","description":null},{"id":"fwp-12345","resource_type":"firewall_policy","url":"https://api.gb1.brightbox.com/1.0/firewall_policies/fwp-12345","default":false,"name":"rspec_firewall_policy","created_at":"2013-08-23T15:29:11Z","description":null},{"id":"fwp-12345","resource_type":"firewall_policy","url":"https://api.gb1.brightbox.com/1.0/firewall_policies/fwp-12345","default":false,"name":"rspec_firewall_policy_apply","created_at":"2013-08-23T15:30:14Z","description":null},{"id":"fwp-12345","resource_type":"firewall_policy","url":"https://api.gb1.brightbox.com/1.0/firewall_policies/fwp-12345","default":false,"name":null,"created_at":"2013-08-23T15:37:29Z","description":null}],"owner":{"id":"usr-12345","resource_type":"user","url":"https://api.gb1.brightbox.com/1.0/users/usr-12345","name":"Darrel
-        Bauch","email_address":"jason.null@brightbox.com"},"users":[],"zones":[{"id":"zon-12345","resource_type":"zone","url":"https://api.gb1.brightbox.com/1.0/zones/zon-12345","handle":"gb1-a"},{"id":"zon-12345","resource_type":"zone","url":"https://api.gb1.brightbox.com/1.0/zones/zon-12345","handle":"gb1-b"}]}'
+      string: '{"id":"acc-12345","resource_type":"account","url":"https://api.gb1.brightbox.com/1.0/accounts/acc-12345","name":"Avkruvviumpksysor","status":"active","address_1":"Israel
+        Flats","address_2":"","city":"Clarkmouth","county":"","postcode":"97088-3817","country_code":"GB","country_name":"United
+        Kingdom","vat_registration_number":"","telephone_number":"+445722683970","telephone_verified":false,"verified_telephone":null,"verified_at":null,"verified_ip":null,"created_at":"2013-08-27T15:47:00Z","ram_limit":32768,"ram_used":15360,"cloud_ips_limit":20,"cloud_ips_used":1,"load_balancers_limit":5,"load_balancers_used":0,"valid_credit_card":false,"library_ftp_host":"ftp.library.gb1.brightbox.com","library_ftp_user":"acc-12345","library_ftp_password":null,"clients":[{"id":"cli-12345","resource_type":"api_client","url":"https://api.gb1.brightbox.com/1.0/api_clients/cli-12345","name":null,"description":null,"revoked_at":null}],"images":[],"servers":[{"id":"srv-12345","resource_type":"server","url":"https://api.gb1.brightbox.com/1.0/servers/srv-12345","name":"wow","status":"active","hostname":"srv-12345","fqdn":"srv-12345.gb1.brightbox.com","created_at":"2013-08-27T15:54:24Z","started_at":"2013-08-27T15:54:27Z","deleted_at":null},{"id":"srv-12345","resource_type":"server","url":"https://api.gb1.brightbox.com/1.0/servers/srv-12345","name":"medium
+        servers","status":"active","hostname":"srv-12345","fqdn":"srv-12345.gb1.brightbox.com","created_at":"2013-08-27T15:54:26Z","started_at":"2013-08-27T15:54:29Z","deleted_at":null},{"id":"srv-12345","resource_type":"server","url":"https://api.gb1.brightbox.com/1.0/servers/srv-12345","name":"","status":"deleted","hostname":"srv-12345","fqdn":"srv-12345.gb1.brightbox.com","created_at":"2013-08-27T15:54:30Z","started_at":"2013-08-27T15:54:32Z","deleted_at":"2013-08-27T15:54:35Z"},{"id":"srv-12345","resource_type":"server","url":"https://api.gb1.brightbox.com/1.0/servers/srv-12345","name":"rspec_server_shutdown","status":"active","hostname":"srv-12345","fqdn":"srv-12345.gb1.brightbox.com","created_at":"2013-08-27T15:54:36Z","started_at":"2013-08-27T15:54:38Z","deleted_at":null},{"id":"srv-12345","resource_type":"server","url":"https://api.gb1.brightbox.com/1.0/servers/srv-12345","name":"rspec_server_start","status":"active","hostname":"srv-12345","fqdn":"srv-12345.gb1.brightbox.com","created_at":"2013-08-27T15:54:41Z","started_at":"2013-08-27T15:54:47Z","deleted_at":null},{"id":"srv-12345","resource_type":"server","url":"https://api.gb1.brightbox.com/1.0/servers/srv-12345","name":"rspec_server_stop","status":"inactive","hostname":"srv-12345","fqdn":"srv-12345.gb1.brightbox.com","created_at":"2013-08-27T15:54:48Z","started_at":"2013-08-27T15:54:51Z","deleted_at":null},{"id":"srv-12345","resource_type":"server","url":"https://api.gb1.brightbox.com/1.0/servers/srv-12345","name":"","status":"deleted","hostname":"srv-12345","fqdn":"srv-12345.gb1.brightbox.com","created_at":"2013-08-27T15:54:52Z","started_at":"2013-08-27T15:54:55Z","deleted_at":"2013-08-27T15:54:58Z"},{"id":"srv-12345","resource_type":"server","url":"https://api.gb1.brightbox.com/1.0/servers/srv-12345","name":"","status":"deleted","hostname":"srv-12345","fqdn":"srv-12345.gb1.brightbox.com","created_at":"2013-08-27T16:12:22Z","started_at":"2013-08-27T16:12:25Z","deleted_at":"2013-08-27T16:12:27Z"}],"load_balancers":[],"cloud_ips":[{"id":"cip-12345","resource_type":"cloud_ip","url":"https://api.gb1.brightbox.com/1.0/cloud_ips/cip-12345","status":"unmapped","public_ip":"217.16.230.132","reverse_dns":"cip-12345-16-230-132.gb1.brightbox.com","name":null}],"server_groups":[{"id":"grp-12345","resource_type":"server_group","url":"https://api.gb1.brightbox.com/1.0/server_groups/grp-12345","name":"default","description":"All
+        new servers are added to this group unless specified otherwise.","created_at":"2013-08-27T15:47:00Z","default":true},{"id":"grp-12345","resource_type":"server_group","url":"https://api.gb1.brightbox.com/1.0/server_groups/grp-12345","name":"test","description":null,"created_at":"2013-08-27T15:54:53Z","default":false},{"id":"grp-12345","resource_type":"server_group","url":"https://api.gb1.brightbox.com/1.0/server_groups/grp-12345","name":"test","description":null,"created_at":"2013-08-27T16:12:22Z","default":false}],"firewall_policies":[{"id":"fwp-12345","resource_type":"firewall_policy","url":"https://api.gb1.brightbox.com/1.0/firewall_policies/fwp-12345","default":true,"name":"default","created_at":"2013-08-27T15:47:00Z","description":"Applied
+        to the default server group."},{"id":"fwp-12345","resource_type":"firewall_policy","url":"https://api.gb1.brightbox.com/1.0/firewall_policies/fwp-12345","default":false,"name":"rspec_firewall_policy_apply","created_at":"2013-08-27T15:54:12Z","description":null},{"id":"fwp-12345","resource_type":"firewall_policy","url":"https://api.gb1.brightbox.com/1.0/firewall_policies/fwp-12345","default":false,"name":"rspec_firewall_policy","created_at":"2013-08-27T15:54:13Z","description":null},{"id":"fwp-12345","resource_type":"firewall_policy","url":"https://api.gb1.brightbox.com/1.0/firewall_policies/fwp-12345","default":false,"name":null,"created_at":"2013-08-27T15:54:20Z","description":null},{"id":"fwp-12345","resource_type":"firewall_policy","url":"https://api.gb1.brightbox.com/1.0/firewall_policies/fwp-12345","default":false,"name":null,"created_at":"2013-08-27T15:54:21Z","description":null},{"id":"fwp-12345","resource_type":"firewall_policy","url":"https://api.gb1.brightbox.com/1.0/firewall_policies/fwp-12345","default":false,"name":"rspec_firewall_policy","created_at":"2013-08-27T15:56:46Z","description":null},{"id":"fwp-12345","resource_type":"firewall_policy","url":"https://api.gb1.brightbox.com/1.0/firewall_policies/fwp-12345","default":false,"name":"rspec_firewall_policy","created_at":"2013-08-27T16:06:22Z","description":null},{"id":"fwp-12345","resource_type":"firewall_policy","url":"https://api.gb1.brightbox.com/1.0/firewall_policies/fwp-12345","default":false,"name":"rspec_firewall_policy_apply","created_at":"2013-08-27T16:12:42Z","description":null},{"id":"fwp-12345","resource_type":"firewall_policy","url":"https://api.gb1.brightbox.com/1.0/firewall_policies/fwp-12345","default":false,"name":"rspec_firewall_policy","created_at":"2013-08-27T16:12:43Z","description":null},{"id":"fwp-12345","resource_type":"firewall_policy","url":"https://api.gb1.brightbox.com/1.0/firewall_policies/fwp-12345","default":false,"name":null,"created_at":"2013-08-27T16:12:48Z","description":null},{"id":"fwp-12345","resource_type":"firewall_policy","url":"https://api.gb1.brightbox.com/1.0/firewall_policies/fwp-12345","default":false,"name":null,"created_at":"2013-08-27T16:12:49Z","description":null}],"owner":{"id":"usr-12345","resource_type":"user","url":"https://api.gb1.brightbox.com/1.0/users/usr-12345","name":"Teresa
+        Ullrich","email_address":"jason.null@brightbox.com"},"users":[],"zones":[{"id":"zon-12345","resource_type":"zone","url":"https://api.gb1.brightbox.com/1.0/zones/zon-12345","handle":"gb1-a"},{"id":"zon-12345","resource_type":"zone","url":"https://api.gb1.brightbox.com/1.0/zones/zon-12345","handle":"gb1-b"}]}'
     http_version: 
-  recorded_at: Fri, 23 Aug 2013 15:37:36 GMT
+  recorded_at: Tue, 27 Aug 2013 16:12:51 GMT
 - request:
     method: get
     uri: http://api.brightbox.dev/1.0/server_types?account_id=acc-12345
@@ -101,7 +55,7 @@ http_interactions:
       User-Agent:
       - fog/1.15.0
       Authorization:
-      - OAuth 73dd93478d5bf98c1803b43bd3aeb8640cc90639
+      - OAuth 63a4f6dbf53263e7468d3084ae9c50ecdcdf1714
       Content-Type:
       - application/json
   response:
@@ -114,22 +68,22 @@ http_interactions:
       X-UA-Compatible:
       - IE=Edge
       ETag:
-      - '"fe84a633d14849488005a04b8e65ad4a"'
+      - '"2ed335c8a18bcc6a00be456207acbe8e"'
       Cache-Control:
       - max-age=0, private, must-revalidate
       X-Request-Id:
-      - 834d2f44bb8368f302d0b6c46f0d7700
+      - 608bd0785bf57c4cf0888204b66040a1
       X-Runtime:
-      - '0.280248'
+      - '0.072502'
       Date:
-      - Fri, 23 Aug 2013 15:37:37 GMT
+      - Tue, 27 Aug 2013 16:12:51 GMT
       Connection:
       - close
     body:
       encoding: UTF-8
-      string: '[{"id":"typ-12345","resource_type":"server_type","url":"https://api.gb1.brightbox.com/1.0/server_types/typ-12345","name":"eunm1","status":"available","cores":2,"ram":1024,"disk_size":3072,"handle":"nano"},{"id":"typ-12345","resource_type":"server_type","url":"https://api.gb1.brightbox.com/1.0/server_types/typ-12345","name":"rsu2cz2","status":"available","cores":2,"ram":3072,"disk_size":1024,"handle":null},{"id":"typ-12345","resource_type":"server_type","url":"https://api.gb1.brightbox.com/1.0/server_types/typ-12345","name":"j6x2sz6q","status":"available","cores":2,"ram":4096,"disk_size":2048,"handle":null},{"id":"typ-12345","resource_type":"server_type","url":"https://api.gb1.brightbox.com/1.0/server_types/typ-12345","name":"cz6z0t85r","status":"available","cores":2,"ram":3072,"disk_size":8192,"handle":null},{"id":"typ-12345","resource_type":"server_type","url":"https://api.gb1.brightbox.com/1.0/server_types/typ-12345","name":"88haww","status":"available","cores":2,"ram":4096,"disk_size":7168,"handle":null}]'
+      string: '[{"id":"typ-12345","resource_type":"server_type","url":"https://api.gb1.brightbox.com/1.0/server_types/typ-12345","name":"xvifyx3u5s","status":"available","cores":2,"ram":3072,"disk_size":10240,"handle":"nano"},{"id":"typ-12345","resource_type":"server_type","url":"https://api.gb1.brightbox.com/1.0/server_types/typ-12345","name":"il1fol","status":"available","cores":2,"ram":3072,"disk_size":6144,"handle":null},{"id":"typ-12345","resource_type":"server_type","url":"https://api.gb1.brightbox.com/1.0/server_types/typ-12345","name":"pqut6ge","status":"available","cores":2,"ram":2048,"disk_size":3072,"handle":null},{"id":"typ-12345","resource_type":"server_type","url":"https://api.gb1.brightbox.com/1.0/server_types/typ-12345","name":"k4yv7e","status":"available","cores":2,"ram":1024,"disk_size":6144,"handle":null},{"id":"typ-12345","resource_type":"server_type","url":"https://api.gb1.brightbox.com/1.0/server_types/typ-12345","name":"rxmq4xqwri","status":"available","cores":2,"ram":1024,"disk_size":5120,"handle":null}]'
     http_version: 
-  recorded_at: Fri, 23 Aug 2013 15:37:37 GMT
+  recorded_at: Tue, 27 Aug 2013 16:12:51 GMT
 - request:
     method: post
     uri: http://api.brightbox.dev/1.0/servers?account_id=acc-12345
@@ -140,7 +94,7 @@ http_interactions:
       User-Agent:
       - fog/1.15.0
       Authorization:
-      - OAuth 73dd93478d5bf98c1803b43bd3aeb8640cc90639
+      - OAuth 63a4f6dbf53263e7468d3084ae9c50ecdcdf1714
       Content-Type:
       - application/json
   response:
@@ -149,7 +103,7 @@ http_interactions:
       message: 
     headers:
       Location:
-      - http://api.brightbox.dev/1.0/servers/srv-xbmsa
+      - http://api.brightbox.dev/1.0/servers/srv-cuso5
       Content-Type:
       - application/json; charset=utf-8
       X-UA-Compatible:
@@ -157,17 +111,17 @@ http_interactions:
       Cache-Control:
       - no-cache
       X-Request-Id:
-      - ef3227c25644e644dc499df7f8598331
+      - 22f6ac108200a5e124b114d077845f26
       X-Runtime:
-      - '15.885935'
+      - '1.401741'
       Date:
-      - Fri, 23 Aug 2013 15:37:53 GMT
+      - Tue, 27 Aug 2013 16:12:52 GMT
       Connection:
       - close
     body:
       encoding: UTF-8
-      string: '{"id":"srv-12345","resource_type":"server","url":"https://api.gb1.brightbox.com/1.0/servers/srv-12345","name":"wow","status":"creating","hostname":"srv-12345","created_at":"2013-08-23T15:37:50Z","started_at":null,"deleted_at":null,"user_data":null,"fqdn":"srv-12345.gb1.brightbox.com","compatibility_mode":false,"console_url":null,"console_token":null,"console_token_expires":null,"account":{"id":"acc-12345","resource_type":"account","url":"https://api.gb1.brightbox.com/1.0/accounts/acc-12345","name":"Adlxfrxwdxvgsuiae","status":"active"},"image":{"id":"img-12345","resource_type":"image","url":"https://api.gb1.brightbox.com/1.0/images/img-12345","name":"vmr8w0oys5lojfdw0rx1j8gm","username":null,"status":"available","description":"","source":"xmwlxalmsbzd7af8m8d3u32h","arch":"x86_64","created_at":"2013-08-23T11:35:40Z","official":true,"public":true,"owner":"acc-12345"},"server_type":{"id":"typ-12345","resource_type":"server_type","url":"https://api.gb1.brightbox.com/1.0/server_types/typ-12345","name":"eunm1","status":"available","cores":2,"ram":1024,"disk_size":3072,"handle":"nano"},"zone":{"id":"zon-12345","resource_type":"zone","url":"https://api.gb1.brightbox.com/1.0/zones/zon-12345","handle":"gb1-a"},"cloud_ips":[],"interfaces":[{"id":"int-v1glb","resource_type":"interface","url":"https://api.gb1.brightbox.com/1.0/interfaces/int-v1glb","mac_address":"02:24:19:12:64:be","ipv4_address":"10.18.100.190","ipv6_address":"2a02:1348:173:992f:24:19ff:fe12:64be"}],"snapshots":[],"server_groups":[{"id":"grp-12345","resource_type":"server_group","url":"https://api.gb1.brightbox.com/1.0/server_groups/grp-12345","name":"default","description":"All
-        new servers are added to this group unless specified otherwise.","created_at":"2013-08-23T11:35:50Z","default":true}]}'
+      string: '{"id":"srv-12345","resource_type":"server","url":"https://api.gb1.brightbox.com/1.0/servers/srv-12345","name":"wow","status":"creating","hostname":"srv-12345","created_at":"2013-08-27T16:12:51Z","started_at":null,"deleted_at":null,"user_data":null,"fqdn":"srv-12345.gb1.brightbox.com","compatibility_mode":false,"console_url":null,"console_token":null,"console_token_expires":null,"account":{"id":"acc-12345","resource_type":"account","url":"https://api.gb1.brightbox.com/1.0/accounts/acc-12345","name":"Avkruvviumpksysor","status":"active"},"image":{"id":"img-12345","resource_type":"image","url":"https://api.gb1.brightbox.com/1.0/images/img-12345","name":"dmcuhmirtoevr8bvye46opwd","username":null,"status":"available","description":"","source":"46i5i7onyfz8yf5o5nepaohs","arch":"x86_64","created_at":"2013-08-27T15:46:50Z","official":true,"public":true,"owner":"acc-12345"},"server_type":{"id":"typ-12345","resource_type":"server_type","url":"https://api.gb1.brightbox.com/1.0/server_types/typ-12345","name":"xvifyx3u5s","status":"available","cores":2,"ram":3072,"disk_size":10240,"handle":"nano"},"zone":{"id":"zon-12345","resource_type":"zone","url":"https://api.gb1.brightbox.com/1.0/zones/zon-12345","handle":"gb1-a"},"cloud_ips":[],"interfaces":[{"id":"int-z94bg","resource_type":"interface","url":"https://api.gb1.brightbox.com/1.0/interfaces/int-z94bg","mac_address":"02:24:19:13:89:a2","ipv4_address":"10.19.137.162","ipv6_address":"2a02:1348:15d:e268:24:19ff:fe13:89a2"}],"snapshots":[],"server_groups":[{"id":"grp-12345","resource_type":"server_group","url":"https://api.gb1.brightbox.com/1.0/server_groups/grp-12345","name":"default","description":"All
+        new servers are added to this group unless specified otherwise.","created_at":"2013-08-27T15:47:00Z","default":true}]}'
     http_version: 
-  recorded_at: Fri, 23 Aug 2013 15:37:53 GMT
+  recorded_at: Tue, 27 Aug 2013 16:12:52 GMT
 recorded_with: VCR 2.5.0
