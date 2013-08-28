@@ -125,18 +125,18 @@ module Brightbox
     def to_row
       {
         :id => id,
-        :name => name,
         :cloud_ips_limit => cloud_ips_limit,
         :lb_limit => lb_limit,
         :ram_limit => ram_limit,
         :ram_used => ram_used,
         :ram_free => ram_free,
-        :role => role
+        :role => role,
+        :name => name
       }
     end
 
     def self.default_field_order
-      [:id, :name, :cloud_ips_limit, :lb_limit, :ram_limit, :ram_used, :ram_free, :role]
+      [:id, :cloud_ips_limit, :lb_limit, :ram_limit, :ram_used, :ram_free, :role, :name]
     end
 
   private
