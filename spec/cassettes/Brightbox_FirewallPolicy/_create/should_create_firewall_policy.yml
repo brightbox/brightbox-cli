@@ -338,4 +338,49 @@ http_interactions:
         client is not authorized to use the access grant type provided."}'
     http_version: 
   recorded_at: Tue, 27 Aug 2013 17:09:59 GMT
+- request:
+    method: post
+    uri: http://api.brightbox.dev/token
+    body:
+      encoding: UTF-8
+      string: '{"grant_type":"none","client_id":"cli-12345"}'
+    headers:
+      User-Agent:
+      - fog/1.15.0
+      Authorization:
+      - Basic Y2xpLTEyMzQ1OnF5Nnh4bnZ5NG8wdGd2NQ==
+      Content-Type:
+      - application/json
+  response:
+    status:
+      code: 200
+      message: 
+    headers:
+      X-Frame-Options:
+      - sameorigin
+      X-XSS-Protection:
+      - 1; mode=block
+      Content-Type:
+      - application/json;charset=utf-8
+      Cache-Control:
+      - no-store
+      Content-Length:
+      - '77'
+      X-UA-Compatible:
+      - IE=Edge
+      ETag:
+      - '"cc59feb67059e020361ec45b29ca1c49"'
+      X-Request-Id:
+      - a5bec61bf03d68e34104e91c4153d0c4
+      X-Runtime:
+      - '0.130524'
+      Date:
+      - Wed, 28 Aug 2013 16:15:06 GMT
+      Connection:
+      - keep-alive
+    body:
+      encoding: UTF-8
+      string: '{"access_token":"d41c44d1bcd633e4314393801329f07fe54b6b3b","expires_in":7200}'
+    http_version: 
+  recorded_at: Wed, 28 Aug 2013 16:15:06 GMT
 recorded_with: VCR 2.5.0
