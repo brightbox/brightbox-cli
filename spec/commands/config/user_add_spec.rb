@@ -55,6 +55,10 @@ describe "brightbox config" do
         expect(cached_refresh_token(@config)).to eql(@config.refresh_token)
       end
 
+      it "does not prompt to rerun the command" do
+        expect(stderr).to_not include("please re-run your command")
+      end
+
       it "does not error" do
         expect { output }.to_not raise_error
         expect(stderr).to_not include("ERROR")

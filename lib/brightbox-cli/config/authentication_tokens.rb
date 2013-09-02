@@ -91,6 +91,8 @@ module Brightbox
           new_access_token = service.access_token
           new_refresh_token = service.refresh_token
           update_stored_tokens(new_access_token, new_refresh_token)
+
+          info "Your API credentials have been updated, please re-run your command."
         rescue Excon::Errors::BadRequest, Excon::Errors::Unauthorized
           error "ERROR: Unable to reauthenticate!"
         ensure
@@ -197,12 +199,8 @@ module Brightbox
           :email => selected_config["username"],
           :password => password
         }
-        connection = user_application.fetch_refresh_token(options)
 
-        # FIXME Really should say this only if they have been!
-        info "Your API credentials have been updated, please re-run your command."
-
-        connection
+        user_application.fetch_refresh_token(options)
       end
 
       def fetch_refresh_token(options)

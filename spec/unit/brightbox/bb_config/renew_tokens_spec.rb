@@ -28,7 +28,7 @@ describe Brightbox::BBConfig do
 
         @config = config_from_contents(contents)
         expect(@config).to receive(:prompt_for_password).and_return(password)
-        @config.renew_tokens
+        @output = FauxIO.new { @config.renew_tokens }
       end
 
       it "caches the new tokens" do
@@ -39,6 +39,10 @@ describe Brightbox::BBConfig do
 
         # Refresh token
         expect(cached_refresh_token(@config)).to eql(@new_refresh_token)
+      end
+
+      it "prompts user to retry command" do
+        expect(@output.stderr).to include("please re-run your command")
       end
     end
 
@@ -57,7 +61,7 @@ describe Brightbox::BBConfig do
 
         # If we are prompting then the refresh token has failed
         expect(@config).to_not receive(:prompt_for_password)
-        @config.renew_tokens
+        @output = FauxIO.new { @config.renew_tokens }
       end
 
       it "caches the new tokens" do
@@ -85,7 +89,7 @@ describe Brightbox::BBConfig do
         @new_refresh_token = "2d5f189f75c4359131262716a9ad0144877e9f27"
 
         expect(@config).to receive(:prompt_for_password).and_return(password)
-        @config.renew_tokens
+        @output = FauxIO.new { @config.renew_tokens }
       end
 
       it "caches the new tokens" do
@@ -107,7 +111,7 @@ describe Brightbox::BBConfig do
 
         expect(@config).to_not receive(:prompt_for_password)
 
-        @config.renew_tokens
+        @output = FauxIO.new { @config.renew_tokens }
       end
 
       it "caches a new access token" do
