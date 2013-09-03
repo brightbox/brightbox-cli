@@ -49,10 +49,17 @@ module Brightbox
 
         client_config = $config[calias]
         unless client_config.empty?
-          raise "A user application with the id or alias #{calias} already exists"
-        end
+          old_calias = calias
 
-        info "Creating new user application config #{calias}"
+          deduplicator = Brightbox::Config::SectionNameDeduplicator.new(calias, $config.clients)
+          calias = deduplicator.next
+          # Need to open the new config again
+          client_config = $config[calias]
+
+          info "A client config named #{old_calias} already exists using #{calias} instead"
+        else
+          info "Creating new client config #{calias}"
+        end
 
         client_config["alias"] = calias
         client_config["client_id"] = client_id

@@ -44,6 +44,10 @@ module Brightbox
   autoload :FirewallRules, File.expand_path("../brightbox-cli/firewall_rules", __FILE__)
   autoload :Collaboration, File.expand_path("../brightbox-cli/collaboration", __FILE__)
   autoload :UserCollaboration, File.expand_path("../brightbox-cli/user_collaboration", __FILE__)
+
+  module Config
+    autoload :SectionNameDeduplicator, File.expand_path("../brightbox-cli/config/section_name_deduplicator", __FILE__)
+  end
 end
 
 require_relative "brightbox-cli/connection_manager"
