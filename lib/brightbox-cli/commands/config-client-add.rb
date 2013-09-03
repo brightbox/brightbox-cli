@@ -47,6 +47,12 @@ module Brightbox
         client_config["api_url"] = api_url
         client_config["auth_url"] = auth_url
 
+        $config.write_config_file
+        # FIXME Here because the wrong client was getting default set
+        $config.client_name = client_id
+
+        # Logically this will only ever be the clients owning account
+        $config.find_or_set_default_account
       end
     end
   end
