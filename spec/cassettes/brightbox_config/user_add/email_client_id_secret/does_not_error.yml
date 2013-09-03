@@ -45,4 +45,46 @@ http_interactions:
       string: '{"access_token":"167e5c81122fe3ad710a4ed6b8c9734f3660ea27","expires_in":7200,"refresh_token":"28f747500d003167c5e483d15421f4dd20fb8755"}'
     http_version: 
   recorded_at: Wed, 28 Aug 2013 11:32:11 GMT
+- request:
+    method: get
+    uri: http://api.brightbox.dev/1.0/accounts
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      User-Agent:
+      - fog/1.15.0
+      Authorization:
+      - OAuth 2245493c9aa7dc11e7b8d99d1ef27bcb5b1ffd6f
+      Content-Type:
+      - application/json
+  response:
+    status:
+      code: 200
+      message: 
+    headers:
+      Content-Type:
+      - application/json; charset=utf-8
+      X-UA-Compatible:
+      - IE=Edge
+      ETag:
+      - '"4cc29facf432e8f6272a32e38cabd4d8"'
+      Cache-Control:
+      - max-age=0, private, must-revalidate
+      X-Request-Id:
+      - 2b7fa4a03cac193abe6406b5ddb96c6d
+      X-Runtime:
+      - '0.109852'
+      Date:
+      - Tue, 03 Sep 2013 10:17:29 GMT
+      Connection:
+      - close
+    body:
+      encoding: UTF-8
+      string: '[{"id":"acc-12345","resource_type":"account","url":"https://api.gb1.brightbox.com/1.0/accounts/acc-12345","name":"Ajusebltwarlwxdux","status":"active","ram_limit":32768,"ram_used":0,"cloud_ips_limit":20,"cloud_ips_used":1,"load_balancers_limit":5,"load_balancers_used":0,"clients":[{"id":"cli-12345","resource_type":"api_client","url":"https://api.gb1.brightbox.com/1.0/api_clients/cli-12345","name":null,"description":null,"revoked_at":null}],"images":[],"servers":[],"load_balancers":[],"cloud_ips":[{"id":"cip-12345","resource_type":"cloud_ip","url":"https://api.gb1.brightbox.com/1.0/cloud_ips/cip-12345","status":"unmapped","public_ip":"59.168.156.224","reverse_dns":"cip-12345-168-156-224.gb1.brightbox.com","name":null}],"server_groups":[{"id":"grp-12345","resource_type":"server_group","url":"https://api.gb1.brightbox.com/1.0/server_groups/grp-12345","name":"default","description":"All
+        new servers are added to this group unless specified otherwise.","created_at":"2013-09-02T13:41:44Z","default":true}],"firewall_policies":[{"id":"fwp-12345","resource_type":"firewall_policy","url":"https://api.gb1.brightbox.com/1.0/firewall_policies/fwp-12345","default":true,"name":"default","created_at":"2013-09-02T13:41:44Z","description":"Applied
+        to the default server group."}],"owner":{"id":"usr-12345","resource_type":"user","url":"https://api.gb1.brightbox.com/1.0/users/usr-12345","name":"Cordell
+        Fay","email_address":"jason.null@brightbox.com"},"users":[],"zones":[{"id":"zon-12345","resource_type":"zone","url":"https://api.gb1.brightbox.com/1.0/zones/zon-12345","handle":"gb1-a"},{"id":"zon-12345","resource_type":"zone","url":"https://api.gb1.brightbox.com/1.0/zones/zon-12345","handle":"gb1-b"}]}]'
+    http_version: 
+  recorded_at: Tue, 03 Sep 2013 10:17:29 GMT
 recorded_with: VCR 2.5.0

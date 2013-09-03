@@ -72,6 +72,9 @@ module Brightbox
 
         # Renew tokens via config...
         $config.renew_tokens(:client_name => calias, :password => password)
+
+        # Try to determine a default account
+        $config.find_or_set_default_account
       end
     end
   end

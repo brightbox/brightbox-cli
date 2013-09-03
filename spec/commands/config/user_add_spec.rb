@@ -15,6 +15,7 @@ describe "brightbox config" do
     let(:client_id) { "app-12345" }
     let(:secret) { "mocbuipbiaa6k6c" }
     let(:password) { "N:B3e%7Cmh" }
+    let(:default_account) { "acc-12345" }
     let(:api_url) { "http://api.brightbox.dev" }
 
     context "" do
@@ -43,6 +44,7 @@ describe "brightbox config" do
         expect(@client_section["alias"]).to eql(client_id)
         expect(@client_section["client_id"]).to eql(client_id)
         expect(@client_section["secret"]).to eql(secret)
+        expect(@client_section["default_account"]).to eql(default_account)
       end
 
       it "requests access tokens" do
@@ -82,6 +84,7 @@ describe "brightbox config" do
         expect(@client_section["alias"]).to eql(client_id)
         expect(@client_section["client_id"]).to eql(client_id)
         expect(@client_section["secret"]).to eql(secret)
+        expect(@client_section["default_account"]).to eql(default_account)
       end
 
       it "requests access tokens" do
@@ -136,6 +139,7 @@ describe "brightbox config" do
           expect(@client_section["alias"]).to eql(revised_client_id)
           expect(@client_section["client_id"]).to eql(client_id)
           expect(@client_section["secret"]).to eql(secret)
+          expect(@client_section["default_account"]).to eql(default_account)
         end
       end
     end
