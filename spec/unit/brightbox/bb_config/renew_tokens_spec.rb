@@ -41,9 +41,6 @@ describe Brightbox::BBConfig do
         expect(cached_refresh_token(@config)).to eql(@new_refresh_token)
       end
 
-      it "prompts user to retry command" do
-        expect(@output.stderr).to include("please re-run your command")
-      end
     end
 
     context "when using a user app with a cached refresh token", :vcr do

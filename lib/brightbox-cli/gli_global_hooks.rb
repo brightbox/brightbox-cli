@@ -89,7 +89,10 @@ module Brightbox
     if e.is_a?(Excon::Errors::Unauthorized)
       begin
         debug "Refused access token: #{$config.access_token}"
-        $config.reauthenticate
+        returned = $config.reauthenticate
+        # FIXME Curious output from info
+        info "Your API credentials have been updated, please re-run your command."
+        returned
       rescue
         false
       ensure

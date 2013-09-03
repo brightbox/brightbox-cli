@@ -92,7 +92,6 @@ module Brightbox
           new_refresh_token = service.refresh_token
           update_stored_tokens(new_access_token, new_refresh_token)
 
-          info "Your API credentials have been updated, please re-run your command."
         rescue Excon::Errors::BadRequest, Excon::Errors::Unauthorized
           error "ERROR: Unable to reauthenticate!"
         ensure
