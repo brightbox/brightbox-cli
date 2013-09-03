@@ -31,20 +31,20 @@ http_interactions:
       X-UA-Compatible:
       - IE=Edge
       ETag:
-      - '"697d0aab79f01a2bdf7482f424909322"'
+      - '"8d4e964d6880baff514853eb8480a6a5"'
       X-Request-Id:
-      - 4bb28dadd73b325fbe2ff377b5631868
+      - 0f1fb2e944104be7ef09e7f576749921
       X-Runtime:
-      - '0.196456'
+      - '0.193287'
       Date:
-      - Wed, 28 Aug 2013 11:37:23 GMT
+      - Tue, 03 Sep 2013 10:38:04 GMT
       Connection:
       - keep-alive
     body:
       encoding: UTF-8
-      string: '{"access_token":"c66770252fb1f1b75a692633302730815ad6cc80","expires_in":7200,"refresh_token":"7926b1bf09b7714c15b393bdf4bc86542d263eb3"}'
+      string: '{"access_token":"f9e54291e216abfe46df49d27d8b9015a207c8b9","expires_in":7200,"refresh_token":"2822887326aff8f02df24293251c34bae90bc468"}'
     http_version: 
-  recorded_at: Wed, 28 Aug 2013 11:37:23 GMT
+  recorded_at: Tue, 03 Sep 2013 10:38:04 GMT
 - request:
     method: get
     uri: http://api.brightbox.dev/1.0/accounts
@@ -55,7 +55,7 @@ http_interactions:
       User-Agent:
       - fog/1.15.0
       Authorization:
-      - OAuth 2245493c9aa7dc11e7b8d99d1ef27bcb5b1ffd6f
+      - OAuth 7d57efcb3906b4938aff76753375d57c383f0040
       Content-Type:
       - application/json
   response:
@@ -72,11 +72,11 @@ http_interactions:
       Cache-Control:
       - max-age=0, private, must-revalidate
       X-Request-Id:
-      - 5d7cefe7c668b36d822e831823145ed0
+      - 53166a427fec9543ba39972745ea5b42
       X-Runtime:
-      - '0.195873'
+      - '0.105771'
       Date:
-      - Tue, 03 Sep 2013 10:17:30 GMT
+      - Tue, 03 Sep 2013 10:38:05 GMT
       Connection:
       - close
     body:
@@ -86,5 +86,5 @@ http_interactions:
         to the default server group."}],"owner":{"id":"usr-12345","resource_type":"user","url":"https://api.gb1.brightbox.com/1.0/users/usr-12345","name":"Cordell
         Fay","email_address":"jason.null@brightbox.com"},"users":[],"zones":[{"id":"zon-12345","resource_type":"zone","url":"https://api.gb1.brightbox.com/1.0/zones/zon-12345","handle":"gb1-a"},{"id":"zon-12345","resource_type":"zone","url":"https://api.gb1.brightbox.com/1.0/zones/zon-12345","handle":"gb1-b"}]}]'
     http_version: 
-  recorded_at: Tue, 03 Sep 2013 10:17:30 GMT
+  recorded_at: Tue, 03 Sep 2013 10:38:05 GMT
 recorded_with: VCR 2.5.0

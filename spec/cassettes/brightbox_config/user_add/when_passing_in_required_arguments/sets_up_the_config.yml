@@ -31,20 +31,65 @@ http_interactions:
       X-UA-Compatible:
       - IE=Edge
       ETag:
-      - '"0cd69d57b102a9e589fc9c75c3457346"'
+      - '"a588c8d5e695e85cb02a4a754dc405b7"'
       X-Request-Id:
-      - 31d9a4327ce7607c2131042363730e48
+      - 7e58139052f6db188fcf737163aec485
       X-Runtime:
-      - '0.423848'
+      - '0.389930'
       Date:
-      - Tue, 27 Aug 2013 16:51:30 GMT
+      - Tue, 03 Sep 2013 10:38:03 GMT
       Connection:
       - keep-alive
     body:
       encoding: UTF-8
-      string: '{"access_token":"583a5ac0e134e063971cc33ac563c0c611de905f","expires_in":7200,"refresh_token":"5dfb4663b7b2dbc4cfd506a276407a18c8208aa7"}'
+      string: '{"access_token":"c4194bc8e8f2aa69714b864369cf6129c6c4b190","expires_in":7200,"refresh_token":"6846e655733a4fc36913c6c7e7bf8cb8fe7940b8"}'
     http_version: 
-  recorded_at: Tue, 27 Aug 2013 16:51:30 GMT
+  recorded_at: Tue, 03 Sep 2013 10:38:03 GMT
+- request:
+    method: post
+    uri: http://api.brightbox.dev/token
+    body:
+      encoding: UTF-8
+      string: '{"grant_type":"none","client_id":"cli-12345"}'
+    headers:
+      User-Agent:
+      - fog/1.15.0
+      Authorization:
+      - Basic Y2xpLTEyMzQ1OnF5Nnh4bnZ5NG8wdGd2NQ==
+      Content-Type:
+      - application/json
+  response:
+    status:
+      code: 200
+      message: 
+    headers:
+      X-Frame-Options:
+      - sameorigin
+      X-XSS-Protection:
+      - 1; mode=block
+      Content-Type:
+      - application/json;charset=utf-8
+      Cache-Control:
+      - no-store
+      Content-Length:
+      - '77'
+      X-UA-Compatible:
+      - IE=Edge
+      ETag:
+      - '"d7079e478aeeaaee07f8d5a707afdcab"'
+      X-Request-Id:
+      - b343a94fffdca9b74a78a2212df89892
+      X-Runtime:
+      - '0.114889'
+      Date:
+      - Tue, 03 Sep 2013 10:38:03 GMT
+      Connection:
+      - keep-alive
+    body:
+      encoding: UTF-8
+      string: '{"access_token":"7d57efcb3906b4938aff76753375d57c383f0040","expires_in":7200}'
+    http_version: 
+  recorded_at: Tue, 03 Sep 2013 10:38:03 GMT
 - request:
     method: get
     uri: http://api.brightbox.dev/1.0/accounts
@@ -55,7 +100,7 @@ http_interactions:
       User-Agent:
       - fog/1.15.0
       Authorization:
-      - OAuth 2245493c9aa7dc11e7b8d99d1ef27bcb5b1ffd6f
+      - OAuth 7d57efcb3906b4938aff76753375d57c383f0040
       Content-Type:
       - application/json
   response:
@@ -72,11 +117,11 @@ http_interactions:
       Cache-Control:
       - max-age=0, private, must-revalidate
       X-Request-Id:
-      - a13fd655e4164900f589a6c7403d6b9b
+      - 155f03f98a6ad1a0a55c5091b89e8b78
       X-Runtime:
-      - '0.109488'
+      - '0.103957'
       Date:
-      - Tue, 03 Sep 2013 10:17:29 GMT
+      - Tue, 03 Sep 2013 10:38:03 GMT
       Connection:
       - close
     body:
@@ -86,5 +131,5 @@ http_interactions:
         to the default server group."}],"owner":{"id":"usr-12345","resource_type":"user","url":"https://api.gb1.brightbox.com/1.0/users/usr-12345","name":"Cordell
         Fay","email_address":"jason.null@brightbox.com"},"users":[],"zones":[{"id":"zon-12345","resource_type":"zone","url":"https://api.gb1.brightbox.com/1.0/zones/zon-12345","handle":"gb1-a"},{"id":"zon-12345","resource_type":"zone","url":"https://api.gb1.brightbox.com/1.0/zones/zon-12345","handle":"gb1-b"}]}]'
     http_version: 
-  recorded_at: Tue, 03 Sep 2013 10:17:29 GMT
+  recorded_at: Tue, 03 Sep 2013 10:38:03 GMT
 recorded_with: VCR 2.5.0

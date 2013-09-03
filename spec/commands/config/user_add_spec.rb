@@ -26,7 +26,7 @@ describe "brightbox config" do
       end
     end
 
-    context "email client_id secret", :vcr do
+    context "when passing in required arguments", :vcr do
       let(:argv) { ["config", "user_add", email, client_id, secret] }
       #let(:argv) { ["config", "user_add", email, client_id, secret, api_url] }
 
@@ -67,7 +67,7 @@ describe "brightbox config" do
       end
     end
 
-    context "email client_id secret api_url", :vcr do
+    context "when passing in required arguments and api_url", :vcr do
       let(:argv) { ["config", "user_add", email, client_id, secret, api_url] }
 
       before do
@@ -103,9 +103,12 @@ describe "brightbox config" do
       end
     end
 
-    context "(when application details in config)" do
+    context "when application details in config", :vcr do
       let(:client_id) { "app-12345" }
       let(:revised_client_id) { "app-12345_1" }
+      let(:argv) { ["config", "user_add", email, client_id, secret] }
+      #let(:argv) { ["config", "user_add", email, client_id, secret, api_url] }
+
       before do
         contents = <<-EOS
         [#{client_id}]
@@ -114,33 +117,26 @@ describe "brightbox config" do
         username = #{email}
         EOS
         config_from_contents(contents)
+        mock_password_entry(password)
       end
 
-      context "email client_id secret", :vcr do
-        let(:argv) { ["config", "user_add", email, client_id, secret] }
-        #let(:argv) { ["config", "user_add", email, client_id, secret, api_url] }
 
-        before do
-          mock_password_entry(password)
-        end
+      it "does not error" do
+        expect { output }.to_not raise_error
+        expect(stderr).to_not include("ERROR")
+      end
 
-        it "does not error" do
-          expect { output }.to_not raise_error
-          expect(stderr).to_not include("ERROR")
-        end
+      it "sets up the config" do
+        expect { output }.to_not raise_error
 
-        it "sets up the config" do
-          expect { output }.to_not raise_error
+        @config = Brightbox::BBConfig.new
+        @client_section = @config.config[revised_client_id]
 
-          @config = Brightbox::BBConfig.new
-          @client_section = @config.config[revised_client_id]
-
-          expect(@client_section["api_url"]).to eql("https://api.gb1.brightbox.com")
-          expect(@client_section["alias"]).to eql(revised_client_id)
-          expect(@client_section["client_id"]).to eql(client_id)
-          expect(@client_section["secret"]).to eql(secret)
-          expect(@client_section["default_account"]).to eql(default_account)
-        end
+        expect(@client_section["api_url"]).to eql("https://api.gb1.brightbox.com")
+        expect(@client_section["alias"]).to eql(revised_client_id)
+        expect(@client_section["client_id"]).to eql(client_id)
+        expect(@client_section["secret"]).to eql(secret)
+        expect(@client_section["default_account"]).to eql(default_account)
       end
     end
   end
