@@ -40,10 +40,8 @@ module Brightbox
         unless default_account
           begin
             accounts = Account.all
-            if accounts.size == 1
-              @account = accounts.first.id
-              selected_config['default_account'] = @account
-            end
+            @account = accounts.first.id
+            selected_config["default_account"] = @account
           rescue Excon::Errors::Unauthorized
             # This is a helper, if it fails let the other code warn and prompt
           end

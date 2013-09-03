@@ -71,10 +71,16 @@ module Brightbox
         $config.write_config_file
 
         # Renew tokens via config...
-        $config.renew_tokens(:client_name => calias, :password => password)
+        begin
+          $config.renew_tokens(:client_name => calias, :password => password)
+        rescue => e
+          error "Something went wrong trying to refresh new tokens #{e.message}"
+        end
 
         # Try to determine a default account
-        $config.find_or_set_default_account
+        if $config.find_or_set_default_account
+          info "The default account of #{$config.default_account} has been selected"
+        end
       end
     end
   end
