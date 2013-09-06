@@ -9,7 +9,7 @@ describe "brightbox config" do
 
     let(:client_id) { "cli-12345" }
     let(:secret) { "qy6xxnvy4o0tgv5" }
-    let(:api_url) { "http://api.brightbox.com" }
+    let(:api_url) { "http://api.brightbox.dev" }
 
     let(:default_account) { "acc-12345" }
 
@@ -40,6 +40,51 @@ describe "brightbox config" do
         expect(@client_section["client_id"]).to eql(client_id)
         expect(@client_section["secret"]).to eql(secret)
         expect(@client_section["default_account"]).to eql(default_account)
+      end
+    end
+
+    context "when new client is first and only client", :vcr do
+      let(:argv) { ["config", "client_add", client_id, secret] }
+      #let(:argv) { ["config", "client_add", client_id, secret, api_url] }
+
+      before do
+        config_from_contents("")
+      end
+
+      it "does not error" do
+        expect(stderr).to_not include("ERROR")
+      end
+
+      it "sets up the config" do
+        expect { output }.to_not raise_error
+
+        @config = Brightbox::BBConfig.new
+        @client_section = @config.config[client_id]
+
+        expect(@client_section["api_url"]).to eql("https://api.gb1.brightbox.com")
+        expect(@client_section["alias"]).to eql(client_id)
+        expect(@client_section["client_id"]).to eql(client_id)
+        expect(@client_section["secret"]).to eql(secret)
+        expect(@client_section["default_account"]).to eql(default_account)
+      end
+
+      it "sets this as the default client" do
+        expect { output }.to_not raise_error
+
+        @config = Brightbox::BBConfig.new
+        expect(@config.default_client).to eql(client_id)
+      end
+    end
+
+    context "when new client is first and only client", :vcr do
+      let(:argv) { ["config", "client_add", client_id, secret] }
+      #let(:argv) { ["config", "client_add", client_id, secret, api_url] }
+
+      it "does not change the default client" do
+        expect { output }.to_not raise_error
+
+        @config = Brightbox::BBConfig.new
+        expect(@config.default_client).to eql("testing")
       end
     end
 

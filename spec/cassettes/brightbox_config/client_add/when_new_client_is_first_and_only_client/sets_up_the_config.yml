@@ -31,65 +31,20 @@ http_interactions:
       X-UA-Compatible:
       - IE=Edge
       ETag:
-      - '"ea1fa016942cf0f01a331ab9d8a56423"'
+      - '"430906f14dbb1d6e1227c369fbbc9f05"'
       X-Request-Id:
-      - 957ed6ed3b92609b2d50aa892f032215
+      - 8c2cd78990e554ee6df5b57df9f3babf
       X-Runtime:
-      - '0.118069'
+      - '0.237022'
       Date:
-      - Fri, 06 Sep 2013 15:58:56 GMT
+      - Fri, 06 Sep 2013 15:58:58 GMT
       Connection:
       - keep-alive
     body:
       encoding: UTF-8
-      string: '{"access_token":"a25417dd9a167843ed50b7fbd3338feccbdd10c3","expires_in":7200}'
+      string: '{"access_token":"67e22969d707ebaf5590272b5e64dc4ed9b31fdd","expires_in":7200}'
     http_version: 
-  recorded_at: Fri, 06 Sep 2013 15:58:56 GMT
-- request:
-    method: post
-    uri: http://api.brightbox.dev/token
-    body:
-      encoding: UTF-8
-      string: '{"grant_type":"none","client_id":"cli-12345"}'
-    headers:
-      User-Agent:
-      - fog/1.15.0
-      Authorization:
-      - Basic Y2xpLTEyMzQ1OnF5Nnh4bnZ5NG8wdGd2NQ==
-      Content-Type:
-      - application/json
-  response:
-    status:
-      code: 200
-      message: 
-    headers:
-      X-Frame-Options:
-      - sameorigin
-      X-XSS-Protection:
-      - 1; mode=block
-      Content-Type:
-      - application/json;charset=utf-8
-      Cache-Control:
-      - no-store
-      Content-Length:
-      - '77'
-      X-UA-Compatible:
-      - IE=Edge
-      ETag:
-      - '"c70fc5795566d2cf3e4760ac04d7376b"'
-      X-Request-Id:
-      - ddf4135199e7c0fea3eb951389226536
-      X-Runtime:
-      - '0.110470'
-      Date:
-      - Fri, 06 Sep 2013 15:58:56 GMT
-      Connection:
-      - keep-alive
-    body:
-      encoding: UTF-8
-      string: '{"access_token":"0ab4badeb10018d07c1f6c33690ee011f36b4183","expires_in":7200}'
-    http_version: 
-  recorded_at: Fri, 06 Sep 2013 15:58:56 GMT
+  recorded_at: Fri, 06 Sep 2013 15:58:58 GMT
 - request:
     method: get
     uri: http://api.brightbox.dev/1.0/account
@@ -117,11 +72,11 @@ http_interactions:
       Cache-Control:
       - max-age=0, private, must-revalidate
       X-Request-Id:
-      - fdd87c5e95c32b98cd0d0852658529e8
+      - b4edcfd134f91075932a85564772e730
       X-Runtime:
-      - '0.197430'
+      - '0.116152'
       Date:
-      - Fri, 06 Sep 2013 15:58:57 GMT
+      - Fri, 06 Sep 2013 15:58:58 GMT
       Connection:
       - close
     body:
@@ -133,5 +88,5 @@ http_interactions:
         to the default server group."}],"owner":{"id":"usr-12345","resource_type":"user","url":"https://api.gb1.brightbox.com/1.0/users/usr-12345","name":"Dylan
         Fay DDS","email_address":"jason.null@brightbox.com"},"users":[],"zones":[{"id":"zon-12345","resource_type":"zone","url":"https://api.gb1.brightbox.com/1.0/zones/zon-12345","handle":"gb1-a"},{"id":"zon-12345","resource_type":"zone","url":"https://api.gb1.brightbox.com/1.0/zones/zon-12345","handle":"gb1-b"}]}'
     http_version: 
-  recorded_at: Fri, 06 Sep 2013 15:58:57 GMT
+  recorded_at: Fri, 06 Sep 2013 15:58:58 GMT
 recorded_with: VCR 2.5.0

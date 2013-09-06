@@ -130,6 +130,11 @@ module Brightbox
       end
     end
 
+    # @param [String] client_alias the name of the client to make the default
+    def set_default_client(client_alias)
+      config["core"]["default_client"] = client_alias
+    end
+
     # Returns the currently CONFIGURED default client (ignoring which client is
     # asked for in this request)
     #

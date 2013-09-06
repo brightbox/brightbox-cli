@@ -47,6 +47,11 @@ module Brightbox
         if default_account = self.find_or_set_default_account
           info "The default account of #{default_account} has been selected"
         end
+
+        # If only client then set it as the default
+        unless default_client
+          set_default_client(client_alias)
+        end
       end
 
       # Removes the config section from the configuration object. Must be

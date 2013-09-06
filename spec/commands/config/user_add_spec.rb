@@ -94,6 +94,71 @@ describe "brightbox config" do
       end
     end
 
+
+    context "when new client is first and only client", :vcr do
+      let(:argv) { ["config", "user_add", email, client_id, secret] }
+      #let(:argv) { ["config", "user_add", email, client_id, secret, api_url] }
+
+      before do
+        config_from_contents("")
+        mock_password_entry(password)
+      end
+
+      it "sets up the config" do
+        expect { output }.to_not raise_error
+
+        @config = Brightbox::BBConfig.new
+        @client_section = @config.config[email]
+
+        expect(@client_section["api_url"]).to eql("https://api.gb1.brightbox.com")
+        expect(@client_section["alias"]).to eql(client_alias)
+        expect(@client_section["client_id"]).to eql(client_id)
+        expect(@client_section["secret"]).to eql(secret)
+        expect(@client_section["default_account"]).to eql(default_account)
+      end
+
+      it "requests access tokens" do
+        expect { output }.to_not raise_error
+
+        @config = Brightbox::BBConfig.new :client_name => email
+
+        expect(cached_access_token(@config)).to eql(@config.access_token)
+        expect(cached_refresh_token(@config)).to eql(@config.refresh_token)
+      end
+
+      it "does not prompt to rerun the command" do
+        expect(stderr).to_not include("please re-run your command")
+      end
+
+      it "does not error" do
+        expect { output }.to_not raise_error
+        expect(stderr).to_not include("ERROR")
+      end
+
+      it "sets this as the default client" do
+        expect { output }.to_not raise_error
+
+        @config = Brightbox::BBConfig.new
+        expect(@config.default_client).to eql(client_alias)
+      end
+    end
+
+    context "when a default client is already set", :vcr do
+      let(:argv) { ["config", "user_add", email, client_id, secret] }
+      #let(:argv) { ["config", "user_add", email, client_id, secret, api_url] }
+
+      before do
+        mock_password_entry(password)
+      end
+
+      it "does not change the default client" do
+        expect { output }.to_not raise_error
+
+        @config = Brightbox::BBConfig.new
+        expect(@config.default_client).to eql("testing")
+      end
+    end
+
     context "when passing in required arguments and api_url", :vcr do
       let(:argv) { ["config", "user_add", email, client_id, secret, api_url] }
 
