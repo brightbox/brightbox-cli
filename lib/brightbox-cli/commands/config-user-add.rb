@@ -26,6 +26,10 @@ module Brightbox
         calias = options[:a] || email
         password = options[:p]
 
+        if email.nil?
+          raise "You must specify your user's email address"
+        end
+
         if client_id.nil?
           raise "You must specify the client-id"
         end
