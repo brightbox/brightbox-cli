@@ -9,6 +9,7 @@ module Brightbox
     include Brightbox::Config::AuthenticationTokens
     include Brightbox::Config::Accounts
     include Brightbox::Config::Clients
+    include Brightbox::Config::Sections
     include Brightbox::Config::ToFog
 
     attr_writer :client_name, :account
@@ -52,7 +53,6 @@ module Brightbox
       @config_filename = File.join(config_directory, 'config')
     end
 
-
     # The loads the configuration from disk or creates the directory if missing
     # and caches the details.
     #
@@ -69,18 +69,6 @@ module Brightbox
       @config
     rescue Ini::Error => e
       raise BBConfigError, "Config problem in #{config_filename}: #{e}"
-    end
-
-    def [](k)
-      config[k]
-    end
-
-    def delete_section(name)
-      config.delete_section name
-    end
-
-    def clients
-      config.sections.find_all { |s| s != 'core' }
     end
 
     # Returns a client name or raises depending on a number of factors.
@@ -116,11 +104,6 @@ module Brightbox
           @client_name = default_client || clients.first
         end
       end
-    end
-
-    def alias
-      return nil if selected_config.nil?
-      selected_config['alias']
     end
 
     def api_hostname
@@ -181,10 +164,6 @@ module Brightbox
 
     def default_config_dir
       File.join(ENV['HOME'],'.brightbox')
-    end
-
-    def selected_config
-      config[client_name]
     end
 
     def configured?
