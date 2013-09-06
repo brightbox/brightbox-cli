@@ -23,7 +23,7 @@ module Brightbox
         api_url = args.shift || "https://api.gb1.brightbox.com"
         auth_url = args.shift || api_url
 
-        calias = options[:a] || client_id
+        calias = options[:a] || email
         password = options[:p]
 
         if client_id.nil?

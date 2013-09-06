@@ -15,8 +15,10 @@ describe "brightbox config" do
     let(:client_id) { "app-12345" }
     let(:secret) { "mocbuipbiaa6k6c" }
     let(:password) { "N:B3e%7Cmh" }
-    let(:default_account) { "acc-12345" }
     let(:api_url) { "http://api.brightbox.dev" }
+
+    let(:default_account) { "acc-12345" }
+    let(:client_alias) { email }
 
     context "" do
       let(:argv) { ["config", "user_add"] }
@@ -41,10 +43,10 @@ describe "brightbox config" do
         expect { output }.to_not raise_error
 
         @config = Brightbox::BBConfig.new
-        @client_section = @config.config[client_id]
+        @client_section = @config.config[email]
 
         expect(@client_section["api_url"]).to eql("https://api.gb1.brightbox.com")
-        expect(@client_section["alias"]).to eql(client_id)
+        expect(@client_section["alias"]).to eql(client_alias)
         expect(@client_section["client_id"]).to eql(client_id)
         expect(@client_section["secret"]).to eql(secret)
         expect(@client_section["default_account"]).to eql(default_account)
@@ -63,10 +65,10 @@ describe "brightbox config" do
         expect { output }.to_not raise_error
 
         @config = Brightbox::BBConfig.new
-        @client_section = @config.config[client_id]
+        @client_section = @config.config[email]
 
         expect(@client_section["api_url"]).to eql("https://api.gb1.brightbox.com")
-        expect(@client_section["alias"]).to eql(client_id)
+        expect(@client_section["alias"]).to eql(client_alias)
         expect(@client_section["client_id"]).to eql(client_id)
         expect(@client_section["secret"]).to eql(secret)
         expect(@client_section["default_account"]).to eql(default_account)
@@ -76,7 +78,7 @@ describe "brightbox config" do
         config_from_contents("")
         expect { output }.to_not raise_error
 
-        @config = Brightbox::BBConfig.new :client_name => client_id
+        @config = Brightbox::BBConfig.new :client_name => email
 
         expect(cached_access_token(@config)).to eql(@config.access_token)
         expect(cached_refresh_token(@config)).to eql(@config.refresh_token)
@@ -103,10 +105,10 @@ describe "brightbox config" do
         expect { output }.to_not raise_error
 
         @config = Brightbox::BBConfig.new
-        @client_section = @config.config[client_id]
+        @client_section = @config.config[email]
 
         expect(@client_section["api_url"]).to eql(api_url)
-        expect(@client_section["alias"]).to eql(client_id)
+        expect(@client_section["alias"]).to eql(client_alias)
         expect(@client_section["client_id"]).to eql(client_id)
         expect(@client_section["secret"]).to eql(secret)
         expect(@client_section["default_account"]).to eql(default_account)
@@ -116,7 +118,7 @@ describe "brightbox config" do
         config_from_contents("")
         expect { output }.to_not raise_error
 
-        @config = Brightbox::BBConfig.new :client_name => client_id
+        @config = Brightbox::BBConfig.new :client_name => email
 
         expect(cached_access_token(@config)).to eql(@config.access_token)
         expect(cached_refresh_token(@config)).to eql(@config.refresh_token)
@@ -129,14 +131,14 @@ describe "brightbox config" do
     end
 
     context "when application details in config", :vcr do
-      let(:client_id) { "app-12345" }
-      let(:revised_client_id) { "app-12345_1" }
+      let(:revised_alias) { "#{client_alias}_1" }
       let(:argv) { ["config", "user_add", email, client_id, secret] }
       #let(:argv) { ["config", "user_add", email, client_id, secret, api_url] }
 
       before do
         contents = <<-EOS
-        [#{client_id}]
+        [#{client_alias}]
+        alias = #{client_alias}
         client_id = #{client_id}
         secret = #{secret}
         username = #{email}
@@ -155,10 +157,10 @@ describe "brightbox config" do
         expect { output }.to_not raise_error
 
         @config = Brightbox::BBConfig.new
-        @client_section = @config.config[revised_client_id]
+        @client_section = @config.config[revised_alias]
 
         expect(@client_section["api_url"]).to eql("https://api.gb1.brightbox.com")
-        expect(@client_section["alias"]).to eql(revised_client_id)
+        expect(@client_section["alias"]).to eql(revised_alias)
         expect(@client_section["client_id"]).to eql(client_id)
         expect(@client_section["secret"]).to eql(secret)
         expect(@client_section["default_account"]).to eql(default_account)
@@ -168,7 +170,6 @@ describe "brightbox config" do
     context "when application has access to multiple accounts", :vcr do
       # Hardcoded in response, different from single account value
       let(:default_account) { "acc-54321" }
-      let(:client_id) { "app-12345" }
       let(:argv) { ["config", "user_add", email, client_id, secret] }
       #let(:argv) { ["config", "user_add", email, client_id, secret, api_url] }
 
@@ -190,10 +191,10 @@ describe "brightbox config" do
         expect { output }.to_not raise_error
 
         @config = Brightbox::BBConfig.new
-        @client_section = @config.config[client_id]
+        @client_section = @config.config[email]
 
         expect(@client_section["api_url"]).to eql("https://api.gb1.brightbox.com")
-        expect(@client_section["alias"]).to eql(client_id)
+        expect(@client_section["alias"]).to eql(email)
         expect(@client_section["client_id"]).to eql(client_id)
         expect(@client_section["secret"]).to eql(secret)
         # Hardcoded in VCR response of multiple accounts
