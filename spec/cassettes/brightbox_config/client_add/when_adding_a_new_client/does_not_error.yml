@@ -89,4 +89,49 @@ http_interactions:
         Fay","email_address":"jason.null@brightbox.com"},"users":[],"zones":[{"id":"zon-12345","resource_type":"zone","url":"https://api.gb1.brightbox.com/1.0/zones/zon-12345","handle":"gb1-a"},{"id":"zon-12345","resource_type":"zone","url":"https://api.gb1.brightbox.com/1.0/zones/zon-12345","handle":"gb1-b"}]}'
     http_version: 
   recorded_at: Tue, 03 Sep 2013 14:40:26 GMT
+- request:
+    method: post
+    uri: http://api.brightbox.dev/token
+    body:
+      encoding: UTF-8
+      string: '{"grant_type":"none","client_id":"cli-12345"}'
+    headers:
+      User-Agent:
+      - fog/1.15.0
+      Authorization:
+      - Basic Y2xpLTEyMzQ1OnF5Nnh4bnZ5NG8wdGd2NQ==
+      Content-Type:
+      - application/json
+  response:
+    status:
+      code: 200
+      message: 
+    headers:
+      X-Frame-Options:
+      - sameorigin
+      X-XSS-Protection:
+      - 1; mode=block
+      Content-Type:
+      - application/json;charset=utf-8
+      Cache-Control:
+      - no-store
+      Content-Length:
+      - '77'
+      X-UA-Compatible:
+      - IE=Edge
+      ETag:
+      - '"be5e63c4319d63df8771f770da42ecbe"'
+      X-Request-Id:
+      - e479957dc69c9e4f5555cd5127e77d63
+      X-Runtime:
+      - '0.112133'
+      Date:
+      - Fri, 06 Sep 2013 14:49:11 GMT
+      Connection:
+      - keep-alive
+    body:
+      encoding: UTF-8
+      string: '{"access_token":"f96f646926533c711d32e19604bab4db7fe3cbf7","expires_in":7200}'
+    http_version: 
+  recorded_at: Fri, 06 Sep 2013 14:49:11 GMT
 recorded_with: VCR 2.5.0

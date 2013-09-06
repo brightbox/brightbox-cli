@@ -2,6 +2,53 @@ module Brightbox
   module Config
     module Sections
 
+      #
+      # @param [String] client_alias
+      # @param [String] client_id
+      # @param [String] secret
+      # @param [Hash] options
+      # @option options [String] :username
+      # @option options [String] :password
+      # @option options [String] :api_url
+      # @option options [String] :auth_url
+      #
+      def add_section(client_alias, client_id, secret, options)
+        client_config = self[client_alias]
+        unless client_config.empty?
+          old_calias = client_alias
+
+          deduplicator = Brightbox::Config::SectionNameDeduplicator.new(client_alias, clients)
+          client_alias = deduplicator.next
+          # Need to open the new config again
+          client_config = self[client_alias]
+
+          info "A client config named #{old_calias} already exists using #{client_alias} instead"
+        else
+          info "Creating new client config #{client_alias}"
+        end
+
+        client_config["alias"] = client_alias
+        client_config["client_id"] = client_id
+        client_config["username"] = options[:username]
+        client_config["secret"] = secret
+        client_config["api_url"] = options[:api_url] || "https://api.gb1.brightbox.com"
+        client_config["auth_url"] = options[:auth_url] || client_config["api_url"]
+
+        write_config_file
+
+        # Renew tokens via config...
+        begin
+          renew_tokens(:client_name => client_alias, :password => options[:password])
+        rescue => e
+          error "Something went wrong trying to refresh new tokens #{e.message}"
+        end
+
+        # Try to determine a default account
+        if default_account = self.find_or_set_default_account
+          info "The default account of #{default_account} has been selected"
+        end
+      end
+
       # Removes the config section from the configuration object. Must be
       # persisted to disk.
       #
