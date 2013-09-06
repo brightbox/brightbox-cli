@@ -40,8 +40,10 @@ module Brightbox
         unless default_account
           begin
             accounts = Account.all
-            @account = accounts.first.id
-            selected_config["default_account"] = @account
+            @account = accounts.select {|acc| ["pending", "active"].include?(acc.status) }.first.id
+            if @account
+              selected_config["default_account"] = @account
+            end
           rescue Excon::Errors::Unauthorized
             # This is a helper, if it fails let the other code warn and prompt
           end

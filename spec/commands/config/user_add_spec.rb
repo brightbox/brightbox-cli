@@ -202,6 +202,50 @@ describe "brightbox config" do
       end
     end
 
+
+    context "when application has access only one active account", :vcr do
+      # Hardcoded in response, different from single account value
+      let(:default_account) { "acc-33333" }
+      let(:argv) { ["config", "user_add", email, client_id, secret] }
+      #let(:argv) { ["config", "user_add", email, client_id, secret, api_url] }
+
+      before do
+        mock_password_entry(password)
+      end
+
+      it "does not error" do
+        expect { output }.to_not raise_error
+        expect(stderr).to_not include("ERROR")
+      end
+
+      it "display an warning about preselected default" do
+        expect { output }.to_not raise_error
+        expect(stderr).to include("The default account of #{default_account} has been selected")
+      end
+
+      it "sets up the config" do
+        expect { output }.to_not raise_error
+
+        @config = Brightbox::BBConfig.new
+        @client_section = @config.config[email]
+
+        expect(@client_section["api_url"]).to eql("https://api.gb1.brightbox.com")
+        expect(@client_section["alias"]).to eql(email)
+        expect(@client_section["client_id"]).to eql(client_id)
+        expect(@client_section["secret"]).to eql(secret)
+      end
+
+      it "selects the active account for the default" do
+        expect { output }.to_not raise_error
+
+        @config = Brightbox::BBConfig.new
+        @client_section = @config.config[email]
+
+        # Hardcoded in VCR response of multiple accounts
+        expect(@client_section["default_account"]).to eql(default_account)
+      end
+    end
+
     context "when client_id argument format is incorrect" do
       let(:client_id) { "whatever" }
       let(:argv) { ["config", "user_add", email, client_id, secret] }
