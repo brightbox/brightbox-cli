@@ -42,5 +42,13 @@ describe "brightbox config" do
         expect(@client_section["default_account"]).to eql(default_account)
       end
     end
+
+    context "when client_id argument format is incorrect" do
+      let(:argv) { ["config", "client_add", secret, client_id] }
+
+      it "raises an error including the bad argument" do
+        expect(stderr).to include("ERROR: The client-id '#{secret}' must match the format cli-xxxxx")
+      end
+    end
   end
 end

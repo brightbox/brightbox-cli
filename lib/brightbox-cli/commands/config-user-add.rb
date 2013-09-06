@@ -31,7 +31,7 @@ module Brightbox
         end
 
         unless client_id[/^app-.{5}$/]
-          raise "You must specify a valid client-id in the format app-xxxxx"
+          raise "The client-id '#{client_id}' must match the format app-xxxxx"
         end
 
         if secret.nil?
