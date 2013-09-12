@@ -14,13 +14,12 @@ module Brightbox
           raise "You must specify the api alias you want to set as the default"
         end
 
-        client_config = $config.clients.detect{|c| $config[c]["alias"] == calias}
-        if client_config.nil?
+        if $config.client_named?(calias)
+          info "Setting #{calias} as default api client"
+          $config.set_default_client(calias)
+        else
           raise "An api client with the alias #{calias} does not exist in the config"
         end
-
-        info "Setting #{calias} as default api client"
-        $config["core"]["default_client"] = client_config
       end
     end
   end

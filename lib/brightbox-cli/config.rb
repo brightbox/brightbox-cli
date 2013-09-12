@@ -113,6 +113,12 @@ module Brightbox
       end
     end
 
+    # @todo Account for "core" section
+    # @return [Boolean] +true+ if a client (section) has that name
+    def client_named?(name)
+      !! clients.any? {|calias| calias == name }
+    end
+
     # @param [String] client_alias the name of the client to make the default
     def set_default_client(client_alias)
       config["core"]["default_client"] = client_alias
