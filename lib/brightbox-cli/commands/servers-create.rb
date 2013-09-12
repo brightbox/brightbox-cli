@@ -76,7 +76,7 @@ module Brightbox
         end
 
         if user_data
-          unless options[:e]
+          if options[:e]
             require "base64"
             user_data = Base64.encode64(user_data)
           end
