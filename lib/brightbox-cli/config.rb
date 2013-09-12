@@ -58,15 +58,15 @@ module Brightbox
     #
     # @return [Ini] The raw settings from the ini configuration file
     def config
-      return @config if @config
-      return {} if @config == false
+      return @config_file if @config_file
+      return {} if @config_file == false
 
       unless config_directory_exists?
         create_directory
       end
 
-      @config ||= Ini.new config_filename
-      @config
+      @config_file ||= Ini.new(config_filename)
+      @config_file
     rescue Ini::Error => e
       raise BBConfigError, "Config problem in #{config_filename}: #{e}"
     end
@@ -108,8 +108,8 @@ module Brightbox
 
     # Write out the configuration file to disk
     def save
-      if @config.is_a? Ini
-        @config.write
+      if config.respond_to?(:write)
+        config.write
       end
     end
 

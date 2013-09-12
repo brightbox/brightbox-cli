@@ -13,14 +13,14 @@ module Brightbox
       # @option options [String] :auth_url
       #
       def add_section(client_alias, client_id, secret, options)
-        client_config = self[client_alias]
+        client_config = config[client_alias]
         unless client_config.empty?
           old_calias = client_alias
 
           deduplicator = Brightbox::Config::SectionNameDeduplicator.new(client_alias, clients)
           client_alias = deduplicator.next
           # Need to open the new config again
-          client_config = self[client_alias]
+          client_config = config[client_alias]
 
           info "A client config named #{old_calias} already exists using #{client_alias} instead"
         else
