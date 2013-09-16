@@ -23,6 +23,11 @@ describe Brightbox::BBConfig do
         # Embedded in VCR recording
         expect(@config.account).to eql("acc-12345")
       end
+
+      it "dirties the config" do
+        @config.account
+        expect(@config).to be_dirty
+      end
     end
 
     context "when config has a default account set" do
@@ -41,6 +46,12 @@ describe Brightbox::BBConfig do
 
       it "returns the configured default" do
         expect(@config.account).to eql(@account_name)
+      end
+
+      it "does not dirty the config" do
+        expect {
+          @config.account
+        }.to_not change(@config, :dirty?)
       end
     end
   end

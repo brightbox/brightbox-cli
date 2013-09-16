@@ -3,6 +3,7 @@ module Brightbox
     module Accounts
 
       def save_default_account(account_id)
+        dirty! unless account_id == selected_config["default_account"]
         selected_config['default_account'] = account_id
       end
 
@@ -42,7 +43,7 @@ module Brightbox
             accounts = Account.all
             @account = accounts.select {|acc| ["pending", "active"].include?(acc.status) }.first.id
             if @account
-              selected_config["default_account"] = @account
+              save_default_account(@account)
             end
           rescue Excon::Errors::Unauthorized
             # This is a helper, if it fails let the other code warn and prompt

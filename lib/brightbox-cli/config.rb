@@ -11,6 +11,7 @@ module Brightbox
     include Brightbox::Config::Clients
     include Brightbox::Config::Sections
     include Brightbox::Config::ToFog
+    include Brightbox::Config::Dirty
 
     attr_writer :client_name, :account
 
@@ -27,6 +28,7 @@ module Brightbox
       @options = options
       @client_name = options[:client_name]
       @account = options[:account]
+      @dirty = false
     end
 
     # The String path to the configuration directory
@@ -108,7 +110,7 @@ module Brightbox
 
     # Write out the configuration file to disk
     def save
-      if config.respond_to?(:write)
+      if dirty? && config.respond_to?(:write)
         config.write
       end
     end
@@ -121,6 +123,7 @@ module Brightbox
 
     # @param [String] client_alias the name of the client to make the default
     def set_default_client(client_alias)
+      dirty? unless client_alias == config["core"]["default_client"]
       config["core"]["default_client"] = client_alias
     end
 
