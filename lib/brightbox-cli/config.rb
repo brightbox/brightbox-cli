@@ -106,12 +106,6 @@ module Brightbox
       end
     end
 
-    def api_hostname
-      URI(to_fog[:brightbox_api_url]).host
-    rescue StandardError
-      "api.gb1.brightbox.com"
-    end
-
     # Write out the configuration file to disk
     def write_config_file
       if @config.is_a? Ini

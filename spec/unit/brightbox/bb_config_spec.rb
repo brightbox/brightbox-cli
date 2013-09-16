@@ -12,7 +12,6 @@ describe Brightbox::BBConfig do
   it { expect(config).to respond_to(:clients) }
   it { expect(config).to respond_to(:client_name) }
   it { expect(config).to respond_to(:alias) }
-  it { expect(config).to respond_to(:api_hostname) }
   it { expect(config).to respond_to(:access_token_filename) }
   it { expect(config).to respond_to(:refresh_token_filename) }
   it { expect(config).to respond_to(:finish) }
