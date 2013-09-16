@@ -14,7 +14,7 @@ describe Brightbox::BBConfig do
   it { expect(config).to respond_to(:alias) }
   it { expect(config).to respond_to(:access_token_filename) }
   it { expect(config).to respond_to(:refresh_token_filename) }
-  it { expect(config).to respond_to(:finish) }
+  it { expect(config).to respond_to(:save) }
 
   # From Brightbox::Config::ToFog
   it { expect(config).to respond_to(:to_fog) }
@@ -26,6 +26,5 @@ describe Brightbox::BBConfig do
   # From Brightbox::Config::Cache
   it { expect(config).to respond_to(:cache_path) }
   it { expect(config).to respond_to(:save_default_account) }
-  it { expect(config).to respond_to(:write_config_file) }
   it { expect(config).to respond_to(:cache_id) }
 end

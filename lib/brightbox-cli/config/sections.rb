@@ -34,7 +34,7 @@ module Brightbox
         client_config["api_url"] = options[:api_url] || "https://api.gb1.brightbox.com"
         client_config["auth_url"] = options[:auth_url] || client_config["api_url"]
 
-        write_config_file
+        save
 
         # Renew tokens via config...
         begin

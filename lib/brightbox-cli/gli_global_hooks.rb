@@ -76,7 +76,7 @@ module Brightbox
       refresh_token = Api.conn.refresh_token
 
       $config.update_stored_tokens(access_token, refresh_token)
-      $config.write_config_file
+      $config.save
     rescue BBConfigError
     rescue StandardError => e
       # FIXME Other StandardErrors are available

@@ -107,20 +107,9 @@ module Brightbox
     end
 
     # Write out the configuration file to disk
-    def write_config_file
+    def save
       if @config.is_a? Ini
         @config.write
-      end
-    end
-
-    def finish
-      begin
-        save_access_token
-        save_refresh_token
-        write_config_file
-      rescue BBConfigError
-      rescue StandardError => e
-        warn "Error writing auth token #{access_token_filename}: #{e.class}: #{e}"
       end
     end
 
