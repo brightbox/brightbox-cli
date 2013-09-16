@@ -123,8 +123,8 @@ module Brightbox
 
     # @param [String] client_alias the name of the client to make the default
     def set_default_client(client_alias)
-      dirty? unless client_alias == config["core"]["default_client"]
-      config["core"]["default_client"] = client_alias
+      dirty? unless client_alias == default_client
+      set_core_setting("default_client", client_alias)
     end
 
     # Returns the currently CONFIGURED default client (ignoring which client is
@@ -133,15 +133,7 @@ module Brightbox
     # @return [String, NilClass] The client identifier or nil if not set
     #
     def default_client
-      if @default_client
-        @default_client
-      else
-        if config["core"]
-          @default_client = config["core"]["default_client"]
-        else
-          nil
-        end
-      end
+      @default_client ||= core_setting("default_client")
     end
 
     # Outputs to debug the current values of the config/client's tokens
@@ -155,6 +147,16 @@ module Brightbox
           debug "Refresh token: <NOT EXPECTED FOR CLIENT>"
         end
       end
+    end
+
+    # Returns the core
+    def core_setting(setting)
+      config["core"][setting]
+    end
+
+    def set_core_setting(key, value)
+      dirty! unless value == core_setting(key)
+      config["core"][key] = value
     end
 
   private
