@@ -30,7 +30,6 @@ describe "brightbox config" do
 
     context "when NO config file on disk", :vcr do
       let(:argv) { ["config", "user_add", email, client_id, secret] }
-      #let(:argv) { ["config", "user_add", email, client_id, secret, api_url] }
 
       before do
         config_file = File.join(ENV["HOME"], ".brightbox", "config")
@@ -45,7 +44,7 @@ describe "brightbox config" do
         @config = Brightbox::BBConfig.new
         @client_section = @config.config[email]
 
-        expect(@client_section["api_url"]).to eql("https://api.gb1.brightbox.com")
+        expect(@client_section["api_url"]).to eql(Brightbox::DEFAULT_API_ENDPOINT)
         expect(@client_section["alias"]).to eql(client_alias)
         expect(@client_section["client_id"]).to eql(client_id)
         expect(@client_section["secret"]).to eql(secret)
@@ -55,7 +54,6 @@ describe "brightbox config" do
 
     context "when passing in required arguments", :vcr do
       let(:argv) { ["config", "user_add", email, client_id, secret] }
-      #let(:argv) { ["config", "user_add", email, client_id, secret, api_url] }
 
       before do
         mock_password_entry(password)
@@ -67,7 +65,7 @@ describe "brightbox config" do
         @config = Brightbox::BBConfig.new
         @client_section = @config.config[email]
 
-        expect(@client_section["api_url"]).to eql("https://api.gb1.brightbox.com")
+        expect(@client_section["api_url"]).to eql(Brightbox::DEFAULT_API_ENDPOINT)
         expect(@client_section["alias"]).to eql(client_alias)
         expect(@client_section["client_id"]).to eql(client_id)
         expect(@client_section["secret"]).to eql(secret)
@@ -97,7 +95,6 @@ describe "brightbox config" do
 
     context "when new client is first and only client", :vcr do
       let(:argv) { ["config", "user_add", email, client_id, secret] }
-      #let(:argv) { ["config", "user_add", email, client_id, secret, api_url] }
 
       before do
         config_from_contents("")
@@ -110,7 +107,7 @@ describe "brightbox config" do
         @config = Brightbox::BBConfig.new
         @client_section = @config.config[email]
 
-        expect(@client_section["api_url"]).to eql("https://api.gb1.brightbox.com")
+        expect(@client_section["api_url"]).to eql(Brightbox::DEFAULT_API_ENDPOINT)
         expect(@client_section["alias"]).to eql(client_alias)
         expect(@client_section["client_id"]).to eql(client_id)
         expect(@client_section["secret"]).to eql(secret)
@@ -145,7 +142,6 @@ describe "brightbox config" do
 
     context "when a default client is already set", :vcr do
       let(:argv) { ["config", "user_add", email, client_id, secret] }
-      #let(:argv) { ["config", "user_add", email, client_id, secret, api_url] }
 
       before do
         mock_password_entry(password)
@@ -198,7 +194,6 @@ describe "brightbox config" do
     context "when application details in config", :vcr do
       let(:revised_alias) { "#{client_alias}_1" }
       let(:argv) { ["config", "user_add", email, client_id, secret] }
-      #let(:argv) { ["config", "user_add", email, client_id, secret, api_url] }
 
       before do
         contents = <<-EOS
@@ -224,7 +219,7 @@ describe "brightbox config" do
         @config = Brightbox::BBConfig.new
         @client_section = @config.config[revised_alias]
 
-        expect(@client_section["api_url"]).to eql("https://api.gb1.brightbox.com")
+        expect(@client_section["api_url"]).to eql(Brightbox::DEFAULT_API_ENDPOINT)
         expect(@client_section["alias"]).to eql(revised_alias)
         expect(@client_section["client_id"]).to eql(client_id)
         expect(@client_section["secret"]).to eql(secret)
@@ -236,7 +231,6 @@ describe "brightbox config" do
       # Hardcoded in response, different from single account value
       let(:default_account) { "acc-54321" }
       let(:argv) { ["config", "user_add", email, client_id, secret] }
-      #let(:argv) { ["config", "user_add", email, client_id, secret, api_url] }
 
       before do
         mock_password_entry(password)
@@ -258,7 +252,7 @@ describe "brightbox config" do
         @config = Brightbox::BBConfig.new
         @client_section = @config.config[email]
 
-        expect(@client_section["api_url"]).to eql("https://api.gb1.brightbox.com")
+        expect(@client_section["api_url"]).to eql(Brightbox::DEFAULT_API_ENDPOINT)
         expect(@client_section["alias"]).to eql(email)
         expect(@client_section["client_id"]).to eql(client_id)
         expect(@client_section["secret"]).to eql(secret)
@@ -272,7 +266,6 @@ describe "brightbox config" do
       # Hardcoded in response, different from single account value
       let(:default_account) { "acc-33333" }
       let(:argv) { ["config", "user_add", email, client_id, secret] }
-      #let(:argv) { ["config", "user_add", email, client_id, secret, api_url] }
 
       before do
         mock_password_entry(password)
@@ -294,7 +287,7 @@ describe "brightbox config" do
         @config = Brightbox::BBConfig.new
         @client_section = @config.config[email]
 
-        expect(@client_section["api_url"]).to eql("https://api.gb1.brightbox.com")
+        expect(@client_section["api_url"]).to eql(Brightbox::DEFAULT_API_ENDPOINT)
         expect(@client_section["alias"]).to eql(email)
         expect(@client_section["client_id"]).to eql(client_id)
         expect(@client_section["secret"]).to eql(secret)

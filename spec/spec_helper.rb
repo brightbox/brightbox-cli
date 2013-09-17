@@ -29,6 +29,12 @@ RSpec.configure do |config|
   config.include TokenHelpers
   config.include PasswordPromptHelpers
 
+  # For each test, point to the testing endpoint to make it safer and easier to
+  # record from dev endpoints. Devs can DNS api.brightbox.dev to their dev service
+  config.before do
+    stub_const("Brightbox::DEFAULT_API_ENDPOINT", "http://api.brightbox.dev")
+  end
+
   # For each test, isolate the testing users $HOME so that we control the config
   # and any cached values completely.
   config.around(:each) do |example|

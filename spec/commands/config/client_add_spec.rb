@@ -23,7 +23,6 @@ describe "brightbox config" do
 
     context "when adding a new client", :vcr do
       let(:argv) { ["config", "client_add", client_id, secret] }
-      #let(:argv) { ["config", "client_add", client_id, secret, api_url] }
 
       it "does not error" do
         expect(stderr).to_not include("ERROR")
@@ -35,7 +34,7 @@ describe "brightbox config" do
         @config = Brightbox::BBConfig.new
         @client_section = @config.config[client_id]
 
-        expect(@client_section["api_url"]).to eql("https://api.gb1.brightbox.com")
+        expect(@client_section["api_url"]).to eql(Brightbox::DEFAULT_API_ENDPOINT)
         expect(@client_section["alias"]).to eql(client_id)
         expect(@client_section["client_id"]).to eql(client_id)
         expect(@client_section["secret"]).to eql(secret)
@@ -45,7 +44,6 @@ describe "brightbox config" do
 
     context "when new client is first and only client", :vcr do
       let(:argv) { ["config", "client_add", client_id, secret] }
-      #let(:argv) { ["config", "client_add", client_id, secret, api_url] }
 
       before do
         config_from_contents("")
@@ -61,7 +59,7 @@ describe "brightbox config" do
         @config = Brightbox::BBConfig.new
         @client_section = @config.config[client_id]
 
-        expect(@client_section["api_url"]).to eql("https://api.gb1.brightbox.com")
+        expect(@client_section["api_url"]).to eql(Brightbox::DEFAULT_API_ENDPOINT)
         expect(@client_section["alias"]).to eql(client_id)
         expect(@client_section["client_id"]).to eql(client_id)
         expect(@client_section["secret"]).to eql(secret)
@@ -78,7 +76,6 @@ describe "brightbox config" do
 
     context "when new client is first and only client", :vcr do
       let(:argv) { ["config", "client_add", client_id, secret] }
-      #let(:argv) { ["config", "client_add", client_id, secret, api_url] }
 
       it "does not change the default client" do
         expect { output }.to_not raise_error
