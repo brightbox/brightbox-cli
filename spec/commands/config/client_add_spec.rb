@@ -46,7 +46,7 @@ describe "brightbox config" do
       let(:argv) { ["config", "client_add", client_id, secret] }
 
       before do
-        config_from_contents("")
+        remove_config
       end
 
       it "does not error" do

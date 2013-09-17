@@ -73,7 +73,7 @@ describe "brightbox config" do
       end
 
       it "requests access tokens" do
-        config_from_contents("")
+        remove_config
         expect { output }.to_not raise_error
 
         @config = Brightbox::BBConfig.new :client_name => email
@@ -97,7 +97,7 @@ describe "brightbox config" do
       let(:argv) { ["config", "user_add", email, client_id, secret] }
 
       before do
-        config_from_contents("")
+        remove_config
         mock_password_entry(password)
       end
 
@@ -176,7 +176,7 @@ describe "brightbox config" do
       end
 
       it "requests access tokens" do
-        config_from_contents("")
+        remove_config
         expect { output }.to_not raise_error
 
         @config = Brightbox::BBConfig.new :client_name => email
