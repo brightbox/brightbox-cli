@@ -3,6 +3,18 @@ require "spec_helper"
 describe Brightbox::BBConfig do
 
   describe "#default_account" do
+    context "when no config file is available" do
+      before do
+        remove_config
+      end
+
+      it "does not raise an error" do
+        expect {
+          Brightbox::BBConfig.new.default_account
+        }.to_not raise_error
+      end
+    end
+
     context "when not available in config" do
       before do
         contents =<<-EOS

@@ -11,9 +11,13 @@ module Brightbox
       #
       #
       def default_account
-        configured_default_account = selected_config["default_account"]
-        if configured_default_account && !configured_default_account.empty?
-          configured_default_account
+        if selected_config
+          configured_default_account = selected_config["default_account"]
+          if configured_default_account && !configured_default_account.empty?
+            configured_default_account
+          else
+            nil
+          end
         else
           nil
         end
