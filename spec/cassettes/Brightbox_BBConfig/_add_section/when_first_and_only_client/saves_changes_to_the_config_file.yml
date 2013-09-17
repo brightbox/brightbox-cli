@@ -1,0 +1,174 @@
+---
+http_interactions:
+- request:
+    method: post
+    uri: http://api.brightbox.dev/token
+    body:
+      encoding: UTF-8
+      string: '{"grant_type":"password","client_id":"app-12345","username":"jason.null@brightbox.com","password":"N:B3e%7Cmh"}'
+    headers:
+      User-Agent:
+      - fog/1.15.0
+      Authorization:
+      - Basic YXBwLTEyMzQ1Om1vY2J1aXBiaWFhNms2Yw==
+      Content-Type:
+      - application/json
+  response:
+    status:
+      code: 200
+      message: 
+    headers:
+      X-Frame-Options:
+      - sameorigin
+      X-XSS-Protection:
+      - 1; mode=block
+      Content-Type:
+      - application/json;charset=utf-8
+      Cache-Control:
+      - no-store
+      Content-Length:
+      - '136'
+      X-UA-Compatible:
+      - IE=Edge
+      ETag:
+      - '"1e4b0716ec264e36e50e3e517c6ad68d"'
+      X-Request-Id:
+      - 045c8c73141525823b1706ba711442ff
+      X-Runtime:
+      - '1.318559'
+      Date:
+      - Tue, 17 Sep 2013 11:39:25 GMT
+      Connection:
+      - keep-alive
+    body:
+      encoding: UTF-8
+      string: '{"access_token":"ce0343b20205dbdb7b1cb8d74f7176f321534e8b","expires_in":7200,"refresh_token":"2d628e723fc626de4949915bf56488dc05464d4c"}'
+    http_version: 
+  recorded_at: Tue, 17 Sep 2013 11:39:25 GMT
+- request:
+    method: get
+    uri: http://api.brightbox.dev/1.0/accounts
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      User-Agent:
+      - fog/1.15.0
+      Authorization:
+      - OAuth ce0343b20205dbdb7b1cb8d74f7176f321534e8b
+      Content-Type:
+      - application/json
+  response:
+    status:
+      code: 401
+      message: 
+    headers:
+      WWW-Authenticate:
+      - OAuth error="expired_token"
+      Content-Type:
+      - application/json; charset=utf-8
+      X-UA-Compatible:
+      - IE=Edge
+      Cache-Control:
+      - no-cache
+      X-Request-Id:
+      - d046f823187aef361b8d1982ee2c3b5b
+      X-Runtime:
+      - '0.021085'
+      Date:
+      - Tue, 17 Sep 2013 13:50:27 GMT
+      Connection:
+      - close
+    body:
+      encoding: UTF-8
+      string: '{"error":"expired_token","error_description":"OAuth token presented
+        has expired and is no longer valid"}'
+    http_version: 
+  recorded_at: Tue, 17 Sep 2013 13:50:27 GMT
+- request:
+    method: post
+    uri: http://api.brightbox.dev/token
+    body:
+      encoding: UTF-8
+      string: '{"grant_type":"refresh_token","client_id":"app-12345","refresh_token":"2d628e723fc626de4949915bf56488dc05464d4c"}'
+    headers:
+      User-Agent:
+      - fog/1.15.0
+      Authorization:
+      - Basic YXBwLTEyMzQ1Om1vY2J1aXBiaWFhNms2Yw==
+      Content-Type:
+      - application/json
+  response:
+    status:
+      code: 400
+      message: 
+    headers:
+      X-Frame-Options:
+      - sameorigin
+      X-XSS-Protection:
+      - 1; mode=block
+      Content-Type:
+      - application/json;charset=utf-8
+      Cache-Control:
+      - no-store
+      Content-Length:
+      - '250'
+      X-UA-Compatible:
+      - IE=Edge
+      X-Request-Id:
+      - 629ad418fe555e4eb0ff1225dc3e57db
+      X-Runtime:
+      - '0.118839'
+      Date:
+      - Tue, 17 Sep 2013 13:50:27 GMT
+      Connection:
+      - keep-alive
+    body:
+      encoding: UTF-8
+      string: '{"error":"invalid_grant","error_description":"The provided access grant
+        is invalid, expired, or revoked (e.g. invalid assertion, expired authorization
+        token, bad end-user password credentials, or mismatching authorization code
+        and redirection URI)."}'
+    http_version: 
+  recorded_at: Tue, 17 Sep 2013 13:50:27 GMT
+- request:
+    method: get
+    uri: http://api.brightbox.dev/1.0/accounts
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      User-Agent:
+      - fog/1.15.0
+      Authorization:
+      - 'OAuth '
+      Content-Type:
+      - application/json
+  response:
+    status:
+      code: 401
+      message: 
+    headers:
+      WWW-Authenticate:
+      - OAuth error="invalid_token"
+      Content-Type:
+      - application/json; charset=utf-8
+      X-UA-Compatible:
+      - IE=Edge
+      Cache-Control:
+      - no-cache
+      X-Request-Id:
+      - 1c6e6fd6a064a0d1f8d4cb3db2f5ece1
+      X-Runtime:
+      - '0.018553'
+      Date:
+      - Tue, 17 Sep 2013 13:50:27 GMT
+      Connection:
+      - close
+    body:
+      encoding: UTF-8
+      string: '{"error":"invalid_token","error_description":"The OAuth token can not
+        be found"}'
+    http_version: 
+  recorded_at: Tue, 17 Sep 2013 13:50:27 GMT
+recorded_with: VCR 2.5.0

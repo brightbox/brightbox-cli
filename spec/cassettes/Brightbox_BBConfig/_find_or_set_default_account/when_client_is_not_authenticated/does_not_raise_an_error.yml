@@ -134,4 +134,129 @@ http_interactions:
       string: '{"access_token":"ab6038ff8f5838ec20c6fa5e7b43a78f0e3a459a","expires_in":7200}'
     http_version: 
   recorded_at: Wed, 28 Aug 2013 16:09:15 GMT
+- request:
+    method: get
+    uri: http://api.brightbox.dev/1.0/accounts
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      User-Agent:
+      - fog/1.15.0
+      Authorization:
+      - OAuth ab6038ff8f5838ec20c6fa5e7b43a78f0e3a459a
+      Content-Type:
+      - application/json
+  response:
+    status:
+      code: 401
+      message: 
+    headers:
+      WWW-Authenticate:
+      - OAuth error="invalid_token"
+      Content-Type:
+      - application/json; charset=utf-8
+      X-UA-Compatible:
+      - IE=Edge
+      Cache-Control:
+      - no-cache
+      X-Request-Id:
+      - fabf5734397aa5e3db0eb5acc5d916b4
+      X-Runtime:
+      - '0.019969'
+      Date:
+      - Tue, 17 Sep 2013 17:07:41 GMT
+      Connection:
+      - close
+    body:
+      encoding: UTF-8
+      string: '{"error":"invalid_token","error_description":"The OAuth token can not
+        be found"}'
+    http_version: 
+  recorded_at: Tue, 17 Sep 2013 17:07:41 GMT
+- request:
+    method: post
+    uri: http://api.brightbox.dev/token
+    body:
+      encoding: UTF-8
+      string: '{"grant_type":"none","client_id":"cli-12345"}'
+    headers:
+      User-Agent:
+      - fog/1.15.0
+      Authorization:
+      - Basic Y2xpLTEyMzQ1Ondyb25nX3Bhc3N3b3Jk
+      Content-Type:
+      - application/json
+  response:
+    status:
+      code: 401
+      message: 
+    headers:
+      X-Frame-Options:
+      - sameorigin
+      X-XSS-Protection:
+      - 1; mode=block
+      Content-Type:
+      - application/json;charset=utf-8
+      Cache-Control:
+      - no-store
+      WWW-Authenticate:
+      - Basic realm="api.gb1.brightbox.com"
+      Content-Length:
+      - '26'
+      X-UA-Compatible:
+      - IE=Edge
+      X-Request-Id:
+      - c21c187949d13bec541a7eb4a2238b36
+      X-Runtime:
+      - '0.103984'
+      Date:
+      - Tue, 17 Sep 2013 17:07:41 GMT
+      Connection:
+      - keep-alive
+    body:
+      encoding: UTF-8
+      string: '{"error":"invalid_client"}'
+    http_version: 
+  recorded_at: Tue, 17 Sep 2013 17:07:41 GMT
+- request:
+    method: get
+    uri: http://api.brightbox.dev/1.0/accounts
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      User-Agent:
+      - fog/1.15.0
+      Authorization:
+      - 'OAuth '
+      Content-Type:
+      - application/json
+  response:
+    status:
+      code: 401
+      message: 
+    headers:
+      WWW-Authenticate:
+      - OAuth error="invalid_token"
+      Content-Type:
+      - application/json; charset=utf-8
+      X-UA-Compatible:
+      - IE=Edge
+      Cache-Control:
+      - no-cache
+      X-Request-Id:
+      - 52754bc5b89e3922e3f0c8a40aac2f21
+      X-Runtime:
+      - '0.017566'
+      Date:
+      - Tue, 17 Sep 2013 17:07:41 GMT
+      Connection:
+      - close
+    body:
+      encoding: UTF-8
+      string: '{"error":"invalid_token","error_description":"The OAuth token can not
+        be found"}'
+    http_version: 
+  recorded_at: Tue, 17 Sep 2013 17:07:41 GMT
 recorded_with: VCR 2.5.0

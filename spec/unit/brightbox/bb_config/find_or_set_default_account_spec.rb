@@ -4,6 +4,18 @@ describe Brightbox::BBConfig do
   let(:config) { config_from_contents(contents) }
 
   describe "#find_or_set_default_account" do
+    context "when no config file exists" do
+      before do
+        remove_config
+      end
+
+      it "does not raise an error" do
+        expect {
+          Brightbox::BBConfig.new.find_or_set_default_account
+        }.to_not raise_error
+      end
+    end
+
     context "when a default account is available" do
       let(:contents) do
         <<-EOS

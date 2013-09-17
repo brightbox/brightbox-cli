@@ -44,11 +44,16 @@ module Brightbox
         #   never need to run for them.
         unless default_account
           begin
-            accounts = Account.all
+            service = Fog::Compute.new(to_fog)
+            accounts = service.accounts
+
             @account = accounts.select {|acc| ["pending", "active"].include?(acc.status) }.first.id
             if @account
               save_default_account(@account)
             end
+          rescue Brightbox::BBConfigError
+            # We can't get a suitable fog connection so we can't select an
+            # account
           rescue Excon::Errors::Unauthorized
             # This is a helper, if it fails let the other code warn and prompt
           end
