@@ -19,4 +19,16 @@ module ConfigHelpers
 
     config
   end
+
+  def remove_config
+    config = Brightbox::BBConfig.new
+    FileUtils.rm config.config_filename
+  end
+
+  # Returns the file contents of a config
+  #
+  def config_file_contents
+    config = Brightbox::BBConfig.new
+    IO.read(config.config_filename)
+  end
 end
