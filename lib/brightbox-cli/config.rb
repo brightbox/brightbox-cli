@@ -112,6 +112,7 @@ module Brightbox
     def save
       if dirty? && config.respond_to?(:write)
         config.write
+        clean_up
       end
     end
 
