@@ -1,0 +1,147 @@
+#!/usr/bin/env ruby
+
+# Setup with: complete -C /path/to/brightbox-cli-bash-completer -o dirnames brightbox
+
+SPEC = { "brightbox" =>
+        {
+         "account-access" => %w{list show},
+         "accounts" => %w{accept_invite default list remove reset_ftp_password show},
+         "cloudips" => { "create" => 
+                        { 
+                         "-i=" => true,
+                         "--count=" => true,
+                         "-n=" => true,
+                         "--name=" => true,
+                         "-t=" => true,
+                         "--port-translators" => true
+                        }
+                       },
+         "collaborators" => nil,
+         "config" => nil,
+         "firewall-policies" => nil,
+         "firewall-rules" => nil,
+         "groups" => nil,
+         "help" => nil,
+         "images" => nil,
+         "lbs" => nil,
+         "servers" =>
+           {
+            "create" => { 
+                         "-e" => "--no-base64",
+                         "--no-base64" => true,
+                         "--base-64" => true,
+                         "-f=" => "--user-data-file=",
+                         "--user-data-file=" => true,
+                         "-g=" => "--server-groups=",
+                         "--server-groups=" => lambda { |c,p| find_identifiers("grp-") },
+                         "-i=" => "--server-count=",
+                         "--server-count=" => true,
+                         "-m=" => "--user-data=",
+                         "--user-data=" => true,
+                         "-n=" => "--name=",
+                         "--name=" => true,
+                         "-t=" => "--type=",
+                         "--type=" => lambda { |c,p|
+                           find_identifiers("typ-") + 
+                             %w{nano mini small medium large xl xxl} +
+                             %w{nano.high-io mini.high-io small.high-io medium.high0io large.high-io xl.high-io xxl.high-io }
+                         },
+                         "-z=" => "--zone=",
+                         "--zone=" => lambda { |c,p| find_identifiers("zon-") + %w{gb1-a gb1-b} },
+                         :_default => lambda { |cur, prev| prev =~ /^img/ ? [] : find_identifiers("img-")  }
+                        },
+            "update" => %w{--no-compatability-mode --compatability-mode -e --no-base64 -f= --user-data-file= -g= --server-groups= -m= --user-data= -n= --name=},
+            "activate_console" => true,
+            "destroy" => true,
+            "list" => true,
+            "show" => true,
+            "shutdown" => true,
+            "start" => true,
+            "stop" => true
+           },
+         "types" => nil,
+         "users" => nil,
+         "zones" => nil,
+         "-a" => "--account",
+         "--account=" => lambda { find_identifiers("acc-") },
+         "-c=" => "--client",
+         "--client=" => lambda { find_clients },
+         "-k" => "--insecure",
+         "--insecure" => true
+        }
+       }
+
+def complete!(a, cur = nil)
+  a = a.keys if a.is_a? Hash
+  matches = a.find_all { |e| e.index(cur) == 0 }
+  # exclude all option args unless specifically looking for them
+  if cur.index('-') != 0
+    matches = matches.find_all { |e| e.index('-') != 0 }
+  end
+  matches.collect! { |m| m.chomp("=") }
+  puts matches.join("\n")
+  exit 0
+end
+
+def find_identifiers(prefix)
+  all = Dir.glob(File.join(ENV['HOME'], '.brightbox', 'cache', prefix+'*'))
+  all.collect! { |f| File.basename(f) }
+end
+
+def find_clients
+  config = File.read(File.join(ENV['HOME'], '.brightbox', 'config')) rescue []
+  config.scan(/^\[(.*)\]/).flatten - ["core"]
+end
+
+def walk(line, cur, prev, spec = SPEC.dup)
+  toks = line.is_a?(Array) ? line.dup : line.split(/(?<!\\)\s+/) # skip escaped spaces
+  tok = toks.shift
+  loop do
+    tok = tok.to_s + "=" if spec.include?(tok.to_s + '=')
+    case spec[tok]
+    when nil
+      # end of the spec hierarchy
+      # exclude any aliases
+      options = {}
+      if spec.include? :_default
+        # call the default lamba and merge in the results if there is one
+        spec[:_default].call(cur, prev).each do |k,v|
+          options[k] = v
+        end
+        spec.delete :_default
+      end
+      return options.merge spec.reject { |k,v| v.is_a? String }
+    when true
+      if (prev + '=') == tok
+        return []
+      end
+    when String
+      # alias to another command
+      tok = spec[tok]
+      next
+    when Hash
+      spec = spec[tok]
+    when Proc
+      if (prev + '=') == tok
+        return spec[tok].call(cur, prev)
+      else
+        # 
+        toks.shift
+      end
+    end
+    tok = toks.shift
+  end
+  spec
+end
+
+cmd = ARGV[0]
+cur = ARGV[1]
+prev = ARGV[2]
+line = ENV['COMP_LINE']
+#ENV.keys.grep(/./).each { |k| STDERR.puts "#{k}: " + ENV[k] }
+
+
+complete! walk(line, cur, prev), cur
+exit 0
+
+#STDERR.puts prev
