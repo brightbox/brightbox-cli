@@ -18,7 +18,7 @@ module Brightbox
 
         client_id = args.shift
         secret = args.shift
-        api_url = args.shift || "https://api.gb1.brightbox.com"
+        api_url = args.shift || DEFAULT_API_ENDPOINT
         auth_url = args.shift || api_url
 
         calias = options[:a] || client_id

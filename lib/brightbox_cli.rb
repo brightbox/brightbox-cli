@@ -27,6 +27,8 @@ require 'gli'
 require "fog/brightbox/compute"
 
 module Brightbox
+  DEFAULT_API_ENDPOINT = "https://api.gb1.brightbox.com"
+
   autoload :Server, File.expand_path("../brightbox-cli/servers", __FILE__)
   autoload :DetailedServer, File.expand_path("../brightbox-cli/detailed_server", __FILE__)
   autoload :Image, File.expand_path("../brightbox-cli/images", __FILE__)
