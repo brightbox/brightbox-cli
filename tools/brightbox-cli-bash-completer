@@ -1,6 +1,25 @@
 #!/usr/bin/env ruby
 
-# Setup with: complete -C /path/to/brightbox-cli-bash-completer -o dirnames brightbox
+# Setup with: complete -C /path/to/brightbox-cli-bash-completer -o filenames brightbox
+
+require 'shellwords'
+
+class String
+  def shellunescape
+    str = self.dup
+
+    # Treat multibyte characters as is. It is caller's responsibility
+    # to encode the string in the right encoding for the shell
+    # environment.
+    str.gsub!(/\\([^A-Za-z0-9_\-.,:\/@\n])/, '\1')
+
+    # A LF cannot be escaped with a backslash because a backslash + LF
+    # combo is regarded as line continuation and simply ignored.
+    #str.gsub!('\n', "\n")
+
+    return str
+  end
+end
 
 SPEC = { "brightbox" =>
         {
@@ -31,7 +50,7 @@ SPEC = { "brightbox" =>
                          "--no-base64" => true,
                          "--base-64" => true,
                          "-f=" => "--user-data-file=",
-                         "--user-data-file=" => true,
+                         "--user-data-file=" => lambda { |c,p| find_filename(c) },
                          "-g=" => "--server-groups=",
                          "--server-groups=" => lambda { |c,p| find_identifiers("grp-") },
                          "-i=" => "--server-count=",
@@ -93,8 +112,17 @@ def find_clients
   config.scan(/^\[(.*)\]/).flatten - ["core"]
 end
 
+def find_filename(cur)
+  files = Dir.glob(cur + '*')
+  if files.size == 1 and File.directory?(files.first)
+    files = [File.join(files.first, '')]
+    files += Dir.glob(File.join(files.first, '*'))
+  end
+  files
+end
+
 def walk(line, cur, prev, spec = SPEC.dup)
-  toks = line.is_a?(Array) ? line.dup : line.split(/(?<!\\)\s+/) # skip escaped spaces
+  toks = line.is_a?(Array) ? line.dup : line.shellsplit
   tok = toks.shift
   loop do
     tok = tok.to_s + "=" if spec.include?(tok.to_s + '=')
@@ -135,13 +163,12 @@ def walk(line, cur, prev, spec = SPEC.dup)
 end
 
 cmd = ARGV[0]
-cur = ARGV[1]
-prev = ARGV[2]
-line = ENV['COMP_LINE']
+cur = ARGV[1].shellunescape
+prev = ARGV[2].shellunescape
+line = ENV['COMP_LINE'].shellunescape
 #ENV.keys.grep(/./).each { |k| STDERR.puts "#{k}: " + ENV[k] }
 
+#STDERR.puts cur
 
 complete! walk(line, cur, prev), cur
 exit 0
-
-#STDERR.puts prev
