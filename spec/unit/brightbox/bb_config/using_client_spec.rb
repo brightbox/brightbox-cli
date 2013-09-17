@@ -22,6 +22,18 @@ describe Brightbox::BBConfig do
   let(:config) { config_from_contents(contents) }
 
   describe "#using_application?" do
+    context "when no config is saved" do
+      before do
+        remove_config
+      end
+
+      it "does not raise an error" do
+        expect {
+          Brightbox::BBConfig.new.using_application?
+        }.to raise_error(Brightbox::BBConfigError)
+      end
+    end
+
     context "when selected config is for a user application" do
       let(:client_name) { user_client_id }
 
@@ -51,6 +63,18 @@ describe Brightbox::BBConfig do
   end
 
   describe "#using_api_client?" do
+    context "when no config is saved" do
+      before do
+        remove_config
+      end
+
+      it "does not raise an error" do
+        expect {
+          Brightbox::BBConfig.new.using_api_client?
+        }.to raise_error(Brightbox::BBConfigError)
+      end
+    end
+
     context "when selected config is for a user application" do
       let(:client_name) { user_client_id }
 
