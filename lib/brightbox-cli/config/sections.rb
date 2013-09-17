@@ -35,7 +35,8 @@ module Brightbox
         client_config["auth_url"] = options[:auth_url] || client_config["api_url"]
 
         dirty!
-        save
+
+        self.client_name = client_alias
 
         # Renew tokens via config...
         begin
@@ -53,6 +54,9 @@ module Brightbox
         unless default_client
           set_default_client(client_alias)
         end
+
+        # Ensure all our config changes are now saved
+        save
       end
 
       # Removes the config section from the configuration object. Must be

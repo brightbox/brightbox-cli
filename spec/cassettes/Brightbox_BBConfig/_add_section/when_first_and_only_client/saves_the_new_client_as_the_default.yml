@@ -31,20 +31,20 @@ http_interactions:
       X-UA-Compatible:
       - IE=Edge
       ETag:
-      - '"72ff90fdb19b08e93178db1ad9e8abc0"'
+      - '"0d98145713eb3d1daa1ca5cea31e3778"'
       X-Request-Id:
-      - 576b4850e2670e82dc24c4da41d29397
+      - 0d19c9a8e7e4f08504eacfe243eeb081
       X-Runtime:
-      - '0.199462'
+      - '0.194705'
       Date:
-      - Tue, 17 Sep 2013 11:39:26 GMT
+      - Tue, 17 Sep 2013 17:09:51 GMT
       Connection:
       - keep-alive
     body:
       encoding: UTF-8
-      string: '{"access_token":"ca7d6ccd7ce38ac1b0ec231896d9d65a0cba7546","expires_in":7200,"refresh_token":"dc01833de311dee94623eb595e50fa2403fbaa59"}'
+      string: '{"access_token":"62efcf9adae4374763e5b2d2b85c045131e4b9df","expires_in":7200,"refresh_token":"69e5722c579fedd68afc614cd4b4766ae35033cf"}'
     http_version: 
-  recorded_at: Tue, 17 Sep 2013 11:39:26 GMT
+  recorded_at: Tue, 17 Sep 2013 17:09:51 GMT
 - request:
     method: get
     uri: http://api.brightbox.dev/1.0/accounts
@@ -55,92 +55,7 @@ http_interactions:
       User-Agent:
       - fog/1.15.0
       Authorization:
-      - OAuth ca7d6ccd7ce38ac1b0ec231896d9d65a0cba7546
-      Content-Type:
-      - application/json
-  response:
-    status:
-      code: 401
-      message: 
-    headers:
-      WWW-Authenticate:
-      - OAuth error="expired_token"
-      Content-Type:
-      - application/json; charset=utf-8
-      X-UA-Compatible:
-      - IE=Edge
-      Cache-Control:
-      - no-cache
-      X-Request-Id:
-      - 4d70b54566264ca6f48fc1e5212dab38
-      X-Runtime:
-      - '0.021879'
-      Date:
-      - Tue, 17 Sep 2013 13:50:28 GMT
-      Connection:
-      - close
-    body:
-      encoding: UTF-8
-      string: '{"error":"expired_token","error_description":"OAuth token presented
-        has expired and is no longer valid"}'
-    http_version: 
-  recorded_at: Tue, 17 Sep 2013 13:50:28 GMT
-- request:
-    method: post
-    uri: http://api.brightbox.dev/token
-    body:
-      encoding: UTF-8
-      string: '{"grant_type":"refresh_token","client_id":"app-12345","refresh_token":"dc01833de311dee94623eb595e50fa2403fbaa59"}'
-    headers:
-      User-Agent:
-      - fog/1.15.0
-      Authorization:
-      - Basic YXBwLTEyMzQ1Om1vY2J1aXBiaWFhNms2Yw==
-      Content-Type:
-      - application/json
-  response:
-    status:
-      code: 200
-      message: 
-    headers:
-      X-Frame-Options:
-      - sameorigin
-      X-XSS-Protection:
-      - 1; mode=block
-      Content-Type:
-      - application/json;charset=utf-8
-      Cache-Control:
-      - no-store
-      Content-Length:
-      - '136'
-      X-UA-Compatible:
-      - IE=Edge
-      ETag:
-      - '"1ffb5709ab284852f0248b919b4a86f7"'
-      X-Request-Id:
-      - 0ecbe73cfe8b0ba6e9c651f4a5780ccd
-      X-Runtime:
-      - '0.226904'
-      Date:
-      - Tue, 17 Sep 2013 13:50:28 GMT
-      Connection:
-      - keep-alive
-    body:
-      encoding: UTF-8
-      string: '{"access_token":"3b40a271a32099f2b2fea2534676c4b1910c2cd1","expires_in":7200,"refresh_token":"1f0035931e2acabe2e959340788eeee0274d15de"}'
-    http_version: 
-  recorded_at: Tue, 17 Sep 2013 13:50:28 GMT
-- request:
-    method: get
-    uri: http://api.brightbox.dev/1.0/accounts
-    body:
-      encoding: US-ASCII
-      string: ''
-    headers:
-      User-Agent:
-      - fog/1.15.0
-      Authorization:
-      - OAuth 3b40a271a32099f2b2fea2534676c4b1910c2cd1
+      - OAuth 62efcf9adae4374763e5b2d2b85c045131e4b9df
       Content-Type:
       - application/json
   response:
@@ -157,11 +72,11 @@ http_interactions:
       Cache-Control:
       - max-age=0, private, must-revalidate
       X-Request-Id:
-      - f04f617bd91b5d1b04e565d7eae2730a
+      - e9c5accada81a160c799201bf012e4f0
       X-Runtime:
-      - '0.109909'
+      - '0.118730'
       Date:
-      - Tue, 17 Sep 2013 13:50:28 GMT
+      - Tue, 17 Sep 2013 17:09:51 GMT
       Connection:
       - close
     body:
@@ -171,5 +86,5 @@ http_interactions:
         to the default server group."}],"owner":{"id":"usr-12345","resource_type":"user","url":"https://api.gb1.brightbox.com/1.0/users/usr-12345","name":"Kobe
         Swaniawski Sr.","email_address":"jason.null@brightbox.com"},"users":[],"zones":[{"id":"zon-12345","resource_type":"zone","url":"https://api.gb1.brightbox.com/1.0/zones/zon-12345","handle":"gb1-a"},{"id":"zon-12345","resource_type":"zone","url":"https://api.gb1.brightbox.com/1.0/zones/zon-12345","handle":"gb1-b"}]}]'
     http_version: 
-  recorded_at: Tue, 17 Sep 2013 13:50:28 GMT
+  recorded_at: Tue, 17 Sep 2013 17:09:51 GMT
 recorded_with: VCR 2.5.0
