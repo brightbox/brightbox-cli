@@ -93,6 +93,9 @@ module Brightbox
         # FIXME Curious output from info
         info "Your API credentials have been updated, please re-run your command."
         returned
+      rescue Brightbox::Api::ApiError
+        error "Unable to authenticate with supplied details"
+        false
       rescue
         false
       ensure

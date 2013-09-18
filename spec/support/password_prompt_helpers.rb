@@ -10,9 +10,7 @@ module PasswordPromptHelpers
   # Intercepts HighLine prompting for a password and returns the testing default
   # or a specific value. Otherwise this blocks the specs.
   #
-  # @todo If we use HighLine in multiple places then this needs expanding
-  #
   def mock_password_entry(password = default_test_password)
-    HighLine.any_instance.should_receive(:ask).and_return(password)
+    HighLine.any_instance.should_receive(:ask).at_least(:once).and_return(password)
   end
 end

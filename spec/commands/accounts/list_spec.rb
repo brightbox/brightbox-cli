@@ -26,7 +26,30 @@ describe "brightbox accounts" do
       end
 
       it "does not report invalid token errors" do
-        expect(stderr).to_not include("ERROR: invalid_token")
+        expect(stderr).to_not include("ERROR")
+      end
+
+      it "reports they were updated" do
+        expect(stderr).to include("Your API credentials have been updated, please re-run your command")
+      end
+    end
+
+    context "(when no tokens and password incorrect)", :vcr do
+      let(:password) { "wrong" }
+
+      let(:argv) { ["accounts", "list"] }
+
+      before do
+        config_from_contents(USER_APP_CONFIG_CONTENTS)
+        mock_password_entry(password)
+      end
+
+      it "does not report invalid token errors" do
+        expect(stderr).to_not include("ERROR")
+      end
+
+      it "reports unable to authenticate" do
+        expect(stderr).to include("Unable to authenticate with supplied details")
       end
     end
 
