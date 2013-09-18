@@ -64,6 +64,8 @@ module Brightbox
       #
       def delete_section(name)
         config.delete_section(name)
+        dirty!
+        save
       end
 
       # Config data for a named section
