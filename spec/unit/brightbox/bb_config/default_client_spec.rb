@@ -5,8 +5,8 @@ describe Brightbox::BBConfig do
   describe "#default_client" do
     context "when config file is empty" do
       before do
-        contents = ""
-        @config = config_from_contents(contents)
+        remove_config
+        @config = Brightbox::BBConfig.new
       end
 
       it "returns the configured default" do
@@ -19,7 +19,7 @@ describe Brightbox::BBConfig do
         contents =<<-EOS
         [core]
         EOS
-        @tmp_config = TmpConfig.new(contents)
+        @tmp_config = config_from_contents(contents)
         @config = config_from_contents(contents)
       end
 

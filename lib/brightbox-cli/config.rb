@@ -125,6 +125,7 @@ module Brightbox
     # @param [String] client_alias the name of the client to make the default
     def set_default_client(client_alias)
       dirty? unless client_alias == default_client
+      @default_client = client_alias
       set_core_setting("default_client", client_alias)
     end
 
@@ -135,6 +136,16 @@ module Brightbox
     #
     def default_client
       @default_client ||= core_setting("default_client")
+    rescue
+      nil
+    end
+
+    def clear_default_client
+      if config["core"].has_key?("default_client")
+        config["core"].delete("default_client")
+        dirty!
+      end
+      @default_client = nil
     end
 
     # Outputs to debug the current values of the config/client's tokens

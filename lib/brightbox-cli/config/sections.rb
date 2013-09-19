@@ -63,9 +63,16 @@ module Brightbox
       # persisted to disk.
       #
       def delete_section(name)
-        config.delete_section(name)
-        dirty!
-        save
+        if client_named?(name)
+          if default_client == name
+            clear_default_client
+          end
+          # remove from the Ini object
+          config.delete_section(name)
+
+          dirty! # to ensure save actually writes to disk
+          save
+        end
       end
 
       # Config data for a named section
