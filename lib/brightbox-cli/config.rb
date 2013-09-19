@@ -1,6 +1,12 @@
 module Brightbox
   class BBConfigError < StandardError ; end
 
+  class NoSelectedClientError < BBConfigError; end
+  NO_CLIENT_MESSAGE = "You must specify client to use with --client or set default client"
+
+  class AmbiguousClientError < BBConfigError; end
+  AMBIGUOUS_CLIENT_ERROR = "You must specify a default client using brightbox config client_default"
+
   class BBConfig
     require 'fileutils'
     require 'ini'
@@ -101,7 +107,7 @@ module Brightbox
         else
           # Is client ambigious?
           if default_client.nil? && clients.length > 1
-            raise BBConfigError, "You must specify a default client using brightbox config client_default"
+            raise AmbiguousClientError, AMBIGUOUS_CLIENT_ERROR
           end
           @client_name = default_client || clients.first
         end

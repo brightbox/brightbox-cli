@@ -20,6 +20,7 @@ describe Brightbox::BBConfig do
   end
 
   let(:config) { config_from_contents(contents) }
+  let(:error_message) { Brightbox::NO_CLIENT_MESSAGE }
 
   describe "#using_application?" do
     context "when no config is saved" do
@@ -30,7 +31,7 @@ describe Brightbox::BBConfig do
       it "does not raise an error" do
         expect {
           Brightbox::BBConfig.new.using_application?
-        }.to raise_error(Brightbox::BBConfigError)
+        }.to raise_error(Brightbox::NoSelectedClientError, error_message)
       end
     end
 
@@ -71,7 +72,7 @@ describe Brightbox::BBConfig do
       it "does not raise an error" do
         expect {
           Brightbox::BBConfig.new.using_api_client?
-        }.to raise_error(Brightbox::BBConfigError)
+        }.to raise_error(Brightbox::NoSelectedClientError, error_message)
       end
     end
 
