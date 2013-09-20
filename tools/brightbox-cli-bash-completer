@@ -64,7 +64,7 @@ class IcmpTypeName
     ttl-zero-during-reassembly
     parameter-problem
   )
-end  
+end
 
 def find_network_services
   File.read("/etc/services").scan(/([0-9]+)\/(tcp|udp)/).collect { |tuple| tuple.first }.uniq
@@ -97,11 +97,19 @@ def find_identifiers(prefix, extras = nil, flag = nil)
   end
 end
 
+def find_server_types
+  find_identifiers("typ-", %w{nano mini small medium large xl xxl nano.high-io mini.high-io small.high-io medium.high0io large.high-io xl.high-io xxl.high-io})
+end
+
 def find_clients
   lambda do |c,p|
     config = File.read(File.join(ENV['HOME'], '.brightbox', 'config')) rescue []
     config.scan(/^\[(.*)\]/).flatten - ["core"]
   end
+end
+
+def find_zones
+  [find_identifiers("zon-", %w{gb1-a gb1-b})]
 end
 
 def find_filename
@@ -230,11 +238,136 @@ SPEC = { "brightbox" =>
          },
          "groups" =>
            {
-            "add_servers" => [find_identifiers("grp-"), find_identifiers("srv-")]
+            "add_servers" => find_identifiers(%w{grp- srv-}),
+            "create" =>
+              {
+               "-d=" => "--description=",
+               "--description=" => true,
+               "-n=" => "--name=",
+               "--name=" => true
+              },
+            "update" =>
+              {
+               "-d=" => "--description=",
+               "--description=" => true,
+               "-n=" => "--name=",
+               "--name=" => true,
+               :include => find_identifiers("grp-")
+              },
+            "destroy" => find_identifiers("grp-"),
+            "list" => find_identifiers("grp-"),
+            "move_servers" =>
+              {
+               "-f=" => "--from=",
+               "--from=" => find_identifiers("grp-"),
+               "-t=" => "--to=",
+               "--to=" => find_identifiers("grp-"),
+               :include => find_identifiers("srv-")
+              },
+            "remove_servers" =>
+              {
+               "-a" => "--all",
+               "--all" => true,
+               :include => find_identifiers(%w{grp- srv-})
+              },
+            "show" => find_identifiers("grp-"),
            },
-         "help" => nil,
-         "images" => nil,
-         "lbs" => nil,
+         "help" => self,
+         "images" =>
+           {
+            "show" => find_identifiers("img-"),
+            "list" => find_identifiers("img-"),
+            "destroy" => find_identifiers("img-"),
+            "register" =>
+              {
+               "-a=" => "--arch=",
+               "--arch=" => [%w{i686 x86_64}],
+               "-d=" => "--description=",
+               "--description=" => true,
+               "-m=" => "--mode",
+               "--mode=" => [%w{virtio compatibility}],
+               "-n=" => "--name=",
+               "--name=" => true,
+               "-p=" => "--public=",
+               "--public=" => [%w{true false}],
+               "-s=" => "--source=",
+               "--source=" => true,
+               "-u=" => "--username=",
+               "--username=" => true
+              },
+            "update" =>
+              {
+               "-a=" => "--arch=",
+               "--arch=" => [%w{i686 x86_64}],
+               "-d=" => "--description=",
+               "--description=" => true,
+               "-m=" => "--mode",
+               "--mode=" => [%w{virtio compatibility}],
+               "-n=" => "--name=",
+               "--name=" => true,
+               "-p=" => "--public=",
+               "--public=" => [%w{true false}],
+               "-u=" => "--username=",
+               "--username=" => true,
+               "--deprecated=" => [%w{true false}]
+              },
+
+           },
+         "lbs" =>
+           {
+            "create" =>
+              {
+               "-d=" => "--hc-down=",
+               "--hc-down" => [%w{1 2 3 4 5  7 8 9}],
+               "-u=" => "--hc-up=",
+               "--hc-up=" => [%w{1 2 3 4 5 6 7 8 9}],
+               "-e=" => "--hc-interval=",
+               "--hc-interval=" => [%w{5000 10000 15000}],
+               "-k=" => "--hc-port=",
+               "--hc-port=" => find_network_services,
+               "-l=" => "--listeners=",
+               "--listeners=" => true,
+               "-n=" => "--name=",
+               "--name=" => true,
+               "-p=" => "--policy=",
+               "--policy=" => [%w{least-connections round-robin}],
+               "-s=" => "--hc-request=",
+               "--hc-request=" => true,
+               "-t=" => "--hc-timeout=",
+               "--hc-timeout=" => [%w{5000 10000 15000}],
+               "-y=" => "--hc-type=",
+               "--hc-type=" => [%w{http tcp}]
+              },
+            "update" =>
+              {
+               "-d=" => "--hc-down=",
+               "--hc-down" => [%w{1 2 3 4 5  7 8 9}],
+               "-u=" => "--hc-up=",
+               "--hc-up=" => [%w{1 2 3 4 5 6 7 8 9}],
+               "-e=" => "--hc-interval=",
+               "--hc-interval=" => [%w{5000 10000 15000}],
+               "-k=" => "--hc-port=",
+               "--hc-port=" => find_network_services,
+               "-l=" => "--listeners=",
+               "--listeners=" => true,
+               "-n=" => "--name=",
+               "--name=" => true,
+               "-p=" => "--policy=",
+               "--policy=" => [%w{least-connections round-robin}],
+               "-s=" => "--hc-request=",
+               "--hc-request=" => true,
+               "-t=" => "--hc-timeout=",
+               "--hc-timeout=" => [%w{5000 10000 15000}],
+               "-y=" => "--hc-type=",
+               "--hc-type=" => [%w{http tcp}],
+               :include => find_identifiers("lba-")
+              },
+            "list" => find_identifiers("lba-"),
+            "show" => find_identifiers("lba-"),
+            "destroy" => find_identifiers("lba-"),
+            "add_nodes" => find_identifiers(%w{lba- srv-}),
+            "remove_nodes" => find_identifiers(%w{lba- srv-}),
+           },
          "servers" =>
            {
             "create" => {
@@ -252,9 +385,9 @@ SPEC = { "brightbox" =>
                          "-n=" => "--name=",
                          "--name=" => true,
                          "-t=" => "--type=",
-                         "--type=" => [find_identifiers("typ-", %w{nano mini small medium large xl xxl nano.high-io mini.high-io small.high-io medium.high0io large.high-io xl.high-io xxl.high-io})],
+                         "--type=" => [find_server_types],
                          "-z=" => "--zone=",
-                         "--zone=" => [find_identifiers("zon-", %w{gb1-a gb1-b})],
+                         "--zone=" => find_zones,
                          :include => [find_identifiers("img-")]
                         },
             "update" =>
@@ -281,9 +414,28 @@ SPEC = { "brightbox" =>
             "start" => find_identifiers("srv-"),
             "stop" => find_identifiers("srv-")
            },
-         "types" => nil,
-         "users" => nil,
-         "zones" => nil,
+         "types" =>
+           {
+            "list" => find_server_types,
+            "show" => find_server_types
+           },
+         "users" =>
+           {
+            "list" => find_identifiers("usr-"),
+            "show" => find_identifiers("usr-"),
+            "update" =>
+              {
+               "-f=" => "--ssh-key=",
+               "--ssh-key=" => find_filename,
+               "-n=" => "--name=",
+               "--name=" => true,
+               :include => find_identifiers("usr-")
+              }
+           },
+         "zones" =>
+           {
+            "list" => find_zones
+           },
          "-a" => "--account=",
          "--account=" => [find_identifiers("acc-")],
          "-c=" => "--client=",
