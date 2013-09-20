@@ -24,12 +24,11 @@ module Brightbox
       end
 
       def account
-        return @account if defined?(@account) && @account
-        find_or_set_default_account
-        unless default_account
-          raise BBConfigError, "You must specify account to be used with --account option or set default account to use"
+        if defined?(@account) && @account
+          @account
+        else
+          default_account
         end
-        default_account
       end
 
       # If a client does not have a default account, this will attempt to set it

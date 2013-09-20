@@ -14,19 +14,19 @@ describe Brightbox::BBConfig do
       end
     end
 
-    context "when config has no default account", :vcr do
+    context "when config has no default account" do
       before do
-        @config = config_from_contents(API_CLIENT_CONFIG_CONTENTS)
+        contents = <<-EOS
+        [core]
+        default_client = default
+        [default]
+        key = value
+        EOS
+        @config = config_from_contents(contents)
       end
 
-      it "returns the configured default" do
-        # Embedded in VCR recording
-        expect(@config.account).to eql("acc-12345")
-      end
-
-      it "dirties the config" do
-        @config.account
-        expect(@config).to be_dirty
+      it "returns nil" do
+        expect(@config.account).to be_nil
       end
     end
 
