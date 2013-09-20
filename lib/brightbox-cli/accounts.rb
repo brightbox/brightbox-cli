@@ -32,7 +32,7 @@ module Brightbox
         a = conn.account
       end
 
-      if a.id == id
+      if a and a.id == id
         a
       else
         nil
