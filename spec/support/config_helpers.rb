@@ -22,7 +22,7 @@ module ConfigHelpers
 
   def remove_config
     config = Brightbox::BBConfig.new
-    FileUtils.rm config.config_filename
+    FileUtils.rm_rf config.config_filename
   end
 
   # Returns the file contents of a config

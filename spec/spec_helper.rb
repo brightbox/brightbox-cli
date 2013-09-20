@@ -40,10 +40,6 @@ RSpec.configure do |config|
   config.around(:each) do |example|
     Dir.mktmpdir do |tmp_home|
       ENV["HOME"] = tmp_home
-
-      # The horror continues since we have to scope the global to prevent any
-      # code touching Api.conn from leaking out
-      $config = config_from_contents(API_CLIENT_CONFIG_CONTENTS)
       example.run
       ENV["HOME"] = TEST_RUNNER_HOME
     end

@@ -81,7 +81,7 @@ describe "brightbox config" do
         expect { output }.to_not raise_error
 
         @config = Brightbox::BBConfig.new
-        expect(@config.default_client).to eql("testing")
+        expect(@config.default_client).to eql(client_id)
       end
     end
 
