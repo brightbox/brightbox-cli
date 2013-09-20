@@ -1,6 +1,6 @@
 #!/usr/bin/env ruby
 
-# Setup with: complete -C /path/to/brightbox-cli-bash-completer -o filenames brightbox
+# Setup with: complete -C _brightbox-bash-completer -o filenames brightbox
 
 require 'shellwords'
 
