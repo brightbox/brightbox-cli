@@ -4,7 +4,8 @@ module Brightbox
       attr_writer :access_token, :refresh_token
 
       def access_token_filename
-        @access_token_filename ||= File.join(config_directory, client_name + '.oauth_token')
+        file_name = "#{client_name}.oauth_token"
+        @access_token_filename ||= File.join(config_directory, file_name)
       end
 
       def access_token
@@ -19,7 +20,8 @@ module Brightbox
       end
 
       def refresh_token_filename
-        @refresh_token_filename ||= File.join(config_directory, client_name + '.refresh_token')
+        file_name = "#{client_name}.refresh_token"
+        @refresh_token_filename ||= File.join(config_directory, file_name)
       end
 
       def refresh_token
