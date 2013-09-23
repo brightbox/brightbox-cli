@@ -71,7 +71,9 @@ module Brightbox
 
         # To prevent refreshing tokens for the wrong client (using client_name
         # is pretty random) we set it specially
-        self.client_name = options[:client_name]
+        if options[:client_name]
+          self.client_name = options[:client_name]
+        end
 
         begin
           if using_application?
