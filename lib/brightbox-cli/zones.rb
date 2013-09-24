@@ -1,6 +1,6 @@
 module Brightbox
   class Zone < Api
-    def self.require_account?; false; end
+    def self.require_account?; true; end
 
     def to_row
       attributes
