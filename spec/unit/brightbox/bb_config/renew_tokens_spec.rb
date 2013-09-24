@@ -116,5 +116,36 @@ describe Brightbox::BBConfig do
         expect(cached_access_token(@config)).to eql("5f3fd8fe25388fc9b801afc15a23d3991c68257d")
       end
     end
+
+    context "when config in use is not the default", :vcr do
+      before do
+        contents = <<-EOS
+        [core]
+        default_client = cli-12345
+        [cli-12345]
+        api_url = http://example.com
+        client_id = #{cli_id}
+        secret = #{cli_secret}
+        [app-12345]
+        api_url = #{Brightbox::DEFAULT_API_ENDPOINT}
+        client_id = #{app_id}
+        secret = #{app_secret}
+        username = #{username}
+        EOS
+
+        @config = config_from_contents(contents)
+        mock_password_entry
+      end
+
+      it "uses correct credentials" do
+        @config.client_name = app_id
+        expected_options = {
+          :brightbox_api_url => Brightbox::DEFAULT_API_ENDPOINT,
+          :brightbox_client_id => app_id
+        }
+        expect(Fog::Compute).to receive(:new).with(hash_including(expected_options)).and_call_original
+        @output = FauxIO.new { @config.renew_tokens }
+      end
+    end
   end
 end
