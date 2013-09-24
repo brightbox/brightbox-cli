@@ -57,20 +57,21 @@ Command structure may be subject to change.
 * http://brightbox.com
 * http://docs.brightbox.com/reference/api/
 
-== BASH Autocompletion
+== BASH Auto-completion
 
-A bash autocompletion script is provided to allow autocompletion of
-all sub-commands, options and resource identifiers. It is
-automatically configured by the Debian/Ubuntu packages, but if you're
-installing from a gem you can manually tell bash about it like this:
+A bash shell auto-completion script is provided to allow
+autocompletion of all sub-commands, options and resource
+identifiers. It is automatically configured by the Debian/Ubuntu
+packages, but if you're installing from a gem you can manually tell
+bash about it like this:
 
-	complete -C _brightbox-bash-completer -o filenames brightbox
+    complete -C _brightbox-bash-completer -o filenames brightbox
 
 The command `_brightbox-bash-completer` should be installed in the
 system path when you install the gem. If for whatever reason it is not
 in the path, just specify the full path to it:
 
-	complete -C /full/path/to/bin/_brightbox-bash-completer -o filenames brightbox
+    complete -C /full/path/to/bin/_brightbox-bash-completer -o filenames brightbox
 
 == Testing
 
