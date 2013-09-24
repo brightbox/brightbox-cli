@@ -16,7 +16,7 @@ module Brightbox
 
           # Append a star for the configured default client
           if $config.default_client == cid and $config.clients.size > 1
-            calias = calias + "*"
+            calias = "*#{calias}"
           end
 
           {
