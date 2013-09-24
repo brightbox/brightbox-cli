@@ -90,7 +90,7 @@ module Brightbox
 
       # Returns the clients in the config
       #
-      # @return [Array<Hash>]
+      # @return [Array<String>]
       #
       def clients
         # Exclude the global "core" section
@@ -104,6 +104,14 @@ module Brightbox
       end
 
     private
+
+      # To compensate for Ini gem, this gets the hash it holds because it's
+      # #each interface isn't much use
+      def raw_sections
+        sections = config.instance_variable_get(:@ini)
+        sections.delete("core")
+        sections
+      end
 
       # The current client based on the client_name
       def selected_config
