@@ -1,0 +1,536 @@
+#!/usr/bin/env ruby
+
+# Setup with: complete -C _brightbox-bash-completer -o filenames brightbox
+
+require 'shellwords'
+
+class String
+  def shellunescape
+    self.gsub(/\\([^A-Za-z0-9_\-.,:\/@\n])/, '\1')
+  end
+end
+
+class IcmpTypeName
+  IPV4_TYPES = %w(
+    any
+    network-unreachable
+    host-unreachable
+    protocol-unreachable
+    fragmentation-needed
+    source-route-failed
+    network-unknown
+    host-unknown
+    network-prohibited
+    host-prohibited
+    TOS-network-unreachable
+    TOS-host-unreachable
+    host-precedence-violation
+    precedence-cutoff
+    source-quench
+    network-redirect
+    host-redirect
+    TOS-network-redirect
+    TOS-host-redirect
+    ip-header-bad
+    required-option-missing
+    timestamp-request
+    timestamp-reply
+    address-mask-request
+    address-mask-reply
+  )
+
+  IPV6_TYPES = %w(
+    no-route
+    address-unreachable
+    packet-too-big
+    bad-header
+    unknown-header-type
+    unknown-option
+    neighbour-solicitation
+    neighbour-advertisement
+  )
+
+  COMMON_TYPES = %w(
+    echo-reply
+    destination-unreachable
+    port-unreachable
+    communication-prohibited
+    redirect
+    echo-request
+    router-advertisement
+    router-solicitation
+    time-exceeded
+    ttl-zero-during-transit
+    ttl-zero-during-reassembly
+    parameter-problem
+  )
+end
+
+def find_network_services
+  File.read("/etc/services").scan(/([0-9]+)\/(tcp|udp)/).collect { |tuple| tuple.first }.uniq
+rescue
+  []
+end
+
+def find_icmp_types
+  IcmpTypeName::COMMON_TYPES + IcmpTypeName::IPV4_TYPES + IcmpTypeName::IPV6_TYPES
+end
+
+def find_identifiers(prefix, extras = nil, flag = nil)
+  if prefix.is_a? Array
+    lambda do |c,p|
+      all = prefix.collect { |pfx| find_identifiers(pfx, extras, flag).call(c,p) }
+      all += extras if extras.is_a? Array
+      return all.flatten
+    end
+  else
+    lambda do |cur,prev|
+      if (extras == :once or flag == :once) and prev =~ /^#{prefix}/
+        return []
+      else
+        all = Dir.glob(File.join(ENV['HOME'], '.brightbox', 'cache', prefix+'*'))
+        all.collect! { |f| File.basename(f) }
+        all += extras if extras.is_a? Array
+        return all
+      end
+    end
+  end
+end
+
+def find_server_types
+  find_identifiers("typ-", %w{nano mini small medium large xl xxl nano.high-io mini.high-io small.high-io medium.high0io large.high-io xl.high-io xxl.high-io})
+end
+
+def find_clients
+  lambda do |c,p|
+    config = File.read(File.join(ENV['HOME'], '.brightbox', 'config')) rescue []
+    config.scan(/^\[(.*)\]/).flatten - ["core"]
+  end
+end
+
+def find_zones
+  [find_identifiers("zon-", %w{gb1-a gb1-b})]
+end
+
+def find_filename
+  lambda do |cur,prev|
+    files = Dir.glob(cur + '*')
+    if files.size == 1 and File.directory?(files.first)
+      files = [File.join(files.first, '')]
+      files += Dir.glob(File.join(files.first, '*'))
+    end
+    files
+  end
+end
+
+SPEC = { "brightbox" =>
+        {
+         "account-access" =>
+           {
+            "list" => find_identifiers("col-"),
+            "show" => find_identifiers("col-")
+           },
+         "accounts" =>
+         {
+          "accept_invite" => find_identifiers("acc-"),
+          "default" => find_identifiers("acc-"),
+          "list" => true,
+          "remove" => find_identifiers("acc-"),
+          "reset_ftp_password" => find_identifiers("acc-"),
+          "show" => find_identifiers("acc-")
+         },
+         "cloudips" =>
+         {
+          "create" =>
+            {
+             "-i=" => "--count=",
+             "--count=" => true,
+             "-n=" => "--name=",
+             "--name=" => true,
+             "-t=" => "--port-translators=",
+             "--port-translators" => true
+            },
+          "update" =>
+            {
+             "-n" => "--name=",
+             "--name=" => true,
+             "-r=" => "--reverse-dns=",
+             "--reverse-dns=" => true,
+             "-t=" => "--port-translators=",
+             "--port-translators=" => true,
+             :include => find_identifiers("cip-")
+            },
+          "destroy" => find_identifiers("cip-"),
+          "list" => find_identifiers("cip-"),
+          "map" => [find_identifiers('cip-'), find_identifiers("srv-"), nil],
+          "show" => find_identifiers("cip-"),
+          "unmap" => find_identifiers("cip-"),
+         },
+       "collaborators" =>
+         {
+          "invite" => true,
+          "list" => find_identifiers("col-"),
+          "destroy" => find_identifiers("col-"),
+          "resend" => find_identifiers("col-"),
+          "show" => find_identifiers("col-"),
+         },
+       "config" =>
+         {
+          "client_add" =>
+            {
+             "-a=" => "--alias=",
+             "--alias=" => true,
+             "-t=" => "--auth-url=",
+             "--auth-url=" => true,
+            },
+          "client_default" => [find_clients, nil],
+          "client_list" => true,
+          "client_remove" => [find_clients, nil],
+          "user_add" =>
+            {
+             "-a=" => "--alias=",
+             "--alias=" => true,
+             "-p=" => "--password=",
+             "--password=" => true
+            }
+         },
+       "firewall-policies" =>
+         {
+          "list" => find_identifiers("fwp-"),
+          "apply" => [find_identifiers("fwp-"), find_identifiers("grp-"), nil],
+          "create" =>
+            {
+             "-d=" => "--description=",
+             "--description=" => true,
+             "-n=" => "--name=",
+             "--name=" => true,
+             :include => find_identifiers("grp-")
+            },
+          "update" =>
+            {
+             "-d=" => "--description=",
+             "--description=" => true,
+             "-n=" => "--name=",
+             "--name=" => true,
+             :include => find_identifiers("fwp-")
+            },
+          "destroy" => find_identifiers("fwp-"),
+          "remove" => [find_identifiers("fwp-"),find_identifiers("grp-"), nil],
+          "show" => find_identifiers("fwp-"),
+         },
+       "firewall-rules" =>
+         {
+          "create" =>
+            {
+             "-d=" => "--destination",
+             "--destination=" => [find_identifiers(%w{grp- srv-}, %w{any})],
+             "-s=" => "--source",
+             "--source=" => [find_identifiers(%w{grp- srv-}, %w{any})],
+             "-e=" => "--dport=",
+             "--dport=" => [find_network_services],
+             "-t=" => "--sport=",
+             "--sport=" => true,
+             "-i=" => "--icmptype=",
+             "--icmptype=" => [find_icmp_types],
+             "-p=" => "--protocol=",
+             "--protocol=" => [%w{tcp udp icmp}]
+            }
+         },
+         "groups" =>
+           {
+            "add_servers" => find_identifiers(%w{grp- srv-}),
+            "create" =>
+              {
+               "-d=" => "--description=",
+               "--description=" => true,
+               "-n=" => "--name=",
+               "--name=" => true
+              },
+            "update" =>
+              {
+               "-d=" => "--description=",
+               "--description=" => true,
+               "-n=" => "--name=",
+               "--name=" => true,
+               :include => find_identifiers("grp-")
+              },
+            "destroy" => find_identifiers("grp-"),
+            "list" => find_identifiers("grp-"),
+            "move_servers" =>
+              {
+               "-f=" => "--from=",
+               "--from=" => find_identifiers("grp-"),
+               "-t=" => "--to=",
+               "--to=" => find_identifiers("grp-"),
+               :include => find_identifiers("srv-")
+              },
+            "remove_servers" =>
+              {
+               "-a" => "--all",
+               "--all" => true,
+               :include => find_identifiers(%w{grp- srv-})
+              },
+            "show" => find_identifiers("grp-"),
+           },
+         "help" => self,
+         "images" =>
+           {
+            "show" => find_identifiers("img-"),
+            "list" => find_identifiers("img-"),
+            "destroy" => find_identifiers("img-"),
+            "register" =>
+              {
+               "-a=" => "--arch=",
+               "--arch=" => [%w{i686 x86_64}],
+               "-d=" => "--description=",
+               "--description=" => true,
+               "-m=" => "--mode",
+               "--mode=" => [%w{virtio compatibility}],
+               "-n=" => "--name=",
+               "--name=" => true,
+               "-p=" => "--public=",
+               "--public=" => [%w{true false}],
+               "-s=" => "--source=",
+               "--source=" => true,
+               "-u=" => "--username=",
+               "--username=" => true
+              },
+            "update" =>
+              {
+               "-a=" => "--arch=",
+               "--arch=" => [%w{i686 x86_64}],
+               "-d=" => "--description=",
+               "--description=" => true,
+               "-m=" => "--mode",
+               "--mode=" => [%w{virtio compatibility}],
+               "-n=" => "--name=",
+               "--name=" => true,
+               "-p=" => "--public=",
+               "--public=" => [%w{true false}],
+               "-u=" => "--username=",
+               "--username=" => true,
+               "--deprecated=" => [%w{true false}]
+              },
+
+           },
+         "lbs" =>
+           {
+            "create" =>
+              {
+               "-d=" => "--hc-down=",
+               "--hc-down" => [%w{1 2 3 4 5  7 8 9}],
+               "-u=" => "--hc-up=",
+               "--hc-up=" => [%w{1 2 3 4 5 6 7 8 9}],
+               "-e=" => "--hc-interval=",
+               "--hc-interval=" => [%w{5000 10000 15000}],
+               "-k=" => "--hc-port=",
+               "--hc-port=" => find_network_services,
+               "-l=" => "--listeners=",
+               "--listeners=" => true,
+               "-n=" => "--name=",
+               "--name=" => true,
+               "-p=" => "--policy=",
+               "--policy=" => [%w{least-connections round-robin}],
+               "-s=" => "--hc-request=",
+               "--hc-request=" => true,
+               "-t=" => "--hc-timeout=",
+               "--hc-timeout=" => [%w{5000 10000 15000}],
+               "-y=" => "--hc-type=",
+               "--hc-type=" => [%w{http tcp}]
+              },
+            "update" =>
+              {
+               "-d=" => "--hc-down=",
+               "--hc-down" => [%w{1 2 3 4 5  7 8 9}],
+               "-u=" => "--hc-up=",
+               "--hc-up=" => [%w{1 2 3 4 5 6 7 8 9}],
+               "-e=" => "--hc-interval=",
+               "--hc-interval=" => [%w{5000 10000 15000}],
+               "-k=" => "--hc-port=",
+               "--hc-port=" => find_network_services,
+               "-l=" => "--listeners=",
+               "--listeners=" => true,
+               "-n=" => "--name=",
+               "--name=" => true,
+               "-p=" => "--policy=",
+               "--policy=" => [%w{least-connections round-robin}],
+               "-s=" => "--hc-request=",
+               "--hc-request=" => true,
+               "-t=" => "--hc-timeout=",
+               "--hc-timeout=" => [%w{5000 10000 15000}],
+               "-y=" => "--hc-type=",
+               "--hc-type=" => [%w{http tcp}],
+               :include => find_identifiers("lba-")
+              },
+            "list" => find_identifiers("lba-"),
+            "show" => find_identifiers("lba-"),
+            "destroy" => find_identifiers("lba-"),
+            "add_nodes" => find_identifiers(%w{lba- srv-}),
+            "remove_nodes" => find_identifiers(%w{lba- srv-}),
+           },
+         "servers" =>
+           {
+            "create" => {
+                         "-e" => "--no-base64",
+                         "--no-base64" => true,
+                         "--base-64" => true,
+                         "-f=" => "--user-data-file=",
+                         "--user-data-file=" => [find_filename],
+                         "-g=" => "--server-groups=",
+                         "--server-groups=" => [find_identifiers("grp-")],
+                         "-i=" => "--server-count=",
+                         "--server-count=" => true,
+                         "-m=" => "--user-data=",
+                         "--user-data=" => true,
+                         "-n=" => "--name=",
+                         "--name=" => true,
+                         "-t=" => "--type=",
+                         "--type=" => [find_server_types],
+                         "-z=" => "--zone=",
+                         "--zone=" => find_zones,
+                         :include => [find_identifiers("img-")]
+                        },
+            "update" =>
+              {
+               "--no-compatability-mode" => true,
+               "--compatability-mode" => true,
+               "-e" => "--no-base64",
+               "--no-base64" => true,
+               "-f=" => "--user-data-file=",
+               "--user-data-file=" => [find_filename],
+               "-g=" => "--server-groups",
+               "--server-groups=" => [find_identifiers("grp-")],
+               "-m=" => "--user-data",
+               "--user-data=" => true,
+               "-n=" => "--name=",
+               "--name=" => true,
+               :include => find_identifiers("srv-"),
+              },
+            "activate_console" => find_identifiers("srv-"),
+            "destroy" => find_identifiers("srv-"),
+            "list" => find_identifiers("srv-"),
+            "show" => find_identifiers("srv-"),
+            "shutdown" => find_identifiers("srv-"),
+            "start" => find_identifiers("srv-"),
+            "stop" => find_identifiers("srv-")
+           },
+         "types" =>
+           {
+            "list" => find_server_types,
+            "show" => find_server_types
+           },
+         "users" =>
+           {
+            "list" => find_identifiers("usr-"),
+            "show" => find_identifiers("usr-"),
+            "update" =>
+              {
+               "-f=" => "--ssh-key=",
+               "--ssh-key=" => find_filename,
+               "-n=" => "--name=",
+               "--name=" => true,
+               :include => find_identifiers("usr-")
+              }
+           },
+         "zones" =>
+           {
+            "list" => find_zones
+           },
+         "-a" => "--account=",
+         "--account=" => [find_identifiers("acc-")],
+         "-c=" => "--client=",
+         "--client=" => [find_clients],
+         "-k" => "--insecure",
+         "--insecure" => true
+        }
+       }
+
+def complete!(a, cur = nil)
+  a = a.keys if a.is_a? Hash
+  matches = a.find_all { |e| e.index(cur) == 0 }
+  # exclude all option args unless specifically looking for them
+  if cur.index('-') != 0
+    matches = matches.find_all { |e| e.index('-') != 0 }
+  end
+  matches.collect! { |m| m.chomp("=") }
+  puts matches.join("\n")
+  exit 0
+end
+
+def subwalk(a, toks, cur, prev)
+  a.each do |s|
+    next if toks.shift
+    case s
+    when Proc
+      return s.call(cur,prev)
+    when Array
+      return s
+    when nil
+      return []
+    end
+  end
+  return nil
+end
+
+def walk(toks, cur, prev, spec)
+  tok = toks.shift
+  loop do
+    tok = tok.to_s + "=" if spec.include?(tok.to_s + '=')
+    case spec.fetch(tok, :_default)
+    when :nil
+      return []
+    when :_default
+      # end of the line
+      # exclude any aliases
+      spec.reject! { |k,v| v.is_a? String }
+      options = {}
+      if spec.include? :include
+        r = subwalk(Array(spec[:include]), toks, cur, prev)
+        unless r.nil?
+          r.each do |k,v|
+            options[k] = v
+          end
+        end
+        spec.delete :include
+      end
+      return options.merge(spec)
+    when true
+      if (prev + '=') == tok
+        return []
+      else
+        toks.shift
+      end
+    when String
+      # alias to another command
+      tok = spec[tok]
+      next
+    when Array
+      r = subwalk(spec[tok], toks, cur, prev)
+      return r if r
+    when Hash
+      spec = spec[tok]
+    when Proc
+      # infinite proc
+      return spec[tok].call(cur, prev)
+    end
+    tok = toks.shift
+  end
+  raise
+end
+
+cmd = ARGV[0]
+cur = ARGV[1].shellunescape
+prev = ARGV[2].shellunescape
+point = ENV['COMP_POINT'].to_i
+line = ENV['COMP_LINE'][0..point-1].shellunescape
+begin
+  toks = line.shellsplit
+rescue ArgumentError
+  # shellsplit unmatched quote or something
+  exit 0
+end
+# clear out any mid-completion tokens
+toks.pop unless cur.empty?
+
+complete! walk(toks, cur, prev, SPEC), cur
+exit 0
