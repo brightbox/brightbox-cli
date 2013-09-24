@@ -6,7 +6,7 @@ module Brightbox
     cmd.arg_name "client-id secret [api_url, auth_url]"
     cmd.command [:client_add] do |c|
 
-      c.desc "api client alias, for local reference (defaults to client-id)"
+      c.desc "client alias (local reference)"
       c.flag [:a, "alias"]
 
       c.desc "auth url"

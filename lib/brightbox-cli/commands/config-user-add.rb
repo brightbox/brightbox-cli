@@ -5,7 +5,7 @@ module Brightbox
     cmd.arg_name "email client-id secret [api_url auth_url]"
     cmd.command [:user_add] do |c|
 
-      c.desc "user alias, for local reference (defaults to client-id)"
+      c.desc "client alias (local reference)"
       c.flag [:a, "alias"]
 
       c.desc "password, if not specified you will be prompted"
