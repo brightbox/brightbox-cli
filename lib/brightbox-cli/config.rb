@@ -125,7 +125,7 @@ module Brightbox
     # @todo Account for "core" section
     # @return [Boolean] +true+ if a client (section) has that name
     def client_named?(name)
-      !! clients.any? {|calias| calias == name }
+      raw_sections.any? {|k,v| v["alias"] == name }
     end
 
     # @param [String] client_alias the name of the client to make the default

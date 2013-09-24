@@ -11,6 +11,7 @@ describe Brightbox::BBConfig do
         [core]
         default_client = removable
         [removable]
+        alias = removable
         key = value
         EOS
       end
