@@ -6,7 +6,7 @@ PATH
       fog (~> 1.15.0)
       gli (~> 2.8)
       highline (~> 1.6.2)
-      hirb (~> 0.6.0)
+      hirb (~> 0.6)
       json
       nokogiri (~> 1.5.0)
 
@@ -30,7 +30,7 @@ GEM
     formatador (0.2.4)
     gli (2.8.0)
     highline (1.6.19)
-    hirb (0.6.2)
+    hirb (0.7.1)
     json (1.8.0)
     metaclass (0.0.1)
     method_source (0.8.1)

@@ -25,7 +25,7 @@ Gem::Specification.new do |s|
   s.add_dependency "excon"
   s.add_dependency "json"
 
-  s.add_dependency('hirb','~> 0.6.0')
+  s.add_dependency('hirb','~> 0.6')
   s.add_dependency('highline', '~> 1.6.2')
 
   s.add_development_dependency('rake')
