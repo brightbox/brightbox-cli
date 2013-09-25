@@ -12,6 +12,27 @@ module Brightbox
         config_identifier_match_prefix?("app")
       end
 
+      # Does this config have multiple clients defined within?
+      def has_multiple_clients?
+        clients.size > 1
+      end
+
+      # Does the currently selected client have an alias and a config section
+      # set to the client ID is not a real alias
+      #
+      def client_has_alias?
+        client_alias != client_id
+      end
+
+      # What is the currently selected client's alias
+      #
+      def client_alias
+        return nil if selected_config.nil?
+        # FIXME The 'alias' field is redundant because we are using the section
+        #   heading for the not ID value but we worry about it for now
+        selected_config["alias"] || client_name
+      end
+
       # Returns a client name or raises depending on a number of factors.
       #
       # FIXME This combines too much decision making into what appears to be a
@@ -47,10 +68,15 @@ module Brightbox
         end
       end
 
+      # Returns the actual client ID with no risk of an alias
+      def client_id
+        selected_config["client_id"]
+      end
+
       # @todo Account for "core" section
       # @return [Boolean] +true+ if a client (section) has that name
       def client_named?(name)
-        raw_sections.any? {|k,v| v["alias"] == name }
+        raw_sections.any? {|k,v| v["alias"] == name || k == name }
       end
 
       # @param [String] client_alias the name of the client to make the default

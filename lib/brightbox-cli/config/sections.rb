@@ -97,12 +97,6 @@ module Brightbox
         config.sections.find_all { |s| s != 'core' }
       end
 
-      # The "alias" of the current client
-      def alias
-        return nil if selected_config.nil?
-        selected_config["alias"]
-      end
-
     private
 
       # To compensate for Ini gem, this gets the hash it holds because it's

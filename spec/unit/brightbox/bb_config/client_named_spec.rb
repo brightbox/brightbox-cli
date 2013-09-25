@@ -25,7 +25,7 @@ describe Brightbox::BBConfig do
     end
 
     context "when client with that ID exists" do
-      it "returns true" do
+      it "returns false" do
         expect(config.client_named?("cli-12345")).to be_false
       end
     end
@@ -43,13 +43,13 @@ describe Brightbox::BBConfig do
     end
 
     context "when client a section header exists" do
-      it "returns false" do
-        expect(config.client_named?("jason.null@brightbox.com")).to be_false
+      it "returns true" do
+        expect(config.client_named?("jason.null@brightbox.com")).to be_true
       end
     end
 
     context "when client is named 'core'" do
-      it "returns true" do
+      it "returns false" do
         expect(config.client_named?("core")).to be_false
       end
     end

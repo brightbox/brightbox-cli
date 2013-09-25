@@ -62,8 +62,13 @@ module Brightbox
       Hirb::View.resize
     end
 
-    config_alias = $config.alias == $config.client_name ? nil : "(#{$config.alias})"
-    info "INFO: client_id: #{$config.client_name} #{config_alias}" if $config.clients.size > 1
+    if $config.has_multiple_clients?
+      if $config.client_has_alias?
+        info "INFO: client_id: #{$config.client_id} (#{$config.client_alias})"
+      else
+        info "INFO: client_id: #{$config.client_id}"
+      end
+    end
     true
   end
 

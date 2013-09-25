@@ -15,7 +15,7 @@ module Brightbox
           calias = c["alias"] || cid
 
           # Append a star for the configured default client
-          if $config.default_client == cid and $config.clients.size > 1
+          if $config.default_client == cid and $config.has_multiple_clients?
             calias = "*#{calias}"
           end
 
