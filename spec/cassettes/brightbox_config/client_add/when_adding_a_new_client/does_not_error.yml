@@ -1,217 +1,286 @@
----
-http_interactions:
-- request:
+--- 
+recorded_with: VCR 2.5.0
+http_interactions: 
+- request: 
     method: post
     uri: http://api.brightbox.dev/token
-    body:
-      encoding: UTF-8
-      string: '{"grant_type":"none","client_id":"cli-12345"}'
-    headers:
-      User-Agent:
+    body: 
+      string: "{\"grant_type\":\"none\",\"client_id\":\"cli-12345\"}"
+    headers: 
+      User-Agent: 
       - fog/1.15.0
-      Authorization:
-      - Basic Y2xpLTEyMzQ1OnF5Nnh4bnZ5NG8wdGd2NQ==
-      Content-Type:
+      Content-Type: 
       - application/json
-  response:
-    status:
+      Authorization: 
+      - Basic Y2xpLTEyMzQ1OnF5Nnh4bnZ5NG8wdGd2NQ==
+  response: 
+    status: 
       code: 200
       message: 
-    headers:
-      X-Frame-Options:
+    headers: 
+      X-Frame-Options: 
       - sameorigin
-      X-XSS-Protection:
-      - 1; mode=block
-      Content-Type:
-      - application/json;charset=utf-8
-      Cache-Control:
-      - no-store
-      Content-Length:
-      - '77'
-      X-UA-Compatible:
+      Date: 
+      - Fri, 06 Sep 2013 15:58:56 GMT
+      X-UA-Compatible: 
       - IE=Edge
-      ETag:
-      - '"ea1fa016942cf0f01a331ab9d8a56423"'
-      X-Request-Id:
+      X-Request-Id: 
       - 957ed6ed3b92609b2d50aa892f032215
-      X-Runtime:
-      - '0.118069'
-      Date:
-      - Fri, 06 Sep 2013 15:58:56 GMT
-      Connection:
+      Content-Type: 
+      - application/json;charset=utf-8
+      X-Runtime: 
+      - "0.118069"
+      Content-Length: 
+      - "77"
+      ETag: 
+      - "\"ea1fa016942cf0f01a331ab9d8a56423\""
+      X-XSS-Protection: 
+      - 1; mode=block
+      Connection: 
       - keep-alive
-    body:
-      encoding: UTF-8
-      string: '{"access_token":"a25417dd9a167843ed50b7fbd3338feccbdd10c3","expires_in":7200}'
+      Cache-Control: 
+      - no-store
+    body: 
+      string: "{\"access_token\":\"a25417dd9a167843ed50b7fbd3338feccbdd10c3\",\"expires_in\":7200}"
     http_version: 
   recorded_at: Fri, 06 Sep 2013 15:58:56 GMT
-- request:
+- request: 
     method: post
     uri: http://api.brightbox.dev/token
-    body:
-      encoding: UTF-8
-      string: '{"grant_type":"none","client_id":"cli-12345"}'
-    headers:
-      User-Agent:
+    body: 
+      string: "{\"grant_type\":\"none\",\"client_id\":\"cli-12345\"}"
+    headers: 
+      User-Agent: 
       - fog/1.15.0
-      Authorization:
-      - Basic Y2xpLTEyMzQ1OnF5Nnh4bnZ5NG8wdGd2NQ==
-      Content-Type:
+      Content-Type: 
       - application/json
-  response:
-    status:
+      Authorization: 
+      - Basic Y2xpLTEyMzQ1OnF5Nnh4bnZ5NG8wdGd2NQ==
+  response: 
+    status: 
       code: 200
       message: 
-    headers:
-      X-Frame-Options:
+    headers: 
+      X-Frame-Options: 
       - sameorigin
-      X-XSS-Protection:
-      - 1; mode=block
-      Content-Type:
-      - application/json;charset=utf-8
-      Cache-Control:
-      - no-store
-      Content-Length:
-      - '77'
-      X-UA-Compatible:
-      - IE=Edge
-      ETag:
-      - '"c70fc5795566d2cf3e4760ac04d7376b"'
-      X-Request-Id:
-      - ddf4135199e7c0fea3eb951389226536
-      X-Runtime:
-      - '0.110470'
-      Date:
+      Date: 
       - Fri, 06 Sep 2013 15:58:56 GMT
-      Connection:
+      X-UA-Compatible: 
+      - IE=Edge
+      X-Request-Id: 
+      - ddf4135199e7c0fea3eb951389226536
+      Content-Type: 
+      - application/json;charset=utf-8
+      X-Runtime: 
+      - "0.110470"
+      Content-Length: 
+      - "77"
+      ETag: 
+      - "\"c70fc5795566d2cf3e4760ac04d7376b\""
+      X-XSS-Protection: 
+      - 1; mode=block
+      Connection: 
       - keep-alive
-    body:
-      encoding: UTF-8
-      string: '{"access_token":"0ab4badeb10018d07c1f6c33690ee011f36b4183","expires_in":7200}'
+      Cache-Control: 
+      - no-store
+    body: 
+      string: "{\"access_token\":\"0ab4badeb10018d07c1f6c33690ee011f36b4183\",\"expires_in\":7200}"
     http_version: 
   recorded_at: Fri, 06 Sep 2013 15:58:56 GMT
-- request:
+- request: 
     method: get
     uri: http://api.brightbox.dev/1.0/account
-    body:
-      encoding: US-ASCII
-      string: ''
-    headers:
-      User-Agent:
+    body: 
+      string: ""
+    headers: 
+      User-Agent: 
       - fog/1.15.0
-      Authorization:
-      - OAuth 0ab4badeb10018d07c1f6c33690ee011f36b4183
-      Content-Type:
+      Content-Type: 
       - application/json
-  response:
-    status:
+      Authorization: 
+      - OAuth 0ab4badeb10018d07c1f6c33690ee011f36b4183
+  response: 
+    status: 
       code: 200
       message: 
-    headers:
-      Content-Type:
-      - application/json; charset=utf-8
-      X-UA-Compatible:
-      - IE=Edge
-      ETag:
-      - '"a9e93d5f3268805675b0c5c935311a85"'
-      Cache-Control:
-      - max-age=0, private, must-revalidate
-      X-Request-Id:
-      - fdd87c5e95c32b98cd0d0852658529e8
-      X-Runtime:
-      - '0.197430'
-      Date:
+    headers: 
+      Date: 
       - Fri, 06 Sep 2013 15:58:57 GMT
-      Connection:
+      X-UA-Compatible: 
+      - IE=Edge
+      X-Request-Id: 
+      - fdd87c5e95c32b98cd0d0852658529e8
+      Content-Type: 
+      - application/json; charset=utf-8
+      X-Runtime: 
+      - "0.197430"
+      ETag: 
+      - "\"a9e93d5f3268805675b0c5c935311a85\""
+      Connection: 
       - close
-    body:
-      encoding: UTF-8
-      string: '{"id":"acc-12345","resource_type":"account","url":"https://api.gb1.brightbox.com/1.0/accounts/acc-12345","name":"Aurnqfvgsbeyiprni","status":"active","address_1":"Kaycee
-        Throughway","address_2":"","city":"South Hellenport","county":"","postcode":"60364-9886","country_code":"GB","country_name":"United
-        Kingdom","vat_registration_number":"","telephone_number":"+444238318140","telephone_verified":false,"verified_telephone":null,"verified_at":null,"verified_ip":null,"created_at":"2013-09-04T07:53:13Z","ram_limit":32768,"ram_used":0,"cloud_ips_limit":20,"cloud_ips_used":1,"load_balancers_limit":5,"load_balancers_used":0,"valid_credit_card":false,"library_ftp_host":"ftp.library.gb1.brightbox.com","library_ftp_user":"acc-12345","library_ftp_password":null,"clients":[{"id":"cli-12345","resource_type":"api_client","url":"https://api.gb1.brightbox.com/1.0/api_clients/cli-12345","name":null,"description":null,"revoked_at":null}],"images":[],"servers":[],"load_balancers":[],"cloud_ips":[{"id":"cip-12345","resource_type":"cloud_ip","url":"https://api.gb1.brightbox.com/1.0/cloud_ips/cip-12345","status":"unmapped","public_ip":"56.67.59.219","reverse_dns":"cip-12345-67-59-219.gb1.brightbox.com","name":null}],"server_groups":[{"id":"grp-12345","resource_type":"server_group","url":"https://api.gb1.brightbox.com/1.0/server_groups/grp-12345","name":"default","description":"All
-        new servers are added to this group unless specified otherwise.","created_at":"2013-09-04T07:53:13Z","default":true}],"firewall_policies":[{"id":"fwp-12345","resource_type":"firewall_policy","url":"https://api.gb1.brightbox.com/1.0/firewall_policies/fwp-12345","default":true,"name":"default","created_at":"2013-09-04T07:53:14Z","description":"Applied
-        to the default server group."}],"owner":{"id":"usr-12345","resource_type":"user","url":"https://api.gb1.brightbox.com/1.0/users/usr-12345","name":"Dylan
-        Fay DDS","email_address":"jason.null@brightbox.com"},"users":[],"zones":[{"id":"zon-12345","resource_type":"zone","url":"https://api.gb1.brightbox.com/1.0/zones/zon-12345","handle":"gb1-a"},{"id":"zon-12345","resource_type":"zone","url":"https://api.gb1.brightbox.com/1.0/zones/zon-12345","handle":"gb1-b"}]}'
+      Cache-Control: 
+      - max-age=0, private, must-revalidate
+    body: 
+      string: "{\"id\":\"acc-12345\",\"resource_type\":\"account\",\"url\":\"https://api.gb1.brightbox.com/1.0/accounts/acc-12345\",\"name\":\"Aurnqfvgsbeyiprni\",\"status\":\"active\",\"address_1\":\"Kaycee Throughway\",\"address_2\":\"\",\"city\":\"South Hellenport\",\"county\":\"\",\"postcode\":\"60364-9886\",\"country_code\":\"GB\",\"country_name\":\"United Kingdom\",\"vat_registration_number\":\"\",\"telephone_number\":\"+444238318140\",\"telephone_verified\":false,\"verified_telephone\":null,\"verified_at\":null,\"verified_ip\":null,\"created_at\":\"2013-09-04T07:53:13Z\",\"ram_limit\":32768,\"ram_used\":0,\"cloud_ips_limit\":20,\"cloud_ips_used\":1,\"load_balancers_limit\":5,\"load_balancers_used\":0,\"valid_credit_card\":false,\"library_ftp_host\":\"ftp.library.gb1.brightbox.com\",\"library_ftp_user\":\"acc-12345\",\"library_ftp_password\":null,\"clients\":[{\"id\":\"cli-12345\",\"resource_type\":\"api_client\",\"url\":\"https://api.gb1.brightbox.com/1.0/api_clients/cli-12345\",\"name\":null,\"description\":null,\"revoked_at\":null}],\"images\":[],\"servers\":[],\"load_balancers\":[],\"cloud_ips\":[{\"id\":\"cip-12345\",\"resource_type\":\"cloud_ip\",\"url\":\"https://api.gb1.brightbox.com/1.0/cloud_ips/cip-12345\",\"status\":\"unmapped\",\"public_ip\":\"56.67.59.219\",\"reverse_dns\":\"cip-12345-67-59-219.gb1.brightbox.com\",\"name\":null}],\"server_groups\":[{\"id\":\"grp-12345\",\"resource_type\":\"server_group\",\"url\":\"https://api.gb1.brightbox.com/1.0/server_groups/grp-12345\",\"name\":\"default\",\"description\":\"All new servers are added to this group unless specified otherwise.\",\"created_at\":\"2013-09-04T07:53:13Z\",\"default\":true}],\"firewall_policies\":[{\"id\":\"fwp-12345\",\"resource_type\":\"firewall_policy\",\"url\":\"https://api.gb1.brightbox.com/1.0/firewall_policies/fwp-12345\",\"default\":true,\"name\":\"default\",\"created_at\":\"2013-09-04T07:53:14Z\",\"description\":\"Applied to the default server group.\"}],\"owner\":{\"id\":\"usr-12345\",\"resource_type\":\"user\",\"url\":\"https://api.gb1.brightbox.com/1.0/users/usr-12345\",\"name\":\"Dylan Fay DDS\",\"email_address\":\"jason.null@brightbox.com\"},\"users\":[],\"zones\":[{\"id\":\"zon-12345\",\"resource_type\":\"zone\",\"url\":\"https://api.gb1.brightbox.com/1.0/zones/zon-12345\",\"handle\":\"gb1-a\"},{\"id\":\"zon-12345\",\"resource_type\":\"zone\",\"url\":\"https://api.gb1.brightbox.com/1.0/zones/zon-12345\",\"handle\":\"gb1-b\"}]}"
     http_version: 
   recorded_at: Fri, 06 Sep 2013 15:58:57 GMT
-- request:
+- request: 
     method: get
     uri: http://api.brightbox.dev/1.0/accounts
-    body:
-      encoding: US-ASCII
-      string: ''
-    headers:
-      User-Agent:
+    body: 
+      string: ""
+    headers: 
+      User-Agent: 
       - fog/1.15.0
-      Authorization:
+      Content-Type: 
+      - application/json
+      Authorization: 
       - OAuth a25417dd9a167843ed50b7fbd3338feccbdd10c3
-      Content-Type:
-      - application/json
-  response:
-    status:
+  response: 
+    status: 
       code: 401
       message: 
-    headers:
-      WWW-Authenticate:
-      - OAuth error="invalid_token"
-      Content-Type:
-      - application/json; charset=utf-8
-      X-UA-Compatible:
-      - IE=Edge
-      Cache-Control:
-      - no-cache
-      X-Request-Id:
-      - c56090c98625f474b4b46e86a1a00d2b
-      X-Runtime:
-      - '0.019527'
-      Date:
+    headers: 
+      Date: 
       - Tue, 17 Sep 2013 17:07:35 GMT
-      Connection:
+      X-UA-Compatible: 
+      - IE=Edge
+      X-Request-Id: 
+      - c56090c98625f474b4b46e86a1a00d2b
+      Content-Type: 
+      - application/json; charset=utf-8
+      X-Runtime: 
+      - "0.019527"
+      WWW-Authenticate: 
+      - OAuth error="invalid_token"
+      Connection: 
       - close
-    body:
-      encoding: UTF-8
-      string: '{"error":"invalid_token","error_description":"The OAuth token can not
-        be found"}'
+      Cache-Control: 
+      - no-cache
+    body: 
+      string: "{\"error\":\"invalid_token\",\"error_description\":\"The OAuth token can not be found\"}"
     http_version: 
   recorded_at: Tue, 17 Sep 2013 17:07:35 GMT
-- request:
+- request: 
     method: get
     uri: http://api.brightbox.dev/1.0/accounts
-    body:
-      encoding: US-ASCII
-      string: ''
-    headers:
-      User-Agent:
+    body: 
+      string: ""
+    headers: 
+      User-Agent: 
       - fog/1.15.0
-      Authorization:
-      - OAuth 0ab4badeb10018d07c1f6c33690ee011f36b4183
-      Content-Type:
+      Content-Type: 
       - application/json
-  response:
-    status:
+      Authorization: 
+      - OAuth 0ab4badeb10018d07c1f6c33690ee011f36b4183
+  response: 
+    status: 
       code: 401
       message: 
-    headers:
-      WWW-Authenticate:
-      - OAuth error="invalid_token"
-      Content-Type:
-      - application/json; charset=utf-8
-      X-UA-Compatible:
-      - IE=Edge
-      Cache-Control:
-      - no-cache
-      X-Request-Id:
-      - f6772e7100709ff8d3eecc0b889a7ec8
-      X-Runtime:
-      - '0.033641'
-      Date:
+    headers: 
+      Date: 
       - Tue, 17 Sep 2013 17:07:35 GMT
-      Connection:
+      X-UA-Compatible: 
+      - IE=Edge
+      X-Request-Id: 
+      - f6772e7100709ff8d3eecc0b889a7ec8
+      Content-Type: 
+      - application/json; charset=utf-8
+      X-Runtime: 
+      - "0.033641"
+      WWW-Authenticate: 
+      - OAuth error="invalid_token"
+      Connection: 
       - close
-    body:
-      encoding: UTF-8
-      string: '{"error":"invalid_token","error_description":"The OAuth token can not
-        be found"}'
+      Cache-Control: 
+      - no-cache
+    body: 
+      string: "{\"error\":\"invalid_token\",\"error_description\":\"The OAuth token can not be found\"}"
     http_version: 
   recorded_at: Tue, 17 Sep 2013 17:07:35 GMT
-recorded_with: VCR 2.5.0
+- request: 
+    method: post
+    uri: http://api.brightbox.dev/token
+    body: 
+      string: "{\"client_id\":\"cli-12345\",\"grant_type\":\"none\"}"
+    headers: 
+      User-Agent: 
+      - fog/1.15.0
+      Content-Type: 
+      - application/json
+      Authorization: 
+      - Basic Y2xpLTEyMzQ1OnF5Nnh4bnZ5NG8wdGd2NQ==
+  response: 
+    status: 
+      code: 200
+      message: 
+    headers: 
+      X-Frame-Options: 
+      - sameorigin
+      Date: 
+      - Fri, 27 Sep 2013 15:26:07 GMT
+      X-UA-Compatible: 
+      - IE=Edge
+      X-Request-Id: 
+      - 6bd27a8182798ebce089e3fc997e5369
+      Content-Type: 
+      - application/json;charset=utf-8
+      X-Runtime: 
+      - "0.217147"
+      Content-Length: 
+      - "77"
+      ETag: 
+      - "\"0627ccb11cf8edd78bd775ff81df22a6\""
+      X-XSS-Protection: 
+      - 1; mode=block
+      Connection: 
+      - keep-alive
+      Cache-Control: 
+      - no-store
+    body: 
+      string: "{\"access_token\":\"bcf25863276a83f678be3335d88fb2637ed4cd4d\",\"expires_in\":7200}"
+    http_version: 
+  recorded_at: Fri, 27 Sep 2013 15:26:07 GMT
+- request: 
+    method: post
+    uri: http://api.brightbox.dev/token
+    body: 
+      string: "{\"client_id\":\"cli-12345\",\"grant_type\":\"none\"}"
+    headers: 
+      User-Agent: 
+      - fog/1.15.0
+      Content-Type: 
+      - application/json
+      Authorization: 
+      - Basic Y2xpLTEyMzQ1OnF5Nnh4bnZ5NG8wdGd2NQ==
+  response: 
+    status: 
+      code: 200
+      message: 
+    headers: 
+      X-Frame-Options: 
+      - sameorigin
+      Date: 
+      - Fri, 27 Sep 2013 15:26:07 GMT
+      X-UA-Compatible: 
+      - IE=Edge
+      X-Request-Id: 
+      - ce17d96e70b3689bc544a6f80dc81d02
+      Content-Type: 
+      - application/json;charset=utf-8
+      X-Runtime: 
+      - "0.115950"
+      Content-Length: 
+      - "77"
+      ETag: 
+      - "\"77db38d3f94f934a9746a87a588dac2c\""
+      X-XSS-Protection: 
+      - 1; mode=block
+      Connection: 
+      - keep-alive
+      Cache-Control: 
+      - no-store
+    body: 
+      string: "{\"access_token\":\"1093b0189e17cdc250ba0ea2f18343343854f687\",\"expires_in\":7200}"
+    http_version: 
+  recorded_at: Fri, 27 Sep 2013 15:26:07 GMT

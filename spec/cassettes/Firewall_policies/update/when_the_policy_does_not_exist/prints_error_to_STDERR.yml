@@ -1,0 +1,153 @@
+---
+http_interactions:
+- request:
+    method: put
+    uri: http://api.brightbox.dev/1.0/firewall_policies/fwp-12345
+    body:
+      encoding: UTF-8
+      string: ! '{"name":"missing"}'
+    headers:
+      User-Agent:
+      - fog/1.15.0
+      Authorization:
+      - OAuth a25417dd9a167843ed50b7fbd3338feccbdd10c3
+      Content-Type:
+      - application/json
+  response:
+    status:
+      code: 401
+      message: 
+    headers:
+      !binary "V1dXLUF1dGhlbnRpY2F0ZQ==":
+      - !binary |-
+        T0F1dGggZXJyb3I9ImludmFsaWRfdG9rZW4i
+      !binary "Q29udGVudC1UeXBl":
+      - !binary |-
+        YXBwbGljYXRpb24vanNvbjsgY2hhcnNldD11dGYtOA==
+      !binary "WC1VQS1Db21wYXRpYmxl":
+      - !binary |-
+        SUU9RWRnZQ==
+      !binary "Q2FjaGUtQ29udHJvbA==":
+      - !binary |-
+        bm8tY2FjaGU=
+      !binary "WC1SZXF1ZXN0LUlk":
+      - !binary |-
+        NTE5NzQxMmE3MGFlNTM1YjRmMDczNzFjMmM3N2ViZjA=
+      !binary "WC1SdW50aW1l":
+      - !binary |-
+        MC40ODcyMDM=
+      !binary "RGF0ZQ==":
+      - !binary |-
+        RnJpLCAyNyBTZXAgMjAxMyAxNToxODoxOCBHTVQ=
+      !binary "Q29ubmVjdGlvbg==":
+      - !binary |-
+        Y2xvc2U=
+    body:
+      encoding: US-ASCII
+      string: ! '{"error":"invalid_token","error_description":"The OAuth token can
+        not be found"}'
+    http_version: 
+  recorded_at: Fri, 27 Sep 2013 15:18:18 GMT
+- request:
+    method: post
+    uri: http://api.brightbox.dev/token
+    body:
+      encoding: UTF-8
+      string: ! '{"grant_type":"none","client_id":"cli-12345"}'
+    headers:
+      User-Agent:
+      - fog/1.15.0
+      Authorization:
+      - Basic Y2xpLTEyMzQ1OnF5Nnh4bnZ5NG8wdGd2NQ==
+      Content-Type:
+      - application/json
+  response:
+    status:
+      code: 200
+      message: 
+    headers:
+      !binary "WC1GcmFtZS1PcHRpb25z":
+      - !binary |-
+        c2FtZW9yaWdpbg==
+      !binary "WC1YU1MtUHJvdGVjdGlvbg==":
+      - !binary |-
+        MTsgbW9kZT1ibG9jaw==
+      !binary "Q29udGVudC1UeXBl":
+      - !binary |-
+        YXBwbGljYXRpb24vanNvbjtjaGFyc2V0PXV0Zi04
+      !binary "Q2FjaGUtQ29udHJvbA==":
+      - !binary |-
+        bm8tc3RvcmU=
+      !binary "Q29udGVudC1MZW5ndGg=":
+      - !binary |-
+        Nzc=
+      !binary "WC1VQS1Db21wYXRpYmxl":
+      - !binary |-
+        SUU9RWRnZQ==
+      !binary "RVRhZw==":
+      - !binary |-
+        ImExMGE1Y2YxODJlZjM2YzFiNGJjMmI0N2ZkNjMxNGI4Ig==
+      !binary "WC1SZXF1ZXN0LUlk":
+      - !binary |-
+        NDQwOGUzMjhlOTI3ZTFiOGJmODdiMDVhNjMxZTYyZmI=
+      !binary "WC1SdW50aW1l":
+      - !binary |-
+        MC4xMzE2MzY=
+      !binary "RGF0ZQ==":
+      - !binary |-
+        RnJpLCAyNyBTZXAgMjAxMyAxNToxODoxOCBHTVQ=
+      !binary "Q29ubmVjdGlvbg==":
+      - !binary |-
+        a2VlcC1hbGl2ZQ==
+    body:
+      encoding: US-ASCII
+      string: ! '{"access_token":"f46816c4911694d051ec6a779103e42ab72d3fc7","expires_in":7200}'
+    http_version: 
+  recorded_at: Fri, 27 Sep 2013 15:18:18 GMT
+- request:
+    method: put
+    uri: http://api.brightbox.dev/1.0/firewall_policies/fwp-12345
+    body:
+      encoding: ASCII-8BIT
+      string: !binary |-
+        eyJuYW1lIjoibWlzc2luZyJ9
+    headers:
+      User-Agent:
+      - fog/1.15.0
+      Authorization:
+      - OAuth f46816c4911694d051ec6a779103e42ab72d3fc7
+      Content-Type:
+      - application/json
+  response:
+    status:
+      code: 422
+      message: 
+    headers:
+      !binary "Q29udGVudC1UeXBl":
+      - !binary |-
+        YXBwbGljYXRpb24vanNvbjsgY2hhcnNldD11dGYtOA==
+      !binary "WC1VQS1Db21wYXRpYmxl":
+      - !binary |-
+        SUU9RWRnZQ==
+      !binary "Q2FjaGUtQ29udHJvbA==":
+      - !binary |-
+        bm8tY2FjaGU=
+      !binary "WC1SZXF1ZXN0LUlk":
+      - !binary |-
+        NTg0MGYxYTE2ODJhYmUxNjIwMTc4Y2IxYTYzNmI5YzM=
+      !binary "WC1SdW50aW1l":
+      - !binary |-
+        MS43NjcxODY=
+      !binary "RGF0ZQ==":
+      - !binary |-
+        RnJpLCAyNyBTZXAgMjAxMyAxNToxODoxOSBHTVQ=
+      !binary "Q29ubmVjdGlvbg==":
+      - !binary |-
+        Y2xvc2U=
+    body:
+      encoding: US-ASCII
+      string: ! '{"error_name":"unprocessable_entity","errors":["default firewall
+        policy can not be renamed"]}'
+    http_version: 
+  recorded_at: Fri, 27 Sep 2013 15:18:19 GMT
+recorded_with: VCR 2.5.0

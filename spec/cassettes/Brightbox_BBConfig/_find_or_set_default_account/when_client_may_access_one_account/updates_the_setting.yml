@@ -1,264 +1,327 @@
----
-http_interactions:
-- request:
+--- 
+recorded_with: VCR 2.5.0
+http_interactions: 
+- request: 
     method: get
     uri: http://api.brightbox.dev/1.0/account
-    body:
-      encoding: US-ASCII
-      string: ''
-    headers:
-      User-Agent:
+    body: 
+      string: ""
+    headers: 
+      User-Agent: 
       - fog/1.15.0
-      Authorization:
-      - OAuth 63a4f6dbf53263e7468d3084ae9c50ecdcdf1714
-      Content-Type:
+      Content-Type: 
       - application/json
-  response:
-    status:
+      Authorization: 
+      - OAuth 63a4f6dbf53263e7468d3084ae9c50ecdcdf1714
+  response: 
+    status: 
       code: 200
       message: 
-    headers:
-      Content-Type:
-      - application/json; charset=utf-8
-      X-UA-Compatible:
-      - IE=Edge
-      ETag:
-      - '"1e11c0b6a848197a2fc399e1a9ebb662"'
-      Cache-Control:
-      - max-age=0, private, must-revalidate
-      X-Request-Id:
-      - 01458febfd839b35068837e5dab8176b
-      X-Runtime:
-      - '0.363480'
-      Date:
+    headers: 
+      Date: 
       - Tue, 27 Aug 2013 16:12:40 GMT
-      Connection:
+      X-UA-Compatible: 
+      - IE=Edge
+      X-Request-Id: 
+      - 01458febfd839b35068837e5dab8176b
+      Content-Type: 
+      - application/json; charset=utf-8
+      X-Runtime: 
+      - "0.363480"
+      ETag: 
+      - "\"1e11c0b6a848197a2fc399e1a9ebb662\""
+      Connection: 
       - close
-    body:
-      encoding: UTF-8
-      string: '{"id":"acc-12345","resource_type":"account","url":"https://api.gb1.brightbox.com/1.0/accounts/acc-12345","name":"Avkruvviumpksysor","status":"active","address_1":"Israel
-        Flats","address_2":"","city":"Clarkmouth","county":"","postcode":"97088-3817","country_code":"GB","country_name":"United
-        Kingdom","vat_registration_number":"","telephone_number":"+445722683970","telephone_verified":false,"verified_telephone":null,"verified_at":null,"verified_ip":null,"created_at":"2013-08-27T15:47:00Z","ram_limit":32768,"ram_used":15360,"cloud_ips_limit":20,"cloud_ips_used":1,"load_balancers_limit":5,"load_balancers_used":0,"valid_credit_card":false,"library_ftp_host":"ftp.library.gb1.brightbox.com","library_ftp_user":"acc-12345","library_ftp_password":null,"clients":[{"id":"cli-12345","resource_type":"api_client","url":"https://api.gb1.brightbox.com/1.0/api_clients/cli-12345","name":null,"description":null,"revoked_at":null}],"images":[],"servers":[{"id":"srv-12345","resource_type":"server","url":"https://api.gb1.brightbox.com/1.0/servers/srv-12345","name":"wow","status":"active","hostname":"srv-12345","fqdn":"srv-12345.gb1.brightbox.com","created_at":"2013-08-27T15:54:24Z","started_at":"2013-08-27T15:54:27Z","deleted_at":null},{"id":"srv-12345","resource_type":"server","url":"https://api.gb1.brightbox.com/1.0/servers/srv-12345","name":"medium
-        servers","status":"active","hostname":"srv-12345","fqdn":"srv-12345.gb1.brightbox.com","created_at":"2013-08-27T15:54:26Z","started_at":"2013-08-27T15:54:29Z","deleted_at":null},{"id":"srv-12345","resource_type":"server","url":"https://api.gb1.brightbox.com/1.0/servers/srv-12345","name":"","status":"deleted","hostname":"srv-12345","fqdn":"srv-12345.gb1.brightbox.com","created_at":"2013-08-27T15:54:30Z","started_at":"2013-08-27T15:54:32Z","deleted_at":"2013-08-27T15:54:35Z"},{"id":"srv-12345","resource_type":"server","url":"https://api.gb1.brightbox.com/1.0/servers/srv-12345","name":"rspec_server_shutdown","status":"active","hostname":"srv-12345","fqdn":"srv-12345.gb1.brightbox.com","created_at":"2013-08-27T15:54:36Z","started_at":"2013-08-27T15:54:38Z","deleted_at":null},{"id":"srv-12345","resource_type":"server","url":"https://api.gb1.brightbox.com/1.0/servers/srv-12345","name":"rspec_server_start","status":"active","hostname":"srv-12345","fqdn":"srv-12345.gb1.brightbox.com","created_at":"2013-08-27T15:54:41Z","started_at":"2013-08-27T15:54:47Z","deleted_at":null},{"id":"srv-12345","resource_type":"server","url":"https://api.gb1.brightbox.com/1.0/servers/srv-12345","name":"rspec_server_stop","status":"inactive","hostname":"srv-12345","fqdn":"srv-12345.gb1.brightbox.com","created_at":"2013-08-27T15:54:48Z","started_at":"2013-08-27T15:54:51Z","deleted_at":null},{"id":"srv-12345","resource_type":"server","url":"https://api.gb1.brightbox.com/1.0/servers/srv-12345","name":"","status":"deleted","hostname":"srv-12345","fqdn":"srv-12345.gb1.brightbox.com","created_at":"2013-08-27T15:54:52Z","started_at":"2013-08-27T15:54:55Z","deleted_at":"2013-08-27T15:54:58Z"},{"id":"srv-12345","resource_type":"server","url":"https://api.gb1.brightbox.com/1.0/servers/srv-12345","name":"","status":"deleted","hostname":"srv-12345","fqdn":"srv-12345.gb1.brightbox.com","created_at":"2013-08-27T16:12:22Z","started_at":"2013-08-27T16:12:25Z","deleted_at":"2013-08-27T16:12:27Z"}],"load_balancers":[],"cloud_ips":[{"id":"cip-12345","resource_type":"cloud_ip","url":"https://api.gb1.brightbox.com/1.0/cloud_ips/cip-12345","status":"unmapped","public_ip":"217.16.230.132","reverse_dns":"cip-12345-16-230-132.gb1.brightbox.com","name":null}],"server_groups":[{"id":"grp-12345","resource_type":"server_group","url":"https://api.gb1.brightbox.com/1.0/server_groups/grp-12345","name":"default","description":"All
-        new servers are added to this group unless specified otherwise.","created_at":"2013-08-27T15:47:00Z","default":true},{"id":"grp-12345","resource_type":"server_group","url":"https://api.gb1.brightbox.com/1.0/server_groups/grp-12345","name":"test","description":null,"created_at":"2013-08-27T15:54:53Z","default":false},{"id":"grp-12345","resource_type":"server_group","url":"https://api.gb1.brightbox.com/1.0/server_groups/grp-12345","name":"test","description":null,"created_at":"2013-08-27T16:12:22Z","default":false}],"firewall_policies":[{"id":"fwp-12345","resource_type":"firewall_policy","url":"https://api.gb1.brightbox.com/1.0/firewall_policies/fwp-12345","default":true,"name":"default","created_at":"2013-08-27T15:47:00Z","description":"Applied
-        to the default server group."},{"id":"fwp-12345","resource_type":"firewall_policy","url":"https://api.gb1.brightbox.com/1.0/firewall_policies/fwp-12345","default":false,"name":"rspec_firewall_policy_apply","created_at":"2013-08-27T15:54:12Z","description":null},{"id":"fwp-12345","resource_type":"firewall_policy","url":"https://api.gb1.brightbox.com/1.0/firewall_policies/fwp-12345","default":false,"name":"rspec_firewall_policy","created_at":"2013-08-27T15:54:13Z","description":null},{"id":"fwp-12345","resource_type":"firewall_policy","url":"https://api.gb1.brightbox.com/1.0/firewall_policies/fwp-12345","default":false,"name":null,"created_at":"2013-08-27T15:54:20Z","description":null},{"id":"fwp-12345","resource_type":"firewall_policy","url":"https://api.gb1.brightbox.com/1.0/firewall_policies/fwp-12345","default":false,"name":null,"created_at":"2013-08-27T15:54:21Z","description":null},{"id":"fwp-12345","resource_type":"firewall_policy","url":"https://api.gb1.brightbox.com/1.0/firewall_policies/fwp-12345","default":false,"name":"rspec_firewall_policy","created_at":"2013-08-27T15:56:46Z","description":null},{"id":"fwp-12345","resource_type":"firewall_policy","url":"https://api.gb1.brightbox.com/1.0/firewall_policies/fwp-12345","default":false,"name":"rspec_firewall_policy","created_at":"2013-08-27T16:06:22Z","description":null}],"owner":{"id":"usr-12345","resource_type":"user","url":"https://api.gb1.brightbox.com/1.0/users/usr-12345","name":"Teresa
-        Ullrich","email_address":"jason.null@brightbox.com"},"users":[],"zones":[{"id":"zon-12345","resource_type":"zone","url":"https://api.gb1.brightbox.com/1.0/zones/zon-12345","handle":"gb1-a"},{"id":"zon-12345","resource_type":"zone","url":"https://api.gb1.brightbox.com/1.0/zones/zon-12345","handle":"gb1-b"}]}'
+      Cache-Control: 
+      - max-age=0, private, must-revalidate
+    body: 
+      string: "{\"id\":\"acc-12345\",\"resource_type\":\"account\",\"url\":\"https://api.gb1.brightbox.com/1.0/accounts/acc-12345\",\"name\":\"Avkruvviumpksysor\",\"status\":\"active\",\"address_1\":\"Israel Flats\",\"address_2\":\"\",\"city\":\"Clarkmouth\",\"county\":\"\",\"postcode\":\"97088-3817\",\"country_code\":\"GB\",\"country_name\":\"United Kingdom\",\"vat_registration_number\":\"\",\"telephone_number\":\"+445722683970\",\"telephone_verified\":false,\"verified_telephone\":null,\"verified_at\":null,\"verified_ip\":null,\"created_at\":\"2013-08-27T15:47:00Z\",\"ram_limit\":32768,\"ram_used\":15360,\"cloud_ips_limit\":20,\"cloud_ips_used\":1,\"load_balancers_limit\":5,\"load_balancers_used\":0,\"valid_credit_card\":false,\"library_ftp_host\":\"ftp.library.gb1.brightbox.com\",\"library_ftp_user\":\"acc-12345\",\"library_ftp_password\":null,\"clients\":[{\"id\":\"cli-12345\",\"resource_type\":\"api_client\",\"url\":\"https://api.gb1.brightbox.com/1.0/api_clients/cli-12345\",\"name\":null,\"description\":null,\"revoked_at\":null}],\"images\":[],\"servers\":[{\"id\":\"srv-12345\",\"resource_type\":\"server\",\"url\":\"https://api.gb1.brightbox.com/1.0/servers/srv-12345\",\"name\":\"wow\",\"status\":\"active\",\"hostname\":\"srv-12345\",\"fqdn\":\"srv-12345.gb1.brightbox.com\",\"created_at\":\"2013-08-27T15:54:24Z\",\"started_at\":\"2013-08-27T15:54:27Z\",\"deleted_at\":null},{\"id\":\"srv-12345\",\"resource_type\":\"server\",\"url\":\"https://api.gb1.brightbox.com/1.0/servers/srv-12345\",\"name\":\"medium servers\",\"status\":\"active\",\"hostname\":\"srv-12345\",\"fqdn\":\"srv-12345.gb1.brightbox.com\",\"created_at\":\"2013-08-27T15:54:26Z\",\"started_at\":\"2013-08-27T15:54:29Z\",\"deleted_at\":null},{\"id\":\"srv-12345\",\"resource_type\":\"server\",\"url\":\"https://api.gb1.brightbox.com/1.0/servers/srv-12345\",\"name\":\"\",\"status\":\"deleted\",\"hostname\":\"srv-12345\",\"fqdn\":\"srv-12345.gb1.brightbox.com\",\"created_at\":\"2013-08-27T15:54:30Z\",\"started_at\":\"2013-08-27T15:54:32Z\",\"deleted_at\":\"2013-08-27T15:54:35Z\"},{\"id\":\"srv-12345\",\"resource_type\":\"server\",\"url\":\"https://api.gb1.brightbox.com/1.0/servers/srv-12345\",\"name\":\"rspec_server_shutdown\",\"status\":\"active\",\"hostname\":\"srv-12345\",\"fqdn\":\"srv-12345.gb1.brightbox.com\",\"created_at\":\"2013-08-27T15:54:36Z\",\"started_at\":\"2013-08-27T15:54:38Z\",\"deleted_at\":null},{\"id\":\"srv-12345\",\"resource_type\":\"server\",\"url\":\"https://api.gb1.brightbox.com/1.0/servers/srv-12345\",\"name\":\"rspec_server_start\",\"status\":\"active\",\"hostname\":\"srv-12345\",\"fqdn\":\"srv-12345.gb1.brightbox.com\",\"created_at\":\"2013-08-27T15:54:41Z\",\"started_at\":\"2013-08-27T15:54:47Z\",\"deleted_at\":null},{\"id\":\"srv-12345\",\"resource_type\":\"server\",\"url\":\"https://api.gb1.brightbox.com/1.0/servers/srv-12345\",\"name\":\"rspec_server_stop\",\"status\":\"inactive\",\"hostname\":\"srv-12345\",\"fqdn\":\"srv-12345.gb1.brightbox.com\",\"created_at\":\"2013-08-27T15:54:48Z\",\"started_at\":\"2013-08-27T15:54:51Z\",\"deleted_at\":null},{\"id\":\"srv-12345\",\"resource_type\":\"server\",\"url\":\"https://api.gb1.brightbox.com/1.0/servers/srv-12345\",\"name\":\"\",\"status\":\"deleted\",\"hostname\":\"srv-12345\",\"fqdn\":\"srv-12345.gb1.brightbox.com\",\"created_at\":\"2013-08-27T15:54:52Z\",\"started_at\":\"2013-08-27T15:54:55Z\",\"deleted_at\":\"2013-08-27T15:54:58Z\"},{\"id\":\"srv-12345\",\"resource_type\":\"server\",\"url\":\"https://api.gb1.brightbox.com/1.0/servers/srv-12345\",\"name\":\"\",\"status\":\"deleted\",\"hostname\":\"srv-12345\",\"fqdn\":\"srv-12345.gb1.brightbox.com\",\"created_at\":\"2013-08-27T16:12:22Z\",\"started_at\":\"2013-08-27T16:12:25Z\",\"deleted_at\":\"2013-08-27T16:12:27Z\"}],\"load_balancers\":[],\"cloud_ips\":[{\"id\":\"cip-12345\",\"resource_type\":\"cloud_ip\",\"url\":\"https://api.gb1.brightbox.com/1.0/cloud_ips/cip-12345\",\"status\":\"unmapped\",\"public_ip\":\"217.16.230.132\",\"reverse_dns\":\"cip-12345-16-230-132.gb1.brightbox.com\",\"name\":null}],\"server_groups\":[{\"id\":\"grp-12345\",\"resource_type\":\"server_group\",\"url\":\"https://api.gb1.brightbox.com/1.0/server_groups/grp-12345\",\"name\":\"default\",\"description\":\"All new servers are added to this group unless specified otherwise.\",\"created_at\":\"2013-08-27T15:47:00Z\",\"default\":true},{\"id\":\"grp-12345\",\"resource_type\":\"server_group\",\"url\":\"https://api.gb1.brightbox.com/1.0/server_groups/grp-12345\",\"name\":\"test\",\"description\":null,\"created_at\":\"2013-08-27T15:54:53Z\",\"default\":false},{\"id\":\"grp-12345\",\"resource_type\":\"server_group\",\"url\":\"https://api.gb1.brightbox.com/1.0/server_groups/grp-12345\",\"name\":\"test\",\"description\":null,\"created_at\":\"2013-08-27T16:12:22Z\",\"default\":false}],\"firewall_policies\":[{\"id\":\"fwp-12345\",\"resource_type\":\"firewall_policy\",\"url\":\"https://api.gb1.brightbox.com/1.0/firewall_policies/fwp-12345\",\"default\":true,\"name\":\"default\",\"created_at\":\"2013-08-27T15:47:00Z\",\"description\":\"Applied to the default server group.\"},{\"id\":\"fwp-12345\",\"resource_type\":\"firewall_policy\",\"url\":\"https://api.gb1.brightbox.com/1.0/firewall_policies/fwp-12345\",\"default\":false,\"name\":\"rspec_firewall_policy_apply\",\"created_at\":\"2013-08-27T15:54:12Z\",\"description\":null},{\"id\":\"fwp-12345\",\"resource_type\":\"firewall_policy\",\"url\":\"https://api.gb1.brightbox.com/1.0/firewall_policies/fwp-12345\",\"default\":false,\"name\":\"rspec_firewall_policy\",\"created_at\":\"2013-08-27T15:54:13Z\",\"description\":null},{\"id\":\"fwp-12345\",\"resource_type\":\"firewall_policy\",\"url\":\"https://api.gb1.brightbox.com/1.0/firewall_policies/fwp-12345\",\"default\":false,\"name\":null,\"created_at\":\"2013-08-27T15:54:20Z\",\"description\":null},{\"id\":\"fwp-12345\",\"resource_type\":\"firewall_policy\",\"url\":\"https://api.gb1.brightbox.com/1.0/firewall_policies/fwp-12345\",\"default\":false,\"name\":null,\"created_at\":\"2013-08-27T15:54:21Z\",\"description\":null},{\"id\":\"fwp-12345\",\"resource_type\":\"firewall_policy\",\"url\":\"https://api.gb1.brightbox.com/1.0/firewall_policies/fwp-12345\",\"default\":false,\"name\":\"rspec_firewall_policy\",\"created_at\":\"2013-08-27T15:56:46Z\",\"description\":null},{\"id\":\"fwp-12345\",\"resource_type\":\"firewall_policy\",\"url\":\"https://api.gb1.brightbox.com/1.0/firewall_policies/fwp-12345\",\"default\":false,\"name\":\"rspec_firewall_policy\",\"created_at\":\"2013-08-27T16:06:22Z\",\"description\":null}],\"owner\":{\"id\":\"usr-12345\",\"resource_type\":\"user\",\"url\":\"https://api.gb1.brightbox.com/1.0/users/usr-12345\",\"name\":\"Teresa Ullrich\",\"email_address\":\"jason.null@brightbox.com\"},\"users\":[],\"zones\":[{\"id\":\"zon-12345\",\"resource_type\":\"zone\",\"url\":\"https://api.gb1.brightbox.com/1.0/zones/zon-12345\",\"handle\":\"gb1-a\"},{\"id\":\"zon-12345\",\"resource_type\":\"zone\",\"url\":\"https://api.gb1.brightbox.com/1.0/zones/zon-12345\",\"handle\":\"gb1-b\"}]}"
     http_version: 
   recorded_at: Tue, 27 Aug 2013 16:12:40 GMT
-- request:
+- request: 
     method: post
     uri: http://api.brightbox.dev/token
-    body:
-      encoding: UTF-8
-      string: '{"grant_type":"none","client_id":"app-12345"}'
-    headers:
-      User-Agent:
+    body: 
+      string: "{\"grant_type\":\"none\",\"client_id\":\"app-12345\"}"
+    headers: 
+      User-Agent: 
       - fog/1.15.0
-      Authorization:
-      - Basic YXBwLTEyMzQ1Om1vY2J1aXBiaWFhNms2Yw==
-      Content-Type:
+      Content-Type: 
       - application/json
-  response:
-    status:
+      Authorization: 
+      - Basic YXBwLTEyMzQ1Om1vY2J1aXBiaWFhNms2Yw==
+  response: 
+    status: 
       code: 400
       message: 
-    headers:
-      X-Frame-Options:
+    headers: 
+      X-Frame-Options: 
       - sameorigin
-      X-XSS-Protection:
-      - 1; mode=block
-      Content-Type:
-      - application/json;charset=utf-8
-      Cache-Control:
-      - no-store
-      Content-Length:
-      - '135'
-      X-UA-Compatible:
-      - IE=Edge
-      X-Request-Id:
-      - c33ed223f526036731d04080739c8328
-      X-Runtime:
-      - '0.096899'
-      Date:
+      Date: 
       - Tue, 27 Aug 2013 17:09:58 GMT
-      Connection:
+      X-UA-Compatible: 
+      - IE=Edge
+      X-Request-Id: 
+      - c33ed223f526036731d04080739c8328
+      Content-Type: 
+      - application/json;charset=utf-8
+      X-Runtime: 
+      - "0.096899"
+      Content-Length: 
+      - "135"
+      X-XSS-Protection: 
+      - 1; mode=block
+      Connection: 
       - keep-alive
-    body:
-      encoding: UTF-8
-      string: '{"error":"unauthorized_client","error_description":"The authenticated
-        client is not authorized to use the access grant type provided."}'
+      Cache-Control: 
+      - no-store
+    body: 
+      string: "{\"error\":\"unauthorized_client\",\"error_description\":\"The authenticated client is not authorized to use the access grant type provided.\"}"
     http_version: 
   recorded_at: Tue, 27 Aug 2013 17:09:58 GMT
-- request:
+- request: 
     method: post
     uri: http://api.brightbox.dev/token
-    body:
-      encoding: UTF-8
-      string: '{"grant_type":"none","client_id":"cli-12345"}'
-    headers:
-      User-Agent:
+    body: 
+      string: "{\"grant_type\":\"none\",\"client_id\":\"cli-12345\"}"
+    headers: 
+      User-Agent: 
       - fog/1.15.0
-      Authorization:
-      - Basic Y2xpLTEyMzQ1OnF5Nnh4bnZ5NG8wdGd2NQ==
-      Content-Type:
+      Content-Type: 
       - application/json
-  response:
-    status:
+      Authorization: 
+      - Basic Y2xpLTEyMzQ1OnF5Nnh4bnZ5NG8wdGd2NQ==
+  response: 
+    status: 
       code: 200
       message: 
-    headers:
-      X-Frame-Options:
+    headers: 
+      X-Frame-Options: 
       - sameorigin
-      X-XSS-Protection:
-      - 1; mode=block
-      Content-Type:
-      - application/json;charset=utf-8
-      Cache-Control:
-      - no-store
-      Content-Length:
-      - '77'
-      X-UA-Compatible:
-      - IE=Edge
-      ETag:
-      - '"6ba0903c80d74cba28ff11d3b1b6c595"'
-      X-Request-Id:
-      - e3a289fa626dc44f0e44afa68d82b3e5
-      X-Runtime:
-      - '0.113261'
-      Date:
+      Date: 
       - Wed, 28 Aug 2013 16:08:24 GMT
-      Connection:
+      X-UA-Compatible: 
+      - IE=Edge
+      X-Request-Id: 
+      - e3a289fa626dc44f0e44afa68d82b3e5
+      Content-Type: 
+      - application/json;charset=utf-8
+      X-Runtime: 
+      - "0.113261"
+      Content-Length: 
+      - "77"
+      ETag: 
+      - "\"6ba0903c80d74cba28ff11d3b1b6c595\""
+      X-XSS-Protection: 
+      - 1; mode=block
+      Connection: 
       - keep-alive
-    body:
-      encoding: UTF-8
-      string: '{"access_token":"64a61980c09105f0c9000b480473f118461e9bec","expires_in":7200}'
+      Cache-Control: 
+      - no-store
+    body: 
+      string: "{\"access_token\":\"64a61980c09105f0c9000b480473f118461e9bec\",\"expires_in\":7200}"
     http_version: 
   recorded_at: Wed, 28 Aug 2013 16:08:24 GMT
-- request:
+- request: 
     method: get
     uri: http://api.brightbox.dev/1.0/accounts
-    body:
-      encoding: US-ASCII
-      string: ''
-    headers:
-      User-Agent:
+    body: 
+      string: ""
+    headers: 
+      User-Agent: 
       - fog/1.15.0
-      Authorization:
-      - OAuth 64a61980c09105f0c9000b480473f118461e9bec
-      Content-Type:
+      Content-Type: 
       - application/json
-  response:
-    status:
+      Authorization: 
+      - OAuth 64a61980c09105f0c9000b480473f118461e9bec
+  response: 
+    status: 
       code: 401
       message: 
-    headers:
-      WWW-Authenticate:
-      - OAuth error="invalid_token"
-      Content-Type:
-      - application/json; charset=utf-8
-      X-UA-Compatible:
-      - IE=Edge
-      Cache-Control:
-      - no-cache
-      X-Request-Id:
-      - f8a904ab18d1a86f21c62f2b69a3ebf8
-      X-Runtime:
-      - '0.016519'
-      Date:
+    headers: 
+      Date: 
       - Tue, 17 Sep 2013 17:07:41 GMT
-      Connection:
+      X-UA-Compatible: 
+      - IE=Edge
+      X-Request-Id: 
+      - f8a904ab18d1a86f21c62f2b69a3ebf8
+      Content-Type: 
+      - application/json; charset=utf-8
+      X-Runtime: 
+      - "0.016519"
+      WWW-Authenticate: 
+      - OAuth error="invalid_token"
+      Connection: 
       - close
-    body:
-      encoding: UTF-8
-      string: '{"error":"invalid_token","error_description":"The OAuth token can not
-        be found"}'
+      Cache-Control: 
+      - no-cache
+    body: 
+      string: "{\"error\":\"invalid_token\",\"error_description\":\"The OAuth token can not be found\"}"
     http_version: 
   recorded_at: Tue, 17 Sep 2013 17:07:41 GMT
-- request:
+- request: 
     method: post
     uri: http://api.brightbox.dev/token
-    body:
-      encoding: UTF-8
-      string: '{"grant_type":"none","client_id":"cli-12345"}'
-    headers:
-      User-Agent:
+    body: 
+      string: "{\"grant_type\":\"none\",\"client_id\":\"cli-12345\"}"
+    headers: 
+      User-Agent: 
       - fog/1.15.0
-      Authorization:
-      - Basic Y2xpLTEyMzQ1OnF5Nnh4bnZ5NG8wdGd2NQ==
-      Content-Type:
+      Content-Type: 
       - application/json
-  response:
-    status:
+      Authorization: 
+      - Basic Y2xpLTEyMzQ1OnF5Nnh4bnZ5NG8wdGd2NQ==
+  response: 
+    status: 
       code: 200
       message: 
-    headers:
-      X-Frame-Options:
+    headers: 
+      X-Frame-Options: 
       - sameorigin
-      X-XSS-Protection:
-      - 1; mode=block
-      Content-Type:
-      - application/json;charset=utf-8
-      Cache-Control:
-      - no-store
-      Content-Length:
-      - '77'
-      X-UA-Compatible:
-      - IE=Edge
-      ETag:
-      - '"de6234a5a2fde61c1f7a8b2f7c7b2549"'
-      X-Request-Id:
-      - 116a5ddc77e6197748e50531f3a04974
-      X-Runtime:
-      - '0.113636'
-      Date:
+      Date: 
       - Tue, 17 Sep 2013 17:07:41 GMT
-      Connection:
+      X-UA-Compatible: 
+      - IE=Edge
+      X-Request-Id: 
+      - 116a5ddc77e6197748e50531f3a04974
+      Content-Type: 
+      - application/json;charset=utf-8
+      X-Runtime: 
+      - "0.113636"
+      Content-Length: 
+      - "77"
+      ETag: 
+      - "\"de6234a5a2fde61c1f7a8b2f7c7b2549\""
+      X-XSS-Protection: 
+      - 1; mode=block
+      Connection: 
       - keep-alive
-    body:
-      encoding: UTF-8
-      string: '{"access_token":"18ee6be47f33d919db95c5de206ddaa1f2cb754b","expires_in":7200}'
+      Cache-Control: 
+      - no-store
+    body: 
+      string: "{\"access_token\":\"18ee6be47f33d919db95c5de206ddaa1f2cb754b\",\"expires_in\":7200}"
     http_version: 
   recorded_at: Tue, 17 Sep 2013 17:07:41 GMT
-- request:
+- request: 
     method: get
     uri: http://api.brightbox.dev/1.0/accounts
-    body:
-      encoding: US-ASCII
-      string: ''
-    headers:
-      User-Agent:
+    body: 
+      string: ""
+    headers: 
+      User-Agent: 
       - fog/1.15.0
-      Authorization:
-      - OAuth 18ee6be47f33d919db95c5de206ddaa1f2cb754b
-      Content-Type:
+      Content-Type: 
       - application/json
-  response:
-    status:
+      Authorization: 
+      - OAuth 18ee6be47f33d919db95c5de206ddaa1f2cb754b
+  response: 
+    status: 
       code: 200
       message: 
-    headers:
-      Content-Type:
-      - application/json; charset=utf-8
-      X-UA-Compatible:
-      - IE=Edge
-      ETag:
-      - '"7d4ad7857ea408897b8a2149197611ba"'
-      Cache-Control:
-      - max-age=0, private, must-revalidate
-      X-Request-Id:
-      - aada412702ec84983c63d1f4b6a861de
-      X-Runtime:
-      - '0.102430'
-      Date:
+    headers: 
+      Date: 
       - Tue, 17 Sep 2013 17:07:41 GMT
-      Connection:
+      X-UA-Compatible: 
+      - IE=Edge
+      X-Request-Id: 
+      - aada412702ec84983c63d1f4b6a861de
+      Content-Type: 
+      - application/json; charset=utf-8
+      X-Runtime: 
+      - "0.102430"
+      ETag: 
+      - "\"7d4ad7857ea408897b8a2149197611ba\""
+      Connection: 
       - close
-    body:
-      encoding: UTF-8
-      string: '[{"id":"acc-12345","resource_type":"account","url":"https://api.gb1.brightbox.com/1.0/accounts/acc-12345","name":"Asaibdsjnpdgrdcqo","status":"active","ram_limit":32768,"ram_used":0,"cloud_ips_limit":20,"cloud_ips_used":1,"load_balancers_limit":5,"load_balancers_used":0,"clients":[{"id":"cli-12345","resource_type":"api_client","url":"https://api.gb1.brightbox.com/1.0/api_clients/cli-12345","name":null,"description":null,"revoked_at":null}],"images":[],"servers":[],"load_balancers":[],"cloud_ips":[{"id":"cip-12345","resource_type":"cloud_ip","url":"https://api.gb1.brightbox.com/1.0/cloud_ips/cip-12345","status":"unmapped","public_ip":"153.37.92.121","reverse_dns":"cip-12345-37-92-121.gb1.brightbox.com","name":null}],"server_groups":[{"id":"grp-12345","resource_type":"server_group","url":"https://api.gb1.brightbox.com/1.0/server_groups/grp-12345","name":"default","description":"All
-        new servers are added to this group unless specified otherwise.","created_at":"2013-09-17T08:44:16Z","default":true}],"firewall_policies":[{"id":"fwp-12345","resource_type":"firewall_policy","url":"https://api.gb1.brightbox.com/1.0/firewall_policies/fwp-12345","default":true,"name":"default","created_at":"2013-09-17T08:44:16Z","description":"Applied
-        to the default server group."}],"owner":{"id":"usr-12345","resource_type":"user","url":"https://api.gb1.brightbox.com/1.0/users/usr-12345","name":"Kobe
-        Swaniawski Sr.","email_address":"jason.null@brightbox.com"},"users":[],"zones":[{"id":"zon-12345","resource_type":"zone","url":"https://api.gb1.brightbox.com/1.0/zones/zon-12345","handle":"gb1-a"},{"id":"zon-12345","resource_type":"zone","url":"https://api.gb1.brightbox.com/1.0/zones/zon-12345","handle":"gb1-b"}]}]'
+      Cache-Control: 
+      - max-age=0, private, must-revalidate
+    body: 
+      string: "[{\"id\":\"acc-12345\",\"resource_type\":\"account\",\"url\":\"https://api.gb1.brightbox.com/1.0/accounts/acc-12345\",\"name\":\"Asaibdsjnpdgrdcqo\",\"status\":\"active\",\"ram_limit\":32768,\"ram_used\":0,\"cloud_ips_limit\":20,\"cloud_ips_used\":1,\"load_balancers_limit\":5,\"load_balancers_used\":0,\"clients\":[{\"id\":\"cli-12345\",\"resource_type\":\"api_client\",\"url\":\"https://api.gb1.brightbox.com/1.0/api_clients/cli-12345\",\"name\":null,\"description\":null,\"revoked_at\":null}],\"images\":[],\"servers\":[],\"load_balancers\":[],\"cloud_ips\":[{\"id\":\"cip-12345\",\"resource_type\":\"cloud_ip\",\"url\":\"https://api.gb1.brightbox.com/1.0/cloud_ips/cip-12345\",\"status\":\"unmapped\",\"public_ip\":\"153.37.92.121\",\"reverse_dns\":\"cip-12345-37-92-121.gb1.brightbox.com\",\"name\":null}],\"server_groups\":[{\"id\":\"grp-12345\",\"resource_type\":\"server_group\",\"url\":\"https://api.gb1.brightbox.com/1.0/server_groups/grp-12345\",\"name\":\"default\",\"description\":\"All new servers are added to this group unless specified otherwise.\",\"created_at\":\"2013-09-17T08:44:16Z\",\"default\":true}],\"firewall_policies\":[{\"id\":\"fwp-12345\",\"resource_type\":\"firewall_policy\",\"url\":\"https://api.gb1.brightbox.com/1.0/firewall_policies/fwp-12345\",\"default\":true,\"name\":\"default\",\"created_at\":\"2013-09-17T08:44:16Z\",\"description\":\"Applied to the default server group.\"}],\"owner\":{\"id\":\"usr-12345\",\"resource_type\":\"user\",\"url\":\"https://api.gb1.brightbox.com/1.0/users/usr-12345\",\"name\":\"Kobe Swaniawski Sr.\",\"email_address\":\"jason.null@brightbox.com\"},\"users\":[],\"zones\":[{\"id\":\"zon-12345\",\"resource_type\":\"zone\",\"url\":\"https://api.gb1.brightbox.com/1.0/zones/zon-12345\",\"handle\":\"gb1-a\"},{\"id\":\"zon-12345\",\"resource_type\":\"zone\",\"url\":\"https://api.gb1.brightbox.com/1.0/zones/zon-12345\",\"handle\":\"gb1-b\"}]}]"
     http_version: 
   recorded_at: Tue, 17 Sep 2013 17:07:41 GMT
-recorded_with: VCR 2.5.0
+- request: 
+    method: post
+    uri: http://api.brightbox.dev/token
+    body: 
+      string: "{\"client_id\":\"cli-12345\",\"grant_type\":\"none\"}"
+    headers: 
+      User-Agent: 
+      - fog/1.15.0
+      Content-Type: 
+      - application/json
+      Authorization: 
+      - Basic Y2xpLTEyMzQ1OnF5Nnh4bnZ5NG8wdGd2NQ==
+  response: 
+    status: 
+      code: 200
+      message: 
+    headers: 
+      X-Frame-Options: 
+      - sameorigin
+      Date: 
+      - Fri, 27 Sep 2013 15:26:10 GMT
+      X-UA-Compatible: 
+      - IE=Edge
+      X-Request-Id: 
+      - c02be9b4e14a812168ffcec48389bb58
+      Content-Type: 
+      - application/json;charset=utf-8
+      X-Runtime: 
+      - "0.138763"
+      Content-Length: 
+      - "77"
+      ETag: 
+      - "\"5489b0e65c20c465e8f8fc4844f209d2\""
+      X-XSS-Protection: 
+      - 1; mode=block
+      Connection: 
+      - keep-alive
+      Cache-Control: 
+      - no-store
+    body: 
+      string: "{\"access_token\":\"b75e37eb637de1860b2a6d53a4e9f8b3c34500c2\",\"expires_in\":7200}"
+    http_version: 
+  recorded_at: Fri, 27 Sep 2013 15:26:10 GMT
+- request: 
+    method: post
+    uri: http://api.brightbox.dev/token
+    body: 
+      string: "{\"client_id\":\"cli-12345\",\"grant_type\":\"none\"}"
+    headers: 
+      User-Agent: 
+      - fog/1.15.0
+      Content-Type: 
+      - application/json
+      Authorization: 
+      - Basic Y2xpLTEyMzQ1OnF5Nnh4bnZ5NG8wdGd2NQ==
+  response: 
+    status: 
+      code: 200
+      message: 
+    headers: 
+      X-Frame-Options: 
+      - sameorigin
+      Date: 
+      - Fri, 27 Sep 2013 15:26:11 GMT
+      X-UA-Compatible: 
+      - IE=Edge
+      X-Request-Id: 
+      - 01b2fac5145bf604b23ece75050c3af7
+      Content-Type: 
+      - application/json;charset=utf-8
+      X-Runtime: 
+      - "0.140081"
+      Content-Length: 
+      - "77"
+      ETag: 
+      - "\"259feca10b7df7a375df46b8cfee97b8\""
+      X-XSS-Protection: 
+      - 1; mode=block
+      Connection: 
+      - keep-alive
+      Cache-Control: 
+      - no-store
+    body: 
+      string: "{\"access_token\":\"e1ce7a6e41c7bee7ebaf7a7416f43938cc07cdce\",\"expires_in\":7200}"
+    http_version: 
+  recorded_at: Fri, 27 Sep 2013 15:26:11 GMT
