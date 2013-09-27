@@ -11,7 +11,7 @@ describe Brightbox::BBConfig do
   let(:cli_id) { "cli-12345" }
   let(:cli_secret) { "qy6xxnvy4o0tgv5" }
 
-  describe "#renew_tokens" do
+  describe "#renew_tokens", :broken_1_8 do
     context "when using a user app with no tokens", :vcr do
       before do
         contents = <<-EOS

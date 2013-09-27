@@ -2,7 +2,7 @@ require "spec_helper"
 
 describe Brightbox::ServerGroup do
 
-  describe "#find(:all)" do
+  describe "#find(:all)", :broken_1_8 do
     context "when a group exists", :vcr do
       before do
         options = {
