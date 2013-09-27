@@ -2,7 +2,7 @@ require "spec_helper"
 
 describe Brightbox::FirewallPolicy do
 
-  describe "#destroy", :vcr do
+  describe "#destroy", :vcr, :broken_1_8 do
     it "should destroy firewall policy" do
       params = { :name => "rspec_tests"}
       @group = Brightbox::ServerGroup.create(params)
