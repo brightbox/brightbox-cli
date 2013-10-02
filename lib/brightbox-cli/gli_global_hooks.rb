@@ -11,7 +11,8 @@ module Brightbox
   #
   # Need to locate the source of double loading under Aruba
   #
-  Dir.glob(File.expand_path("../commands/*.rb", __FILE__)) do |f|
+  subcommand_files = Dir.glob(File.expand_path("../commands/*.rb", __FILE__))
+  subcommand_files.sort.each do |f|
     require_relative File.join('commands', File.basename(f))
   end
 
