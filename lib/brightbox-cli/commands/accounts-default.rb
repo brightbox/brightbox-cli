@@ -1,5 +1,5 @@
 module Brightbox
-  desc "Manages the accounts"
+  
   command [:accounts] do |cmd|
 
     cmd.desc "Set a default account"
