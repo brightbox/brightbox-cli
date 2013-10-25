@@ -43,6 +43,12 @@ module Brightbox
       c.default_value "3"
       c.flag [:d, "hc-down"]
 
+      c.desc "Filepath to the SSL certificate file to use."
+      c.flag ["ssl-cert"]
+
+      c.desc "Filepath to the private key used to sign SSL certificate (OpenSSL supported foramts)."
+      c.flag ["ssl-key"]
+
       c.action do |global_options, options, args|
 
         raise "You must specify which servers to balance connections to" if args.empty?
@@ -76,6 +82,18 @@ module Brightbox
           end
         end
 
+        # SSL argumens
+        ssl_cert_path = options["ssl-cert"]
+        ssl_key_path = options["ssl-key"]
+
+        if ssl_cert_path.nil? ^ ssl_key_path.nil?
+          raise "Both SSL arguments (ssl-cert and ssl-key) are required."
+        end
+        if ssl_cert_path && ssl_key_path
+          ssl_cert = File.read(File.expand_path(ssl_cert_path))
+          ssl_key = File.read(File.expand_path(ssl_key_path))
+        end
+
         nodes = args.collect { |i| { :node => i } }
 
         msg = "Creating a new load balancer"
@@ -84,6 +102,8 @@ module Brightbox
                                  :name => options[:n],
                                  :healthcheck => healthcheck,
                                  :listeners => listeners,
+                                 :certificate_pem => ssl_cert,
+                                 :certificate_private_key => ssl_key,
                                  :nodes => nodes)
         render_table([lb], global_options)
       end
