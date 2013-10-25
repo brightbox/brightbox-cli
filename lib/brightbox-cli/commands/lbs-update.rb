@@ -36,6 +36,15 @@ module Brightbox
       c.desc "Healthcheck threshold down. Number of failed healthchecks for the node to be considered down."
       c.flag [:d, "hc-down"]
 
+      c.desc "Filepath to the SSL certificate file to use."
+      c.flag ["ssl-cert"]
+
+      c.desc "Filepath to the private key used to sign SSL certificate (OpenSSL supported foramts)."
+      c.flag ["ssl-key"]
+
+      c.desc "Clears SSL details from the load balancer."
+      c.switch ["remove-ssl"]
+
       c.action do |global_options, options, args|
 
         lb_id = args.shift
@@ -76,6 +85,29 @@ module Brightbox
 
         if options[:p]
           lbopts[:policy] = options[:p]
+        end
+
+        # SSL argumens
+        ssl_cert_path = options["ssl-cert"]
+        ssl_key_path = options["ssl-key"]
+        remove_ssl = options["remove-ssl"]
+
+        if remove_ssl && (ssl_cert_path || ssl_key_path)
+          raise "Cannot set an SSL argument whilst removing the certificate!"
+        end
+
+        if ssl_cert_path.nil? ^ ssl_key_path.nil?
+          raise "Both SSL arguments (ssl-cert and ssl-key) are required."
+        end
+
+        if ssl_cert_path && ssl_key_path
+          lbopts[:certificate_pem] = File.read(File.expand_path(ssl_cert_path))
+          lbopts[:certificate_private_key] = File.read(File.expand_path(ssl_key_path))
+        end
+
+        if remove_ssl
+          lbopts[:certificate_pem] = ""
+          lbopts[:certificate_private_key] = ""
         end
 
         lbopts.nilify_blanks
