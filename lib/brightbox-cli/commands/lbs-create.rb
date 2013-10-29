@@ -46,7 +46,7 @@ module Brightbox
       c.desc "Filepath to the SSL certificate file to use."
       c.flag ["ssl-cert"]
 
-      c.desc "Filepath to the private key used to sign SSL certificate (OpenSSL supported foramts)."
+      c.desc "Filepath to the private key used to sign SSL certificate (OpenSSL supported formats)."
       c.flag ["ssl-key"]
 
       c.action do |global_options, options, args|
