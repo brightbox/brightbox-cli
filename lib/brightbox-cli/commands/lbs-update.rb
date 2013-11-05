@@ -43,7 +43,7 @@ module Brightbox
       c.flag ["ssl-key"]
 
       c.desc "Clears SSL details from the load balancer."
-      c.switch ["remove-ssl"]
+      c.switch ["remove-ssl"], :negatable => false
 
       c.action do |global_options, options, args|
 
