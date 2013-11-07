@@ -20,7 +20,7 @@ Gem::Specification.new do |s|
   s.require_paths = ["lib"]
 
   s.add_dependency "gli", "~> 2.8"
-  s.add_dependency "fog", "~> 1.15.0"
+  s.add_dependency "fog", "~> 1.17.0"
   s.add_dependency "nokogiri", "~> 1.5.0" # 1.5.x last versions with 1.8.7 support
   s.add_dependency "excon"
   s.add_dependency "json"

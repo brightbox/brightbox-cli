@@ -10,11 +10,14 @@ module Brightbox
     end
 
     def to_row
-      attributes.merge({ :nodes => node_ids,
+      attributes.merge(
+        :ssl_subject => certificate_subject,
+        :ssl_expires_at => certificate_expires_at,
+        :nodes => node_ids,
         :created_on => created_on,
         :listeners => listeners,
         :cloud_ips => cloud_ip_ids
-      })
+      )
     end
 
     def created_on

@@ -13,10 +13,22 @@ module Brightbox
           raise "Couldn't find lb #{id}"
         end
 
-        table_opts = global_options.merge({
+        table_opts = global_options.merge(
           :vertical => true,
-          :fields => [:id, :status, :name, "created_at", "deleted_at", :policy, :cloud_ips, :nodes, :listeners, :healthcheck]
-        })
+          :fields => [
+            :id,
+            :status,
+            :name,
+            :created_at,
+            :deleted_at,
+            :policy,
+            :ssl_subject,
+            :ssl_expires_at,
+            :cloud_ips,
+            :nodes,
+            :listeners,
+            :healthcheck
+        ])
 
         render_table(lbs, table_opts)
 
