@@ -8,6 +8,7 @@ PATH
       highline (~> 1.6)
       hirb (~> 0.6)
       json
+      mime-types (~> 1.25)
       nokogiri (~> 1.5.0)
 
 GEM
@@ -34,7 +35,7 @@ GEM
     json (1.8.1)
     metaclass (0.0.1)
     method_source (0.8.1)
-    mime-types (2.0)
+    mime-types (1.25)
     mocha (0.14.0)
       metaclass (~> 0.0.1)
     multi_json (1.8.2)
