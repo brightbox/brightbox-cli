@@ -416,6 +416,7 @@ SPEC = { "brightbox" =>
             "list" => find_identifiers("srv-"),
             "show" => find_identifiers("srv-"),
             "shutdown" => find_identifiers("srv-"),
+            "snapshot" => find_identifiers("srv-"),
             "start" => find_identifiers("srv-"),
             "stop" => find_identifiers("srv-")
            },
