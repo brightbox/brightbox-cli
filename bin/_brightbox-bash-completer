@@ -336,7 +336,9 @@ SPEC = { "brightbox" =>
                "-t=" => "--hc-timeout=",
                "--hc-timeout=" => [%w{5000 10000 15000}],
                "-y=" => "--hc-type=",
-               "--hc-type=" => [%w{http tcp}]
+               "--hc-type=" => [%w{http tcp}],
+               "--ssl-cert" => true,
+               "--ssl-key" => true
               },
             "update" =>
               {
@@ -360,6 +362,9 @@ SPEC = { "brightbox" =>
                "--hc-timeout=" => [%w{5000 10000 15000}],
                "-y=" => "--hc-type=",
                "--hc-type=" => [%w{http tcp}],
+               "--ssl-cert" => true,
+               "--ssl-key" => true,
+               "--remove-ssl" => true,
                :include => find_identifiers("lba-")
               },
             "list" => find_identifiers("lba-"),
