@@ -11,7 +11,9 @@ module Brightbox
 
     def to_row
       attributes.merge(
+        :ssl_issuer => certificate_issuer,
         :ssl_subject => certificate_subject,
+        :ssl_valid_from => certificate_valid_from,
         :ssl_expires_at => certificate_expires_at,
         :nodes => node_ids,
         :created_on => created_on,
