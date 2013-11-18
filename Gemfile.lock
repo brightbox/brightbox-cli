@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    brightbox-cli (1.0.0)
+    brightbox-cli (1.1.0)
       excon
       fog (~> 1.17.0)
       gli (~> 2.8)
