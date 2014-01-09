@@ -3,7 +3,7 @@ PATH
   specs:
     brightbox-cli (1.1.0)
       excon
-      fog (~> 1.19.0)
+      fog (~> 1.20.0)
       gli (~> 2.9)
       highline (~> 1.6)
       hirb (~> 0.6)
@@ -19,7 +19,7 @@ GEM
     coderay (1.0.9)
     diff-lcs (1.2.4)
     excon (0.31.0)
-    fog (1.19.0)
+    fog (1.20.0)
       builder
       excon (~> 0.31.0)
       formatador (~> 0.2.0)
@@ -27,8 +27,7 @@ GEM
       multi_json (~> 1.0)
       net-scp (~> 1.1)
       net-ssh (>= 2.1.3)
-      nokogiri (~> 1.5)
-      ruby-hmac
+      nokogiri (>= 1.5.11)
     formatador (0.2.4)
     gli (2.9.0)
     highline (1.6.20)
@@ -57,7 +56,6 @@ GEM
     rspec-expectations (2.14.0)
       diff-lcs (>= 1.1.3, < 2.0)
     rspec-mocks (2.14.1)
-    ruby-hmac (0.4.0)
     slop (3.4.5)
     vcr (2.5.0)
 
@@ -67,6 +65,7 @@ PLATFORMS
 DEPENDENCIES
   brightbox-cli!
   mocha
+  nokogiri (~> 1.5.11)
   pry
   rake
   rspec (~> 2.14)
