@@ -1,0 +1,91 @@
+---
+http_interactions:
+- request:
+    method: post
+    uri: http://api.brightbox.dev/1.0/database_servers/dbs-12345/snapshot?account_id=acc-12345
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      User-Agent:
+      - fog/1.19.0
+      Authorization:
+      - OAuth f83da712e6299cda953513ec07f7a754f747d727
+      Content-Type:
+      - application/json
+  response:
+    status:
+      code: 409
+      message:
+    headers:
+      Content-Type:
+      - application/json; charset=utf-8
+      X-Ua-Compatible:
+      - IE=Edge
+      Cache-Control:
+      - no-cache
+      X-Request-Id:
+      - 1d697fa487af9c4598121783ee567da8
+      X-Runtime:
+      - '0.205784'
+      Server:
+      - WEBrick/1.3.1 (Ruby/1.9.3/2013-11-22)
+      Date:
+      - Thu, 16 Jan 2014 15:30:27 GMT
+      Content-Length:
+      - '102'
+      Connection:
+      - Keep-Alive
+    body:
+      encoding: UTF-8
+      string: "{\"error_name\":\"resource_conflict\",\"errors\":[\"Unable to action
+        the request due to conflicting states\"]}"
+    http_version:
+  recorded_at: Thu, 16 Jan 2014 15:30:27 GMT
+- request:
+    method: post
+    uri: http://api.brightbox.dev/token
+    body:
+      encoding: UTF-8
+      string: "{\"grant_type\":\"none\",\"client_id\":\"app-12345\"}"
+    headers:
+      User-Agent:
+      - fog/1.20.0
+      Authorization:
+      - Basic YXBwLTEyMzQ1Om1vY2J1aXBiaWFhNms2Yw==
+      Content-Type:
+      - application/json
+  response:
+    status:
+      code: 400
+      message:
+    headers:
+      X-Frame-Options:
+      - sameorigin
+      X-Xss-Protection:
+      - 1; mode=block
+      Content-Type:
+      - application/json;charset=utf-8
+      Cache-Control:
+      - no-store
+      Content-Length:
+      - '135'
+      X-Ua-Compatible:
+      - IE=Edge
+      X-Request-Id:
+      - d1b1cf6b0aec944024be39ed6de92d16
+      X-Runtime:
+      - '0.102798'
+      Server:
+      - WEBrick/1.3.1 (Ruby/1.9.3/2013-11-22)
+      Date:
+      - Tue, 18 Feb 2014 17:30:26 GMT
+      Connection:
+      - close
+    body:
+      encoding: UTF-8
+      string: "{\"error\":\"unauthorized_client\",\"error_description\":\"The authenticated
+        client is not authorized to use the access grant type provided.\"}"
+    http_version:
+  recorded_at: Tue, 18 Feb 2014 17:30:26 GMT
+recorded_with: VCR 2.5.0
