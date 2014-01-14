@@ -39,7 +39,7 @@ module Brightbox
       a = fog_model.attributes
       a[:image] = image_id
       a[:created_at] = created_at
-      a[:created_on] = fog_model.created_at.strftime("%Y-%m-%d")
+      a[:created_on] = created_on
       a[:type] = server_type['handle']
       a[:status] = fog_model.state
       a[:zone] = zone && zone['handle']

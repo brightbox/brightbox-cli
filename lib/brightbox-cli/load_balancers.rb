@@ -22,10 +22,6 @@ module Brightbox
       )
     end
 
-    def created_on
-      attributes["created_at"].to_s.split('T').first
-    end
-
     def node_ids
       @node_ids ||= attributes[:nodes].collect { |n| n["id"] } if attributes[:nodes]
     end
@@ -79,6 +75,5 @@ module Brightbox
     def self.default_field_order
       [:id, :status, :created_on, :cloud_ips, :nodes, :name]
     end
-
   end
 end
