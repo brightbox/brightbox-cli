@@ -85,7 +85,7 @@ module Brightbox
       o[:owner] = "brightbox" if official
       o[:type] = type
       o[:created_at] = created_at
-      o[:created_on] = created_at.to_s.split('T').first
+      o[:created_on] = created_on
       o[:description] = description if description
       o[:licence_name] = licence_name
       o[:size] = virtual_size
