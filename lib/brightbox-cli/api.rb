@@ -52,7 +52,7 @@ module Brightbox
       else
         raise InvalidArguments, "Can't initialize #{self.class} with #{m.inspect}"
       end
-      $config.cache_id @id
+      $config.cache_id(@id) if $config.respond_to?(:cache_id)
     end
 
     def fog_model
