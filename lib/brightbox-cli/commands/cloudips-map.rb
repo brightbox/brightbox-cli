@@ -28,14 +28,8 @@ module Brightbox
           server = Server.find destination_id
           destination_id = server.interfaces.first["id"]
           info "Mapping #{ip} to interface #{destination_id} on #{server}"
-        when /^lba\-/
-          lb = LoadBalancer.find destination_id
-          info "Mapping #{ip} to load balancer #{lb}"
-        when /grp\-/
-          group = ServerGroup.find destination_id
-          info "Mapping #{ip} to server group #{group}"
         else
-          raise "Unknown destination '#{destination_id}'"
+          info "Mapping #{ip} to destination #{destination_id}"
         end
 
         if ip.mapped?

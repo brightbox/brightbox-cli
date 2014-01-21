@@ -1,0 +1,266 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: http://api.brightbox.dev/1.0/cloud_ips/cip-12345?account_id=acc-12345
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      User-Agent:
+      - fog/1.19.0
+      Authorization:
+      - OAuth f83da712e6299cda953513ec07f7a754f747d727
+      Content-Type:
+      - application/json
+  response:
+    status:
+      code: 200
+      message:
+    headers:
+      Content-Type:
+      - application/json; charset=utf-8
+      X-Ua-Compatible:
+      - IE=Edge
+      Etag:
+      - "\"1e6a05455b00a88433c6894c228f688f\""
+      Cache-Control:
+      - max-age=0, private, must-revalidate
+      X-Request-Id:
+      - a0f60beecf06a1ee260336d605e50610
+      X-Runtime:
+      - '0.071168'
+      Server:
+      - WEBrick/1.3.1 (Ruby/1.9.3/2013-11-22)
+      Date:
+      - Tue, 21 Jan 2014 15:59:06 GMT
+      Content-Length:
+      - '493'
+      Connection:
+      - Keep-Alive
+    body:
+      encoding: UTF-8
+      string: "{\"id\":\"cip-12345\",\"resource_type\":\"cloud_ip\",\"url\":\"https://api.gb1.brightbox.com/1.0/cloud_ips/cip-12345\",\"status\":\"unmapped\",\"public_ip\":\"235.239.47.173\",\"reverse_dns\":\"cip-12345-239-47-173.gb1.brightbox.com\",\"port_translators\":[],\"name\":null,\"account\":{\"id\":\"acc-12345\",\"resource_type\":\"account\",\"url\":\"https://api.gb1.brightbox.com/1.0/accounts/acc-12345\",\"name\":\"VCR
+        account\",\"status\":\"active\"},\"interface\":null,\"server\":null,\"load_balancer\":null,\"server_group\":null,\"database_server\":null}"
+    http_version:
+  recorded_at: Tue, 21 Jan 2014 15:59:06 GMT
+- request:
+    method: get
+    uri: http://api.brightbox.dev/1.0/servers/srv-12345?account_id=acc-12345
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      User-Agent:
+      - fog/1.19.0
+      Authorization:
+      - OAuth f83da712e6299cda953513ec07f7a754f747d727
+      Content-Type:
+      - application/json
+  response:
+    status:
+      code: 200
+      message:
+    headers:
+      Content-Type:
+      - application/json; charset=utf-8
+      X-Ua-Compatible:
+      - IE=Edge
+      Etag:
+      - "\"2cc25d978cb5f374c80f6a4b2565d546\""
+      Cache-Control:
+      - max-age=0, private, must-revalidate
+      X-Request-Id:
+      - 7d361097cea33ac336834ca690b74805
+      X-Runtime:
+      - '0.217922'
+      Server:
+      - WEBrick/1.3.1 (Ruby/1.9.3/2013-11-22)
+      Date:
+      - Tue, 21 Jan 2014 15:59:06 GMT
+      Content-Length:
+      - '1770'
+      Connection:
+      - Keep-Alive
+    body:
+      encoding: UTF-8
+      string: "{\"id\":\"srv-12345\",\"resource_type\":\"server\",\"url\":\"https://api.gb1.brightbox.com/1.0/servers/srv-12345\",\"name\":\"\",\"status\":\"active\",\"hostname\":\"srv-12345\",\"created_at\":\"2014-01-21T15:57:07Z\",\"started_at\":null,\"deleted_at\":null,\"user_data\":null,\"fqdn\":\"srv-12345.gb1.brightbox.com\",\"compatibility_mode\":false,\"console_url\":null,\"console_token\":null,\"console_token_expires\":null,\"account\":{\"id\":\"acc-12345\",\"resource_type\":\"account\",\"url\":\"https://api.gb1.brightbox.com/1.0/accounts/acc-12345\",\"name\":\"VCR
+        account\",\"status\":\"active\"},\"image\":{\"id\":\"img-12345\",\"resource_type\":\"image\",\"url\":\"https://api.gb1.brightbox.com/1.0/images/img-12345\",\"name\":\"z88ecmsezfk40d2gcl41vr82\",\"username\":null,\"status\":\"available\",\"description\":\"\",\"source\":\"el7x3cb18pvwgamojk7x74gn\",\"arch\":\"x86_64\",\"created_at\":\"2014-01-21T15:57:07Z\",\"official\":false,\"public\":false,\"owner\":\"acc-12345\"},\"server_type\":{\"id\":\"typ-12345\",\"resource_type\":\"server_type\",\"url\":\"https://api.gb1.brightbox.com/1.0/server_types/typ-12345\",\"name\":\"x84jk4y\",\"status\":\"available\",\"cores\":2,\"ram\":4096,\"disk_size\":10240,\"handle\":null},\"zone\":{\"id\":\"zon-12345\",\"resource_type\":\"zone\",\"url\":\"https://api.gb1.brightbox.com/1.0/zones/zon-12345\",\"handle\":\"gb1-b\"},\"cloud_ips\":[],\"interfaces\":[{\"id\":\"int-12345\",\"resource_type\":\"interface\",\"url\":\"https://api.gb1.brightbox.com/1.0/interfaces/int-12345\",\"mac_address\":\"02:24:19:06:b0:12\",\"ipv4_address\":\"10.6.176.18\",\"ipv6_address\":\"2a02:1348:1aa:ac04:24:19ff:fe06:b012\"}],\"snapshots\":[],\"server_groups\":[{\"id\":\"grp-12345\",\"resource_type\":\"server_group\",\"url\":\"https://api.gb1.brightbox.com/1.0/server_groups/grp-12345\",\"name\":\"default\",\"description\":\"All
+        new servers are added to this group unless specified otherwise.\",\"created_at\":\"2014-01-21T15:57:06Z\",\"default\":true}]}"
+    http_version:
+  recorded_at: Tue, 21 Jan 2014 15:59:06 GMT
+- request:
+    method: post
+    uri: http://api.brightbox.dev/1.0/cloud_ips/cip-12345/map?account_id=acc-12345
+    body:
+      encoding: UTF-8
+      string: "{\"destination\":\"int-12345\"}"
+    headers:
+      User-Agent:
+      - fog/1.19.0
+      Authorization:
+      - OAuth f83da712e6299cda953513ec07f7a754f747d727
+      Content-Type:
+      - application/json
+  response:
+    status:
+      code: 202
+      message:
+    headers:
+      Content-Type:
+      - application/json; charset=utf-8
+      X-Ua-Compatible:
+      - IE=Edge
+      Cache-Control:
+      - no-cache
+      X-Request-Id:
+      - 24e77bd587242e76cbb6abbedd7f5edc
+      X-Runtime:
+      - '0.350377'
+      Server:
+      - WEBrick/1.3.1 (Ruby/1.9.3/2013-11-22)
+      Date:
+      - Tue, 21 Jan 2014 15:59:06 GMT
+      Content-Length:
+      - '493'
+      Connection:
+      - Keep-Alive
+    body:
+      encoding: UTF-8
+      string: "{\"id\":\"cip-12345\",\"resource_type\":\"cloud_ip\",\"url\":\"https://api.gb1.brightbox.com/1.0/cloud_ips/cip-12345\",\"status\":\"unmapped\",\"public_ip\":\"235.239.47.173\",\"reverse_dns\":\"cip-12345-239-47-173.gb1.brightbox.com\",\"port_translators\":[],\"name\":null,\"account\":{\"id\":\"acc-12345\",\"resource_type\":\"account\",\"url\":\"https://api.gb1.brightbox.com/1.0/accounts/acc-12345\",\"name\":\"VCR
+        account\",\"status\":\"active\"},\"interface\":null,\"server\":null,\"load_balancer\":null,\"server_group\":null,\"database_server\":null}"
+    http_version:
+  recorded_at: Tue, 21 Jan 2014 15:59:06 GMT
+- request:
+    method: get
+    uri: http://api.brightbox.dev/1.0/cloud_ips/cip-12345?account_id=acc-12345
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      User-Agent:
+      - fog/1.19.0
+      Authorization:
+      - OAuth f83da712e6299cda953513ec07f7a754f747d727
+      Content-Type:
+      - application/json
+  response:
+    status:
+      code: 200
+      message:
+    headers:
+      Content-Type:
+      - application/json; charset=utf-8
+      X-Ua-Compatible:
+      - IE=Edge
+      Etag:
+      - "\"1e6a05455b00a88433c6894c228f688f\""
+      Cache-Control:
+      - max-age=0, private, must-revalidate
+      X-Request-Id:
+      - a0e747781e11ae804f2de59820318b9f
+      X-Runtime:
+      - '0.080318'
+      Server:
+      - WEBrick/1.3.1 (Ruby/1.9.3/2013-11-22)
+      Date:
+      - Tue, 21 Jan 2014 15:59:07 GMT
+      Content-Length:
+      - '493'
+      Connection:
+      - Keep-Alive
+    body:
+      encoding: UTF-8
+      string: "{\"id\":\"cip-12345\",\"resource_type\":\"cloud_ip\",\"url\":\"https://api.gb1.brightbox.com/1.0/cloud_ips/cip-12345\",\"status\":\"unmapped\",\"public_ip\":\"235.239.47.173\",\"reverse_dns\":\"cip-12345-239-47-173.gb1.brightbox.com\",\"port_translators\":[],\"name\":null,\"account\":{\"id\":\"acc-12345\",\"resource_type\":\"account\",\"url\":\"https://api.gb1.brightbox.com/1.0/accounts/acc-12345\",\"name\":\"VCR
+        account\",\"status\":\"active\"},\"interface\":null,\"server\":null,\"load_balancer\":null,\"server_group\":null,\"database_server\":null}"
+    http_version:
+  recorded_at: Tue, 21 Jan 2014 15:59:07 GMT
+- request:
+    method: get
+    uri: http://api.brightbox.dev/1.0/cloud_ips/cip-12345?account_id=acc-12345
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      User-Agent:
+      - fog/1.19.0
+      Authorization:
+      - OAuth f83da712e6299cda953513ec07f7a754f747d727
+      Content-Type:
+      - application/json
+  response:
+    status:
+      code: 200
+      message:
+    headers:
+      Content-Type:
+      - application/json; charset=utf-8
+      X-Ua-Compatible:
+      - IE=Edge
+      Etag:
+      - "\"1e6a05455b00a88433c6894c228f688f\""
+      Cache-Control:
+      - max-age=0, private, must-revalidate
+      X-Request-Id:
+      - a8b727fea95cfe8e830246881e41770f
+      X-Runtime:
+      - '0.075550'
+      Server:
+      - WEBrick/1.3.1 (Ruby/1.9.3/2013-11-22)
+      Date:
+      - Tue, 21 Jan 2014 15:59:08 GMT
+      Content-Length:
+      - '493'
+      Connection:
+      - Keep-Alive
+    body:
+      encoding: UTF-8
+      string: "{\"id\":\"cip-12345\",\"resource_type\":\"cloud_ip\",\"url\":\"https://api.gb1.brightbox.com/1.0/cloud_ips/cip-12345\",\"status\":\"unmapped\",\"public_ip\":\"235.239.47.173\",\"reverse_dns\":\"cip-12345-239-47-173.gb1.brightbox.com\",\"port_translators\":[],\"name\":null,\"account\":{\"id\":\"acc-12345\",\"resource_type\":\"account\",\"url\":\"https://api.gb1.brightbox.com/1.0/accounts/acc-12345\",\"name\":\"VCR
+        account\",\"status\":\"active\"},\"interface\":null,\"server\":null,\"load_balancer\":null,\"server_group\":null,\"database_server\":null}"
+    http_version:
+  recorded_at: Tue, 21 Jan 2014 15:59:08 GMT
+- request:
+    method: get
+    uri: http://api.brightbox.dev/1.0/cloud_ips/cip-12345?account_id=acc-12345
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      User-Agent:
+      - fog/1.19.0
+      Authorization:
+      - OAuth f83da712e6299cda953513ec07f7a754f747d727
+      Content-Type:
+      - application/json
+  response:
+    status:
+      code: 200
+      message:
+    headers:
+      Content-Type:
+      - application/json; charset=utf-8
+      X-Ua-Compatible:
+      - IE=Edge
+      Etag:
+      - "\"1e6a05455b00a88433c6894c228f688f\""
+      Cache-Control:
+      - max-age=0, private, must-revalidate
+      X-Request-Id:
+      - 3ec273b6a79cdc9dc89cd8442f0fd869
+      X-Runtime:
+      - '0.080101'
+      Server:
+      - WEBrick/1.3.1 (Ruby/1.9.3/2013-11-22)
+      Date:
+      - Tue, 21 Jan 2014 15:59:09 GMT
+      Content-Length:
+      - '493'
+      Connection:
+      - Keep-Alive
+    body:
+      encoding: UTF-8
+      string: "{\"id\":\"cip-12345\",\"resource_type\":\"cloud_ip\",\"url\":\"https://api.gb1.brightbox.com/1.0/cloud_ips/cip-12345\",\"status\":\"unmapped\",\"public_ip\":\"235.239.47.173\",\"reverse_dns\":\"cip-12345-239-47-173.gb1.brightbox.com\",\"port_translators\":[],\"name\":null,\"account\":{\"id\":\"acc-12345\",\"resource_type\":\"account\",\"url\":\"https://api.gb1.brightbox.com/1.0/accounts/acc-12345\",\"name\":\"VCR
+        account\",\"status\":\"active\"},\"interface\":null,\"server\":null,\"load_balancer\":null,\"server_group\":null,\"database_server\":null}"
+    http_version:
+  recorded_at: Tue, 21 Jan 2014 15:59:09 GMT
+recorded_with: VCR 2.5.0
