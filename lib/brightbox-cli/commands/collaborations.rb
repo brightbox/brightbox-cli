@@ -8,13 +8,7 @@ module Brightbox
     cmd.arg_name "[collaboration-id...]"
     cmd.command [:list] do |c|
       c.action do |global_options, options, args|
-        if args.empty?
-          collaborations = Collaboration.find(:all)
-        else
-          collaborations = Collaboration.find_or_call(args) do |id|
-            warn "Couldn't find collaboration #{id}"
-          end
-        end
+        collaborations = Collaboration.find_all_or_warn(args)
         render_table(collaborations, global_options)
       end
     end

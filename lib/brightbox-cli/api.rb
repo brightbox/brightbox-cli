@@ -69,6 +69,20 @@ module Brightbox
       @id
     end
 
+    # Will return everything unless a subset has been passed in
+    #
+    # @param [Array<String>] identifiers series of values to call to call
+    #
+    def self.find_all_or_warn(identifiers)
+      if identifiers.empty?
+        find(:all)
+      else
+        find_or_call(identifiers) do |identifier|
+          warn "Could not find anything with ID #{identifier}"
+        end
+      end
+    end
+
     # General finder to return instances based on identifiers or all.
     #
     # @param args    [Array<Object>, Object] Search settings. Passing +:all+
