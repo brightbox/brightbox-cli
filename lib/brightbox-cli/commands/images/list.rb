@@ -20,15 +20,7 @@ module Brightbox
       c.flag [:l, :account]
 
       c.action do |global_options, options, args|
-
-        if args.empty?
-          images = Image.find(:all)
-        else
-          images = Image.find_or_call(args) do |id|
-            warn "Couldn't find image #{id}"
-          end
-        end
-
+        images = Image.find_all_or_warn(args)
         images = Image.filter_images(images, options)
         render_table(images, global_options)
       end

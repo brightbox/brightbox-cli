@@ -8,14 +8,7 @@ module Brightbox
     cmd.command [:list] do |c|
 
       c.action do |global_options, options, args|
-
-        if args.empty?
-          firewall_policies = FirewallPolicy.find(:all)
-        else
-          firewall_policies = FirewallPolicy.find_or_call(args) do |id|
-            warn "Couldn't find firewall policy #{id}"
-          end
-        end
+        firewall_policies = FirewallPolicy.find_all_or_warn(args)
         render_table(firewall_policies, global_options)
       end
     end
