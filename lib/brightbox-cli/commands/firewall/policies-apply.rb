@@ -1,8 +1,8 @@
 module Brightbox
-  desc "Manages an account's firewall policies"
+  desc I18n.t("firewall.policies.desc")
   command [:"firewall-policies"] do |cmd|
 
-    cmd.desc "Apply firewall policy to a server group"
+    cmd.desc I18n.t("firewall.policies.apply.desc")
     cmd.arg_name "firewall-policy-id server-group-id"
     cmd.command [:apply] do |c|
 

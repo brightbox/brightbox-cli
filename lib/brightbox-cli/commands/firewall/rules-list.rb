@@ -3,7 +3,7 @@ module Brightbox
 
     cmd.default_command :list
 
-    cmd.desc "List Firewall Rules"
+    cmd.desc I18n.t("firewall.rules.list.desc")
     cmd.arg_name "[firewall-policy-id...]"
     cmd.command [:list] do |c|
 

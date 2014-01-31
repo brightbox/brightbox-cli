@@ -1,7 +1,7 @@
 module Brightbox
   command [:"firewall-rules"] do |cmd|
 
-    cmd.desc "Update Firewall Rule"
+    cmd.desc I18n.t("firewall.rules.update.desc")
     cmd.arg_name "[firewall-rule-id...]"
     cmd.command [:update] do |c|
 

@@ -51,3 +51,32 @@ en:
       desc: Remove an API client from config
     user_add:
       desc: Add new user credentials to config
+  firewall:
+    policies:
+      desc: Manage firewall policies
+      apply:
+        desc: Apply firewall policy to a server group
+      create:
+        desc: Create firewall policy
+      destroy:
+        desc: Destroy firewall policy
+      list:
+        desc: List firewall policies
+      remove:
+        desc: Remove a firewall policy from a server group
+      show:
+        desc: Show firewall policies
+      update:
+        desc: Update a firewall policy
+    rules:
+      desc: Manages an account's firewall rules for a policy
+      create:
+        desc: Create a firewall rule
+      destroy:
+        desc: Destroy firewall rules
+      list:
+        desc: List firewall rules
+      show:
+        desc: Show firewall rules
+      update:
+        desc: Update firewall rule

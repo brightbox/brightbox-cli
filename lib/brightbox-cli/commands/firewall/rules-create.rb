@@ -1,8 +1,8 @@
 module Brightbox
-  desc "Manages an account's firewall rules for a policy"
+  desc I18n.t("firewall.rules.desc")
   command [:"firewall-rules"] do |cmd|
 
-    cmd.desc "Create Firewall Rule"
+    cmd.desc I18n.t("firewall.rules.create.desc")
     cmd.arg_name "[firewall-policy-id...]"
     cmd.command [:create] do |c|
 
