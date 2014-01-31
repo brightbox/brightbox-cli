@@ -10,7 +10,6 @@ module Brightbox
       c.desc "Target Server Group"
       c.flag [:t, :to]
 
-
       c.action do |global_options, options, args|
         unless args && !args.empty?
           raise "You must specify server ids to move"

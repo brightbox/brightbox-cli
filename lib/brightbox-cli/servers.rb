@@ -1,8 +1,9 @@
 module Brightbox
   class Server < Api
     def self.require_account?; true; end
-    def self.create_servers(count,options)
-      (0...count).map {|i| create(options) }
+
+    def self.create_servers(count, options)
+      (0...count).map { |i| create(options) }
     end
 
     def self.create(options)
@@ -21,9 +22,9 @@ module Brightbox
       [:id, :status, :type, :zone, :created_on, :image_id, :cloud_ip_ids, :name]
     end
 
-    def update options
+    def update(options)
       self.class.conn.update_server id, options
-      self.reload
+      reload
       self
     end
 
@@ -45,14 +46,14 @@ module Brightbox
       a[:zone] = zone && zone['handle']
       a[:hostname] = id
       a[:public_hostname] = "public.#{fqdn}" unless cloud_ips.empty?
-      a[:ipv6_hostname] = ipv6_fqdn if interfaces.any? {|i| i['ipv6_address'] }
+      a[:ipv6_hostname] = ipv6_fqdn if interfaces.any? { |i| i['ipv6_address'] }
       a
     end
 
     def to_row
       o = attributes
-      o[:cloud_ip_ids] = cloud_ips.collect { |i| i['id'] }
-      o[:ips] = interfaces.collect { |i| i['ipv4_address'] }.join(', ')
+      o[:cloud_ip_ids] = cloud_ips.map { |i| i['id'] }
+      o[:ips] = interfaces.map { |i| i['ipv4_address'] }.join(', ')
       o
     end
 
@@ -64,5 +65,4 @@ module Brightbox
       "ipv6.#{fqdn}"
     end
   end
-
 end

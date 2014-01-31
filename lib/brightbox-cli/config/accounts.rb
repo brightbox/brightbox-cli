@@ -1,7 +1,6 @@
 module Brightbox
   module Config
     module Accounts
-
       def save_default_account(account_id)
         dirty! unless account_id == selected_config["default_account"]
         selected_config['default_account'] = account_id
@@ -38,17 +37,15 @@ module Brightbox
       #   excess traffic for certain use cases on all commands.
       #
       def find_or_set_default_account
-        # FIXME API clients are scoped to their account so this code should
+        # FIXME: API clients are scoped to their account so this code should
         #   never need to run for them.
         unless default_account
           begin
             service = Fog::Compute.new(to_fog)
             accounts = service.accounts
 
-            @account = accounts.select {|acc| ["pending", "active"].include?(acc.status) }.first.id
-            if @account
-              save_default_account(@account)
-            end
+            @account = accounts.select { |acc| %w{pending active}.include?(acc.status) }.first.id
+            save_default_account(@account) if @account
           rescue Brightbox::BBConfigError
             # We can't get a suitable fog connection so we can't select an
             # account

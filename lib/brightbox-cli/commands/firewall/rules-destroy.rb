@@ -6,7 +6,6 @@ module Brightbox
     cmd.command [:destroy] do |c|
 
       c.action do |global_options, options, args|
-
         raise "You must specify firewall-rule-id to destroy" if args.empty?
 
         firewall_rules = FirewallRule.find_or_call(args) do |id|
@@ -17,11 +16,10 @@ module Brightbox
           info "Destroying firewall rule #{firewall_rule}"
           begin
             firewall_rule.destroy
-          rescue Brightbox::Api::Conflict => e
+          rescue Brightbox::Api::Conflict
             error "Could not destroy #{firewall_rule}"
           end
         end
-
       end
     end
   end

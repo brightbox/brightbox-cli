@@ -3,7 +3,7 @@ module Brightbox
 
     cmd.desc "Destroy server groups"
     cmd.arg_name "grp-id..."
-    # todo: add option to remove all servers from group before destroying
+    # TODO: add option to remove all servers from group before destroying
     cmd.command [:destroy] do |c|
 
       c.action do |global_options, options, args|

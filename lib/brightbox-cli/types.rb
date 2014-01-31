@@ -1,6 +1,7 @@
 module Brightbox
   class Type < Api
     def self.require_account?; true; end
+
     def attributes
       o = fog_model.attributes
       o[:ram] = ram
@@ -28,7 +29,7 @@ module Brightbox
       conn.flavors
     end
 
-    def self.get id
+    def self.get(id)
       conn.flavors.get id
     end
 
@@ -36,11 +37,11 @@ module Brightbox
       [:id, :name, :handle, :ram, :disk, :cores]
     end
 
-    def <=>(b)
-      if b.is_a? Type
-        self.ram <=> b.ram
+    def <=>(other)
+      if other.is_a? Type
+        ram <=> other.ram
       else
-        self.ram <=> b
+        ram <=> other
       end
     end
   end

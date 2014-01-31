@@ -5,7 +5,7 @@ module Brightbox
 
   subcommand_option_handling :normal
 
-  # FIXME The official "commands_from" uses require which is slower
+  # FIXME: The official "commands_from" uses require which is slower
   # than require_relative when running under ruby gems. So we'll just
   # implement this ourselves.
   #
@@ -54,7 +54,7 @@ module Brightbox
 
     Excon.defaults[:headers]['User-Agent'] ||= "brightbox-cli/#{Brightbox::VERSION}"
 
-    if global_options[:k] or ENV["INSECURE"]
+    if global_options[:k] || ENV["INSECURE"]
       Excon.defaults[:ssl_verify_peer] = false
     end
 
@@ -85,7 +85,7 @@ module Brightbox
       $config.save
     rescue BBConfigError
     rescue StandardError => e
-      # FIXME Other StandardErrors are available
+      # FIXME: Other StandardErrors are available
       warn "Error writing auth token #{$config.access_token_filename}: #{e.class}: #{e}"
     end
   end
@@ -96,7 +96,7 @@ module Brightbox
       begin
         debug "Refused access token: #{$config.access_token}"
         returned = $config.reauthenticate
-        # FIXME Curious output from info
+        # FIXME: Curious output from info
         info "Your API credentials have been updated, please re-run your command."
         returned
       rescue Brightbox::Api::ApiError

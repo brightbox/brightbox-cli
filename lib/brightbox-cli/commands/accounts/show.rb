@@ -15,14 +15,22 @@ module Brightbox
           warn "Couldn't find account #{id}"
         end
 
-        table_opts = global_options.merge({
+        table_opts = global_options.merge(
           :vertical => true,
-          :fields => [:id, :name, :cloud_ip_limit, :ram_limit, :ram_used, :lb_limit,
-                      :ram_free, :library_ftp_host, :library_ftp_user ]
-        })
+          :fields => [
+            :id,
+            :name,
+            :cloud_ip_limit,
+            :ram_limit,
+            :ram_used,
+            :lb_limit,
+            :ram_free,
+            :library_ftp_host,
+            :library_ftp_user
+          ]
+        )
 
         render_table(accounts, table_opts)
-
       end
     end
   end

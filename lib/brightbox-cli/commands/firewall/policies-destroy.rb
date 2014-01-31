@@ -17,11 +17,10 @@ module Brightbox
           info "Destroying firewall policy #{firewall_policy}"
           begin
             firewall_policy.destroy
-          rescue Brightbox::Api::Conflict => e
+          rescue Brightbox::Api::Conflict
             error "Could not destroy #{firewall_policy}"
           end
         end
-
       end
     end
   end

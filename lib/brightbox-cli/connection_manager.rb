@@ -1,6 +1,5 @@
 module Brightbox
   class ConnectionManager
-
     def initialize(connection_options)
       @connection_options = connection_options
       @connection = nil
@@ -14,7 +13,7 @@ module Brightbox
       end
     end
 
-  private
+    private
 
     def connection_with_account
       if @connection

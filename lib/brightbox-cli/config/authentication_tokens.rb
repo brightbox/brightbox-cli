@@ -103,16 +103,13 @@ module Brightbox
         end
       end
 
-      #
       def update_stored_tokens(new_access_token, new_refresh_token = nil)
         save_access_token(new_access_token)
-        unless new_refresh_token.nil?
-          save_refresh_token(new_refresh_token)
-        end
+        save_refresh_token(new_refresh_token) unless new_refresh_token.nil?
         debug_tokens
       end
 
-    private
+      private
 
       # This stores the access token for the Fog service currently in use to
       # authenticate with the API.
@@ -170,7 +167,7 @@ module Brightbox
         user_application = Brightbox::Config::UserApplication.new(selected_config, client_name)
 
         fog_options = user_application.to_fog
-        # FIXME UserApplication#to_fog should include refresh token but does not
+        # FIXME: UserApplication#to_fog should include refresh token but does not
         # have the correct scope to it
         fog_options.merge!(:brightbox_refresh_token => refresh_token)
 
@@ -185,18 +182,16 @@ module Brightbox
         require "highline"
         highline = HighLine.new
         highline.say("Your API credentials have expired, enter your password to update them.")
-        # FIXME Capture interupts if user aborts
+        # FIXME: Capture interupts if user aborts
         highline.ask("Enter your password : ") { |q| q.echo = false }
       end
 
       def update_tokens_with_user_credentials(password = nil)
         user_application = Brightbox::Config::UserApplication.new(selected_config, client_name)
 
-        unless password
-          password = prompt_for_password
-        end
+        password = prompt_for_password unless password
 
-        # FIXME options are required to work
+        # FIXME: options are required to work
         options = {
           :client_id => client_name,
           :email => selected_config["username"],
@@ -218,18 +213,17 @@ module Brightbox
       # Blanks access token in memory and on disk
       def flush_access_token!
         @access_token = nil
-        #persist_token(oauth_token_filename, nil)
       end
 
       # Saves
       def persist_token(filename, token)
         token = "" if token.nil?
         # Write out a token file for this process
-        File.open(filename + ".#{$$}", "w") do |f|
+        File.open(filename + ".#{$PID}", "w") do |f|
           f.write token
         end
         # Move process version into place
-        FileUtils.mv filename + ".#{$$}", filename
+        FileUtils.mv filename + ".#{$PID}", filename
       end
 
       def cached_access_token

@@ -16,7 +16,13 @@ module Brightbox
         servers = Server.find_all_or_warn(args)
 
         # Scope by group if a group identifier is specified
-        servers = servers.select {|server| server.server_groups.any? {|grp| grp["id"] == options[:g] } } if options[:g]
+        if options[:g]
+          servers = servers.select do
+            |server| server.server_groups.any? do |grp|
+              grp["id"] == options[:g]
+            end
+          end
+        end
 
         render_table(servers, global_options)
       end

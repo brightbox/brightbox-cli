@@ -21,13 +21,12 @@ module Brightbox
           raise "Could not find firewall policy with #{firewall_policy_id}"
         end
 
-
         server_group = ServerGroup.find(server_group_id)
         unless server_group
           raise "Can't find group with #{options[:g]}"
         end
         firewall_policy.remove(server_group.id)
-        render_table([firewall_policy],global_options)
+        render_table([firewall_policy], global_options)
       end
     end
   end

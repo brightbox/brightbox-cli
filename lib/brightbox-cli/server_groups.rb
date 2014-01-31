@@ -1,6 +1,7 @@
 module Brightbox
   class ServerGroup < Api
     def self.require_account?; true; end
+
     def self.all
       conn.server_groups
     end
@@ -18,14 +19,14 @@ module Brightbox
     end
 
     def firewall_policy
-      FirewallPolicy.all.detect do |policy|
-        policy.server_group_id == self.id
+      FirewallPolicy.all.find do |policy|
+        policy.server_group_id == id
       end
     end
 
     def update(options)
       self.class.conn.update_server_group(id, options)
-      self.reload
+      reload
       self
     end
 
@@ -45,7 +46,7 @@ module Brightbox
     end
 
     def server_ids
-      attributes[:server_ids].map{|id| id.is_a?(Hash) ? id['id'] : id }
+      attributes[:server_ids].map { |id| id.is_a?(Hash) ? id['id'] : id }
     end
 
     def server_count
@@ -55,6 +56,5 @@ module Brightbox
     def server_string
       server_ids.respond_to?(:join) ? server_ids.join(" ") : ""
     end
-
   end
 end

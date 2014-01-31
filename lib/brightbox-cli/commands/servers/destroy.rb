@@ -16,7 +16,7 @@ module Brightbox
           info "Destroying server #{server}"
           begin
             server.destroy
-          rescue Brightbox::Api::Conflict => e
+          rescue Brightbox::Api::Conflict
             error "Could not destroy #{server}"
           end
         end

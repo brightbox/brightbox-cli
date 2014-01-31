@@ -12,9 +12,15 @@ module Brightbox
           raise "Couldn't find Firewall Rule #{id}"
         end
 
-        display_options = { :fields => [
-          :id, :protocol,:source, :sport, :destination, :dport, :icmp_type, :firewall_policy, :description
-        ],
+        display_options = {
+          :fields => [
+            :id, :protocol,
+            :source, :sport,
+            :destination, :dport,
+            :icmp_type,
+            :firewall_policy,
+            :description
+          ],
           :vertical => true
         }
         table_opts = global_options.update(display_options)

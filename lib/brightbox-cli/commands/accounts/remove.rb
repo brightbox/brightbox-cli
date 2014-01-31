@@ -1,5 +1,4 @@
 module Brightbox
-
   command [:accounts] do |cmd|
 
     cmd.desc "Refuses or removes an account collaboration"

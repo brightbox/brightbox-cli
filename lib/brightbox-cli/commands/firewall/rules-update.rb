@@ -29,7 +29,7 @@ module Brightbox
       c.action do |global_options, options, args|
         fwr_id = args.shift
         raise "You must specify a valid firewall rule id as the first argument" unless fwr_id =~ /^fwr-/
-          firewall_rule = FirewallRule.find fwr_id
+        firewall_rule = FirewallRule.find fwr_id
         raise "Could not find firewall rule with #{firewall_rule_id}" unless firewall_rule
 
         params = NilableHash.new

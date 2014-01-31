@@ -1,40 +1,37 @@
 module Brightbox
-
   # A Collaborating account combines all of a users own accounts and those that
   # they have access to via an open collaboration.
   #
   class CollaboratingAccount < Account
     def self.all
-      begin
-        accounts = conn.accounts.all
-        collaborations = conn.user_collaborations.all
+      accounts = conn.accounts.all
+      collaborations = conn.user_collaborations.all
 
-        accepted_collaborations = collaborations.select do |col|
-          col.status == "accepted"
-        end
-
-        pending_collaborations = collaborations.select do |col|
-          col.status == "pending"
-        end
-
-        col_accounts = []
-
-        accepted_collaboration_ids = accepted_collaborations.map(&:account_id)
-        accounts.each do |acc|
-          if accepted_collaboration_ids.include?(acc.id)
-            collab = accepted_collaborations.detect {|col| col.account_id == acc.id }
-            col_accounts << new(acc, collab)
-          else
-            col_accounts << new(acc)
-          end
-        end
-
-        pending_collaborations.each do |col|
-          col_accounts << new(col)
-        end
-
-        col_accounts
+      accepted_collaborations = collaborations.select do |col|
+        col.status == "accepted"
       end
+
+      pending_collaborations = collaborations.select do |col|
+        col.status == "pending"
+      end
+
+      col_accounts = []
+
+      accepted_collaboration_ids = accepted_collaborations.map(&:account_id)
+      accounts.each do |acc|
+        if accepted_collaboration_ids.include?(acc.id)
+          collab = accepted_collaborations.find { |col| col.account_id == acc.id }
+          col_accounts << new(acc, collab)
+        else
+          col_accounts << new(acc)
+        end
+      end
+
+      pending_collaborations.each do |col|
+        col_accounts << new(col)
+      end
+
+      col_accounts
     end
 
     # Simpler initialiser than the superclass.
@@ -98,7 +95,7 @@ module Brightbox
 
     def ram_free
       if account?
-       [ram_limit.to_i - ram_used.to_i, 0].max
+        [ram_limit.to_i - ram_used.to_i, 0].max
       else
         ""
       end
@@ -139,7 +136,7 @@ module Brightbox
       [:id, :cloud_ips_limit, :lb_limit, :ram_limit, :ram_used, :ram_free, :role, :name]
     end
 
-  private
+    private
 
     # A collaboration has access to the accounts details by nesting
     def acc_details(key)

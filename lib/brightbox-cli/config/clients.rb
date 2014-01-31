@@ -1,7 +1,6 @@
 module Brightbox
   module Config
     module Clients
-
       # Is the currently selected config using API client details?
       def using_api_client?
         config_identifier_match_prefix?("cli")
@@ -28,14 +27,14 @@ module Brightbox
       #
       def client_alias
         return nil if selected_config.nil?
-        # FIXME The 'alias' field is redundant because we are using the section
+        # FIXME: The 'alias' field is redundant because we are using the section
         #   heading for the not ID value but we worry about it for now
         selected_config["alias"] || client_name
       end
 
       # Returns a client name or raises depending on a number of factors.
       #
-      # FIXME This combines too much decision making into what appears to be a
+      # FIXME: This combines too much decision making into what appears to be a
       # getter.
       #
       # If a default_client is not set and there are more than one client it
@@ -55,7 +54,7 @@ module Brightbox
           @client_name
         else
           # If we do not require a default client do not error if one is not set
-          # TODO Remove when certain unused
+          # TODO: Remove when certain unused
           if @options[:force_default_config] == false
             @client_name = default_client
           else
@@ -76,7 +75,7 @@ module Brightbox
       # @todo Account for "core" section
       # @return [Boolean] +true+ if a client (section) has that name
       def client_named?(name)
-        raw_sections.any? {|k,v| v["alias"] == name || k == name }
+        raw_sections.any? { |k, v| v["alias"] == name || k == name }
       end
 
       # @param [String] client_alias the name of the client to make the default
@@ -98,14 +97,14 @@ module Brightbox
       end
 
       def clear_default_client
-        if config["core"].has_key?("default_client")
+        if config["core"].key?("default_client")
           config["core"].delete("default_client")
           dirty!
         end
         @default_client = nil
       end
 
-    private
+      private
 
       # If the prefix is in the client ID (identifier not alias) be +true+
       def config_identifier_match_prefix?(prefix)

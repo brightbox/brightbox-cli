@@ -1,7 +1,6 @@
 module Brightbox
   module Config
     module Sections
-
       #
       # @param [String] client_alias
       # @param [String] client_id
@@ -14,7 +13,9 @@ module Brightbox
       #
       def add_section(client_alias, client_id, secret, options)
         client_config = config[client_alias]
-        unless client_config.empty?
+        if client_config.empty?
+          info "Creating new client config #{client_alias}"
+        else
           old_calias = client_alias
 
           deduplicator = Brightbox::Config::SectionNameDeduplicator.new(client_alias, clients)
@@ -23,8 +24,6 @@ module Brightbox
           client_config = config[client_alias]
 
           info "A client config named #{old_calias} already exists using #{client_alias} instead"
-        else
-          info "Creating new client config #{client_alias}"
         end
 
         client_config["alias"] = client_alias
@@ -46,14 +45,12 @@ module Brightbox
         end
 
         # Try to determine a default account
-        if default_account = self.find_or_set_default_account
+        if default_account == find_or_set_default_account
           info "The default account of #{default_account} has been selected"
         end
 
         # If only client then set it as the default
-        unless default_client
-          set_default_client(client_alias)
-        end
+        set_default_client(client_alias) unless default_client
 
         # Ensure all our config changes are now saved
         save
@@ -94,10 +91,10 @@ module Brightbox
       #
       def clients
         # Exclude the global "core" section
-        config.sections.find_all { |s| s != 'core' }
+        config.sections.select { |s| s != 'core' }
       end
 
-    private
+      private
 
       # To compensate for Ini gem, this gets the hash it holds because it's
       # #each interface isn't much use

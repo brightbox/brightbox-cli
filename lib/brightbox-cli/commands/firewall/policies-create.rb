@@ -23,7 +23,6 @@ module Brightbox
           server_group = ServerGroup.find(server_group_id)
         end
 
-
         name = options[:n]
         description = options[:d]
 

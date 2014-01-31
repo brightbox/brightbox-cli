@@ -20,7 +20,7 @@ module Brightbox
           info "Activating console for server #{s}"
           r = s.activate_console
           url = "#{r["console_url"]}/?password=#{r["console_token"]}"
-            expires = Time.parse(r["console_token_expires"])
+          expires = Time.parse(r["console_token_expires"])
           consoles << { :url => url, :token => r["console_token"], :expires => expires.localtime.to_s }
         end
 

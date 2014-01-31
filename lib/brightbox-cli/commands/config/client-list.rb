@@ -10,12 +10,12 @@ module Brightbox
 
         info "Using config file #{$config.config_filename}"
 
-        clients = $config.clients.collect do |cid|
+        clients = $config.clients.map do |cid|
           c = $config[cid]
           calias = c["alias"] || cid
 
           # Append a star for the configured default client
-          if $config.default_client == cid and $config.has_multiple_clients?
+          if $config.default_client == cid && $config.has_multiple_clients?
             calias = "*#{calias}"
           end
 
