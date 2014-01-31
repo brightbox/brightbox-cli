@@ -1,7 +1,7 @@
 module Brightbox
   command [:cloudips] do |cmd|
 
-    cmd.desc "destroy Cloud IPs"
+    cmd.desc I18n.t("cloudips.destroy.desc")
     cmd.arg_name "[cloudip-id...]"
     cmd.command [:destroy] do |c|
 

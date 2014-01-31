@@ -4,3 +4,24 @@ en:
       desc: Description
     name:
       desc: Name
+  cloudips:
+    desc: Manage an account's Cloud IPs
+    options:
+      port_translators:
+        desc: |
+          Cloud IP translators. Format: in-port:out-port:protocol. Comma
+          separate multiple translators. Protocol can be tcp or udp.
+    create:
+      desc: Create Cloud IPs
+    destroy:
+      desc: Destroy Cloud IPs
+    list:
+      desc: List Cloud IPs
+    map:
+      desc: Map a Cloud IP
+    show:
+      desc: Show Cloud IPs
+    unmap:
+      desc: Unmap Cloud IPs
+    update:
+      desc: Update a Cloud IP
