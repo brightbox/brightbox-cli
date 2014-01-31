@@ -10,8 +10,8 @@ module Brightbox
       for new servers. You can specify '-' to read from stdin"
       c.flag [:f, "ssh-key"]
 
-      c.desc "Name"
-      c.flag [:n, "name"]
+      c.desc I18n.t("options.name.desc")
+      c.flag [:n, :name]
 
       c.action do |global_options, options, args|
 

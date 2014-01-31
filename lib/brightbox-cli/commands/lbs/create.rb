@@ -6,7 +6,7 @@ module Brightbox
     cmd.arg_name "srv-id..."
     cmd.command [:create] do |c|
 
-      c.desc "Friendly name of load balancer"
+      c.desc I18n.t("options.name.desc")
       c.flag [:n, :name]
 
       c.desc "Load balancer policy"

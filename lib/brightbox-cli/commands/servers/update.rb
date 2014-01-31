@@ -5,7 +5,7 @@ module Brightbox
     cmd.arg_name "server-id"
     cmd.command [:update] do |c|
 
-      c.desc "Friendly name of server"
+      c.desc I18n.t("options.name.desc")
       c.flag [:n, :name]
 
       c.desc "Specify user data"

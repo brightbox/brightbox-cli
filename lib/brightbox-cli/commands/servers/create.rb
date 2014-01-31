@@ -5,6 +5,9 @@ module Brightbox
     cmd.arg_name "image_id"
     cmd.command [:create] do |c|
 
+      c.desc I18n.t("options.name.desc")
+      c.flag [:n, :name]
+
       c.desc "Number of servers to create"
       c.default_value 1
       c.flag [:i, "server-count"], :type => Integer
@@ -15,9 +18,6 @@ module Brightbox
       c.desc "Type of server to create"
       c.default_value "nano"
       c.flag [:t, :type]
-
-      c.desc "Friendly name of server"
-      c.flag [:n, :name]
 
       c.desc "Specify user data"
       c.flag [:m, "user-data"]

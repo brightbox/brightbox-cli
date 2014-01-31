@@ -5,10 +5,10 @@ module Brightbox
     cmd.arg_name "[server-group-id...]"
     cmd.command [:create] do |c|
 
-      c.desc "Name of firewall policy"
+      c.desc I18n.t("options.name.desc")
       c.flag [:n, :name]
 
-      c.desc "Description of firewall policy"
+      c.desc I18n.t("options.description.desc")
       c.flag [:d, :description]
 
       c.action do |global_options, options, args|

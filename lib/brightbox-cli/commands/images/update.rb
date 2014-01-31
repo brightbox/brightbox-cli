@@ -5,8 +5,11 @@ module Brightbox
     cmd.arg_name "img-id"
     cmd.command [:update] do |c|
 
-      c.desc "Name to give the image"
-      c.flag [:n, "name"]
+      c.desc I18n.t("options.name.desc")
+      c.flag [:n, :name]
+
+      c.desc I18n.t("options.description.desc")
+      c.flag [:d, :description]
 
       c.desc "Architecture of the image (i686 or x86_64)"
       c.flag [:a, "arch"]
@@ -19,9 +22,6 @@ module Brightbox
 
       c.desc "Set image to be deprecated (true or false)"
       c.flag "deprecated"
-
-      c.desc "Image description"
-      c.flag [:d, "description"]
 
       c.desc "Image Username"
       c.flag [:u, "username"]

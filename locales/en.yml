@@ -1,0 +1,6 @@
+en:
+  options:
+    description:
+      desc: Description
+    name:
+      desc: Name

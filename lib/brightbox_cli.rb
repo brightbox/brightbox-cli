@@ -24,7 +24,13 @@ end
 require "json"
 require 'date'
 require 'gli'
+require "i18n"
 require "fog/brightbox/compute"
+
+# I18n stuff to clean up scattered text everywhere
+I18n.enforce_available_locales = false
+I18n.default_locale = :en
+I18n.load_path = [File.join(File.dirname(__FILE__) + "/../locales/en.yml")]
 
 module Brightbox
   DEFAULT_API_ENDPOINT = "https://api.gb1.brightbox.com"
@@ -46,6 +52,9 @@ module Brightbox
   autoload :FirewallRules, File.expand_path("../brightbox-cli/firewall_rules", __FILE__)
   autoload :Collaboration, File.expand_path("../brightbox-cli/collaboration", __FILE__)
   autoload :UserCollaboration, File.expand_path("../brightbox-cli/user_collaboration", __FILE__)
+  autoload :DatabaseType, File.expand_path("../brightbox-cli/database_type", __FILE__)
+  autoload :DatabaseServer, File.expand_path("../brightbox-cli/database_server", __FILE__)
+  autoload :DatabaseSnapshot, File.expand_path("../brightbox-cli/database_snapshot", __FILE__)
 
   module Config
     autoload :SectionNameDeduplicator, File.expand_path("../brightbox-cli/config/section_name_deduplicator", __FILE__)
