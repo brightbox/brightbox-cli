@@ -29,8 +29,8 @@ module Brightbox
       c.action do |global_options, options, args|
         img_id = args.shift
         raise "You must specify the image to update as the first argument" unless img_id =~ /^img-/
-          if options[:m]
-            raise "Mode must be 'virtio' or 'compatibility'" unless options[:m] == "virtio" || options[:m] == "compatibility"
+        if options[:m]
+          raise "Mode must be 'virtio' or 'compatibility'" unless options[:m] == "virtio" || options[:m] == "compatibility"
         end
         if options[:p]
           raise "Public must be true or false" unless options[:p] == "true" || options[:p] == "false"

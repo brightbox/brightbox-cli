@@ -1,10 +1,9 @@
 module Brightbox
   # These are collaborations from the perspective of the invited user so all
-  # that is expected is listing, getting details, accepting, rejecting and 
+  # that is expected is listing, getting details, accepting, rejecting and
   # destroying them.
   #
   class UserCollaboration < Api
-
     def self.all
       conn.user_collaborations
     end
@@ -25,7 +24,7 @@ module Brightbox
     #
     def self.get_for_account(account_id)
       collaborations = conn.user_collaborations
-      open_collaborations = collaborations.select {|col| ["pending", "accepted"].include?(col.status) }
+      open_collaborations = collaborations.select { |col| %w{pending accepted}.include?(col.status) }
       collaboration = open_collaborations.find do |col|
         col.account_id == account_id
       end

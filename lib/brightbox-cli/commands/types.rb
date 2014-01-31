@@ -22,7 +22,7 @@ module Brightbox
       end
     end
 
-        cmd.desc "Show detailed type info"
+    cmd.desc "Show detailed type info"
     cmd.arg_name "type-id..."
     cmd.command [:show] do |c|
 

@@ -1,6 +1,5 @@
 module Brightbox
   class Account < Api
-
     def ram_free
       [ram_limit.to_i - ram_used.to_i, 0].max
     end
@@ -32,7 +31,7 @@ module Brightbox
         a = conn.account
       end
 
-      if a and a.id == id
+      if a && a.id == id
         a
       else
         nil
@@ -46,6 +45,5 @@ module Brightbox
     def to_s
       @id
     end
-
   end
 end

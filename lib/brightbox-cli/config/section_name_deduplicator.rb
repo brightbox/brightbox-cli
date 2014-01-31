@@ -7,7 +7,6 @@ module Brightbox
     # If the name is not in use then it is returned unchanged.
     #
     class SectionNameDeduplicator
-
       # @param [String] name The name to deduplicate
       # @param [Array<String>] in_use The names already in use in the config
       #
@@ -22,7 +21,7 @@ module Brightbox
       def next
         # Sanity check. If the name is not in use, offer it back
         if @in_use.include?(@name)
-          existing_matches = @in_use.sort.select do |name|
+          @in_use.sort.select do |name|
             name == @name
           end
 
@@ -32,7 +31,7 @@ module Brightbox
         end
       end
 
-    private
+      private
 
       # Returns name with no numerical suffix (_\d+)
       def normalised_name
@@ -42,12 +41,12 @@ module Brightbox
       # Find any names in use fitting the name_suffix pattern to determine which
       # suffix values are in use
       def related_names_in_use
-        @in_use.map {|n| /\A#{normalised_name}_(\d+)\z/.match(n) }.compact
+        @in_use.map { |n| /\A#{normalised_name}_(\d+)\z/.match(n) }.compact
       end
 
       # Find the largest number suffix used
       def max_suffix_value
-        related_names_in_use.map {|match| match.captures.first.to_i }.max
+        related_names_in_use.map { |match| match.captures.first.to_i }.max
       end
 
       # Find and increment the suffix

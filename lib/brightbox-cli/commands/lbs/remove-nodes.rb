@@ -13,7 +13,7 @@ module Brightbox
 
         # We don't want to check servers exist as you can remove deleted
         # servers from a load balancer.
-        nodes = args.collect { |a| Server.new(a) }
+        nodes = args.map { |a| Server.new(a) }
 
         info "Removing #{nodes.size} nodes from load balancer #{lb.id}"
         lb.remove_nodes nodes

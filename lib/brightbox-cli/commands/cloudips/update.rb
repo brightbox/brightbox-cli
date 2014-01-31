@@ -21,12 +21,11 @@ module Brightbox
         cip_id = args.shift
         raise "You must specify the Cloud IP id as the first argument" unless cip_id =~ /^cip-/
 
-          if options[:r] && options[:r] != "" && options[:"delete-reverse-dns"]
-            raise "You must either specify a reverse DNS record or --delete-reverse-dns"
+        if options[:r] && options[:r] != "" && options[:"delete-reverse-dns"]
+          raise "You must either specify a reverse DNS record or --delete-reverse-dns"
         end
 
         cip = CloudIP.find cip_id
-
 
         cip.update(options)
         cip.reload

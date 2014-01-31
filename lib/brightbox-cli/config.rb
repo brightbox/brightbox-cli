@@ -69,16 +69,13 @@ module Brightbox
       return @config_file if @config_file
       return {} if @config_file == false
 
-      unless config_directory_exists?
-        create_directory
-      end
+      create_directory unless config_directory_exists?
 
       @config_file ||= Ini.new(config_filename)
       @config_file
     rescue Ini::Error => e
       raise BBConfigError, "Config problem in #{config_filename}: #{e}"
     end
-
 
     # Write out the configuration file to disk
     def save
@@ -111,14 +108,14 @@ module Brightbox
       config["core"][key] = value
     end
 
-  private
+    private
 
     def default_config_dir
-      File.join(ENV['HOME'],'.brightbox')
+      File.join(ENV['HOME'], '.brightbox')
     end
 
     def configured?
-      configured = client_name != nil && !clients.empty?
+      configured = !client_name.nil? && !clients.empty?
       if configured && (selected_config.nil? || selected_config.empty?)
         raise BBConfigError, "client id or alias #{client_name.inspect} not defined in config"
       end

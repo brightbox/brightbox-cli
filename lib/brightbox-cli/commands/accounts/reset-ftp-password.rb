@@ -25,13 +25,18 @@ module Brightbox
           rows << o
         end
 
-        table_opts = global_options.merge({
+        table_opts = global_options.merge(
           :vertical => true,
-          :fields => [:id, :name, :library_ftp_host, :library_ftp_user, :library_ftp_password ]
-        })
+          :fields => [
+            :id,
+            :name,
+            :library_ftp_host,
+            :library_ftp_user,
+            :library_ftp_password
+          ]
+        )
 
         render_table(rows, table_opts)
-
       end
     end
   end

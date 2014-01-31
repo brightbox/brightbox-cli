@@ -12,9 +12,9 @@ module Brightbox
       conn.firewall_rules.get(id)
     end
 
-    def update params
+    def update(params)
       self.class.conn.update_firewall_rule id, params
-      self.reload
+      reload
       self
     end
 
@@ -29,18 +29,18 @@ module Brightbox
 
     def to_row
       attrs = attributes.dup
-      [:protocol,:source,:sport, :destination, :dport, :icmp_type].each do |key|
+      [:protocol, :source, :sport, :destination, :dport, :icmp_type].each do |key|
         attrs[key] = attributes[key] || '-'
       end
       attrs
     end
 
-    def ret_val(attributes,key)
+    def ret_val(attributes, key)
       attributes[key] || "-"
     end
 
     def self.default_field_order
-      [:id, :protocol,:source, :sport, :destination, :dport, :icmp_type, :description]
+      [:id, :protocol, :source, :sport, :destination, :dport, :icmp_type, :description]
     end
   end
 end

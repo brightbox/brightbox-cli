@@ -12,8 +12,16 @@ module Brightbox
           raise "Couldn't find Firewall Policy #{id}"
         end
 
-        table_opts = global_options.update(:vertical => true,
-                                           :fields => [:id, :server_group, :default,:name, :description])
+        table_opts = global_options.update(
+          :vertical => true,
+          :fields => [
+            :id,
+            :server_group,
+            :default,
+            :name,
+            :description
+          ]
+        )
 
         render_table(policies, table_opts)
       end

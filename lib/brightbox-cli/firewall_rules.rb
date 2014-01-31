@@ -16,11 +16,10 @@ module Brightbox
     end
 
     def self.modify_keys(object, &modifier) #:nodoc:
-      object.inject({}) do |result, (key, value)|
-        new_key   = modifier.call(key)
+      object.reduce({}) do |result, (key, value)|
+        new_key = modifier.call(key)
         result.merge! new_key => value
       end
     end
-
   end
 end

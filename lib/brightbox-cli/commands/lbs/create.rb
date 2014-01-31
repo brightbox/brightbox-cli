@@ -53,9 +53,9 @@ module Brightbox
 
         raise "You must specify which servers to balance connections to" if args.empty?
 
-        listeners = options[:l].split(",").collect do |l|
+        listeners = options[:l].split(",").map do |l|
           inport, outport, protocol, timeout = l.split ":"
-          raise "listener '#{l}' is invalid" if inport.nil? or outport.nil? or protocol.nil?
+          raise "listener '#{l}' is invalid" if inport.nil? || outport.nil? || protocol.nil?
           { :in => inport, :out => outport, :protocol => protocol, :timeout => timeout }
         end
 
@@ -70,14 +70,20 @@ module Brightbox
           options[:y] = listeners.first[:protocol]
         end
 
-        hc_arg_lookup = { :k => :port, :y => :type, :t => :timeout, :s =>
-                          :request, :e => :interval, :u => :threshold_up, :d =>
-                          :threshold_down }
+        hc_arg_lookup = {
+          :k => :port,
+          :y => :type,
+          :t => :timeout,
+          :s => :request,
+          :e => :interval,
+          :u => :threshold_up,
+          :d => :threshold_down
+        }
 
         healthcheck = {}
 
         options.keys.each do |k|
-          if options[k] and hc_arg_lookup[k]
+          if options[k] && hc_arg_lookup[k]
             healthcheck[hc_arg_lookup[k]] = options[k]
           end
         end
@@ -94,7 +100,7 @@ module Brightbox
           ssl_key = File.read(File.expand_path(ssl_key_path))
         end
 
-        nodes = args.collect { |i| { :node => i } }
+        nodes = args.map { |i| { :node => i } }
 
         msg = "Creating a new load balancer"
         info msg

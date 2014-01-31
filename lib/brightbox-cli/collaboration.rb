@@ -7,7 +7,7 @@ module Brightbox
     def self.require_account?; true; end
 
     def self.invite(email, role)
-      options = {:email => email, :role => role}
+      options = { :email => email, :role => role }
       data = conn.create_collaboration(options)
       model = Fog::Compute::Brightbox::Collaboration.new(data)
       new(model)

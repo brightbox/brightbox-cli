@@ -18,22 +18,30 @@ module Brightbox
           :brightbox_auth_url => selected_config['auth_url'] || selected_config['api_url'],
           :brightbox_client_id => selected_config['client_id'],
           :brightbox_secret => selected_config['secret'],
-          :persistent => (selected_config["persistent"] != nil ? selected_config["persistent"] : true)
+          :persistent => persistent?
         }
       end
 
       def valid?
         NON_BLANK_KEYS.all? do |key|
-          selected_config.has_key?(key) && ! selected_config[key].to_s.empty?
+          selected_config.key?(key) && !selected_config[key].to_s.empty?
         end
       end
 
-    private
+      private
+
+      def persistent?
+        if selected_config["persistent"]
+          selected_config["persistent"]
+        else
+          true
+        end
+      end
 
       def check_required_params
         unless valid?
           NON_BLANK_KEYS.each do |key|
-            unless selected_config.has_key?(key) && ! selected_config[key].to_s.empty?
+            unless selected_config.key?(key) && !selected_config[key].to_s.empty?
               raise Brightbox::BBConfigError, "#{key} option missing from config in section #{client_name}"
             end
           end

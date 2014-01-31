@@ -36,7 +36,7 @@ module Brightbox
         collaborations = Collaboration.find_or_call(args) do |id|
           warn "Couldn't find collaboration #{id}"
         end
-        collaborations.each {|col| col.resend }
+        collaborations.each { |col| col.resend }
         render_table(collaborations, global_options)
       end
     end
@@ -59,7 +59,7 @@ module Brightbox
         collaborations = Collaboration.find_or_call(args) do |id|
           warn "Couldn't find collaboration #{id}"
         end
-        collaborations.each {|col| col.destroy }
+        collaborations.each { |col| col.destroy }
         render_table(collaborations, global_options)
       end
     end

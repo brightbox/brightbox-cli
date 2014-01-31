@@ -15,10 +15,10 @@ module Brightbox
           warn "Couldn't find user #{id}"
         end
 
-        table_opts = global_options.merge({
+        table_opts = global_options.merge(
           :vertical => true,
-          :fields => [:id, :name, :email_address, :accounts, :ssh_key ]
-        })
+          :fields => [:id, :name, :email_address, :accounts, :ssh_key]
+        )
 
         render_table(users, table_opts)
 

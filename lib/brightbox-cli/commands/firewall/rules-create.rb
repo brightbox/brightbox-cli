@@ -52,7 +52,7 @@ module Brightbox
 
         create_options[:firewall_policy_id] = firewall_policy.id
         firewall_rule = FirewallRule.create(create_options)
-        render_table([firewall_rule],global_options)
+        render_table([firewall_rule], global_options)
       end
     end
   end

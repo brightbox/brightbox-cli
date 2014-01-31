@@ -23,20 +23,20 @@ module Brightbox
     end
 
     def node_ids
-      @node_ids ||= attributes[:nodes].collect { |n| n["id"] } if attributes[:nodes]
+      @node_ids ||= attributes[:nodes].map { |n| n["id"] } if attributes[:nodes]
     end
 
     def cloud_ip_ids
-      @cloud_ip_ids ||= attributes["cloud_ips"].collect { |n| n["id"] } if attributes["cloud_ips"]
+      @cloud_ip_ids ||= attributes["cloud_ips"].map { |n| n["id"] } if attributes["cloud_ips"]
     end
 
     def cloud_ips
-      @cloud_ips ||= attributes["cloud_ips"].collect { |n| n["public_ip"] } if attributes["cloud_ips"]
+      @cloud_ips ||= attributes["cloud_ips"].map { |n| n["public_ip"] } if attributes["cloud_ips"]
     end
 
     def listeners
       if attributes[:listeners]
-        attributes[:listeners].collect { |l| [l["in"], l["out"], l["protocol"], l['timeout']].join(":") }
+        attributes[:listeners].map { |l| [l["in"], l["out"], l["protocol"], l['timeout']].join(":") }
       else
         nil
       end
@@ -44,23 +44,23 @@ module Brightbox
 
     def destroy
       fog_model.destroy
-    rescue Excon::Errors::Conflict => e
+    rescue Excon::Errors::Conflict
       raise Conflict, "Cannot delete load balancer #{id}"
     end
 
     def add_nodes(nodes)
-      node_hashes = nodes.collect { |n| { :node => n.id } }
+      node_hashes = nodes.map { |n| { :node => n.id } }
       LoadBalancer.conn.add_nodes_load_balancer(id, :nodes => node_hashes)
     end
 
     def remove_nodes(nodes)
-      node_hashes = nodes.collect { |n| { :node => n.id } }
+      node_hashes = nodes.map { |n| { :node => n.id } }
       LoadBalancer.conn.remove_nodes_load_balancer(id, :nodes => node_hashes)
     end
 
     def update(options)
       LoadBalancer.conn.update_load_balancer(id, options)
-      self.reload
+      reload
       self
     end
 

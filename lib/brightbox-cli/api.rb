@@ -40,13 +40,13 @@ module Brightbox
     # @return [String] the 'name' of the class
     #
     def self.klass_name
-      name.split("::").last()
+      name.split("::").last
     end
 
     def initialize(m = nil)
       if m.is_a? String
         @id = m
-      elsif m.respond_to? :attributes and m.respond_to? :id
+      elsif m.respond_to?(:attributes) && m.respond_to?(:id)
         @fog_model = m
         @id = m.id
       else
@@ -98,7 +98,7 @@ module Brightbox
     #
     def self.find(args = :all, options = {})
       raise InvalidArguments, "find(nil)" if args.nil?
-      raise InvalidArguments, "find([])" if args.respond_to?(:empty?) and args.empty?
+      raise InvalidArguments, "find([])" if args.respond_to?(:empty?) && args.empty?
       options = {
         :order => :created_at,
       }.merge options
@@ -111,8 +111,8 @@ module Brightbox
       elsif args.is_a? String
         object = cached_get(args.to_s)
         raise NotFound, "Couldn't find '#{args.to_s}'" if object.nil?
-      elsif args.respond_to? :collect
-        objects = args.collect do |arg|
+      elsif args.respond_to? :map
+        objects = args.map do |arg|
           o = cached_get(arg.to_s)
           raise NotFound, "Couldn't find '#{arg.to_s}'" if o.nil?
           o
@@ -122,9 +122,9 @@ module Brightbox
       end
       if objects
         # wrap in our objects
-        objects.collect! { |o| new(o) }
+        objects.map! { |o| new(o) }
         # Sort
-        objects.sort! do |a,b| 
+        objects.sort! do |a, b|
           sort_method = options[:order]
           begin
             a.send(sort_method) <=> b.send(sort_method)

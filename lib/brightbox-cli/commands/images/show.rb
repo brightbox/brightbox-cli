@@ -15,7 +15,6 @@ module Brightbox
           warn "Couldn't find image #{id}"
         end
 
-
         display_options = {
           :vertical => true,
           :fields => [
@@ -28,7 +27,6 @@ module Brightbox
         table_opts = global_options.merge(display_options)
 
         render_table(images, table_opts)
-
       end
     end
   end

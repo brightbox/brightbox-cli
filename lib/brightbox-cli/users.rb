@@ -5,7 +5,7 @@ module Brightbox
     end
 
     def to_row
-      attributes.merge({ :accounts => accounts.size })
+      attributes.merge(:accounts => accounts.size)
     end
 
     def self.all
@@ -14,7 +14,7 @@ module Brightbox
 
     def self.get(id)
       u = conn.users.get id
-      (u.nil? or u.id != id) ? nil : u
+      u.nil? || u.id != id ? nil : u
     end
 
     def self.default_field_order
@@ -22,7 +22,7 @@ module Brightbox
     end
 
     def accounts
-      @accounts ||= fog_model.accounts.collect { |a| Account.new(a["id"]) }
+      @accounts ||= fog_model.accounts.map { |a| Account.new(a["id"]) }
     end
 
     def to_s

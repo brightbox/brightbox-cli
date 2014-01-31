@@ -50,20 +50,26 @@ module Brightbox
         lb_id = args.shift
         raise "You must specify the load balancer to update as the first argument" unless lb_id =~ /^lba-/
 
-          lbopts = NilableHash.new
+        lbopts = NilableHash.new
 
         unless args.empty?
-          lbopts[:nodes] = args.collect { |a| { :node => a } }
+          lbopts[:nodes] = args.map { |a| { :node => a } }
         end
 
-        hc_arg_lookup = { :k => :port, :y => :type, :t => :timeout, :s =>
-                          :request, :e => :interval, :u => :threshold_up, :d =>
-                          :threshold_down }
+        hc_arg_lookup = {
+          :k => :port,
+          :y => :type,
+          :t => :timeout,
+          :s => :request,
+          :e => :interval,
+          :u => :threshold_up,
+          :d => :threshold_down
+        }
 
         healthcheck = {}
 
         options.keys.each do |k|
-          if options[k] and hc_arg_lookup[k]
+          if options[k] && hc_arg_lookup[k]
             healthcheck[hc_arg_lookup[k]] = options[k]
           end
         end
@@ -73,7 +79,7 @@ module Brightbox
         end
 
         if options[:l]
-          lbopts[:listeners] = options[:l].split(",").collect do |l|
+          lbopts[:listeners] = options[:l].split(",").map do |l|
             inport, output, protocol, timeout = l.split ":"
             { :in => inport, :out => output, :protocol => protocol, :timeout => timeout }
           end

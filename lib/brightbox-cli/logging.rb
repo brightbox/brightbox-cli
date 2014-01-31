@@ -6,19 +6,19 @@ module Brightbox
     end
 
     module MixinMethods
-      def error(s='')
+      def error(s = "")
         $stderr.write s
         $stderr.write "\n"
         $stderr.flush
       end
 
-      def info(s='')
+      def info(s = "")
         $stderr.write s
         $stderr.write "\n"
         $stderr.flush
       end
 
-      def warn(s='')
+      def warn(s = "")
         info "WARN: #{s}"
       end
 

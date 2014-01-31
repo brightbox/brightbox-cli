@@ -19,7 +19,7 @@ module Brightbox
     end
 
     # Filter out images that are not of the right type, account or status if the option is passed
-    def self.filter_images(images, options={})
+    def self.filter_images(images, options = {})
       # Remove images that don't match the given type
       if options[:t]
         images.reject! { |i| i.type != options[:t] }
@@ -41,7 +41,7 @@ module Brightbox
 
       unless options[:a]
         account = Account.conn.account
-        images.reject! { |i| !i.official and i.owner_id != account.id  }
+        images.reject! { |i| !i.official && i.owner_id != account.id  }
       end
 
       snapshots = images.select { |i| i.source_type == 'snapshot' }
@@ -52,9 +52,9 @@ module Brightbox
       images + snapshots
     end
 
-    def update options
+    def update(options)
       self.class.conn.update_image(id, options)
-      self.reload
+      reload
       self
     end
 
@@ -68,7 +68,7 @@ module Brightbox
 
     def status
       if fog_model.attributes[:status] == "available"
-        public ? 'public' : 'private'
+        public? ? 'public' : 'private'
       else
         fog_model.attributes[:status]
       end
@@ -97,9 +97,9 @@ module Brightbox
     end
 
     def status_sort_code
-      case self.status
+      case status
       when 'available'
-        (self.public ? 1 : 2)
+        (public? ? 1 : 2)
       when 'deprecated'
         3
       else
@@ -109,13 +109,12 @@ module Brightbox
 
     def default_sort_fields
       [
-        self.official ? 0 : 1,
-        self.name,
-        self.arch,
-        self.status_sort_code,
-        - self.created_at.to_i
+        official ? 0 : 1,
+        name,
+        arch,
+        status_sort_code,
+        - created_at.to_i
       ]
     end
-
   end
 end
