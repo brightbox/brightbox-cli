@@ -1,8 +1,8 @@
 module Brightbox
-  desc "Manages local configuration settings and credentials"
+  desc I18n.t("config.desc")
   command [:config] do |cmd|
 
-    cmd.desc "Add new api client details to config"
+    cmd.desc I18n.t("config.client_add.desc")
     cmd.arg_name "client-id secret [api_url, auth_url]"
     cmd.command [:client_add] do |c|
 

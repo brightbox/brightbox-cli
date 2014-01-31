@@ -3,7 +3,7 @@ module Brightbox
 
     cmd.default_command :client_list
 
-    cmd.desc "Lists the api clients defined in the config"
+    cmd.desc I18n.t("config.client_list.desc")
     cmd.command [:client_list] do |c|
 
       c.action do |global_options, options, args|

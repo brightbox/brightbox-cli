@@ -39,3 +39,15 @@ en:
       desc: Unmap Cloud IPs
     update:
       desc: Update a Cloud IP
+  config:
+    desc: Manage CLI configuration settings and credentials
+    client_add:
+      desc: Add new API client details to config
+    client_default:
+      desc: Set the default API client in the config
+    client_list:
+      desc: List API clients defined in the config
+    client_remove:
+      desc: Remove an API client from config
+    user_add:
+      desc: Add new user credentials to config

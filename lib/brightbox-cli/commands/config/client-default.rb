@@ -1,7 +1,7 @@
 module Brightbox
   command [:config] do |cmd|
 
-    cmd.desc "Set the default api client in the config"
+    cmd.desc I18n.t("config.client_default.desc")
     cmd.arg_name "alias"
     cmd.command [:client_default] do |c|
 
