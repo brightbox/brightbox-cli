@@ -1,7 +1,7 @@
 module Brightbox
   command [:accounts] do |cmd|
 
-    cmd.desc "Reset FTP Library password"
+    cmd.desc I18n.t("accounts.reset_ftp_password.desc")
     cmd.arg_name "account-id..."
     cmd.command [:reset_ftp_password] do |c|
 

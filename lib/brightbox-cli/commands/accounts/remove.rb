@@ -1,7 +1,7 @@
 module Brightbox
   command [:accounts] do |cmd|
 
-    cmd.desc "Refuses or removes an account collaboration"
+    cmd.desc I18n.t("accounts.remove.desc")
     cmd.arg_name "account_id"
     cmd.command [:remove] do |c|
       c.action do |global_options, options, args|

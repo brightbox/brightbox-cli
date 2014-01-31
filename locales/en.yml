@@ -4,6 +4,20 @@ en:
       desc: Description
     name:
       desc: Name
+  accounts:
+    desc: Manage accounts
+    accept_invite:
+      desc: Accept invitation to collaborate on account
+    default:
+      desc: Set a default account
+    list:
+      desc: List accounts
+    remove:
+      desc: Refuses or removes an account collaboration
+    reset_ftp_password:
+      desc: Reset an account's FTP Library password
+    show:
+      desc: Show accounts
   cloudips:
     desc: Manage an account's Cloud IPs
     options:

@@ -1,7 +1,7 @@
 module Brightbox
   command [:accounts] do |cmd|
 
-    cmd.desc "Show detailed account info"
+    cmd.desc I18n.t("accounts.show.desc")
     cmd.arg_name "account-id..."
     cmd.command [:show] do |c|
 
