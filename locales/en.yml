@@ -148,3 +148,11 @@ en:
       desc: Stop servers with equivalent of powering off
     update:
       desc: Update a server
+  users:
+    desc: List the users associated with an account
+    list:
+      desc: List users
+    show:
+      desc: Show users
+    update:
+      desc: Update a user

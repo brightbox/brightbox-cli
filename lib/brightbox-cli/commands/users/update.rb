@@ -1,7 +1,7 @@
 module Brightbox
   command [:users] do |cmd|
 
-    cmd.desc "Update user details"
+    cmd.desc I18n.t("users.update.desc")
     cmd.arg_name "user-id..."
     cmd.command [:update] do |c|
 
