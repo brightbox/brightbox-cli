@@ -1,8 +1,8 @@
 module Brightbox
   command [:lbs] do |cmd|
 
-    cmd.desc "Create a load balancer"
-    cmd.long_desc "All intervals and timeouts are in milliseconds"
+    cmd.desc I18n.t("lbs.create.desc")
+    cmd.long_desc I18n.t("lbs.create.long_desc")
     cmd.arg_name "srv-id..."
     cmd.command [:create] do |c|
 

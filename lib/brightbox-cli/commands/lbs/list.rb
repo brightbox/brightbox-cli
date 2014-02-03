@@ -3,7 +3,7 @@ module Brightbox
 
     cmd.default_command :list
 
-    cmd.desc "List load balancers"
+    cmd.desc I18n.t("lbs.list.desc")
     cmd.arg_name "[lb-id...]"
     cmd.command [:list] do |c|
       c.action do |global_options, options, args|

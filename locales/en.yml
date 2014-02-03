@@ -110,3 +110,21 @@ en:
       desc: Show images
     update:
       desc: Update an image
+  lbs:
+    desc: Manage an account's load balancers
+    add_nodes:
+      desc: Add servers to a load balancer
+    create:
+      desc: Create a load balancer
+      long_desc: All intervals and timeouts are in milliseconds
+    destroy:
+      desc: Destroy load balancers
+    list:
+      desc: List load balancers
+    remove_nodes:
+      desc: Remove servers from a load balancer
+    show:
+      desc: Show load balancers
+    update:
+      desc: Update a load balancer
+      long_desc: All intervals and timeouts are in milliseconds

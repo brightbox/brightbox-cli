@@ -1,7 +1,7 @@
 module Brightbox
   command [:lbs] do |cmd|
 
-    cmd.desc "Destroy load balancers"
+    cmd.desc I18n.t("lbs.destroy.desc")
     cmd.arg_name "lb-id..."
     cmd.command [:destroy] do |c|
 

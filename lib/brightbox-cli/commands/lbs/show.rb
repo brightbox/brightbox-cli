@@ -1,7 +1,7 @@
 module Brightbox
   command [:lbs] do |cmd|
 
-    cmd.desc "Show detailed load balancer info"
+    cmd.desc I18n.t("lbs.show.desc")
     cmd.arg_name "lbs-id..."
     cmd.command [:show] do |c|
 
