@@ -128,3 +128,23 @@ en:
     update:
       desc: Update a load balancer
       long_desc: All intervals and timeouts are in milliseconds
+  servers:
+    desc: Manage an account's servers
+    activate_console:
+      desc: Activate web consoles for a number of servers
+    create:
+      desc: Create servers
+    destroy:
+      desc: Destroy servers
+    show:
+      desc: Show servers
+    shutdown:
+      desc: Shutdown servers with equivalent of `shutdown` command
+    snapshot:
+      desc: Snapshot servers (creating new images)
+    start:
+      desc: Start servers
+    stop:
+      desc: Stop servers with equivalent of powering off
+    update:
+      desc: Update a server

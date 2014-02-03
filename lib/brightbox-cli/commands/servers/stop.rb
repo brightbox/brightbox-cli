@@ -1,7 +1,7 @@
 module Brightbox
   command [:servers] do |cmd|
 
-    cmd.desc "Stop the specified servers, aka turning the power off"
+    cmd.desc I18n.t("servers.stop.desc")
     cmd.arg_name "server-id..."
     cmd.command [:stop] do |c|
 

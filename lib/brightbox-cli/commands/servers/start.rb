@@ -1,7 +1,7 @@
 module Brightbox
   command [:servers] do |cmd|
 
-    cmd.desc "Start the specified servers"
+    cmd.desc I18n.t("servers.start.desc")
     cmd.arg_name "server-id..."
     cmd.command [:start] do |c|
 

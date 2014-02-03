@@ -1,7 +1,7 @@
 module Brightbox
   command [:servers] do |cmd|
 
-    cmd.desc "Destroy servers"
+    cmd.desc I18n.t("servers.destroy.desc")
     cmd.arg_name "[server-id...]"
     cmd.command [:destroy] do |c|
       c.action do |global_options, options, args|

@@ -1,7 +1,7 @@
 module Brightbox
   command [:servers] do |cmd|
 
-    cmd.desc "Update a server"
+    cmd.desc I18n.t("servers.update.desc")
     cmd.arg_name "server-id"
     cmd.command [:update] do |c|
 

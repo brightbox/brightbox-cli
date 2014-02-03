@@ -1,7 +1,7 @@
 module Brightbox
   command [:servers] do |cmd|
 
-    cmd.desc "Create servers"
+    cmd.desc I18n.t("servers.create.desc")
     cmd.arg_name "image_id"
     cmd.command [:create] do |c|
 
