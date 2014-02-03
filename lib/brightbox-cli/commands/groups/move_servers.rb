@@ -1,7 +1,7 @@
 module Brightbox
   command [:groups] do |cmd|
 
-    cmd.desc "Move servers from one server group to another"
+    cmd.desc I18n.t("groups.move_servers.desc")
     cmd.arg_name "srv-id ..."
     cmd.command [:move_servers] do |c|
       c.desc "Source Server Group"

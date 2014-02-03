@@ -1,7 +1,7 @@
 module Brightbox
   command [:groups] do |cmd|
 
-    cmd.desc "Update a server group"
+    cmd.desc I18n.t("groups.update.desc")
     cmd.arg_name "grp-id"
     cmd.command [:update] do |c|
       c.desc I18n.t("options.name.desc")

@@ -1,7 +1,7 @@
 module Brightbox
   command [:groups] do |cmd|
 
-    cmd.desc "Show detailed server group info"
+    cmd.desc I18n.t("groups.show.desc")
     cmd.arg_name "[grp-id..]"
     cmd.command [:show] do |c|
 

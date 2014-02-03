@@ -1,7 +1,7 @@
 module Brightbox
   command [:groups] do |cmd|
 
-    cmd.desc "Destroy server groups"
+    cmd.desc I18n.t("groups.destroy.desc")
     cmd.arg_name "grp-id..."
     # TODO: add option to remove all servers from group before destroying
     cmd.command [:destroy] do |c|

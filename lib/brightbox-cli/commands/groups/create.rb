@@ -1,7 +1,7 @@
 module Brightbox
   command [:groups] do |cmd|
 
-    cmd.desc "Create a server group"
+    cmd.desc I18n.t("groups.create.desc")
     cmd.command [:create] do |c|
       c.desc I18n.t("options.name.desc")
       c.flag [:n, :name]
