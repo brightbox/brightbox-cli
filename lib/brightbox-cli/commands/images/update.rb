@@ -1,7 +1,7 @@
 module Brightbox
   command [:images] do |cmd|
 
-    cmd.desc "Update an image"
+    cmd.desc I18n.t("images.update.desc")
     cmd.arg_name "img-id"
     cmd.command [:update] do |c|
 

@@ -1,7 +1,7 @@
 module Brightbox
   command [:images] do |cmd|
 
-    cmd.desc "Show detailed image info"
+    cmd.desc I18n.t("images.show.desc")
     cmd.arg_name "image-id..."
     cmd.command [:show] do |c|
 

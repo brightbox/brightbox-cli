@@ -1,7 +1,7 @@
 module Brightbox
   command [:images] do |cmd|
 
-    cmd.desc "Register an image"
+    cmd.desc I18n.t("images.register.desc")
     cmd.command [:register] do |c|
 
       c.desc I18n.t("options.name.desc")

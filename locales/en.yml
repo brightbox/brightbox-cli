@@ -98,3 +98,15 @@ en:
       desc: Show server groups
     update:
       desc: Update a server group
+  images:
+    desc: See official and public images and manage an account's images
+    destroy:
+      desc: Destroy images
+    list:
+      desc: List images
+    register:
+      desc: Register an image in the image library
+    show:
+      desc: Show images
+    update:
+      desc: Update an image
