@@ -6,14 +6,7 @@ module Brightbox
     cmd.command [:show] do |c|
 
       c.action do |global_options, options, args|
-
-        if args.empty?
-          raise "You must specify the images you want to show"
-        end
-
-        images = Image.find_or_call(args) do |id|
-          warn "Couldn't find image #{id}"
-        end
+        images = Image.find_all_or_warn(args)
 
         display_options = {
           :vertical => true,
