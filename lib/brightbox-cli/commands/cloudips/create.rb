@@ -1,18 +1,18 @@
 module Brightbox
-  desc "Manages an account's cloud IP addresses"
+  desc I18n.t("cloudips.desc")
   command [:cloudips] do |cmd|
 
-    cmd.desc "Create a new Cloud IP address"
+    cmd.desc I18n.t("cloudips.create.desc")
     cmd.command [:create] do |c|
 
       c.desc "Number of Cloud IPs to create"
       c.default_value 1
       c.flag [:i, "count"]
 
-      c.desc "Friendly name of the Cloud IP"
+      c.desc I18n.t("options.name.desc")
       c.flag [:n, :name]
 
-      c.desc "Cloud IP translators. Format: in-port:out-port:protocol. Comma separate multiple translators. Protocol can be tcp or udp."
+      c.desc I18n.t("cloudips.options.port_translators.desc")
       c.flag [:t, :"port-translators"]
 
       c.action do |global_options, options, args|

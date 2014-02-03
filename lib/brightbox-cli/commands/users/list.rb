@@ -1,10 +1,10 @@
 module Brightbox
-  desc "Lists the users associated with an account"
+  desc I18n.t("users.desc")
   command [:users] do |cmd|
 
     cmd.default_command :list
 
-    cmd.desc "List users"
+    cmd.desc I18n.t("users.list.desc")
     cmd.arg_name "[user-id...]"
     cmd.command [:list] do |c|
 

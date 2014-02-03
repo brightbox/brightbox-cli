@@ -1,7 +1,7 @@
 module Brightbox
   command [:servers] do |cmd|
 
-    cmd.desc "Shutdown the specified servers, aka clicking 'shutdown' in the OS"
+    cmd.desc I18n.t("servers.shutdown.desc")
     cmd.arg_name "server-id..."
     cmd.command [:shutdown] do |c|
       c.action do |global_options, options, args|

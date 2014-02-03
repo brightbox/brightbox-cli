@@ -1,7 +1,7 @@
 module Brightbox
   command [:cloudips] do |cmd|
 
-    cmd.desc "show details on Cloud IPs"
+    cmd.desc I18n.t("cloudips.show.desc")
     cmd.arg_name "cloudip-id..."
     cmd.command [:show] do |c|
 

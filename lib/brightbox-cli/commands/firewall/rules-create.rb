@@ -1,8 +1,8 @@
 module Brightbox
-  desc "Manages an account's firewall rules for a policy"
+  desc I18n.t("firewall.rules.desc")
   command [:"firewall-rules"] do |cmd|
 
-    cmd.desc "Create Firewall Rule"
+    cmd.desc I18n.t("firewall.rules.create.desc")
     cmd.arg_name "[firewall-policy-id...]"
     cmd.command [:create] do |c|
 
@@ -24,7 +24,7 @@ module Brightbox
       c.desc "Icmp Type name"
       c.flag [:i, :icmptype]
 
-      c.desc "Description"
+      c.desc I18n.t("options.description.desc")
       c.flag :description
 
       c.action do |global_options, options, args|

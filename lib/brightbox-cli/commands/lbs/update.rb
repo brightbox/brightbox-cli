@@ -1,12 +1,12 @@
 module Brightbox
   command [:lbs] do |cmd|
 
-    cmd.desc "Update a load balancer"
-    cmd.long_desc "All intervals and timeouts are in milliseconds"
+    cmd.desc I18n.t("lbs.update.desc")
+    cmd.long_desc I18n.t("lbs.update.long_desc")
     cmd.arg_name "lba-id [node-id...]"
     cmd.command [:update] do |c|
 
-      c.desc "Friendly name of load balancer"
+      c.desc I18n.t("options.name.desc")
       c.flag [:n, :name]
 
       c.desc "Load balancer policy"

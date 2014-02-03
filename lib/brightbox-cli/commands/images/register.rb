@@ -1,11 +1,14 @@
 module Brightbox
   command [:images] do |cmd|
 
-    cmd.desc "Register an image"
+    cmd.desc I18n.t("images.register.desc")
     cmd.command [:register] do |c|
 
-      c.desc "Name to give the image"
-      c.flag [:n, "name"]
+      c.desc I18n.t("options.name.desc")
+      c.flag [:n, :name]
+
+      c.desc I18n.t("options.description.desc")
+      c.flag [:d, :description]
 
       c.desc "Image Username"
       c.flag [:u, "username"]
@@ -23,9 +26,6 @@ module Brightbox
       c.desc "Set image to be publically visible (true or false)"
       c.default_value "false"
       c.flag [:p, "public"]
-
-      c.desc "Image description"
-      c.flag [:d, "description"]
 
       c.action do |global_options, options, args|
 

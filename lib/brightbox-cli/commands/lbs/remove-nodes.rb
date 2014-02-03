@@ -1,7 +1,7 @@
 module Brightbox
   command [:lbs] do |cmd|
 
-    cmd.desc "Remove nodes from a load balancer"
+    cmd.desc I18n.t("lbs.remove_nodes.desc")
     cmd.arg_name "lb-id node-id..."
     cmd.command [:remove_nodes] do |c|
 

@@ -1,7 +1,7 @@
 module Brightbox
   command [:accounts] do |cmd|
 
-    cmd.desc "Set a default account"
+    cmd.desc I18n.t("accounts.default.desc")
     cmd.arg_name "account-id"
     cmd.command [:default] do |c|
 

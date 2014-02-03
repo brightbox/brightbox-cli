@@ -1,7 +1,7 @@
 module Brightbox
   command [:users] do |cmd|
 
-    cmd.desc "Update user details"
+    cmd.desc I18n.t("users.update.desc")
     cmd.arg_name "user-id..."
     cmd.command [:update] do |c|
 
@@ -10,8 +10,8 @@ module Brightbox
       for new servers. You can specify '-' to read from stdin"
       c.flag [:f, "ssh-key"]
 
-      c.desc "Name"
-      c.flag [:n, "name"]
+      c.desc I18n.t("options.name.desc")
+      c.flag [:n, :name]
 
       c.action do |global_options, options, args|
 

@@ -1,8 +1,8 @@
 module Brightbox
-  desc "List official and public images and also manages an account's"
+  desc I18n.t("images.desc")
   command [:images] do |cmd|
 
-    cmd.desc "Destroy images"
+    cmd.desc I18n.t("images.destroy.desc")
     cmd.arg_name "image-id..."
     cmd.command [:destroy] do |c|
 

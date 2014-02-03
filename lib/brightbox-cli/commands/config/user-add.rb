@@ -1,7 +1,7 @@
 module Brightbox
   command [:config] do |cmd|
 
-    cmd.desc "Add new user credentials to config"
+    cmd.desc I18n.t("config.user_add.desc")
     cmd.arg_name "email client-id secret [api_url auth_url]"
     cmd.command [:user_add] do |c|
 

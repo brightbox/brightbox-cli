@@ -1,8 +1,8 @@
 module Brightbox
-  desc "Manages an account's servers"
+  desc I18n.t("servers.desc")
   command [:servers] do |cmd|
 
-    cmd.desc "Activate the console service for one or more servers"
+    cmd.desc I18n.t("servers.activate_console.desc")
     cmd.arg_name "server-id..."
     cmd.command [:activate_console] do |c|
 

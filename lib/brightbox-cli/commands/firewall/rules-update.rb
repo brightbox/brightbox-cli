@@ -1,7 +1,7 @@
 module Brightbox
   command [:"firewall-rules"] do |cmd|
 
-    cmd.desc "Update Firewall Rule"
+    cmd.desc I18n.t("firewall.rules.update.desc")
     cmd.arg_name "[firewall-rule-id...]"
     cmd.command [:update] do |c|
 
@@ -23,7 +23,7 @@ module Brightbox
       c.desc "Icmp Type name"
       c.flag [:i, :icmptype]
 
-      c.desc "Description"
+      c.desc I18n.t("options.description.desc")
       c.flag :description
 
       c.action do |global_options, options, args|

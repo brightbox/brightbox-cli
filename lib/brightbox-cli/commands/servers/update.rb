@@ -1,11 +1,11 @@
 module Brightbox
   command [:servers] do |cmd|
 
-    cmd.desc "Update a server"
+    cmd.desc I18n.t("servers.update.desc")
     cmd.arg_name "server-id"
     cmd.command [:update] do |c|
 
-      c.desc "Friendly name of server"
+      c.desc I18n.t("options.name.desc")
       c.flag [:n, :name]
 
       c.desc "Specify user data"

@@ -1,0 +1,158 @@
+en:
+  options:
+    description:
+      desc: Description
+    name:
+      desc: Name
+  accounts:
+    desc: Manage accounts
+    accept_invite:
+      desc: Accept invitation to collaborate on account
+    default:
+      desc: Set a default account
+    list:
+      desc: List accounts
+    remove:
+      desc: Refuses or removes an account collaboration
+    reset_ftp_password:
+      desc: Reset an account's FTP Library password
+    show:
+      desc: Show accounts
+  cloudips:
+    desc: Manage an account's Cloud IPs
+    options:
+      port_translators:
+        desc: |
+          Cloud IP translators. Format: in-port:out-port:protocol. Comma
+          separate multiple translators. Protocol can be tcp or udp.
+    create:
+      desc: Create Cloud IPs
+    destroy:
+      desc: Destroy Cloud IPs
+    list:
+      desc: List Cloud IPs
+    map:
+      desc: Map a Cloud IP
+    show:
+      desc: Show Cloud IPs
+    unmap:
+      desc: Unmap Cloud IPs
+    update:
+      desc: Update a Cloud IP
+  config:
+    desc: Manage CLI configuration settings and credentials
+    client_add:
+      desc: Add new API client details to config
+    client_default:
+      desc: Set the default API client in the config
+    client_list:
+      desc: List API clients defined in the config
+    client_remove:
+      desc: Remove an API client from config
+    user_add:
+      desc: Add new user credentials to config
+  firewall:
+    policies:
+      desc: Manage firewall policies
+      apply:
+        desc: Apply firewall policy to a server group
+      create:
+        desc: Create firewall policy
+      destroy:
+        desc: Destroy firewall policy
+      list:
+        desc: List firewall policies
+      remove:
+        desc: Remove a firewall policy from a server group
+      show:
+        desc: Show firewall policies
+      update:
+        desc: Update a firewall policy
+    rules:
+      desc: Manages an account's firewall rules for a policy
+      create:
+        desc: Create a firewall rule
+      destroy:
+        desc: Destroy firewall rules
+      list:
+        desc: List firewall rules
+      show:
+        desc: Show firewall rules
+      update:
+        desc: Update firewall rule
+  groups:
+    desc: Manage an account's server groups
+    add_servers:
+      desc: Add servers to a server group
+    create:
+      desc: Create a server group
+    destroy:
+      desc: Destroy a number of empty server groups
+    list:
+      desc: List server groups
+    move_servers:
+      desc: Move servers from one server group to another
+    remove_servers:
+      desc: Remove servers from a server group
+    show:
+      desc: Show server groups
+    update:
+      desc: Update a server group
+  images:
+    desc: See official and public images and manage an account's images
+    destroy:
+      desc: Destroy images
+    list:
+      desc: List images
+    register:
+      desc: Register an image in the image library
+    show:
+      desc: Show images
+    update:
+      desc: Update an image
+  lbs:
+    desc: Manage an account's load balancers
+    add_nodes:
+      desc: Add servers to a load balancer
+    create:
+      desc: Create a load balancer
+      long_desc: All intervals and timeouts are in milliseconds
+    destroy:
+      desc: Destroy load balancers
+    list:
+      desc: List load balancers
+    remove_nodes:
+      desc: Remove servers from a load balancer
+    show:
+      desc: Show load balancers
+    update:
+      desc: Update a load balancer
+      long_desc: All intervals and timeouts are in milliseconds
+  servers:
+    desc: Manage an account's servers
+    activate_console:
+      desc: Activate web consoles for a number of servers
+    create:
+      desc: Create servers
+    destroy:
+      desc: Destroy servers
+    show:
+      desc: Show servers
+    shutdown:
+      desc: Shutdown servers with equivalent of `shutdown` command
+    snapshot:
+      desc: Snapshot servers (creating new images)
+    start:
+      desc: Start servers
+    stop:
+      desc: Stop servers with equivalent of powering off
+    update:
+      desc: Update a server
+  users:
+    desc: List the users associated with an account
+    list:
+      desc: List users
+    show:
+      desc: Show users
+    update:
+      desc: Update a user

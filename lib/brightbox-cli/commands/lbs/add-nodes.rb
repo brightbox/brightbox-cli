@@ -1,8 +1,8 @@
 module Brightbox
-  desc "Manages an account's load balancers"
+  desc I18n.t("lbs.desc")
   command [:lbs] do |cmd|
 
-    cmd.desc "Add nodes to a load balancer"
+    cmd.desc I18n.t("lbs.add_nodes.desc")
     cmd.arg_name "lb-id node-id..."
     cmd.command [:add_nodes] do |c|
 

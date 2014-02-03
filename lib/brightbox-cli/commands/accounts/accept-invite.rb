@@ -1,8 +1,8 @@
 module Brightbox
-  desc "Manages the accounts"
+  desc I18n.t("accounts.desc")
   command [:accounts] do |cmd|
 
-    cmd.desc "Accept invitation to collaborate with account"
+    cmd.desc I18n.t("accounts.accept_invite.desc")
     cmd.arg_name "account_id"
     cmd.command [:accept_invite] do |c|
       c.action do |global_options, options, args|

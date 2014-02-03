@@ -1,7 +1,7 @@
 module Brightbox
   command [:groups] do |cmd|
 
-    cmd.desc "Remove servers from a server group"
+    cmd.desc I18n.t("groups.remove_servers.desc")
     cmd.arg_name "grp-id [srv-id...]"
     cmd.command [:remove_servers] do |c|
 

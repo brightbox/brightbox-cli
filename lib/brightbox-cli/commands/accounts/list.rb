@@ -3,7 +3,7 @@ module Brightbox
 
     cmd.default_command :list
 
-    cmd.desc "List accounts"
+    cmd.desc I18n.t("accounts.list.desc")
     cmd.arg_name "[account-id...]"
     cmd.command [:list] do |c|
 

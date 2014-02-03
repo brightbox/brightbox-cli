@@ -1,8 +1,8 @@
 module Brightbox
-  desc "Manages an account's server groups"
+  desc I18n.t("groups.desc")
   command [:groups] do |cmd|
 
-    cmd.desc "Add servers to a server group"
+    cmd.desc I18n.t("groups.add_servers.desc")
     cmd.arg_name "grp-id [srv-id...]"
     cmd.command [:add_servers] do |c|
 

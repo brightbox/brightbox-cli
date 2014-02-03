@@ -3,7 +3,7 @@ module Brightbox
 
     cmd.default_command :list
 
-    cmd.desc "List Cloud IPs"
+    cmd.desc I18n.t("cloudips.list.desc")
     cmd.arg_name "[cloudip-id...]"
     cmd.command [:list] do |c|
 

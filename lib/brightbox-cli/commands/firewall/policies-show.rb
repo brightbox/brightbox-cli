@@ -1,7 +1,7 @@
 module Brightbox
   command [:"firewall-policies"] do |cmd|
 
-    cmd.desc "Show Firewall Policy"
+    cmd.desc I18n.t("firewall.policies.show.desc")
     cmd.arg_name "firewall-policy-id"
     cmd.command [:show] do |c|
 
