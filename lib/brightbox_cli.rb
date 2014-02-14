@@ -20,8 +20,7 @@ Dir.glob(vendor_dir + '/*').each do |f|
   $:.unshift File.join(f, 'lib')
 end
 
-
-require "json"
+require "multi_json"
 require 'date'
 require 'gli'
 require "i18n"
