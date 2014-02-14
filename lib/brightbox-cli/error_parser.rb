@@ -1,3 +1,5 @@
+require "multi_json"
+
 module Brightbox
   class ErrorParser
     include Brightbox::Logging
@@ -19,7 +21,7 @@ module Brightbox
     def parse_http_error(e)
       if e.respond_to?(:response) && e.response.respond_to?(:body)
         begin
-          json_response = JSON.parse(e.response.body)
+          json_response = MultiJson.load(e.response.body)
           extract_response_from_json(json_response, e)
         rescue
           {}

@@ -24,7 +24,6 @@ Gem::Specification.new do |s|
   s.add_dependency "nokogiri", "~> 1.5.0" # 1.5.x last versions with 1.8.7 support
   s.add_dependency "mime-types", "~> 1.25"
   s.add_dependency "excon"
-  s.add_dependency "json"
 
   s.add_dependency "i18n"
 
