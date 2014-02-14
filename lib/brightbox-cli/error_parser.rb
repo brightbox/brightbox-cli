@@ -1,5 +1,3 @@
-require "multi_json"
-
 module Brightbox
   class ErrorParser
     include Brightbox::Logging
