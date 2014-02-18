@@ -21,6 +21,12 @@ module Brightbox
         c.desc I18n.t("sql.instances.options.type.desc")
         c.flag [:t, :type]
 
+        # Database Engine / Version (e.g. "mysql-5.6"
+        c.desc I18n.t("sql.instances.options.engine.desc")
+        c.flag [:engine]
+        c.desc I18n.t("sql.instances.options.engine_version.desc")
+        c.flag ["engine-version"]
+
         # Snapshot
         c.desc I18n.t("sql.instances.options.snapshot.desc")
         c.flag [:snapshot]
@@ -40,6 +46,8 @@ module Brightbox
             params[:allow_access] = access_items
           end
 
+          params[:database_engine] = options[:engine] if options[:engine]
+          params[:database_version] = options["engine-version"] if options["engine-version"]
           params[:snapshot_id] = options[:snapshot] if options[:snapshot]
           params[:flavor_id] = options[:type] if options[:type]
           params[:zone_id] = options[:zone] if options[:zone]

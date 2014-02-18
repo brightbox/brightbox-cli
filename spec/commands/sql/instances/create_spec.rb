@@ -45,5 +45,25 @@ describe "brightbox database-servers" do
         expect(stderr).to eql("")
       end
     end
+
+    context "--engine=mysql", :vcr do
+      let(:argv) { %w(sql instances create --engine=mysql) }
+      let(:expected_args) { { :database_engine => "mysql" } }
+
+      it "correctly sends API parameters" do
+        expect(Brightbox::DatabaseServer).to receive(:create).with(expected_args).and_call_original
+        expect(stderr).to eql("")
+      end
+    end
+
+    context "--engine=mysql --engine-version=5.6", :vcr do
+      let(:argv) { %w(sql instances create --engine=mysql --engine-version=5.6) }
+      let(:expected_args) { { :database_engine => "mysql", :database_version => "5.6" } }
+
+      it "correctly sends API parameters" do
+        expect(Brightbox::DatabaseServer).to receive(:create).with(expected_args).and_call_original
+        expect(stderr).to eql("")
+      end
+    end
   end
 end
