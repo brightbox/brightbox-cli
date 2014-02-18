@@ -16,7 +16,7 @@ http_interactions:
   response:
     status:
       code: 200
-      message: 
+      message:
     headers:
       X-Frame-Options:
       - sameorigin
@@ -43,6 +43,6 @@ http_interactions:
     body:
       encoding: UTF-8
       string: '{"access_token":"4b866d4dea7b6324de9b1a42c139f27cfa1c0572","expires_in":7200,"refresh_token":"ee27be4b51e95db3943462e4052ec9235148c077"}'
-    http_version: 
+    http_version:
   recorded_at: Mon, 02 Sep 2013 14:28:16 GMT
 recorded_with: VCR 2.5.0

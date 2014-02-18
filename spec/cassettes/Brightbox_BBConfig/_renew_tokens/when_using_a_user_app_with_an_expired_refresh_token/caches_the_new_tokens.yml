@@ -16,7 +16,7 @@ http_interactions:
   response:
     status:
       code: 400
-      message: 
+      message:
     headers:
       X-Frame-Options:
       - sameorigin
@@ -44,7 +44,7 @@ http_interactions:
         is invalid, expired, or revoked (e.g. invalid assertion, expired authorization
         token, bad end-user password credentials, or mismatching authorization code
         and redirection URI)."}'
-    http_version: 
+    http_version:
   recorded_at: Wed, 28 Aug 2013 11:11:43 GMT
 - request:
     method: post
@@ -62,7 +62,7 @@ http_interactions:
   response:
     status:
       code: 200
-      message: 
+      message:
     headers:
       X-Frame-Options:
       - sameorigin
@@ -89,6 +89,6 @@ http_interactions:
     body:
       encoding: UTF-8
       string: '{"access_token":"f0cf301ba7d82e6b6bbd61e3f40929b7fbd55a6b","expires_in":7200,"refresh_token":"2d5f189f75c4359131262716a9ad0144877e9f27"}'
-    http_version: 
+    http_version:
   recorded_at: Wed, 28 Aug 2013 11:11:44 GMT
 recorded_with: VCR 2.5.0

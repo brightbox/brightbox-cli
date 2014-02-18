@@ -16,7 +16,7 @@ http_interactions:
   response:
     status:
       code: 401
-      message: 
+      message:
     headers:
       !binary "V1dXLUF1dGhlbnRpY2F0ZQ==":
       - !binary |-
@@ -46,7 +46,7 @@ http_interactions:
       encoding: US-ASCII
       string: ! '{"error":"invalid_token","error_description":"The OAuth token can
         not be found"}'
-    http_version: 
+    http_version:
   recorded_at: Fri, 27 Sep 2013 15:18:18 GMT
 - request:
     method: post
@@ -64,7 +64,7 @@ http_interactions:
   response:
     status:
       code: 200
-      message: 
+      message:
     headers:
       !binary "WC1GcmFtZS1PcHRpb25z":
       - !binary |-
@@ -102,7 +102,7 @@ http_interactions:
     body:
       encoding: US-ASCII
       string: ! '{"access_token":"f46816c4911694d051ec6a779103e42ab72d3fc7","expires_in":7200}'
-    http_version: 
+    http_version:
   recorded_at: Fri, 27 Sep 2013 15:18:18 GMT
 - request:
     method: put
@@ -121,7 +121,7 @@ http_interactions:
   response:
     status:
       code: 422
-      message: 
+      message:
     headers:
       !binary "Q29udGVudC1UeXBl":
       - !binary |-
@@ -148,6 +148,6 @@ http_interactions:
       encoding: US-ASCII
       string: ! '{"error_name":"unprocessable_entity","errors":["default firewall
         policy can not be renamed"]}'
-    http_version: 
+    http_version:
   recorded_at: Fri, 27 Sep 2013 15:18:19 GMT
 recorded_with: VCR 2.5.0

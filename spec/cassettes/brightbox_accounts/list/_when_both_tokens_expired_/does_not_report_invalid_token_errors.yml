@@ -16,7 +16,7 @@ http_interactions:
   response:
     status:
       code: 400
-      message: 
+      message:
     headers:
       X-Frame-Options:
       - sameorigin
@@ -44,7 +44,7 @@ http_interactions:
         provided is invalid, the client failed to authenticate, the client did not
         include its credentials, provided multiple client credentials, or used unsupported
         credentials type."}'
-    http_version: 
+    http_version:
   recorded_at: Wed, 28 Aug 2013 14:46:22 GMT
 - request:
     method: get
@@ -62,7 +62,7 @@ http_interactions:
   response:
     status:
       code: 401
-      message: 
+      message:
     headers:
       WWW-Authenticate:
       - OAuth error="invalid_token"
@@ -84,7 +84,7 @@ http_interactions:
       encoding: UTF-8
       string: '{"error":"invalid_token","error_description":"The OAuth token can not
         be found"}'
-    http_version: 
+    http_version:
   recorded_at: Wed, 28 Aug 2013 14:46:22 GMT
 - request:
     method: post
@@ -102,7 +102,7 @@ http_interactions:
   response:
     status:
       code: 400
-      message: 
+      message:
     headers:
       X-Frame-Options:
       - sameorigin
@@ -130,7 +130,7 @@ http_interactions:
         provided is invalid, the client failed to authenticate, the client did not
         include its credentials, provided multiple client credentials, or used unsupported
         credentials type."}'
-    http_version: 
+    http_version:
   recorded_at: Wed, 28 Aug 2013 14:46:22 GMT
 - request:
     method: get
@@ -148,7 +148,7 @@ http_interactions:
   response:
     status:
       code: 401
-      message: 
+      message:
     headers:
       WWW-Authenticate:
       - OAuth error="invalid_token"
@@ -170,7 +170,7 @@ http_interactions:
       encoding: UTF-8
       string: '{"error":"invalid_token","error_description":"The OAuth token can not
         be found"}'
-    http_version: 
+    http_version:
   recorded_at: Wed, 28 Aug 2013 14:46:22 GMT
 - request:
     method: post
@@ -188,7 +188,7 @@ http_interactions:
   response:
     status:
       code: 400
-      message: 
+      message:
     headers:
       X-Frame-Options:
       - sameorigin
@@ -216,7 +216,7 @@ http_interactions:
         is invalid, expired, or revoked (e.g. invalid assertion, expired authorization
         token, bad end-user password credentials, or mismatching authorization code
         and redirection URI)."}'
-    http_version: 
+    http_version:
   recorded_at: Wed, 28 Aug 2013 14:46:23 GMT
 - request:
     method: post
@@ -234,7 +234,7 @@ http_interactions:
   response:
     status:
       code: 200
-      message: 
+      message:
     headers:
       X-Frame-Options:
       - sameorigin
@@ -261,7 +261,7 @@ http_interactions:
     body:
       encoding: UTF-8
       string: '{"access_token":"2234e839fed8172ef4f1c4a3edfde8ea8deea4a4","expires_in":7200,"refresh_token":"e47999ca927b0f50dfd883056a60a3841d09d941"}'
-    http_version: 
+    http_version:
   recorded_at: Wed, 28 Aug 2013 14:46:23 GMT
 - request:
     method: post
@@ -279,7 +279,7 @@ http_interactions:
   response:
     status:
       code: 400
-      message: 
+      message:
     headers:
       X-Frame-Options:
       - sameorigin
@@ -305,7 +305,7 @@ http_interactions:
       encoding: UTF-8
       string: '{"error":"unauthorized_client","error_description":"The authenticated
         client is not authorized to use the access grant type provided."}'
-    http_version: 
+    http_version:
   recorded_at: Wed, 18 Sep 2013 15:18:56 GMT
 - request:
     method: post
@@ -323,7 +323,7 @@ http_interactions:
   response:
     status:
       code: 400
-      message: 
+      message:
     headers:
       X-Frame-Options:
       - sameorigin
@@ -349,7 +349,7 @@ http_interactions:
       encoding: UTF-8
       string: '{"error":"unauthorized_client","error_description":"The authenticated
         client is not authorized to use the access grant type provided."}'
-    http_version: 
+    http_version:
   recorded_at: Wed, 18 Sep 2013 15:18:56 GMT
 - request:
     method: post
@@ -367,7 +367,7 @@ http_interactions:
   response:
     status:
       code: 400
-      message: 
+      message:
     headers:
       X-Frame-Options:
       - sameorigin
@@ -395,6 +395,6 @@ http_interactions:
         is invalid, expired, or revoked (e.g. invalid assertion, expired authorization
         token, bad end-user password credentials, or mismatching authorization code
         and redirection URI)."}'
-    http_version: 
+    http_version:
   recorded_at: Wed, 18 Sep 2013 15:19:43 GMT
 recorded_with: VCR 2.5.0

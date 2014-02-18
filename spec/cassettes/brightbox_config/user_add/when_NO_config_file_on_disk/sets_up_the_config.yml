@@ -16,7 +16,7 @@ http_interactions:
   response:
     status:
       code: 200
-      message: 
+      message:
     headers:
       X-Frame-Options:
       - sameorigin
@@ -43,7 +43,7 @@ http_interactions:
     body:
       encoding: UTF-8
       string: '{"access_token":"eff6b0ebf3ab2a0cbcbacc58a2ea4478d2e52c93","expires_in":7200,"refresh_token":"946c0b873298d391f53f5b7d2751e6a735f6535c"}'
-    http_version: 
+    http_version:
   recorded_at: Fri, 06 Sep 2013 08:40:50 GMT
 - request:
     method: get
@@ -61,7 +61,7 @@ http_interactions:
   response:
     status:
       code: 401
-      message: 
+      message:
     headers:
       WWW-Authenticate:
       - OAuth error="invalid_token"
@@ -83,7 +83,7 @@ http_interactions:
       encoding: UTF-8
       string: '{"error":"invalid_token","error_description":"The OAuth token can not
         be found"}'
-    http_version: 
+    http_version:
   recorded_at: Fri, 06 Sep 2013 08:40:50 GMT
 - request:
     method: post
@@ -101,7 +101,7 @@ http_interactions:
   response:
     status:
       code: 200
-      message: 
+      message:
     headers:
       X-Frame-Options:
       - sameorigin
@@ -128,7 +128,7 @@ http_interactions:
     body:
       encoding: UTF-8
       string: '{"access_token":"f7d882463fb3e652703d09227a2368e6e83812a7","expires_in":7200}'
-    http_version: 
+    http_version:
   recorded_at: Fri, 06 Sep 2013 08:40:50 GMT
 - request:
     method: get
@@ -146,7 +146,7 @@ http_interactions:
   response:
     status:
       code: 200
-      message: 
+      message:
     headers:
       Content-Type:
       - application/json; charset=utf-8
@@ -170,7 +170,7 @@ http_interactions:
         new servers are added to this group unless specified otherwise.","created_at":"2013-09-04T07:53:13Z","default":true}],"firewall_policies":[{"id":"fwp-12345","resource_type":"firewall_policy","url":"https://api.gb1.brightbox.com/1.0/firewall_policies/fwp-12345","default":true,"name":"default","created_at":"2013-09-04T07:53:14Z","description":"Applied
         to the default server group."}],"owner":{"id":"usr-12345","resource_type":"user","url":"https://api.gb1.brightbox.com/1.0/users/usr-12345","name":"Dylan
         Fay DDS","email_address":"jason.null@brightbox.com"},"users":[],"zones":[{"id":"zon-12345","resource_type":"zone","url":"https://api.gb1.brightbox.com/1.0/zones/zon-12345","handle":"gb1-a"},{"id":"zon-12345","resource_type":"zone","url":"https://api.gb1.brightbox.com/1.0/zones/zon-12345","handle":"gb1-b"}]}]'
-    http_version: 
+    http_version:
   recorded_at: Fri, 06 Sep 2013 08:40:52 GMT
 - request:
     method: post
@@ -188,7 +188,7 @@ http_interactions:
   response:
     status:
       code: 400
-      message: 
+      message:
     headers:
       X-Frame-Options:
       - sameorigin
@@ -216,6 +216,6 @@ http_interactions:
         is invalid, expired, or revoked (e.g. invalid assertion, expired authorization
         token, bad end-user password credentials, or mismatching authorization code
         and redirection URI)."}'
-    http_version: 
+    http_version:
   recorded_at: Tue, 17 Sep 2013 17:07:38 GMT
 recorded_with: VCR 2.5.0

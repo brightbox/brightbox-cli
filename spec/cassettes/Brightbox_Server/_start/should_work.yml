@@ -16,7 +16,7 @@ http_interactions:
   response:
     status:
       code: 200
-      message: 
+      message:
     headers:
       Content-Type:
       - application/json; charset=utf-8
@@ -44,7 +44,7 @@ http_interactions:
         new servers are added to this group unless specified otherwise.","created_at":"2013-08-27T15:47:00Z","default":true},{"id":"grp-12345","resource_type":"server_group","url":"https://api.gb1.brightbox.com/1.0/server_groups/grp-12345","name":"test","description":null,"created_at":"2013-08-27T15:54:53Z","default":false},{"id":"grp-12345","resource_type":"server_group","url":"https://api.gb1.brightbox.com/1.0/server_groups/grp-12345","name":"test","description":null,"created_at":"2013-08-27T16:12:22Z","default":false}],"firewall_policies":[{"id":"fwp-12345","resource_type":"firewall_policy","url":"https://api.gb1.brightbox.com/1.0/firewall_policies/fwp-12345","default":true,"name":"default","created_at":"2013-08-27T15:47:00Z","description":"Applied
         to the default server group."},{"id":"fwp-12345","resource_type":"firewall_policy","url":"https://api.gb1.brightbox.com/1.0/firewall_policies/fwp-12345","default":false,"name":"rspec_firewall_policy_apply","created_at":"2013-08-27T15:54:12Z","description":null},{"id":"fwp-12345","resource_type":"firewall_policy","url":"https://api.gb1.brightbox.com/1.0/firewall_policies/fwp-12345","default":false,"name":"rspec_firewall_policy","created_at":"2013-08-27T15:54:13Z","description":null},{"id":"fwp-12345","resource_type":"firewall_policy","url":"https://api.gb1.brightbox.com/1.0/firewall_policies/fwp-12345","default":false,"name":null,"created_at":"2013-08-27T15:54:20Z","description":null},{"id":"fwp-12345","resource_type":"firewall_policy","url":"https://api.gb1.brightbox.com/1.0/firewall_policies/fwp-12345","default":false,"name":null,"created_at":"2013-08-27T15:54:21Z","description":null},{"id":"fwp-12345","resource_type":"firewall_policy","url":"https://api.gb1.brightbox.com/1.0/firewall_policies/fwp-12345","default":false,"name":"rspec_firewall_policy","created_at":"2013-08-27T15:56:46Z","description":null},{"id":"fwp-12345","resource_type":"firewall_policy","url":"https://api.gb1.brightbox.com/1.0/firewall_policies/fwp-12345","default":false,"name":"rspec_firewall_policy","created_at":"2013-08-27T16:06:22Z","description":null},{"id":"fwp-12345","resource_type":"firewall_policy","url":"https://api.gb1.brightbox.com/1.0/firewall_policies/fwp-12345","default":false,"name":"rspec_firewall_policy_apply","created_at":"2013-08-27T16:12:42Z","description":null},{"id":"fwp-12345","resource_type":"firewall_policy","url":"https://api.gb1.brightbox.com/1.0/firewall_policies/fwp-12345","default":false,"name":"rspec_firewall_policy","created_at":"2013-08-27T16:12:43Z","description":null},{"id":"fwp-12345","resource_type":"firewall_policy","url":"https://api.gb1.brightbox.com/1.0/firewall_policies/fwp-12345","default":false,"name":null,"created_at":"2013-08-27T16:12:48Z","description":null},{"id":"fwp-12345","resource_type":"firewall_policy","url":"https://api.gb1.brightbox.com/1.0/firewall_policies/fwp-12345","default":false,"name":null,"created_at":"2013-08-27T16:12:49Z","description":null}],"owner":{"id":"usr-12345","resource_type":"user","url":"https://api.gb1.brightbox.com/1.0/users/usr-12345","name":"Teresa
         Ullrich","email_address":"jason.null@brightbox.com"},"users":[],"zones":[{"id":"zon-12345","resource_type":"zone","url":"https://api.gb1.brightbox.com/1.0/zones/zon-12345","handle":"gb1-a"},{"id":"zon-12345","resource_type":"zone","url":"https://api.gb1.brightbox.com/1.0/zones/zon-12345","handle":"gb1-b"}]}'
-    http_version: 
+    http_version:
   recorded_at: Tue, 27 Aug 2013 16:13:58 GMT
 - request:
     method: get
@@ -62,7 +62,7 @@ http_interactions:
   response:
     status:
       code: 200
-      message: 
+      message:
     headers:
       Content-Type:
       - application/json; charset=utf-8
@@ -83,7 +83,7 @@ http_interactions:
     body:
       encoding: UTF-8
       string: '[{"id":"typ-12345","resource_type":"server_type","url":"https://api.gb1.brightbox.com/1.0/server_types/typ-12345","name":"xvifyx3u5s","status":"available","cores":2,"ram":3072,"disk_size":10240,"handle":"nano"},{"id":"typ-12345","resource_type":"server_type","url":"https://api.gb1.brightbox.com/1.0/server_types/typ-12345","name":"il1fol","status":"available","cores":2,"ram":3072,"disk_size":6144,"handle":null},{"id":"typ-12345","resource_type":"server_type","url":"https://api.gb1.brightbox.com/1.0/server_types/typ-12345","name":"pqut6ge","status":"available","cores":2,"ram":2048,"disk_size":3072,"handle":null},{"id":"typ-12345","resource_type":"server_type","url":"https://api.gb1.brightbox.com/1.0/server_types/typ-12345","name":"k4yv7e","status":"available","cores":2,"ram":1024,"disk_size":6144,"handle":null},{"id":"typ-12345","resource_type":"server_type","url":"https://api.gb1.brightbox.com/1.0/server_types/typ-12345","name":"rxmq4xqwri","status":"available","cores":2,"ram":1024,"disk_size":5120,"handle":null}]'
-    http_version: 
+    http_version:
   recorded_at: Tue, 27 Aug 2013 16:13:58 GMT
 - request:
     method: post
@@ -101,7 +101,7 @@ http_interactions:
   response:
     status:
       code: 202
-      message: 
+      message:
     headers:
       Location:
       - http://api.brightbox.dev/1.0/servers/srv-dilm5
@@ -123,7 +123,7 @@ http_interactions:
       encoding: UTF-8
       string: '{"id":"srv-12345","resource_type":"server","url":"https://api.gb1.brightbox.com/1.0/servers/srv-12345","name":"rspec_server_start","status":"creating","hostname":"srv-12345","created_at":"2013-08-27T16:14:01Z","started_at":null,"deleted_at":null,"user_data":null,"fqdn":"srv-12345.gb1.brightbox.com","compatibility_mode":false,"console_url":null,"console_token":null,"console_token_expires":null,"account":{"id":"acc-12345","resource_type":"account","url":"https://api.gb1.brightbox.com/1.0/accounts/acc-12345","name":"Avkruvviumpksysor","status":"active"},"image":{"id":"img-12345","resource_type":"image","url":"https://api.gb1.brightbox.com/1.0/images/img-12345","name":"dmcuhmirtoevr8bvye46opwd","username":null,"status":"available","description":"","source":"46i5i7onyfz8yf5o5nepaohs","arch":"x86_64","created_at":"2013-08-27T15:46:50Z","official":true,"public":true,"owner":"acc-12345"},"server_type":{"id":"typ-12345","resource_type":"server_type","url":"https://api.gb1.brightbox.com/1.0/server_types/typ-12345","name":"xvifyx3u5s","status":"available","cores":2,"ram":3072,"disk_size":10240,"handle":"nano"},"zone":{"id":"zon-12345","resource_type":"zone","url":"https://api.gb1.brightbox.com/1.0/zones/zon-12345","handle":"gb1-a"},"cloud_ips":[],"interfaces":[{"id":"int-5ccjd","resource_type":"interface","url":"https://api.gb1.brightbox.com/1.0/interfaces/int-5ccjd","mac_address":"02:24:19:13:84:b6","ipv4_address":"10.19.132.182","ipv6_address":"2a02:1348:15d:e12d:24:19ff:fe13:84b6"}],"snapshots":[],"server_groups":[{"id":"grp-12345","resource_type":"server_group","url":"https://api.gb1.brightbox.com/1.0/server_groups/grp-12345","name":"default","description":"All
         new servers are added to this group unless specified otherwise.","created_at":"2013-08-27T15:47:00Z","default":true}]}'
-    http_version: 
+    http_version:
   recorded_at: Tue, 27 Aug 2013 16:14:02 GMT
 - request:
     method: get
@@ -141,7 +141,7 @@ http_interactions:
   response:
     status:
       code: 200
-      message: 
+      message:
     headers:
       Content-Type:
       - application/json; charset=utf-8
@@ -163,7 +163,7 @@ http_interactions:
       encoding: UTF-8
       string: '{"id":"srv-12345","resource_type":"server","url":"https://api.gb1.brightbox.com/1.0/servers/srv-12345","name":"rspec_server_start","status":"creating","hostname":"srv-12345","created_at":"2013-08-27T16:14:01Z","started_at":null,"deleted_at":null,"user_data":null,"fqdn":"srv-12345.gb1.brightbox.com","compatibility_mode":false,"console_url":null,"console_token":null,"console_token_expires":null,"account":{"id":"acc-12345","resource_type":"account","url":"https://api.gb1.brightbox.com/1.0/accounts/acc-12345","name":"Avkruvviumpksysor","status":"active"},"image":{"id":"img-12345","resource_type":"image","url":"https://api.gb1.brightbox.com/1.0/images/img-12345","name":"dmcuhmirtoevr8bvye46opwd","username":null,"status":"available","description":"","source":"46i5i7onyfz8yf5o5nepaohs","arch":"x86_64","created_at":"2013-08-27T15:46:50Z","official":true,"public":true,"owner":"acc-12345"},"server_type":{"id":"typ-12345","resource_type":"server_type","url":"https://api.gb1.brightbox.com/1.0/server_types/typ-12345","name":"xvifyx3u5s","status":"available","cores":2,"ram":3072,"disk_size":10240,"handle":"nano"},"zone":{"id":"zon-12345","resource_type":"zone","url":"https://api.gb1.brightbox.com/1.0/zones/zon-12345","handle":"gb1-a"},"cloud_ips":[],"interfaces":[{"id":"int-5ccjd","resource_type":"interface","url":"https://api.gb1.brightbox.com/1.0/interfaces/int-5ccjd","mac_address":"02:24:19:13:84:b6","ipv4_address":"10.19.132.182","ipv6_address":"2a02:1348:15d:e12d:24:19ff:fe13:84b6"}],"snapshots":[],"server_groups":[{"id":"grp-12345","resource_type":"server_group","url":"https://api.gb1.brightbox.com/1.0/server_groups/grp-12345","name":"default","description":"All
         new servers are added to this group unless specified otherwise.","created_at":"2013-08-27T15:47:00Z","default":true}]}'
-    http_version: 
+    http_version:
   recorded_at: Tue, 27 Aug 2013 16:14:02 GMT
 - request:
     method: get
@@ -181,7 +181,7 @@ http_interactions:
   response:
     status:
       code: 200
-      message: 
+      message:
     headers:
       Content-Type:
       - application/json; charset=utf-8
@@ -203,7 +203,7 @@ http_interactions:
       encoding: UTF-8
       string: '{"id":"srv-12345","resource_type":"server","url":"https://api.gb1.brightbox.com/1.0/servers/srv-12345","name":"rspec_server_start","status":"active","hostname":"srv-12345","created_at":"2013-08-27T16:14:01Z","started_at":null,"deleted_at":null,"user_data":null,"fqdn":"srv-12345.gb1.brightbox.com","compatibility_mode":false,"console_url":null,"console_token":null,"console_token_expires":null,"account":{"id":"acc-12345","resource_type":"account","url":"https://api.gb1.brightbox.com/1.0/accounts/acc-12345","name":"Avkruvviumpksysor","status":"active"},"image":{"id":"img-12345","resource_type":"image","url":"https://api.gb1.brightbox.com/1.0/images/img-12345","name":"dmcuhmirtoevr8bvye46opwd","username":null,"status":"available","description":"","source":"46i5i7onyfz8yf5o5nepaohs","arch":"x86_64","created_at":"2013-08-27T15:46:50Z","official":true,"public":true,"owner":"acc-12345"},"server_type":{"id":"typ-12345","resource_type":"server_type","url":"https://api.gb1.brightbox.com/1.0/server_types/typ-12345","name":"xvifyx3u5s","status":"available","cores":2,"ram":3072,"disk_size":10240,"handle":"nano"},"zone":{"id":"zon-12345","resource_type":"zone","url":"https://api.gb1.brightbox.com/1.0/zones/zon-12345","handle":"gb1-a"},"cloud_ips":[],"interfaces":[{"id":"int-5ccjd","resource_type":"interface","url":"https://api.gb1.brightbox.com/1.0/interfaces/int-5ccjd","mac_address":"02:24:19:13:84:b6","ipv4_address":"10.19.132.182","ipv6_address":"2a02:1348:15d:e12d:24:19ff:fe13:84b6"}],"snapshots":[],"server_groups":[{"id":"grp-12345","resource_type":"server_group","url":"https://api.gb1.brightbox.com/1.0/server_groups/grp-12345","name":"default","description":"All
         new servers are added to this group unless specified otherwise.","created_at":"2013-08-27T15:47:00Z","default":true}]}'
-    http_version: 
+    http_version:
   recorded_at: Tue, 27 Aug 2013 16:14:04 GMT
 - request:
     method: post
@@ -221,7 +221,7 @@ http_interactions:
   response:
     status:
       code: 202
-      message: 
+      message:
     headers:
       Content-Type:
       - application/json; charset=utf-8
@@ -241,7 +241,7 @@ http_interactions:
       encoding: UTF-8
       string: '{"id":"srv-12345","resource_type":"server","url":"https://api.gb1.brightbox.com/1.0/servers/srv-12345","name":"rspec_server_start","status":"active","hostname":"srv-12345","created_at":"2013-08-27T16:14:01Z","started_at":null,"deleted_at":null,"user_data":null,"fqdn":"srv-12345.gb1.brightbox.com","compatibility_mode":false,"console_url":null,"console_token":null,"console_token_expires":null,"account":{"id":"acc-12345","resource_type":"account","url":"https://api.gb1.brightbox.com/1.0/accounts/acc-12345","name":"Avkruvviumpksysor","status":"active"},"image":{"id":"img-12345","resource_type":"image","url":"https://api.gb1.brightbox.com/1.0/images/img-12345","name":"dmcuhmirtoevr8bvye46opwd","username":null,"status":"available","description":"","source":"46i5i7onyfz8yf5o5nepaohs","arch":"x86_64","created_at":"2013-08-27T15:46:50Z","official":true,"public":true,"owner":"acc-12345"},"server_type":{"id":"typ-12345","resource_type":"server_type","url":"https://api.gb1.brightbox.com/1.0/server_types/typ-12345","name":"xvifyx3u5s","status":"available","cores":2,"ram":3072,"disk_size":10240,"handle":"nano"},"zone":{"id":"zon-12345","resource_type":"zone","url":"https://api.gb1.brightbox.com/1.0/zones/zon-12345","handle":"gb1-a"},"cloud_ips":[],"interfaces":[{"id":"int-5ccjd","resource_type":"interface","url":"https://api.gb1.brightbox.com/1.0/interfaces/int-5ccjd","mac_address":"02:24:19:13:84:b6","ipv4_address":"10.19.132.182","ipv6_address":"2a02:1348:15d:e12d:24:19ff:fe13:84b6"}],"snapshots":[],"server_groups":[{"id":"grp-12345","resource_type":"server_group","url":"https://api.gb1.brightbox.com/1.0/server_groups/grp-12345","name":"default","description":"All
         new servers are added to this group unless specified otherwise.","created_at":"2013-08-27T15:47:00Z","default":true}]}'
-    http_version: 
+    http_version:
   recorded_at: Tue, 27 Aug 2013 16:14:04 GMT
 - request:
     method: get
@@ -259,7 +259,7 @@ http_interactions:
   response:
     status:
       code: 200
-      message: 
+      message:
     headers:
       Content-Type:
       - application/json; charset=utf-8
@@ -281,7 +281,7 @@ http_interactions:
       encoding: UTF-8
       string: '{"id":"srv-12345","resource_type":"server","url":"https://api.gb1.brightbox.com/1.0/servers/srv-12345","name":"rspec_server_start","status":"active","hostname":"srv-12345","created_at":"2013-08-27T16:14:01Z","started_at":null,"deleted_at":null,"user_data":null,"fqdn":"srv-12345.gb1.brightbox.com","compatibility_mode":false,"console_url":null,"console_token":null,"console_token_expires":null,"account":{"id":"acc-12345","resource_type":"account","url":"https://api.gb1.brightbox.com/1.0/accounts/acc-12345","name":"Avkruvviumpksysor","status":"active"},"image":{"id":"img-12345","resource_type":"image","url":"https://api.gb1.brightbox.com/1.0/images/img-12345","name":"dmcuhmirtoevr8bvye46opwd","username":null,"status":"available","description":"","source":"46i5i7onyfz8yf5o5nepaohs","arch":"x86_64","created_at":"2013-08-27T15:46:50Z","official":true,"public":true,"owner":"acc-12345"},"server_type":{"id":"typ-12345","resource_type":"server_type","url":"https://api.gb1.brightbox.com/1.0/server_types/typ-12345","name":"xvifyx3u5s","status":"available","cores":2,"ram":3072,"disk_size":10240,"handle":"nano"},"zone":{"id":"zon-12345","resource_type":"zone","url":"https://api.gb1.brightbox.com/1.0/zones/zon-12345","handle":"gb1-a"},"cloud_ips":[],"interfaces":[{"id":"int-5ccjd","resource_type":"interface","url":"https://api.gb1.brightbox.com/1.0/interfaces/int-5ccjd","mac_address":"02:24:19:13:84:b6","ipv4_address":"10.19.132.182","ipv6_address":"2a02:1348:15d:e12d:24:19ff:fe13:84b6"}],"snapshots":[],"server_groups":[{"id":"grp-12345","resource_type":"server_group","url":"https://api.gb1.brightbox.com/1.0/server_groups/grp-12345","name":"default","description":"All
         new servers are added to this group unless specified otherwise.","created_at":"2013-08-27T15:47:00Z","default":true}]}'
-    http_version: 
+    http_version:
   recorded_at: Tue, 27 Aug 2013 16:14:05 GMT
 - request:
     method: get
@@ -299,7 +299,7 @@ http_interactions:
   response:
     status:
       code: 200
-      message: 
+      message:
     headers:
       Content-Type:
       - application/json; charset=utf-8
@@ -321,7 +321,7 @@ http_interactions:
       encoding: UTF-8
       string: '{"id":"srv-12345","resource_type":"server","url":"https://api.gb1.brightbox.com/1.0/servers/srv-12345","name":"rspec_server_start","status":"inactive","hostname":"srv-12345","created_at":"2013-08-27T16:14:01Z","started_at":"2013-08-27T16:14:04Z","deleted_at":null,"user_data":null,"fqdn":"srv-12345.gb1.brightbox.com","compatibility_mode":false,"console_url":null,"console_token":null,"console_token_expires":null,"account":{"id":"acc-12345","resource_type":"account","url":"https://api.gb1.brightbox.com/1.0/accounts/acc-12345","name":"Avkruvviumpksysor","status":"active"},"image":{"id":"img-12345","resource_type":"image","url":"https://api.gb1.brightbox.com/1.0/images/img-12345","name":"dmcuhmirtoevr8bvye46opwd","username":null,"status":"available","description":"","source":"46i5i7onyfz8yf5o5nepaohs","arch":"x86_64","created_at":"2013-08-27T15:46:50Z","official":true,"public":true,"owner":"acc-12345"},"server_type":{"id":"typ-12345","resource_type":"server_type","url":"https://api.gb1.brightbox.com/1.0/server_types/typ-12345","name":"xvifyx3u5s","status":"available","cores":2,"ram":3072,"disk_size":10240,"handle":"nano"},"zone":{"id":"zon-12345","resource_type":"zone","url":"https://api.gb1.brightbox.com/1.0/zones/zon-12345","handle":"gb1-a"},"cloud_ips":[],"interfaces":[{"id":"int-5ccjd","resource_type":"interface","url":"https://api.gb1.brightbox.com/1.0/interfaces/int-5ccjd","mac_address":"02:24:19:13:84:b6","ipv4_address":"10.19.132.182","ipv6_address":"2a02:1348:15d:e12d:24:19ff:fe13:84b6"}],"snapshots":[],"server_groups":[{"id":"grp-12345","resource_type":"server_group","url":"https://api.gb1.brightbox.com/1.0/server_groups/grp-12345","name":"default","description":"All
         new servers are added to this group unless specified otherwise.","created_at":"2013-08-27T15:47:00Z","default":true}]}'
-    http_version: 
+    http_version:
   recorded_at: Tue, 27 Aug 2013 16:14:06 GMT
 - request:
     method: post
@@ -339,7 +339,7 @@ http_interactions:
   response:
     status:
       code: 202
-      message: 
+      message:
     headers:
       Content-Type:
       - application/json; charset=utf-8
@@ -359,7 +359,7 @@ http_interactions:
       encoding: UTF-8
       string: '{"id":"srv-12345","resource_type":"server","url":"https://api.gb1.brightbox.com/1.0/servers/srv-12345","name":"rspec_server_start","status":"inactive","hostname":"srv-12345","created_at":"2013-08-27T16:14:01Z","started_at":"2013-08-27T16:14:04Z","deleted_at":null,"user_data":null,"fqdn":"srv-12345.gb1.brightbox.com","compatibility_mode":false,"console_url":null,"console_token":null,"console_token_expires":null,"account":{"id":"acc-12345","resource_type":"account","url":"https://api.gb1.brightbox.com/1.0/accounts/acc-12345","name":"Avkruvviumpksysor","status":"active"},"image":{"id":"img-12345","resource_type":"image","url":"https://api.gb1.brightbox.com/1.0/images/img-12345","name":"dmcuhmirtoevr8bvye46opwd","username":null,"status":"available","description":"","source":"46i5i7onyfz8yf5o5nepaohs","arch":"x86_64","created_at":"2013-08-27T15:46:50Z","official":true,"public":true,"owner":"acc-12345"},"server_type":{"id":"typ-12345","resource_type":"server_type","url":"https://api.gb1.brightbox.com/1.0/server_types/typ-12345","name":"xvifyx3u5s","status":"available","cores":2,"ram":3072,"disk_size":10240,"handle":"nano"},"zone":{"id":"zon-12345","resource_type":"zone","url":"https://api.gb1.brightbox.com/1.0/zones/zon-12345","handle":"gb1-a"},"cloud_ips":[],"interfaces":[{"id":"int-5ccjd","resource_type":"interface","url":"https://api.gb1.brightbox.com/1.0/interfaces/int-5ccjd","mac_address":"02:24:19:13:84:b6","ipv4_address":"10.19.132.182","ipv6_address":"2a02:1348:15d:e12d:24:19ff:fe13:84b6"}],"snapshots":[],"server_groups":[{"id":"grp-12345","resource_type":"server_group","url":"https://api.gb1.brightbox.com/1.0/server_groups/grp-12345","name":"default","description":"All
         new servers are added to this group unless specified otherwise.","created_at":"2013-08-27T15:47:00Z","default":true}]}'
-    http_version: 
+    http_version:
   recorded_at: Tue, 27 Aug 2013 16:14:06 GMT
 - request:
     method: post
@@ -377,7 +377,7 @@ http_interactions:
   response:
     status:
       code: 400
-      message: 
+      message:
     headers:
       X-Frame-Options:
       - sameorigin
@@ -403,7 +403,7 @@ http_interactions:
       encoding: UTF-8
       string: '{"error":"unauthorized_client","error_description":"The authenticated
         client is not authorized to use the access grant type provided."}'
-    http_version: 
+    http_version:
   recorded_at: Tue, 27 Aug 2013 17:09:43 GMT
 - request:
     method: post
@@ -421,7 +421,7 @@ http_interactions:
   response:
     status:
       code: 400
-      message: 
+      message:
     headers:
       X-Frame-Options:
       - sameorigin
@@ -447,7 +447,7 @@ http_interactions:
       encoding: UTF-8
       string: '{"error":"unauthorized_client","error_description":"The authenticated
         client is not authorized to use the access grant type provided."}'
-    http_version: 
+    http_version:
   recorded_at: Tue, 27 Aug 2013 17:09:43 GMT
 - request:
     method: post
@@ -465,7 +465,7 @@ http_interactions:
   response:
     status:
       code: 400
-      message: 
+      message:
     headers:
       X-Frame-Options:
       - sameorigin
@@ -491,7 +491,7 @@ http_interactions:
       encoding: UTF-8
       string: '{"error":"unauthorized_client","error_description":"The authenticated
         client is not authorized to use the access grant type provided."}'
-    http_version: 
+    http_version:
   recorded_at: Tue, 27 Aug 2013 17:09:43 GMT
 - request:
     method: post
@@ -509,7 +509,7 @@ http_interactions:
   response:
     status:
       code: 400
-      message: 
+      message:
     headers:
       X-Frame-Options:
       - sameorigin
@@ -535,7 +535,7 @@ http_interactions:
       encoding: UTF-8
       string: '{"error":"unauthorized_client","error_description":"The authenticated
         client is not authorized to use the access grant type provided."}'
-    http_version: 
+    http_version:
   recorded_at: Tue, 27 Aug 2013 17:09:43 GMT
 - request:
     method: post
@@ -553,7 +553,7 @@ http_interactions:
   response:
     status:
       code: 400
-      message: 
+      message:
     headers:
       X-Frame-Options:
       - sameorigin
@@ -579,7 +579,7 @@ http_interactions:
       encoding: UTF-8
       string: '{"error":"unauthorized_client","error_description":"The authenticated
         client is not authorized to use the access grant type provided."}'
-    http_version: 
+    http_version:
   recorded_at: Tue, 27 Aug 2013 17:09:44 GMT
 - request:
     method: post
@@ -597,7 +597,7 @@ http_interactions:
   response:
     status:
       code: 400
-      message: 
+      message:
     headers:
       X-Frame-Options:
       - sameorigin
@@ -623,7 +623,7 @@ http_interactions:
       encoding: UTF-8
       string: '{"error":"unauthorized_client","error_description":"The authenticated
         client is not authorized to use the access grant type provided."}'
-    http_version: 
+    http_version:
   recorded_at: Tue, 27 Aug 2013 17:09:45 GMT
 - request:
     method: post
@@ -641,7 +641,7 @@ http_interactions:
   response:
     status:
       code: 400
-      message: 
+      message:
     headers:
       X-Frame-Options:
       - sameorigin
@@ -667,7 +667,7 @@ http_interactions:
       encoding: UTF-8
       string: '{"error":"unauthorized_client","error_description":"The authenticated
         client is not authorized to use the access grant type provided."}'
-    http_version: 
+    http_version:
   recorded_at: Tue, 27 Aug 2013 17:09:45 GMT
 - request:
     method: post
@@ -685,7 +685,7 @@ http_interactions:
   response:
     status:
       code: 400
-      message: 
+      message:
     headers:
       X-Frame-Options:
       - sameorigin
@@ -711,7 +711,7 @@ http_interactions:
       encoding: UTF-8
       string: '{"error":"unauthorized_client","error_description":"The authenticated
         client is not authorized to use the access grant type provided."}'
-    http_version: 
+    http_version:
   recorded_at: Tue, 27 Aug 2013 17:09:46 GMT
 - request:
     method: post
@@ -729,7 +729,7 @@ http_interactions:
   response:
     status:
       code: 400
-      message: 
+      message:
     headers:
       X-Frame-Options:
       - sameorigin
@@ -755,7 +755,7 @@ http_interactions:
       encoding: UTF-8
       string: '{"error":"unauthorized_client","error_description":"The authenticated
         client is not authorized to use the access grant type provided."}'
-    http_version: 
+    http_version:
   recorded_at: Tue, 27 Aug 2013 17:09:46 GMT
 - request:
     method: post
@@ -773,7 +773,7 @@ http_interactions:
   response:
     status:
       code: 200
-      message: 
+      message:
     headers:
       X-Frame-Options:
       - sameorigin
@@ -800,7 +800,7 @@ http_interactions:
     body:
       encoding: UTF-8
       string: '{"access_token":"f8e24c5af3bbf84f8c0ab52d591fa6338ddcf0dc","expires_in":7200}'
-    http_version: 
+    http_version:
   recorded_at: Wed, 28 Aug 2013 16:09:33 GMT
 - request:
     method: get
@@ -818,7 +818,7 @@ http_interactions:
   response:
     status:
       code: 401
-      message: 
+      message:
     headers:
       WWW-Authenticate:
       - OAuth error="invalid_token"
@@ -840,7 +840,7 @@ http_interactions:
       encoding: UTF-8
       string: '{"error":"invalid_token","error_description":"The OAuth token can not
         be found"}'
-    http_version: 
+    http_version:
   recorded_at: Tue, 17 Sep 2013 17:08:03 GMT
 - request:
     method: post
@@ -858,7 +858,7 @@ http_interactions:
   response:
     status:
       code: 200
-      message: 
+      message:
     headers:
       X-Frame-Options:
       - sameorigin
@@ -885,7 +885,7 @@ http_interactions:
     body:
       encoding: UTF-8
       string: '{"access_token":"e5b46cada35fb5a4f2586adcc8b29134c37fbc59","expires_in":7200}'
-    http_version: 
+    http_version:
   recorded_at: Tue, 17 Sep 2013 17:08:03 GMT
 - request:
     method: get
@@ -903,7 +903,7 @@ http_interactions:
   response:
     status:
       code: 200
-      message: 
+      message:
     headers:
       Content-Type:
       - application/json; charset=utf-8
@@ -927,6 +927,6 @@ http_interactions:
         new servers are added to this group unless specified otherwise.","created_at":"2013-09-17T08:44:16Z","default":true}],"firewall_policies":[{"id":"fwp-12345","resource_type":"firewall_policy","url":"https://api.gb1.brightbox.com/1.0/firewall_policies/fwp-12345","default":true,"name":"default","created_at":"2013-09-17T08:44:16Z","description":"Applied
         to the default server group."}],"owner":{"id":"usr-12345","resource_type":"user","url":"https://api.gb1.brightbox.com/1.0/users/usr-12345","name":"Kobe
         Swaniawski Sr.","email_address":"jason.null@brightbox.com"},"users":[],"zones":[{"id":"zon-12345","resource_type":"zone","url":"https://api.gb1.brightbox.com/1.0/zones/zon-12345","handle":"gb1-a"},{"id":"zon-12345","resource_type":"zone","url":"https://api.gb1.brightbox.com/1.0/zones/zon-12345","handle":"gb1-b"}]}]'
-    http_version: 
+    http_version:
   recorded_at: Tue, 17 Sep 2013 17:08:03 GMT
 recorded_with: VCR 2.5.0

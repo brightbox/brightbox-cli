@@ -16,7 +16,7 @@ http_interactions:
   response:
     status:
       code: 200
-      message: 
+      message:
     headers:
       X-Frame-Options:
       - sameorigin
@@ -43,7 +43,7 @@ http_interactions:
     body:
       encoding: UTF-8
       string: '{"access_token":"55e953680a4e36acf84cca1074f1da7943174cae","expires_in":7200,"refresh_token":"841fcb902b6826ee8f1c64f60a0c550dcf16f226"}'
-    http_version: 
+    http_version:
   recorded_at: Tue, 03 Sep 2013 10:38:04 GMT
 - request:
     method: get
@@ -61,7 +61,7 @@ http_interactions:
   response:
     status:
       code: 200
-      message: 
+      message:
     headers:
       Content-Type:
       - application/json; charset=utf-8
@@ -85,6 +85,6 @@ http_interactions:
         new servers are added to this group unless specified otherwise.","created_at":"2013-09-02T13:41:44Z","default":true}],"firewall_policies":[{"id":"fwp-12345","resource_type":"firewall_policy","url":"https://api.gb1.brightbox.com/1.0/firewall_policies/fwp-12345","default":true,"name":"default","created_at":"2013-09-02T13:41:44Z","description":"Applied
         to the default server group."}],"owner":{"id":"usr-12345","resource_type":"user","url":"https://api.gb1.brightbox.com/1.0/users/usr-12345","name":"Cordell
         Fay","email_address":"jason.null@brightbox.com"},"users":[],"zones":[{"id":"zon-12345","resource_type":"zone","url":"https://api.gb1.brightbox.com/1.0/zones/zon-12345","handle":"gb1-a"},{"id":"zon-12345","resource_type":"zone","url":"https://api.gb1.brightbox.com/1.0/zones/zon-12345","handle":"gb1-b"}]}]'
-    http_version: 
+    http_version:
   recorded_at: Tue, 03 Sep 2013 10:38:04 GMT
 recorded_with: VCR 2.5.0

@@ -16,7 +16,7 @@ http_interactions:
   response:
     status:
       code: 400
-      message: 
+      message:
     headers:
       X-Frame-Options:
       - sameorigin
@@ -42,7 +42,7 @@ http_interactions:
       encoding: UTF-8
       string: '{"error":"unauthorized_client","error_description":"The authenticated
         client is not authorized to use the access grant type provided."}'
-    http_version: 
+    http_version:
   recorded_at: Tue, 27 Aug 2013 15:11:59 GMT
 - request:
     method: get
@@ -60,7 +60,7 @@ http_interactions:
   response:
     status:
       code: 401
-      message: 
+      message:
     headers:
       WWW-Authenticate:
       - OAuth error="invalid_token"
@@ -82,7 +82,7 @@ http_interactions:
       encoding: UTF-8
       string: '{"error":"invalid_token","error_description":"The OAuth token can not
         be found"}'
-    http_version: 
+    http_version:
   recorded_at: Tue, 27 Aug 2013 15:11:59 GMT
 - request:
     method: post
@@ -100,7 +100,7 @@ http_interactions:
   response:
     status:
       code: 400
-      message: 
+      message:
     headers:
       X-Frame-Options:
       - sameorigin
@@ -126,7 +126,7 @@ http_interactions:
       encoding: UTF-8
       string: '{"error":"unauthorized_client","error_description":"The authenticated
         client is not authorized to use the access grant type provided."}'
-    http_version: 
+    http_version:
   recorded_at: Tue, 27 Aug 2013 15:11:59 GMT
 - request:
     method: get
@@ -144,7 +144,7 @@ http_interactions:
   response:
     status:
       code: 401
-      message: 
+      message:
     headers:
       WWW-Authenticate:
       - OAuth error="invalid_token"
@@ -166,7 +166,7 @@ http_interactions:
       encoding: UTF-8
       string: '{"error":"invalid_token","error_description":"The OAuth token can not
         be found"}'
-    http_version: 
+    http_version:
   recorded_at: Tue, 27 Aug 2013 15:11:59 GMT
 - request:
     method: post
@@ -184,7 +184,7 @@ http_interactions:
   response:
     status:
       code: 200
-      message: 
+      message:
     headers:
       X-Frame-Options:
       - sameorigin
@@ -211,7 +211,7 @@ http_interactions:
     body:
       encoding: UTF-8
       string: '{"access_token":"cf9d63fa39bf6f7bedad62c461f020e92d8f1e44","expires_in":7200,"refresh_token":"7b574d091da700939a4cebcd1938ad4b547b1d00"}'
-    http_version: 
+    http_version:
   recorded_at: Tue, 27 Aug 2013 15:11:59 GMT
 - request:
     method: post
@@ -229,7 +229,7 @@ http_interactions:
   response:
     status:
       code: 200
-      message: 
+      message:
     headers:
       X-Frame-Options:
       - sameorigin
@@ -256,7 +256,7 @@ http_interactions:
     body:
       encoding: UTF-8
       string: '{"access_token":"e75c77ba85740b2d572e15bbe75595ffc7f5814a","expires_in":7200}'
-    http_version: 
+    http_version:
   recorded_at: Tue, 27 Aug 2013 16:54:19 GMT
 - request:
     method: post
@@ -274,7 +274,7 @@ http_interactions:
   response:
     status:
       code: 200
-      message: 
+      message:
     headers:
       X-Frame-Options:
       - sameorigin
@@ -301,6 +301,6 @@ http_interactions:
     body:
       encoding: UTF-8
       string: '{"access_token":"7e65f560ecbca978f15131faa5071d120b9986f2","expires_in":7200}'
-    http_version: 
+    http_version:
   recorded_at: Wed, 28 Aug 2013 08:50:46 GMT
 recorded_with: VCR 2.5.0

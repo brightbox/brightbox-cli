@@ -16,7 +16,7 @@ http_interactions:
   response:
     status:
       code: 401
-      message: 
+      message:
     headers:
       WWW-Authenticate:
       - OAuth error="expired_token"
@@ -38,7 +38,7 @@ http_interactions:
       encoding: UTF-8
       string: '{"error":"expired_token","error_description":"OAuth token presented
         has expired and is no longer valid"}'
-    http_version: 
+    http_version:
   recorded_at: Wed, 28 Aug 2013 14:18:22 GMT
 - request:
     method: post
@@ -56,7 +56,7 @@ http_interactions:
   response:
     status:
       code: 401
-      message: 
+      message:
     headers:
       X-Frame-Options:
       - sameorigin
@@ -83,7 +83,7 @@ http_interactions:
     body:
       encoding: UTF-8
       string: '{"error":"invalid_client"}'
-    http_version: 
+    http_version:
   recorded_at: Wed, 28 Aug 2013 14:18:22 GMT
 - request:
     method: get
@@ -101,7 +101,7 @@ http_interactions:
   response:
     status:
       code: 401
-      message: 
+      message:
     headers:
       WWW-Authenticate:
       - OAuth error="invalid_token"
@@ -123,7 +123,7 @@ http_interactions:
       encoding: UTF-8
       string: '{"error":"invalid_token","error_description":"The OAuth token can not
         be found"}'
-    http_version: 
+    http_version:
   recorded_at: Wed, 28 Aug 2013 14:18:22 GMT
 - request:
     method: post
@@ -141,7 +141,7 @@ http_interactions:
   response:
     status:
       code: 401
-      message: 
+      message:
     headers:
       X-Frame-Options:
       - sameorigin
@@ -168,7 +168,7 @@ http_interactions:
     body:
       encoding: UTF-8
       string: '{"error":"invalid_client"}'
-    http_version: 
+    http_version:
   recorded_at: Wed, 28 Aug 2013 14:18:27 GMT
 - request:
     method: post
@@ -186,7 +186,7 @@ http_interactions:
   response:
     status:
       code: 200
-      message: 
+      message:
     headers:
       X-Frame-Options:
       - sameorigin
@@ -213,7 +213,7 @@ http_interactions:
     body:
       encoding: UTF-8
       string: '{"access_token":"0308fad90dfe9707232c4479bdb4dae470c54565","expires_in":7200,"refresh_token":"a704d91a3e687e9f248d4ee4c69abbba1c7a3a69"}'
-    http_version: 
+    http_version:
   recorded_at: Wed, 28 Aug 2013 14:18:27 GMT
 - request:
     method: post
@@ -231,7 +231,7 @@ http_interactions:
   response:
     status:
       code: 200
-      message: 
+      message:
     headers:
       X-Frame-Options:
       - sameorigin
@@ -258,7 +258,7 @@ http_interactions:
     body:
       encoding: UTF-8
       string: '{"access_token":"c307e3045674038c889b8f8356217a9482498682","expires_in":7200}'
-    http_version: 
+    http_version:
   recorded_at: Wed, 28 Aug 2013 14:19:48 GMT
 - request:
     method: post
@@ -276,7 +276,7 @@ http_interactions:
   response:
     status:
       code: 400
-      message: 
+      message:
     headers:
       X-Frame-Options:
       - sameorigin
@@ -304,7 +304,7 @@ http_interactions:
         provided is invalid, the client failed to authenticate, the client did not
         include its credentials, provided multiple client credentials, or used unsupported
         credentials type."}'
-    http_version: 
+    http_version:
   recorded_at: Wed, 28 Aug 2013 14:22:49 GMT
 - request:
     method: post
@@ -322,7 +322,7 @@ http_interactions:
   response:
     status:
       code: 400
-      message: 
+      message:
     headers:
       X-Frame-Options:
       - sameorigin
@@ -348,7 +348,7 @@ http_interactions:
       encoding: UTF-8
       string: '{"error":"unauthorized_client","error_description":"The authenticated
         client is not authorized to use the access grant type provided."}'
-    http_version: 
+    http_version:
   recorded_at: Wed, 18 Sep 2013 15:18:56 GMT
 - request:
     method: post
@@ -366,7 +366,7 @@ http_interactions:
   response:
     status:
       code: 400
-      message: 
+      message:
     headers:
       X-Frame-Options:
       - sameorigin
@@ -392,6 +392,6 @@ http_interactions:
       encoding: UTF-8
       string: '{"error":"unauthorized_client","error_description":"The authenticated
         client is not authorized to use the access grant type provided."}'
-    http_version: 
+    http_version:
   recorded_at: Wed, 18 Sep 2013 15:18:56 GMT
 recorded_with: VCR 2.5.0
