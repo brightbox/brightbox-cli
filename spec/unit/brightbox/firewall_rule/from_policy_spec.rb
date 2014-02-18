@@ -2,7 +2,7 @@ require "spec_helper"
 
 describe Brightbox::FirewallRule do
 
-  describe ".from_policy", :vcr, :broken_1_8 do
+  describe ".from_policy", :vcr do
     context "when policy exists with a rule" do
       before do
         policy_options = {}

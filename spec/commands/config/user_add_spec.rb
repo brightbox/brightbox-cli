@@ -6,7 +6,7 @@ require "spec_helper"
 #
 describe "brightbox config" do
 
-  describe "user_add", :broken_1_8 do
+  describe "user_add" do
     let(:output) { FauxIO.new { Brightbox::run(argv) } }
     let(:stdout) { output.stdout }
     let(:stderr) { output.stderr }
