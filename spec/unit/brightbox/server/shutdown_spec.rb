@@ -3,7 +3,7 @@ require "spec_helper"
 describe Brightbox::Server do
   include ServerHelpers
 
-  describe "#shutdown", :vcr, :broken_1_8 do
+  describe "#shutdown", :vcr do
     it "should work" do
       type = Brightbox::Type.find_by_handle "nano"
       options = server_params("rspec_server_shutdown",type)

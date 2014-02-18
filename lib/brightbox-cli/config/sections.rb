@@ -45,7 +45,7 @@ module Brightbox
         end
 
         # Try to determine a default account
-        if default_account == find_or_set_default_account
+        unless default_account == find_or_set_default_account
           info "The default account of #{default_account} has been selected"
         end
 

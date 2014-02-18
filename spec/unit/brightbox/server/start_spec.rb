@@ -3,7 +3,7 @@ require "spec_helper"
 describe Brightbox::Server do
   include ServerHelpers
 
-  describe "#start", :vcr, :broken_1_8 do
+  describe "#start", :vcr do
     it "should work" do
       type = Brightbox::Type.find_by_handle "nano"
       options = server_params("rspec_server_start",type)
