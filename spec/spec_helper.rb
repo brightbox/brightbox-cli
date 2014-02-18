@@ -29,7 +29,7 @@ RSpec.configure do |config|
   config.include TokenHelpers
   config.include PasswordPromptHelpers
 
-  config.filter_run_excluding :broken_1_8 if RUBY_VERSION <= "1.8.7"
+  config.filter_run_excluding :vcr if RUBY_VERSION <= "1.8.7"
 
   # For each test, point to the testing endpoint to make it safer and easier to
   # record from dev endpoints. Devs can DNS api.brightbox.dev to their dev service
