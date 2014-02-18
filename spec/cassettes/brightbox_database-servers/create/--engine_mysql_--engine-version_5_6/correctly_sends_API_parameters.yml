@@ -1,0 +1,93 @@
+---
+http_interactions:
+- request:
+    method: post
+    uri: http://api.brightbox.dev/1.0/database_servers?account_id=acc-12345
+    body:
+      encoding: UTF-8
+      string: "{\"name\":null,\"description\":null,\"engine\":\"mysql\",\"version\":\"5.6\"}"
+    headers:
+      User-Agent:
+      - fog/1.20.0
+      Authorization:
+      - OAuth f83da712e6299cda953513ec07f7a754f747d727
+      Content-Type:
+      - application/json
+  response:
+    status:
+      code: 202
+      message:
+    headers:
+      Location:
+      - http://api.brightbox.dev/1.0/database_servers/dbs-6hyfo
+      Content-Type:
+      - application/json; charset=utf-8
+      X-Ua-Compatible:
+      - IE=Edge
+      Cache-Control:
+      - no-cache
+      X-Request-Id:
+      - 9709b93b74aca6864309ce5b7e0bbdff
+      X-Runtime:
+      - '1.219696'
+      Server:
+      - WEBrick/1.3.1 (Ruby/1.9.3/2013-11-22)
+      Date:
+      - Tue, 18 Feb 2014 15:01:25 GMT
+      Content-Length:
+      - '936'
+      Connection:
+      - Keep-Alive
+    body:
+      encoding: UTF-8
+      string: "{\"id\":\"dbs-6hyfo\",\"resource_type\":\"database_server\",\"url\":\"https://api.gb1.brightbox.com/1.0/database_servers/dbs-6hyfo\",\"name\":\"\",\"description\":\"\",\"admin_username\":\"admin\",\"admin_password\":\"fyo5k7nu3k3lzfet\",\"allow_access\":[],\"database_engine\":\"mysql\",\"database_version\":\"5.6\",\"status\":\"creating\",\"maintenance_weekday\":0,\"maintenance_hour\":6,\"created_at\":\"2014-02-18T15:01:23Z\",\"updated_at\":\"2014-02-18T15:01:23Z\",\"deleted_at\":null,\"account\":{\"id\":\"acc-12345\",\"resource_type\":\"account\",\"url\":\"https://api.gb1.brightbox.com/1.0/accounts/acc-12345\",\"name\":\"VCR
+        account\",\"status\":\"active\"},\"database_server_type\":{\"id\":\"dbt-12345\",\"resource_type\":\"database_type\",\"url\":\"https://api.gb1.brightbox.com/1.0/database_types/dbt-12345\",\"name\":\"tesovsonxken\",\"description\":\"\",\"disk_size\":10240,\"ram\":2048},\"cloud_ips\":[],\"zone\":{\"id\":\"zon-12345\",\"resource_type\":\"zone\",\"url\":\"https://api.gb1.brightbox.com/1.0/zones/zon-12345\",\"handle\":\"gb1-a\"}}"
+    http_version:
+  recorded_at: Tue, 18 Feb 2014 15:01:25 GMT
+- request:
+    method: post
+    uri: http://api.brightbox.dev/token
+    body:
+      encoding: UTF-8
+      string: "{\"grant_type\":\"none\",\"client_id\":\"app-12345\"}"
+    headers:
+      User-Agent:
+      - fog/1.20.0
+      Authorization:
+      - Basic YXBwLTEyMzQ1Om1vY2J1aXBiaWFhNms2Yw==
+      Content-Type:
+      - application/json
+  response:
+    status:
+      code: 400
+      message:
+    headers:
+      X-Frame-Options:
+      - sameorigin
+      X-Xss-Protection:
+      - 1; mode=block
+      Content-Type:
+      - application/json;charset=utf-8
+      Cache-Control:
+      - no-store
+      Content-Length:
+      - '135'
+      X-Ua-Compatible:
+      - IE=Edge
+      X-Request-Id:
+      - 662a5603b386a1f64151e0d49d0653a9
+      X-Runtime:
+      - '0.118116'
+      Server:
+      - WEBrick/1.3.1 (Ruby/1.9.3/2013-11-22)
+      Date:
+      - Tue, 18 Feb 2014 17:32:49 GMT
+      Connection:
+      - close
+    body:
+      encoding: UTF-8
+      string: "{\"error\":\"unauthorized_client\",\"error_description\":\"The authenticated
+        client is not authorized to use the access grant type provided.\"}"
+    http_version:
+  recorded_at: Tue, 18 Feb 2014 17:32:49 GMT
+recorded_with: VCR 2.5.0

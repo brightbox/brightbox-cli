@@ -420,6 +420,48 @@ SPEC = { "brightbox" =>
             "start" => find_identifiers("srv-"),
             "stop" => find_identifiers("srv-")
            },
+           "sql" => {
+             "instances" => {
+               "create" => {
+                 "-n=" => "--name=",
+                 "--name" => true,
+                 "-d=" => "--description",
+                 "--description" => true,
+                 "-t" => "--type",
+                 "--type" => true,
+                 "--allow-access" => true,
+                 "--snapshot" => find_identifiers("dbi-")
+               },
+               "destroy" => find_identifiers("dbs-"),
+               "list" => find_identifiers("dbs-"),
+               "reset_password" => find_identifiers("dbs-"),
+               "show" => find_identifiers("dbs-"),
+               "snapshot" => find_identifiers("dbs-"),
+               "update" => {
+                 "-n=" => "--name=",
+                 "--name" => true,
+                 "-d=" => "--description",
+                 "--description" => true,
+                 "--allow-access" => true,
+                 :include => find_identifiers("dbs-")
+               },
+             },
+             "snapshots" => {
+               "destroy" => find_identifiers("dbi-"),
+               "list" => find_identifiers("dbi-"),
+               "update" => {
+                 "-n=" => "--name=",
+                 "--name" => true,
+                 "-d=" => "--description",
+                 "--description" => true,
+                 :include => find_identifiers("dbi-")
+               },
+             },
+             "types" => {
+               "list" => find_identifiers("dbt-"),
+               "show" => find_identifiers("dbt-")
+             },
+           },
          "types" =>
            {
             "list" => find_server_types,
