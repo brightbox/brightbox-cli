@@ -22,17 +22,7 @@ module Brightbox
           end
 
           server = DatabaseServer.find dbs_id
-
-          params = NilableHash.new
-          params[:name] = options[:n] if options[:n]
-          params[:description] = options[:d] if options[:d]
-
-          if options[:"allow-access"]
-            access_items = options[:"allow-access"].split(",")
-            params[:allow_access] = access_items
-          end
-
-          params.nilify_blanks
+          params = DatabaseServer.clean_arguments(options)
 
           info "Updating #{server}"
           server.update params

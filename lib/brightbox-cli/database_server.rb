@@ -1,3 +1,5 @@
+require "date"
+
 module Brightbox
   class DatabaseServer < Api
     def self.require_account?
@@ -96,6 +98,28 @@ module Brightbox
     # Lists the CIP IP addresses
     def cloud_ip_addresses
       cloud_ips.map { |cip| cip["public_ip"] }
+    end
+
+    # Converts GLI's arguments to fog based parameters
+    def self.clean_arguments(args)
+      params = NilableHash.new
+
+      params[:name] = args[:n] if args[:n]
+      params[:description] = args[:d] if args[:d]
+
+      if args["allow-access"]
+        params[:allow_access] = args["allow-access"].split(",")
+      end
+
+      params[:database_engine] = args[:engine] if args[:engine]
+      params[:database_version] = args["engine-version"] if args["engine-version"]
+
+      params[:snapshot_id] = args[:snapshot] if args[:snapshot]
+      params[:flavor_id] = args[:type] if args[:type]
+      params[:zone_id] = args[:zone] if args[:zone]
+
+      params.nilify_blanks
+      params
     end
   end
 end

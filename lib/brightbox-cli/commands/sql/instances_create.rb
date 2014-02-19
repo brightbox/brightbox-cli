@@ -35,22 +35,8 @@ module Brightbox
         c.desc I18n.t("sql.instances.options.zone.desc")
         c.flag [:z, "zone"]
 
-        c.action do |global_options, options, _args|
-          params = {}
-
-          params[:name] = options[:n] if options[:n]
-          params[:description] = options[:d] if options[:d]
-
-          if options[:"allow-access"]
-            access_items = options[:"allow-access"].split(",")
-            params[:allow_access] = access_items
-          end
-
-          params[:database_engine] = options[:engine] if options[:engine]
-          params[:database_version] = options["engine-version"] if options["engine-version"]
-          params[:snapshot_id] = options[:snapshot] if options[:snapshot]
-          params[:flavor_id] = options[:type] if options[:type]
-          params[:zone_id] = options[:zone] if options[:zone]
+        c.action do |global_options, options, args|
+          params = DatabaseServer.clean_arguments(options)
 
           server = DatabaseServer.create(params)
           table_options = global_options.merge(
