@@ -6,13 +6,6 @@ describe "brightbox database-servers" do
     let(:stdout) { output.stdout }
     let(:stderr) { output.stderr }
 
-    before do
-      config = config_from_contents(USER_APP_CONFIG_CONTENTS)
-
-      # Setup in the VCR recordings
-      cache_access_token(config, "f83da712e6299cda953513ec07f7a754f747d727")
-    end
-
     context "without arguments", :vcr do
       let(:argv) { %w{sql instances create } }
       let(:expected_password) { "477wwwj48yifrnuk" }
@@ -59,6 +52,26 @@ describe "brightbox database-servers" do
     context "--engine=mysql --engine-version=5.6", :vcr do
       let(:argv) { %w(sql instances create --engine=mysql --engine-version=5.6) }
       let(:expected_args) { { :database_engine => "mysql", :database_version => "5.6" } }
+
+      it "correctly sends API parameters" do
+        expect(Brightbox::DatabaseServer).to receive(:create).with(expected_args).and_call_original
+        expect(stderr).to eql("")
+      end
+    end
+
+    context "--maintenance-weekday=5 --maintenance_hour=11", :vcr do
+      let(:argv) { %w(sql instances create --maintenance-weekday=5 --maintenance-hour=11) }
+      let(:expected_args) { { :maintenance_weekday => "5", :maintenance_hour => "11" } }
+
+      it "correctly sends API parameters" do
+        expect(Brightbox::DatabaseServer).to receive(:create).with(expected_args).and_call_original
+        expect(stderr).to eql("")
+      end
+    end
+
+    context "--maintenance-weekday=thursday", :vcr do
+      let(:argv) { %w(sql instances create --maintenance-weekday=thursday) }
+      let(:expected_args) { { :maintenance_weekday => "4" } }
 
       it "correctly sends API parameters" do
         expect(Brightbox::DatabaseServer).to receive(:create).with(expected_args).and_call_original
