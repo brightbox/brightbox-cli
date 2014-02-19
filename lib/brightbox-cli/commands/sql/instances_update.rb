@@ -15,6 +15,15 @@ module Brightbox
         c.desc I18n.t("sql.instances.options.allow_access.desc")
         c.flag [:"allow-access"]
 
+        # Maintenance window options
+        c.desc I18n.t("sql.instances.options.maintenance_weekday.desc")
+        c.flag ["maintenance-weekday"]
+        c.desc I18n.t("sql.instances.options.maintenance_hour.desc")
+        c.flag ["maintenance-hour"]
+
+        c.desc I18n.t("sql.instances.options.default_maintenance.desc")
+        c.switch ["default-maintenance"], :negatable => false
+
         c.action do |global_options, options, args|
           dbs_id = args.shift
           unless dbs_id =~ /^dbs-/
@@ -22,17 +31,7 @@ module Brightbox
           end
 
           server = DatabaseServer.find dbs_id
-
-          params = NilableHash.new
-          params[:name] = options[:n] if options[:n]
-          params[:description] = options[:d] if options[:d]
-
-          if options[:"allow-access"]
-            access_items = options[:"allow-access"].split(",")
-            params[:allow_access] = access_items
-          end
-
-          params.nilify_blanks
+          params = DatabaseServer.clean_arguments(options)
 
           info "Updating #{server}"
           server.update params
