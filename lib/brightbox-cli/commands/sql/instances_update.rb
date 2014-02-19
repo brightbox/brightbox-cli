@@ -15,6 +15,12 @@ module Brightbox
         c.desc I18n.t("sql.instances.options.allow_access.desc")
         c.flag [:"allow-access"]
 
+        # Maintenance window options
+        c.desc I18n.t("sql.instances.options.maintenance_weekday.desc")
+        c.flag ["maintenance-weekday"]
+        c.desc I18n.t("sql.instances.options.maintenance_hour.desc")
+        c.flag ["maintenance-hour"]
+
         c.action do |global_options, options, args|
           dbs_id = args.shift
           unless dbs_id =~ /^dbs-/

@@ -23,5 +23,23 @@ describe Brightbox::DatabaseServer do
 
       it { expect(parameters[:allow_access]).to eql(%w(10.0.0.0 11.0.0.0)) }
     end
+
+    context "when --maintenance-weekday=4" do
+      let(:arguments) { { "maintenance-weekday" => "4" } }
+
+      it { expect(parameters[:maintenance_weekday]).to eql("4") }
+    end
+
+    context "when --maintenance-weekday=wednesday" do
+      let(:arguments) { { "maintenance-weekday" => "3" } }
+
+      it { expect(parameters[:maintenance_weekday]).to eql("3") }
+    end
+
+    context "when --maintenance-weekday=" do
+      let(:arguments) { { "maintenance-weekday" => "" } }
+
+      it { expect(parameters[:maintenance_weekday]).to be_nil }
+    end
   end
 end

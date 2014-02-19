@@ -171,10 +171,18 @@ en:
       options:
         allow_access:
           desc: Comma separated list of IPs or IDs for servers or groups to allow access
+        default_maintenance:
+          desc: Use default settings for instance's maintenance window
         engine:
           desc: The database engine to use for the SQL instance (e.g. 'mysql')
         engine_version:
           desc: The version of the engine to use (e.g. '5.6')
+        maintenance_hour:
+          desc: Number representing the hour for the instance's maintenance
+                window (0-24 based on 24hr clock)
+        maintenance_weekday:
+          desc: Number representing the weekday to set for the instance's
+                maintenance window (0-6 where 0=Sunday)
         snapshot:
           desc: ID of a Cloud SQL snapshot to create new instance from
         type:

@@ -27,6 +27,12 @@ module Brightbox
         c.desc I18n.t("sql.instances.options.engine_version.desc")
         c.flag ["engine-version"]
 
+        # Maintenance window options
+        c.desc I18n.t("sql.instances.options.maintenance_weekday.desc")
+        c.flag ["maintenance-weekday"]
+        c.desc I18n.t("sql.instances.options.maintenance_hour.desc")
+        c.flag ["maintenance-hour"]
+
         # Snapshot
         c.desc I18n.t("sql.instances.options.snapshot.desc")
         c.flag [:snapshot]
