@@ -155,6 +155,10 @@ en:
       options:
         allow_access:
           desc: Comma separated list of IPs or IDs for servers or groups to allow access
+        engine:
+          desc: The database engine to use for the SQL instance (e.g. 'mysql')
+        engine_version:
+          desc: The version of the engine to use (e.g. '5.6')
         snapshot:
           desc: ID of a Cloud SQL snapshot to create new instance from
         type:
