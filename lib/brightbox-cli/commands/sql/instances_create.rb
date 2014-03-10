@@ -27,12 +27,6 @@ module Brightbox
         c.desc I18n.t("sql.instances.options.engine_version.desc")
         c.flag ["engine-version"]
 
-        # Maintenance window options
-        c.desc I18n.t("sql.instances.options.maintenance_weekday.desc")
-        c.flag ["maintenance-weekday"]
-        c.desc I18n.t("sql.instances.options.maintenance_hour.desc")
-        c.flag ["maintenance-hour"]
-
         # Snapshot
         c.desc I18n.t("sql.instances.options.snapshot.desc")
         c.flag [:snapshot]
@@ -42,7 +36,21 @@ module Brightbox
         c.flag [:z, "zone"]
 
         c.action do |global_options, options, args|
-          params = DatabaseServer.clean_arguments(options)
+          params = {}
+
+          params[:name] = options[:n] if options[:n]
+          params[:description] = options[:d] if options[:d]
+
+          if options[:"allow-access"]
+            access_items = options[:"allow-access"].split(",")
+            params[:allow_access] = access_items
+          end
+
+          params[:database_engine] = options[:engine] if options[:engine]
+          params[:database_version] = options["engine-version"] if options["engine-version"]
+          params[:snapshot_id] = options[:snapshot] if options[:snapshot]
+          params[:flavor_id] = options[:type] if options[:type]
+          params[:zone_id] = options[:zone] if options[:zone]
 
           server = DatabaseServer.create(params)
           table_options = global_options.merge(
