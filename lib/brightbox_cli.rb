@@ -24,7 +24,7 @@ require "multi_json"
 require 'date'
 require 'gli'
 require "i18n"
-require "fog/brightbox/compute"
+require "fog/brightbox"
 
 # I18n stuff to clean up scattered text everywhere
 I18n.enforce_available_locales = false
