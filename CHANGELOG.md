@@ -1,3 +1,11 @@
+### v1.2.1 / 2014-03-11
+[Full Changelog](https://github.com/brightbox/brightbox-cli/compare/v1.2.0...v1.2.1)
+
+Bug Fixes:
+
+* Fixed the require to allow Ruby 1.8.7 to pick up Fog::JSON again
+  [GH-57] https://github.com/brightbox/brightbox-cli/issues/57
+
 ### v1.2.0 / 2014-03-10
 [Full Changelog](https://github.com/brightbox/brightbox-cli/compare/v1.1.0...v1.2.0)
 
