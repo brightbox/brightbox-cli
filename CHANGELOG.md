@@ -1,3 +1,11 @@
+### v1.2.2 / 2014-04-22
+[Full Changelog](https://github.com/brightbox/brightbox-cli/compare/v1.2.1...v1.2.2)
+
+Bug Fixes:
+
+* Corrected Base64 encoding when updating a server's `user-data`. Behaviour
+  had been inverted.
+
 ### v1.2.1 / 2014-03-11
 [Full Changelog](https://github.com/brightbox/brightbox-cli/compare/v1.2.0...v1.2.1)
 
