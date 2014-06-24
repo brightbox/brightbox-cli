@@ -8,31 +8,30 @@ Gem::Specification.new do |s|
   s.authors     = ["John Leach"]
   s.email       = ["john@brightbox.co.uk"]
   s.homepage    = "http://docs.brightbox.com/cli"
-  s.summary     = %q{The Brightbox cloud management system}
-  s.description = %q{Scripts to interact with the Brightbox cloud API}
+  s.summary     = %q(The Brightbox cloud management system)
+  s.description = %q(Scripts to interact with the Brightbox cloud API)
   s.license     = "MIT"
 
   s.rubyforge_project = "brightbox-cli"
 
   s.files         = `git ls-files`.split("\n") + `find lib/brightbox-cli/vendor`.split("\n")
   s.test_files    = `git ls-files -- {test,spec,features}/*`.split("\n")
-  s.executables   = `git ls-files -- bin/*`.split("\n").map{ |f| File.basename(f) }
+  s.executables   = `git ls-files -- bin/*`.split("\n").map { |f| File.basename(f) }
   s.require_paths = ["lib"]
 
-  s.add_dependency "gli", "~> 2.9"
   s.add_dependency "fog-brightbox"
-  s.add_dependency "multi_json"
-  s.add_dependency "mime-types", "~> 1.25"
-
+  s.add_dependency "gli", "~> 2.9"
   s.add_dependency "i18n"
+  s.add_dependency "mime-types", "~> 1.25"
+  s.add_dependency "multi_json"
+  s.add_dependency "highline", "~> 1.6"
+  s.add_dependency "hirb", "~> 0.6"
 
-  s.add_dependency('hirb','~> 0.6')
-  s.add_dependency('highline', '~> 1.6')
-
-  s.add_development_dependency('rake')
-  s.add_development_dependency('vcr', '~> 2.5')
-  s.add_development_dependency('rspec', '~> 2.14')
-  s.add_development_dependency('mocha')
+  s.add_development_dependency "mocha"
+  s.add_development_dependency "pry"
+  s.add_development_dependency "rake"
+  s.add_development_dependency "rspec", "~> 2.14"
+  s.add_development_dependency "vcr", "~> 2.5"
 
   s.post_install_message = <<-EOS
 The CLI command is now `brightbox` with subcommands for the resources.
