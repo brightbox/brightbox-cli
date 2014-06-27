@@ -49,9 +49,9 @@ describe Brightbox::BBConfig do
       end
     end
 
-    # FIXME This appears to be current behaviour, at least under testing which
-    # seems a bit off. Might be an issue with the setup because I did have
-    # failures initially.
+    # FIXME: This appears to be current behaviour, at least under testing which
+    #   seems a bit off. Might be an issue with the setup because I did have
+    #   failures initially.
     context "when config dir exists as a file" do
       it "does not raise an error" do
         Tempfile.open("tmp") do |target_dir|

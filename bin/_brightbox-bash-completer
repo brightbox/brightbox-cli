@@ -85,7 +85,7 @@ def find_identifiers(prefix, extras = nil, flag = nil)
     end
   else
     lambda do |_cur, prev|
-      if (extras == :once or flag == :once) and prev =~ /^#{prefix}/
+      if (extras == :once || flag == :once) && prev =~ /^#{prefix}/
         return []
       else
         all = Dir.glob(File.join(ENV['HOME'], '.brightbox', 'cache', prefix + '*'))
@@ -115,7 +115,7 @@ end
 def find_filename
   lambda do |cur, _prev|
     files = Dir.glob(cur + '*')
-    if files.size == 1 and File.directory?(files.first)
+    if files.size == 1 && File.directory?(files.first)
       files = [File.join(files.first, '')]
       files += Dir.glob(File.join(files.first, '*'))
     end
@@ -164,7 +164,7 @@ SPEC = { "brightbox" =>
            "list" => find_identifiers("cip-"),
            "map" => [find_identifiers('cip-'), find_identifiers("srv-"), nil],
            "show" => find_identifiers("cip-"),
-           "unmap" => find_identifiers("cip-"),
+           "unmap" => find_identifiers("cip-")
          },
           "collaborators" =>
          {
@@ -172,7 +172,7 @@ SPEC = { "brightbox" =>
            "list" => find_identifiers("col-"),
            "destroy" => find_identifiers("col-"),
            "resend" => find_identifiers("col-"),
-           "show" => find_identifiers("col-"),
+           "show" => find_identifiers("col-")
          },
           "config" =>
          {
@@ -181,7 +181,7 @@ SPEC = { "brightbox" =>
                "-a=" => "--alias=",
                "--alias=" => true,
                "-t=" => "--auth-url=",
-               "--auth-url=" => true,
+               "--auth-url=" => true
              },
            "client_default" => [find_clients, nil],
            "client_list" => true,
@@ -216,7 +216,7 @@ SPEC = { "brightbox" =>
             },
            "destroy" => find_identifiers("fwp-"),
            "remove" => [find_identifiers("fwp-"), find_identifiers("grp-"), nil],
-           "show" => find_identifiers("fwp-"),
+           "show" => find_identifiers("fwp-")
          },
           "firewall-rules" =>
          {
@@ -270,7 +270,7 @@ SPEC = { "brightbox" =>
                 "--all" => true,
                 :include => find_identifiers(%w(grp- srv-))
               },
-             "show" => find_identifiers("grp-"),
+             "show" => find_identifiers("grp-")
            },
           "help" => self,
           "images" =>
@@ -310,8 +310,7 @@ SPEC = { "brightbox" =>
                 "-u=" => "--username=",
                 "--username=" => true,
                 "--deprecated=" => [%w(true false)]
-              },
-
+              }
            },
           "lbs" =>
            {
@@ -409,7 +408,7 @@ SPEC = { "brightbox" =>
                 "--user-data=" => true,
                 "-n=" => "--name=",
                 "--name=" => true,
-                :include => find_identifiers("srv-"),
+                :include => find_identifiers("srv-")
               },
              "activate_console" => find_identifiers("srv-"),
              "destroy" => find_identifiers("srv-"),

@@ -45,7 +45,7 @@ module Brightbox
       end
 
       snapshots = images.select { |i| i.source_type == 'snapshot' }
-      images = images - snapshots
+      images -= snapshots
 
       images.sort! { |a, b| a.default_sort_fields <=> b.default_sort_fields }
       snapshots.sort! { |a, b| a.created_at <=> b.created_at }

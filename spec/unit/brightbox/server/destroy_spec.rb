@@ -6,7 +6,7 @@ describe Brightbox::Server do
   describe "#destroy" do
     context "when server exists", :vcr do
       it "should work" do
-        # FIXME Spec never actually calls destroy, just checks output of creation!!
+        # FIXME: Spec never actually calls destroy, just checks output of creation!!
 
         type = Brightbox::Type.find_by_handle "nano"
 

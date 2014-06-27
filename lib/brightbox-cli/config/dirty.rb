@@ -7,7 +7,7 @@ module Brightbox
     module Dirty
       # @return [Boolean] +true+ if config has been modified since loading
       def dirty?
-        !! @dirty
+        !!@dirty
       end
 
       # Mark the config as being dirty

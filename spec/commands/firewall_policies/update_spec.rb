@@ -32,7 +32,7 @@ describe "Firewall policies" do
       end
 
       after do
-        # FIXME All specs are pending, why is this trying to run against nil?
+        # FIXME: All specs are pending, why is this trying to run against nil?
         @policy.destroy if @policy
       end
 

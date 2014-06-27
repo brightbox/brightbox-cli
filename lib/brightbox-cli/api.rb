@@ -99,9 +99,7 @@ module Brightbox
     def self.find(args = :all, options = {})
       raise InvalidArguments, "find(nil)" if args.nil?
       raise InvalidArguments, "find([])" if args.respond_to?(:empty?) && args.empty?
-      options = {
-        :order => :created_at,
-      }.merge options
+      options = { :order => :created_at }.merge(options)
 
       objects = nil
       object = nil

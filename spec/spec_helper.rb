@@ -1,8 +1,7 @@
-__LIB_DIR__ = File.expand_path(File.join(File.dirname(__FILE__), "..", "lib"))
+LIB_DIR = File.expand_path(File.join(File.dirname(__FILE__), "..", "lib"))
 
-$LOAD_PATH.unshift __LIB_DIR__ unless
-  $LOAD_PATH.include?(__LIB_DIR__) ||
-  $LOAD_PATH.include?(File.expand_path(__LIB_DIR__))
+$LOAD_PATH.unshift LIB_DIR unless
+  $LOAD_PATH.include?(LIB_DIR) || $LOAD_PATH.include?(File.expand_path(LIB_DIR))
 
 require "brightbox_cli"
 require "support/common_helpers"

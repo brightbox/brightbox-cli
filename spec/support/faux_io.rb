@@ -7,7 +7,7 @@ class FauxIO
     $stdout = @stdout = StringIO.new
     $stderr = @stderr = StringIO.new
     yield
-  rescue SystemExit => e
+  rescue SystemExit
   ensure
     $stdout = original_stdout
     $stderr = original_stderr

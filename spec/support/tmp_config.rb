@@ -6,6 +6,7 @@ require "fileutils"
 # dispose of
 #
 class TmpConfig
+  attr_reader :path
   # Creates a temporary directory and a "config" file within using the contents
   # of a passed String.
   #
@@ -14,18 +15,14 @@ class TmpConfig
   # @param [String] contents
   #
   def initialize(contents)
-    @dir = Dir.mktmpdir
-    @file = File.open(File.join(@dir, "config"), "w+")
+    @path = Dir.mktmpdir
+    @file = File.open(File.join(@path, "config"), "w+")
     @file.write(contents)
     @file.close
     self
   end
 
-  def path
-    @dir
-  end
-
   def close
-    FileUtils.remove_entry_secure(@dir)
+    FileUtils.remove_entry_secure(path)
   end
 end

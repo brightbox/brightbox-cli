@@ -11,9 +11,7 @@ describe Brightbox::Server do
 
       server.fog_model.wait_for { ready? }
 
-      expect {
-        server.shutdown
-      }.not_to raise_error
+      expect { server.shutdown }.not_to raise_error
     end
   end
 end

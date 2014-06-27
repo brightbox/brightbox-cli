@@ -21,8 +21,8 @@ describe Brightbox::FirewallRule do
       end
 
       it "lists all rules" do
-        # FIXME from_policy does not seem to reload from API so uses a stale
-        # representation of the rules (Policy creation above)
+        # FIXME: from_policy does not seem to reload from API so uses a stale
+        #   representation of the rules (Policy creation above)
         @policy.reload
         @policy_rules = Brightbox::FirewallRules.from_policy(@policy)
 
