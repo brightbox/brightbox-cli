@@ -15,13 +15,13 @@ describe Brightbox::ConnectionManager, "#fetch_connection" do
 
   context "when not requesting a scoped connection" do
     it "returns a fog compute instance" do
-      connection_manager.fetch_connection(false).should be_kind_of(Fog::Compute::Brightbox::Real)
+      expect(connection_manager.fetch_connection(false)).to be_kind_of(Fog::Compute::Brightbox::Real)
     end
 
     it "returns a connection without account scope" do
       connection = connection_manager.fetch_connection(false)
-      connection.should_not be_nil
-      connection.scoped_account.should be_nil
+      expect(connection).not_to be_nil
+      expect(connection.scoped_account).to be_nil
     end
   end
 
@@ -29,13 +29,13 @@ describe Brightbox::ConnectionManager, "#fetch_connection" do
     context "when a connection exists" do
       it "upgrades existing connection with scoped account" do
         connection = connection_manager.fetch_connection(false)
-        connection.should_not be_nil
+        expect(connection).not_to be_nil
 
         expect($config).to receive(:account).and_return("acc-abcde")
         connection2 = connection_manager.fetch_connection(true)
-        connection2.should == connection
-        connection2.scoped_account.should_not be_nil
-        connection2.scoped_account.should == "acc-abcde"
+        expect(connection2).to eq(connection)
+        expect(connection2.scoped_account).not_to be_nil
+        expect(connection2.scoped_account).to eq("acc-abcde")
       end
     end
   end
@@ -50,23 +50,23 @@ describe Brightbox::ConnectionManager, "#fetch_connection" do
       skip "Fails out of sequence, mocked config incorrect"
       $config.stubs(:selected_config).returns({ 'default_account' => "acc-12345"})
       connection = connection_manager.fetch_connection(true)
-      connection.should_not be_nil
-      connection.scoped_account.should == "acc-12345"
+      expect(connection).not_to be_nil
+      expect(connection.scoped_account).to eq("acc-12345")
     end
   end
 
   context "when user has one account" do
     it "selects that account" do
       skip "Fails out of sequence, mocked config incorrect"
-      $config.unstub(:selected_config)
-      mock_account = mock()
+      allow($config).to receive(:selected_config).and_call_original
+      mock_account = double()
       mock_account.expects(:id).returns("acc-xyg")
 
       Brightbox::Account.expects(:all).returns([mock_account])
 
       connection = connection_manager.fetch_connection(true)
-      connection.should_not be_nil
-      connection.scoped_account.should == "acc-xyg"
+      expect(connection).not_to be_nil
+      expect(connection.scoped_account).to eq("acc-xyg")
     end
   end
 end

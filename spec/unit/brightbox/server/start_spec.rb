@@ -11,12 +11,12 @@ describe Brightbox::Server do
 
       server.fog_model.wait_for { ready? }
 
-      lambda {
+      expect {
         server.stop
         server.fog_model.wait_for { ! ready? }
 
         server.start
-      }.should_not raise_error
+      }.not_to raise_error
     end
   end
 end
