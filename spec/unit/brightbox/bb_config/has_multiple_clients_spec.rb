@@ -18,7 +18,7 @@ describe Brightbox::BBConfig do
         EOS
       end
       it "is true" do
-        expect(config.has_multiple_clients?).to be_true
+        expect(config.has_multiple_clients?).to be true
       end
     end
 
@@ -33,7 +33,7 @@ describe Brightbox::BBConfig do
         EOS
       end
       it "is false" do
-        expect(config.has_multiple_clients?).to be_false
+        expect(config.has_multiple_clients?).to be false
       end
     end
   end

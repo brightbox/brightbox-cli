@@ -20,21 +20,21 @@ describe Brightbox::BBConfig do
     context "when client has old 'alias' key" do
       it "returns true" do
         config.client_name = "old_alias"
-        expect(config.client_has_alias?).to be_true
+        expect(config.client_has_alias?).to be true
       end
     end
 
     context "when client has a section header" do
       it "returns true" do
         config.client_name = "alias"
-        expect(config.client_has_alias?).to be_true
+        expect(config.client_has_alias?).to be true
       end
     end
 
     context "when client 'alias' is the identifier" do
       it "returns false" do
         config.client_name = "cli-12345"
-        expect(config.client_has_alias?).to be_false
+        expect(config.client_has_alias?).to be false
       end
     end
   end

@@ -30,7 +30,7 @@ Gem::Specification.new do |s|
   s.add_development_dependency "mocha"
   s.add_development_dependency "pry"
   s.add_development_dependency "rake"
-  s.add_development_dependency "rspec", "~> 2.14"
+  s.add_development_dependency "rspec", "~> 2.99"
   s.add_development_dependency "vcr", "~> 2.5"
 
   s.post_install_message = <<-EOS

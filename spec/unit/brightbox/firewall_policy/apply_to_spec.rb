@@ -5,7 +5,7 @@ describe Brightbox::FirewallPolicy do
   describe "#apply_to", :vcr do
 
     it "should apply firewall policy" do
-      lambda {
+      expect {
         params = { :name => "rspec_tests_apply"}
         group = Brightbox::ServerGroup.create(params)
         firewall_options = {
@@ -14,7 +14,7 @@ describe Brightbox::FirewallPolicy do
         firewall_policy = Brightbox::FirewallPolicy.create(firewall_options)
         firewall_policy.apply_to(group.id)
         group.destroy
-      }.should_not raise_error
+      }.not_to raise_error
     end
   end
 end

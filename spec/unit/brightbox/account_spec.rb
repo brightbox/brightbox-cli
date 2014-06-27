@@ -7,7 +7,7 @@ describe Brightbox::Account do
 
   it_behaves_like "a wrapped API resource"
 
-  it { should respond_to(:ram_free) }
-  it { should respond_to(:cloud_ip_limit) }
-  it { should respond_to(:lb_limit) }
+  it { is_expected.to respond_to(:ram_free) }
+  it { is_expected.to respond_to(:cloud_ip_limit) }
+  it { is_expected.to respond_to(:lb_limit) }
 end

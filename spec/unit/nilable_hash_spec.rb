@@ -9,20 +9,20 @@ describe NilableHash, "#nilify_blanks" do
 
   it "should nilify all blank values" do
     @blank_hash.nilify_blanks
-    @blank_hash[:b1].should be_nil
-    @blank_hash['b2'].should be_nil
+    expect(@blank_hash[:b1]).to be_nil
+    expect(@blank_hash['b2']).to be_nil
   end
 
   it "should leave nils as nil" do
-    @blank_hash['nilval'].should be_nil
+    expect(@blank_hash['nilval']).to be_nil
   end
 
   it "should not nilify non blank values" do
-    @blank_hash[:present].should == 'value'
-    @blank_hash['another'].should == 'another value'
+    expect(@blank_hash[:present]).to eq('value')
+    expect(@blank_hash['another']).to eq('another value')
   end
 
   it "should respond true when sent #is_a?(Hash)" do
-    NilableHash.new.is_a?(Hash).should be_true
+    expect(NilableHash.new.is_a?(Hash)).to be true
   end
 end

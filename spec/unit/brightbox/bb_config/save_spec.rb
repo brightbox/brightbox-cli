@@ -6,7 +6,7 @@ describe Brightbox::BBConfig do
     let(:config) { Brightbox::BBConfig.new }
 
     before do
-      Ini.any_instance.should_not_receive(:write)
+      expect_any_instance_of(Ini).not_to receive(:write)
       expect(config).to_not be_dirty
     end
 
@@ -24,7 +24,7 @@ describe Brightbox::BBConfig do
     let(:config) { Brightbox::BBConfig.new }
 
     before do
-      Ini.any_instance.should_receive(:write)
+      expect_any_instance_of(Ini).to receive(:write)
       config.dirty!
     end
 

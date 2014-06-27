@@ -27,7 +27,7 @@ describe Brightbox::BBConfig do
       let(:contents) { USER_APP_CONFIG_CONTENTS }
 
       it "includes the password" do
-        pending "context is wrong to pass require values through"
+        skip "context is wrong to pass require values through"
         expect(fog_config).to have_key(:brightbox_password)
       end
     end

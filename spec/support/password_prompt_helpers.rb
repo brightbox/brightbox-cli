@@ -11,6 +11,6 @@ module PasswordPromptHelpers
   # or a specific value. Otherwise this blocks the specs.
   #
   def mock_password_entry(password = default_test_password)
-    HighLine.any_instance.should_receive(:ask).at_least(:once).and_return(password)
+    expect_any_instance_of(HighLine).to receive(:ask).at_least(:once).and_return(password)
   end
 end

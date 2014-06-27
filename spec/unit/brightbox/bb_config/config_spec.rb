@@ -10,7 +10,7 @@ describe Brightbox::BBConfig do
         Dir.mktmpdir do |tmp_dir|
           target_dir = File.join(tmp_dir, "config")
           @config = Brightbox::BBConfig.new :directory => target_dir
-          expect(@config.config_directory_exists?).to be_false
+          expect(@config.config_directory_exists?).to be false
           example.run
         end
       end
@@ -21,7 +21,7 @@ describe Brightbox::BBConfig do
 
       it "creates the config directory" do
         expect { @config.config }.to_not raise_error
-        expect(@config.config_directory_exists?).to be_true
+        expect(@config.config_directory_exists?).to be true
       end
     end
 

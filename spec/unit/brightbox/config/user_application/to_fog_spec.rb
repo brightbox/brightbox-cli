@@ -43,7 +43,7 @@ describe Brightbox::Config::UserApplication do
       end
 
       it "sets persistent correctly" do
-        expect(for_fog[:persistent]).to be_true
+        expect(for_fog[:persistent]).to be true
       end
     end
 
@@ -81,7 +81,7 @@ describe Brightbox::Config::UserApplication do
       end
 
       it "sets persistent correctly" do
-        expect(for_fog[:persistent]).to be_true
+        expect(for_fog[:persistent]).to be false
       end
     end
 

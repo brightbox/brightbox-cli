@@ -20,37 +20,37 @@ describe Brightbox::BBConfig do
   describe "#client_named?" do
     context "when no client with that name" do
       it "returns false" do
-        expect(config.client_named?("missing")).to be_false
+        expect(config.client_named?("missing")).to be false
       end
     end
 
     context "when client with that ID exists" do
       it "returns false" do
-        expect(config.client_named?("cli-12345")).to be_false
+        expect(config.client_named?("cli-12345")).to be false
       end
     end
 
     context "when client with that alias exists" do
       it "returns true" do
-        expect(config.client_named?("test")).to be_true
+        expect(config.client_named?("test")).to be true
       end
     end
 
     context "when client with that alias exists" do
       it "returns true" do
-        expect(config.client_named?("dev")).to be_true
+        expect(config.client_named?("dev")).to be true
       end
     end
 
     context "when client a section header exists" do
       it "returns true" do
-        expect(config.client_named?("jason.null@brightbox.com")).to be_true
+        expect(config.client_named?("jason.null@brightbox.com")).to be true
       end
     end
 
     context "when client is named 'core'" do
       it "returns false" do
-        expect(config.client_named?("core")).to be_false
+        expect(config.client_named?("core")).to be false
       end
     end
   end
