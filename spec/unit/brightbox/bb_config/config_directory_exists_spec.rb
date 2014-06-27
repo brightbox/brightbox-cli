@@ -10,7 +10,7 @@ describe Brightbox::BBConfig do
       it "returns true" do
         Dir.mktmpdir do |dir|
           @dir = dir
-          expect(config.config_directory_exists?).to be_true
+          expect(config.config_directory_exists?).to be true
         end
       end
     end
@@ -19,7 +19,7 @@ describe Brightbox::BBConfig do
       it "returns false" do
         Tempfile.open("config_clash") do |tmp_file|
           @dir = tmp_file.path
-          expect(config.config_directory_exists?).to be_false
+          expect(config.config_directory_exists?).to be false
         end
       end
     end
@@ -27,7 +27,7 @@ describe Brightbox::BBConfig do
     context "when directory does not exist" do
       it "returns false" do
         @dir = "fnord"
-        expect(config.config_directory_exists?).to be_false
+        expect(config.config_directory_exists?).to be false
       end
     end
   end

@@ -17,7 +17,7 @@ describe Brightbox::Server do
         @server.update(:server_groups => [@group.id])
         @server.reload
 
-        expect(@server.server_groups).to have(1).item
+        expect(@server.server_groups.size).to eql(1)
         expect(@server.server_groups[0]["id"]).to eq(@group.id)
       end
 

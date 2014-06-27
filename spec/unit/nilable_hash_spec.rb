@@ -23,6 +23,6 @@ describe NilableHash, "#nilify_blanks" do
   end
 
   it "should respond true when sent #is_a?(Hash)" do
-    NilableHash.new.is_a?(Hash).should be_true
+    NilableHash.new.is_a?(Hash).should be true
   end
 end

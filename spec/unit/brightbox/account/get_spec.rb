@@ -2,7 +2,7 @@ require "spec_helper"
 
 describe Brightbox::Account do
   before do
-    pending "recordings corrupted and no longer working"
+    skip "recordings corrupted and no longer working"
   end
 
   describe ".get" do

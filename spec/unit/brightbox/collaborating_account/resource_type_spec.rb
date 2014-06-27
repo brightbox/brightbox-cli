@@ -28,7 +28,7 @@ describe Brightbox::CollaboratingAccount do
       let(:initial_model) { owned_account }
 
       it "returns true" do
-        expect(account.account?).to be_true
+        expect(account.account?).to be true
       end
     end
 
@@ -36,7 +36,7 @@ describe Brightbox::CollaboratingAccount do
       let(:initial_model) { active_collaboration }
 
       it "returns false'" do
-        expect(account.account?).to be_false
+        expect(account.account?).to be false
       end
     end
   end
@@ -46,7 +46,7 @@ describe Brightbox::CollaboratingAccount do
       let(:initial_model) { owned_account }
 
       it "returns false" do
-        expect(account.collaboration?).to be_false
+        expect(account.collaboration?).to be false
       end
     end
 
@@ -54,7 +54,7 @@ describe Brightbox::CollaboratingAccount do
       let(:initial_model) { active_collaboration }
 
       it "returns true'" do
-        expect(account.collaboration?).to be_true
+        expect(account.collaboration?).to be true
       end
     end
   end

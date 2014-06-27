@@ -34,7 +34,7 @@ describe "brightbox config" do
       before do
         config_file = File.join(ENV["HOME"], ".brightbox", "config")
         FileUtils.rm_rf(config_file)
-        expect(File.exists?(config_file)).to be_false
+        expect(File.exists?(config_file)).to be false
         mock_password_entry(password)
       end
 

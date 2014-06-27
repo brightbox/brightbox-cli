@@ -33,7 +33,7 @@ describe Brightbox::BBConfig do
 
       it "caches the new tokens" do
         # Access token
-        expect(File.exists?(@config.access_token_filename)).to be_true
+        expect(File.exists?(@config.access_token_filename)).to be true
 
         expect(cached_access_token(@config)).to eql(@new_access_token)
 
@@ -63,7 +63,7 @@ describe Brightbox::BBConfig do
 
       it "caches the new tokens" do
         # Access token
-        expect(File.exists?(@config.access_token_filename)).to be_true
+        expect(File.exists?(@config.access_token_filename)).to be true
 
         # NOTE The cached to disk version is filtered by VCR when testing
         expect(cached_access_token(@config)).to eql(@new_access_token)
@@ -91,7 +91,7 @@ describe Brightbox::BBConfig do
 
       it "caches the new tokens" do
         # Access token
-        expect(File.exists?(@config.access_token_filename)).to be_true
+        expect(File.exists?(@config.access_token_filename)).to be true
 
         # NOTE The cached to disk version is filtered by VCR when testing
         expect(cached_access_token(@config)).to eql(@new_access_token)
@@ -112,7 +112,7 @@ describe Brightbox::BBConfig do
       end
 
       it "caches a new access token" do
-        expect(File.exists?(@config.access_token_filename)).to be_true
+        expect(File.exists?(@config.access_token_filename)).to be true
         expect(cached_access_token(@config)).to eql("5f3fd8fe25388fc9b801afc15a23d3991c68257d")
       end
     end

@@ -51,7 +51,7 @@ describe Brightbox::BBConfig do
       end
 
       it "does not update " do
-        pending
+        skip
         expect {
           config.find_or_set_default_account
         }.to_not change(config, :default_account)
@@ -86,7 +86,7 @@ describe Brightbox::BBConfig do
       end
 
       it "does not update" do
-        pending
+        skip
         expect {
           config.find_or_set_default_account
         }.to_not change(config, :default_account)

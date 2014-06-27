@@ -2,7 +2,7 @@ require "spec_helper"
 
 describe "Firewall policies" do
   before do
-    pending "Spec is grabbing global state (from config) and breaking other specs"
+    skip "Spec is grabbing global state (from config) and breaking other specs"
   end
 
   describe "update" do
@@ -45,7 +45,7 @@ describe "Firewall policies" do
         end
 
         it "has updated the resource" do
-          pending "Fails out of sequence"
+          skip "Fails out of sequence"
           expect { output }.to_not raise_error
           @updated_policy = Brightbox::FirewallPolicy.find(@policy.id)
           expect(@updated_policy.attributes[:name]).to eql(name)
@@ -61,7 +61,7 @@ describe "Firewall policies" do
         end
 
         it "has updated the resource" do
-          pending "Fails out of sequence"
+          skip "Fails out of sequence"
           expect { output }.to_not raise_error
           @updated_policy = Brightbox::FirewallPolicy.find(@policy.id)
           expect(@updated_policy.attributes[:description]).to eql(description)

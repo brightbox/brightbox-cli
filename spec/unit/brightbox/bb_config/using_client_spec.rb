@@ -40,7 +40,7 @@ describe Brightbox::BBConfig do
 
       it "returns true" do
         config.client_name = client_name
-        expect(config.using_application?).to be_true
+        expect(config.using_application?).to be true
       end
     end
 
@@ -49,7 +49,7 @@ describe Brightbox::BBConfig do
 
       it "returns false" do
         config.client_name = client_name
-        expect(config.using_application?).to be_false
+        expect(config.using_application?).to be false
       end
     end
 
@@ -58,7 +58,7 @@ describe Brightbox::BBConfig do
 
       it "returns true" do
         config.client_name = client_name
-        expect(config.using_application?).to be_true
+        expect(config.using_application?).to be true
       end
     end
   end
@@ -81,7 +81,7 @@ describe Brightbox::BBConfig do
 
       it "returns false" do
         config.client_name = client_name
-        expect(config.using_api_client?).to be_false
+        expect(config.using_api_client?).to be false
       end
     end
 
@@ -90,7 +90,7 @@ describe Brightbox::BBConfig do
 
       it "returns true" do
         config.client_name = client_name
-        expect(config.using_api_client?).to be_true
+        expect(config.using_api_client?).to be true
       end
     end
 
@@ -99,7 +99,7 @@ describe Brightbox::BBConfig do
 
       it "returns false" do
         config.client_name = client_name
-        expect(config.using_api_client?).to be_false
+        expect(config.using_api_client?).to be false
       end
     end
   end

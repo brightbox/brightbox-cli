@@ -47,7 +47,7 @@ describe Brightbox::ConnectionManager, "#fetch_connection" do
     end
 
     it "selects configured account" do
-      pending "Fails out of sequence, mocked config incorrect"
+      skip "Fails out of sequence, mocked config incorrect"
       $config.stubs(:selected_config).returns({ 'default_account' => "acc-12345"})
       connection = connection_manager.fetch_connection(true)
       connection.should_not be_nil
@@ -57,7 +57,7 @@ describe Brightbox::ConnectionManager, "#fetch_connection" do
 
   context "when user has one account" do
     it "selects that account" do
-      pending "Fails out of sequence, mocked config incorrect"
+      skip "Fails out of sequence, mocked config incorrect"
       $config.unstub(:selected_config)
       mock_account = mock()
       mock_account.expects(:id).returns("acc-xyg")
