@@ -56,8 +56,8 @@ module Brightbox
       private
 
       def persistent?
-        if selected_config["persistent"]
-          selected_config["persistent"]
+        if selected_config["persistent"] == "false"
+          false
         else
           true
         end
