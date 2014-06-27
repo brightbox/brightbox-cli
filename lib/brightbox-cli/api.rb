@@ -110,11 +110,11 @@ module Brightbox
         objects = all
       elsif args.is_a? String
         object = cached_get(args.to_s)
-        raise NotFound, "Couldn't find '#{args.to_s}'" if object.nil?
+        raise NotFound, "Couldn't find '#{args}'" if object.nil?
       elsif args.respond_to? :map
         objects = args.map do |arg|
           o = cached_get(arg.to_s)
-          raise NotFound, "Couldn't find '#{arg.to_s}'" if o.nil?
+          raise NotFound, "Couldn't find '#{arg}'" if o.nil?
           o
         end
       else
@@ -140,7 +140,7 @@ module Brightbox
 
     # Find each id in the given array.  Yield the block with any ids
     # that couldn't be found
-    def self.find_or_call(ids, &block)
+    def self.find_or_call(ids, &_block)
       objects = []
       ids.each do |id|
         begin

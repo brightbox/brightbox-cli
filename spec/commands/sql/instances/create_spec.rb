@@ -14,7 +14,7 @@ describe "brightbox database-servers" do
     end
 
     context "without arguments", :vcr do
-      let(:argv) { %w{sql instances create } }
+      let(:argv) { %w(sql instances create) }
       let(:expected_password) { "477wwwj48yifrnuk" }
 
       it "reports the new admin username" do
@@ -27,7 +27,7 @@ describe "brightbox database-servers" do
     end
 
     context "--allow-access=10.0.0.0", :vcr do
-      let(:argv) { %w{sql instances create --allow-access=10.0.0.0} }
+      let(:argv) { %w(sql instances create --allow-access=10.0.0.0) }
       let(:expected_args) { { :allow_access => ["10.0.0.0"] } }
 
       it "correctly sends API parameters" do
@@ -37,8 +37,8 @@ describe "brightbox database-servers" do
     end
 
     context "--allow-access=srv-12345,grp-12345", :vcr do
-      let(:argv) { %w{sql instances create --allow-access srv-12345,grp-12345} }
-      let(:expected_args) { { :allow_access => %w{srv-12345 grp-12345} } }
+      let(:argv) { %w(sql instances create --allow-access srv-12345,grp-12345) }
+      let(:expected_args) { { :allow_access => %w(srv-12345 grp-12345) } }
 
       it "correctly sends API parameters" do
         expect(Brightbox::DatabaseServer).to receive(:create).with(expected_args).and_call_original

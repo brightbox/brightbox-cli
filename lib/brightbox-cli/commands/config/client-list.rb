@@ -6,7 +6,7 @@ module Brightbox
     cmd.desc I18n.t("config.client_list.desc")
     cmd.command [:client_list] do |c|
 
-      c.action do |global_options, options, args|
+      c.action do |global_options, _options, _args|
 
         info "Using config file #{$config.config_filename}"
 

@@ -16,10 +16,10 @@ describe Brightbox::Server do
         error = nil
         begin
           Brightbox::Server.create(options)
-        rescue Exception => e
+        rescue => e
           error = Brightbox::ErrorParser.new(e)
         end
-        output = FauxIO.new { error.pretty_print() }
+        output = FauxIO.new { error.pretty_print }
         expect(output.stderr).to match(/Account limit reached, please contact support for more information/i)
       end
     end

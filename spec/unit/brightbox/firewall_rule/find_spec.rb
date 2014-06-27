@@ -18,9 +18,9 @@ describe Brightbox::FirewallRule do
       end
 
       it "can display the result" do
-        expect {
+        expect do
           @rule = Brightbox::FirewallRule.find(@rule.id)
-        }.to_not raise_error
+        end.to_not raise_error
 
         display_options = {
           :fields => [
@@ -33,7 +33,7 @@ describe Brightbox::FirewallRule do
             :icmp_type,
             :firewall_policy
           ],
-            :vertical => true
+          :vertical => true
         }
 
         output = FauxIO.new do

@@ -3,7 +3,7 @@ module Brightbox
     def self.require_account?; true; end
 
     def self.create_servers(count, options)
-      (0...count).map { |i| create(options) }
+      (0...count).map { |_i| create(options) }
     end
 
     def self.create(options)

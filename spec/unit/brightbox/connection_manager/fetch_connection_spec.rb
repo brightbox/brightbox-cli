@@ -43,12 +43,12 @@ describe Brightbox::ConnectionManager, "#fetch_connection" do
   context "when a default account setting is set in config" do
     let(:default_account) { "acc-12345" }
     let(:selected_config) do
-      {"default_account" => default_account}
+      { "default_account" => default_account }
     end
 
     it "selects configured account" do
       skip "Fails out of sequence, mocked config incorrect"
-      $config.stubs(:selected_config).returns({ 'default_account' => "acc-12345"})
+      $config.stubs(:selected_config).returns('default_account' => "acc-12345")
       connection = connection_manager.fetch_connection(true)
       expect(connection).not_to be_nil
       expect(connection.scoped_account).to eq("acc-12345")
@@ -59,7 +59,7 @@ describe Brightbox::ConnectionManager, "#fetch_connection" do
     it "selects that account" do
       skip "Fails out of sequence, mocked config incorrect"
       allow($config).to receive(:selected_config).and_call_original
-      mock_account = double()
+      mock_account = double
       mock_account.expects(:id).returns("acc-xyg")
 
       Brightbox::Account.expects(:all).returns([mock_account])

@@ -12,7 +12,7 @@ module Brightbox
         if defined?(@access_token) && !@access_token.nil?
           return @access_token
         end
-        if File.exists?(access_token_filename)
+        if File.exist?(access_token_filename)
           @access_token = cached_access_token
         else
           @access_token = nil
@@ -28,7 +28,7 @@ module Brightbox
         if defined?(@refresh_token) && !@refresh_token.nil?
           return @refresh_token
         end
-        if File.exists?(refresh_token_filename)
+        if File.exist?(refresh_token_filename)
           @refresh_token = cached_refresh_token
         else
           @refresh_token = nil

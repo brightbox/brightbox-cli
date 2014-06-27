@@ -7,55 +7,55 @@ describe Brightbox::Legacy::ArgsAdjuster do
     let(:adjuster) { Brightbox::Legacy::ArgsAdjuster.new(args) }
 
     context "when account global switch is used" do
-      let(:args) { ["--account", "acc-12345", "show", "srv-12345"] }
+      let(:args) { %w(--account acc-12345 show srv-12345) }
 
       it "inserts after global args" do
-        expected = ["--account", "acc-12345", "command", "show", "srv-12345"]
+        expected = %w(--account acc-12345 command show srv-12345)
         expect(adjuster.for_command "command").to eql(expected)
       end
     end
 
     context "when client global switch is used" do
-      let(:args) { ["-c", "staging", "show", "srv-12345"] }
+      let(:args) { %w(-c staging show srv-12345) }
 
       it "inserts after global args" do
-        expected = ["-c", "staging", "command", "show", "srv-12345"]
+        expected = %w(-c staging command show srv-12345)
         expect(adjuster.for_command "command").to eql(expected)
       end
     end
 
     context "when simple global flag is used" do
-      let(:args) { ["--simple", "show", "srv-12345"] }
+      let(:args) { %w(--simple show srv-12345) }
 
       it "inserts after global args" do
-        expected = ["-s", "command", "show", "srv-12345"]
+        expected = %w(-s command show srv-12345)
         expect(adjuster.for_command "command").to eql(expected)
       end
     end
 
     context "when insecure global switch is used" do
-      let(:args) { ["-k", "show", "srv-12345"] }
+      let(:args) { %w(-k show srv-12345) }
 
       it "inserts after global args" do
-        expected = ["-k", "command", "show", "srv-12345"]
+        expected = %w(-k command show srv-12345)
         expect(adjuster.for_command "command").to eql(expected)
       end
     end
 
     context "when many args are passed" do
-      let(:args) { ["-k", "--simple", "-c", "prod", "subcommand", "srv-12345"] }
+      let(:args) { %w(-k --simple -c prod subcommand srv-12345) }
 
       it "inserts after global args" do
-        expected = ["-k", "-s", "-c", "prod", "command", "subcommand", "srv-12345"]
+        expected = %w(-k -s -c prod command subcommand srv-12345)
         expect(adjuster.for_command "command").to eql(expected)
       end
     end
 
     context "when no global args are used" do
-      let(:args) { ["show", "srv-12345"] }
+      let(:args) { %w(show srv-12345) }
 
       it "inserts at the front" do
-        expected = ["command", "show", "srv-12345"]
+        expected = %w(command show srv-12345)
         expect(adjuster.for_command "command").to eql(expected)
       end
     end

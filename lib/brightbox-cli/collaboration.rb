@@ -29,9 +29,7 @@ module Brightbox
       @id
     end
 
-    def id
-      @id
-    end
+    attr_reader :id
 
     def attributes
       fog_model.attributes

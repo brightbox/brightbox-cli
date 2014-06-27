@@ -5,7 +5,7 @@ module Brightbox
     cmd.arg_name "[grp-id..]"
     cmd.command [:show] do |c|
 
-      c.action do |global_options, options, args|
+      c.action do |global_options, _options, args|
         raise "You must specify server groups to show" if args.empty?
 
         sgs = DetailedServerGroup.find_or_call(args) do |id|

@@ -3,12 +3,12 @@ require "spec_helper"
 describe "brightbox accounts" do
 
   describe "list" do
-    let(:output) { FauxIO.new { Brightbox::run(argv) } }
+    let(:output) { FauxIO.new { Brightbox.run(argv) } }
     let(:stdout) { output.stdout }
     let(:stderr) { output.stderr }
 
     context "", :vcr do
-      let(:argv) { ["accounts", "list"] }
+      let(:argv) { %w(accounts list) }
 
       it "does not error" do
         expect { output }.to_not raise_error
@@ -18,7 +18,7 @@ describe "brightbox accounts" do
     context "(when no tokens)", :vcr do
       let(:password) { default_test_password }
 
-      let(:argv) { ["accounts", "list"] }
+      let(:argv) { %w(accounts list) }
 
       before do
         config_from_contents(USER_APP_CONFIG_CONTENTS)
@@ -37,7 +37,7 @@ describe "brightbox accounts" do
     context "(when no tokens and password incorrect)", :vcr do
       let(:password) { "wrong" }
 
-      let(:argv) { ["accounts", "list"] }
+      let(:argv) { %w(accounts list) }
 
       before do
         config_from_contents(USER_APP_CONFIG_CONTENTS)
@@ -56,7 +56,7 @@ describe "brightbox accounts" do
     context "(when access token expired)", :vcr do
       let(:password) { default_test_password }
 
-      let(:argv) { ["accounts", "list"] }
+      let(:argv) { %w(accounts list) }
 
       before do
         config = config_from_contents(USER_APP_CONFIG_CONTENTS)
@@ -74,7 +74,7 @@ describe "brightbox accounts" do
     context "(when both tokens expired)", :vcr do
       let(:password) { default_test_password }
 
-      let(:argv) { ["accounts", "list"] }
+      let(:argv) { %w(accounts list) }
 
       before do
         config = config_from_contents(USER_APP_CONFIG_CONTENTS)
@@ -93,7 +93,7 @@ describe "brightbox accounts" do
     context "(when invalid tokens)", :vcr do
       let(:password) { default_test_password }
 
-      let(:argv) { ["accounts", "list"] }
+      let(:argv) { %w(accounts list) }
 
       before do
         config = config_from_contents(USER_APP_CONFIG_CONTENTS)

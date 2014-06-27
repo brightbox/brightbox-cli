@@ -7,7 +7,7 @@ require "spec_helper"
 describe "brightbox config" do
 
   describe "user_add" do
-    let(:output) { FauxIO.new { Brightbox::run(argv) } }
+    let(:output) { FauxIO.new { Brightbox.run(argv) } }
     let(:stdout) { output.stdout }
     let(:stderr) { output.stderr }
 
@@ -21,7 +21,7 @@ describe "brightbox config" do
     let(:client_alias) { email }
 
     context "" do
-      let(:argv) { ["config", "user_add"] }
+      let(:argv) { %w(config user_add) }
 
       it "does not error" do
         expect { output }.to_not raise_error
@@ -34,7 +34,7 @@ describe "brightbox config" do
       before do
         config_file = File.join(ENV["HOME"], ".brightbox", "config")
         FileUtils.rm_rf(config_file)
-        expect(File.exists?(config_file)).to be false
+        expect(File.exist?(config_file)).to be false
         mock_password_entry(password)
       end
 
@@ -91,7 +91,6 @@ describe "brightbox config" do
         expect(stderr).to_not include("ERROR")
       end
     end
-
 
     context "when new client is first and only client", :vcr do
       let(:argv) { ["config", "user_add", email, client_id, secret] }
@@ -207,7 +206,6 @@ describe "brightbox config" do
         mock_password_entry(password)
       end
 
-
       it "does not error" do
         expect { output }.to_not raise_error
         expect(stderr).to_not include("ERROR")
@@ -260,7 +258,6 @@ describe "brightbox config" do
         expect(@client_section["default_account"]).to eql(default_account)
       end
     end
-
 
     context "when application has access only one active account", :vcr do
       # Hardcoded in response, different from single account value

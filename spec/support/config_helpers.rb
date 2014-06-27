@@ -2,7 +2,6 @@ require "fileutils"
 require "securerandom"
 
 module ConfigHelpers
-
   # Returns a Brightbox::BBConfig based on the String as its contents
   #
   # It's like a fake configuration - IN A CAN!

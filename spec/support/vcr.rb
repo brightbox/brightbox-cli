@@ -18,7 +18,7 @@ VCR.configure do |vcr|
   }
 
   # Gives lots of clues about how VCR is running
-  #vcr.debug_logger = $stderr
+  # vcr.debug_logger = $stderr
 
   vcr.before_record do |interaction|
     host = URI.parse(interaction.request.uri).host

@@ -34,7 +34,7 @@ describe Brightbox::BBConfig do
       before do
         @account_name = "acc-ghj32"
         @client_name = "app-b3n5b"
-        contents =<<-EOS
+        contents = <<-EOS
         [#{@client_name}]
         default_account = #{@account_name}
         EOS
@@ -49,9 +49,9 @@ describe Brightbox::BBConfig do
       end
 
       it "does not dirty the config" do
-        expect {
+        expect do
           @config.account
-        }.to_not change(@config, :dirty?)
+        end.to_not change(@config, :dirty?)
       end
     end
   end

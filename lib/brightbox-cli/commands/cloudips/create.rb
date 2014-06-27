@@ -15,7 +15,7 @@ module Brightbox
       c.desc I18n.t("cloudips.options.port_translators.desc")
       c.flag [:t, :"port-translators"]
 
-      c.action do |global_options, options, args|
+      c.action do |global_options, options, _args|
 
         if options[:i].to_s !~ /^[0-9]+$/
           raise "count must be a number"

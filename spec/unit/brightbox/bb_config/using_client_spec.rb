@@ -29,9 +29,9 @@ describe Brightbox::BBConfig do
       end
 
       it "does not raise an error" do
-        expect {
+        expect do
           Brightbox::BBConfig.new.using_application?
-        }.to raise_error(Brightbox::NoSelectedClientError, error_message)
+        end.to raise_error(Brightbox::NoSelectedClientError, error_message)
       end
     end
 
@@ -70,9 +70,9 @@ describe Brightbox::BBConfig do
       end
 
       it "does not raise an error" do
-        expect {
+        expect do
           Brightbox::BBConfig.new.using_api_client?
-        }.to raise_error(Brightbox::NoSelectedClientError, error_message)
+        end.to raise_error(Brightbox::NoSelectedClientError, error_message)
       end
     end
 

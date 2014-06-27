@@ -8,7 +8,7 @@ module Brightbox
     cmd.arg_name "[user-id...]"
     cmd.command [:list] do |c|
 
-      c.action do |global_options, options, args|
+      c.action do |global_options, _options, args|
         users = User.find_all_or_warn(args)
         render_table(users, global_options)
       end

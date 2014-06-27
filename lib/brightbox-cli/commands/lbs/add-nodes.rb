@@ -6,7 +6,7 @@ module Brightbox
     cmd.arg_name "lb-id node-id..."
     cmd.command [:add_nodes] do |c|
 
-      c.action do |global_options, options, args|
+      c.action do |global_options, _options, args|
 
         raise "You must specify the load balancer and the node ids to add" if args.size < 2
 

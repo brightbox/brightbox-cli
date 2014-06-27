@@ -7,7 +7,7 @@ module Brightbox
     cmd.arg_name "[firewall-policy-id...]"
     cmd.command [:list] do |c|
 
-      c.action do |global_options, options, args|
+      c.action do |global_options, _options, args|
         if args.empty?
           raise "You must specify the firewall policy id as the first argument"
         end

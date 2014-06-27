@@ -4,7 +4,7 @@ module Brightbox
     cmd.desc I18n.t("accounts.remove.desc")
     cmd.arg_name "account_id"
     cmd.command [:remove] do |c|
-      c.action do |global_options, options, args|
+      c.action do |global_options, _options, args|
         account_id = args.first
 
         # Find the collaboration for that account

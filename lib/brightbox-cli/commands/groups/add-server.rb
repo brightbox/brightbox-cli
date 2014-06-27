@@ -6,7 +6,7 @@ module Brightbox
     cmd.arg_name "grp-id [srv-id...]"
     cmd.command [:add_servers] do |c|
 
-      c.action do |global_options, options, args|
+      c.action do |global_options, _options, args|
         grp_id = args.shift
         raise "You must specify the server group and then the server ids to add" unless grp_id && grp_id[/^grp-/] && !args.empty?
 

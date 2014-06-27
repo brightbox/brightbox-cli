@@ -5,7 +5,7 @@ module Brightbox
     cmd.arg_name "server-id..."
     cmd.command [:snapshot] do |c|
 
-      c.action do |global_options, options, args|
+      c.action do |_global_options, _options, args|
 
         raise "You must specify servers to snapshot" if args.empty?
 

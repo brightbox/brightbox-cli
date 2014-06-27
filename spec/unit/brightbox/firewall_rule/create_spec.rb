@@ -20,7 +20,7 @@ describe Brightbox::FirewallRule do
       it "creates the rule successfully", :vcr do
         @rule = Brightbox::FirewallRule.create(@rule_options)
         output = FauxIO.new do
-          Brightbox.render_table([@rule], {:vertical => true})
+          Brightbox.render_table([@rule], :vertical => true)
         end
 
         expect(output.stdout).to include(@rule.id)

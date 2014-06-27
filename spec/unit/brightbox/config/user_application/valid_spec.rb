@@ -20,7 +20,7 @@ describe Brightbox::Config::UserApplication do
       end
 
       it "is valid" do
-       expect(section).to be_valid
+        expect(section).to be_valid
       end
     end
 
@@ -37,7 +37,7 @@ describe Brightbox::Config::UserApplication do
       end
 
       it "is valid" do
-       expect(section).to be_valid
+        expect(section).to be_valid
       end
     end
 
@@ -52,7 +52,7 @@ describe Brightbox::Config::UserApplication do
       end
 
       it "is invalid" do
-       expect(section).to_not be_valid
+        expect(section).to_not be_valid
       end
     end
 
@@ -67,7 +67,7 @@ describe Brightbox::Config::UserApplication do
       end
 
       it "is invalid" do
-       expect(section).to_not be_valid
+        expect(section).to_not be_valid
       end
     end
 
@@ -82,7 +82,7 @@ describe Brightbox::Config::UserApplication do
       end
 
       it "is invalid" do
-       expect(section).to_not be_valid
+        expect(section).to_not be_valid
       end
     end
 
@@ -97,7 +97,7 @@ describe Brightbox::Config::UserApplication do
       end
 
       it "is invalid" do
-       expect(section).to_not be_valid
+        expect(section).to_not be_valid
       end
     end
   end

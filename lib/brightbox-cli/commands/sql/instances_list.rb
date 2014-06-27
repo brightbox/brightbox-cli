@@ -10,7 +10,7 @@ module Brightbox
       cmd.arg_name "[instance-id...]"
       cmd.command [:list] do |c|
 
-        c.action do |global_options, options, args|
+        c.action do |global_options, _options, args|
           if args.empty?
             servers = DatabaseServer.find(:all)
           else

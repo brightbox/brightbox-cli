@@ -8,7 +8,7 @@ describe "brightbox database-types" do
     let(:stderr) { output.stderr }
 
     context "" do
-      let(:argv) { %w{sql types list} }
+      let(:argv) { %w(sql types list) }
 
       it "does not error" do
         expect { output }.to_not raise_error

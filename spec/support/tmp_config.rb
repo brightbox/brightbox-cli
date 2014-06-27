@@ -6,7 +6,6 @@ require "fileutils"
 # dispose of
 #
 class TmpConfig
-
   # Creates a temporary directory and a "config" file within using the contents
   # of a passed String.
   #

@@ -16,7 +16,7 @@ describe Brightbox::BBConfig do
 
     context "when config file has no default" do
       before do
-        contents =<<-EOS
+        contents = <<-EOS
         [core]
         EOS
         @tmp_config = config_from_contents(contents)
@@ -31,7 +31,7 @@ describe Brightbox::BBConfig do
     context "when config file contains a default client" do
       before do
         @client_name = "app-b3n5b"
-        contents =<<-EOS
+        contents = <<-EOS
         [core]
         default_client = #{@client_name}
         EOS

@@ -14,7 +14,7 @@ describe Brightbox::ServerGroup do
       it "list server groups" do
         server_groups = Brightbox::ServerGroup.find(:all)
         output = FauxIO.new do
-          Brightbox.render_table(server_groups,{})
+          Brightbox.render_table(server_groups, {})
         end
         expect(output.stdout).to include(@group.id)
       end

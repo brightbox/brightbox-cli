@@ -76,7 +76,7 @@ describe Brightbox::UserCollaboration do
             "id" => "usr-54321",
             "resource_type" => "user",
             "url" => "https://api.gb1.brightbox.com/1.0/users/usr-54321",
-            "name"=>"Marie Halvorson",
+            "name" => "Marie Halvorson",
             "email_address" => "marie@example.com"
           }
         },
@@ -103,7 +103,7 @@ describe Brightbox::UserCollaboration do
             "id" => "usr-54321",
             "resource_type" => "user",
             "url" => "https://api.gb1.brightbox.com/1.0/users/usr-54321",
-            "name"=>"Marie Halvorson",
+            "name" => "Marie Halvorson",
             "email_address" => "marie@example.com"
           }
         },
@@ -130,14 +130,14 @@ describe Brightbox::UserCollaboration do
             "id" => "usr-54321",
             "resource_type" => "user",
             "url" => "https://api.gb1.brightbox.com/1.0/users/usr-54321",
-            "name"=>"Marie Halvorson",
+            "name" => "Marie Halvorson",
             "email_address" => "marie@example.com"
           }
         }
       ]
       # Collection#load is private in fog so we can't just pass our collection
       # into get the correct object initialised.
-      api_response_data.collect do |datum|
+      api_response_data.map do |datum|
         Fog::Compute::Brightbox::UserCollaboration.new(datum)
       end
     end

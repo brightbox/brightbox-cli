@@ -5,7 +5,7 @@ module Brightbox
     cmd.arg_name "cloudip-id..."
     cmd.command [:unmap] do |c|
 
-      c.action do |global_options, options, args|
+      c.action do |global_options, _options, args|
 
         if args.empty?
           raise "You must specify the Cloud IPs you want to unmap"

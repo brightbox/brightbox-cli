@@ -5,7 +5,7 @@ module Brightbox
     cmd.arg_name "[firewall-policy-id...]"
     cmd.command [:destroy] do |c|
 
-      c.action do |global_options, options, args|
+      c.action do |_global_options, _options, args|
 
         raise "You must specify firewall-policy-id to destroy" if args.empty?
 

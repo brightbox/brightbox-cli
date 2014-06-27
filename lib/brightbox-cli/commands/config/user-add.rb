@@ -11,7 +11,7 @@ module Brightbox
       c.desc "password, if not specified you will be prompted"
       c.flag [:p, "password"]
 
-      c.action do |global_options, options, args|
+      c.action do |_global_options, options, args|
 
         require 'highline'
 

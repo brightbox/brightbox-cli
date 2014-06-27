@@ -17,7 +17,7 @@ describe Brightbox::BBConfig do
     context "when config file contains a default client" do
       before do
         @client_name = "app-b3n5b"
-        contents =<<-EOS
+        contents = <<-EOS
         [core]
         default_client = #{@client_name}
         EOS
@@ -32,7 +32,7 @@ describe Brightbox::BBConfig do
     context "when config file contains only one client" do
       before do
         @client_name = "cli-sdio2"
-        contents =<<-EOS
+        contents = <<-EOS
         [core]
         default_client = #{@client_name}
 
@@ -49,7 +49,7 @@ describe Brightbox::BBConfig do
 
     context "when config contains no default and multiple clients" do
       before do
-        contents =<<-EOS
+        contents = <<-EOS
         [app-first]
         client_id = app-first
 
@@ -73,9 +73,9 @@ describe Brightbox::BBConfig do
         end
 
         it "raises an error" do
-          expect {
+          expect do
             @config.client_name
-          }.to raise_error(Brightbox::BBConfigError, "You must specify a default client using brightbox config client_default")
+          end.to raise_error(Brightbox::BBConfigError, "You must specify a default client using brightbox config client_default")
         end
       end
 

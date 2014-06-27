@@ -4,17 +4,17 @@ describe Brightbox::Api, ".find" do
 
   context "when passed nil" do
     it "raises an error" do
-      expect {
+      expect do
         Brightbox::Api.find(nil)
-      }.to raise_error(Brightbox::Api::InvalidArguments)
+      end.to raise_error(Brightbox::Api::InvalidArguments)
     end
   end
 
   context "when passed an empty object" do
     it "raises an error" do
-      expect {
+      expect do
         Brightbox::Api.find([])
-      }.to raise_error(Brightbox::Api::InvalidArguments)
+      end.to raise_error(Brightbox::Api::InvalidArguments)
     end
   end
 
@@ -55,9 +55,9 @@ describe Brightbox::Api, ".find" do
 
   context "when passed a bad search value" do
     it "raises an error" do
-      expect {
+      expect do
         Brightbox::Api.find(double)
-      }.to raise_error(Brightbox::Api::InvalidArguments)
+      end.to raise_error(Brightbox::Api::InvalidArguments)
     end
   end
 end

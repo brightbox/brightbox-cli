@@ -50,7 +50,7 @@ module Brightbox
     #
     # @return [Boolean]
     def config_directory_exists?
-      File.exists?(config_directory) && File.directory?(config_directory)
+      File.exist?(config_directory) && File.directory?(config_directory)
     end
 
     # The String path to the configuration file itself (in .ini format)
@@ -126,7 +126,7 @@ module Brightbox
     # in
     #
     def create_directory
-      unless File.exists? config_directory
+      unless File.exist? config_directory
         begin
           FileUtils.mkdir config_directory
         rescue Errno::EEXIST

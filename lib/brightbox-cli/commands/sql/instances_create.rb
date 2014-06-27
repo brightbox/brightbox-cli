@@ -35,7 +35,7 @@ module Brightbox
         c.desc I18n.t("sql.instances.options.zone.desc")
         c.flag [:z, "zone"]
 
-        c.action do |global_options, options, args|
+        c.action do |global_options, options, _args|
           params = {}
 
           params[:name] = options[:n] if options[:n]

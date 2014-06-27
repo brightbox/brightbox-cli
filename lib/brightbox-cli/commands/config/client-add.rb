@@ -12,7 +12,7 @@ module Brightbox
       c.desc "auth url"
       c.flag [:t, "auth-url"]
 
-      c.action do |global_options, options, args|
+      c.action do |_global_options, options, args|
 
         info "Using config file #{$config.config_filename}"
 

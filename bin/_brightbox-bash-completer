@@ -6,7 +6,7 @@ require 'shellwords'
 
 class String
   def shellunescape
-    self.gsub(/\\([^A-Za-z0-9_\-.,:\/@\n])/, '\1')
+    gsub(/\\([^A-Za-z0-9_\-.,:\/@\n])/, '\1')
   end
 end
 
@@ -67,7 +67,7 @@ class IcmpTypeName
 end
 
 def find_network_services
-  File.read("/etc/services").scan(/([0-9]+)\/(tcp|udp)/).collect { |tuple| tuple.first }.uniq
+  File.read("/etc/services").scan(/([0-9]+)\/(tcp|udp)/).map { |tuple| tuple.first }.uniq
 rescue
   []
 end
@@ -78,18 +78,18 @@ end
 
 def find_identifiers(prefix, extras = nil, flag = nil)
   if prefix.is_a? Array
-    lambda do |c,p|
-      all = prefix.collect { |pfx| find_identifiers(pfx, extras, flag).call(c,p) }
+    lambda do |c, p|
+      all = prefix.map { |pfx| find_identifiers(pfx, extras, flag).call(c, p) }
       all += extras if extras.is_a? Array
       return all.flatten
     end
   else
-    lambda do |cur,prev|
+    lambda do |_cur, prev|
       if (extras == :once or flag == :once) and prev =~ /^#{prefix}/
         return []
       else
-        all = Dir.glob(File.join(ENV['HOME'], '.brightbox', 'cache', prefix+'*'))
-        all.collect! { |f| File.basename(f) }
+        all = Dir.glob(File.join(ENV['HOME'], '.brightbox', 'cache', prefix + '*'))
+        all.map! { |f| File.basename(f) }
         all += extras if extras.is_a? Array
         return all
       end
@@ -98,22 +98,22 @@ def find_identifiers(prefix, extras = nil, flag = nil)
 end
 
 def find_server_types
-  find_identifiers("typ-", %w{nano mini small medium large xl xxl nano.high-io mini.high-io small.high-io medium.high0io large.high-io xl.high-io xxl.high-io})
+  find_identifiers("typ-", %w(nano mini small medium large xl xxl nano.high-io mini.high-io small.high-io medium.high0io large.high-io xl.high-io xxl.high-io))
 end
 
 def find_clients
-  lambda do |c,p|
+  lambda do |_c, _p|
     config = File.read(File.join(ENV['HOME'], '.brightbox', 'config')) rescue []
     config.scan(/^\[(.*)\]/).flatten - ["core"]
   end
 end
 
 def find_zones
-  [find_identifiers("zon-", %w{gb1-a gb1-b})]
+  [find_identifiers("zon-", %w(gb1-a gb1-b))]
 end
 
 def find_filename
-  lambda do |cur,prev|
+  lambda do |cur, _prev|
     files = Dir.glob(cur + '*')
     if files.size == 1 and File.directory?(files.first)
       files = [File.join(files.first, '')]
@@ -125,382 +125,382 @@ end
 
 SPEC = { "brightbox" =>
         {
-         "account-access" =>
-           {
-            "list" => find_identifiers("col-"),
-            "show" => find_identifiers("col-")
-           },
-         "accounts" =>
-         {
-          "accept_invite" => find_identifiers("acc-"),
-          "default" => find_identifiers("acc-"),
-          "list" => true,
-          "remove" => find_identifiers("acc-"),
-          "reset_ftp_password" => find_identifiers("acc-"),
-          "show" => find_identifiers("acc-")
-         },
-         "cloudips" =>
-         {
-          "create" =>
+          "account-access" =>
             {
-             "-i=" => "--count=",
-             "--count=" => true,
-             "-n=" => "--name=",
-             "--name=" => true,
-             "-t=" => "--port-translators=",
-             "--port-translators" => true
+              "list" => find_identifiers("col-"),
+              "show" => find_identifiers("col-")
             },
-          "update" =>
-            {
-             "-n" => "--name=",
-             "--name=" => true,
-             "-r=" => "--reverse-dns=",
-             "--reverse-dns=" => true,
-             "-t=" => "--port-translators=",
-             "--port-translators=" => true,
-             :include => find_identifiers("cip-")
-            },
-          "destroy" => find_identifiers("cip-"),
-          "list" => find_identifiers("cip-"),
-          "map" => [find_identifiers('cip-'), find_identifiers("srv-"), nil],
-          "show" => find_identifiers("cip-"),
-          "unmap" => find_identifiers("cip-"),
-         },
-       "collaborators" =>
+          "accounts" =>
          {
-          "invite" => true,
-          "list" => find_identifiers("col-"),
-          "destroy" => find_identifiers("col-"),
-          "resend" => find_identifiers("col-"),
-          "show" => find_identifiers("col-"),
+           "accept_invite" => find_identifiers("acc-"),
+           "default" => find_identifiers("acc-"),
+           "list" => true,
+           "remove" => find_identifiers("acc-"),
+           "reset_ftp_password" => find_identifiers("acc-"),
+           "show" => find_identifiers("acc-")
          },
-       "config" =>
+          "cloudips" =>
          {
-          "client_add" =>
+           "create" =>
+             {
+               "-i=" => "--count=",
+               "--count=" => true,
+               "-n=" => "--name=",
+               "--name=" => true,
+               "-t=" => "--port-translators=",
+               "--port-translators" => true
+             },
+           "update" =>
             {
-             "-a=" => "--alias=",
-             "--alias=" => true,
-             "-t=" => "--auth-url=",
-             "--auth-url=" => true,
+              "-n" => "--name=",
+              "--name=" => true,
+              "-r=" => "--reverse-dns=",
+              "--reverse-dns=" => true,
+              "-t=" => "--port-translators=",
+              "--port-translators=" => true,
+              :include => find_identifiers("cip-")
             },
-          "client_default" => [find_clients, nil],
-          "client_list" => true,
-          "client_remove" => [find_clients, nil],
-          "user_add" =>
+           "destroy" => find_identifiers("cip-"),
+           "list" => find_identifiers("cip-"),
+           "map" => [find_identifiers('cip-'), find_identifiers("srv-"), nil],
+           "show" => find_identifiers("cip-"),
+           "unmap" => find_identifiers("cip-"),
+         },
+          "collaborators" =>
+         {
+           "invite" => true,
+           "list" => find_identifiers("col-"),
+           "destroy" => find_identifiers("col-"),
+           "resend" => find_identifiers("col-"),
+           "show" => find_identifiers("col-"),
+         },
+          "config" =>
+         {
+           "client_add" =>
+             {
+               "-a=" => "--alias=",
+               "--alias=" => true,
+               "-t=" => "--auth-url=",
+               "--auth-url=" => true,
+             },
+           "client_default" => [find_clients, nil],
+           "client_list" => true,
+           "client_remove" => [find_clients, nil],
+           "user_add" =>
             {
-             "-a=" => "--alias=",
-             "--alias=" => true,
-             "-p=" => "--password=",
-             "--password=" => true
+              "-a=" => "--alias=",
+              "--alias=" => true,
+              "-p=" => "--password=",
+              "--password=" => true
             }
          },
-       "firewall-policies" =>
+          "firewall-policies" =>
          {
-          "list" => find_identifiers("fwp-"),
-          "apply" => [find_identifiers("fwp-"), find_identifiers("grp-"), nil],
-          "create" =>
+           "list" => find_identifiers("fwp-"),
+           "apply" => [find_identifiers("fwp-"), find_identifiers("grp-"), nil],
+           "create" =>
             {
-             "-d=" => "--description=",
-             "--description=" => true,
-             "-n=" => "--name=",
-             "--name=" => true,
-             :include => find_identifiers("grp-")
+              "-d=" => "--description=",
+              "--description=" => true,
+              "-n=" => "--name=",
+              "--name=" => true,
+              :include => find_identifiers("grp-")
             },
-          "update" =>
+           "update" =>
             {
-             "-d=" => "--description=",
-             "--description=" => true,
-             "-n=" => "--name=",
-             "--name=" => true,
-             :include => find_identifiers("fwp-")
+              "-d=" => "--description=",
+              "--description=" => true,
+              "-n=" => "--name=",
+              "--name=" => true,
+              :include => find_identifiers("fwp-")
             },
-          "destroy" => find_identifiers("fwp-"),
-          "remove" => [find_identifiers("fwp-"),find_identifiers("grp-"), nil],
-          "show" => find_identifiers("fwp-"),
+           "destroy" => find_identifiers("fwp-"),
+           "remove" => [find_identifiers("fwp-"), find_identifiers("grp-"), nil],
+           "show" => find_identifiers("fwp-"),
          },
-       "firewall-rules" =>
+          "firewall-rules" =>
          {
-          "create" =>
-            {
-             "-d=" => "--destination",
-             "--destination=" => [find_identifiers(%w{grp- srv-}, %w{any})],
-             "-s=" => "--source",
-             "--source=" => [find_identifiers(%w{grp- srv-}, %w{any})],
-             "-e=" => "--dport=",
-             "--dport=" => [find_network_services],
-             "-t=" => "--sport=",
-             "--sport=" => true,
-             "-i=" => "--icmptype=",
-             "--icmptype=" => [find_icmp_types],
-             "-p=" => "--protocol=",
-             "--protocol=" => [%w{tcp udp icmp}]
-            }
+           "create" =>
+             {
+               "-d=" => "--destination",
+               "--destination=" => [find_identifiers(%w(grp- srv-), %w(any))],
+               "-s=" => "--source",
+               "--source=" => [find_identifiers(%w(grp- srv-), %w(any))],
+               "-e=" => "--dport=",
+               "--dport=" => [find_network_services],
+               "-t=" => "--sport=",
+               "--sport=" => true,
+               "-i=" => "--icmptype=",
+               "--icmptype=" => [find_icmp_types],
+               "-p=" => "--protocol=",
+               "--protocol=" => [%w(tcp udp icmp)]
+             }
          },
-         "groups" =>
+          "groups" =>
            {
-            "add_servers" => find_identifiers(%w{grp- srv-}),
-            "create" =>
+             "add_servers" => find_identifiers(%w(grp- srv-)),
+             "create" =>
               {
-               "-d=" => "--description=",
-               "--description=" => true,
-               "-n=" => "--name=",
-               "--name=" => true
+                "-d=" => "--description=",
+                "--description=" => true,
+                "-n=" => "--name=",
+                "--name=" => true
               },
-            "update" =>
+             "update" =>
               {
-               "-d=" => "--description=",
-               "--description=" => true,
-               "-n=" => "--name=",
-               "--name=" => true,
-               :include => find_identifiers("grp-")
+                "-d=" => "--description=",
+                "--description=" => true,
+                "-n=" => "--name=",
+                "--name=" => true,
+                :include => find_identifiers("grp-")
               },
-            "destroy" => find_identifiers("grp-"),
-            "list" => find_identifiers("grp-"),
-            "move_servers" =>
+             "destroy" => find_identifiers("grp-"),
+             "list" => find_identifiers("grp-"),
+             "move_servers" =>
               {
-               "-f=" => "--from=",
-               "--from=" => find_identifiers("grp-"),
-               "-t=" => "--to=",
-               "--to=" => find_identifiers("grp-"),
-               :include => find_identifiers("srv-")
+                "-f=" => "--from=",
+                "--from=" => find_identifiers("grp-"),
+                "-t=" => "--to=",
+                "--to=" => find_identifiers("grp-"),
+                :include => find_identifiers("srv-")
               },
-            "remove_servers" =>
+             "remove_servers" =>
               {
-               "-a" => "--all",
-               "--all" => true,
-               :include => find_identifiers(%w{grp- srv-})
+                "-a" => "--all",
+                "--all" => true,
+                :include => find_identifiers(%w(grp- srv-))
               },
-            "show" => find_identifiers("grp-"),
+             "show" => find_identifiers("grp-"),
            },
-         "help" => self,
-         "images" =>
+          "help" => self,
+          "images" =>
            {
-            "show" => find_identifiers("img-"),
-            "list" => find_identifiers("img-"),
-            "destroy" => find_identifiers("img-"),
-            "register" =>
+             "show" => find_identifiers("img-"),
+             "list" => find_identifiers("img-"),
+             "destroy" => find_identifiers("img-"),
+             "register" =>
               {
-               "-a=" => "--arch=",
-               "--arch=" => [%w{i686 x86_64}],
-               "-d=" => "--description=",
-               "--description=" => true,
-               "-m=" => "--mode",
-               "--mode=" => [%w{virtio compatibility}],
-               "-n=" => "--name=",
-               "--name=" => true,
-               "-p=" => "--public=",
-               "--public=" => [%w{true false}],
-               "-s=" => "--source=",
-               "--source=" => true,
-               "-u=" => "--username=",
-               "--username=" => true
+                "-a=" => "--arch=",
+                "--arch=" => [%w(i686 x86_64)],
+                "-d=" => "--description=",
+                "--description=" => true,
+                "-m=" => "--mode",
+                "--mode=" => [%w(virtio compatibility)],
+                "-n=" => "--name=",
+                "--name=" => true,
+                "-p=" => "--public=",
+                "--public=" => [%w(true false)],
+                "-s=" => "--source=",
+                "--source=" => true,
+                "-u=" => "--username=",
+                "--username=" => true
               },
-            "update" =>
+             "update" =>
               {
-               "-a=" => "--arch=",
-               "--arch=" => [%w{i686 x86_64}],
-               "-d=" => "--description=",
-               "--description=" => true,
-               "-m=" => "--mode",
-               "--mode=" => [%w{virtio compatibility}],
-               "-n=" => "--name=",
-               "--name=" => true,
-               "-p=" => "--public=",
-               "--public=" => [%w{true false}],
-               "-u=" => "--username=",
-               "--username=" => true,
-               "--deprecated=" => [%w{true false}]
+                "-a=" => "--arch=",
+                "--arch=" => [%w(i686 x86_64)],
+                "-d=" => "--description=",
+                "--description=" => true,
+                "-m=" => "--mode",
+                "--mode=" => [%w(virtio compatibility)],
+                "-n=" => "--name=",
+                "--name=" => true,
+                "-p=" => "--public=",
+                "--public=" => [%w(true false)],
+                "-u=" => "--username=",
+                "--username=" => true,
+                "--deprecated=" => [%w(true false)]
               },
 
            },
-         "lbs" =>
+          "lbs" =>
            {
-            "create" =>
+             "create" =>
+               {
+                 "-d=" => "--hc-down=",
+                 "--hc-down" => [%w(1 2 3 4 5  7 8 9)],
+                 "-u=" => "--hc-up=",
+                 "--hc-up=" => [%w(1 2 3 4 5 6 7 8 9)],
+                 "-e=" => "--hc-interval=",
+                 "--hc-interval=" => [%w(5000 10000 15000)],
+                 "-k=" => "--hc-port=",
+                 "--hc-port=" => find_network_services,
+                 "-l=" => "--listeners=",
+                 "--listeners=" => true,
+                 "-n=" => "--name=",
+                 "--name=" => true,
+                 "-p=" => "--policy=",
+                 "--policy=" => [%w(least-connections round-robin)],
+                 "-s=" => "--hc-request=",
+                 "--hc-request=" => true,
+                 "-t=" => "--hc-timeout=",
+                 "--hc-timeout=" => [%w(5000 10000 15000)],
+                 "-y=" => "--hc-type=",
+                 "--hc-type=" => [%w(http tcp)],
+                 "--ssl-cert" => true,
+                 "--ssl-key" => true
+               },
+             "update" =>
               {
-               "-d=" => "--hc-down=",
-               "--hc-down" => [%w{1 2 3 4 5  7 8 9}],
-               "-u=" => "--hc-up=",
-               "--hc-up=" => [%w{1 2 3 4 5 6 7 8 9}],
-               "-e=" => "--hc-interval=",
-               "--hc-interval=" => [%w{5000 10000 15000}],
-               "-k=" => "--hc-port=",
-               "--hc-port=" => find_network_services,
-               "-l=" => "--listeners=",
-               "--listeners=" => true,
-               "-n=" => "--name=",
-               "--name=" => true,
-               "-p=" => "--policy=",
-               "--policy=" => [%w{least-connections round-robin}],
-               "-s=" => "--hc-request=",
-               "--hc-request=" => true,
-               "-t=" => "--hc-timeout=",
-               "--hc-timeout=" => [%w{5000 10000 15000}],
-               "-y=" => "--hc-type=",
-               "--hc-type=" => [%w{http tcp}],
-               "--ssl-cert" => true,
-               "--ssl-key" => true
+                "-d=" => "--hc-down=",
+                "--hc-down" => [%w(1 2 3 4 5  7 8 9)],
+                "-u=" => "--hc-up=",
+                "--hc-up=" => [%w(1 2 3 4 5 6 7 8 9)],
+                "-e=" => "--hc-interval=",
+                "--hc-interval=" => [%w(5000 10000 15000)],
+                "-k=" => "--hc-port=",
+                "--hc-port=" => find_network_services,
+                "-l=" => "--listeners=",
+                "--listeners=" => true,
+                "-n=" => "--name=",
+                "--name=" => true,
+                "-p=" => "--policy=",
+                "--policy=" => [%w(least-connections round-robin)],
+                "-s=" => "--hc-request=",
+                "--hc-request=" => true,
+                "-t=" => "--hc-timeout=",
+                "--hc-timeout=" => [%w(5000 10000 15000)],
+                "-y=" => "--hc-type=",
+                "--hc-type=" => [%w(http tcp)],
+                "--ssl-cert" => true,
+                "--ssl-key" => true,
+                "--remove-ssl" => true,
+                :include => find_identifiers("lba-")
               },
-            "update" =>
-              {
-               "-d=" => "--hc-down=",
-               "--hc-down" => [%w{1 2 3 4 5  7 8 9}],
-               "-u=" => "--hc-up=",
-               "--hc-up=" => [%w{1 2 3 4 5 6 7 8 9}],
-               "-e=" => "--hc-interval=",
-               "--hc-interval=" => [%w{5000 10000 15000}],
-               "-k=" => "--hc-port=",
-               "--hc-port=" => find_network_services,
-               "-l=" => "--listeners=",
-               "--listeners=" => true,
-               "-n=" => "--name=",
-               "--name=" => true,
-               "-p=" => "--policy=",
-               "--policy=" => [%w{least-connections round-robin}],
-               "-s=" => "--hc-request=",
-               "--hc-request=" => true,
-               "-t=" => "--hc-timeout=",
-               "--hc-timeout=" => [%w{5000 10000 15000}],
-               "-y=" => "--hc-type=",
-               "--hc-type=" => [%w{http tcp}],
-               "--ssl-cert" => true,
-               "--ssl-key" => true,
-               "--remove-ssl" => true,
-               :include => find_identifiers("lba-")
-              },
-            "list" => find_identifiers("lba-"),
-            "show" => find_identifiers("lba-"),
-            "destroy" => find_identifiers("lba-"),
-            "add_nodes" => find_identifiers(%w{lba- srv-}),
-            "remove_nodes" => find_identifiers(%w{lba- srv-}),
+             "list" => find_identifiers("lba-"),
+             "show" => find_identifiers("lba-"),
+             "destroy" => find_identifiers("lba-"),
+             "add_nodes" => find_identifiers(%w(lba- srv-)),
+             "remove_nodes" => find_identifiers(%w(lba- srv-)),
            },
-         "servers" =>
+          "servers" =>
            {
-            "create" => {
-                         "-e" => "--no-base64",
-                         "--no-base64" => true,
-                         "--base-64" => true,
-                         "-f=" => "--user-data-file=",
-                         "--user-data-file=" => [find_filename],
-                         "-g=" => "--server-groups=",
-                         "--server-groups=" => [find_identifiers("grp-")],
-                         "-i=" => "--server-count=",
-                         "--server-count=" => true,
-                         "-m=" => "--user-data=",
-                         "--user-data=" => true,
-                         "-n=" => "--name=",
-                         "--name=" => true,
-                         "-t=" => "--type=",
-                         "--type=" => [find_server_types],
-                         "-z=" => "--zone=",
-                         "--zone=" => find_zones,
-                         :include => [find_identifiers("img-")]
-                        },
-            "update" =>
-              {
-               "--no-compatability-mode" => true,
-               "--compatability-mode" => true,
+             "create" => {
                "-e" => "--no-base64",
                "--no-base64" => true,
+               "--base-64" => true,
                "-f=" => "--user-data-file=",
                "--user-data-file=" => [find_filename],
-               "-g=" => "--server-groups",
+               "-g=" => "--server-groups=",
                "--server-groups=" => [find_identifiers("grp-")],
-               "-m=" => "--user-data",
+               "-i=" => "--server-count=",
+               "--server-count=" => true,
+               "-m=" => "--user-data=",
                "--user-data=" => true,
                "-n=" => "--name=",
                "--name=" => true,
-               :include => find_identifiers("srv-"),
-              },
-            "activate_console" => find_identifiers("srv-"),
-            "destroy" => find_identifiers("srv-"),
-            "list" => find_identifiers("srv-"),
-            "show" => find_identifiers("srv-"),
-            "shutdown" => find_identifiers("srv-"),
-            "snapshot" => find_identifiers("srv-"),
-            "start" => find_identifiers("srv-"),
-            "stop" => find_identifiers("srv-")
-           },
-           "sql" => {
-             "instances" => {
-               "create" => {
-                 "-n=" => "--name=",
-                 "--name" => true,
-                 "-d=" => "--description",
-                 "--description" => true,
-                 "-t" => "--type",
-                 "--type" => true,
-                 "--allow-access" => true,
-                 "--snapshot" => find_identifiers("dbi-")
-               },
-               "destroy" => find_identifiers("dbs-"),
-               "list" => find_identifiers("dbs-"),
-               "reset_password" => find_identifiers("dbs-"),
-               "show" => find_identifiers("dbs-"),
-               "snapshot" => find_identifiers("dbs-"),
-               "update" => {
-                 "-n=" => "--name=",
-                 "--name" => true,
-                 "-d=" => "--description",
-                 "--description" => true,
-                 "--allow-access" => true,
-                 :include => find_identifiers("dbs-")
-               },
+               "-t=" => "--type=",
+               "--type=" => [find_server_types],
+               "-z=" => "--zone=",
+               "--zone=" => find_zones,
+               :include => [find_identifiers("img-")]
              },
-             "snapshots" => {
-               "destroy" => find_identifiers("dbi-"),
-               "list" => find_identifiers("dbi-"),
-               "update" => {
-                 "-n=" => "--name=",
-                 "--name" => true,
-                 "-d=" => "--description",
-                 "--description" => true,
-                 :include => find_identifiers("dbi-")
-               },
-             },
-             "types" => {
-               "list" => find_identifiers("dbt-"),
-               "show" => find_identifiers("dbt-")
-             },
-           },
-         "types" =>
-           {
-            "list" => find_server_types,
-            "show" => find_server_types
-           },
-         "users" =>
-           {
-            "list" => find_identifiers("usr-"),
-            "show" => find_identifiers("usr-"),
-            "update" =>
+             "update" =>
               {
-               "-f=" => "--ssh-key=",
-               "--ssh-key=" => find_filename,
-               "-n=" => "--name=",
-               "--name=" => true,
-               :include => find_identifiers("usr-")
+                "--no-compatability-mode" => true,
+                "--compatability-mode" => true,
+                "-e" => "--no-base64",
+                "--no-base64" => true,
+                "-f=" => "--user-data-file=",
+                "--user-data-file=" => [find_filename],
+                "-g=" => "--server-groups",
+                "--server-groups=" => [find_identifiers("grp-")],
+                "-m=" => "--user-data",
+                "--user-data=" => true,
+                "-n=" => "--name=",
+                "--name=" => true,
+                :include => find_identifiers("srv-"),
+              },
+             "activate_console" => find_identifiers("srv-"),
+             "destroy" => find_identifiers("srv-"),
+             "list" => find_identifiers("srv-"),
+             "show" => find_identifiers("srv-"),
+             "shutdown" => find_identifiers("srv-"),
+             "snapshot" => find_identifiers("srv-"),
+             "start" => find_identifiers("srv-"),
+             "stop" => find_identifiers("srv-")
+           },
+          "sql" => {
+            "instances" => {
+              "create" => {
+                "-n=" => "--name=",
+                "--name" => true,
+                "-d=" => "--description",
+                "--description" => true,
+                "-t" => "--type",
+                "--type" => true,
+                "--allow-access" => true,
+                "--snapshot" => find_identifiers("dbi-")
+              },
+              "destroy" => find_identifiers("dbs-"),
+              "list" => find_identifiers("dbs-"),
+              "reset_password" => find_identifiers("dbs-"),
+              "show" => find_identifiers("dbs-"),
+              "snapshot" => find_identifiers("dbs-"),
+              "update" => {
+                "-n=" => "--name=",
+                "--name" => true,
+                "-d=" => "--description",
+                "--description" => true,
+                "--allow-access" => true,
+                :include => find_identifiers("dbs-")
+              },
+            },
+            "snapshots" => {
+              "destroy" => find_identifiers("dbi-"),
+              "list" => find_identifiers("dbi-"),
+              "update" => {
+                "-n=" => "--name=",
+                "--name" => true,
+                "-d=" => "--description",
+                "--description" => true,
+                :include => find_identifiers("dbi-")
+              },
+            },
+            "types" => {
+              "list" => find_identifiers("dbt-"),
+              "show" => find_identifiers("dbt-")
+            },
+          },
+          "types" =>
+           {
+             "list" => find_server_types,
+             "show" => find_server_types
+           },
+          "users" =>
+           {
+             "list" => find_identifiers("usr-"),
+             "show" => find_identifiers("usr-"),
+             "update" =>
+              {
+                "-f=" => "--ssh-key=",
+                "--ssh-key=" => find_filename,
+                "-n=" => "--name=",
+                "--name=" => true,
+                :include => find_identifiers("usr-")
               }
            },
-         "zones" =>
+          "zones" =>
            {
-            "list" => find_zones
+             "list" => find_zones
            },
-         "-a" => "--account=",
-         "--account=" => [find_identifiers("acc-")],
-         "-c=" => "--client=",
-         "--client=" => [find_clients],
-         "-k" => "--insecure",
-         "--insecure" => true
+          "-a" => "--account=",
+          "--account=" => [find_identifiers("acc-")],
+          "-c=" => "--client=",
+          "--client=" => [find_clients],
+          "-k" => "--insecure",
+          "--insecure" => true
         }
        }
 
 def complete!(a, cur = nil)
   a = a.keys if a.is_a? Hash
-  matches = a.find_all { |e| e.index(cur) == 0 }
+  matches = a.select { |e| e.index(cur) == 0 }
   # exclude all option args unless specifically looking for them
   if cur.index('-') != 0
-    matches = matches.find_all { |e| e.index('-') != 0 }
+    matches = matches.select { |e| e.index('-') != 0 }
   end
-  matches.collect! { |m| m.chomp("=") }
+  matches.map! { |m| m.chomp("=") }
   puts matches.join("\n")
   exit 0
 end
@@ -510,14 +510,14 @@ def subwalk(a, toks, cur, prev)
     next if toks.shift
     case s
     when Proc
-      return s.call(cur,prev)
+      return s.call(cur, prev)
     when Array
       return s
     when nil
       return []
     end
   end
-  return nil
+  nil
 end
 
 def walk(toks, cur, prev, spec)
@@ -530,12 +530,12 @@ def walk(toks, cur, prev, spec)
     when :_default
       # end of the line
       # exclude any aliases
-      spec.reject! { |k,v| v.is_a? String }
+      spec.reject! { |_k, v| v.is_a? String }
       options = {}
       if spec.include? :include
         r = subwalk(Array(spec[:include]), toks, cur, prev)
         unless r.nil?
-          r.each do |k,v|
+          r.each do |k, v|
             options[k] = v
           end
         end
@@ -570,7 +570,7 @@ cmd = ARGV[0]
 cur = ARGV[1].shellunescape
 prev = ARGV[2].shellunescape
 point = ENV['COMP_POINT'].to_i
-line = ENV['COMP_LINE'][0..point-1].shellunescape
+line = ENV['COMP_LINE'][0..point - 1].shellunescape
 begin
   toks = line.shellsplit
 rescue ArgumentError

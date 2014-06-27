@@ -18,7 +18,7 @@ describe Brightbox::Server do
 
       it "shows detailed attributes of a server" do
         output = FauxIO.new do
-          Brightbox.render_table(@servers, {:vertical => true})
+          Brightbox.render_table(@servers, :vertical => true)
         end
         expect(output.stdout).to include("private_ips:")
         expect(output.stdout).to include("ram:")

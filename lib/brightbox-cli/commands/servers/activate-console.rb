@@ -6,7 +6,7 @@ module Brightbox
     cmd.arg_name "server-id..."
     cmd.command [:activate_console] do |c|
 
-      c.action do |global_options, options, args|
+      c.action do |global_options, _options, args|
 
         raise "You must specify servers to activate the console for" if args.empty?
 

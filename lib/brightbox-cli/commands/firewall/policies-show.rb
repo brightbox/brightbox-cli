@@ -5,7 +5,7 @@ module Brightbox
     cmd.arg_name "firewall-policy-id"
     cmd.command [:show] do |c|
 
-      c.action do |global_options, options, args|
+      c.action do |global_options, _options, args|
         raise "You must specify server groups to show" if args.empty?
 
         policies = FirewallPolicy.find_or_call(args) do |id|

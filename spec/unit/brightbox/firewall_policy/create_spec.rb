@@ -5,7 +5,7 @@ describe Brightbox::FirewallPolicy do
   describe "#create", :vcr do
 
     it "should create firewall policy" do
-      params = { :name => "rspec_tests"}
+      params = { :name => "rspec_tests" }
       @group = Brightbox::ServerGroup.create(params)
       expect do
         firewall_options = {
@@ -16,11 +16,11 @@ describe Brightbox::FirewallPolicy do
       end.not_to raise_error
 
       output = FauxIO.new do
-        Brightbox.render_table([@firewall_policy],:vertical => true)
+        Brightbox.render_table([@firewall_policy], :vertical => true)
       end
 
       expect(output.stdout).to match(/rspec_firewall_policy/)
-      @group.destroy()
+      @group.destroy
     end
   end
 end

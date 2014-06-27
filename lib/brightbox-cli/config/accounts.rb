@@ -44,7 +44,7 @@ module Brightbox
             service = Fog::Compute.new(to_fog)
             accounts = service.accounts
 
-            @account = accounts.select { |acc| %w{pending active}.include?(acc.status) }.first.id
+            @account = accounts.select { |acc| %w(pending active).include?(acc.status) }.first.id
             save_default_account(@account) if @account
           rescue Brightbox::BBConfigError
             # We can't get a suitable fog connection so we can't select an

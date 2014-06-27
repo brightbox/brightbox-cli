@@ -5,7 +5,7 @@ module Brightbox
     cmd.arg_name "account-id..."
     cmd.command [:reset_ftp_password] do |c|
 
-      c.action do |global_options, options, args|
+      c.action do |global_options, _options, args|
 
         if args.empty?
           raise "You must specify the accounts to reset ftp passwords for"

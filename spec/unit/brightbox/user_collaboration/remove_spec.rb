@@ -24,7 +24,7 @@ describe Brightbox::UserCollaboration do
 
   # Returns a fog model of a UserCollaboration to initialise a CLI model
   #
-  def faux_collaboration_data(status, options = {})
+  def faux_collaboration_data(status, _options = {})
     api_response_data = {
       "id" => "col-12345",
       "resource_type" => "collaboration",
@@ -39,17 +39,17 @@ describe Brightbox::UserCollaboration do
       "user" => nil,
       "account" => {
         "id" => "acc-12345",
-        "resource_type"=>"account",
-        "url"=>"https://api.gb1.brightbox.com/1.0/accounts/acc-12345",
-        "name"=>"System account",
-        "status"=>"active"
+        "resource_type" => "account",
+        "url" => "https://api.gb1.brightbox.com/1.0/accounts/acc-12345",
+        "name" => "System account",
+        "status" => "active"
       },
-      "inviter"=>{
-        "id"=>"usr-54321",
-        "resource_type"=>"user",
-        "url"=>"https://api.gb1.brightbox.com/1.0/users/usr-54321",
-        "name"=>"Marie Halvorson",
-        "email_address"=>"marie@example.com"
+      "inviter" => {
+        "id" => "usr-54321",
+        "resource_type" => "user",
+        "url" => "https://api.gb1.brightbox.com/1.0/users/usr-54321",
+        "name" => "Marie Halvorson",
+        "email_address" => "marie@example.com"
       }
     }
     Fog::Compute::Brightbox::UserCollaboration.new(api_response_data)

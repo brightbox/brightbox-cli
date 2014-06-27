@@ -10,9 +10,9 @@ describe Brightbox::BBConfig do
       end
 
       it "does not raise an error" do
-        expect {
+        expect do
           Brightbox::BBConfig.new.find_or_set_default_account
-        }.to_not raise_error
+        end.to_not raise_error
       end
     end
 
@@ -28,9 +28,9 @@ describe Brightbox::BBConfig do
       end
 
       it "does not update" do
-        expect {
+        expect do
           config.find_or_set_default_account
-        }.to_not change(config, :default_account)
+        end.to_not change(config, :default_account)
       end
     end
 
@@ -45,16 +45,16 @@ describe Brightbox::BBConfig do
       end
 
       it "does not raise an error" do
-        expect {
+        expect do
           config.find_or_set_default_account
-        }.to_not raise_error
+        end.to_not raise_error
       end
 
       it "does not update " do
         skip
-        expect {
+        expect do
           config.find_or_set_default_account
-        }.to_not change(config, :default_account)
+        end.to_not change(config, :default_account)
       end
     end
 
@@ -69,9 +69,9 @@ describe Brightbox::BBConfig do
       end
 
       it "updates the setting" do
-        expect {
+        expect do
           config.find_or_set_default_account
-        }.to change(config, :default_account)
+        end.to change(config, :default_account)
       end
     end
 
@@ -87,9 +87,9 @@ describe Brightbox::BBConfig do
 
       it "does not update" do
         skip
-        expect {
+        expect do
           config.find_or_set_default_account
-        }.to_not change(config, :default_account)
+        end.to_not change(config, :default_account)
       end
     end
   end

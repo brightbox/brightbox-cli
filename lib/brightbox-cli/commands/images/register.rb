@@ -27,7 +27,7 @@ module Brightbox
       c.default_value "false"
       c.flag [:p, "public"]
 
-      c.action do |global_options, options, args|
+      c.action do |global_options, options, _args|
 
         raise "You must specify the architecture" unless options[:a]
         raise "You must specify the source filename" unless options[:s]

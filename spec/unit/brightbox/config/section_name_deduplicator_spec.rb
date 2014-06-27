@@ -33,7 +33,7 @@ describe Brightbox::Config::SectionNameDeduplicator do
 
     context "when name has been deduped before" do
       let(:name) { "dev" }
-      let(:in_use) { ["dev", "dev_1", "dev_2"] }
+      let(:in_use) { %w(dev dev_1 dev_2) }
 
       it "returns a deduplicated name" do
         expect(deduper.next).to eql("dev_3")

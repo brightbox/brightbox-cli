@@ -5,7 +5,7 @@ module Brightbox
     cmd.arg_name "lb-id..."
     cmd.command [:destroy] do |c|
 
-      c.action do |global_options, options, args|
+      c.action do |_global_options, _options, args|
 
         raise "You must specify the load balancers to destroy" if args.empty?
 

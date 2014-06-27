@@ -9,7 +9,7 @@ module Brightbox
       c.desc I18n.t("options.description.desc")
       c.flag [:d, :description]
 
-      c.action do |global_options, options, args|
+      c.action do |global_options, options, _args|
         params = {}
 
         params[:name] = options[:n] if options[:n]

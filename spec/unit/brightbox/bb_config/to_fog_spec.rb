@@ -10,9 +10,9 @@ describe Brightbox::BBConfig do
       let(:contents) { "" }
 
       it "raises an error" do
-        expect {
+        expect do
           fog_config.to_fog
-        }.to raise_error(Brightbox::BBConfigError)
+        end.to raise_error(Brightbox::BBConfigError)
       end
     end
 

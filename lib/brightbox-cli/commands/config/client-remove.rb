@@ -5,7 +5,7 @@ module Brightbox
     cmd.arg_name "alias"
     cmd.command [:client_remove] do |c|
 
-      c.action do |global_options, options, args|
+      c.action do |_global_options, _options, args|
 
         info "Using config file #{$config.config_filename}"
 

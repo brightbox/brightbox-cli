@@ -7,7 +7,7 @@ module Brightbox
     cmd.desc "List your collaborations"
     cmd.arg_name "[collaboration-id...]"
     cmd.command [:list] do |c|
-      c.action do |global_options, options, args|
+      c.action do |global_options, _options, args|
         if args.empty?
           collaborations = UserCollaboration.find(:all)
         else
@@ -22,7 +22,7 @@ module Brightbox
     cmd.desc "Show details of collaborations"
     cmd.arg_name "[collaboration-id...]"
     cmd.command [:show] do |c|
-      c.action do |global_options, options, args|
+      c.action do |global_options, _options, args|
         collaborations = UserCollaboration.find_or_call(args) do |id|
           warn "Couldn't find collaboration #{id}"
         end

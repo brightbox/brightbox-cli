@@ -4,7 +4,7 @@ module Brightbox
     cmd.desc I18n.t("servers.destroy.desc")
     cmd.arg_name "[server-id...]"
     cmd.command [:destroy] do |c|
-      c.action do |global_options, options, args|
+      c.action do |_global_options, _options, args|
 
         raise "You must specify servers to destroy" if args.empty?
 

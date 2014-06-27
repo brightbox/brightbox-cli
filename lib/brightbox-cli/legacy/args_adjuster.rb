@@ -16,9 +16,9 @@ module Brightbox
         @globals = []
 
         parser = OptionParser.new do |opts|
-          opts.on("-v", "--version") { |op| @globals << "-v" }
-          opts.on("-s", "--simple") { |op| @globals << "-s" }
-          opts.on("-k", "--insecure") { |op| @globals << "-k" }
+          opts.on("-v", "--version") { |_op| @globals << "-v" }
+          opts.on("-s", "--simple") { |_op| @globals << "-s" }
+          opts.on("-k", "--insecure") { |_op| @globals << "-k" }
           opts.on("-c", "--client CLIENT") { |op| @globals << "-c" << op }
           opts.on("--account ACCOUNT") { |op| @globals << "--account" << op }
         end

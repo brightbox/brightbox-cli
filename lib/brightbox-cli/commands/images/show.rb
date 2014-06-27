@@ -5,7 +5,7 @@ module Brightbox
     cmd.arg_name "image-id..."
     cmd.command [:show] do |c|
 
-      c.action do |global_options, options, args|
+      c.action do |global_options, _options, args|
         images = Image.find_all_or_warn(args)
 
         display_options = {

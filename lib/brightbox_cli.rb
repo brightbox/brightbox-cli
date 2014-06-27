@@ -10,14 +10,14 @@ lib_dir = File.expand_path(File.dirname(__FILE__))
 
 $LOAD_PATH.unshift lib_dir unless $LOAD_PATH.include?(lib_dir)
 
-os_config = File.join(lib_dir,"brightbox-cli","os_config.rb")
+os_config = File.join(lib_dir, "brightbox-cli", "os_config.rb")
 require os_config if File.exist? os_config
 
-vendor_dir = File.expand_path(File.join(lib_dir, 'brightbox-cli','vendor'))
+vendor_dir = File.expand_path(File.join(lib_dir, 'brightbox-cli', 'vendor'))
 
 # Add any vendored libraries into search path
 Dir.glob(vendor_dir + '/*').each do |f|
-  $:.unshift File.join(f, 'lib')
+  $LOAD_PATH.unshift File.join(f, 'lib')
 end
 
 require "multi_json"

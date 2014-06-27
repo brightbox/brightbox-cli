@@ -8,7 +8,7 @@ describe TmpConfig do
 
       @tmp_config = TmpConfig.new(file_contents)
       tmp_config_file = File.join(@tmp_config.path, "config")
-      expect(File.exists?(tmp_config_file)).to be true
+      expect(File.exist?(tmp_config_file)).to be true
 
       contents = File.read(tmp_config_file)
       expect(contents).to eql(file_contents)

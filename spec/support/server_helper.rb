@@ -1,7 +1,7 @@
 # Server parameter helper
 
 module ServerHelpers
-  def server_params(name, type = nil)
+  def server_params(name, _type = nil)
     {
       :image_id      => "img-12345",
       :name          => name,

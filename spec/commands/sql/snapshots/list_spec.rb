@@ -14,7 +14,7 @@ describe "brightbox database-snapshots" do
     end
 
     context "when resources are available", :vcr do
-      let(:argv) { %w{sql snapshots list} }
+      let(:argv) { %w(sql snapshots list) }
 
       it "does not output to stderr" do
         expect(stderr).to be_empty

@@ -8,7 +8,7 @@ module Brightbox
       cmd.arg_name "[snapshot-id...]"
       cmd.command [:list] do |c|
 
-        c.action do |global_options, options, args|
+        c.action do |global_options, _options, args|
           if args.empty?
             snapshots = DatabaseSnapshot.find(:all)
           else

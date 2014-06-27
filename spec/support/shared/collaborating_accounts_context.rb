@@ -9,10 +9,10 @@ shared_context "collaborating accounts" do
     data = {
       "id" => "acc-12345",
       "resource_type" => "account",
-      "url"=>"https://api.gb1.brightbox.com/1.0/accounts/acc-12345",
+      "url" => "https://api.gb1.brightbox.com/1.0/accounts/acc-12345",
       "name" => "Owned account name",
       "status" => "active",
-      "ram_limit" => 3200000,
+      "ram_limit" => 3_200_000,
       "ram_used" => 3072,
       "cloud_ips_limit" => 32,
       "cloud_ips_used" => 0,

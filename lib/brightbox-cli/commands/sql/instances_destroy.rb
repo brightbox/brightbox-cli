@@ -5,7 +5,7 @@ module Brightbox
       cmd.desc I18n.t("sql.instances.destroy.desc")
       cmd.arg_name "[instance-id...]"
       cmd.command [:destroy] do |c|
-        c.action do |global_options, options, args|
+        c.action do |_global_options, _options, args|
 
           raise "You must specify instance IDs to destroy" if args.empty?
 

@@ -7,7 +7,7 @@ module Brightbox
     cmd.desc "List an accounts collaborations"
     cmd.arg_name "[collaboration-id...]"
     cmd.command [:list] do |c|
-      c.action do |global_options, options, args|
+      c.action do |global_options, _options, args|
         collaborations = Collaboration.find_all_or_warn(args)
         render_table(collaborations, global_options)
       end
@@ -32,7 +32,7 @@ module Brightbox
     cmd.desc "Resends an invitation email for a pending collaboration"
     cmd.arg_name "collaboration-id"
     cmd.command [:resend] do |c|
-      c.action do |global_options, options, args|
+      c.action do |global_options, _options, args|
         collaborations = Collaboration.find_or_call(args) do |id|
           warn "Couldn't find collaboration #{id}"
         end
@@ -44,7 +44,7 @@ module Brightbox
     cmd.desc "Show details of collaborations"
     cmd.arg_name "[collaboration-id...]"
     cmd.command [:show] do |c|
-      c.action do |global_options, options, args|
+      c.action do |global_options, _options, args|
         collaborations = Collaboration.find_or_call(args) do |id|
           warn "Couldn't find collaboration #{id}"
         end
@@ -55,7 +55,7 @@ module Brightbox
     cmd.desc "Destroy collaborations"
     cmd.arg_name "[collaboration-id...]"
     cmd.command [:destroy] do |c|
-      c.action do |global_options, options, args|
+      c.action do |global_options, _options, args|
         collaborations = Collaboration.find_or_call(args) do |id|
           warn "Couldn't find collaboration #{id}"
         end

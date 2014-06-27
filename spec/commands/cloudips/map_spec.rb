@@ -3,7 +3,7 @@ require "spec_helper"
 describe "brightbox cloudips" do
 
   describe "map" do
-    let(:output) { FauxIO.new { Brightbox::run(argv) } }
+    let(:output) { FauxIO.new { Brightbox.run(argv) } }
     let(:stdout) { output.stdout }
     let(:stderr) { output.stderr }
 
@@ -15,7 +15,7 @@ describe "brightbox cloudips" do
     end
 
     context "when destination is a server ID", :vcr do
-      let(:argv) { %w{cloudips map cip-12345 srv-12345} }
+      let(:argv) { %w(cloudips map cip-12345 srv-12345) }
       let(:target) { "int-12345" }
 
       it "passes the interface identifier to the API" do
@@ -26,7 +26,7 @@ describe "brightbox cloudips" do
 
     context "when destination is another value", :vcr do
       let(:target) { "res-12345" }
-      let(:argv) { %w{cloudips map cip-12345 res-12345} }
+      let(:argv) { %w(cloudips map cip-12345 res-12345) }
 
       it "passes the identifier to the API" do
         expect_any_instance_of(Brightbox::CloudIP).to receive(:map).with(target)

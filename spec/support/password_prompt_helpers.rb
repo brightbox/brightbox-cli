@@ -1,7 +1,6 @@
 require "highline"
 
 module PasswordPromptHelpers
-
   # This password matches the testing users available on dev machines
   def default_test_password
     "N:B3e%7Cmh"

@@ -19,16 +19,16 @@ describe Brightbox::BBConfig do
       end
 
       it "does alters the value" do
-        expect {
+        expect do
           @config.clear_default_client
-        }.to change(@config, :default_client)
+        end.to change(@config, :default_client)
         expect(@config.default_client).to be_nil
       end
 
       it "dirties the config" do
-        expect {
+        expect do
           @config.clear_default_client
-        }.to change(@config, :dirty?)
+        end.to change(@config, :dirty?)
       end
     end
 
@@ -39,15 +39,15 @@ describe Brightbox::BBConfig do
       end
 
       it "does not alter the value" do
-        expect {
+        expect do
           @config.clear_default_client
-        }.to_not change(@config, :default_client)
+        end.to_not change(@config, :default_client)
       end
 
       it "does not dirty the config" do
-        expect {
+        expect do
           @config.clear_default_client
-        }.to_not change(@config, :dirty?)
+        end.to_not change(@config, :dirty?)
       end
     end
   end

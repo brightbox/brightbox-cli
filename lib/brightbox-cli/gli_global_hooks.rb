@@ -32,7 +32,7 @@ module Brightbox
   desc "Disable peer SSL certificate verification"
   switch [:k, :insecure], :negatable => false
 
-  pre do |global_options, command, options, args|
+  pre do |global_options, command, _options, _args|
     if command.topmost_ancestor.name == :config
       force_default_config = false
     else
@@ -73,7 +73,7 @@ module Brightbox
     true
   end
 
-  post do |global_options, command, options, args|
+  post do |_global_options, _command, _options, _args|
     begin
       # Api.conn is another global which holds the authentication tokens so
       # we need to shuffle data between globals at a higher level rather than

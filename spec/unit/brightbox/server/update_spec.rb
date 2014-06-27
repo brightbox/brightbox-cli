@@ -10,7 +10,7 @@ describe Brightbox::Server do
           :image_id => image_id
         }
         @server = Brightbox::Server.create(options)
-        @group = Brightbox::ServerGroup.create({:name => "test"})
+        @group = Brightbox::ServerGroup.create(:name => "test")
       end
 
       it "should update with group" do

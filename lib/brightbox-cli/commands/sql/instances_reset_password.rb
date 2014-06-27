@@ -5,7 +5,7 @@ module Brightbox
       cmd.desc I18n.t("sql.instances.reset_password.desc")
       cmd.arg_name "server-id"
       cmd.command [:"reset-password"] do |c|
-        c.action do |global_options, options, args|
+        c.action do |global_options, _options, args|
           dbs_id = args.shift
           unless dbs_id =~ /^dbs-/
             raise "You must specify a valid SQL instance ID as the first argument"

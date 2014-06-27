@@ -14,7 +14,7 @@ describe "brightbox database-servers" do
     end
 
     context "when database server active", :vcr do
-      let(:argv) { %w{sql instances snapshot dbs-12345} }
+      let(:argv) { %w(sql instances snapshot dbs-12345) }
       let(:expected_args) { { :allow_access => ["10.0.0.0"] } }
 
       it "correctly sends API parameters" do
@@ -24,7 +24,7 @@ describe "brightbox database-servers" do
     end
 
     context "when database server can not be snapshotted", :vcr do
-      let(:argv) { %w{sql instances snapshot dbs-12345} }
+      let(:argv) { %w(sql instances snapshot dbs-12345) }
 
       it "reports an error to the user" do
         expect_any_instance_of(Brightbox::DatabaseServer).to receive(:snapshot).and_call_original

@@ -33,7 +33,7 @@ describe Brightbox::BBConfig do
 
       it "caches the new tokens" do
         # Access token
-        expect(File.exists?(@config.access_token_filename)).to be true
+        expect(File.exist?(@config.access_token_filename)).to be true
 
         expect(cached_access_token(@config)).to eql(@new_access_token)
 
@@ -55,7 +55,6 @@ describe Brightbox::BBConfig do
         @new_access_token = "0d09cf23393aeb039b7abe6fd15339108095e927"
         @new_refresh_token = "53779449e94964eefb10daaa4807fd5f007b5211"
 
-
         # If we are prompting then the refresh token has failed
         expect(@config).to_not receive(:prompt_for_password)
         @output = FauxIO.new { @config.renew_tokens }
@@ -63,7 +62,7 @@ describe Brightbox::BBConfig do
 
       it "caches the new tokens" do
         # Access token
-        expect(File.exists?(@config.access_token_filename)).to be true
+        expect(File.exist?(@config.access_token_filename)).to be true
 
         # NOTE The cached to disk version is filtered by VCR when testing
         expect(cached_access_token(@config)).to eql(@new_access_token)
@@ -91,7 +90,7 @@ describe Brightbox::BBConfig do
 
       it "caches the new tokens" do
         # Access token
-        expect(File.exists?(@config.access_token_filename)).to be true
+        expect(File.exist?(@config.access_token_filename)).to be true
 
         # NOTE The cached to disk version is filtered by VCR when testing
         expect(cached_access_token(@config)).to eql(@new_access_token)
@@ -112,7 +111,7 @@ describe Brightbox::BBConfig do
       end
 
       it "caches a new access token" do
-        expect(File.exists?(@config.access_token_filename)).to be true
+        expect(File.exist?(@config.access_token_filename)).to be true
         expect(cached_access_token(@config)).to eql("5f3fd8fe25388fc9b801afc15a23d3991c68257d")
       end
     end

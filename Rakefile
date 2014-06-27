@@ -2,7 +2,7 @@ require "bundler"
 require "rspec/core/rake_task"
 
 bbcloud_path = File.expand_path("./lib", File.dirname(__FILE__))
-$:.unshift(bbcloud_path)
+$LOAD_PATH.unshift(bbcloud_path)
 
 task :default => [:test]
 

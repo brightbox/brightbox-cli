@@ -8,7 +8,7 @@ module Brightbox
     cmd.arg_name "[type-id...]"
     cmd.command [:list] do |c|
 
-      c.action do |global_options, options, args|
+      c.action do |global_options, _options, args|
 
         if args.empty?
           types = Type.find :all
@@ -26,7 +26,7 @@ module Brightbox
     cmd.arg_name "type-id..."
     cmd.command [:show] do |c|
 
-      c.action do |global_options, options, args|
+      c.action do |global_options, _options, args|
 
         if args.empty?
           raise "You must specify the types you want to show"

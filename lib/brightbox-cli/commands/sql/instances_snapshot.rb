@@ -6,7 +6,7 @@ module Brightbox
       cmd.arg_name "[instance-id...]"
       cmd.command [:snapshot] do |c|
 
-        c.action do |global_options, options, args|
+        c.action do |_global_options, _options, args|
 
           raise "You must specify SQL instance IDs to snapshot" if args.empty?
 

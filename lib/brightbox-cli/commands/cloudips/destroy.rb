@@ -8,7 +8,7 @@ module Brightbox
       c.desc "Unmap mapped IPs before destroying them"
       c.switch [:u, "unmap"], :negatable => false
 
-      c.action do |global_options, options, args|
+      c.action do |_global_options, options, args|
 
         if args.empty?
           raise "You must specify the Cloud IPs you want to destroy"

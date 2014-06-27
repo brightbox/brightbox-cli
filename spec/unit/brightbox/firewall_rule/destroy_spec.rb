@@ -18,9 +18,9 @@ describe Brightbox::FirewallRule do
       end
 
       it "destroys a rule" do
-        expect {
+        expect do
           @rule.destroy
-        }.to_not raise_error
+        end.to_not raise_error
       end
     end
   end
