@@ -11,9 +11,23 @@ module Brightbox
         display_options = {
           :vertical => true,
           :fields => [
-            :id, :type, :owner, :created_at, :status, :arch, :name,
-            :description, :username, :virtual_size, :disk_size, :public,
-            :"compatibility_mode", :official, :ancestor_id, :licence_name
+            :id,
+            :type,
+            :owner,
+            :created_at,
+            :status,
+            :locked,
+            :arch,
+            :name,
+            :description,
+            :username,
+            :virtual_size,
+            :disk_size,
+            :public,
+            :"compatibility_mode",
+            :official,
+            :ancestor_id,
+            :licence_name
           ]
         }
 

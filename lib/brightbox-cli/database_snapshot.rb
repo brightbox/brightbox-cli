@@ -29,6 +29,7 @@ module Brightbox
     def to_row
       a = fog_model.attributes
       a[:status] = fog_model.state
+      a[:locked] = locked?
       a[:created_on] = fog_model.created_at.strftime("%Y-%m-%d")
       a
     end

@@ -11,6 +11,7 @@ module Brightbox
 
     def to_row
       attributes.merge(
+        :locked => locked?,
         :ssl_issuer => certificate_issuer,
         :ssl_subject => certificate_subject,
         :ssl_valid_from => certificate_valid_from,

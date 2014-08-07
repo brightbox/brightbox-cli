@@ -43,6 +43,7 @@ module Brightbox
       a[:created_on] = created_on
       a[:type] = server_type['handle']
       a[:status] = fog_model.state
+      a[:locked] = locked?
       a[:zone] = zone && zone['handle']
       a[:hostname] = id
       a[:public_hostname] = "public.#{fqdn}" unless cloud_ips.empty?

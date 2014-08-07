@@ -37,6 +37,7 @@ module Brightbox
       [
         :id,
         :status,
+        :locked,
         :name,
         :created_at,
         :deleted_at,
