@@ -169,6 +169,8 @@ en:
         desc: Create a new Cloud SQL instance
       destroy:
         desc: Destroy Cloud SQL instances
+      lock:
+        desc: Lock Cloud SQL instances
       list:
         desc: List Cloud SQL instances
       reset_password:
@@ -177,6 +179,8 @@ en:
         desc: Show details of Cloud SQL instances
       snapshot:
         desc: Create a new Cloud SQL snapshot from an instance
+      unlock:
+        desc: Unlock Cloud SQL instances
       update:
         desc: Update a Cloud SQL instance
     snapshots:
