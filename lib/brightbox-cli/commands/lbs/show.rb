@@ -13,6 +13,7 @@ module Brightbox
           :fields => [
             :id,
             :status,
+            :locked,
             :name,
             :created_at,
             :deleted_at,

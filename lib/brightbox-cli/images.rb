@@ -78,6 +78,7 @@ module Brightbox
       o = fog_model.attributes
       o[:id] = fog_model.id
       o[:status] = status
+      o[:locked] = locked?
       o[:username] = username
       o[:arch] = arch
       o[:name] = name.to_s + " (#{arch})"

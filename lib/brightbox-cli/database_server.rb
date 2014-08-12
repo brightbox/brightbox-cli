@@ -46,7 +46,7 @@ module Brightbox
     # These are all the fields show in the longer table form
     def self.detailed_fields
       [
-        :id, :name, :description, :status,
+        :id, :name, :description, :status, :locked,
         :type, :engine, :version,
         :zone,
         :created_on,
@@ -71,6 +71,7 @@ module Brightbox
     def to_row
       a = fog_model.attributes
       a[:status] = fog_model.state
+      a[:locked] = locked?
       a[:type] = type_identifier
       a[:db_engine] = engine_version
       a[:engine] = database_engine
