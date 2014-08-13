@@ -104,10 +104,14 @@ en:
       desc: Destroy images
     list:
       desc: List images
+    lock:
+      desc: Lock images
     register:
       desc: Register an image in the image library
     show:
       desc: Show images
+    unlock:
+      desc: Unlock images
     update:
       desc: Update an image
   lbs:
