@@ -121,10 +121,14 @@ en:
       desc: Destroy load balancers
     list:
       desc: List load balancers
+    lock:
+      desc: Lock load balancers
     remove_nodes:
       desc: Remove servers from a load balancer
     show:
       desc: Show load balancers
+    unlock:
+      desc: Unlock load balancers
     update:
       desc: Update a load balancer
       long_desc: All intervals and timeouts are in milliseconds
