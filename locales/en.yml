@@ -136,6 +136,8 @@ en:
       desc: Create servers
     destroy:
       desc: Destroy servers
+    lock:
+      desc: Lock servers
     show:
       desc: Show servers
     shutdown:
@@ -146,6 +148,8 @@ en:
       desc: Start servers
     stop:
       desc: Stop servers with equivalent of powering off
+    unlock:
+      desc: Unlock servers
     update:
       desc: Update a server
   sql:
