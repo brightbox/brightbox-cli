@@ -187,10 +187,14 @@ en:
       desc: Manage Cloud SQL snapshots
       list:
         desc: List Cloud SQL snapshots
+      lock:
+        desc: Lock Cloud SQL snapshots
       destroy:
         desc: Destroy a number of Cloud SQL snapshots
       show:
         desc: Show details of Cloud SQL snapshots
+      unlock:
+        desc: Unlock Cloud SQL snapshots
       update:
         desc: Update a Cloud SQL snapshot's metadata
     types:
