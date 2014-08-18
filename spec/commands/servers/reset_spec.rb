@@ -18,22 +18,22 @@ describe "brightbox servers" do
     cache_access_token(config, "f83da712e6299cda953513ec07f7a754f747d727")
   end
 
-  describe "reboot" do
+  describe "reset" do
     context "when resource is known" do
-      let(:argv) { %w(servers reboot srv-12345) }
+      let(:argv) { %w(servers reset srv-12345) }
 
       before do
         expect(resource_class).to receive(:find_or_call).with(resource_ids).and_return(results)
-        expect(resource).to receive(:reboot).with(false)
+        expect(resource).to receive(:reboot).with(true)
       end
 
       it "outputs notice to STDERR" do
-        expect(stderr).to match("Sending reboot to #{resource_id}")
+        expect(stderr).to match("Sending reset to #{resource_id}")
       end
     end
 
     context "when resource is unknown" do
-      let(:argv) { %w(servers reboot srv-12345) }
+      let(:argv) { %w(servers reset srv-12345) }
 
       before do
         expect(resource_class).to receive(:find).with(resource_id).and_raise(Brightbox::Api::NotFound)
@@ -45,10 +45,10 @@ describe "brightbox servers" do
     end
 
     context "when no arguments are passed" do
-      let(:argv) { %w(servers reboot) }
+      let(:argv) { %w(servers reset) }
 
       it "outputs error to STDERR" do
-        expect(stderr).to match("ERROR: You must specify servers to reboot")
+        expect(stderr).to match("ERROR: You must specify servers to reset")
       end
     end
   end
