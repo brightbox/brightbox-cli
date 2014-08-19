@@ -104,10 +104,14 @@ en:
       desc: Destroy images
     list:
       desc: List images
+    lock:
+      desc: Lock images
     register:
       desc: Register an image in the image library
     show:
       desc: Show images
+    unlock:
+      desc: Unlock images
     update:
       desc: Update an image
   lbs:
@@ -121,10 +125,14 @@ en:
       desc: Destroy load balancers
     list:
       desc: List load balancers
+    lock:
+      desc: Lock load balancers
     remove_nodes:
       desc: Remove servers from a load balancer
     show:
       desc: Show load balancers
+    unlock:
+      desc: Unlock load balancers
     update:
       desc: Update a load balancer
       long_desc: All intervals and timeouts are in milliseconds
@@ -136,6 +144,8 @@ en:
       desc: Create servers
     destroy:
       desc: Destroy servers
+    lock:
+      desc: Lock servers
     reboot:
       desc: Reboot servers (OS reboot issued)
     reset:
@@ -150,6 +160,8 @@ en:
       desc: Start servers
     stop:
       desc: Stop servers with equivalent of powering off
+    unlock:
+      desc: Unlock servers
     update:
       desc: Update a server
   sql:
@@ -173,6 +185,8 @@ en:
         desc: Create a new Cloud SQL instance
       destroy:
         desc: Destroy Cloud SQL instances
+      lock:
+        desc: Lock Cloud SQL instances
       list:
         desc: List Cloud SQL instances
       reset_password:
@@ -181,16 +195,22 @@ en:
         desc: Show details of Cloud SQL instances
       snapshot:
         desc: Create a new Cloud SQL snapshot from an instance
+      unlock:
+        desc: Unlock Cloud SQL instances
       update:
         desc: Update a Cloud SQL instance
     snapshots:
       desc: Manage Cloud SQL snapshots
       list:
         desc: List Cloud SQL snapshots
+      lock:
+        desc: Lock Cloud SQL snapshots
       destroy:
         desc: Destroy a number of Cloud SQL snapshots
       show:
         desc: Show details of Cloud SQL snapshots
+      unlock:
+        desc: Unlock Cloud SQL snapshots
       update:
         desc: Update a Cloud SQL snapshot's metadata
     types:
