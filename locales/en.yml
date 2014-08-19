@@ -146,6 +146,10 @@ en:
       desc: Destroy servers
     lock:
       desc: Lock servers
+    reboot:
+      desc: Reboot servers (OS reboot issued)
+    reset:
+      desc: Reset servers (Hardward reset issued)
     show:
       desc: Show servers
     shutdown:
