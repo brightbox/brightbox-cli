@@ -1,3 +1,29 @@
+### v1.3.0 / 2014-08-20
+[Full Changelog](https://github.com/brightbox/brightbox-cli/compare/v1.2.2...v1.3.0)
+
+Enhancements:
+
+* Add `server reboot` command to send soft (OS level) restarts to server.
+* Add `server reset` command to send hard (Hypervisor level) restart to server.
+* Add `lock` and `unlock` commands to resources to prevent accidental deletion:
+  * Servers
+  * Images
+  * Load balancers
+  * SQL instances
+  * SQL snapshots
+* Can see lock status in a resource's details.
+
+Bug fixes:
+
+* Fix config `#persistent?` method if option was being sent.
+
+Changes:
+
+* Update `fog-brightbox` to v0.3.0
+* Update `rspec` to `v2.99.1`
+* Update specs
+* Code style improvements
+
 ### v1.2.2 / 2014-04-22
 [Full Changelog](https://github.com/brightbox/brightbox-cli/compare/v1.2.1...v1.2.2)
 
