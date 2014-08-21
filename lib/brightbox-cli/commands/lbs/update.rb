@@ -22,7 +22,7 @@ module Brightbox
       c.flag [:y, "hc-type"]
 
       c.desc "Buffer Size. Defaults to 4096 bytes"
-      c.flag [:b, "bf-size"]
+      c.flag [:b, "buffer-size"]
 
       c.desc "Healthcheck timeout"
       c.flag [:t, "hc-timeout"]
