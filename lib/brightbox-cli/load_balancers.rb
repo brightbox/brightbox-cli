@@ -16,7 +16,6 @@ module Brightbox
         :ssl_subject => certificate_subject,
         :ssl_valid_from => certificate_valid_from,
         :ssl_expires_at => certificate_expires_at,
-        :buffer_size => buffer_size,
         :nodes => node_ids,
         :created_on => created_on,
         :listeners => listeners,
@@ -79,7 +78,7 @@ module Brightbox
     end
 
     def self.default_field_order
-      [:id, :status, :created_on, :cloud_ips, :nodes, :name, :buffer_size]
+      [:id, :status, :created_on, :cloud_ips, :nodes, :name]
     end
   end
 end
