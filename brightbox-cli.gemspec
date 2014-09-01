@@ -19,7 +19,7 @@ Gem::Specification.new do |s|
   s.executables   = `git ls-files -- bin/*`.split("\n").map { |f| File.basename(f) }
   s.require_paths = ["lib"]
 
-  s.add_dependency "fog-brightbox", "~> 0.3.1"
+  s.add_dependency "fog-brightbox", "~> 0.4", ">= 0.4.1"
   s.add_dependency "gli", "~> 2.9"
   s.add_dependency "i18n"
   s.add_dependency "mime-types", "~> 1.25"
