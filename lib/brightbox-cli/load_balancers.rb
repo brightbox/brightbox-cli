@@ -43,6 +43,10 @@ module Brightbox
       end
     end
 
+    def buffer_size
+      attributes[:buffer_size]
+    end
+
     def destroy
       fog_model.destroy
     rescue Excon::Errors::Conflict

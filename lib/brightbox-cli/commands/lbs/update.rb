@@ -21,6 +21,9 @@ module Brightbox
       c.desc "Healthcheck type"
       c.flag [:y, "hc-type"]
 
+      c.desc "Buffer Size. Defaults to 4096 bytes"
+      c.flag [:b, "buffer-size"]
+
       c.desc "Healthcheck timeout"
       c.flag [:t, "hc-timeout"]
 
@@ -91,6 +94,10 @@ module Brightbox
 
         if options[:p]
           lbopts[:policy] = options[:p]
+        end
+
+        if options[:b]
+          lbopts[:buffer_size] = options[:b]
         end
 
         # SSL argumens

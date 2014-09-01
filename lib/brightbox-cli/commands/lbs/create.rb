@@ -23,6 +23,9 @@ module Brightbox
       c.desc "Healthcheck type. Defaults to first listener protocol."
       c.flag [:y, "hc-type"]
 
+      c.desc "Buffer Size. Defaults to 4096 bytes"
+      c.flag [:b, "buffer-size"]
+
       c.desc "Healthcheck timeout"
       c.default_value "5000"
       c.flag [:t, "hc-timeout"]
@@ -106,6 +109,7 @@ module Brightbox
         info msg
         lb = LoadBalancer.create(:policy => options[:policy],
                                  :name => options[:n],
+                                 :buffer_size => options[:b],
                                  :healthcheck => healthcheck,
                                  :listeners => listeners,
                                  :certificate_pem => ssl_cert,
