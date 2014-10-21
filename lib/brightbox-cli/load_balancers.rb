@@ -16,6 +16,7 @@ module Brightbox
         :ssl_subject => certificate_subject,
         :ssl_valid_from => certificate_valid_from,
         :ssl_expires_at => certificate_expires_at,
+        :ssl_v3_enabled => certificate_enable_ssl3,
         :nodes => node_ids,
         :created_on => created_on,
         :listeners => listeners,
