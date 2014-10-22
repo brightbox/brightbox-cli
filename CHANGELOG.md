@@ -1,3 +1,13 @@
+### v1.4.0 / 2014-10-22
+[Full Changelog](https://github.com/brightbox/brightbox-cli/compare/v1.3.0...v1.4.0)
+
+Enhancements:
+
+* Add `--buffer-size` argument to `lba create` to set the load balancers buffer
+  size used.
+* Add switch to enable/disable SSLv3 on the load balancer. Disabled by default
+  on new load balancers it can be enabled with `--sslv3` when updating.
+
 ### v1.3.0 / 2014-08-20
 [Full Changelog](https://github.com/brightbox/brightbox-cli/compare/v1.2.2...v1.3.0)
 
