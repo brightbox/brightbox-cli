@@ -22,6 +22,7 @@ module Brightbox
             :ssl_subject,
             :ssl_valid_from,
             :ssl_expires_at,
+            :ssl_v3_enabled,
             :cloud_ips,
             :nodes,
             :listeners,

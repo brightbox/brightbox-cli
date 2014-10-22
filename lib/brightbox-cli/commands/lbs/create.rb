@@ -52,6 +52,9 @@ module Brightbox
       c.desc "Filepath to the private key used to sign SSL certificate (OpenSSL supported formats)."
       c.flag ["ssl-key"]
 
+      c.desc "Enable SSL v3 support"
+      c.switch ["sslv3"]
+
       c.action do |global_options, options, args|
 
         raise "You must specify which servers to balance connections to" if args.empty?
@@ -98,6 +101,7 @@ module Brightbox
         if ssl_cert_path.nil? ^ ssl_key_path.nil?
           raise "Both SSL arguments (ssl-cert and ssl-key) are required."
         end
+
         if ssl_cert_path && ssl_key_path
           ssl_cert = File.read(File.expand_path(ssl_cert_path))
           ssl_key = File.read(File.expand_path(ssl_key_path))
@@ -114,6 +118,7 @@ module Brightbox
                                  :listeners => listeners,
                                  :certificate_pem => ssl_cert,
                                  :certificate_private_key => ssl_key,
+                                 :sslv3 => options["sslv3"],
                                  :nodes => nodes)
         render_table([lb], global_options)
       end

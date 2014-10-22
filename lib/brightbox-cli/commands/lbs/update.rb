@@ -48,6 +48,9 @@ module Brightbox
       c.desc "Clears SSL details from the load balancer."
       c.switch ["remove-ssl"], :negatable => false
 
+      c.desc "Enable SSL v3 support"
+      c.switch ["sslv3"]
+
       c.action do |global_options, options, args|
 
         lb_id = args.shift
@@ -117,6 +120,8 @@ module Brightbox
           lbopts[:certificate_pem] = File.read(File.expand_path(ssl_cert_path))
           lbopts[:certificate_private_key] = File.read(File.expand_path(ssl_key_path))
         end
+
+        lbopts[:sslv3] = options["sslv3"] unless options["sslv3"].nil?
 
         if remove_ssl
           lbopts[:certificate_pem] = ""
