@@ -53,7 +53,7 @@ module Brightbox
       c.flag ["ssl-key"]
 
       c.desc "Enable SSL v3 support"
-      c.switch ["ssl3"]
+      c.switch ["sslv3"]
 
       c.action do |global_options, options, args|
 
@@ -118,7 +118,7 @@ module Brightbox
                                  :listeners => listeners,
                                  :certificate_pem => ssl_cert,
                                  :certificate_private_key => ssl_key,
-                                 :sslv3 => options["ssl3"],
+                                 :sslv3 => options["sslv3"],
                                  :nodes => nodes)
         render_table([lb], global_options)
       end

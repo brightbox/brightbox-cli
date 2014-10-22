@@ -49,7 +49,7 @@ module Brightbox
       c.switch ["remove-ssl"], :negatable => false
 
       c.desc "Enable SSL v3 support"
-      c.switch ["ssl3"]
+      c.switch ["sslv3"]
 
       c.action do |global_options, options, args|
 
@@ -121,7 +121,7 @@ module Brightbox
           lbopts[:certificate_private_key] = File.read(File.expand_path(ssl_key_path))
         end
 
-        lbopts[:sslv3] = options["ssl3"] unless options["ssl3"].nil?
+        lbopts[:sslv3] = options["sslv3"] unless options["sslv3"].nil?
 
         if remove_ssl
           lbopts[:certificate_pem] = ""
