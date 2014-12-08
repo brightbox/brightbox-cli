@@ -1,3 +1,11 @@
+### v1.4.1 / 2014-12-08
+[Full Changelog](https://github.com/brightbox/brightbox-cli/compare/v1.4.0...v1.4.1)
+
+Bug fixes:
+
+* Lock `fog-core` to be `1.23.0` since `1.24+` broke things for modules and no
+  apparently fix yet.
+
 ### v1.4.0 / 2014-10-22
 [Full Changelog](https://github.com/brightbox/brightbox-cli/compare/v1.3.0...v1.4.0)
 
