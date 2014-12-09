@@ -3,7 +3,7 @@ PATH
   specs:
     brightbox-cli (1.4.1)
       fog-brightbox (~> 0.7, >= 0.7.1)
-      fog-core (= 1.23)
+      fog-core (~> 1.25)
       gli (~> 2.9)
       highline (~> 1.6)
       hirb (~> 0.6)
@@ -22,7 +22,7 @@ GEM
       fog-core (~> 1.22)
       fog-json
       inflecto (~> 0.0.2)
-    fog-core (1.23.0)
+    fog-core (1.25.0)
       builder
       excon (~> 0.38)
       formatador (~> 0.2)

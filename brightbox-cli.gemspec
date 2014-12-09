@@ -20,8 +20,7 @@ Gem::Specification.new do |s|
   s.require_paths = ["lib"]
 
   s.add_dependency "fog-brightbox", "~> 0.7", ">= 0.7.1"
-  # fog-core is broken since 1.24+ - awaiting fix to loosen dependency
-  s.add_dependency "fog-core", "= 1.23"
+  s.add_dependency "fog-core", "~> 1.25"
   s.add_dependency "gli", "~> 2.9"
   s.add_dependency "i18n"
   s.add_dependency "mime-types", "~> 1.25"
