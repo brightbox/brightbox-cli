@@ -1,3 +1,3 @@
 module Brightbox
-  VERSION = "1.4.1" unless defined?(Brightbox::VERSION)
+  VERSION = "1.4.2" unless defined?(Brightbox::VERSION)
 end

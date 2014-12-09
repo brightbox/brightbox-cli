@@ -1,3 +1,12 @@
+### v1.4.2 / 2014-12-09
+[Full Changelog](https://github.com/brightbox/brightbox-cli/compare/v1.4.1...v1.4.2)
+
+Bug fixes:
+
+* Replace removed `Fog::VERSION` reference with `Fog::Core::VERSION` which was
+  broken in a minor update of `fog-core`
+* Dependency of `fog-core` now v1.25 minimum.
+
 ### v1.4.1 / 2014-12-08
 [Full Changelog](https://github.com/brightbox/brightbox-cli/compare/v1.4.0...v1.4.1)
 
