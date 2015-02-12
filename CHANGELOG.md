@@ -1,3 +1,10 @@
+### v1.4.3 / 2015-02-12
+[Full Changelog](https://github.com/brightbox/brightbox-cli/compare/v1.4.2...v1.4.3)
+
+Bug fixes:
+
+* Display error messages when DEBUG mode is enabled rather than suppressing.
+
 ### v1.4.2 / 2014-12-09
 [Full Changelog](https://github.com/brightbox/brightbox-cli/compare/v1.4.1...v1.4.2)
 
