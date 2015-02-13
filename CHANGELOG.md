@@ -1,3 +1,10 @@
+### v1.5.0 / 2015-02-13
+[Full Changelog](https://github.com/brightbox/brightbox-cli/compare/v1.4.3...v1.5.0)
+
+Enhancements:
+
+* Add support for GPG stored user passwords.
+
 ### v1.4.3 / 2015-02-12
 [Full Changelog](https://github.com/brightbox/brightbox-cli/compare/v1.4.2...v1.4.3)
 
