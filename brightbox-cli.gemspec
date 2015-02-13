@@ -22,7 +22,7 @@ Gem::Specification.new do |s|
   s.add_dependency "fog-brightbox", "~> 0.7", ">= 0.7.1"
   s.add_dependency "fog-core", "~> 1.25"
   s.add_dependency "gli", "~> 2.9"
-  s.add_dependency "i18n"
+  s.add_dependency "i18n", "~> 0.6.0"
   s.add_dependency "mime-types", "~> 1.25"
   s.add_dependency "multi_json"
   s.add_dependency "highline", "~> 1.6"

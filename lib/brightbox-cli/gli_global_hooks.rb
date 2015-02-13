@@ -102,7 +102,12 @@ module Brightbox
       rescue Brightbox::Api::ApiError
         error "Unable to authenticate with supplied details"
         false
-      rescue
+      rescue Exception => e
+        if ENV["DEBUG"]
+          debug e
+          debug e.class.to_s
+          debug e.backtrace.join("\n")
+        end
         false
       ensure
         $config.debug_tokens
