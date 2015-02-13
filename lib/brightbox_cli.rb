@@ -65,6 +65,7 @@ require_relative 'brightbox-cli/tables'
 require_relative "brightbox-cli/logging"
 require_relative "brightbox-cli/api"
 require_relative "brightbox-cli/config/cache"
+require_relative "brightbox-cli/config/gpg_encrypted_passwords"
 require_relative "brightbox-cli/config/authentication_tokens"
 require_relative "brightbox-cli/config/accounts"
 require_relative "brightbox-cli/config/clients"

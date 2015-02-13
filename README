@@ -51,6 +51,50 @@ To browse available resources use the resource name as the command:
 
 Command structure may be subject to change.
 
+=== Using GPG to secure passwords
+
+If you use an OAuth application to access your accounts
+(https://www.brightbox.com/docs/guides/manager/oauth-applications/) then you
+frequently need to renter your password.
+
+From v1.5.0 you can store your password locally encrypted by GPG (https://www.gnupg.org/)
+which will decrypt the password when needed. This will prompt for your GPG key
+if not available to the GPG agent using your OS's configured pinentry program.
+
+You need to have setup GPG with your own keys and have configured the pinentry
+to prompt you when the key is locked.
+
+The password file is named after your configuration's alias:
+
+    $ brightbox config
+     alias                 client_id  secret           api_url                         auth_url
+    ------------------------------------------------------------------------------------------------------------------
+     *main                 app-12345  xxxxxxxxxxxxxxx  https://api.gb1.brightbox.com   https://api.gb1.brightbox.com
+    ------------------------------------------------------------------------------------------------------------------
+
+The alias here is `main`. To prepare the password run this command:
+
+    $ gpg --encrypt --recipient gpg@example.com > ~/.brightbox/main.password.gpg
+    (type your password)<RETURN>
+    <CTRL+D>
+    # Test it with...
+    $ gpg --decrypt ~/.brightbox/main.password.gpg
+    password!2015
+    $ brightbox accounts
+    INFO: client_id: app-12345 (main)
+    INFO: Decrypting /home/user/.brightbox/main.password.gpg to obtain password
+    gpg: encrypted with 2048-bit RSA key, ID ABCDE890, created 2015-01-01
+          "Jason Null <gpg@example.com>"
+    Your API credentials have been updated, please re-run your command.
+
+Now when making commands you should only have to unlock your keyring to avoid
+typing your password.
+
+If you are prompted to enter your password still then the file may be named
+incorrectly or there may be an issue with your GPG configuration.
+
+To remove the password delete the `~/.brightbox/main.password.gpg` file.
+
 == Usage guides
 
 * http://docs.brightbox.com/reference/cli

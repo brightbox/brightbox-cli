@@ -12,6 +12,7 @@ module Brightbox
     require 'ini'
     include Brightbox::Logging
     include Brightbox::Config::Cache
+    include Brightbox::Config::GpgEncryptedPasswords
     include Brightbox::Config::AuthenticationTokens
     include Brightbox::Config::Accounts
     include Brightbox::Config::Clients

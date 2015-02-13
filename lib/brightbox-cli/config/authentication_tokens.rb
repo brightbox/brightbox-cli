@@ -189,6 +189,7 @@ module Brightbox
       def update_tokens_with_user_credentials(password = nil)
         user_application = Brightbox::Config::UserApplication.new(selected_config, client_name)
 
+        password = gpg_password unless password
         password = prompt_for_password unless password
 
         # FIXME: options are required to work
