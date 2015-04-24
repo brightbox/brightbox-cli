@@ -1,3 +1,16 @@
+### v1.6.0 / 2015-04-24
+[Full Changelog](https://github.com/brightbox/brightbox-cli/compare/v1.5.0...v1.6.0)
+
+Enhancements:
+
+* Updated list of autocompleted server handles to include all current versions
+  including SSD versions.
+
+Changes:
+
+* Default server type has changed to `1gb.ssd`. This can be changed with the
+  `--type (-t)` argument to specify alternatives as before.
+
 ### v1.5.0 / 2015-02-13
 [Full Changelog](https://github.com/brightbox/brightbox-cli/compare/v1.4.3...v1.5.0)
 
