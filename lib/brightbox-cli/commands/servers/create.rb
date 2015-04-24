@@ -16,7 +16,7 @@ module Brightbox
       c.flag [:z, "zone"]
 
       c.desc "Type of server to create"
-      c.default_value "nano"
+      c.default_value "1gb.ssd"
       c.flag [:t, :type]
 
       c.desc "Specify user data"

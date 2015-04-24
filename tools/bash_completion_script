@@ -45,7 +45,7 @@ _brightbox()
                 return 0
                 ;;
               -t|--type)
-                COMPREPLY=( $( compgen -W 'nano mini small medium large' -- "$cur" ) )
+                COMPREPLY=( $( compgen -W 'nano mini small medium large xl xxl nano.high-io mini.high-io small.high-io medium.high-io large.high-io xl.high-io xxl.high-io 512mb.ssd 1gb.ssd 2gb.ssd 4gb.ssd 8gb.ssd 16gb.ssd 32gb.ssd 48gb.ssd 64gb.ssd 16gb.ssd-high-io 32gb.ssd-high-io 48gb.ssd-high-io 64gb.ssd-high-io' -- "$cur" ) )
                 return 0
                 ;;
             esac
