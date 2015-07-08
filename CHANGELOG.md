@@ -1,3 +1,15 @@
+### v2.0.0 / 2015-07-08
+
+[Full Changelog](https://github.com/brightbox/brightbox-cli/compare/v1.6.0...v2.0.0)
+
+Backwards incompatible changes:
+
+* Dropped support for Ruby 1.8.7
+
+Changes:
+
+* Removed `mime-types` dependency constraint (added just for 1.8.7 compatibility)
+
 ### v1.6.0 / 2015-04-24
 [Full Changelog](https://github.com/brightbox/brightbox-cli/compare/v1.5.0...v1.6.0)
 
