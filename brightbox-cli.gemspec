@@ -23,7 +23,6 @@ Gem::Specification.new do |s|
   s.add_dependency "fog-core", "~> 1.25"
   s.add_dependency "gli", "~> 2.12.0"
   s.add_dependency "i18n", "~> 0.6.0"
-  s.add_dependency "mime-types", "~> 1.25"
   s.add_dependency "multi_json", "~> 1.11.0"
   s.add_dependency "highline", "~> 1.6.0"
   s.add_dependency "hirb", "~> 0.6"
