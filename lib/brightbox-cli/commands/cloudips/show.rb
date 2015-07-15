@@ -18,7 +18,6 @@ module Brightbox
         fields = [
           :id,
           :name,
-          :reverse_dns,
           :status,
           :public_ip,
           :reverse_dns,
