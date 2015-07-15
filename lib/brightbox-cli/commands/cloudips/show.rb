@@ -20,6 +20,7 @@ module Brightbox
           :name,
           :status,
           :public_ip,
+          :fqdn,
           :reverse_dns,
           :destination,
           :interface_id,
