@@ -1,3 +1,11 @@
+### v2.1.1 / 2015-07-17
+
+[Full Changelog](https://github.com/brightbox/brightbox-cli/compare/v2.1.0...v2.1.1)
+
+Bug fixes:
+
+* Update `fog-brightbox` dependency to 0.8.0 to ensure fqdn attribute is there.
+
 ### v2.1.0 / 2015-07-16
 
 [Full Changelog](https://github.com/brightbox/brightbox-cli/compare/v2.0.0...v2.1.0)
