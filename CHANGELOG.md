@@ -1,3 +1,17 @@
+### v2.1.0 / 2015-07-16
+
+[Full Changelog](https://github.com/brightbox/brightbox-cli/compare/v2.0.0...v2.1.0)
+
+Enhancements:
+
+* Cloud IP's fully qualified domain name (e.g. cip-12345.gb1.brightbox.com) is
+  available within the output from the "show" command.
+
+Bug fixes:
+
+* Removed duplicate `reverse_dns` entry from CIP show output
+* Removed extra `fog-core` dependency. Should be determined by `fog-brightbox`
+
 ### v2.0.0 / 2015-07-08
 
 [Full Changelog](https://github.com/brightbox/brightbox-cli/compare/v1.6.0...v2.0.0)

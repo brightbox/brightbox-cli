@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    brightbox-cli (2.0.0)
+    brightbox-cli (2.1.0)
       fog-brightbox (~> 0.7, >= 0.7.1)
       gli (~> 2.12.0)
       highline (~> 1.6.0)
@@ -16,7 +16,7 @@ GEM
     coderay (1.0.9)
     diff-lcs (1.2.5)
     excon (0.45.4)
-    fog-brightbox (0.7.2)
+    fog-brightbox (0.8.0)
       fog-core (~> 1.22)
       fog-json
       inflecto (~> 0.0.2)
