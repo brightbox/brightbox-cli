@@ -95,22 +95,23 @@ module Brightbox
     if e.is_a?(Excon::Errors::Unauthorized)
       begin
         debug "Refused access token: #{$config.access_token}"
-        returned = $config.reauthenticate
+        $config.reauthenticate
         # FIXME: Curious output from info
         info "Your API credentials have been updated, please re-run your command."
-        returned
+        $config.debug_tokens
+        exit(222)
       rescue Brightbox::Api::ApiError
         error "Unable to authenticate with supplied details"
-        false
+        $config.debug_tokens
+        exit(111)
       rescue Exception => e
         if ENV["DEBUG"]
           debug e
           debug e.class.to_s
           debug e.backtrace.join("\n")
         end
-        false
-      ensure
         $config.debug_tokens
+        exit(1)
       end
     else
       # Handle the rest
@@ -121,7 +122,8 @@ module Brightbox
         debug e.class.to_s
         debug e.backtrace.join("\n")
       end
-      false # GLI will exit
+      $config.debug_tokens
+      exit(1)
     end
   end
 end
