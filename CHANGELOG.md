@@ -1,3 +1,11 @@
+### v2.1.2 / 2015-07-18
+
+[Full Changelog](https://github.com/brightbox/brightbox-cli/compare/v2.1.1...v2.1.2)
+
+Bug fixes:
+
+* Return non 0 exit codes when CLI has an error
+
 ### v2.1.1 / 2015-07-17
 
 [Full Changelog](https://github.com/brightbox/brightbox-cli/compare/v2.1.0...v2.1.1)
