@@ -4,7 +4,6 @@ $LOAD_PATH.unshift LIB_DIR unless
   $LOAD_PATH.include?(LIB_DIR) || $LOAD_PATH.include?(File.expand_path(LIB_DIR))
 
 require "brightbox_cli"
-require "support/common_helpers"
 require "tmpdir"
 
 Dir["./spec/support/**/*.rb"].sort.each { |f| require f }
