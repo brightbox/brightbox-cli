@@ -41,7 +41,7 @@ module Brightbox
       # raises an error because it is ambiguous which to use.
       #
       # If +force_default_config+ is passed in as false (for +config+ commands)
-      # then it attempts to use the first config but this becomes random on 1.8.7
+      # then it attempts to use the first config
       #
       # Calling +client_name+ within the +config+ command will break the config
       # command because you can no longer manage your config (and set a default)
