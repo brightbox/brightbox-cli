@@ -45,7 +45,7 @@ http_interactions:
     uri: http://api.brightbox.dev/token
     body:
       encoding: UTF-8
-      string: '{"grant_type":"none","client_id":"cli-12345"}'
+      string: '{"grant_type":"client_credentials"}'
     headers:
       User-Agent:
       - fog/1.15.0
@@ -131,7 +131,7 @@ http_interactions:
     uri: http://api.brightbox.dev/token
     body:
       encoding: UTF-8
-      string: '{"grant_type":"refresh_token","client_id":"app-12345","refresh_token":"a05c73351bbbc8d3abba9cf175733aec22a5cb71"}'
+      string: '{"grant_type":"refresh_token","refresh_token":"a05c73351bbbc8d3abba9cf175733aec22a5cb71"}'
     headers:
       User-Agent:
       - fog/1.15.0
@@ -176,7 +176,7 @@ http_interactions:
     uri: http://api.brightbox.dev/token
     body:
       encoding: UTF-8
-      string: '{"grant_type":"none","client_id":"cli-12345"}'
+      string: '{"grant_type":"client_credentials"}'
     headers:
       User-Agent:
       - fog/1.15.0
@@ -222,7 +222,7 @@ http_interactions:
     uri: http://api.brightbox.dev/token
     body:
       encoding: UTF-8
-      string: '{"grant_type":"none","client_id":"app-12345"}'
+      string: '{"grant_type":"client_credentials"}'
     headers:
       User-Agent:
       - fog/1.15.0
@@ -266,7 +266,7 @@ http_interactions:
     uri: http://api.brightbox.dev/token
     body:
       encoding: UTF-8
-      string: '{"grant_type":"none","client_id":"app-12345"}'
+      string: '{"grant_type":"client_credentials"}'
     headers:
       User-Agent:
       - fog/1.15.0
@@ -310,7 +310,7 @@ http_interactions:
     uri: http://api.brightbox.dev/token
     body:
       encoding: UTF-8
-      string: '{"grant_type":"refresh_token","client_id":"app-12345","refresh_token":"a05c73351bbbc8d3abba9cf175733aec22a5cb71"}'
+      string: '{"grant_type":"refresh_token","refresh_token":"a05c73351bbbc8d3abba9cf175733aec22a5cb71"}'
     headers:
       User-Agent:
       - fog/1.15.0
@@ -356,7 +356,7 @@ http_interactions:
     uri: http://api.brightbox.dev/token
     body:
       encoding: UTF-8
-      string: '{"grant_type":"password","client_id":"app-12345","username":"jason.null@brightbox.com","password":""}'
+      string: '{"grant_type":"password","username":"jason.null@brightbox.com","password":""}'
     headers:
       User-Agent:
       - fog/1.15.0
