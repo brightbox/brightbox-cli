@@ -5,7 +5,7 @@ http_interactions:
     uri: http://api.brightbox.dev/token
     body:
       encoding: UTF-8
-      string: '{"grant_type":"password","client_id":"app-12345","username":"jason.null@brightbox.com","password":"N:B3e%7Cmh"}'
+      string: '{"grant_type":"password","username":"jason.null@brightbox.com","password":"N:B3e%7Cmh"}'
     headers:
       User-Agent:
       - fog/1.15.0

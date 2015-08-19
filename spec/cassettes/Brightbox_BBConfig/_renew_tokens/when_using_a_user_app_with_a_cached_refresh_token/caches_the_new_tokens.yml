@@ -5,7 +5,7 @@ http_interactions:
     uri: http://api.brightbox.dev/token
     body:
       encoding: UTF-8
-      string: '{"grant_type":"refresh_token","client_id":"app-12345","refresh_token":"aeed54b3487019931b04010b0b39715eb4e729e8"}'
+      string: '{"grant_type":"refresh_token","refresh_token":"aeed54b3487019931b04010b0b39715eb4e729e8"}'
     headers:
       User-Agent:
       - fog/1.15.0

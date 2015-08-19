@@ -5,7 +5,7 @@ http_interactions:
     uri: http://api.brightbox.dev/token
     body:
       encoding: UTF-8
-      string: '{"grant_type":"none","client_id":"cli-12345"}'
+      string: '{"grant_type":"client_credentials"}'
     headers:
       User-Agent:
       - fog/1.15.0
@@ -367,7 +367,7 @@ http_interactions:
     uri: http://api.brightbox.dev/token
     body:
       encoding: UTF-8
-      string: '{"grant_type":"none","client_id":"app-12345"}'
+      string: '{"grant_type":"client_credentials"}'
     headers:
       User-Agent:
       - fog/1.15.0
@@ -411,7 +411,7 @@ http_interactions:
     uri: http://api.brightbox.dev/token
     body:
       encoding: UTF-8
-      string: '{"grant_type":"none","client_id":"app-12345"}'
+      string: '{"grant_type":"client_credentials"}'
     headers:
       User-Agent:
       - fog/1.15.0
@@ -455,7 +455,7 @@ http_interactions:
     uri: http://api.brightbox.dev/token
     body:
       encoding: UTF-8
-      string: '{"grant_type":"none","client_id":"app-12345"}'
+      string: '{"grant_type":"client_credentials"}'
     headers:
       User-Agent:
       - fog/1.15.0
@@ -499,7 +499,7 @@ http_interactions:
     uri: http://api.brightbox.dev/token
     body:
       encoding: UTF-8
-      string: '{"grant_type":"none","client_id":"app-12345"}'
+      string: '{"grant_type":"client_credentials"}'
     headers:
       User-Agent:
       - fog/1.15.0
@@ -543,7 +543,7 @@ http_interactions:
     uri: http://api.brightbox.dev/token
     body:
       encoding: UTF-8
-      string: '{"grant_type":"none","client_id":"app-12345"}'
+      string: '{"grant_type":"client_credentials"}'
     headers:
       User-Agent:
       - fog/1.15.0
@@ -587,7 +587,7 @@ http_interactions:
     uri: http://api.brightbox.dev/token
     body:
       encoding: UTF-8
-      string: '{"grant_type":"none","client_id":"app-12345"}'
+      string: '{"grant_type":"client_credentials"}'
     headers:
       User-Agent:
       - fog/1.15.0
@@ -631,7 +631,7 @@ http_interactions:
     uri: http://api.brightbox.dev/token
     body:
       encoding: UTF-8
-      string: '{"grant_type":"none","client_id":"app-12345"}'
+      string: '{"grant_type":"client_credentials"}'
     headers:
       User-Agent:
       - fog/1.15.0
@@ -675,7 +675,7 @@ http_interactions:
     uri: http://api.brightbox.dev/token
     body:
       encoding: UTF-8
-      string: '{"grant_type":"none","client_id":"app-12345"}'
+      string: '{"grant_type":"client_credentials"}'
     headers:
       User-Agent:
       - fog/1.15.0
@@ -759,7 +759,7 @@ http_interactions:
     uri: http://api.brightbox.dev/token
     body:
       encoding: UTF-8
-      string: '{"grant_type":"none","client_id":"cli-12345"}'
+      string: '{"grant_type":"client_credentials"}'
     headers:
       User-Agent:
       - fog/1.15.0
