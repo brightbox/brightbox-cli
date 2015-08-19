@@ -1,9 +1,5 @@
 require "vcr"
 
-RSpec.configure do |config|
-  config.treat_symbols_as_metadata_keys_with_true_values = true
-end
-
 VCR.configure do |vcr|
   vcr.cassette_library_dir = File.join(File.dirname(__FILE__), "../cassettes")
   vcr.allow_http_connections_when_no_cassette = false

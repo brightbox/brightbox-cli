@@ -11,7 +11,7 @@ describe Brightbox::FirewallPolicy do
         @policy = Brightbox::FirewallPolicy.create(options)
       end
 
-      it "should show firewall policy", :vcr do
+      it "should show firewall policy", vcr: true do
         output = FauxIO.new do
           firewall_policy = Brightbox::FirewallPolicy.find_or_call([@policy.id])
           Brightbox.render_table(firewall_policy, :vertical => true)

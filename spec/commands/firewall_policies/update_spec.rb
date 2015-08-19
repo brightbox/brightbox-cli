@@ -10,7 +10,7 @@ describe "Firewall policies" do
     let(:stdout) { output.stdout }
     let(:stderr) { output.stderr }
 
-    context "when no identifier is given", :vcr do
+    context "when no identifier is given", vcr: true do
       let(:argv) { %w(firewall-policies update) }
 
       it "prints error to STDERR" do
@@ -18,7 +18,7 @@ describe "Firewall policies" do
       end
     end
 
-    context "when the policy does not exist", :vcr do
+    context "when the policy does not exist", vcr: true do
       let(:argv) { %w(firewall-policies update -n missing fwp-12345) }
 
       it "prints error to STDERR" do
@@ -36,7 +36,7 @@ describe "Firewall policies" do
         @policy.destroy if @policy
       end
 
-      context "when new name is given", :vcr do
+      context "when new name is given", vcr: true do
         let(:name) { "fnord" }
         let(:argv) { ["firewall-policies", "update", "-n", name, @policy.id] }
 
@@ -52,7 +52,7 @@ describe "Firewall policies" do
         end
       end
 
-      context "when new description is given", :vcr do
+      context "when new description is given", vcr: true do
         let(:description) { "New policy description" }
         let(:argv) { ["firewall-policies", "update", "-d", description, @policy.id] }
 
@@ -68,7 +68,7 @@ describe "Firewall policies" do
         end
       end
 
-      context "when no options are given", :vcr do
+      context "when no options are given", vcr: true do
         let(:argv) { ["firewall-policies", "update", @policy.id] }
 
         it "prints error to STDERR" do

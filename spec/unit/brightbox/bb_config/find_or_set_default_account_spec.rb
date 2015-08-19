@@ -34,7 +34,7 @@ describe Brightbox::BBConfig do
       end
     end
 
-    context "when client is not authenticated", :vcr do
+    context "when client is not authenticated", vcr: true do
       let(:contents) do
         <<-EOS
         [cli-12345]
@@ -58,7 +58,7 @@ describe Brightbox::BBConfig do
       end
     end
 
-    context "when client may access one account", :vcr do
+    context "when client may access one account", vcr: true do
       let(:contents) do
         <<-EOS
         [cli-12345]
@@ -75,7 +75,7 @@ describe Brightbox::BBConfig do
       end
     end
 
-    context "when the client may access multiple accounts", :vcr do
+    context "when the client may access multiple accounts", vcr: true do
       let(:contents) do
         <<-EOS
         [app-12345]

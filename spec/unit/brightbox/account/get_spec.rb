@@ -11,7 +11,7 @@ describe Brightbox::Account do
         Brightbox::Api.configuration = USER_APP_CONFIG
       end
 
-      context "and the account is accessible", :vcr do
+      context "and the account is accessible", vcr: true do
         before do
           @account_id = "acc-12345"
           @account = Brightbox::Account.get(@account_id)
@@ -27,19 +27,19 @@ describe Brightbox::Account do
         end
       end
 
-      context "and the account is unknown", :vcr do
+      context "and the account is unknown", vcr: true do
         it "returns nil" do
           expect(Brightbox::Account.get("acc-xxxxx")).to be_nil
         end
       end
     end
 
-    context "when connected using an client", :vcr do
+    context "when connected using an client", vcr: true do
       before do
         Brightbox::Api.configuration = API_CLIENT_CONFIG
       end
 
-      context "and the account is accessible", :vcr do
+      context "and the account is accessible", vcr: true do
         before do
           @account_id = "acc-12345"
           @account = Brightbox::Account.get(@account_id)
@@ -55,7 +55,7 @@ describe Brightbox::Account do
         end
       end
 
-      context "and the account is unknown", :vcr do
+      context "and the account is unknown", vcr: true do
         it "returns nil" do
           expect(Brightbox::Account.get("acc-xxxxx")).to be_nil
         end

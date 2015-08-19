@@ -2,7 +2,7 @@ require "spec_helper"
 
 describe Brightbox::Server do
 
-  describe "#show", :vcr do
+  describe "#show", vcr: true do
     context "when server exists" do
       before do
         options = {

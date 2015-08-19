@@ -28,7 +28,7 @@ describe "brightbox config" do
       end
     end
 
-    context "when NO config file on disk", :vcr do
+    context "when NO config file on disk", vcr: true do
       let(:argv) { ["config", "user_add", email, client_id, secret] }
 
       before do
@@ -52,7 +52,7 @@ describe "brightbox config" do
       end
     end
 
-    context "when passing in required arguments", :vcr do
+    context "when passing in required arguments", vcr: true do
       let(:argv) { ["config", "user_add", email, client_id, secret] }
 
       before do
@@ -92,7 +92,7 @@ describe "brightbox config" do
       end
     end
 
-    context "when new client is first and only client", :vcr do
+    context "when new client is first and only client", vcr: true do
       let(:argv) { ["config", "user_add", email, client_id, secret] }
 
       before do
@@ -139,7 +139,7 @@ describe "brightbox config" do
       end
     end
 
-    context "when a default client is already set", :vcr do
+    context "when a default client is already set", vcr: true do
       let(:argv) { ["config", "user_add", email, client_id, secret] }
 
       before do
@@ -154,7 +154,7 @@ describe "brightbox config" do
       end
     end
 
-    context "when passing in required arguments and api_url", :vcr do
+    context "when passing in required arguments and api_url", vcr: true do
       let(:argv) { ["config", "user_add", email, client_id, secret, api_url] }
 
       before do
@@ -190,7 +190,7 @@ describe "brightbox config" do
       end
     end
 
-    context "when application details in config", :vcr do
+    context "when application details in config", vcr: true do
       let(:revised_alias) { "#{client_alias}_1" }
       let(:argv) { ["config", "user_add", email, client_id, secret] }
 
@@ -225,7 +225,7 @@ describe "brightbox config" do
       end
     end
 
-    context "when application has access to multiple accounts", :vcr do
+    context "when application has access to multiple accounts", vcr: true do
       # Hardcoded in response, different from single account value
       let(:default_account) { "acc-54321" }
       let(:argv) { ["config", "user_add", email, client_id, secret] }
@@ -259,7 +259,7 @@ describe "brightbox config" do
       end
     end
 
-    context "when application has access only one active account", :vcr do
+    context "when application has access only one active account", vcr: true do
       # Hardcoded in response, different from single account value
       let(:default_account) { "acc-33333" }
       let(:argv) { ["config", "user_add", email, client_id, secret] }

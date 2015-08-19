@@ -13,7 +13,7 @@ describe "brightbox database-servers" do
       cache_access_token(config, "f83da712e6299cda953513ec07f7a754f747d727")
     end
 
-    context "when database server active", :vcr do
+    context "when database server active", vcr: true do
       let(:argv) { %w(sql instances snapshot dbs-12345) }
       let(:expected_args) { { :allow_access => ["10.0.0.0"] } }
 
@@ -23,7 +23,7 @@ describe "brightbox database-servers" do
       end
     end
 
-    context "when database server can not be snapshotted", :vcr do
+    context "when database server can not be snapshotted", vcr: true do
       let(:argv) { %w(sql instances snapshot dbs-12345) }
 
       it "reports an error to the user" do

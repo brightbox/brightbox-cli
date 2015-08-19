@@ -8,7 +8,7 @@ describe Brightbox::UserCollaboration do
       expect(Brightbox::UserCollaboration.conn).to receive(:user_collaborations).and_return(faux_api_response)
     end
 
-    context "when collaboration exists but is complete", :vcr do
+    context "when collaboration exists but is complete", vcr: true do
       it "does not return the complete collaboration" do
         @account = "acc-aaaaa"
         @collaboration = Brightbox::UserCollaboration.get_for_account(@account)
@@ -16,7 +16,7 @@ describe Brightbox::UserCollaboration do
       end
     end
 
-    context "when a collaboration exists for user on account", :vcr do
+    context "when a collaboration exists for user on account", vcr: true do
       before do
         @account = "acc-aaaaa"
         @collaboration = Brightbox::UserCollaboration.get_for_account(@account)
@@ -31,7 +31,7 @@ describe Brightbox::UserCollaboration do
       end
     end
 
-    context "when multiple collaborations exist", :vcr do
+    context "when multiple collaborations exist", vcr: true do
       before do
         @account = "acc-aaaaa"
         @collaboration = Brightbox::UserCollaboration.get_for_account(@account)
@@ -42,7 +42,7 @@ describe Brightbox::UserCollaboration do
       end
     end
 
-    context "when no collaboration exists", :vcr do
+    context "when no collaboration exists", vcr: true do
       it "returns nil" do
         @account = "acc-zzzzz"
         @collaboration = Brightbox::UserCollaboration.get_for_account(@account)

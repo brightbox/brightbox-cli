@@ -8,7 +8,7 @@ describe Brightbox::Account do
   end
 
   describe ".all" do
-    context "when connected using an application", :vcr do
+    context "when connected using an application", vcr: true do
       let(:contents) { USER_APP_CONFIG_CONTENTS }
 
       it "returns a collection of Accounts" do
@@ -26,7 +26,7 @@ describe Brightbox::Account do
       end
     end
 
-    context "when connected using an client", :vcr do
+    context "when connected using an client", vcr: true do
       let(:contents) { API_CLIENT_CONFIG_CONTENTS }
 
       it "returns a collection of Accounts" do

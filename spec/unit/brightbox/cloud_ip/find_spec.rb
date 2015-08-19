@@ -8,7 +8,7 @@ describe Brightbox::CloudIP do
         @cip = Brightbox::CloudIP.create
       end
 
-      it "returns a suitable", :vcr do
+      it "returns a suitable", vcr: true do
         ips = Brightbox::CloudIP.find(:all)
         output = FauxIO.new do
           Brightbox.render_table(ips.sort, :vertical => true)

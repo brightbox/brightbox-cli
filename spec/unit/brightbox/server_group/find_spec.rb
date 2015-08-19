@@ -3,7 +3,7 @@ require "spec_helper"
 describe Brightbox::ServerGroup do
 
   describe "#find(:all)" do
-    context "when a group exists", :vcr do
+    context "when a group exists", vcr: true do
       before do
         options = {
           :name => "Test group"

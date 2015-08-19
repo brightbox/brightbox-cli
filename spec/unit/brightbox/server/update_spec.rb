@@ -4,7 +4,7 @@ describe Brightbox::Server do
   let(:image_id) { "img-12345" }
 
   describe "#update" do
-    context "when passing new group membership", :vcr do
+    context "when passing new group membership", vcr: true do
       before do
         options = {
           :image_id => image_id

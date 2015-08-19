@@ -21,7 +21,7 @@ describe "brightbox config" do
       end
     end
 
-    context "when adding a new client", :vcr do
+    context "when adding a new client", vcr: true do
       let(:argv) { ["config", "client_add", client_id, secret] }
 
       it "does not error" do
@@ -42,7 +42,7 @@ describe "brightbox config" do
       end
     end
 
-    context "when new client is first and only client", :vcr do
+    context "when new client is first and only client", vcr: true do
       let(:argv) { ["config", "client_add", client_id, secret] }
 
       before do
@@ -74,7 +74,7 @@ describe "brightbox config" do
       end
     end
 
-    context "when new client is first and only client", :vcr do
+    context "when new client is first and only client", vcr: true do
       let(:argv) { ["config", "client_add", client_id, secret] }
 
       it "does not change the default client" do

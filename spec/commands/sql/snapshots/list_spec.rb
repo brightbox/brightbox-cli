@@ -13,7 +13,7 @@ describe "brightbox database-snapshots" do
       cache_access_token(config, "f83da712e6299cda953513ec07f7a754f747d727")
     end
 
-    context "when resources are available", :vcr do
+    context "when resources are available", vcr: true do
       let(:argv) { %w(sql snapshots list) }
 
       it "does not output to stderr" do

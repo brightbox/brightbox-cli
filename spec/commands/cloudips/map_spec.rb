@@ -14,7 +14,7 @@ describe "brightbox cloudips" do
       cache_access_token(config, "f83da712e6299cda953513ec07f7a754f747d727")
     end
 
-    context "when destination is a server ID", :vcr do
+    context "when destination is a server ID", vcr: true do
       let(:argv) { %w(cloudips map cip-12345 srv-12345) }
       let(:target) { "int-12345" }
 
@@ -24,7 +24,7 @@ describe "brightbox cloudips" do
       end
     end
 
-    context "when destination is another value", :vcr do
+    context "when destination is another value", vcr: true do
       let(:target) { "res-12345" }
       let(:argv) { %w(cloudips map cip-12345 res-12345) }
 

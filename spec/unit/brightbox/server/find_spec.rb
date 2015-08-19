@@ -4,7 +4,7 @@ describe Brightbox::Server do
   let(:image_id) { "img-12345" }
 
   describe "#find(:all)" do
-    context "when a server exists", :vcr do
+    context "when a server exists", vcr: true do
       before do
         options = {
           :image_id => image_id

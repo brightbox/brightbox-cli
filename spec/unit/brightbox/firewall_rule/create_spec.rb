@@ -17,7 +17,7 @@ describe Brightbox::FirewallRule do
         }
       end
 
-      it "creates the rule successfully", :vcr do
+      it "creates the rule successfully", vcr: true do
         @rule = Brightbox::FirewallRule.create(@rule_options)
         output = FauxIO.new do
           Brightbox.render_table([@rule], :vertical => true)

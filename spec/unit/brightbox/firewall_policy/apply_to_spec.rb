@@ -2,7 +2,7 @@ require "spec_helper"
 
 describe Brightbox::FirewallPolicy do
 
-  describe "#apply_to", :vcr do
+  describe "#apply_to", vcr: true do
 
     it "should apply firewall policy" do
       expect do

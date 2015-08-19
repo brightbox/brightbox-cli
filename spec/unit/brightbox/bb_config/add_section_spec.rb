@@ -3,7 +3,7 @@ require "spec_helper"
 describe Brightbox::BBConfig do
 
   describe "#add_section" do
-    context "when first and only client", :vcr do
+    context "when first and only client", vcr: true do
       let(:config) { Brightbox::BBConfig.new }
       let(:client_alias) { "dev" }
       let(:client_id) { "app-12345" }

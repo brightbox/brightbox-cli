@@ -12,7 +12,7 @@ describe Brightbox::BBConfig do
   let(:cli_secret) { "qy6xxnvy4o0tgv5" }
 
   describe "#renew_tokens" do
-    context "when using a user app with no tokens", :vcr do
+    context "when using a user app with no tokens", vcr: true do
       before do
         contents = <<-EOS
         [app-12345]
@@ -43,7 +43,7 @@ describe Brightbox::BBConfig do
 
     end
 
-    context "when using a user app with a cached refresh token", :vcr do
+    context "when using a user app with a cached refresh token", vcr: true do
       before do
         @config = config_from_contents(USER_APP_CONFIG_CONTENTS)
 
@@ -72,7 +72,7 @@ describe Brightbox::BBConfig do
       end
     end
 
-    context "when using a user app with an expired refresh token", :vcr do
+    context "when using a user app with an expired refresh token", vcr: true do
       before do
         @config = config_from_contents(USER_APP_CONFIG_CONTENTS)
 
@@ -100,7 +100,7 @@ describe Brightbox::BBConfig do
       end
     end
 
-    context "when using an API client with no tokens", :vcr do
+    context "when using an API client with no tokens", vcr: true do
       before do
         @new_access_token = random_token
         @config = config_from_contents(API_CLIENT_CONFIG_CONTENTS)
@@ -116,7 +116,7 @@ describe Brightbox::BBConfig do
       end
     end
 
-    context "when config in use is not the default", :vcr do
+    context "when config in use is not the default", vcr: true do
       before do
         contents = <<-EOS
         [core]

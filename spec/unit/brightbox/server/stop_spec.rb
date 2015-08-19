@@ -3,7 +3,7 @@ require "spec_helper"
 describe Brightbox::Server do
   include ServerHelpers
 
-  describe "#stop", :vcr do
+  describe "#stop", vcr: true do
     it "should work" do
       type = Brightbox::Type.find_by_handle "nano"
       options = server_params("rspec_server_stop", type)

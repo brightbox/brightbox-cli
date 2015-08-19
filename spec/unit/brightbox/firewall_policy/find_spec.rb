@@ -2,7 +2,7 @@ require "spec_helper"
 
 describe Brightbox::FirewallPolicy do
 
-  describe "#find(:all)", :vcr do
+  describe "#find(:all)", vcr: true do
 
     context "when a policy exists" do
       before do
@@ -10,7 +10,7 @@ describe Brightbox::FirewallPolicy do
         @policy = Brightbox::FirewallPolicy.create(options)
       end
 
-      it "should list firewall policy", :vcr do
+      it "should list firewall policy", vcr: true do
         output = FauxIO.new do
           firewall_policies = Brightbox::FirewallPolicy.find(:all)
           Brightbox.render_table(firewall_policies, :vertical => true)

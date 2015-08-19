@@ -7,7 +7,7 @@ describe "brightbox accounts" do
     let(:stdout) { output.stdout }
     let(:stderr) { output.stderr }
 
-    context "", :vcr do
+    context "", vcr: true do
       let(:argv) { %w(accounts list) }
 
       it "does not error" do
@@ -15,7 +15,7 @@ describe "brightbox accounts" do
       end
     end
 
-    context "(when no tokens)", :vcr do
+    context "(when no tokens)", vcr: true do
       let(:password) { default_test_password }
 
       let(:argv) { %w(accounts list) }
@@ -34,7 +34,7 @@ describe "brightbox accounts" do
       end
     end
 
-    context "(when no tokens and password incorrect)", :vcr do
+    context "(when no tokens and password incorrect)", vcr: true do
       let(:password) { "wrong" }
 
       let(:argv) { %w(accounts list) }
@@ -53,7 +53,7 @@ describe "brightbox accounts" do
       end
     end
 
-    context "(when access token expired)", :vcr do
+    context "(when access token expired)", vcr: true do
       let(:password) { default_test_password }
 
       let(:argv) { %w(accounts list) }
@@ -71,7 +71,7 @@ describe "brightbox accounts" do
       end
     end
 
-    context "(when both tokens expired)", :vcr do
+    context "(when both tokens expired)", vcr: true do
       let(:password) { default_test_password }
 
       let(:argv) { %w(accounts list) }
@@ -90,7 +90,7 @@ describe "brightbox accounts" do
       end
     end
 
-    context "(when invalid tokens)", :vcr do
+    context "(when invalid tokens)", vcr: true do
       let(:password) { default_test_password }
 
       let(:argv) { %w(accounts list) }
