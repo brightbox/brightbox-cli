@@ -96,7 +96,7 @@ describe Brightbox::Config::UserApplication do
       end
 
       it "raises error" do
-        expect { section.to_fog }.to raise_error
+        expect { section.to_fog }.to raise_error(Brightbox::BBConfigError, "api_url option missing from config in section app-12345")
       end
     end
 
@@ -111,7 +111,7 @@ describe Brightbox::Config::UserApplication do
       end
 
       it "raises error" do
-        expect { section.to_fog }.to raise_error
+        expect { section.to_fog }.to raise_error(Brightbox::BBConfigError, "client_id option missing from config in section app-12345")
       end
     end
 
@@ -126,7 +126,7 @@ describe Brightbox::Config::UserApplication do
       end
 
       it "raises error" do
-        expect { section.to_fog }.to raise_error
+        expect { section.to_fog }.to raise_error(Brightbox::BBConfigError, "secret option missing from config in section app-12345")
       end
     end
 
@@ -141,7 +141,7 @@ describe Brightbox::Config::UserApplication do
       end
 
       it "raises error" do
-        expect { section.to_fog }.to raise_error
+        expect { section.to_fog }.to raise_error(Brightbox::BBConfigError, "username option missing from config in section app-12345")
       end
     end
   end
