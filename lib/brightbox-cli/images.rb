@@ -98,7 +98,7 @@ module Brightbox
     end
 
     def status_sort_code
-      case status
+      case fog_model.attributes[:status]
       when 'available'
         (public? ? 1 : 2)
       when 'deprecated'
