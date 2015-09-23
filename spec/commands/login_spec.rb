@@ -201,4 +201,47 @@ describe "brightbox login" do
       expect(stderr).to_not include("please re-run your command")
     end
   end
+
+  context "when alternative client credentials are given", vcr: true do
+    let(:other_client_identifier) { "app-23456" }
+    let(:other_client_secret) { "ho04hondtzjjdf4" }
+    let(:argv) { ["login", "--application-id", other_client_identifier, "--application-secret", other_client_secret, email] }
+
+    before do
+      remove_config
+      mock_password_entry(password)
+    end
+
+    it "prompts for the password" do
+      expect { output }.not_to raise_error
+    end
+
+    it "does not error" do
+      expect { output }.to_not raise_error
+      expect(stderr).to_not include("ERROR")
+    end
+
+    it "sets up the config" do
+      expect { output }.to_not raise_error
+
+      @config = Brightbox::BBConfig.new
+      @client_section = @config.config[email]
+
+      expect(@client_section["client_id"]).to eql(other_client_identifier)
+      expect(@client_section["secret"]).to eql(other_client_secret)
+    end
+
+    it "requests access tokens" do
+      expect { output }.to_not raise_error
+
+      @config = Brightbox::BBConfig.new :client_name => email
+
+      expect(cached_access_token(@config)).to eql(@config.access_token)
+      expect(cached_refresh_token(@config)).to eql(@config.refresh_token)
+    end
+
+    it "does not prompt to rerun the command" do
+      expect(stderr).to_not include("please re-run your command")
+    end
+  end
 end
