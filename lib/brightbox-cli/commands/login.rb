@@ -6,6 +6,9 @@ module Brightbox
     cmd.desc "password, if not specified you will be prompted"
     cmd.flag [:p, "password"]
 
+    cmd.desc "default account"
+    cmd.flag [:a, :account]
+
     cmd.flag [:"api-url"]
     cmd.flag [:"auth-url"]
 
@@ -32,13 +35,14 @@ module Brightbox
 
       raise "You must specify your Brightbox password." if password.empty?
 
-      options = {
+      section_options = {
         :username => email,
         :password => password,
         :api_url => api_url,
         :auth_url => auth_url
       }
-      $config.add_section(email, client_id, secret, options)
+      section_options[:default_account] = options[:account] if options.key?(:account)
+      $config.add_section(email, client_id, secret, section_options)
     end
   end
 end

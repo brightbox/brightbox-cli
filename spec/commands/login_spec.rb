@@ -155,4 +155,50 @@ describe "brightbox login" do
       expect(stderr).to_not include("please re-run your command")
     end
   end
+
+  context "when default account is passed", vcr: true do
+    let(:account) { "acc-23456" }
+    let(:argv) { ["login", "--account", account, email] }
+
+    before do
+      remove_config
+      mock_password_entry(password)
+    end
+
+    it "prompts for the password" do
+      expect { output }.not_to raise_error
+    end
+
+    it "does not error" do
+      expect { output }.to_not raise_error
+      expect(stderr).to_not include("ERROR")
+    end
+
+    it "sets up the config" do
+      expect { output }.to_not raise_error
+
+      @config = Brightbox::BBConfig.new
+      @client_section = @config.config[email]
+
+      expect(@client_section["api_url"]).to eql(Brightbox::DEFAULT_API_ENDPOINT)
+      expect(@client_section["auth_url"]).to eql(Brightbox::DEFAULT_API_ENDPOINT)
+      expect(@client_section["alias"]).to eql(client_alias)
+      expect(@client_section["client_id"]).to eql(client_id)
+      expect(@client_section["secret"]).to eql(secret)
+      expect(@client_section["default_account"]).to eql(account)
+    end
+
+    it "requests access tokens" do
+      expect { output }.to_not raise_error
+
+      @config = Brightbox::BBConfig.new :client_name => email
+
+      expect(cached_access_token(@config)).to eql(@config.access_token)
+      expect(cached_refresh_token(@config)).to eql(@config.refresh_token)
+    end
+
+    it "does not prompt to rerun the command" do
+      expect(stderr).to_not include("please re-run your command")
+    end
+  end
 end
