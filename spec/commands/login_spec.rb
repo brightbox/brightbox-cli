@@ -105,4 +105,54 @@ describe "brightbox login" do
       expect(stderr).to_not include("please re-run your command")
     end
   end
+
+  context "when custom api/auth URLs are given", vcr: true do
+    # FIXME: These need to be the "real" defaults to record the token interchange
+    #        May allow a regression that the defaults are used, not the passed argument
+    #        Need to use something better that VCR.
+    let(:api_url) { Brightbox::DEFAULT_API_ENDPOINT }
+    let(:auth_url) { Brightbox::DEFAULT_API_ENDPOINT }
+    let(:argv) { ["login", "--api-url", api_url, "--auth-url", auth_url, email] }
+
+    before do
+      remove_config
+      mock_password_entry(password)
+    end
+
+    it "prompts for the password" do
+      expect { output }.not_to raise_error
+    end
+
+    it "does not error" do
+      expect { output }.to_not raise_error
+      expect(stderr).to_not include("ERROR")
+    end
+
+    it "sets up the config" do
+      expect { output }.to_not raise_error
+
+      @config = Brightbox::BBConfig.new
+      @client_section = @config.config[email]
+
+      expect(@client_section["api_url"]).to eql(Brightbox::DEFAULT_API_ENDPOINT)
+      expect(@client_section["auth_url"]).to eql(Brightbox::DEFAULT_API_ENDPOINT)
+      expect(@client_section["alias"]).to eql(client_alias)
+      expect(@client_section["client_id"]).to eql(client_id)
+      expect(@client_section["secret"]).to eql(secret)
+      expect(@client_section["default_account"]).to eql(default_account)
+    end
+
+    it "requests access tokens" do
+      expect { output }.to_not raise_error
+
+      @config = Brightbox::BBConfig.new :client_name => email
+
+      expect(cached_access_token(@config)).to eql(@config.access_token)
+      expect(cached_refresh_token(@config)).to eql(@config.refresh_token)
+    end
+
+    it "does not prompt to rerun the command" do
+      expect(stderr).to_not include("please re-run your command")
+    end
+  end
 end
