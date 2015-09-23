@@ -9,6 +9,9 @@ module Brightbox
     cmd.desc "default account"
     cmd.flag [:a, :account]
 
+    cmd.desc "Sets alias to refer to this configuration locally (defaults to email)"
+    cmd.flag [:alias]
+
     cmd.flag [:"application-id"]
     cmd.flag [:"application-secret"]
 
@@ -18,6 +21,8 @@ module Brightbox
     cmd.action do |_global_options, options, args|
       email = args.shift
       password = options[:p]
+
+      section_name = options[:alias] || email
 
       api_url = options[:"api-url"] || DEFAULT_API_ENDPOINT
       auth_url = options[:"auth-url"] || api_url
@@ -45,7 +50,7 @@ module Brightbox
         :auth_url => auth_url
       }
       section_options[:default_account] = options[:account] if options.key?(:account)
-      $config.add_section(email, client_id, secret, section_options)
+      $config.add_section(section_name, client_id, secret, section_options)
     end
   end
 end

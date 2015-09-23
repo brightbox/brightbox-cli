@@ -244,4 +244,45 @@ describe "brightbox login" do
       expect(stderr).to_not include("please re-run your command")
     end
   end
+
+  context "when alias is used to name configuration", vcr: true do
+    let(:client_alias) { "production" }
+    let(:argv) { ["login", "--alias", client_alias, email] }
+
+    before do
+      remove_config
+      mock_password_entry(password)
+    end
+
+    it "prompts for the password" do
+      expect { output }.not_to raise_error
+    end
+
+    it "does not error" do
+      expect { output }.to_not raise_error
+      expect(stderr).to_not include("ERROR")
+    end
+
+    it "sets up the config" do
+      expect { output }.to_not raise_error
+
+      @config = Brightbox::BBConfig.new
+      @client_section = @config.config[client_alias]
+
+      expect(@client_section["alias"]).to eql(client_alias)
+    end
+
+    it "requests access tokens" do
+      expect { output }.to_not raise_error
+
+      @config = Brightbox::BBConfig.new :client_name => client_alias
+
+      expect(cached_access_token(@config)).to eql(@config.access_token)
+      expect(cached_refresh_token(@config)).to eql(@config.refresh_token)
+    end
+
+    it "does not prompt to rerun the command" do
+      expect(stderr).to_not include("please re-run your command")
+    end
+  end
 end
