@@ -122,7 +122,9 @@ module Brightbox
         debug e.class.to_s
         debug e.backtrace.join("\n")
       end
-      $config.debug_tokens
+      if $config
+        $config.debug_tokens
+      end
       exit(1)
     end
   end
