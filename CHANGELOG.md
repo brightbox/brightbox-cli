@@ -1,3 +1,24 @@
+### v2.2.0 / 2015-09-28
+
+[Full Changelog](https://github.com/brightbox/brightbox-cli/compare/v2.1.2...v2.2.0)
+
+Enhancements:
+
+* Add `BRIGHTBOX_API_URL` ENV for running against alternative endpoints.
+
+Bug fixes:
+
+* Specify some expected errors to avoid specs passing when new errors
+  introduced.
+* Fix image list sorting using "status" field.
+* Handle error when `$config` is nil
+
+Changes:
+
+* Update to use `fog-brightbox v0.9.0`
+* Remove 1.8.7 testing references.
+* Declare `net-ssh` dependency as < 3.0 for Ruby 1.9.3 compatibility.
+
 ### v2.1.2 / 2015-07-18
 
 [Full Changelog](https://github.com/brightbox/brightbox-cli/compare/v2.1.1...v2.1.2)
