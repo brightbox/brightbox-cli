@@ -30,8 +30,8 @@ module Brightbox
       # These are public credentials and are not used for authentication
       # They only work with a valid username and passowrd
       # Don't use them for anything else though they can be reset at any time.
-      client_id = options[:"application-id"] || "app-12345"
-      secret = options[:"application-secret"] || "mocbuipbiaa6k6c"
+      client_id = options[:"application-id"] || Brightbox::EMBEDDED_APP_ID
+      secret = options[:"application-secret"] || Brightbox::EMBEDDED_APP_SECRET
 
       raise "You must specify your user's email address" if email.nil?
 
