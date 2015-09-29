@@ -48,7 +48,7 @@ module Brightbox
     $config = BBConfig.new(config_opts)
 
     # Outputs a snapshot of the tokens known by the client
-    $config.debug_tokens
+    $config.debug_tokens if $config.respond_to?(:debug_tokens)
 
     Excon.defaults[:headers]['User-Agent'] = "brightbox-cli/#{Brightbox::VERSION} Fog/#{Fog::Core::VERSION}"
 
@@ -98,11 +98,11 @@ module Brightbox
         $config.reauthenticate
         # FIXME: Curious output from info
         info "Your API credentials have been updated, please re-run your command."
-        $config.debug_tokens
+        $config.debug_tokens if $config.respond_to?(:debug_tokens)
         exit(222)
       rescue Brightbox::Api::ApiError
         error "Unable to authenticate with supplied details"
-        $config.debug_tokens
+        $config.debug_tokens if $config.respond_to?(:debug_tokens)
         exit(111)
       rescue Exception => e
         if ENV["DEBUG"]
@@ -110,7 +110,7 @@ module Brightbox
           debug e.class.to_s
           debug e.backtrace.join("\n")
         end
-        $config.debug_tokens
+        $config.debug_tokens if $config.respond_to?(:debug_tokens)
         exit(1)
       end
     else
@@ -122,9 +122,7 @@ module Brightbox
         debug e.class.to_s
         debug e.backtrace.join("\n")
       end
-      if $config
-        $config.debug_tokens
-      end
+      $config.debug_tokens if $config.respond_to?(:debug_tokens)
       exit(1)
     end
   end
