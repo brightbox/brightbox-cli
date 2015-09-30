@@ -136,6 +136,8 @@ en:
     update:
       desc: Update a load balancer
       long_desc: All intervals and timeouts are in milliseconds
+  login:
+    desc: Sign in with email and password
   servers:
     desc: Manage an account's servers
     activate_console:

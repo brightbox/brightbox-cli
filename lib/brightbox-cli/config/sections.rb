@@ -8,6 +8,7 @@ module Brightbox
       # @param [Hash] options
       # @option options [String] :username
       # @option options [String] :password
+      # @option options [String] :default_account
       # @option options [String] :api_url
       # @option options [String] :auth_url
       #
@@ -30,6 +31,7 @@ module Brightbox
         client_config["client_id"] = client_id
         client_config["username"] = options[:username]
         client_config["secret"] = secret
+        client_config["default_account"] = options[:default_account]
         client_config["api_url"] = options[:api_url] || DEFAULT_API_ENDPOINT
         client_config["auth_url"] = options[:auth_url] || client_config["api_url"]
 
