@@ -50,6 +50,9 @@ GEM
       coderay (~> 1.0.5)
       method_source (~> 0.8)
       slop (~> 3.4)
+    pry-remote (0.1.8)
+      pry (~> 0.9)
+      slop (~> 3.0)
     rake (10.1.0)
     rspec (2.99.0)
       rspec-core (~> 2.99.0)
@@ -68,7 +71,7 @@ PLATFORMS
 DEPENDENCIES
   brightbox-cli!
   mocha
-  pry
+  pry-remote
   rake
   rspec (~> 2.99)
   vcr (~> 2.5)

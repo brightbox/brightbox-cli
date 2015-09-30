@@ -30,7 +30,7 @@ Gem::Specification.new do |s|
   s.add_dependency "hirb", "~> 0.6"
 
   s.add_development_dependency "mocha"
-  s.add_development_dependency "pry"
+  s.add_development_dependency "pry-remote"
   s.add_development_dependency "rake"
   s.add_development_dependency "rspec", "~> 2.99"
   s.add_development_dependency "vcr", "~> 2.5"
