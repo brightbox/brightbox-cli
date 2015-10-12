@@ -1,0 +1,101 @@
+---
+http_interactions:
+- request:
+    method: post
+    uri: http://api.brightbox.dev/token
+    body:
+      encoding: UTF-8
+      string: '{"grant_type":"password","username":"jason.null@brightbox.com","password":"N:B3e%7Cmh"}'
+    headers:
+      User-Agent:
+      - fog-core/1.32.1
+      Authorization:
+      - Basic YXBwLTEyMzQ1Om1vY2J1aXBiaWFhNms2Yw==
+      Content-Type:
+      - application/json
+  response:
+    status:
+      code: 200
+      message: 
+    headers:
+      Content-Type:
+      - application/json
+      Cache-Control:
+      - no-store
+      X-Oauth-Scopes:
+      - infrastructure, orbit
+      Content-Length:
+      - '190'
+      X-Content-Type-Options:
+      - nosniff
+      X-Ua-Compatible:
+      - IE=Edge
+      Etag:
+      - '"8279d22fcea6fbc78fe4d5b6401c7bd8"'
+      X-Request-Id:
+      - 8f92505cc0877e00cf16b5f5ed5eb105
+      X-Runtime:
+      - '0.090429'
+      Server:
+      - WEBrick/1.3.1 (Ruby/1.9.3/2014-11-13)
+      Date:
+      - Mon, 12 Oct 2015 14:53:50 GMT
+      Connection:
+      - Keep-Alive
+    body:
+      encoding: UTF-8
+      string: '{"access_token":"04e476fd543f333dc007196d76a6625d6570adf7","token_type":"Bearer","refresh_token":"2cafee59e2c2d6cf847c83161870351792376b6b","scope":"infrastructure,
+        orbit","expires_in":7200}'
+    http_version: 
+  recorded_at: Mon, 12 Oct 2015 14:53:50 GMT
+- request:
+    method: get
+    uri: http://api.brightbox.dev/1.0/accounts
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      User-Agent:
+      - fog-core/1.32.1
+      Authorization:
+      - Bearer 04e476fd543f333dc007196d76a6625d6570adf7
+      Content-Type:
+      - application/json
+  response:
+    status:
+      code: 200
+      message: 
+    headers:
+      X-Oauth-Scopes:
+      - infrastructure, orbit
+      Content-Type:
+      - application/json; charset=utf-8
+      X-Ua-Compatible:
+      - IE=Edge
+      Etag:
+      - '"c9a269456e92ca15ff834e08ba6414ad"'
+      Cache-Control:
+      - max-age=0, private, must-revalidate
+      X-Request-Id:
+      - 2fb3fee3dda4c0c3fbc100c73d17d3d8
+      X-Runtime:
+      - '0.127427'
+      Server:
+      - WEBrick/1.3.1 (Ruby/1.9.3/2014-11-13)
+      Date:
+      - Mon, 12 Oct 2015 14:53:51 GMT
+      Content-Length:
+      - '1611'
+      Connection:
+      - Keep-Alive
+    body:
+      encoding: UTF-8
+      string: '[{"id":"acc-12345","resource_type":"account","url":"https://api.gb1.brightbox.com/1.0/accounts/acc-12345","name":"CLI
+        test account","status":"active","ram_limit":3200000,"ram_used":0,"dbs_ram_limit":32768,"dbs_ram_used":0,"cloud_ips_limit":32,"cloud_ips_used":0,"load_balancers_limit":5,"load_balancers_used":0,"clients":[{"id":"cli-12345","resource_type":"api_client","url":"https://api.gb1.brightbox.com/1.0/api_clients/cli-12345","name":"CLI
+        test API client","description":"","revoked_at":null,"permissions_group":"full"}],"images":[],"servers":[],"load_balancers":[],"database_servers":[],"database_snapshots":[],"cloud_ips":[],"server_groups":[{"id":"grp-12345","resource_type":"server_group","url":"https://api.gb1.brightbox.com/1.0/server_groups/grp-12345","name":"default","description":"All
+        new servers are added to this group unless specified otherwise.","created_at":"2015-10-12T09:23:03Z","default":true}],"firewall_policies":[{"id":"fwp-12345","resource_type":"firewall_policy","url":"https://api.gb1.brightbox.com/1.0/firewall_policies/fwp-12345","default":true,"name":"default","created_at":"2015-10-12T09:23:03Z","description":"Applied
+        to the default server group."}],"owner":{"id":"usr-12345","resource_type":"user","url":"https://api.gb1.brightbox.com/1.0/users/usr-12345","name":"Jason
+        Null","email_address":"jason.null@brightbox.com"},"users":[],"zones":[{"id":"zon-12345","resource_type":"zone","url":"https://api.gb1.brightbox.com/1.0/zones/zon-12345","handle":"gb1-a"},{"id":"zon-12345","resource_type":"zone","url":"https://api.gb1.brightbox.com/1.0/zones/zon-12345","handle":"gb1-b"}]}]'
+    http_version: 
+  recorded_at: Mon, 12 Oct 2015 14:53:51 GMT
+recorded_with: VCR 2.5.0
