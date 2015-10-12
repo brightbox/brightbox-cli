@@ -21,8 +21,8 @@ module Brightbox
 
           {
             :alias => calias,
-            :client_id => c["client_id"],
-            :secret => c["secret"],
+            :client_id => c["client_id"] || Brightbox::EMBEDDED_APP_ID,
+            :secret => c["secret"] || Brightbox::EMBEDDED_APP_SECRET,
             :api_url => c["api_url"],
             :auth_url => c["auth_url"] || c["api_url"]
           }

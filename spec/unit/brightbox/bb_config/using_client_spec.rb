@@ -2,20 +2,20 @@ require "spec_helper"
 
 describe Brightbox::BBConfig do
   let(:api_client_id) { "cli-12345" }
-  let(:user_client_id) { "app-12345" }
-  let(:user_app_two) { "app-54321" }
+  let(:custom_app) { "app-54321" }
+  let(:username) { "jason.null@brightbox.com" }
 
   let(:contents) do
     <<-EOS
     [#{api_client_id}]
     client_id = #{api_client_id}
     secret = #{random_token}
-    [#{user_client_id}]
-    client_id = #{user_client_id}
+    [#{username}]
+    username = #{username}
+    [#{custom_app}]
+    client_id = #{custom_app}
     secret = #{random_token}
-    [#{user_app_two}]
-    client_id = #{user_app_two}
-    secret = #{random_token}
+    username = #{username}
     EOS
   end
 
@@ -36,7 +36,7 @@ describe Brightbox::BBConfig do
     end
 
     context "when selected config is for a user application" do
-      let(:client_name) { user_client_id }
+      let(:client_name) { username }
 
       it "returns true" do
         config.client_name = client_name
@@ -54,7 +54,7 @@ describe Brightbox::BBConfig do
     end
 
     context "when selected config is for a user application with generic key" do
-      let(:client_name) { user_app_two }
+      let(:client_name) { custom_app }
 
       it "returns true" do
         config.client_name = client_name
@@ -69,7 +69,7 @@ describe Brightbox::BBConfig do
         remove_config
       end
 
-      it "does not raise an error" do
+      it "raises an error" do
         expect do
           Brightbox::BBConfig.new.using_api_client?
         end.to raise_error(Brightbox::NoSelectedClientError, error_message)
@@ -77,7 +77,7 @@ describe Brightbox::BBConfig do
     end
 
     context "when selected config is for a user application" do
-      let(:client_name) { user_client_id }
+      let(:client_name) { username }
 
       it "returns false" do
         config.client_name = client_name
@@ -95,7 +95,7 @@ describe Brightbox::BBConfig do
     end
 
     context "when selected config is for a user application with generic key" do
-      let(:client_name) { user_app_two }
+      let(:client_name) { custom_app }
 
       it "returns false" do
         config.client_name = client_name

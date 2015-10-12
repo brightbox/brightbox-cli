@@ -11,7 +11,41 @@ describe Brightbox::Config::UserApplication do
   subject(:for_fog) { section.to_fog }
 
   describe "#to_fog" do
-    context "when config is valid" do
+    context "when config is using embedded client" do
+      let(:contents) do
+        <<-EOS
+        [#{client_name}]
+        api_url = http://api.brightbox.dev
+        username = user@example.com
+        EOS
+      end
+
+      it "sets provider as 'Brightbox'" do
+        expect(for_fog[:provider]).to eql("Brightbox")
+      end
+
+      it "sets API endpoint correctly" do
+        expect(for_fog[:brightbox_api_url]).to eql("http://api.brightbox.dev")
+      end
+
+      it "copies API endpoint for auth endpoint correctly" do
+        expect(for_fog[:brightbox_auth_url]).to eql("http://api.brightbox.dev")
+      end
+
+      it "sets client_id correctly" do
+        expect(for_fog[:brightbox_client_id]).to eql(Brightbox::EMBEDDED_APP_ID)
+      end
+
+      it "sets secret correctly" do
+        expect(for_fog[:brightbox_secret]).to eql(Brightbox::EMBEDDED_APP_SECRET)
+      end
+
+      it "sets persistent correctly" do
+        expect(for_fog[:persistent]).to be true
+      end
+    end
+
+    context "when config is using custom client" do
       let(:contents) do
         <<-EOS
         [#{client_name}]
@@ -97,36 +131,6 @@ describe Brightbox::Config::UserApplication do
 
       it "raises error" do
         expect { section.to_fog }.to raise_error(Brightbox::BBConfigError, "api_url option missing from config in section app-12345")
-      end
-    end
-
-    context "when config is missing client_id" do
-      let(:contents) do
-        <<-EOS
-        [#{client_name}]
-        api_url = http://api.brightbox.dev
-        secret = #{secret}
-        username = user@example.com
-        EOS
-      end
-
-      it "raises error" do
-        expect { section.to_fog }.to raise_error(Brightbox::BBConfigError, "client_id option missing from config in section app-12345")
-      end
-    end
-
-    context "when config is missing secret" do
-      let(:contents) do
-        <<-EOS
-        [#{client_name}]
-        api_url = http://api.brightbox.dev
-        client_id = #{client_name}
-        username = user@example.com
-        EOS
-      end
-
-      it "raises error" do
-        expect { section.to_fog }.to raise_error(Brightbox::BBConfigError, "secret option missing from config in section app-12345")
       end
     end
 

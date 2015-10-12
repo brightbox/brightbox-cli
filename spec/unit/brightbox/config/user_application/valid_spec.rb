@@ -13,8 +13,6 @@ describe Brightbox::Config::UserApplication do
         <<-EOS
         [#{client_name}]
         api_url = http://api.brightbox.dev
-        client_id = #{client_name}
-        secret = #{random_token}
         username = user@example.com
         EOS
       end
@@ -47,36 +45,6 @@ describe Brightbox::Config::UserApplication do
         [#{client_name}]
         client_id = #{client_name}
         secret = #{random_token}
-        username = user@example.com
-        EOS
-      end
-
-      it "is invalid" do
-        expect(section).to_not be_valid
-      end
-    end
-
-    context "when config is missing client_id" do
-      let(:contents) do
-        <<-EOS
-        [#{client_name}]
-        api_url = http://api.brightbox.dev
-        secret = #{random_token}
-        username = user@example.com
-        EOS
-      end
-
-      it "is invalid" do
-        expect(section).to_not be_valid
-      end
-    end
-
-    context "when config is missing secret" do
-      let(:contents) do
-        <<-EOS
-        [#{client_name}]
-        api_url = http://api.brightbox.dev
-        client_id = #{client_name}
         username = user@example.com
         EOS
       end
