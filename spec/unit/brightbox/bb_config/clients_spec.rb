@@ -18,6 +18,16 @@ describe Brightbox::BBConfig, "#clients" do
     it { expect(config.clients).to be_empty }
   end
 
+  context "when only an 'alias' section exists" do
+    let(:ini) do
+      <<-EOS
+      [alias]
+      setting = value
+      EOS
+    end
+    it { expect(config.clients).to be_empty }
+  end
+
   context "when multiple sections exist" do
     let(:ini) do
       <<-EOS

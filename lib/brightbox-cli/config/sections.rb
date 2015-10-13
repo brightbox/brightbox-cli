@@ -91,7 +91,7 @@ module Brightbox
       #
       def clients
         # Exclude the global "core" section
-        config.sections.select { |s| s != 'core' }
+        config.sections.reject { |s| %w(core alias).include?(s) }
       end
 
       private
