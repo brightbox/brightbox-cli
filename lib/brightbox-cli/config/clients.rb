@@ -17,7 +17,7 @@ module Brightbox
 
       # Does this config have multiple clients defined within?
       def has_multiple_clients?
-        clients.size > 1
+        section_names.size > 1
       end
 
       # Does the currently selected client have an alias and a config section
@@ -63,10 +63,10 @@ module Brightbox
             @client_name = default_client
           else
             # Is client ambigious?
-            if default_client.nil? && clients.length > 1
+            if default_client.nil? && has_multiple_clients?
               raise AmbiguousClientError, AMBIGUOUS_CLIENT_ERROR
             end
-            @client_name = default_client || clients.first
+            @client_name = default_client || section_names.first
           end
         end
       end

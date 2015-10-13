@@ -10,7 +10,7 @@ module Brightbox
 
         info "Using config file #{$config.config_filename}"
 
-        clients = $config.clients.map do |cid|
+        clients = $config.section_names.map do |cid|
           c = $config[cid]
           calias = c["alias"] || cid
 

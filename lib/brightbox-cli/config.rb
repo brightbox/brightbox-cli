@@ -116,7 +116,7 @@ module Brightbox
     end
 
     def configured?
-      configured = !client_name.nil? && !clients.empty?
+      configured = !client_name.nil? && !section_names.empty?
       if configured && (selected_config.nil? || selected_config.empty?)
         raise BBConfigError, "client id or alias #{client_name.inspect} not defined in config"
       end

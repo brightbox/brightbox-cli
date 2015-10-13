@@ -1,11 +1,11 @@
 require "spec_helper"
 
-describe Brightbox::BBConfig, "#clients" do
+describe Brightbox::BBConfig, "#section_names" do
   subject(:config) { config_from_contents(ini) }
 
   context "when no sections exist" do
     let(:ini) { "" }
-    it { expect(config.clients).to be_empty }
+    it { expect(config.section_names).to be_empty }
   end
 
   context "when only a 'core' section exists" do
@@ -15,7 +15,7 @@ describe Brightbox::BBConfig, "#clients" do
       setting = value
       EOS
     end
-    it { expect(config.clients).to be_empty }
+    it { expect(config.section_names).to be_empty }
   end
 
   context "when only an 'alias' section exists" do
@@ -25,7 +25,7 @@ describe Brightbox::BBConfig, "#clients" do
       setting = value
       EOS
     end
-    it { expect(config.clients).to be_empty }
+    it { expect(config.section_names).to be_empty }
   end
 
   context "when multiple sections exist" do
@@ -41,6 +41,6 @@ describe Brightbox::BBConfig, "#clients" do
       setting = value
       EOS
     end
-    it { expect(config.clients).to eq(%w(cli-12345 app-12345)) }
+    it { expect(config.section_names).to eq(%w(cli-12345 app-12345)) }
   end
 end

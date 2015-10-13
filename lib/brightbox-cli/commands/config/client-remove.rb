@@ -15,7 +15,7 @@ module Brightbox
           raise "You must specify the api alias you want to remove"
         end
 
-        client_config = $config.clients.find do |config|
+        client_config = $config.section_names.find do |config|
           $config[config]["alias"] == calias
         end
 

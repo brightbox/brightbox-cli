@@ -18,7 +18,7 @@ module Brightbox
         else
           old_calias = client_alias
 
-          deduplicator = Brightbox::Config::SectionNameDeduplicator.new(client_alias, clients)
+          deduplicator = Brightbox::Config::SectionNameDeduplicator.new(client_alias, section_names)
           client_alias = deduplicator.next
           # Need to open the new config again
           client_config = config[client_alias]
@@ -85,11 +85,11 @@ module Brightbox
         config[section_name]
       end
 
-      # Returns the clients in the config
+      # Returns the section names in the config
       #
       # @return [Array<String>]
       #
-      def clients
+      def section_names
         # Exclude the global "core" section
         config.sections.reject { |s| %w(core alias).include?(s) }
       end
