@@ -12,8 +12,8 @@ module Brightbox
       # @option options [String] :auth_url
       #
       def add_section(client_alias, client_id, secret, options)
-        client_config = config[client_alias]
-        if client_config.empty?
+        config_section = config[client_alias]
+        if config_section.empty?
           info "Creating new client config #{client_alias}"
         else
           old_calias = client_alias
@@ -21,17 +21,17 @@ module Brightbox
           deduplicator = Brightbox::Config::SectionNameDeduplicator.new(client_alias, section_names)
           client_alias = deduplicator.next
           # Need to open the new config again
-          client_config = config[client_alias]
+          config_section = config[client_alias]
 
           info "A client config named #{old_calias} already exists using #{client_alias} instead"
         end
 
-        client_config["alias"] = client_alias
-        client_config["client_id"] = client_id
-        client_config["username"] = options[:username]
-        client_config["secret"] = secret
-        client_config["api_url"] = options[:api_url] || DEFAULT_API_ENDPOINT
-        client_config["auth_url"] = options[:auth_url] || client_config["api_url"]
+        config_section["alias"] = client_alias
+        config_section["client_id"] = client_id
+        config_section["username"] = options[:username]
+        config_section["secret"] = secret
+        config_section["api_url"] = options[:api_url] || DEFAULT_API_ENDPOINT
+        config_section["auth_url"] = options[:auth_url] || config_section["api_url"]
 
         dirty!
 
