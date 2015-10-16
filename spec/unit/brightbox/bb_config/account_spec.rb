@@ -35,6 +35,8 @@ describe Brightbox::BBConfig do
         @account_name = "acc-ghj32"
         @client_name = "app-b3n5b"
         contents = <<-EOS
+        [core]
+        default_client = #{@client_name}
         [#{@client_name}]
         default_account = #{@account_name}
         EOS

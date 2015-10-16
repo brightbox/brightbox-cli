@@ -41,7 +41,7 @@ module Brightbox
     Brightbox.config = BBConfig.new(config_opts)
 
     # Commands that alter the config files should not error here
-    unless [:config].include?(command.topmost_ancestor.name)
+    unless [:config, :login].include?(command.topmost_ancestor.name)
       raise AmbiguousClientError, AMBIGUOUS_CLIENT_ERROR if Brightbox.config.client_name.nil?
 
       if Brightbox.config.has_multiple_clients?

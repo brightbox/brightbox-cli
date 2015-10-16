@@ -61,6 +61,8 @@ describe Brightbox::BBConfig do
     context "when client may access one account", vcr: true do
       let(:contents) do
         <<-EOS
+        [core]
+        default_client = cli-12345
         [cli-12345]
         api_url = http://api.brightbox.dev
         client_id = cli-12345

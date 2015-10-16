@@ -16,6 +16,8 @@ module ConfigHelpers
       f.write contents
     end
 
+    config = Brightbox::BBConfig.new
+
     # Subvert the global
     Brightbox.config = config
 

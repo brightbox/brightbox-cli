@@ -15,6 +15,9 @@ describe Brightbox::BBConfig do
     context "when using a user app with no tokens", vcr: true do
       before do
         contents = <<-EOS
+        [core]
+        default_client = app-12345
+
         [app-12345]
         api_url = #{api_endpoint}
         client_id = #{app_id}

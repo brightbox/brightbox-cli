@@ -43,13 +43,17 @@ describe Brightbox::BBConfig do
     end
 
     context "when set in config" do
-      before do
-        @account_name = "acc-ghj32"
-        @client_name = "app-b3n5b"
-        contents = <<-EOS
-        [#{@client_name}]
-        default_account = #{@account_name}
+      let(:account_name) { "acc-ghj32" }
+      let(:client_name) { "app-b3n5b" }
+
+      let(:contents) do
+        <<-EOS
+        [#{client_name}]
+        default_account = #{account_name}
         EOS
+      end
+
+      before do
         @config = config_from_contents(contents)
       end
 

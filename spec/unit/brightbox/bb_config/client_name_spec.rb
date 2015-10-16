@@ -56,39 +56,31 @@ describe Brightbox::BBConfig do
         [cli-12345]
         client_id = cli-12345
         EOS
-        @tmp_config = TmpConfig.new(contents)
-      end
-
-      after do
-        @tmp_config.close
+        config_from_contents(contents)
       end
 
       context "and force_default_config is on" do
         before do
           config_opts = {
-            :directory => @tmp_config.path,
             :force_default_config => true
           }
           @config = Brightbox::BBConfig.new(config_opts)
         end
 
-        it "raises an error" do
-          expect do
-            @config.client_name
-          end.to raise_error(Brightbox::BBConfigError, "You must specify a default client using brightbox config client_default")
+        it "returns nil" do
+          expect(@config.client_name).to be_nil
         end
       end
 
       context "and force_default_config is off" do
         before do
           config_opts = {
-            :directory => @tmp_config.path,
             :force_default_config => false
           }
           @config = Brightbox::BBConfig.new(config_opts)
         end
 
-        it "returns first client" do
+        it "returns nil" do
           expect(@config.client_name).to be_nil
         end
       end

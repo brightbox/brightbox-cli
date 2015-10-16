@@ -20,7 +20,8 @@ module Brightbox
     include Brightbox::Config::ToFog
     include Brightbox::Config::Dirty
 
-    attr_writer :client_name, :account
+    attr_accessor :client_name
+    attr_writer :account
 
     # @params [Hash] options Options to control loading and settings
     # @option options [String] :directory A path to the directory where config and
@@ -33,8 +34,10 @@ module Brightbox
     #
     def initialize(options = {})
       @options = options
-      @client_name = options[:client_name]
-      @account = options[:account]
+      prepare_dir
+      prepare_ini
+      @client_name = determine_client(options[:client_name])
+      @account = determine_account(options[:account])
       @dirty = false
     end
 
@@ -67,15 +70,7 @@ module Brightbox
     #
     # @return [Ini] The raw settings from the ini configuration file
     def config
-      return @config_file if @config_file
-      return {} if @config_file == false
-
-      create_directory unless config_directory_exists?
-
-      @config_file ||= Ini.new(config_filename)
       @config_file
-    rescue Ini::Error => e
-      raise BBConfigError, "Config problem in #{config_filename}: #{e}"
     end
 
     # Write out the configuration file to disk
@@ -116,11 +111,10 @@ module Brightbox
     end
 
     def configured?
-      configured = !client_name.nil? && !section_names.empty?
-      if configured && (selected_config.nil? || selected_config.empty?)
+      if client_name.nil? || config[client_name].nil?
         raise BBConfigError, "client id or alias #{client_name.inspect} not defined in config"
       end
-      configured
+      true
     end
 
     # Attempts to create the directory the config is expecting to find it's file
@@ -133,6 +127,20 @@ module Brightbox
         rescue Errno::EEXIST
         end
       end
+    end
+
+    def prepare_dir
+      create_directory unless config_directory_exists?
+    end
+
+    def prepare_ini
+      return @config_file if @config_file
+      return {} if @config_file == false
+
+      @config_file ||= Ini.new(config_filename)
+      @config_file
+    rescue Ini::Error => e
+      raise BBConfigError, "Config problem in #{config_filename}: #{e}"
     end
   end
 end

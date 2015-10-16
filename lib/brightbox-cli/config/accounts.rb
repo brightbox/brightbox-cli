@@ -22,6 +22,11 @@ module Brightbox
         end
       end
 
+      def determine_account(preferred_account)
+        return preferred_account if preferred_account
+        return config[client_name]["default_account"] unless client_name.nil?
+      end
+
       def account
         if defined?(@account) && @account
           @account
