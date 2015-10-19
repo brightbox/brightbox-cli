@@ -6,7 +6,7 @@ describe Brightbox::BBConfig do
     [core]
     default_client = fnord
 
-    [fnord]
+    [other]
     client_id = cli-12345
     alias = test
 
