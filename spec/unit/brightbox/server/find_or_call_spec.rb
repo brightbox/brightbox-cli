@@ -1,6 +1,9 @@
 require "spec_helper"
 
 describe Brightbox::Server do
+  before do
+    config_from_contents(API_CLIENT_CONFIG_CONTENTS)
+  end
 
   describe "#show", vcr: true do
     context "when server exists" do

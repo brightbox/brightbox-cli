@@ -1,6 +1,9 @@
 require "spec_helper"
 
 describe Brightbox::CloudIP do
+  before do
+    config_from_contents(API_CLIENT_CONFIG_CONTENTS)
+  end
 
   describe "#find(:all)" do
     context "when a Cloud IP exists" do

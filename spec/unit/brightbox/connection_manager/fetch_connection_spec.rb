@@ -1,6 +1,10 @@
 require "spec_helper"
 
 describe Brightbox::ConnectionManager, "#fetch_connection" do
+  before do
+    config_from_contents(API_CLIENT_CONFIG_CONTENTS)
+  end
+
   let(:connection_manager) { Brightbox::ConnectionManager.new(connection_options) }
   let(:connection_options) do
     {

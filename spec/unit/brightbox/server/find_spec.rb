@@ -1,6 +1,10 @@
 require "spec_helper"
 
 describe Brightbox::Server do
+  before do
+    config_from_contents(API_CLIENT_CONFIG_CONTENTS)
+  end
+
   let(:image_id) { "img-12345" }
 
   describe "#find(:all)" do

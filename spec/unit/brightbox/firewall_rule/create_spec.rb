@@ -1,6 +1,9 @@
 require "spec_helper"
 
 describe Brightbox::FirewallRule do
+  before do
+    config_from_contents(API_CLIENT_CONFIG_CONTENTS)
+  end
 
   describe "#create" do
     context "when policy exists" do

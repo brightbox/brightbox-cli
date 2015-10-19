@@ -1,6 +1,9 @@
 require "spec_helper"
 
 describe Brightbox::ServerGroup do
+  before do
+    config_from_contents(API_CLIENT_CONFIG_CONTENTS)
+  end
 
   describe "#find(:all)" do
     context "when a group exists", vcr: true do
