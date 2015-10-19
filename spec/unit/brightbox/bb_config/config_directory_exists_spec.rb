@@ -26,7 +26,8 @@ describe Brightbox::BBConfig do
 
     context "when directory does not exist" do
       it "returns false" do
-        @dir = "sdflfhdsafldsalfkjda"
+        # Create a tmpdir and delete it so we are sure it should not exist
+        Dir.mktmpdir { |dir| @dir = dir }
         expect(config.config_directory_exists?).to be false
       end
     end
