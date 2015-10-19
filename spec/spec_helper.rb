@@ -38,6 +38,7 @@ RSpec.configure do |config|
   config.around(:each) do |example|
     Dir.mktmpdir do |tmp_home|
       ENV["HOME"] = tmp_home
+      Brightbox.config = nil
       example.run
       ENV["HOME"] = TEST_RUNNER_HOME
     end

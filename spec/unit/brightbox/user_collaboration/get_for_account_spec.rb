@@ -1,6 +1,9 @@
 require "spec_helper"
 
 describe Brightbox::UserCollaboration do
+  before do
+    config_from_contents(API_CLIENT_CONFIG_CONTENTS)
+  end
 
   describe ".get_for_account" do
     before do
