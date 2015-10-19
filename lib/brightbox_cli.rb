@@ -62,6 +62,8 @@ module Brightbox
   end
 end
 
+require_relative "brightbox/cli/config"
+
 require_relative "brightbox-cli/connection_manager"
 require_relative 'brightbox-cli/tables'
 require_relative "brightbox-cli/logging"

@@ -45,10 +45,10 @@ module Brightbox
       :client_name => ENV["CLIENT"] || global_options[:client],
       :account => ENV["ACCOUNT"] || global_options[:account]
     }
-    $config = BBConfig.new(config_opts)
+    Brightbox.config = BBConfig.new(config_opts)
 
     # Outputs a snapshot of the tokens known by the client
-    $config.debug_tokens if $config.respond_to?(:debug_tokens)
+    Brightbox.config.debug_tokens if Brightbox.config.respond_to?(:debug_tokens)
 
     Excon.defaults[:headers]['User-Agent'] = "brightbox-cli/#{Brightbox::VERSION} Fog/#{Fog::Core::VERSION}"
 
@@ -63,11 +63,11 @@ module Brightbox
       Hirb::View.resize
     end
 
-    if $config.has_multiple_clients?
-      if $config.client_has_alias?
-        info "INFO: client_id: #{$config.client_id} (#{$config.client_alias})"
+    if Brightbox.config.has_multiple_clients?
+      if Brightbox.config.client_has_alias?
+        info "INFO: client_id: #{Brightbox.config.client_id} (#{Brightbox.config.client_alias})"
       else
-        info "INFO: client_id: #{$config.client_id}"
+        info "INFO: client_id: #{Brightbox.config.client_id}"
       end
     end
     true
@@ -81,12 +81,12 @@ module Brightbox
       access_token = Api.conn.access_token
       refresh_token = Api.conn.refresh_token
 
-      $config.update_stored_tokens(access_token, refresh_token)
-      $config.save
+      Brightbox.config.update_stored_tokens(access_token, refresh_token)
+      Brightbox.config.save
     rescue BBConfigError
     rescue StandardError => e
       # FIXME: Other StandardErrors are available
-      warn "Error writing auth token #{$config.access_token_filename}: #{e.class}: #{e}"
+      warn "Error writing auth token #{Brightbox.config.access_token_filename}: #{e.class}: #{e}"
     end
   end
 
@@ -94,15 +94,15 @@ module Brightbox
     # Try to handle invalid/expired credentials
     if e.is_a?(Excon::Errors::Unauthorized)
       begin
-        debug "Refused access token: #{$config.access_token}"
-        $config.reauthenticate
+        debug "Refused access token: #{Brightbox.config.access_token}"
+        Brightbox.config.reauthenticate
         # FIXME: Curious output from info
         info "Your API credentials have been updated, please re-run your command."
-        $config.debug_tokens if $config.respond_to?(:debug_tokens)
+        Brightbox.config.debug_tokens if Brightbox.config.respond_to?(:debug_tokens)
         exit(222)
       rescue Brightbox::Api::ApiError
         error "Unable to authenticate with supplied details"
-        $config.debug_tokens if $config.respond_to?(:debug_tokens)
+        Brightbox.config.debug_tokens if Brightbox.config.respond_to?(:debug_tokens)
         exit(111)
       rescue Exception => e
         if ENV["DEBUG"]
@@ -110,7 +110,7 @@ module Brightbox
           debug e.class.to_s
           debug e.backtrace.join("\n")
         end
-        $config.debug_tokens if $config.respond_to?(:debug_tokens)
+        Brightbox.config.debug_tokens if Brightbox.config.respond_to?(:debug_tokens)
         exit(1)
       end
     else
@@ -122,7 +122,7 @@ module Brightbox
         debug e.class.to_s
         debug e.backtrace.join("\n")
       end
-      $config.debug_tokens if $config.respond_to?(:debug_tokens)
+      Brightbox.config.debug_tokens if Brightbox.config.respond_to?(:debug_tokens)
       exit(1)
     end
   end

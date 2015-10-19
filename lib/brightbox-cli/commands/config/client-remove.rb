@@ -7,7 +7,7 @@ module Brightbox
 
       c.action do |_global_options, _options, args|
 
-        info "Using config file #{$config.config_filename}"
+        info "Using config file #{Brightbox.config.config_filename}"
 
         calias = args.shift
 
@@ -15,8 +15,8 @@ module Brightbox
           raise "You must specify the api alias you want to remove"
         end
 
-        client_config = $config.section_names.find do |config|
-          $config[config]["alias"] == calias
+        client_config = Brightbox.config.section_names.find do |config|
+          Brightbox.config[config]["alias"] == calias
         end
 
         if client_config.nil?
@@ -24,7 +24,7 @@ module Brightbox
         end
 
         info "Removing api client #{calias}"
-        $config.delete_section client_config
+        Brightbox.config.delete_section client_config
       end
     end
   end

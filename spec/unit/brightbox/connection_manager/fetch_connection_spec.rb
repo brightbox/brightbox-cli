@@ -35,7 +35,7 @@ describe Brightbox::ConnectionManager, "#fetch_connection" do
         connection = connection_manager.fetch_connection(false)
         expect(connection).not_to be_nil
 
-        expect($config).to receive(:account).and_return("acc-abcde")
+        expect(Brightbox.config).to receive(:account).and_return("acc-abcde")
         connection2 = connection_manager.fetch_connection(true)
         expect(connection2).to eq(connection)
         expect(connection2.scoped_account).not_to be_nil
@@ -52,7 +52,7 @@ describe Brightbox::ConnectionManager, "#fetch_connection" do
 
     it "selects configured account" do
       skip "Fails out of sequence, mocked config incorrect"
-      $config.stubs(:selected_config).returns('default_account' => "acc-12345")
+      Brightbox.config.stubs(:selected_config).returns('default_account' => "acc-12345")
       connection = connection_manager.fetch_connection(true)
       expect(connection).not_to be_nil
       expect(connection.scoped_account).to eq("acc-12345")
@@ -62,7 +62,7 @@ describe Brightbox::ConnectionManager, "#fetch_connection" do
   context "when user has one account" do
     it "selects that account" do
       skip "Fails out of sequence, mocked config incorrect"
-      allow($config).to receive(:selected_config).and_call_original
+      allow(Brightbox.config).to receive(:selected_config).and_call_original
       mock_account = double
       mock_account.expects(:id).returns("acc-xyg")
 

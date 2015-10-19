@@ -17,10 +17,10 @@ module Brightbox
 
     def connection_with_account
       if @connection
-        @connection.scoped_account = $config.account
+        @connection.scoped_account = Brightbox.config.account
         @connection
       else
-        selected_account = $config.account
+        selected_account = Brightbox.config.account
         @connection = create_connection(:brightbox_account => selected_account)
       end
     end

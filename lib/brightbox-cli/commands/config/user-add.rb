@@ -15,7 +15,7 @@ module Brightbox
 
         require 'highline'
 
-        info "Using config file #{$config.config_filename}"
+        info "Using config file #{Brightbox.config.config_filename}"
 
         email = args.shift
         client_id = args.shift
@@ -57,7 +57,7 @@ module Brightbox
           :api_url => api_url,
           :auth_url => auth_url
         }
-        $config.add_section(calias, client_id, secret, options)
+        Brightbox.config.add_section(calias, client_id, secret, options)
       end
     end
   end

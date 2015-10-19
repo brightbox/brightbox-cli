@@ -8,14 +8,14 @@ module Brightbox
 
       c.action do |global_options, _options, _args|
 
-        info "Using config file #{$config.config_filename}"
+        info "Using config file #{Brightbox.config.config_filename}"
 
-        clients = $config.section_names.map do |cid|
-          c = $config[cid]
+        clients = Brightbox.config.section_names.map do |cid|
+          c = Brightbox.config[cid]
           calias = c["alias"] || cid
 
           # Append a star for the configured default client
-          if $config.default_client == cid && $config.has_multiple_clients?
+          if Brightbox.config.default_client == cid && Brightbox.config.has_multiple_clients?
             calias = "*#{calias}"
           end
 

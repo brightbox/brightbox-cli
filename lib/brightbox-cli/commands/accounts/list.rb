@@ -8,7 +8,7 @@ module Brightbox
     cmd.command [:list] do |c|
 
       c.action do |global_options, _options, _args|
-        if $config.using_application?
+        if Brightbox.config.using_application?
           # Collaborating Accounts are combined from owned and collaborations
           accounts = CollaboratingAccount.all
         else

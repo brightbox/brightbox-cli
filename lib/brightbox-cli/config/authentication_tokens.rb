@@ -55,7 +55,7 @@ module Brightbox
       # This attempts to renew access (and refresh) tokens for the current
       # configuration based on the current connection.
       #
-      # @note $config and Api.conn are actually two different worlds and should
+      # @note Brightbox.config and Api.conn are actually two different worlds and should
       #   be merged (so a configuration holds the current connection)
       #
       def renew_tokens(options = {})

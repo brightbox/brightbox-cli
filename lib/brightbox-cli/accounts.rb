@@ -17,7 +17,7 @@ module Brightbox
     end
 
     def self.all
-      if $config.using_application?
+      if Brightbox.config.using_application?
         conn.accounts.all
       else
         [conn.account]
@@ -25,7 +25,7 @@ module Brightbox
     end
 
     def self.get(id)
-      if $config.using_application?
+      if Brightbox.config.using_application?
         a = conn.accounts.get(id)
       else
         a = conn.account

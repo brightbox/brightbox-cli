@@ -2,9 +2,7 @@ require "spec_helper"
 
 describe Brightbox::Account do
   before do
-    # Unfortunately need to change $config for Api.conn to work until we can
-    # eliminate the global class method
-    $config = config_from_contents(contents)
+    Brightbox.config = config_from_contents(contents)
   end
 
   describe ".all" do

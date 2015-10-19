@@ -22,7 +22,7 @@ module Brightbox
       if @@connection_manager
         @@connection_manager.fetch_connection(require_account?)
       else
-        @@connection_manager = Brightbox::ConnectionManager.new($config.to_fog)
+        @@connection_manager = Brightbox::ConnectionManager.new(Brightbox.config.to_fog)
         @@connection_manager.fetch_connection(require_account?)
       end
     end
@@ -52,7 +52,7 @@ module Brightbox
       else
         raise InvalidArguments, "Can't initialize #{self.class} with #{m.inspect}"
       end
-      $config.cache_id(@id) if $config.respond_to?(:cache_id)
+      Brightbox.config.cache_id(@id) if Brightbox.config.respond_to?(:cache_id)
     end
 
     def fog_model
@@ -164,7 +164,7 @@ module Brightbox
       if value
         value
       else
-        $config.cache_id id
+        Brightbox.config.cache_id id
         @cache[id] = get(id)
       end
     end
@@ -179,7 +179,7 @@ module Brightbox
       @cache = {}
       all.each do |f|
         @cache[f.id] = f
-        $config.cache_id f.id
+        Brightbox.config.cache_id f.id
       end
     end
 
