@@ -16,7 +16,7 @@ http_interactions:
   response:
     status:
       code: 401
-      message:
+      message: 
     headers:
       WWW-Authenticate:
       - OAuth error="invalid_token"
@@ -38,7 +38,7 @@ http_interactions:
       encoding: UTF-8
       string: '{"error":"invalid_token","error_description":"The OAuth token can not
         be found"}'
-    http_version:
+    http_version: 
   recorded_at: Wed, 28 Aug 2013 14:50:08 GMT
 - request:
     method: post
@@ -56,7 +56,7 @@ http_interactions:
   response:
     status:
       code: 400
-      message:
+      message: 
     headers:
       X-Frame-Options:
       - sameorigin
@@ -84,7 +84,7 @@ http_interactions:
         provided is invalid, the client failed to authenticate, the client did not
         include its credentials, provided multiple client credentials, or used unsupported
         credentials type."}'
-    http_version:
+    http_version: 
   recorded_at: Wed, 28 Aug 2013 14:50:08 GMT
 - request:
     method: get
@@ -102,7 +102,7 @@ http_interactions:
   response:
     status:
       code: 401
-      message:
+      message: 
     headers:
       WWW-Authenticate:
       - OAuth error="invalid_token"
@@ -124,7 +124,7 @@ http_interactions:
       encoding: UTF-8
       string: '{"error":"invalid_token","error_description":"The OAuth token can not
         be found"}'
-    http_version:
+    http_version: 
   recorded_at: Wed, 28 Aug 2013 14:50:08 GMT
 - request:
     method: post
@@ -142,7 +142,7 @@ http_interactions:
   response:
     status:
       code: 200
-      message:
+      message: 
     headers:
       X-Frame-Options:
       - sameorigin
@@ -169,7 +169,7 @@ http_interactions:
     body:
       encoding: UTF-8
       string: '{"access_token":"d003e4f0970b948af8e35d3ed9f3531cdd6e2154","expires_in":7200,"refresh_token":"dcd32790159f852756dadf8bed12cc3369c7b448"}'
-    http_version:
+    http_version: 
   recorded_at: Wed, 28 Aug 2013 14:50:09 GMT
 - request:
     method: post
@@ -187,7 +187,7 @@ http_interactions:
   response:
     status:
       code: 400
-      message:
+      message: 
     headers:
       X-Frame-Options:
       - sameorigin
@@ -215,7 +215,7 @@ http_interactions:
         provided is invalid, the client failed to authenticate, the client did not
         include its credentials, provided multiple client credentials, or used unsupported
         credentials type."}'
-    http_version:
+    http_version: 
   recorded_at: Wed, 28 Aug 2013 14:54:24 GMT
 - request:
     method: post
@@ -233,7 +233,7 @@ http_interactions:
   response:
     status:
       code: 400
-      message:
+      message: 
     headers:
       X-Frame-Options:
       - sameorigin
@@ -259,7 +259,7 @@ http_interactions:
       encoding: UTF-8
       string: '{"error":"unauthorized_client","error_description":"The authenticated
         client is not authorized to use the access grant type provided."}'
-    http_version:
+    http_version: 
   recorded_at: Wed, 18 Sep 2013 15:18:57 GMT
 - request:
     method: post
@@ -277,7 +277,7 @@ http_interactions:
   response:
     status:
       code: 400
-      message:
+      message: 
     headers:
       X-Frame-Options:
       - sameorigin
@@ -303,7 +303,7 @@ http_interactions:
       encoding: UTF-8
       string: '{"error":"unauthorized_client","error_description":"The authenticated
         client is not authorized to use the access grant type provided."}'
-    http_version:
+    http_version: 
   recorded_at: Wed, 18 Sep 2013 15:18:57 GMT
 - request:
     method: post
@@ -321,7 +321,7 @@ http_interactions:
   response:
     status:
       code: 400
-      message:
+      message: 
     headers:
       X-Frame-Options:
       - sameorigin
@@ -349,7 +349,7 @@ http_interactions:
         is invalid, expired, or revoked (e.g. invalid assertion, expired authorization
         token, bad end-user password credentials, or mismatching authorization code
         and redirection URI)."}'
-    http_version:
+    http_version: 
   recorded_at: Wed, 18 Sep 2013 15:19:02 GMT
 - request:
     method: post
@@ -367,7 +367,7 @@ http_interactions:
   response:
     status:
       code: 401
-      message:
+      message: 
     headers:
       X-Frame-Options:
       - sameorigin
@@ -394,6 +394,52 @@ http_interactions:
     body:
       encoding: UTF-8
       string: '{"error":"invalid_client"}'
-    http_version:
+    http_version: 
   recorded_at: Wed, 18 Sep 2013 15:19:35 GMT
+- request:
+    method: post
+    uri: http://api.brightbox.dev/token
+    body:
+      encoding: UTF-8
+      string: '{"grant_type":"refresh_token","refresh_token":"6846e655733a4fc36913c6c7e7bf8cb8fe7940b8"}'
+    headers:
+      User-Agent:
+      - fog-core/1.32.1
+      Authorization:
+      - Basic YXBwLTEyMzQ1Om1vY2J1aXBiaWFhNms2Yw==
+      Content-Type:
+      - application/json
+  response:
+    status:
+      code: 400
+      message: 
+    headers:
+      Content-Type:
+      - application/json
+      Cache-Control:
+      - no-store
+      Content-Length:
+      - '250'
+      X-Content-Type-Options:
+      - nosniff
+      X-Ua-Compatible:
+      - IE=Edge
+      X-Request-Id:
+      - 971f3fc1ae009572f5d2cef69846285a
+      X-Runtime:
+      - '0.435538'
+      Server:
+      - WEBrick/1.3.1 (Ruby/1.9.3/2014-11-13)
+      Date:
+      - Mon, 19 Oct 2015 15:08:07 GMT
+      Connection:
+      - Keep-Alive
+    body:
+      encoding: UTF-8
+      string: '{"error":"invalid_grant","error_description":"The provided access grant
+        is invalid, expired, or revoked (e.g. invalid assertion, expired authorization
+        token, bad end-user password credentials, or mismatching authorization code
+        and redirection URI)."}'
+    http_version: 
+  recorded_at: Mon, 19 Oct 2015 15:08:07 GMT
 recorded_with: VCR 2.5.0
