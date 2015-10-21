@@ -181,4 +181,42 @@ EOS
       end
     end
   end
+
+  context "when using an email and suffix", vcr: true do
+    let(:client_name) { "#{email}/dev" }
+    let(:expected_config) do
+      <<EOS
+[core]
+default_client = #{client_name}
+
+[#{client_name}]
+username = #{email}
+api_url = #{api_url}
+auth_url = #{api_url}
+default_account = acc-12345
+
+EOS
+    end
+
+    before do
+      remove_config
+    end
+
+    it "creates the configuration" do
+      FauxIO.new do
+        config.add_login(client_name, password)
+      end
+      expect(config_file_contents).to eq(expected_config)
+    end
+
+    it "refreshed tokens" do
+      FauxIO.new do
+        expect { config.add_login(email, password) }.not_to raise_error
+      end
+
+      expect(cached_access_token(config)).to eq(config.access_token)
+      expect(cached_refresh_token(config)).to eq(config.refresh_token)
+    end
+  end
+
 end

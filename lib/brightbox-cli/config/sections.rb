@@ -2,22 +2,21 @@ module Brightbox
   module Config
     module Sections
       #
-      # @param [String] email
+      # @param [String] config_alias The section name usually `email` but `email/suffix` allowed.
       # @param [String] password
       # @param [Hash] options
-      # @option options [String] :alias
       # @option options [String] :api_url
       # @option options [String] :auth_url
       # @option options [String] :default_account
       # @option options [String] :client_id
       # @option options [String] :secret
       #
-      def add_login(email, password, options = {})
+      def add_login(config_alias, password, options = {})
         # If a custom alias is passed, used that for the config header, otherwise use email
-        config_alias = options[:alias] || email
+        email = config_alias.split("/").first
         config_section = config[config_alias]
 
-        info "Creating new client config #{email}" if config_section.empty?
+        info "Creating new client config #{config_alias}" if config_section.empty?
 
         config_section["username"] = email unless config_section["username"]
 
