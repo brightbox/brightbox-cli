@@ -73,7 +73,7 @@ module Brightbox
 
       # Returns the actual client ID with no risk of an alias
       def client_id
-        selected_config["client_id"]
+        selected_config["client_id"] || Brightbox::EMBEDDED_APP_ID
       end
 
       # @todo Account for "core" section
