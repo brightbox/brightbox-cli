@@ -1,3 +1,27 @@
+### v2.3.0 / 2015-10-23
+
+[Full Changelog](https://github.com/brightbox/brightbox-cli/compare/v2.2.0...v2.3.0)
+
+Enhancements:
+
+* Adds embedded client that is used when a user has not setup their own
+  application.
+* Adds `brightbox login` command which allows a simplified login for users with
+  just their email address and password (prompted).
+
+    brightbox login user@example.com
+
+  This uses the embedded application to save extra steps setting up.
+
+Bug fixes:
+
+* Guard against errors when using `DEBUG=true` whilst configuration is not
+  selected triggering a `NoMethodError`
+* Use `pry-remote` for debugging. `pry` runs in process and the IO is trapped
+  when testing and in some error cases making it unusable.
+* Fix configuration code so it can initialise without network side effects when
+  reading client_name and other values.
+
 ### v2.2.0 / 2015-09-28
 
 [Full Changelog](https://github.com/brightbox/brightbox-cli/compare/v2.1.2...v2.2.0)
