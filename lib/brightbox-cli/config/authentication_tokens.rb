@@ -4,7 +4,7 @@ module Brightbox
       attr_writer :access_token, :refresh_token
 
       def access_token_filename
-        file_name = "#{client_name}.oauth_token"
+        file_name = "#{base_token_name}.oauth_token"
         @access_token_filename ||= File.join(config_directory, file_name)
       end
 
@@ -20,7 +20,7 @@ module Brightbox
       end
 
       def refresh_token_filename
-        file_name = "#{client_name}.refresh_token"
+        file_name = "#{base_token_name}.refresh_token"
         @refresh_token_filename ||= File.join(config_directory, file_name)
       end
 
@@ -233,6 +233,13 @@ module Brightbox
 
       def cached_refresh_token
         File.open(refresh_token_filename, "r") { |fl| fl.read.chomp }
+      end
+
+      private
+
+      def base_token_name
+        return nil if client_name.nil?
+        client_name.gsub("/", "_")
       end
     end
   end

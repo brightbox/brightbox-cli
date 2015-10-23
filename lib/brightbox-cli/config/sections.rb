@@ -2,6 +2,63 @@ module Brightbox
   module Config
     module Sections
       #
+      # @param [String] config_alias The section name usually `email` but `email/suffix` allowed.
+      # @param [String] password
+      # @param [Hash] options
+      # @option options [String] :api_url
+      # @option options [String] :auth_url
+      # @option options [String] :default_account
+      # @option options [String] :client_id
+      # @option options [String] :secret
+      #
+      def add_login(config_alias, password, options = {})
+        # If a custom alias is passed, used that for the config header, otherwise use email
+        email = config_alias.split("/").first
+        config_section = config[config_alias]
+
+        info "Creating new client config #{config_alias}" if config_section.empty?
+
+        config_section["username"] = email unless config_section["username"]
+
+        config_section["api_url"] = options[:api_url] if options.key?(:api_url)
+        config_section["api_url"] = DEFAULT_API_ENDPOINT unless config_section["api_url"]
+
+        config_section["auth_url"] = options[:auth_url] if options.key?(:auth_url)
+        config_section["auth_url"] = config_section["api_url"]
+
+        config_section["default_account"] = options[:default_account] if options.key?(:default_account)
+
+        config_section["client_id"] = options[:client_id] if options.key?(:client_id)
+        config_section["secret"] = options[:secret] if options.key?(:secret)
+
+        dirty!
+
+        self.client_name = client_alias
+
+        # Renew tokens via config...
+        #
+        # Part of the "login" behaviour is to always refresh them
+        #
+        begin
+          flush_access_token!
+          renew_tokens(:client_name => config_alias, :password => password)
+        rescue => e
+          error "Something went wrong trying to refresh new tokens #{e.message}"
+        end
+
+        # Try to determine a default account
+        unless default_account == find_or_set_default_account
+          info "The default account of #{default_account} has been selected"
+        end
+
+        # If only client then set it as the default
+        set_default_client(client_alias) unless default_client
+
+        # Ensure all our config changes are now saved
+        save
+      end
+
+      #
       # @param [String] client_alias
       # @param [String] client_id
       # @param [String] secret

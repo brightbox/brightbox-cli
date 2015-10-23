@@ -1,0 +1,199 @@
+---
+http_interactions:
+- request:
+    method: post
+    uri: http://api.brightbox.dev/token
+    body:
+      encoding: UTF-8
+      string: '{"grant_type":"password","username":"jason.null@brightbox.com","password":"N:B3e%7Cmh"}'
+    headers:
+      User-Agent:
+      - fog-core/1.32.1
+      Authorization:
+      - Basic YXBwLTEyMzQ1Om1vY2J1aXBiaWFhNms2Yw==
+      Content-Type:
+      - application/json
+  response:
+    status:
+      code: 200
+      message: 
+    headers:
+      Content-Type:
+      - application/json
+      Cache-Control:
+      - no-store
+      X-Oauth-Scopes:
+      - infrastructure, orbit
+      Content-Length:
+      - '190'
+      X-Content-Type-Options:
+      - nosniff
+      X-Ua-Compatible:
+      - IE=Edge
+      Etag:
+      - '"2a4be747fd46075bcb395a242ed76253"'
+      X-Request-Id:
+      - dd49f50cea13daa0e840b1ed350b06cf
+      X-Runtime:
+      - '0.089367'
+      Server:
+      - WEBrick/1.3.1 (Ruby/1.9.3/2014-11-13)
+      Date:
+      - Wed, 30 Sep 2015 14:55:23 GMT
+      Connection:
+      - Keep-Alive
+    body:
+      encoding: UTF-8
+      string: '{"access_token":"13824deca216ba81d5963d75659755d76083c490","token_type":"Bearer","refresh_token":"6b70b12f95df7b7e95e6cf0a99e5982ea7087f2c","scope":"infrastructure,
+        orbit","expires_in":7200}'
+    http_version: 
+  recorded_at: Wed, 30 Sep 2015 14:55:23 GMT
+- request:
+    method: get
+    uri: http://api.brightbox.dev/1.0/accounts
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      User-Agent:
+      - fog-core/1.32.1
+      Authorization:
+      - Bearer 13824deca216ba81d5963d75659755d76083c490
+      Content-Type:
+      - application/json
+  response:
+    status:
+      code: 200
+      message: 
+    headers:
+      X-Oauth-Scopes:
+      - infrastructure, orbit
+      Content-Type:
+      - application/json; charset=utf-8
+      X-Ua-Compatible:
+      - IE=Edge
+      Etag:
+      - '"79022220a299b096df8561e8b08c2a6c"'
+      Cache-Control:
+      - max-age=0, private, must-revalidate
+      X-Request-Id:
+      - 9f7629fdd50646311d4cb022dfd867c4
+      X-Runtime:
+      - '0.116434'
+      Server:
+      - WEBrick/1.3.1 (Ruby/1.9.3/2014-11-13)
+      Date:
+      - Wed, 30 Sep 2015 14:55:23 GMT
+      Content-Length:
+      - '1611'
+      Connection:
+      - Keep-Alive
+    body:
+      encoding: UTF-8
+      string: '[{"id":"acc-12345","resource_type":"account","url":"https://api.gb1.brightbox.com/1.0/accounts/acc-12345","name":"CLI
+        test account","status":"active","ram_limit":3200000,"ram_used":0,"dbs_ram_limit":32768,"dbs_ram_used":0,"cloud_ips_limit":32,"cloud_ips_used":0,"load_balancers_limit":5,"load_balancers_used":0,"clients":[{"id":"cli-12345","resource_type":"api_client","url":"https://api.gb1.brightbox.com/1.0/api_clients/cli-12345","name":"CLI
+        test API client","description":"","revoked_at":null,"permissions_group":"full"}],"images":[],"servers":[],"load_balancers":[],"database_servers":[],"database_snapshots":[],"cloud_ips":[],"server_groups":[{"id":"grp-12345","resource_type":"server_group","url":"https://api.gb1.brightbox.com/1.0/server_groups/grp-12345","name":"default","description":"All
+        new servers are added to this group unless specified otherwise.","created_at":"2015-09-29T08:22:15Z","default":true}],"firewall_policies":[{"id":"fwp-12345","resource_type":"firewall_policy","url":"https://api.gb1.brightbox.com/1.0/firewall_policies/fwp-12345","default":true,"name":"default","created_at":"2015-09-29T08:22:15Z","description":"Applied
+        to the default server group."}],"owner":{"id":"usr-12345","resource_type":"user","url":"https://api.gb1.brightbox.com/1.0/users/usr-12345","name":"Jason
+        Null","email_address":"jason.null@brightbox.com"},"users":[],"zones":[{"id":"zon-12345","resource_type":"zone","url":"https://api.gb1.brightbox.com/1.0/zones/zon-12345","handle":"gb1-a"},{"id":"zon-12345","resource_type":"zone","url":"https://api.gb1.brightbox.com/1.0/zones/zon-12345","handle":"gb1-b"}]}]'
+    http_version: 
+  recorded_at: Wed, 30 Sep 2015 14:55:23 GMT
+- request:
+    method: post
+    uri: http://api.brightbox.dev/token
+    body:
+      encoding: UTF-8
+      string: '{"grant_type":"refresh_token","refresh_token":"6b70b12f95df7b7e95e6cf0a99e5982ea7087f2c"}'
+    headers:
+      User-Agent:
+      - fog-core/1.32.1
+      Authorization:
+      - Basic YXBwLTEyMzQ1Om1vY2J1aXBiaWFhNms2Yw==
+      Content-Type:
+      - application/json
+  response:
+    status:
+      code: 200
+      message: 
+    headers:
+      Content-Type:
+      - application/json
+      Cache-Control:
+      - no-store
+      X-Oauth-Scopes:
+      - infrastructure, orbit
+      Content-Length:
+      - '190'
+      X-Content-Type-Options:
+      - nosniff
+      X-Ua-Compatible:
+      - IE=Edge
+      Etag:
+      - '"42b98dac6f17fff4a57b51c71f165c16"'
+      X-Request-Id:
+      - 5d1c861531e840a9462d3b33ee81f1ee
+      X-Runtime:
+      - '0.025472'
+      Server:
+      - WEBrick/1.3.1 (Ruby/1.9.3/2014-11-13)
+      Date:
+      - Wed, 30 Sep 2015 14:55:23 GMT
+      Connection:
+      - Keep-Alive
+    body:
+      encoding: UTF-8
+      string: '{"access_token":"9f1758514b2245dc6d52c550d252074287277e7b","token_type":"Bearer","refresh_token":"514aa63f8de3113429e721e117cc60f5a6e2e004","scope":"infrastructure,
+        orbit","expires_in":7200}'
+    http_version: 
+  recorded_at: Wed, 30 Sep 2015 14:55:23 GMT
+- request:
+    method: get
+    uri: http://api.brightbox.dev/1.0/accounts
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      User-Agent:
+      - fog-core/1.32.1
+      Authorization:
+      - Bearer 9f1758514b2245dc6d52c550d252074287277e7b
+      Content-Type:
+      - application/json
+  response:
+    status:
+      code: 200
+      message: 
+    headers:
+      X-Oauth-Scopes:
+      - infrastructure, orbit
+      Content-Type:
+      - application/json; charset=utf-8
+      X-Ua-Compatible:
+      - IE=Edge
+      Etag:
+      - '"79022220a299b096df8561e8b08c2a6c"'
+      Cache-Control:
+      - max-age=0, private, must-revalidate
+      X-Request-Id:
+      - 88733c18e03e378dbe83da0b01468469
+      X-Runtime:
+      - '0.044765'
+      Server:
+      - WEBrick/1.3.1 (Ruby/1.9.3/2014-11-13)
+      Date:
+      - Wed, 30 Sep 2015 14:55:23 GMT
+      Content-Length:
+      - '1611'
+      Connection:
+      - Keep-Alive
+    body:
+      encoding: UTF-8
+      string: '[{"id":"acc-12345","resource_type":"account","url":"https://api.gb1.brightbox.com/1.0/accounts/acc-12345","name":"CLI
+        test account","status":"active","ram_limit":3200000,"ram_used":0,"dbs_ram_limit":32768,"dbs_ram_used":0,"cloud_ips_limit":32,"cloud_ips_used":0,"load_balancers_limit":5,"load_balancers_used":0,"clients":[{"id":"cli-12345","resource_type":"api_client","url":"https://api.gb1.brightbox.com/1.0/api_clients/cli-12345","name":"CLI
+        test API client","description":"","revoked_at":null,"permissions_group":"full"}],"images":[],"servers":[],"load_balancers":[],"database_servers":[],"database_snapshots":[],"cloud_ips":[],"server_groups":[{"id":"grp-12345","resource_type":"server_group","url":"https://api.gb1.brightbox.com/1.0/server_groups/grp-12345","name":"default","description":"All
+        new servers are added to this group unless specified otherwise.","created_at":"2015-09-29T08:22:15Z","default":true}],"firewall_policies":[{"id":"fwp-12345","resource_type":"firewall_policy","url":"https://api.gb1.brightbox.com/1.0/firewall_policies/fwp-12345","default":true,"name":"default","created_at":"2015-09-29T08:22:15Z","description":"Applied
+        to the default server group."}],"owner":{"id":"usr-12345","resource_type":"user","url":"https://api.gb1.brightbox.com/1.0/users/usr-12345","name":"Jason
+        Null","email_address":"jason.null@brightbox.com"},"users":[],"zones":[{"id":"zon-12345","resource_type":"zone","url":"https://api.gb1.brightbox.com/1.0/zones/zon-12345","handle":"gb1-a"},{"id":"zon-12345","resource_type":"zone","url":"https://api.gb1.brightbox.com/1.0/zones/zon-12345","handle":"gb1-b"}]}]'
+    http_version: 
+  recorded_at: Wed, 30 Sep 2015 14:55:23 GMT
+recorded_with: VCR 2.5.0

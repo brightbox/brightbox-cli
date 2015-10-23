@@ -1,0 +1,99 @@
+---
+http_interactions:
+- request:
+    method: post
+    uri: http://api.brightbox.dev/token
+    body:
+      encoding: UTF-8
+      string: '{"grant_type":"password","username":"jason.null@brightbox.com","password":"N:B3e%7Cmh"}'
+    headers:
+      User-Agent:
+      - fog-core/1.32.1
+      Authorization:
+      - Basic YXBwLTIzNDU2OmhvMDRob25kdHpqamRmNA==
+      Content-Type:
+      - application/json
+  response:
+    status:
+      code: 200
+      message: 
+    headers:
+      Content-Type:
+      - application/json
+      Cache-Control:
+      - no-store
+      X-Oauth-Scopes:
+      - infrastructure, orbit
+      Content-Length:
+      - '190'
+      X-Content-Type-Options:
+      - nosniff
+      X-Ua-Compatible:
+      - IE=Edge
+      Etag:
+      - '"ceeca54433f782f74bc8b1c579e7534a"'
+      X-Request-Id:
+      - e48b1225e36360768214e968e2214d9f
+      X-Runtime:
+      - '0.086998'
+      Server:
+      - WEBrick/1.3.1 (Ruby/1.9.3/2014-11-13)
+      Date:
+      - Mon, 12 Oct 2015 11:34:19 GMT
+      Connection:
+      - Keep-Alive
+    body:
+      encoding: UTF-8
+      string: '{"access_token":"2a0dc3e96bb4c077b71425e5f20a7fe4323cb967","token_type":"Bearer","refresh_token":"581e7ac10e16b21a6375503509b55c183c6f52ce","scope":"infrastructure,
+        orbit","expires_in":7200}'
+    http_version: 
+  recorded_at: Mon, 12 Oct 2015 11:34:19 GMT
+- request:
+    method: post
+    uri: http://api.brightbox.dev/token
+    body:
+      encoding: UTF-8
+      string: '{"grant_type":"refresh_token","refresh_token":"581e7ac10e16b21a6375503509b55c183c6f52ce"}'
+    headers:
+      User-Agent:
+      - fog-core/1.32.1
+      Authorization:
+      - Basic YXBwLTIzNDU2OmhvMDRob25kdHpqamRmNA==
+      Content-Type:
+      - application/json
+  response:
+    status:
+      code: 200
+      message: 
+    headers:
+      Content-Type:
+      - application/json
+      Cache-Control:
+      - no-store
+      X-Oauth-Scopes:
+      - infrastructure, orbit
+      Content-Length:
+      - '190'
+      X-Content-Type-Options:
+      - nosniff
+      X-Ua-Compatible:
+      - IE=Edge
+      Etag:
+      - '"0639b5e2dcc558804e536e8b61dc00f0"'
+      X-Request-Id:
+      - 8ad84f6e26844dbd42963a6f554a8833
+      X-Runtime:
+      - '0.029192'
+      Server:
+      - WEBrick/1.3.1 (Ruby/1.9.3/2014-11-13)
+      Date:
+      - Mon, 12 Oct 2015 11:34:19 GMT
+      Connection:
+      - Keep-Alive
+    body:
+      encoding: UTF-8
+      string: '{"access_token":"55e733e1e4f06bb8dcca957409b2ec4edeadba44","token_type":"Bearer","refresh_token":"27fb8e6765cd6987710d6044d9745ce735a5cb14","scope":"infrastructure,
+        orbit","expires_in":7200}'
+    http_version: 
+  recorded_at: Mon, 12 Oct 2015 11:34:19 GMT
+recorded_with: VCR 2.5.0
