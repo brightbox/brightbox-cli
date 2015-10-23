@@ -7,7 +7,7 @@ module Brightbox
     cmd.flag [:p, "password"]
 
     cmd.desc "default account"
-    cmd.flag [:a, :account]
+    cmd.flag [:"default-account"]
 
     cmd.flag [:"application-id"]
     cmd.flag [:"application-secret"]
@@ -42,7 +42,7 @@ module Brightbox
         :api_url => api_url,
         :auth_url => auth_url
       }
-      section_options[:default_account] = options[:account] if options[:account]
+      section_options[:default_account] = options[:"default-account"] if options[:"default-account"]
 
       section_options[:client_id] = options[:"application-id"] if options[:"application-id"]
       section_options[:secret] = options[:"application-secret"] if options[:"application-secret"]

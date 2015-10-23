@@ -152,7 +152,7 @@ describe "brightbox login" do
 
   context "when default account is passed", vcr: true do
     let(:account) { "acc-23456" }
-    let(:argv) { ["login", "--account", account, email] }
+    let(:argv) { ["login", "--default-account", account, email] }
 
     before do
       remove_config
