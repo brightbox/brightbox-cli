@@ -236,4 +236,59 @@ describe "brightbox login" do
       expect(stderr).to_not include("please re-run your command")
     end
   end
+
+  context "when login is used to refresh tokens" do
+    let(:email) { "jason.null@brightbox.com" }
+    let(:client_alias) { "#{email}/custom" }
+    let(:custom_api_url) { "https://api.example.com" }
+    let(:custom_auth_url) { "https://auth.example.com" }
+    let(:default_account) { "acc-custom" }
+
+    let(:contents) do
+      <<-EOS
+      [core]
+      default_client = #{client_alias}
+
+      [#{client_alias}]
+      username = #{email}
+      api_url = #{custom_api_url}
+      auth_url = #{custom_auth_url}
+      default_account = #{default_account}
+      EOS
+    end
+    let(:config) { Brightbox::BBConfig.new }
+
+    let(:argv) { ["login", client_alias] }
+
+    before do
+      config_from_contents(contents)
+      mock_password_entry(password)
+
+      stub_request(:post, "https://auth.example.com/token").to_return(
+        :status => 200,
+        :body => '{"access_token":"44320b29286077c44f14c4efdfed70f63f4a8361","token_type":"Bearer","refresh_token":"759b2b28c228948a0ba5d07a89f39f9e268a95c0","scope":"infrastructure orbit","expires_in":7200}').times(2)
+    end
+
+    it "does not change the config" do
+      expect { output }.to_not raise_error
+
+      client_section = config.config[client_alias]
+
+      expect(client_section["api_url"]).to eql(custom_api_url)
+      expect(client_section["auth_url"]).to eql(custom_auth_url)
+      expect(client_section["username"]).to eql(email)
+      expect(client_section["default_account"]).to eql(default_account)
+    end
+
+    it "requests access tokens" do
+      expect { output }.to_not raise_error
+
+      expect(cached_access_token(config)).to eql(config.access_token)
+      expect(cached_refresh_token(config)).to eql(config.refresh_token)
+    end
+
+    it "does not prompt to rerun the command" do
+      expect(stderr).to_not include("please re-run your command")
+    end
+  end
 end

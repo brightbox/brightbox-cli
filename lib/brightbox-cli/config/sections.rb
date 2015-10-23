@@ -24,7 +24,7 @@ module Brightbox
         config_section["api_url"] = DEFAULT_API_ENDPOINT unless config_section["api_url"]
 
         config_section["auth_url"] = options[:auth_url] if options.key?(:auth_url)
-        config_section["auth_url"] = config_section["api_url"]
+        config_section["auth_url"] = config_section["api_url"] unless config_section["auth_url"]
 
         config_section["default_account"] = options[:default_account] if options.key?(:default_account)
 

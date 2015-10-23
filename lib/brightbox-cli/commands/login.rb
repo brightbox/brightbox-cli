@@ -31,17 +31,16 @@ module Brightbox
       end
       raise "You must specify your Brightbox password." if password.empty?
 
-      api_url = options[:"api-url"] || DEFAULT_API_ENDPOINT
-      auth_url = options[:"auth-url"] || api_url
-
       section_options = {
         :client_name => config_name,
         :alias => config_name,
         :username => email,
-        :password => password,
-        :api_url => api_url,
-        :auth_url => auth_url
+        :password => password
       }
+
+      section_options[:api_url] = options[:"api-url"] if options[:"api-url"]
+      section_options[:auth_url] = options[:"auth-url"] if options[:"auth-url"]
+
       section_options[:default_account] = options[:"default-account"] if options[:"default-account"]
 
       section_options[:client_id] = options[:"application-id"] if options[:"application-id"]
