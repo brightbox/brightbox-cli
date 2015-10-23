@@ -60,6 +60,7 @@ describe "brightbox accounts" do
 
       before do
         config = config_from_contents(USER_APP_CONFIG_CONTENTS)
+        #mock_password_entry(password)
 
         # Setup in the VCR recordings as the access token is expired
         cache_access_token(config, "08f204123bb2fc400521577445df9d1d212da42e")

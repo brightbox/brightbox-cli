@@ -10,7 +10,6 @@ describe Brightbox::BBConfig do
         Dir.mktmpdir do |tmp_dir|
           target_dir = File.join(tmp_dir, "config")
           @config = Brightbox::BBConfig.new :directory => target_dir
-          expect(@config.config_directory_exists?).to be false
           example.run
         end
       end
@@ -62,20 +61,17 @@ describe Brightbox::BBConfig do
     end
 
     context "when config file can not be parsed" do
-      around do |example|
+      it "raises an error" do
         Dir.mktmpdir do |target_dir|
           test_config_filename = File.join(target_dir, "config")
           File.open(test_config_filename, "w") do |f|
             f.puts "not:ini"
           end
 
-          @config = Brightbox::BBConfig.new :directory => target_dir
-          example.run
+          expect {
+            @config = Brightbox::BBConfig.new :directory => target_dir
+          }.to raise_error(Brightbox::BBConfigError)
         end
-      end
-
-      it "raises an error" do
-        expect { @config.config }.to raise_error(Brightbox::BBConfigError)
       end
     end
   end

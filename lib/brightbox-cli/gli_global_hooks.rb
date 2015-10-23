@@ -33,22 +33,28 @@ module Brightbox
   switch [:k, :insecure], :negatable => false
 
   pre do |global_options, command, _options, _args|
-    if command.topmost_ancestor.name == :config
-      force_default_config = false
-    else
-      force_default_config = true
-    end
-
     # Configuration options
     config_opts = {
-      :force_default_config => force_default_config,
       :client_name => ENV["CLIENT"] || global_options[:client],
       :account => ENV["ACCOUNT"] || global_options[:account]
     }
     Brightbox.config = BBConfig.new(config_opts)
 
-    # Outputs a snapshot of the tokens known by the client
-    Brightbox.config.debug_tokens if Brightbox.config.respond_to?(:debug_tokens)
+    # Commands that alter the config files should not error here
+    unless [:config, :login].include?(command.topmost_ancestor.name)
+      raise AmbiguousClientError, AMBIGUOUS_CLIENT_ERROR if Brightbox.config.client_name.nil?
+
+      if Brightbox.config.has_multiple_clients?
+        if Brightbox.config.client_has_alias?
+          info "INFO: client_id: #{Brightbox.config.client_name} (#{Brightbox.config.client_alias})"
+        else
+          info "INFO: client_id: #{Brightbox.config.client_name}"
+        end
+      end
+
+      # Outputs a snapshot of the tokens known by the client
+      Brightbox.config.debug_tokens if Brightbox.config.respond_to?(:debug_tokens)
+    end
 
     Excon.defaults[:headers]['User-Agent'] = "brightbox-cli/#{Brightbox::VERSION} Fog/#{Fog::Core::VERSION}"
 
@@ -63,13 +69,6 @@ module Brightbox
       Hirb::View.resize
     end
 
-    if Brightbox.config.has_multiple_clients?
-      if Brightbox.config.client_has_alias?
-        info "INFO: client_id: #{Brightbox.config.client_id} (#{Brightbox.config.client_alias})"
-      else
-        info "INFO: client_id: #{Brightbox.config.client_id}"
-      end
-    end
     true
   end
 

@@ -13,13 +13,15 @@ describe Brightbox::BBConfig do
     end
 
     context "when absolute custom location is set" do
+      let(:custom_dir) { Dir.mktmpdir("custom") }
+
       it "returns a String of the expanded directory" do
         config_options = {
-          :directory => "/etc/local/brightbox_cli"
+          :directory => custom_dir
         }
         config = Brightbox::BBConfig.new(config_options)
 
-        expect(config.config_directory).to eql("/etc/local/brightbox_cli")
+        expect(config.config_directory).to eql(custom_dir)
       end
     end
 
