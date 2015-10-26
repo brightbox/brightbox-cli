@@ -1,3 +1,12 @@
+### v2.3.2 / 2015-10-26
+
+[Full Changelog](https://github.com/brightbox/brightbox-cli/compare/v2.3.1...v2.3.2)
+
+Bug fixes:
+
+* Fix issue when `login` command prompt twice for password (or prompt once even
+  when already supplied) due to reusing cached but expired refresh token.
+
 ### v2.3.1 / 2015-10-26
 
 [Full Changelog](https://github.com/brightbox/brightbox-cli/compare/v2.3.0...v2.3.1)
