@@ -85,9 +85,9 @@ module Brightbox
     #
     def debug_tokens
       if ENV["DEBUG"]
-        debug "Access token: #{access_token}"
+        debug "Access token: #{access_token} (#{cached_access_token})"
         if using_application?
-          debug "Refresh token: #{refresh_token}"
+          debug "Refresh token: #{refresh_token} (#{cached_refresh_token}))"
         else
           debug "Refresh token: <NOT EXPECTED FOR CLIENT>"
         end

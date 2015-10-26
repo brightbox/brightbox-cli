@@ -33,14 +33,16 @@ module Brightbox
 
         dirty!
 
-        self.client_name = client_alias
+        self.client_name = config_alias
+
+        debug "Using #{client_name}"
 
         # Renew tokens via config...
         #
         # Part of the "login" behaviour is to always refresh them
         #
         begin
-          flush_access_token!
+          remove_cached_tokens!
           renew_tokens(:client_name => config_alias, :password => password)
         rescue => e
           error "Something went wrong trying to refresh new tokens #{e.message}"
