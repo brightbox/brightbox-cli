@@ -1,3 +1,11 @@
+### v2.3.1 / 2015-10-26
+
+[Full Changelog](https://github.com/brightbox/brightbox-cli/compare/v2.3.0...v2.3.1)
+
+Bug fixes:
+
+* Fix issue when `login` command would reset custom URLs to the defaults.
+
 ### v2.3.0 / 2015-10-23
 
 [Full Changelog](https://github.com/brightbox/brightbox-cli/compare/v2.2.0...v2.3.0)
