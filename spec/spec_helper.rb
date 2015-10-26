@@ -8,6 +8,9 @@ require "tmpdir"
 
 Dir["./spec/support/**/*.rb"].sort.each { |f| require f }
 
+require "webmock/rspec"
+WebMock.disable_net_connect!
+
 # API_CLIENT_CONFIG_DIR = File.join(File.dirname(__FILE__), "configs/api_client")
 # USER_APP_CONFIG_DIR   = File.join(File.dirname(__FILE__), "configs/user_application")
 

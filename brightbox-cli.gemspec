@@ -34,6 +34,7 @@ Gem::Specification.new do |s|
   s.add_development_dependency "rake"
   s.add_development_dependency "rspec", "~> 2.99"
   s.add_development_dependency "vcr", "~> 2.5"
+  s.add_development_dependency "webmock"
 
   s.post_install_message = <<-EOS
 The CLI command is now `brightbox` with subcommands for the resources.
