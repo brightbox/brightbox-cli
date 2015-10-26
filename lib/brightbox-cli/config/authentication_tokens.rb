@@ -224,15 +224,35 @@ module Brightbox
           f.write token
         end
         # Move process version into place
+        debug "Saving #{token} to #{filename}"
         FileUtils.mv filename + ".#{$PID}", filename
       end
 
       def cached_access_token
         File.open(access_token_filename, "r") { |fl| fl.read.chomp }
+      rescue Errno::ENOENT
+        nil
       end
 
       def cached_refresh_token
         File.open(refresh_token_filename, "r") { |fl| fl.read.chomp }
+      rescue Errno::ENOENT
+        nil
+      end
+
+      def remove_cached_tokens!
+        remove_access_token!
+        remove_refresh_token!
+      end
+
+      def remove_access_token!
+        @access_token = nil
+        FileUtils.rm(access_token_filename) if File.exist?(access_token_filename)
+      end
+
+      def remove_refresh_token!
+        @refresh_token = nil
+        FileUtils.rm(refresh_token_filename) if File.exist?(refresh_token_filename)
       end
 
       private
