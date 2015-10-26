@@ -3,7 +3,7 @@ require "vcr"
 VCR.configure do |vcr|
   vcr.cassette_library_dir = File.join(File.dirname(__FILE__), "../cassettes")
   vcr.allow_http_connections_when_no_cassette = false
-  vcr.hook_into :excon
+  vcr.hook_into :webmock
 
   vcr.configure_rspec_metadata!
   vcr.default_cassette_options = {
@@ -30,3 +30,13 @@ VCR.configure do |vcr|
     end
   end
 end
+
+VCR.turn_off!
+
+VCR.extend Module.new {
+  def use_cassette(*args)
+    VCR.turn_on!
+    super
+    VCR.turn_off!
+  end
+}
