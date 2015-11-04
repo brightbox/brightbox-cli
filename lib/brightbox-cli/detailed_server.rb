@@ -3,7 +3,7 @@ module Brightbox
     def to_row
       row_attributes = attributes
 
-      row_attributes[:compatibility_mode] = attributes["compatibility_mode"]
+      row_attributes[:compatibility_mode] = row_attributes["compatibility_mode"]
 
       if server_type
         row_attributes[:type] = server_type['id']
