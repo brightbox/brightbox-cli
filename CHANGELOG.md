@@ -1,3 +1,11 @@
+### v2.3.3 / 2015-11-04
+
+[Full Changelog](https://github.com/brightbox/brightbox-cli/compare/v2.3.2...v2.3.3)
+
+Bug fixes:
+
+* Fixed issue where `brightbox servers show` would not display a server's zone.
+
 ### v2.3.2 / 2015-10-26
 
 [Full Changelog](https://github.com/brightbox/brightbox-cli/compare/v2.3.1...v2.3.2)
