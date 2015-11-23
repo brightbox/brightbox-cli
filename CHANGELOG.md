@@ -1,3 +1,11 @@
+### v2.3.4 / 2015-11-23
+
+[Full Changelog](https://github.com/brightbox/brightbox-cli/compare/v2.3.3...v2.3.4)
+
+Bug fixes:
+
+* Lock `mime-types` to 2.x series. Ruby 1.9.3 support is dropped in v3.0 (fixes GH#80)
+
 ### v2.3.3 / 2015-11-04
 
 [Full Changelog](https://github.com/brightbox/brightbox-cli/compare/v2.3.2...v2.3.3)
