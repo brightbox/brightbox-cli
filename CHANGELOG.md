@@ -1,3 +1,14 @@
+### v2.4.0 / 2016-01-20
+
+[Full Changelog](https://github.com/brightbox/brightbox-cli/compare/v2.3.4...v2.4.0)
+
+Changes:
+
+* Update `fog-brightbox` to v0.10.1
+* Default behaviour of fog-brightbox v0.10.0 is to use collapsed API response
+  to account listing resulting in faster calls in `brightbox accounts list`
+* Various changes to Travis settings
+
 ### v2.3.4 / 2015-11-23
 
 [Full Changelog](https://github.com/brightbox/brightbox-cli/compare/v2.3.3...v2.3.4)
