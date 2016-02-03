@@ -5,7 +5,7 @@ describe Brightbox::BBConfig, "#section_names" do
 
   context "when no sections exist" do
     let(:ini) { "" }
-    it { expect(config.section_names).to be_empty }
+    it { expect(config.section_names).to eql([]) }
   end
 
   context "when only a 'core' section exists" do
@@ -15,7 +15,7 @@ describe Brightbox::BBConfig, "#section_names" do
       setting = value
       EOS
     end
-    it { expect(config.section_names).to be_empty }
+    it { expect(config.section_names).to eql([]) }
   end
 
   context "when only an 'alias' section exists" do
@@ -25,7 +25,7 @@ describe Brightbox::BBConfig, "#section_names" do
       setting = value
       EOS
     end
-    it { expect(config.section_names).to be_empty }
+    it { expect(config.section_names).to eql([]) }
   end
 
   context "when multiple sections exist" do

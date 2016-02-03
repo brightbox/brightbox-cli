@@ -22,7 +22,7 @@ describe Brightbox::CollaboratingAccount do
 
       [:cloud_ips_limit, :lb_limit, :ram_limit, :ram_used, :ram_free].each do |key|
         it "returns empty string for #{key}" do
-          expect(row_data[key]).to be_empty
+          expect(row_data[key]).to eql("")
         end
       end
     end
