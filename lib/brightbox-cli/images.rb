@@ -40,8 +40,8 @@ module Brightbox
       end
 
       unless options[:a]
-        account = Account.conn.account
-        images.reject! { |i| !i.official && i.owner_id != account.id  }
+        account = Account.conn.get_scoped_account(:nested => false)
+        images.reject! { |i| !i.official && i.owner_id != account[:id]  }
       end
 
       snapshots = images.select { |i| i.source_type == 'snapshot' }
