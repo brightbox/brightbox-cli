@@ -1,3 +1,11 @@
+### v2.4.1 / 2016-06-06
+
+[Full Changelog](https://github.com/brightbox/brightbox-cli/compare/v2.4.0...v2.4.1)
+
+Enhancements:
+
+* Optimise API call used when listing images
+
 ### v2.4.0 / 2016-01-20
 
 [Full Changelog](https://github.com/brightbox/brightbox-cli/compare/v2.3.4...v2.4.0)
