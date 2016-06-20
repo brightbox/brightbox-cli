@@ -1,3 +1,15 @@
+### v2.5.0 / 2016-06-20
+
+[Full Changelog](https://github.com/brightbox/brightbox-cli/compare/v2.4.1...v2.5.0)
+
+Enhancements:
+
+* Add `maintenance-weekday` and `maintenance-hour` to `sql instance` commands.
+  This allows setting of a custom maintenance window if the default of Sunday
+  between 06:00-06:59 UTC does not suit for your application.
+  The maintenance window is used to automatically apply security updates to the
+  instance.
+
 ### v2.4.1 / 2016-06-06
 
 [Full Changelog](https://github.com/brightbox/brightbox-cli/compare/v2.4.0...v2.4.1)
