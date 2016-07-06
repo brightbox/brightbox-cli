@@ -1,6 +1,6 @@
 require "spec_helper"
 
-describe "brightbox database-snapshots" do
+describe "brightbox sql snapshots" do
   describe "list" do
     let(:output) { FauxIO.new { Brightbox.run(argv) } }
     let(:stdout) { output.stdout }

@@ -1,6 +1,6 @@
 require "spec_helper"
 
-describe "brightbox database-servers" do
+describe "brightbox sql instances" do
   describe "create" do
     let(:output) { FauxIO.new { Brightbox.run(argv) } }
     let(:stdout) { output.stdout }
@@ -59,6 +59,44 @@ describe "brightbox database-servers" do
     context "--engine=mysql --engine-version=5.6", vcr: true do
       let(:argv) { %w(sql instances create --engine=mysql --engine-version=5.6) }
       let(:expected_args) { { :database_engine => "mysql", :database_version => "5.6" } }
+
+      it "correctly sends API parameters" do
+        expect(Brightbox::DatabaseServer).to receive(:create).with(expected_args).and_call_original
+        expect(stderr).to eql("")
+      end
+    end
+
+    context "--maintenance-weekday=5 --maintenance_hour=11" do
+      let(:argv) { %w(sql instances create --maintenance-weekday=5 --maintenance-hour=11) }
+      let(:expected_args) { { :maintenance_weekday => "5", :maintenance_hour => "11" } }
+
+      before do
+        stub_request(:post, "http://api.brightbox.dev/token").to_return(
+          :status => 200,
+          :body => '{"access_token":"44320b29286077c44f14c4efdfed70f63f4a8361","token_type":"Bearer","refresh_token":"759b2b28c228948a0ba5d07a89f39f9e268a95c0","scope":"infrastructure orbit","expires_in":7200}')
+
+        stub_request(:post, "http://api.brightbox.dev/1.0/database_servers?account_id=acc-12345")
+          .with(:body => "{\"name\":null,\"description\":null,\"maintenance_weekday\":\"5\",\"maintenance_hour\":\"11\"}")
+      end
+
+      it "correctly sends API parameters" do
+        expect(Brightbox::DatabaseServer).to receive(:create).with(expected_args).and_call_original
+        expect(stderr).to eql("")
+      end
+    end
+
+    context "--maintenance-weekday=thursday" do
+      let(:argv) { %w(sql instances create --maintenance-weekday=thursday) }
+      let(:expected_args) { { :maintenance_weekday => "4" } }
+
+      before do
+        stub_request(:post, "http://api.brightbox.dev/token").to_return(
+          :status => 200,
+          :body => '{"access_token":"44320b29286077c44f14c4efdfed70f63f4a8361","token_type":"Bearer","refresh_token":"759b2b28c228948a0ba5d07a89f39f9e268a95c0","scope":"infrastructure orbit","expires_in":7200}')
+
+        stub_request(:post, "http://api.brightbox.dev/1.0/database_servers?account_id=acc-12345")
+          .with(:body => "{\"name\":null,\"description\":null,\"maintenance_weekday\":\"4\",\"maintenance_hour\":null}")
+      end
 
       it "correctly sends API parameters" do
         expect(Brightbox::DatabaseServer).to receive(:create).with(expected_args).and_call_original

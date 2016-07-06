@@ -1,3 +1,5 @@
+require "date"
+
 module Brightbox
   class DatabaseServer < Api
     def self.require_account?
@@ -51,6 +53,7 @@ module Brightbox
         :zone,
         :created_on,
         :admin_username, :admin_password,
+        :maintenance_window,
         :allow_access,
         :cloud_ip_ids, :cloud_ips
       ]
@@ -76,6 +79,9 @@ module Brightbox
       a[:db_engine] = engine_version
       a[:engine] = database_engine
       a[:version] = database_version
+      a[:maintenance_weekday] = maintenance_weekday
+      a[:maintenance_hour] = maintenance_hour
+      a[:maintenance_window] = maintenance_window
       a[:zone] = zone_handle
       a[:created_on] = created_on
       a[:allow_access] = allow_access
@@ -88,6 +94,12 @@ module Brightbox
       [database_engine, database_version].join("-")
     end
 
+    # A more humanised version of the maintenance window
+    def maintenance_window
+      weekday = Date::DAYNAMES[maintenance_weekday]
+      sprintf("%s %02d:00 UTC", weekday, maintenance_hour)
+    end
+
     # Lists the CIP identifiers (cip-12345)
     def cloud_ip_ids
       cloud_ips.map { |cip| cip["id"] }
@@ -96,6 +108,43 @@ module Brightbox
     # Lists the CIP IP addresses
     def cloud_ip_addresses
       cloud_ips.map { |cip| cip["public_ip"] }
+    end
+
+    # Converts GLI's arguments to fog based parameters
+    def self.clean_arguments(args)
+      params = NilableHash.new
+
+      params[:name] = args[:n] if args[:n]
+      params[:description] = args[:d] if args[:d]
+
+      if args["allow-access"]
+        params[:allow_access] = args["allow-access"].split(",")
+      end
+
+      if args["maintenance-weekday"]
+        params[:maintenance_weekday] = weekday_index(args["maintenance-weekday"])
+      end
+      params[:maintenance_hour] = args["maintenance-hour"] if args["maintenance-hour"]
+
+      params[:database_engine] = args[:engine] if args[:engine]
+      params[:database_version] = args["engine-version"] if args["engine-version"]
+
+      params[:snapshot_id] = args[:snapshot] if args[:snapshot]
+      params[:flavor_id] = args[:type] if args[:type]
+      params[:zone_id] = args[:zone] if args[:zone]
+
+      params.nilify_blanks
+      params
+    end
+
+    private
+
+    # @param [String] user_input either a day or it's index ('sunday' or '0')
+    # @returns [String] The index
+    def self.weekday_index(user_input)
+      DateTime.parse(user_input).wday.to_s
+    rescue ArgumentError
+      user_input.to_s
     end
   end
 end
