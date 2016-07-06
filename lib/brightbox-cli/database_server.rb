@@ -54,6 +54,8 @@ module Brightbox
         :created_on,
         :admin_username, :admin_password,
         :maintenance_window,
+        :snapshots_schedule,
+        :snapshots_schedule_next_at,
         :allow_access,
         :cloud_ip_ids, :cloud_ips
       ]
@@ -130,6 +132,11 @@ module Brightbox
         params[:maintenance_weekday] = weekday_index(args["maintenance-weekday"])
       end
       params[:maintenance_hour] = args["maintenance-hour"] if args["maintenance-hour"]
+
+      params[:snapshots_schedule] = args["snapshots-schedule"] if args["snapshots-schedule"]
+      if args["remove-snapshots-schedule"]
+        params[:snapshots_schedule] = nil
+      end
 
       params[:database_engine] = args[:engine] if args[:engine]
       params[:database_version] = args["engine-version"] if args["engine-version"]

@@ -21,6 +21,12 @@ module Brightbox
         c.desc I18n.t("sql.instances.options.maintenance_hour.desc")
         c.flag ["maintenance-hour"]
 
+        # Snapshots schedule
+        c.desc I18n.t("sql.instances.options.snapshots_schedule.desc")
+        c.flag [:"snapshots-schedule"]
+        c.desc I18n.t("sql.instances.options.remove_snapshots_schedule.desc")
+        c.switch [:"remove-snapshots-schedule"], :negatable => false
+
         c.action do |global_options, options, args|
           dbs_id = args.shift
           unless dbs_id =~ /^dbs-/
