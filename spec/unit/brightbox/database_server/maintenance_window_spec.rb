@@ -32,5 +32,13 @@ describe Brightbox::DatabaseServer do
         expect(dbs.maintenance_window).to eql("Saturday 23:00 UTC")
       end
     end
+
+    context "when not initialised" do
+      let(:fog_settings) { {} }
+
+      it "returns nil" do
+        expect(dbs.maintenance_window).to be_nil
+      end
+    end
   end
 end

@@ -96,6 +96,7 @@ module Brightbox
 
     # A more humanised version of the maintenance window
     def maintenance_window
+      return nil if maintenance_weekday.nil?
       weekday = Date::DAYNAMES[maintenance_weekday]
       sprintf("%s %02d:00 UTC", weekday, maintenance_hour)
     end
