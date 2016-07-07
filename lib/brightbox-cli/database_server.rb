@@ -101,6 +101,10 @@ module Brightbox
       sprintf("%s %02d:00 UTC", weekday, maintenance_hour)
     end
 
+    def cloud_ips
+      super.nil? ? [] : super
+    end
+
     # Lists the CIP identifiers (cip-12345)
     def cloud_ip_ids
       cloud_ips.map { |cip| cip["id"] }

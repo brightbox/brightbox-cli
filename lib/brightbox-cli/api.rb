@@ -186,7 +186,9 @@ module Brightbox
     # Displays creation date in ISO 8601 Complete date format
     #
     def created_on
-      fog_model.created_at.strftime("%Y-%m-%d")
+      if fog_model.created_at
+        fog_model.created_at.strftime("%Y-%m-%d")
+      end
     end
   end
 end
