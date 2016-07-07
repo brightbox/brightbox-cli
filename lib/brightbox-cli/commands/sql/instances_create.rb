@@ -33,6 +33,10 @@ module Brightbox
         c.desc I18n.t("sql.instances.options.maintenance_hour.desc")
         c.flag ["maintenance-hour"]
 
+        # Snapshots schedule
+        c.desc I18n.t("sql.instances.options.snapshots_schedule.desc")
+        c.flag [:"snapshots-schedule"]
+
         # Snapshot
         c.desc I18n.t("sql.instances.options.snapshot.desc")
         c.flag [:snapshot]

@@ -34,5 +34,51 @@ describe "brightbox sql instances" do
         expect(stdout).to include("dbs-12345")
       end
     end
+
+    context "--snapshots-schedule='0 12 * * 4'" do
+      let(:dbs) { Brightbox::DatabaseServer.find("dbs-12345") }
+      let(:argv) { ["sql", "instances", "update", "--snapshots-schedule=0 12 * * 4", "dbs-12345"] }
+      let(:expected_args) { { :snapshots_schedule => "0 12 * * 4" } }
+
+      before do
+        stub_request(:get, "http://api.brightbox.dev/1.0/database_servers/dbs-12345?account_id=acc-12345")
+          .to_return(:status => 200, :body => '{"id":"dbs-12345","snapshots_schedule":null,"snapshots_schedule_next_at":null}')
+          .to_return(:status => 200, :body => '{"id":"dbs-12345","snapshots_schedule":"34 12 * * 4","snapshots_schedule_next_at":"2016-07-07T12:34:56Z"}')
+
+        stub_request(:put, "http://api.brightbox.dev/1.0/database_servers/dbs-12345?account_id=acc-12345")
+          .to_return(:status => 200, :body => '{"id":"dbs-12345","snapshots_schedule":"34 12 * * 4","snapshots_schedule_next_at":"2016-07-07T12:34:56Z"}')
+      end
+
+      it "sets snapshots schedule" do
+        expect(Brightbox::DatabaseServer).to receive(:find).and_return(dbs)
+        expect(dbs).to receive(:update).with(expected_args).and_call_original
+
+        expect(stderr).to eq("Updating dbs-12345\n")
+        expect(stdout).to include("dbs-12345")
+      end
+    end
+
+    context "--remove-snapshots-schedule" do
+      let(:dbs) { Brightbox::DatabaseServer.find("dbs-12345") }
+      let(:argv) { %w(sql instances update --remove-snapshots-schedule dbs-12345) }
+      let(:expected_args) { { :snapshots_schedule => nil } }
+
+      before do
+        stub_request(:get, "http://api.brightbox.dev/1.0/database_servers/dbs-12345?account_id=acc-12345")
+          .to_return(:status => 200, :body => '{"id":"dbs-12345","snapshots_schedule":"34 12 * * 4","snapshots_schedule_next_at":"2016-07-07T12:34:56Z"}')
+          .to_return(:status => 200, :body => '{"id":"dbs-12345","snapshots_schedule":null,"snapshots_schedule_next_at":null}')
+
+        stub_request(:put, "http://api.brightbox.dev/1.0/database_servers/dbs-12345?account_id=acc-12345")
+          .to_return(:status => 200, :body => '{"id":"dbs-12345","snapshots_schedule":null,"snapshots_schedule_next_at":null}')
+      end
+
+      it "clears snapshots schedule" do
+        expect(Brightbox::DatabaseServer).to receive(:find).and_return(dbs)
+        expect(dbs).to receive(:update).with(expected_args).and_call_original
+
+        expect(stderr).to eq("Updating dbs-12345\n")
+        expect(stdout).to include("dbs-12345")
+      end
+    end
   end
 end

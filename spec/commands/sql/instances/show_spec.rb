@@ -47,6 +47,8 @@ describe "brghtbox sql instances" do
           "status":"active",
           "maintenance_weekday":0,
           "maintenance_hour":6,
+          "snapshots_schedule":"0 16 * * 0",
+          "snapshots_schedule_next_at":"2016-07-10T16:00:00Z",
           "created_at":"2016-07-07T12:34:56Z",
           "updated_at":"2016-07-07T12:34:56Z",
           "deleted_at":null,
@@ -66,6 +68,11 @@ describe "brghtbox sql instances" do
       it "simplifies the maintenance window" do
         expect(stdout).to include("maintenance_window: Sunday 06:00 UTC")
         expect(stderr).to be_empty
+      end
+
+      it "includes snapshots schedule fields" do
+        expect(stdout).to include("snapshots_schedule: 0 16 * * 0")
+        expect(stdout).to include("snapshots_schedule_next_at: 2016-07-10T16:00Z")
       end
     end
   end

@@ -185,6 +185,10 @@ en:
                 maintenance window (0-6 where 0=Sunday)
         snapshot:
           desc: ID of a Cloud SQL snapshot to create new instance from
+        snapshots_schedule:
+          desc: Create or reschedule automatic snapshots using crontab format (e.g. "0 5 * * *"). May not be more than hourly.
+        remove_snapshots_schedule:
+          desc: Clear an existing snapshots schedule
         type:
           desc: ID of a Cloud SQL type
         zone:
