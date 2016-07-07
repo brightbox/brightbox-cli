@@ -1,6 +1,6 @@
-### v2.5.0 / 2016-06-20
+### v2.6.0 / 2016-07-07
 
-[Full Changelog](https://github.com/brightbox/brightbox-cli/compare/v2.4.1...v2.5.0)
+[Full Changelog](https://github.com/brightbox/brightbox-cli/compare/v2.5.0...v2.6.0)
 
 Enhancements:
 
@@ -9,6 +9,26 @@ Enhancements:
   between 06:00-06:59 UTC does not suit for your application.
   The maintenance window is used to automatically apply security updates to the
   instance.
+* Add args `snapshots-schedule` and `remove-snapshots-schedule` to `sql instance`
+  command to enable setting up schedules for automatic snapshots of data. The
+  argument to set takes a crontab format string (e.g. "0 5 * * 0") to specify
+  when it should occur. Schedules must be at hourly or more.
+
+Bug fixes:
+
+* Fix handling of creation time to not error if excluded from JSON.
+* Fix handling of SQL instance's cloud IP is excluded from JSON.
+
+Changes:
+
+* Update `fog-brightbox` to v0.11.0
+* Corrected naming of a number of VCR recordings.
+
+### v2.5.0 / 2016-06-20
+
+[Full Changelog](https://github.com/brightbox/brightbox-cli/compare/v2.4.1...v2.5.0)
+
+Released in error with only version bump.
 
 ### v2.4.1 / 2016-06-06
 
