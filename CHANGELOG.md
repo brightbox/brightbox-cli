@@ -1,3 +1,17 @@
+### v2.7.0 / 2017-09-06
+
+[Full Changelog](https://github.com/brightbox/brightbox-cli/compare/v2.6.0...v2.7.0)
+
+Enhancements:
+
+* Add `cloud-ip` argument to `server create` command to pre-allocate and map
+  a cloud IP to a server upon build completion.
+
+Changes:
+
+* Update `fog-brightbox` to v0.13.0
+* Various changes to Travis settings
+
 ### v2.6.0 / 2016-07-07
 
 [Full Changelog](https://github.com/brightbox/brightbox-cli/compare/v2.5.0...v2.6.0)
