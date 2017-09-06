@@ -32,6 +32,9 @@ module Brightbox
       c.desc "Server groups to place server in - comma delimited list"
       c.flag [:g, "server-groups"]
 
+      c.desc I18n.t("servers.create.cloud_ip.desc")
+      c.flag ["cloud-ip"]
+
       c.action do |global_options, options, args|
 
         if args.empty?
@@ -93,6 +96,14 @@ module Brightbox
         msg << " in zone #{zone.handle} (#{zone})" if zone
         msg << " in groups #{server_groups.map(&:id).join(", ")}" unless server_groups.empty?
         msg << " with %.2fk of user data" % (user_data.size / 1024.0) if user_data
+        if options[:"cloud-ip"] && options[:"cloud-ip"].respond_to?(:start_with?)
+          if options[:"cloud-ip"].start_with?("cip-")
+            msg << " mapping #{options[:'cloud-ip']} when built"
+          end
+          if options[:"cloud-ip"] == "true"
+            msg << " mapping a new cloud IP when built"
+          end
+        end
         info msg
 
         params = {
@@ -104,7 +115,10 @@ module Brightbox
           :server_groups => server_groups.map(&:id)
         }
 
+        params[:cloud_ip] = options[:"cloud-ip"] if options.key?(:"cloud-ip")
+
         servers = Server.create_servers options[:i], params
+        info servers.inspect
         render_table(servers, global_options)
       end
     end

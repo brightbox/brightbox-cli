@@ -142,6 +142,8 @@ en:
       desc: Activate web consoles for a number of servers
     create:
       desc: Create servers
+      cloud_ip:
+        desc: Immediately map a Cloud IP to new server? Either "true" or the identifier of the Cloud IP
     destroy:
       desc: Destroy servers
     lock:
