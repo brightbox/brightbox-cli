@@ -118,7 +118,6 @@ module Brightbox
         params[:cloud_ip] = options[:"cloud-ip"] if options.key?(:"cloud-ip")
 
         servers = Server.create_servers options[:i], params
-        info servers.inspect
         render_table(servers, global_options)
       end
     end
