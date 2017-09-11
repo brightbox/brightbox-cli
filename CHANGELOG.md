@@ -1,3 +1,11 @@
+### v2.7.1 / 2017-09-11
+
+[Full Changelog](https://github.com/brightbox/brightbox-cli/compare/v2.7.0...v2.7.1)
+
+Bug fixes:
+
+* Remove debugging line left over in `server create`
+
 ### v2.7.0 / 2017-09-06
 
 [Full Changelog](https://github.com/brightbox/brightbox-cli/compare/v2.6.0...v2.7.0)
