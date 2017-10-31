@@ -23,7 +23,8 @@ module Brightbox
       row_attributes[:ipv6_address] = interfaces.map { |i| i['ipv6_address'] }.join(", ")
 
       row_attributes[:cloud_ip_ids] = cloud_ips.map { |i| i['id'] }.join(", ")
-      row_attributes[:cloud_ips] = cloud_ips.map { |i| i['public_ip'] }.join(", ")
+      row_attributes[:cloud_ipv4s] = cloud_ips.map { |i| i['public_ipv4'] }.join(", ")
+      row_attributes[:cloud_ipv6s] = cloud_ips.map { |i| i['public_ipv6'] }.join(", ")
       row_attributes[:snapshots] = snapshots.map { |i| i['id'] }.join(", ")
 
       if server_groups
@@ -53,13 +54,14 @@ module Brightbox
         :image_name,
         :arch,
         :private_ips,
-        :cloud_ips,
         :ipv6_address,
-        :cloud_ip_ids,
         :hostname,
         :fqdn,
         :public_hostname,
         :ipv6_hostname,
+        :cloud_ip_ids,
+        :cloud_ipv4s,
+        :cloud_ipv6s,
         :snapshots,
         :server_groups
       ]
