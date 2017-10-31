@@ -2,7 +2,7 @@ PATH
   remote: .
   specs:
     brightbox-cli (2.7.1)
-      fog-brightbox (>= 0.13.0)
+      fog-brightbox (>= 0.14.0)
       gli (~> 2.12.0)
       highline (~> 1.6.0)
       hirb (~> 0.6)
@@ -20,8 +20,8 @@ GEM
     crack (0.4.2)
       safe_yaml (~> 1.0.0)
     diff-lcs (1.2.5)
-    excon (0.58.0)
-    fog-brightbox (0.13.0)
+    excon (0.59.0)
+    fog-brightbox (0.14.0)
       fog-core (~> 1.22)
       fog-json
       inflecto (~> 0.0.2)
@@ -81,4 +81,4 @@ DEPENDENCIES
   webmock
 
 BUNDLED WITH
-   1.14.6
+   1.15.4
