@@ -1,3 +1,15 @@
+### v2.8.0 / 2017-10-31
+
+[Full Changelog](https://github.com/brightbox/brightbox-cli/compare/v2.7.1...v2.8.0)
+
+Enhancements:
+
+* Adds IPv6 details to the Server and Cloud IP detailed views.
+
+Changes:
+
+* Update `fog-brightbox` to v0.14.0
+
 ### v2.7.1 / 2017-09-11
 
 [Full Changelog](https://github.com/brightbox/brightbox-cli/compare/v2.7.0...v2.7.1)
