@@ -9,7 +9,6 @@ PATH
       i18n (~> 0.6.0)
       mime-types (~> 2.6)
       multi_json (~> 1.11.0)
-      net-ssh (< 3.0)
 
 GEM
   remote: https://rubygems.org/
@@ -20,7 +19,7 @@ GEM
     crack (0.4.2)
       safe_yaml (~> 1.0.0)
     diff-lcs (1.2.5)
-    excon (0.59.0)
+    excon (0.62.0)
     fog-brightbox (0.14.0)
       fog-core (~> 1.22)
       fog-json
@@ -44,7 +43,6 @@ GEM
     mocha (0.14.0)
       metaclass (~> 0.0.1)
     multi_json (1.11.3)
-    net-ssh (2.9.4)
     pry (0.9.12.2)
       coderay (~> 1.0.5)
       method_source (~> 0.8)
@@ -81,4 +79,4 @@ DEPENDENCIES
   webmock
 
 BUNDLED WITH
-   1.15.4
+   1.16.0
