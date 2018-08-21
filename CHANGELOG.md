@@ -1,3 +1,18 @@
+### v2.8.2 /2018-08-21
+
+[Full Changelog](https://github.com/brightbox/brightbox-cli/compare/v2.8.1...v2.8.2)
+
+Bug fixes:
+
+* Fix image list filter when using `--account/-l` options caused by hash key
+  type change somewhere in the stack.
+
+Changes:
+
+* Update `fog-brightbox` to v0.15.0
+* Limit `fog-brightbox` dependency to < 1.0 to avoid issue following major update
+* Add Jenkinsfile for internal CI
+
 ### v2.8.1 / 2018-04-10
 
 [Full Changelog](https://github.com/brightbox/brightbox-cli/compare/v2.8.0...v2.8.1)
