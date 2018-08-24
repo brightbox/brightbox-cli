@@ -56,6 +56,7 @@ module Brightbox
   autoload :DatabaseType, File.expand_path("../brightbox-cli/database_type", __FILE__)
   autoload :DatabaseServer, File.expand_path("../brightbox-cli/database_server", __FILE__)
   autoload :DatabaseSnapshot, File.expand_path("../brightbox-cli/database_snapshot", __FILE__)
+  autoload :Token, File.expand_path("../brightbox-cli/token", __FILE__)
 
   module Config
     autoload :SectionNameDeduplicator, File.expand_path("../brightbox-cli/config/section_name_deduplicator", __FILE__)
