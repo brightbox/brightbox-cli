@@ -1,3 +1,11 @@
+### v2.9.0 /2018-08-24
+
+[Full Changelog](https://github.com/brightbox/brightbox-cli/compare/v2.8.2...v2.9.0)
+
+Enhancements:
+
+* Adds `brightbox token` command to read currently cached OAuth2 bearer tokens
+
 ### v2.8.2 /2018-08-21
 
 [Full Changelog](https://github.com/brightbox/brightbox-cli/compare/v2.8.1...v2.8.2)
