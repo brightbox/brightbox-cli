@@ -1,3 +1,12 @@
+### v2.9.1 /2018-09-06
+
+[Full Changelog](https://github.com/brightbox/brightbox-cli/compare/v2.9.0...v2.9.1)
+
+Bug fixes:
+
+* Pins `fog-core` dependency to < 2.1.1 where some deprecation checks have
+  broken everything.
+
 ### v2.9.0 /2018-08-24
 
 [Full Changelog](https://github.com/brightbox/brightbox-cli/compare/v2.8.2...v2.9.0)
