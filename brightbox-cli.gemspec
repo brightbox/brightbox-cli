@@ -22,6 +22,7 @@ Gem::Specification.new do |s|
   s.require_paths = ["lib"]
 
   s.add_dependency "fog-brightbox", ">= 0.14.0", "< 1.0"
+  s.add_dependency "fog-core", "< 2.1.1"
   s.add_dependency "gli", "~> 2.12.0"
   s.add_dependency "i18n", "~> 0.6.0"
   s.add_dependency "mime-types", "~> 2.6"
