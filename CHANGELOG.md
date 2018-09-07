@@ -1,3 +1,15 @@
+### v2.9.2 /2018-09-07
+
+[Full Changelog](https://github.com/brightbox/brightbox-cli/compare/v2.9.1...v2.9.2)
+
+Bug fixes:
+
+* Pins `fog-brightbox` to v0.16.1 to include a fix to avoid deprecation warnings
+  although only present when using fog-core > 2.0
+* Pins `fog-core` dependency to < 2.0 to restore Ruby 1.9 support and avoid
+  upstream breaking changes.
+* Fixes an errant space in the `brightbox token` curl format output.
+
 ### v2.9.1 /2018-09-06
 
 [Full Changelog](https://github.com/brightbox/brightbox-cli/compare/v2.9.0...v2.9.1)
