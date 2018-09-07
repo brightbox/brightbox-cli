@@ -44,7 +44,7 @@ module Brightbox
     end
 
     def curl_output
-      "curl - H 'Authorization: Bearer #{access_token}' #{api_url} "
+      "curl -H 'Authorization: Bearer #{access_token}' #{api_url} "
     end
 
     def json_output
