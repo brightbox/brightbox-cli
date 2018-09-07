@@ -2,8 +2,8 @@ PATH
   remote: .
   specs:
     brightbox-cli (2.9.1)
-      fog-brightbox (>= 0.14.0, < 1.0)
-      fog-core (< 2.1.1)
+      fog-brightbox (>= 0.16.0, < 1.0)
+      fog-core (< 2.0)
       gli (~> 2.12.0)
       highline (~> 1.6.0)
       hirb (~> 0.6)
@@ -22,16 +22,15 @@ GEM
     diff-lcs (1.2.5)
     dry-inflector (0.1.2)
     excon (0.62.0)
-    fog-brightbox (0.16.0)
+    fog-brightbox (0.16.1)
       dry-inflector
       fog-core
       fog-json
       mime-types
-    fog-core (2.1.0)
+    fog-core (1.45.0)
       builder
       excon (~> 0.58)
       formatador (~> 0.2)
-      mime-types
     fog-json (1.2.0)
       fog-core
       multi_json (~> 1.10)
