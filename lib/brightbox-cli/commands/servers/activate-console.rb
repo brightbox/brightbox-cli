@@ -1,3 +1,5 @@
+require "uri"
+
 module Brightbox
   desc I18n.t("servers.desc")
   command [:servers] do |cmd|
@@ -19,9 +21,12 @@ module Brightbox
         servers.each do |s|
           info "Activating console for server #{s}"
           r = s.activate_console
-          url = "#{r["console_url"]}/?password=#{r["console_token"]}"
+
+          uri = URI(r["console_url"])
+          uri.query = "password=#{r["console_token"]}"
+
           expires = Time.parse(r["console_token_expires"])
-          consoles << { :url => url, :token => r["console_token"], :expires => expires.localtime.to_s }
+          consoles << { :url => uri.to_s, :token => r["console_token"], :expires => expires.localtime.to_s }
         end
 
         render_table(consoles, global_options.merge(:fields => [:url, :token, :expires], :resize => false))
