@@ -1,3 +1,12 @@
+### v2.9.3 /2019-03-06
+
+[Full Changelog](https://github.com/brightbox/brightbox-cli/compare/v2.9.2...v2.9.3)
+
+Bug fixes:
+
+* Fixes `servers activate_console` URL generated from new API output to remove
+  invalid trailing slash.
+
 ### v2.9.2 /2018-09-07
 
 [Full Changelog](https://github.com/brightbox/brightbox-cli/compare/v2.9.1...v2.9.2)
