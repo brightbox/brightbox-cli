@@ -22,7 +22,8 @@ module Brightbox
       raise "You must specify your email address" if email.nil?
 
       password = options[:p]
-      password = Brightbox.config.gpg_password unless password
+      password ||= Brightbox.config.gpg_password
+      password ||= Brightbox.config.password_helper_password
 
       if !password || password.empty?
         require "highline"

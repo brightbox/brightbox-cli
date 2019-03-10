@@ -51,6 +51,19 @@ To browse available resources use the resource name as the command:
 
 Command structure may be subject to change.
 
+=== Integrating with a password manager
+
+You can retrieve your passwords from an external password manager by specifying
+a password helper command. This command will be executed any time your password
+is required and its output used as your password.
+
+Configure the command in your config file (usually ~/.brightbox/config) in the
+appropriate section:
+
+    [john@example.com]
+    username = john@example.com
+    password_helper_command = pass john-example-com-brightbox
+
 === Using GPG to secure passwords
 
 If you use an OAuth application to access your accounts
