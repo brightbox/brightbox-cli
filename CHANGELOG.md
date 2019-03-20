@@ -1,3 +1,11 @@
+### v2.10.0 / 2019-03-20
+
+[Full Changelog](https://github.com/brightbox/brightbox-cli/compare/v2.9.3...v2.10.0)
+
+Enhancements:
+
+* Support for using an external password manager by setting in configuration
+
 ### v2.9.3 /2019-03-06
 
 [Full Changelog](https://github.com/brightbox/brightbox-cli/compare/v2.9.2...v2.9.3)
