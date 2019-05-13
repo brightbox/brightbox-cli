@@ -32,6 +32,10 @@ module Brightbox
       end
       raise "You must specify your Brightbox password." if password.empty?
 
+      if (two_factor_pin = Brightbox.config.two_factor_pin)
+        password = password + "+" + two_factor_pin
+      end
+
       section_options = {
         :client_name => config_name,
         :alias => config_name,

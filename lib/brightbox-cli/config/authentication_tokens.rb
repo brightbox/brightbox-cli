@@ -193,6 +193,10 @@ module Brightbox
         password ||= password_helper_password
         password ||= prompt_for_password
 
+        if (tf_pin = two_factor_pin)
+          password = password + "+" + tf_pin
+        end
+
         # FIXME: options are required to work
         options = {
           :client_id => client_name,
