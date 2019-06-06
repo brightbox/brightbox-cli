@@ -1,3 +1,11 @@
+### v2.11.0 / 2019-06-06
+
+[Full Changelog](https://github.com/brightbox/brightbox-cli/compare/v2.10.0...v2.11.0)
+
+Enhancements:
+
+* Prompts for 2FA token if set up on a user account being used to authenticate.
+
 ### v2.10.0 / 2019-03-20
 
 [Full Changelog](https://github.com/brightbox/brightbox-cli/compare/v2.9.3...v2.10.0)
