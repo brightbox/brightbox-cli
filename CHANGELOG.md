@@ -1,3 +1,12 @@
+### v2.11.1 / 2019-10-29
+
+[Full Changelog](https://github.com/brightbox/brightbox-cli/compare/v2.11.0...v2.11.1)
+
+Bug fixes:
+
+* Constrain version of `dry-inflector` to ensure gem can work with older
+  versions of Ruby.
+
 ### v2.11.0 / 2019-06-06
 
 [Full Changelog](https://github.com/brightbox/brightbox-cli/compare/v2.10.0...v2.11.0)
