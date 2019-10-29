@@ -30,6 +30,9 @@ Gem::Specification.new do |s|
   s.add_dependency "highline", "~> 1.6.0"
   s.add_dependency "hirb", "~> 0.6"
 
+  # dry-inflector >= 0.2 drops supports for Ruby < 2.4
+  s.add_dependency "dry-inflector", "< 0.2"
+
   s.add_development_dependency "mocha"
   s.add_development_dependency "pry-remote"
   s.add_development_dependency "rake"
