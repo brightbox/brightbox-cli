@@ -86,7 +86,17 @@ pipeline {
             sh 'bundle exec rake test'
           }
         }
-
+        stage("Ruby 2.6") {
+          agent {
+            docker {
+              image 'ruby:2.6'
+            }
+          }
+          steps {
+            sh 'bundle install --deployment'
+            sh 'bundle exec rake test'
+          }
+        }
       }
     }
   }
