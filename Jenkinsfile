@@ -97,17 +97,6 @@ pipeline {
             sh 'bundle exec rake test'
           }
         }
-        stage("Ruby 2.7") {
-          agent {
-            docker {
-              image 'ruby:2.7.0-preview1-alpine'
-            }
-          }
-          steps {
-            sh 'bundle install --deployment'
-            sh 'bundle exec rake test'
-          }
-        }
       }
     }
   }
