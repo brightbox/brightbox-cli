@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    brightbox-cli (2.11.1)
+    brightbox-cli (2.11.2)
       dry-inflector (< 0.2)
       fog-brightbox (>= 0.16.0, < 1.0)
       fog-core (< 2.0)
@@ -16,13 +16,13 @@ GEM
   remote: https://rubygems.org/
   specs:
     addressable (2.3.8)
-    builder (3.2.3)
+    builder (3.2.4)
     coderay (1.0.9)
     crack (0.4.2)
       safe_yaml (~> 1.0.0)
     diff-lcs (1.2.5)
     dry-inflector (0.1.2)
-    excon (0.71.0)
+    excon (0.71.1)
     fog-brightbox (0.16.1)
       dry-inflector
       fog-core

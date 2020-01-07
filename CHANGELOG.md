@@ -1,3 +1,11 @@
+### v2.11.2 / 2020-01-07
+
+[Full Changelog](https://github.com/brightbox/brightbox-cli/compare/v2.11.1...v2.11.2)
+
+Bug fixes:
+
+* Update `excon` to v0.71.0 to fix security issue.
+
 ### v2.11.1 / 2019-10-29
 
 [Full Changelog](https://github.com/brightbox/brightbox-cli/compare/v2.11.0...v2.11.1)
