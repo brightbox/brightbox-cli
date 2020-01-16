@@ -10,10 +10,11 @@ module Brightbox
       c.default_value "text"
       c.flag [:format]
 
-      c.action do |global_options, options, args|
+      c.action do |_, options, _|
         token = Token.show(Brightbox.config, options)
-        $stdout.puts token.format(options[:format])
+        $stdout.puts token.format(options[:format] || "text")
       end
     end
+
   end
 end
