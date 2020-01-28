@@ -1,3 +1,11 @@
+### v2.12.0 / 2020-01-28
+
+[Full Changelog](https://github.com/brightbox/brightbox-cli/compare/v2.11.2...v2.12.0)
+
+Enhancements:
+
+* Adds `token create` to always attempt to reauthenticate and display a token.
+
 ### v2.11.2 / 2020-01-07
 
 [Full Changelog](https://github.com/brightbox/brightbox-cli/compare/v2.11.1...v2.11.2)
