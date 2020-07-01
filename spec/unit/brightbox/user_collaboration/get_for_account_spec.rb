@@ -141,7 +141,7 @@ describe Brightbox::UserCollaboration do
       # Collection#load is private in fog so we can't just pass our collection
       # into get the correct object initialised.
       api_response_data.map do |datum|
-        Fog::Compute::Brightbox::UserCollaboration.new(datum)
+        Fog::Brightbox::Compute::UserCollaboration.new(datum)
       end
     end
   end

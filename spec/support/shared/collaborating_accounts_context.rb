@@ -19,7 +19,7 @@ shared_context "collaborating accounts" do
       "load_balancers_limit" => 5,
       "load_balancers_used" => 0
     }
-    Fog::Compute::Brightbox::Account.new(data)
+    Fog::Brightbox::Compute::Account.new(data)
   end
 
   # As returned from conn.user_collaborations.all
@@ -35,7 +35,7 @@ shared_context "collaborating accounts" do
         "status" => "active"
       }
     }
-    Fog::Compute::Brightbox::UserCollaboration.new(data)
+    Fog::Brightbox::Compute::UserCollaboration.new(data)
   end
 
   # As returned from conn.user_collaborations.all
@@ -51,6 +51,6 @@ shared_context "collaborating accounts" do
         "status" => "active"
       }
     }
-    Fog::Compute::Brightbox::UserCollaboration.new(data)
+    Fog::Brightbox::Compute::UserCollaboration.new(data)
   end
 end

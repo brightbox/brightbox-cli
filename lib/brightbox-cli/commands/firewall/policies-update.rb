@@ -36,7 +36,7 @@ module Brightbox
         # with a request, before updating the model
         data = FirewallPolicy.conn.update_firewall_policy(policy_id, params)
 
-        model = Fog::Compute::Brightbox::FirewallPolicy.new(data)
+        model = Fog::Brightbox::Compute::FirewallPolicy.new(data)
         policy = FirewallPolicy.new(model)
 
         render_table([policy], global_options)

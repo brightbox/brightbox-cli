@@ -19,7 +19,7 @@ describe Brightbox::ConnectionManager, "#fetch_connection" do
 
   context "when not requesting a scoped connection" do
     it "returns a fog compute instance" do
-      expect(connection_manager.fetch_connection(false)).to be_kind_of(Fog::Compute::Brightbox::Real)
+      expect(connection_manager.fetch_connection(false)).to be_kind_of(Fog::Brightbox::Compute::Real)
     end
 
     it "returns a connection without account scope" do

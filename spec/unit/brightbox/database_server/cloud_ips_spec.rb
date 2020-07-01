@@ -2,7 +2,7 @@ require "spec_helper"
 require "fog/brightbox/models/compute/database_server"
 
 describe Brightbox::DatabaseServer, "#cloud_ips" do
-  let(:fog_model) { Fog::Compute::Brightbox::DatabaseServer.new(fog_settings) }
+  let(:fog_model) { Fog::Brightbox::Compute::DatabaseServer.new(fog_settings) }
   let(:dbs) { described_class.new(fog_model) }
 
   context "when attribute is missing" do

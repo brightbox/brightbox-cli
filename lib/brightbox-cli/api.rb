@@ -16,7 +16,7 @@ module Brightbox
     # Returns the current connection to the Brightbox API, creating a new
     # {ConnectionManager} and connection if necessary.
     #
-    # @return [Fog::Compute::Brightbox::Real]
+    # @return [Fog::Brightbox::Compute::Real]
     #
     def self.conn
       if @@connection_manager

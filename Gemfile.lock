@@ -3,7 +3,7 @@ PATH
   specs:
     brightbox-cli (2.12.0)
       dry-inflector (< 0.2)
-      fog-brightbox (>= 0.16.0, < 1.0)
+      fog-brightbox (>= 1.1.0)
       fog-core (< 2.0)
       gli (~> 2.12.0)
       highline (~> 1.6.0)
@@ -22,12 +22,11 @@ GEM
       safe_yaml (~> 1.0.0)
     diff-lcs (1.2.5)
     dry-inflector (0.1.2)
-    excon (0.72.0)
-    fog-brightbox (0.16.1)
+    excon (0.75.0)
+    fog-brightbox (1.1.0)
       dry-inflector
-      fog-core
+      fog-core (>= 1.45, < 3.0)
       fog-json
-      mime-types
     fog-core (1.45.0)
       builder
       excon (~> 0.58)
@@ -82,4 +81,4 @@ DEPENDENCIES
   webmock
 
 BUNDLED WITH
-   1.17.2
+   1.17.3

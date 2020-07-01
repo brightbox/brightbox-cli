@@ -18,7 +18,7 @@ describe Brightbox::Account do
         end
 
         it "returns requested account" do
-          expect(@account).to be_kind_of(Fog::Compute::Brightbox::Account)
+          expect(@account).to be_kind_of(Fog::Brightbox::Compute::Account)
           expect(@account.id).to eql(@account_id)
         end
 
@@ -46,7 +46,7 @@ describe Brightbox::Account do
         end
 
         it "returns the client's owning account" do
-          expect(@account).to be_kind_of(Fog::Compute::Brightbox::Account)
+          expect(@account).to be_kind_of(Fog::Brightbox::Compute::Account)
           expect(@account.id).to eql(@account_id)
         end
 
