@@ -104,6 +104,32 @@ describe "brightbox sql instances" do
       end
     end
 
+    context "--snapshot=dbi-1493j" do
+      let(:argv) { ["sql", "instances", "create", "--snapshot=dbi-1493j"] }
+      let(:expected_args) { { :snapshot_id => "dbi-1493j" } }
+
+      let(:json_response) do
+        <<-EOS
+        {
+          "id":"dbs-12345"
+        }
+        EOS
+      end
+
+      before do
+        stub_request(:post, "http://api.brightbox.dev/1.0/database_servers?account_id=acc-12345")
+          .with(:headers => { "Content-Type" => "application/json" },
+                :body => hash_including("snapshot" => "dbi-1493j"))
+          .and_return(:status => 202, :body => json_response)
+      end
+
+      it "includes schedule fields in response" do
+        expect(Brightbox::DatabaseServer).to receive(:create).with(expected_args).and_call_original
+        expect(stdout).to include("id: dbs-12345")
+        expect(stderr).to eql("")
+      end
+    end
+
     context "--snapshots-schedule='0 12 * * 4'" do
       let(:argv) { ["sql", "instances", "create", "--snapshots-schedule=0 12 * * 4"] }
       let(:expected_args) { { :snapshots_schedule => "0 12 * * 4" } }
