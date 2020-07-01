@@ -17,7 +17,7 @@ pipeline {
           }
           steps {
             sh 'bundle install --deployment'
-            sh 'bundle exec rake test'
+            sh 'bundle exec rake spec'
           }
         }
         stage("Ruby 2.1") {
@@ -28,7 +28,7 @@ pipeline {
           }
           steps {
             sh 'bundle install --deployment'
-            sh 'bundle exec rake test'
+            sh 'bundle exec rake spec'
           }
         }
         stage("Ruby 2.2") {
@@ -39,7 +39,7 @@ pipeline {
           }
           steps {
             sh 'bundle install --deployment'
-            sh 'bundle exec rake test'
+            sh 'bundle exec rake spec'
           }
         }
         stage("Ruby 2.3") {
@@ -50,7 +50,7 @@ pipeline {
           }
           steps {
             sh 'bundle install --deployment'
-            sh 'bundle exec rake test'
+            sh 'bundle exec rake spec'
           }
         }
         stage("Ruby 2.4") {
@@ -61,7 +61,7 @@ pipeline {
           }
           steps {
             sh 'bundle install --deployment'
-            sh 'bundle exec rake test'
+            sh 'bundle exec rake spec'
           }
         }
         stage("Ruby 2.5") {
@@ -72,7 +72,7 @@ pipeline {
           }
           steps {
             sh 'bundle install --deployment'
-            sh 'bundle exec rake test'
+            sh 'bundle exec rake spec'
           }
         }
         stage("Ruby 2.6") {
@@ -83,7 +83,7 @@ pipeline {
           }
           steps {
             sh 'bundle install --deployment'
-            sh 'bundle exec rake test'
+            sh 'bundle exec rake spec'
           }
         }
       }
