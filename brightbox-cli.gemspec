@@ -12,7 +12,7 @@ Gem::Specification.new do |s|
   s.description = %q(Scripts to interact with the Brightbox cloud API)
   s.license     = "MIT"
 
-  s.required_ruby_version = ">= 1.9.3"
+  s.required_ruby_version = ">= 2.0"
 
   s.rubyforge_project = "brightbox-cli"
 
