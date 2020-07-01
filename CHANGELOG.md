@@ -1,3 +1,22 @@
+### v3.0.0 / 2020-07-01
+
+[Full Changelog](https://github.com/brightbox/brightbox-cli/compare/v2.12.0...v3.0.0)
+
+Backwards incompatible changes:
+
+* Dropped support for Ruby 1.9
+
+Changes:
+
+* Update `fog-brightbox` to v1.1.0
+* Update `rake` to v12.3.3 to resolve CVE-2020-8130
+* Update `rspec` to v3.9 to avoid issue when updating `rake`
+
+Bug fixes:
+
+* Creating an SQL instance from an existing snapshot has been fixed following
+  the update for `fog-brightbox v1.1.0`
+
 ### v2.12.0 / 2020-01-28
 
 [Full Changelog](https://github.com/brightbox/brightbox-cli/compare/v2.11.2...v2.12.0)
