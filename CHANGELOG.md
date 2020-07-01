@@ -1,3 +1,11 @@
+### v3.0.1 / 2020-07-01
+
+[Full Changelog](https://github.com/brightbox/brightbox-cli/compare/v3.0.0...v3.0.1)
+
+Bug fixes:
+
+* Fix `cloudips update --name` to correctly set blank names
+
 ### v3.0.0 / 2020-07-01
 
 [Full Changelog](https://github.com/brightbox/brightbox-cli/compare/v2.12.0...v3.0.0)
