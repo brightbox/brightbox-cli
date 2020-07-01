@@ -5,7 +5,7 @@ describe Brightbox::CollaboratingAccount do
     data = {
       "id" => "acc-12345"
     }
-    account_model = Fog::Compute::Brightbox::Account.new(data)
+    account_model = Fog::Brightbox::Compute::Account.new(data)
     Brightbox::CollaboratingAccount.new(account_model)
   end
 

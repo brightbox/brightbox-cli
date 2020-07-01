@@ -13,7 +13,7 @@ describe Brightbox::Account do
         expect(Brightbox::Account.all).to be_kind_of(Array)
 
         Brightbox::Account.all.each do |account|
-          expect(account).to be_kind_of(Fog::Compute::Brightbox::Account)
+          expect(account).to be_kind_of(Fog::Brightbox::Compute::Account)
         end
       end
 
@@ -31,7 +31,7 @@ describe Brightbox::Account do
         expect(Brightbox::Account.all).to be_kind_of(Array)
 
         Brightbox::Account.all.each do |account|
-          expect(account).to be_kind_of(Fog::Compute::Brightbox::Account)
+          expect(account).to be_kind_of(Fog::Brightbox::Compute::Account)
         end
       end
 

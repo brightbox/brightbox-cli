@@ -9,7 +9,7 @@ module Brightbox
     def self.invite(email, role)
       options = { :email => email, :role => role }
       data = conn.create_collaboration(options)
-      model = Fog::Compute::Brightbox::Collaboration.new(data)
+      model = Fog::Brightbox::Compute::Collaboration.new(data)
       new(model)
     end
 

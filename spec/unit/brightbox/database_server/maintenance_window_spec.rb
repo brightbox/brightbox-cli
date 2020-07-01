@@ -4,7 +4,7 @@ require "fog/brightbox/models/compute/database_server"
 describe Brightbox::DatabaseServer do
 
   describe "#maintenance_window" do
-    let(:fog_model) { Fog::Compute::Brightbox::DatabaseServer.new(fog_settings) }
+    let(:fog_model) { Fog::Brightbox::Compute::DatabaseServer.new(fog_settings) }
     let(:dbs) { Brightbox::DatabaseServer.new(fog_model) }
 
     context "when default values" do

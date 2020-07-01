@@ -52,6 +52,6 @@ describe Brightbox::UserCollaboration do
         "email_address" => "marie@example.com"
       }
     }
-    Fog::Compute::Brightbox::UserCollaboration.new(api_response_data)
+    Fog::Brightbox::Compute::UserCollaboration.new(api_response_data)
   end
 end
