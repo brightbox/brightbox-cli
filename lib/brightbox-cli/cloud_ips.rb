@@ -75,7 +75,7 @@ module Brightbox
         params[:reverse_dns] = ""
       end
 
-      if options[:n] && !options[:name].empty?
+      if options[:n] && !options[:n].nil?
         params[:name] = options[:n]
       end
 
