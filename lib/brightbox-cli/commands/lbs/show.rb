@@ -18,6 +18,7 @@ module Brightbox
             :created_at,
             :deleted_at,
             :policy,
+            :ssl_minimum_version,
             :ssl_issuer,
             :ssl_subject,
             :ssl_valid_from,

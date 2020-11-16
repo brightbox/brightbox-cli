@@ -45,6 +45,9 @@ module Brightbox
       c.desc "Filepath to the private key used to sign SSL certificate (OpenSSL supported formats)."
       c.flag ["ssl-key"]
 
+      c.desc "Sets the minimum version of TLS/SSL to support in the format 'TLSv1.x'"
+      c.flag ["ssl-min-ver"]
+
       c.desc "Clears SSL details from the load balancer."
       c.switch ["remove-ssl"], :negatable => false
 
@@ -126,6 +129,10 @@ module Brightbox
         if remove_ssl
           lbopts[:certificate_pem] = ""
           lbopts[:certificate_private_key] = ""
+        end
+
+        if options["ssl-min-ver"]
+          lbopts[:ssl_minimum_version] = options["ssl-min-ver"] unless options["ssl-min-ver"].nil?
         end
 
         lbopts.nilify_blanks
