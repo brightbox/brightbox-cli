@@ -1,3 +1,13 @@
+### v3.1.0 / 2020-11-17
+
+[Full Changelog](https://github.com/brightbox/brightbox-cli/compare/v3.0.1...v3.1.0)
+
+Changes:
+
+* Update `fog-brightbox` to v1.2.0
+* Add `lbs` option for `--min-ssl-ver` to specify the minimum TLS/SSL protocol
+  that should be acceptable for use with the load balancer
+
 ### v3.0.1 / 2020-07-01
 
 [Full Changelog](https://github.com/brightbox/brightbox-cli/compare/v3.0.0...v3.0.1)
