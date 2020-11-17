@@ -52,6 +52,10 @@ module Brightbox
       c.desc "Filepath to the private key used to sign SSL certificate (OpenSSL supported formats)."
       c.flag ["ssl-key"]
 
+      c.desc "Sets the minimum version of TLS/SSL to support in the format 'TLSv1.x'"
+      c.default_value "TLSv1.2"
+      c.flag ["ssl-min-ver"]
+
       c.desc "Enable SSL v3 support"
       c.switch ["sslv3"]
 
@@ -118,6 +122,7 @@ module Brightbox
                                  :listeners => listeners,
                                  :certificate_pem => ssl_cert,
                                  :certificate_private_key => ssl_key,
+                                 :ssl_minimum_version => options["ssl-min-ver"],
                                  :sslv3 => options["sslv3"],
                                  :nodes => nodes)
         render_table([lb], global_options)
