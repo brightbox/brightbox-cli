@@ -7,6 +7,10 @@ describe "brightbox servers" do
     let(:stdout) { output.stdout }
     let(:stderr) { output.stderr }
 
+    let(:image) { double(:id => "img-12345", :name => "Linux") }
+    let(:type) { double(:id => "typ-12345", :handle => "nano") }
+    let(:zone) { double(:handle => "gb1-a") }
+
     before do
       config = config_from_contents(USER_APP_CONFIG_CONTENTS)
       cache_access_token(config, "f83da712e6299cda953513ec07f7a754f747d727")
@@ -27,10 +31,6 @@ describe "brightbox servers" do
     context "with --cloud-ip with nominated IP argument" do
       let(:argv) { %w(servers create --cloud-ip cip-12345 img-12345) }
 
-      let(:image) { double(:id => "img-12345", :name => "Linux") }
-      let(:type) { double(:id => "typ-12345", :handle => "nano") }
-      let(:zone) { double(:handle => "gb1-a") }
-
       before do
         expect(Brightbox::Image).to receive(:find).with("img-12345").and_return(image)
         expect(Brightbox::Type).to receive(:find_by_handle).and_return(type)
@@ -50,10 +50,6 @@ describe "brightbox servers" do
     context "with --cloud-ip true argument" do
       let(:argv) { %w(servers create --cloud-ip true img-12345) }
 
-      let(:image) { double(:id => "img-12345", :name => "Linux") }
-      let(:type) { double(:id => "typ-12345", :handle => "nano") }
-      let(:zone) { double(:handle => "gb1-a") }
-
       before do
         expect(Brightbox::Image).to receive(:find).with("img-12345").and_return(image)
         expect(Brightbox::Type).to receive(:find_by_handle).and_return(type)
@@ -65,6 +61,26 @@ describe "brightbox servers" do
           .and_return(:status => 202, :body => sample_response)
 
         expect(stderr).to match("mapping a new cloud IP when built")
+        expect(stderr).not_to match("ERROR")
+        expect(stdout).to match("srv-12345")
+      end
+    end
+
+    context "with --disk-encrypted switch" do
+      let(:argv) { %w(servers create --disk-encrypted img-12345) }
+
+      before do
+        expect(Brightbox::Image).to receive(:find).with("img-12345").and_return(image)
+        expect(Brightbox::Type).to receive(:find_by_handle).and_return(type)
+      end
+
+      it "requests new server with encryption at rest enabled" do
+        stub_request(:post, "http://api.brightbox.dev/1.0/servers?account_id=acc-12345")
+          .with(:headers => { "Content-Type" => "application/json" },
+                :body => hash_including(:disk_encrypted => true))
+          .and_return(:status => 202, :body => sample_response)
+
+        expect(stderr).to match("Creating a nano")
         expect(stderr).not_to match("ERROR")
         expect(stdout).to match("srv-12345")
       end

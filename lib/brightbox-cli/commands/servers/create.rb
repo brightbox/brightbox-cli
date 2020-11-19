@@ -29,6 +29,10 @@ module Brightbox
       c.default_value true
       c.switch [:e, :base64], :negatable => true
 
+      c.desc "Enable encryption at rest for disk"
+      c.default_value false
+      c.switch ["disk-encrypted"], :negatable => false
+
       c.desc "Server groups to place server in - comma delimited list"
       c.flag [:g, "server-groups"]
 
@@ -116,6 +120,7 @@ module Brightbox
         }
 
         params[:cloud_ip] = options[:"cloud-ip"] if options.key?(:"cloud-ip")
+        params[:disk_encrypted] = options[:"disk-encrypted"] if options.key?(:"disk-encrypted")
 
         servers = Server.create_servers options[:i], params
         render_table(servers, global_options)
