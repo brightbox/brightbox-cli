@@ -49,6 +49,7 @@ module Brightbox
         :ram,
         :cores,
         :disk,
+        :disk_encrypted,
         :compatibility_mode,
         :image,
         :image_name,
