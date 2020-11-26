@@ -1,3 +1,16 @@
+### v3.2.0 / 2020-11-26
+
+[Full Changelog](https://github.com/brightbox/brightbox-cli/compare/v3.1.0...v3.2.0)
+
+Changes:
+
+* Add `--disk-encrypted` option to server creation to allow enabling encryption
+  at rest during a build.
+* Setup GitHub Actions for Ruby 2.4+ builds to reduce the delays of testing
+  using Travis.
+* Reduce number of Travis builds due to incredibly slow start up times. We are
+  approaching an hour to get a build taking less than a minute starting.
+
 ### v3.1.0 / 2020-11-17
 
 [Full Changelog](https://github.com/brightbox/brightbox-cli/compare/v3.0.1...v3.1.0)
