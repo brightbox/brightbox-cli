@@ -9,17 +9,6 @@ You can sign up at https://manage.brightbox.com
 
 {<img src="https://travis-ci.org/brightbox/brightbox-cli.png?branch=master" alt="Build Status" />}[https://travis-ci.org/brightbox/brightbox-cli]
 
-== UPGRADE NOTES
-
-Version 1.0.0 adds a new top level `brightbox` command for the suite.
-
-This may clash with our `brightbox` (brightbox-deployment) gem which, before
-version 2.4.0, used `brightbox` as the name for it's binary. Please ensure you
-update your `brightbox` gem to avoid using the wrong command.
-
-We have included backwards compatible binaries for all the older CLI commands
-(brightbox-accounts, brightbox-servers etc...) but recommend getting used to the
-new form.
 
 == Installation instructions
 
@@ -36,7 +25,11 @@ For a list of available commands use:
 
    $ brightbox help
 
-To add client (account based) credentials use:
+To login with your user credentials use:
+
+   $ brightbox login john@example.com
+
+To instead add api client (account-specific) credentials use:
 
    $ brightbox config client_add cli-2igtb theclientsecret
    Using config file /home/ubuntu/.brightbox/config
@@ -49,7 +42,14 @@ To browse available resources use the resource name as the command:
    $ brightbox images
    ... List of images
 
-Command structure may be subject to change.
+=== Two factor authentication ===
+
+If you've enabled two factor authentication for your user, you can enable it in
+your config and the CLI will prompt for a two factor pin when needed:
+
+    [john@example.com]
+    username = john@example.com
+    two_factor = true
 
 === Integrating with a password manager
 
@@ -63,6 +63,13 @@ appropriate section:
     [john@example.com]
     username = john@example.com
     password_helper_command = pass john-example-com-brightbox
+
+You can also specify a separate helper command to retrive two factor pins:
+
+    [john@example.com]
+    username = john@example.com
+    password_helper_command = pass john-example-com-brightbox
+    two_factor_helper_command = get-two-factor-pin john-example-com-brightbox
 
 === Using GPG to secure passwords
 
@@ -108,6 +115,20 @@ incorrectly or there may be an issue with your GPG configuration.
 
 To remove the password delete the `~/.brightbox/main.password.gpg` file.
 
+=== Integrating with a password manager
+
+You can retrieve your passwords from an external password manager by specifying
+a password helper command. This command will be executed any time your password
+is required and its output used as your password.
+
+Configure the command in your config file (usually ~/.brightbox/config) in the
+appropriate section:
+
+    [john@example.com]
+    username = john@example.com
+    password_helper_command = pass john-example-com-brightbox
+
+
 == Usage guides
 
 * http://docs.brightbox.com/reference/cli
@@ -129,6 +150,18 @@ system path when you install the gem. If for whatever reason it is not
 in the path, just specify the full path to it:
 
     complete -C /full/path/to/bin/_brightbox-bash-completer -o filenames brightbox
+
+== UPGRADE NOTES
+
+Version 1.0.0 adds a new top level `brightbox` command for the suite.
+
+This may clash with our `brightbox` (brightbox-deployment) gem which, before
+version 2.4.0, used `brightbox` as the name for it's binary. Please ensure you
+update your `brightbox` gem to avoid using the wrong command.
+
+We have included backwards compatible binaries for all the older CLI commands
+(brightbox-accounts, brightbox-servers etc...) but recommend getting used to the
+new form.
 
 == Testing
 

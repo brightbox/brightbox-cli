@@ -15,6 +15,7 @@ module Brightbox
     include Brightbox::Config::GpgEncryptedPasswords
     include Brightbox::Config::PasswordHelper
     include Brightbox::Config::TwoFactorAuth
+    include Brightbox::Config::TwoFactorHelper
     include Brightbox::Config::AuthenticationTokens
     include Brightbox::Config::Accounts
     include Brightbox::Config::Clients
