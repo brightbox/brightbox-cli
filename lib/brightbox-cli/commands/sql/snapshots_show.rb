@@ -21,8 +21,13 @@ module Brightbox
               :name,
               :description,
               :status,
+              :database_engine,
+              :database_version,
               :locked,
-              :created_on
+              :created_on,
+              :created_at,
+              :size,
+              :source
             ]
           )
           render_table(servers, table_opts)
