@@ -1,3 +1,22 @@
+### v3.3.0 / 2021-09-17
+
+[Full Changelog](https://github.com/brightbox/brightbox-cli/compare/v3.2.0...v3.3.0)
+
+Changes:
+
+* Update `fog-brightbox` to v1.4.0` (allowing Ruby 3.0 support)
+* Added support for getting 2FA from helper
+* Added missing `sql snapshot` fields
+* Infrastructure changes to test on more versions of Ruby
+* Added GitHub actions support for CI testing.
+* Removed Travis CI support.
+
+Bug fixes:
+
+* Updates `crack` gem to switch from `safe_yaml` to `rexml`
+* Bump addressable from 2.3.8 to 2.8.0. (fixing ReDoS vulnerability)
+* Bump rexml from 3.2.4 to 3.2.5 (fixing round-trip vulnerability bugs)
+
 ### v3.2.0 / 2020-11-26
 
 [Full Changelog](https://github.com/brightbox/brightbox-cli/compare/v3.1.0...v3.2.0)
