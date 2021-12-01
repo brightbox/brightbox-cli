@@ -55,7 +55,7 @@ GEM
       slop (~> 3.0)
     public_suffix (2.0.5)
     rake (12.3.3)
-    rexml (3.2.5)
+    rexml (3.2.4)
     rspec (3.9.0)
       rspec-core (~> 3.9.0)
       rspec-expectations (~> 3.9.0)
