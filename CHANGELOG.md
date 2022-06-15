@@ -6,6 +6,8 @@ Backwards incompatible changes:
 
 * Drop support for Ruby versions older than 2.5
 * Update `Gemfile.lock` to use Bundler 2.1.4
+* Remove hypenated versions of sub commands. For example `brightbox-servers`
+  wrapping `brightbox servers`.
 
 Changes:
 
