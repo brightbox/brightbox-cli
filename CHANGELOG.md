@@ -1,3 +1,19 @@
+### v4.0.0 / master
+
+[Full Changelog](https://github.com/brightbox/brightbox-cli/compare/v3.3.0...master)
+
+Backwards incompatible changes:
+
+* Drop support for Ruby versions older than 2.5
+* Update `Gemfile.lock` to use Bundler 2.1.4
+
+Changes:
+
+* Adds Ruby 3.1 and 3.2 (preview) to testing matrix
+* Removed references to `Fixnum` from code and dependencies to allow
+  testing of Ruby 3.2 support
+* Updates `webmock` from 1.21.0 to 3.14.0
+
 ### v3.3.0 / 2021-09-17
 
 [Full Changelog](https://github.com/brightbox/brightbox-cli/compare/v3.2.0...v3.3.0)
