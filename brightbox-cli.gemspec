@@ -37,22 +37,4 @@ Gem::Specification.new do |s|
   s.add_development_dependency "rspec"
   s.add_development_dependency "vcr", "~> 2.5"
   s.add_development_dependency "webmock"
-
-  s.post_install_message = <<-EOS
-The CLI command is now `brightbox` with subcommands for the resources.
-Such as `brightbox config` or `brightbox servers`.
-
-  `brightbox --help` lists all the commands.
-
-The old hypenated versions of the commands (e.g. `brightbox-servers`)
-are deprecated and may be removed in the future.
-
-If you have been using the old "brightbox" gem please ensure you have
-the latest version to be able to use the `brightbox-capify` command.
-
-To enable Bash auto-completion you can do the following:
-
-  complete -C _brightbox-bash-completer -o filenames brightbox
-
-EOS
 end
