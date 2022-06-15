@@ -50,7 +50,7 @@ http_interactions:
     uri: http://api.brightbox.localhost/1.0/servers?account_id=acc-12345
     body:
       encoding: UTF-8
-      string: '{"image":"img-12345","name":"medium servers","server_type":"typ-12345"}'
+      string: '{"name":"medium servers","server_type":"typ-12345","image":"img-12345"}'
     headers:
       User-Agent:
       - fog/1.15.0

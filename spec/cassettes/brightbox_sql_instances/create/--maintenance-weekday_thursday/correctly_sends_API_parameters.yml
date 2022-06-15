@@ -2,50 +2,6 @@
 http_interactions:
 - request:
     method: post
-    uri: http://api.brightbox.localhost/1.0/database_servers?account_id=acc-12345
-    body:
-      encoding: UTF-8
-      string: '{"name":null,"description":null,"allow_access":["10.0.0.0"],"maintenance_weekday":null,"maintenance_hour":null}'
-    headers:
-      User-Agent:
-      - fog/1.20.0
-      Authorization:
-      - OAuth f83da712e6299cda953513ec07f7a754f747d727
-      Content-Type:
-      - application/json
-  response:
-    status:
-      code: 202
-      message:
-    headers:
-      Location:
-      - http://api.brightbox.localhost/1.0/database_servers/dbs-w5r2e
-      Content-Type:
-      - application/json; charset=utf-8
-      X-Ua-Compatible:
-      - IE=Edge
-      Cache-Control:
-      - no-cache
-      X-Request-Id:
-      - bf3532acbb8d3092843846faf4dd4606
-      X-Runtime:
-      - '1.045299'
-      Server:
-      - WEBrick/1.3.1 (Ruby/1.9.3/2013-11-22)
-      Date:
-      - Wed, 19 Feb 2014 17:02:16 GMT
-      Content-Length:
-      - '945'
-      Connection:
-      - Keep-Alive
-    body:
-      encoding: UTF-8
-      string: '{"id":"dbs-w5r2e","resource_type":"database_server","url":"https://api.gb1.brightbox.com/1.0/database_servers/dbs-w5r2e","name":"","description":"","admin_username":"admin","admin_password":"g2edl7v5jcordqxv","allow_access":["10.0.0.0"],"database_engine":"mysql","database_version":"5.5","status":"creating","maintenance_weekday":0,"maintenance_hour":6,"created_at":"2014-02-19T17:02:14Z","updated_at":"2014-02-19T17:02:14Z","deleted_at":null,"account":{"id":"acc-12345","resource_type":"account","url":"https://api.gb1.brightbox.com/1.0/accounts/acc-12345","name":"VCR
-        account","status":"active"},"database_server_type":{"id":"dbt-12345","resource_type":"database_type","url":"https://api.gb1.brightbox.com/1.0/database_types/dbt-12345","name":"moxccmwwwhtn","description":"","disk_size":8192,"ram":2048},"cloud_ips":[],"zone":{"id":"zon-12345","resource_type":"zone","url":"https://api.gb1.brightbox.com/1.0/zones/zon-12345","handle":"gb1-a"}}'
-    http_version:
-  recorded_at: Wed, 19 Feb 2014 17:02:16 GMT
-- request:
-    method: post
     uri: http://api.brightbox.localhost/token
     body:
       encoding: UTF-8
@@ -67,7 +23,7 @@ http_interactions:
       Server:
       - nginx/1.18.0
       Date:
-      - Fri, 17 Jun 2022 12:16:09 GMT
+      - Fri, 17 Jun 2022 12:16:23 GMT
       Content-Type:
       - application/json
       Content-Length:
@@ -83,23 +39,23 @@ http_interactions:
       X-Content-Type-Options:
       - nosniff
       Etag:
-      - W/"80e9800f5524b1d16afcf9e15b92abd0"
+      - W/"0b89fad340010c6131d8655268205951"
       X-Request-Id:
-      - a303259c-6995-4905-91dc-4f91facbfb27
+      - 140c05b4-f085-404e-8232-e30b811104b4
       X-Runtime:
-      - '0.088840'
+      - '0.087725'
     body:
       encoding: ASCII-8BIT
-      string: '{"access_token":"4eaa0ac481f53ebcd2aa431db1f7ad87c7b359f9","token_type":"Bearer","scope":"infrastructure,
+      string: '{"access_token":"d4dfedafa18458e8257fe0957c3540a07c2dd64f","token_type":"Bearer","scope":"infrastructure,
         orbit","expires_in":7199}'
     http_version:
-  recorded_at: Fri, 17 Jun 2022 12:16:09 GMT
+  recorded_at: Fri, 17 Jun 2022 12:16:23 GMT
 - request:
     method: post
     uri: http://api.brightbox.localhost/1.0/database_servers?account_id=acc-12345
     body:
       encoding: UTF-8
-      string: '{"name":null,"description":null,"allow_access":["10.0.0.0"],"maintenance_weekday":null,"maintenance_hour":null,"snapshots_schedule":null}'
+      string: '{"name":null,"description":null,"maintenance_weekday":"4","maintenance_hour":null,"snapshots_schedule":null}'
     headers:
       User-Agent:
       - fog-core/1.45.0
@@ -117,11 +73,11 @@ http_interactions:
       Server:
       - nginx/1.18.0
       Date:
-      - Fri, 17 Jun 2022 12:16:09 GMT
+      - Fri, 17 Jun 2022 12:16:23 GMT
       Content-Type:
       - application/json; charset=utf-8
       Content-Length:
-      - '1080'
+      - '1070'
       Connection:
       - keep-alive
       Status:
@@ -135,25 +91,25 @@ http_interactions:
       X-Oauth-Scopes:
       - infrastructure, orbit
       Location:
-      - http://api.brightbox.localhost/1.0/database_servers/dbs-2yrux
+      - http://api.brightbox.localhost/1.0/database_servers/dbs-rc642
       Cache-Control:
       - no-cache
       X-Request-Id:
-      - ae6d7c0f-8010-454b-8c31-ff3626eb8e13
+      - cd02ab05-efff-472f-8b8d-6592eb13c73c
       X-Runtime:
-      - '0.493642'
+      - '0.371938'
       Vary:
       - Origin
     body:
       encoding: ASCII-8BIT
-      string: '{"id":"dbs-2yrux","resource_type":"database_server","url":"https://api.brightbox.localhost/1.0/database_servers/dbs-2yrux","name":"","description":"","admin_username":"admin","admin_password":"9uklmdzblxr0x0j8","allow_access":["10.0.0.0"],"database_engine":"mysql","database_version":"8.0","status":"creating","locked":false,"maintenance_weekday":0,"maintenance_hour":6,"snapshots_retention":null,"snapshots_schedule":null,"snapshots_schedule_next_at":null,"created_at":"2022-06-17T12:16:09Z","updated_at":"2022-06-17T12:16:09Z","deleted_at":null,"account":{"id":"acc-12345","resource_type":"account","url":"https://api.brightbox.localhost/1.0/accounts/acc-12345","name":"CLI
+      string: '{"id":"dbs-rc642","resource_type":"database_server","url":"https://api.brightbox.localhost/1.0/database_servers/dbs-rc642","name":"","description":"","admin_username":"admin","admin_password":"kzxnh5h5j5n01dww","allow_access":[],"database_engine":"mysql","database_version":"8.0","status":"creating","locked":false,"maintenance_weekday":4,"maintenance_hour":6,"snapshots_retention":null,"snapshots_schedule":null,"snapshots_schedule_next_at":null,"created_at":"2022-06-17T12:16:23Z","updated_at":"2022-06-17T12:16:23Z","deleted_at":null,"account":{"id":"acc-12345","resource_type":"account","url":"https://api.brightbox.localhost/1.0/accounts/acc-12345","name":"CLI
         test account","status":"active"},"database_server_type":{"id":"dbt-za5cu","resource_type":"database_type","url":"https://api.brightbox.localhost/1.0/database_types/dbt-za5cu","name":"Default
         DBaaS","description":"","disk_size":20480,"ram":2048,"default":true},"cloud_ips":[],"zone":{"id":"zon-12345","resource_type":"zone","url":"https://api.brightbox.localhost/1.0/zones/zon-12345","handle":"honcho-a"}}'
     http_version:
-  recorded_at: Fri, 17 Jun 2022 12:16:09 GMT
+  recorded_at: Fri, 17 Jun 2022 12:16:23 GMT
 - request:
     method: get
-    uri: http://api.brightbox.localhost/1.0/database_servers/dbs-2yrux?account_id=acc-12345
+    uri: http://api.brightbox.localhost/1.0/database_servers/dbs-rc642?account_id=acc-12345
     body:
       encoding: US-ASCII
       string: ''
@@ -174,11 +130,11 @@ http_interactions:
       Server:
       - nginx/1.18.0
       Date:
-      - Fri, 17 Jun 2022 12:16:09 GMT
+      - Fri, 17 Jun 2022 12:16:23 GMT
       Content-Type:
       - application/json; charset=utf-8
       Content-Length:
-      - '1066'
+      - '1056'
       Connection:
       - keep-alive
       Status:
@@ -192,25 +148,25 @@ http_interactions:
       X-Oauth-Scopes:
       - infrastructure, orbit
       Etag:
-      - W/"0d07374b91bae44beffc1903258a4860"
+      - W/"8e0205ba4c32f70746f1637f9c6978e6"
       Cache-Control:
       - max-age=0, private, must-revalidate
       X-Request-Id:
-      - a5c21c9f-ff65-4fb7-bd32-1bc815107763
+      - 6548aff8-844f-4e7f-8f1d-a0a6d7e05e7c
       X-Runtime:
-      - '0.051527'
+      - '0.056850'
       Vary:
       - Origin
     body:
       encoding: ASCII-8BIT
-      string: '{"id":"dbs-2yrux","resource_type":"database_server","url":"https://api.brightbox.localhost/1.0/database_servers/dbs-2yrux","name":"","description":"","admin_username":"admin","admin_password":null,"allow_access":["10.0.0.0"],"database_engine":"mysql","database_version":"8.0","status":"creating","locked":false,"maintenance_weekday":0,"maintenance_hour":6,"snapshots_retention":null,"snapshots_schedule":null,"snapshots_schedule_next_at":null,"created_at":"2022-06-17T12:16:09Z","updated_at":"2022-06-17T12:16:09Z","deleted_at":null,"account":{"id":"acc-12345","resource_type":"account","url":"https://api.brightbox.localhost/1.0/accounts/acc-12345","name":"CLI
+      string: '{"id":"dbs-rc642","resource_type":"database_server","url":"https://api.brightbox.localhost/1.0/database_servers/dbs-rc642","name":"","description":"","admin_username":"admin","admin_password":null,"allow_access":[],"database_engine":"mysql","database_version":"8.0","status":"creating","locked":false,"maintenance_weekday":4,"maintenance_hour":6,"snapshots_retention":null,"snapshots_schedule":null,"snapshots_schedule_next_at":null,"created_at":"2022-06-17T12:16:23Z","updated_at":"2022-06-17T12:16:23Z","deleted_at":null,"account":{"id":"acc-12345","resource_type":"account","url":"https://api.brightbox.localhost/1.0/accounts/acc-12345","name":"CLI
         test account","status":"active"},"database_server_type":{"id":"dbt-za5cu","resource_type":"database_type","url":"https://api.brightbox.localhost/1.0/database_types/dbt-za5cu","name":"Default
         DBaaS","description":"","disk_size":20480,"ram":2048,"default":true},"cloud_ips":[],"zone":{"id":"zon-12345","resource_type":"zone","url":"https://api.brightbox.localhost/1.0/zones/zon-12345","handle":"honcho-a"}}'
     http_version:
-  recorded_at: Fri, 17 Jun 2022 12:16:09 GMT
+  recorded_at: Fri, 17 Jun 2022 12:16:23 GMT
 - request:
     method: get
-    uri: http://api.brightbox.localhost/1.0/database_servers/dbs-2yrux?account_id=acc-12345
+    uri: http://api.brightbox.localhost/1.0/database_servers/dbs-rc642?account_id=acc-12345
     body:
       encoding: US-ASCII
       string: ''
@@ -231,11 +187,11 @@ http_interactions:
       Server:
       - nginx/1.18.0
       Date:
-      - Fri, 17 Jun 2022 12:16:09 GMT
+      - Fri, 17 Jun 2022 12:16:23 GMT
       Content-Type:
       - application/json; charset=utf-8
       Content-Length:
-      - '1066'
+      - '1056'
       Connection:
       - keep-alive
       Status:
@@ -249,25 +205,25 @@ http_interactions:
       X-Oauth-Scopes:
       - infrastructure, orbit
       Etag:
-      - W/"0d07374b91bae44beffc1903258a4860"
+      - W/"8e0205ba4c32f70746f1637f9c6978e6"
       Cache-Control:
       - max-age=0, private, must-revalidate
       X-Request-Id:
-      - 0d00e9a5-83b3-45bb-942e-5e21f250db45
+      - 23d63083-accb-435f-b496-78adf401d25e
       X-Runtime:
-      - '0.049919'
+      - '0.049032'
       Vary:
       - Origin
     body:
       encoding: ASCII-8BIT
-      string: '{"id":"dbs-2yrux","resource_type":"database_server","url":"https://api.brightbox.localhost/1.0/database_servers/dbs-2yrux","name":"","description":"","admin_username":"admin","admin_password":null,"allow_access":["10.0.0.0"],"database_engine":"mysql","database_version":"8.0","status":"creating","locked":false,"maintenance_weekday":0,"maintenance_hour":6,"snapshots_retention":null,"snapshots_schedule":null,"snapshots_schedule_next_at":null,"created_at":"2022-06-17T12:16:09Z","updated_at":"2022-06-17T12:16:09Z","deleted_at":null,"account":{"id":"acc-12345","resource_type":"account","url":"https://api.brightbox.localhost/1.0/accounts/acc-12345","name":"CLI
+      string: '{"id":"dbs-rc642","resource_type":"database_server","url":"https://api.brightbox.localhost/1.0/database_servers/dbs-rc642","name":"","description":"","admin_username":"admin","admin_password":null,"allow_access":[],"database_engine":"mysql","database_version":"8.0","status":"creating","locked":false,"maintenance_weekday":4,"maintenance_hour":6,"snapshots_retention":null,"snapshots_schedule":null,"snapshots_schedule_next_at":null,"created_at":"2022-06-17T12:16:23Z","updated_at":"2022-06-17T12:16:23Z","deleted_at":null,"account":{"id":"acc-12345","resource_type":"account","url":"https://api.brightbox.localhost/1.0/accounts/acc-12345","name":"CLI
         test account","status":"active"},"database_server_type":{"id":"dbt-za5cu","resource_type":"database_type","url":"https://api.brightbox.localhost/1.0/database_types/dbt-za5cu","name":"Default
         DBaaS","description":"","disk_size":20480,"ram":2048,"default":true},"cloud_ips":[],"zone":{"id":"zon-12345","resource_type":"zone","url":"https://api.brightbox.localhost/1.0/zones/zon-12345","handle":"honcho-a"}}'
     http_version:
-  recorded_at: Fri, 17 Jun 2022 12:16:09 GMT
+  recorded_at: Fri, 17 Jun 2022 12:16:23 GMT
 - request:
     method: get
-    uri: http://api.brightbox.localhost/1.0/database_servers/dbs-2yrux?account_id=acc-12345
+    uri: http://api.brightbox.localhost/1.0/database_servers/dbs-rc642?account_id=acc-12345
     body:
       encoding: US-ASCII
       string: ''
@@ -288,11 +244,11 @@ http_interactions:
       Server:
       - nginx/1.18.0
       Date:
-      - Fri, 17 Jun 2022 12:16:11 GMT
+      - Fri, 17 Jun 2022 12:16:25 GMT
       Content-Type:
       - application/json; charset=utf-8
       Content-Length:
-      - '1064'
+      - '1056'
       Connection:
       - keep-alive
       Status:
@@ -306,25 +262,82 @@ http_interactions:
       X-Oauth-Scopes:
       - infrastructure, orbit
       Etag:
-      - W/"7d834ef57d6c8d78cf6dfd77f644fc62"
+      - W/"8e0205ba4c32f70746f1637f9c6978e6"
       Cache-Control:
       - max-age=0, private, must-revalidate
       X-Request-Id:
-      - 72412b81-4da2-4680-89c1-03da24d86acf
+      - 69059f48-dad3-4f3b-a85f-c6434b1293ed
       X-Runtime:
-      - '0.056234'
+      - '0.052484'
       Vary:
       - Origin
     body:
       encoding: ASCII-8BIT
-      string: '{"id":"dbs-2yrux","resource_type":"database_server","url":"https://api.brightbox.localhost/1.0/database_servers/dbs-2yrux","name":"","description":"","admin_username":"admin","admin_password":null,"allow_access":["10.0.0.0"],"database_engine":"mysql","database_version":"8.0","status":"active","locked":false,"maintenance_weekday":0,"maintenance_hour":6,"snapshots_retention":null,"snapshots_schedule":null,"snapshots_schedule_next_at":null,"created_at":"2022-06-17T12:16:09Z","updated_at":"2022-06-17T12:16:10Z","deleted_at":null,"account":{"id":"acc-12345","resource_type":"account","url":"https://api.brightbox.localhost/1.0/accounts/acc-12345","name":"CLI
+      string: '{"id":"dbs-rc642","resource_type":"database_server","url":"https://api.brightbox.localhost/1.0/database_servers/dbs-rc642","name":"","description":"","admin_username":"admin","admin_password":null,"allow_access":[],"database_engine":"mysql","database_version":"8.0","status":"creating","locked":false,"maintenance_weekday":4,"maintenance_hour":6,"snapshots_retention":null,"snapshots_schedule":null,"snapshots_schedule_next_at":null,"created_at":"2022-06-17T12:16:23Z","updated_at":"2022-06-17T12:16:23Z","deleted_at":null,"account":{"id":"acc-12345","resource_type":"account","url":"https://api.brightbox.localhost/1.0/accounts/acc-12345","name":"CLI
         test account","status":"active"},"database_server_type":{"id":"dbt-za5cu","resource_type":"database_type","url":"https://api.brightbox.localhost/1.0/database_types/dbt-za5cu","name":"Default
         DBaaS","description":"","disk_size":20480,"ram":2048,"default":true},"cloud_ips":[],"zone":{"id":"zon-12345","resource_type":"zone","url":"https://api.brightbox.localhost/1.0/zones/zon-12345","handle":"honcho-a"}}'
     http_version:
-  recorded_at: Fri, 17 Jun 2022 12:16:11 GMT
+  recorded_at: Fri, 17 Jun 2022 12:16:25 GMT
+- request:
+    method: get
+    uri: http://api.brightbox.localhost/1.0/database_servers/dbs-rc642?account_id=acc-12345
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      User-Agent:
+      - fog-core/1.45.0
+      Proxy-Connection:
+      - Keep-Alive
+      Authorization:
+      - Bearer 62f6396c5e44f7fc9a424c5899ac2e9c3b23e27a
+      Content-Type:
+      - application/json
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Server:
+      - nginx/1.18.0
+      Date:
+      - Fri, 17 Jun 2022 12:16:27 GMT
+      Content-Type:
+      - application/json; charset=utf-8
+      Content-Length:
+      - '1054'
+      Connection:
+      - keep-alive
+      Status:
+      - 200 OK
+      X-Frame-Options:
+      - SAMEORIGIN
+      X-Xss-Protection:
+      - 1; mode=block
+      X-Content-Type-Options:
+      - nosniff
+      X-Oauth-Scopes:
+      - infrastructure, orbit
+      Etag:
+      - W/"9118b7fa7009def5b47a6cdba941c389"
+      Cache-Control:
+      - max-age=0, private, must-revalidate
+      X-Request-Id:
+      - fd0b7fc3-b01d-4b13-8041-d61c9dd899fe
+      X-Runtime:
+      - '0.058101'
+      Vary:
+      - Origin
+    body:
+      encoding: ASCII-8BIT
+      string: '{"id":"dbs-rc642","resource_type":"database_server","url":"https://api.brightbox.localhost/1.0/database_servers/dbs-rc642","name":"","description":"","admin_username":"admin","admin_password":null,"allow_access":[],"database_engine":"mysql","database_version":"8.0","status":"active","locked":false,"maintenance_weekday":4,"maintenance_hour":6,"snapshots_retention":null,"snapshots_schedule":null,"snapshots_schedule_next_at":null,"created_at":"2022-06-17T12:16:23Z","updated_at":"2022-06-17T12:16:25Z","deleted_at":null,"account":{"id":"acc-12345","resource_type":"account","url":"https://api.brightbox.localhost/1.0/accounts/acc-12345","name":"CLI
+        test account","status":"active"},"database_server_type":{"id":"dbt-za5cu","resource_type":"database_type","url":"https://api.brightbox.localhost/1.0/database_types/dbt-za5cu","name":"Default
+        DBaaS","description":"","disk_size":20480,"ram":2048,"default":true},"cloud_ips":[],"zone":{"id":"zon-12345","resource_type":"zone","url":"https://api.brightbox.localhost/1.0/zones/zon-12345","handle":"honcho-a"}}'
+    http_version:
+  recorded_at: Fri, 17 Jun 2022 12:16:27 GMT
 - request:
     method: delete
-    uri: http://api.brightbox.localhost/1.0/database_servers/dbs-2yrux?account_id=acc-12345
+    uri: http://api.brightbox.localhost/1.0/database_servers/dbs-rc642?account_id=acc-12345
     body:
       encoding: US-ASCII
       string: ''
@@ -345,11 +358,11 @@ http_interactions:
       Server:
       - nginx/1.18.0
       Date:
-      - Fri, 17 Jun 2022 12:16:11 GMT
+      - Fri, 17 Jun 2022 12:16:27 GMT
       Content-Type:
       - application/json; charset=utf-8
       Content-Length:
-      - '1066'
+      - '1056'
       Connection:
       - keep-alive
       Status:
@@ -365,16 +378,16 @@ http_interactions:
       Cache-Control:
       - no-cache
       X-Request-Id:
-      - bacc0764-a532-4d3f-9749-bc2f1a41956c
+      - db49b258-739c-4b08-a6c9-969610b28f63
       X-Runtime:
-      - '0.163195'
+      - '0.155095'
       Vary:
       - Origin
     body:
       encoding: ASCII-8BIT
-      string: '{"id":"dbs-2yrux","resource_type":"database_server","url":"https://api.brightbox.localhost/1.0/database_servers/dbs-2yrux","name":"","description":"","admin_username":"admin","admin_password":null,"allow_access":["10.0.0.0"],"database_engine":"mysql","database_version":"8.0","status":"deleting","locked":false,"maintenance_weekday":0,"maintenance_hour":6,"snapshots_retention":null,"snapshots_schedule":null,"snapshots_schedule_next_at":null,"created_at":"2022-06-17T12:16:09Z","updated_at":"2022-06-17T12:16:11Z","deleted_at":null,"account":{"id":"acc-12345","resource_type":"account","url":"https://api.brightbox.localhost/1.0/accounts/acc-12345","name":"CLI
+      string: '{"id":"dbs-rc642","resource_type":"database_server","url":"https://api.brightbox.localhost/1.0/database_servers/dbs-rc642","name":"","description":"","admin_username":"admin","admin_password":null,"allow_access":[],"database_engine":"mysql","database_version":"8.0","status":"deleting","locked":false,"maintenance_weekday":4,"maintenance_hour":6,"snapshots_retention":null,"snapshots_schedule":null,"snapshots_schedule_next_at":null,"created_at":"2022-06-17T12:16:23Z","updated_at":"2022-06-17T12:16:27Z","deleted_at":null,"account":{"id":"acc-12345","resource_type":"account","url":"https://api.brightbox.localhost/1.0/accounts/acc-12345","name":"CLI
         test account","status":"active"},"database_server_type":{"id":"dbt-za5cu","resource_type":"database_type","url":"https://api.brightbox.localhost/1.0/database_types/dbt-za5cu","name":"Default
         DBaaS","description":"","disk_size":20480,"ram":2048,"default":true},"cloud_ips":[],"zone":{"id":"zon-12345","resource_type":"zone","url":"https://api.brightbox.localhost/1.0/zones/zon-12345","handle":"honcho-a"}}'
     http_version:
-  recorded_at: Fri, 17 Jun 2022 12:16:11 GMT
+  recorded_at: Fri, 17 Jun 2022 12:16:27 GMT
 recorded_with: VCR 2.5.0
