@@ -13,6 +13,7 @@ Changes:
 * Removed references to `Fixnum` from code and dependencies to allow
   testing of Ruby 3.2 support
 * Updates `webmock` from 1.21.0 to 3.14.0
+* Removes `rubyforge` reference from gemspec to remove deprecation warning
 
 ### v3.3.0 / 2021-09-17
 

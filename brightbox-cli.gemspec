@@ -14,8 +14,6 @@ Gem::Specification.new do |s|
 
   s.required_ruby_version = ">= 2.5"
 
-  s.rubyforge_project = "brightbox-cli"
-
   s.files         = `git ls-files`.split("\n") + `find lib/brightbox-cli/vendor`.split("\n")
   s.test_files    = `git ls-files -- {test,spec,features}/*`.split("\n")
   s.executables   = `git ls-files -- bin/*`.split("\n").map { |f| File.basename(f) }
