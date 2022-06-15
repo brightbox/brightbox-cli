@@ -37,6 +37,7 @@ GEM
       multi_json (~> 1.10)
     formatador (0.2.5)
     gli (2.12.3)
+    hashdiff (1.0.1)
     highline (1.6.21)
     hirb (0.7.3)
     i18n (0.6.11)
@@ -53,9 +54,9 @@ GEM
     pry-remote (0.1.8)
       pry (~> 0.9)
       slop (~> 3.0)
-    public_suffix (2.0.5)
+    public_suffix (4.0.7)
     rake (12.3.3)
-    rexml (3.2.4)
+    rexml (3.2.5)
     rspec (3.9.0)
       rspec-core (~> 3.9.0)
       rspec-expectations (~> 3.9.0)
@@ -71,9 +72,10 @@ GEM
     rspec-support (3.9.3)
     slop (3.4.5)
     vcr (2.5.0)
-    webmock (1.21.0)
-      addressable (>= 2.3.6)
+    webmock (3.14.0)
+      addressable (>= 2.8.0)
       crack (>= 0.3.2)
+      hashdiff (>= 0.4.0, < 2.0.0)
 
 PLATFORMS
   ruby
@@ -88,4 +90,4 @@ DEPENDENCIES
   webmock
 
 BUNDLED WITH
-   1.17.3
+   2.1.4
