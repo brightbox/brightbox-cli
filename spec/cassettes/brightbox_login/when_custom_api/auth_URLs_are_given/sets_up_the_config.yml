@@ -2,7 +2,7 @@
 http_interactions:
 - request:
     method: post
-    uri: http://api.brightbox.dev/token
+    uri: http://api.brightbox.localhost/token
     body:
       encoding: UTF-8
       string: '{"grant_type":"password","username":"jason.null@brightbox.com","password":"N:B3e%7Cmh"}'
@@ -16,7 +16,7 @@ http_interactions:
   response:
     status:
       code: 200
-      message: 
+      message:
     headers:
       Content-Type:
       - application/json
@@ -46,11 +46,11 @@ http_interactions:
       encoding: UTF-8
       string: '{"access_token":"def6238f30ac65ee3f3aae7d61e39f17a3fcf9fd","token_type":"Bearer","refresh_token":"4e8bbe751340be8e33e336e83d9e3f18fbdb5587","scope":"infrastructure,
         orbit","expires_in":7200}'
-    http_version: 
+    http_version:
   recorded_at: Mon, 12 Oct 2015 14:53:52 GMT
 - request:
     method: get
-    uri: http://api.brightbox.dev/1.0/accounts
+    uri: http://api.brightbox.localhost/1.0/accounts
     body:
       encoding: US-ASCII
       string: ''
@@ -64,7 +64,7 @@ http_interactions:
   response:
     status:
       code: 200
-      message: 
+      message:
     headers:
       X-Oauth-Scopes:
       - infrastructure, orbit
@@ -96,6 +96,6 @@ http_interactions:
         new servers are added to this group unless specified otherwise.","created_at":"2015-10-12T09:23:03Z","default":true}],"firewall_policies":[{"id":"fwp-12345","resource_type":"firewall_policy","url":"https://api.gb1.brightbox.com/1.0/firewall_policies/fwp-12345","default":true,"name":"default","created_at":"2015-10-12T09:23:03Z","description":"Applied
         to the default server group."}],"owner":{"id":"usr-12345","resource_type":"user","url":"https://api.gb1.brightbox.com/1.0/users/usr-12345","name":"Jason
         Null","email_address":"jason.null@brightbox.com"},"users":[],"zones":[{"id":"zon-12345","resource_type":"zone","url":"https://api.gb1.brightbox.com/1.0/zones/zon-12345","handle":"gb1-a"},{"id":"zon-12345","resource_type":"zone","url":"https://api.gb1.brightbox.com/1.0/zones/zon-12345","handle":"gb1-b"}]}]'
-    http_version: 
+    http_version:
   recorded_at: Mon, 12 Oct 2015 14:53:52 GMT
 recorded_with: VCR 2.5.0

@@ -1,7 +1,7 @@
 require "spec_helper"
 
 describe Brightbox::BBConfig do
-  let(:api_endpoint) { "http://api.brightbox.dev" }
+  let(:api_endpoint) { Brightbox::DEFAULT_API_ENDPOINT }
 
   # These are fake values that dev servers may choose to allow
   let(:username) { "jason.null@brightbox.com" }

@@ -9,7 +9,7 @@ describe "brightbox config" do
 
     let(:client_id) { "cli-12345" }
     let(:secret) { "qy6xxnvy4o0tgv5" }
-    let(:api_url) { "http://api.brightbox.dev" }
+    let(:api_url) { "http://api.brightbox.localhost" }
 
     let(:default_account) { "acc-12345" }
 

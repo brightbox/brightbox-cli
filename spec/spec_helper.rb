@@ -33,8 +33,8 @@ RSpec.configure do |config|
 
   config.before do
     # For each test, point to the testing endpoint to make it safer and easier to
-    # record from dev endpoints. Devs can DNS api.brightbox.dev to their dev service
-    stub_const("Brightbox::DEFAULT_API_ENDPOINT", ENV["BRIGHTBOX_API_URL"] || "http://api.brightbox.dev")
+    # record from dev endpoints. Devs can DNS api.brightbox.localhost to their dev service
+    stub_const("Brightbox::DEFAULT_API_ENDPOINT", ENV["BRIGHTBOX_API_URL"] || "http://api.brightbox.localhost")
     # And set a sane terminal size for Hirb
     ENV["COLUMNS"] = "120"
     ENV["LINES"] = "120"

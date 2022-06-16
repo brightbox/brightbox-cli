@@ -18,7 +18,7 @@ VCR.configure do |vcr|
 
   vcr.before_record do |interaction|
     host = URI.parse(interaction.request.uri).host
-    interaction.request.uri.gsub!(host, "api.brightbox.dev")
+    interaction.request.uri.gsub!(host, "api.brightbox.localhost")
 
     # Sanitise identifiers as best as we can
     # We need the poser of Regexp so filter_sensitive doesn't help

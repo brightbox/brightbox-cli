@@ -12,7 +12,7 @@ describe Brightbox::Config::UserApplication do
       let(:contents) do
         <<-EOS
         [#{client_name}]
-        api_url = http://api.brightbox.dev
+        api_url = http://api.brightbox.localhost
         username = user@example.com
         EOS
       end
@@ -26,7 +26,7 @@ describe Brightbox::Config::UserApplication do
       let(:contents) do
         <<-EOS
         [#{client_name}]
-        api_url = http://api.brightbox.dev
+        api_url = http://api.brightbox.localhost
         client_id = #{client_name}
         secret = #{random_token}
         username = user@example.com
@@ -58,7 +58,7 @@ describe Brightbox::Config::UserApplication do
       let(:contents) do
         <<-EOS
         [#{client_name}]
-        api_url = http://api.brightbox.dev
+        api_url = http://api.brightbox.localhost
         client_id = #{client_name}
         secret = #{random_token}
         EOS

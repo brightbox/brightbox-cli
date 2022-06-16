@@ -2,7 +2,7 @@
 http_interactions:
 - request:
     method: post
-    uri: http://api.brightbox.dev/token
+    uri: http://api.brightbox.localhost/token
     body:
       encoding: UTF-8
       string: '{"grant_type":"password","username":"jason.null@brightbox.com","password":"N:B3e%7Cmh"}'
@@ -16,7 +16,7 @@ http_interactions:
   response:
     status:
       code: 200
-      message: 
+      message:
     headers:
       Content-Type:
       - application/json
@@ -46,6 +46,6 @@ http_interactions:
       encoding: UTF-8
       string: '{"access_token":"a64a130f3a6f32529e539b3b0ba9cb0bd829160d","token_type":"Bearer","refresh_token":"c2239ef492e6d13d95c04e1f2ab7d99b16e0c202","scope":"infrastructure,
         orbit","expires_in":7200}'
-    http_version: 
+    http_version:
   recorded_at: Mon, 12 Oct 2015 14:53:53 GMT
 recorded_with: VCR 2.5.0

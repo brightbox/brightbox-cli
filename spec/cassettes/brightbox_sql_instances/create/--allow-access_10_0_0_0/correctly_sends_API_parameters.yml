@@ -2,7 +2,7 @@
 http_interactions:
 - request:
     method: post
-    uri: http://api.brightbox.dev/1.0/database_servers?account_id=acc-12345
+    uri: http://api.brightbox.localhost/1.0/database_servers?account_id=acc-12345
     body:
       encoding: UTF-8
       string: "{\"name\":null,\"description\":null,\"allow_access\":[\"10.0.0.0\"],\"maintenance_weekday\":null,\"maintenance_hour\":null}"
@@ -19,7 +19,7 @@ http_interactions:
       message:
     headers:
       Location:
-      - http://api.brightbox.dev/1.0/database_servers/dbs-w5r2e
+      - http://api.brightbox.localhost/1.0/database_servers/dbs-w5r2e
       Content-Type:
       - application/json; charset=utf-8
       X-Ua-Compatible:
@@ -46,7 +46,7 @@ http_interactions:
   recorded_at: Wed, 19 Feb 2014 17:02:16 GMT
 - request:
     method: post
-    uri: http://api.brightbox.dev/token
+    uri: http://api.brightbox.localhost/token
     body:
       encoding: UTF-8
       string: "{\"grant_type\":\"client_credentials\"}"

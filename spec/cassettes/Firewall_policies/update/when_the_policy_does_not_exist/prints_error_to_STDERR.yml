@@ -2,7 +2,7 @@
 http_interactions:
 - request:
     method: put
-    uri: http://api.brightbox.dev/1.0/firewall_policies/fwp-12345
+    uri: http://api.brightbox.localhost/1.0/firewall_policies/fwp-12345
     body:
       encoding: UTF-8
       string: ! '{"name":"missing"}'
@@ -50,7 +50,7 @@ http_interactions:
   recorded_at: Fri, 27 Sep 2013 15:18:18 GMT
 - request:
     method: post
-    uri: http://api.brightbox.dev/token
+    uri: http://api.brightbox.localhost/token
     body:
       encoding: UTF-8
       string: ! '{"grant_type":"client_credentials"}'
@@ -106,7 +106,7 @@ http_interactions:
   recorded_at: Fri, 27 Sep 2013 15:18:18 GMT
 - request:
     method: put
-    uri: http://api.brightbox.dev/1.0/firewall_policies/fwp-12345
+    uri: http://api.brightbox.localhost/1.0/firewall_policies/fwp-12345
     body:
       encoding: ASCII-8BIT
       string: !binary |-

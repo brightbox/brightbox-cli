@@ -2,7 +2,7 @@
 http_interactions:
 - request:
     method: get
-    uri: http://api.brightbox.dev/1.0/cloud_ips/cip-12345?account_id=acc-12345
+    uri: http://api.brightbox.localhost/1.0/cloud_ips/cip-12345?account_id=acc-12345
     body:
       encoding: US-ASCII
       string: ''
@@ -46,7 +46,7 @@ http_interactions:
   recorded_at: Tue, 21 Jan 2014 15:55:03 GMT
 - request:
     method: get
-    uri: http://api.brightbox.dev/1.0/cloud_ips/cip-12345?account_id=acc-12345
+    uri: http://api.brightbox.localhost/1.0/cloud_ips/cip-12345?account_id=acc-12345
     body:
       encoding: US-ASCII
       string: ''
@@ -90,7 +90,7 @@ http_interactions:
   recorded_at: Tue, 21 Jan 2014 15:55:03 GMT
 - request:
     method: get
-    uri: http://api.brightbox.dev/1.0/cloud_ips/cip-12345?account_id=acc-12345
+    uri: http://api.brightbox.localhost/1.0/cloud_ips/cip-12345?account_id=acc-12345
     body:
       encoding: US-ASCII
       string: ''
@@ -134,7 +134,7 @@ http_interactions:
   recorded_at: Tue, 21 Jan 2014 15:55:04 GMT
 - request:
     method: get
-    uri: http://api.brightbox.dev/1.0/cloud_ips/cip-12345?account_id=acc-12345
+    uri: http://api.brightbox.localhost/1.0/cloud_ips/cip-12345?account_id=acc-12345
     body:
       encoding: US-ASCII
       string: ''
@@ -178,7 +178,7 @@ http_interactions:
   recorded_at: Tue, 21 Jan 2014 15:55:06 GMT
 - request:
     method: post
-    uri: http://api.brightbox.dev/token
+    uri: http://api.brightbox.localhost/token
     body:
       encoding: UTF-8
       string: "{\"grant_type\":\"client_credentials\"}"
@@ -224,7 +224,7 @@ http_interactions:
   recorded_at: Tue, 18 Feb 2014 15:58:22 GMT
 - request:
     method: post
-    uri: http://api.brightbox.dev/token
+    uri: http://api.brightbox.localhost/token
     body:
       encoding: UTF-8
       string: "{\"grant_type\":\"client_credentials\"}"
@@ -270,7 +270,7 @@ http_interactions:
   recorded_at: Tue, 18 Feb 2014 15:58:23 GMT
 - request:
     method: post
-    uri: http://api.brightbox.dev/token
+    uri: http://api.brightbox.localhost/token
     body:
       encoding: UTF-8
       string: "{\"grant_type\":\"client_credentials\"}"

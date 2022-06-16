@@ -17,7 +17,7 @@ describe "brightbox sql instances" do
       let(:expected_args) { { :maintenance_weekday => "1" } }
 
       before do
-        stub_request(:get, "http://api.brightbox.dev/1.0/database_servers/dbs-12345?account_id=acc-12345")
+        stub_request(:get, "http://api.brightbox.localhost/1.0/database_servers/dbs-12345?account_id=acc-12345")
           .to_return(:status => 200, :body => '{"id":"dbs-12345","maintenance_weekday":0, "maintenance_hour":6}')
           .to_return(:status => 200,
                      :body => '{
@@ -25,7 +25,7 @@ describe "brightbox sql instances" do
                        "maintenance_weekday":1,
                        "maintenance_hour":6}')
 
-        stub_request(:put, "http://api.brightbox.dev/1.0/database_servers/dbs-12345?account_id=acc-12345")
+        stub_request(:put, "http://api.brightbox.localhost/1.0/database_servers/dbs-12345?account_id=acc-12345")
           .with(:body => "{\"maintenance_weekday\":\"1\"}")
       end
 
@@ -41,11 +41,11 @@ describe "brightbox sql instances" do
       let(:expected_args) { { :snapshots_schedule => "0 12 * * 4" } }
 
       before do
-        stub_request(:get, "http://api.brightbox.dev/1.0/database_servers/dbs-12345?account_id=acc-12345")
+        stub_request(:get, "http://api.brightbox.localhost/1.0/database_servers/dbs-12345?account_id=acc-12345")
           .to_return(:status => 200, :body => '{"id":"dbs-12345","snapshots_schedule":null,"snapshots_schedule_next_at":null}')
           .to_return(:status => 200, :body => '{"id":"dbs-12345","snapshots_schedule":"34 12 * * 4","snapshots_schedule_next_at":"2016-07-07T12:34:56Z"}')
 
-        stub_request(:put, "http://api.brightbox.dev/1.0/database_servers/dbs-12345?account_id=acc-12345")
+        stub_request(:put, "http://api.brightbox.localhost/1.0/database_servers/dbs-12345?account_id=acc-12345")
           .to_return(:status => 200, :body => '{"id":"dbs-12345","snapshots_schedule":"34 12 * * 4","snapshots_schedule_next_at":"2016-07-07T12:34:56Z"}')
       end
 
@@ -64,11 +64,11 @@ describe "brightbox sql instances" do
       let(:expected_args) { { :snapshots_schedule => nil } }
 
       before do
-        stub_request(:get, "http://api.brightbox.dev/1.0/database_servers/dbs-12345?account_id=acc-12345")
+        stub_request(:get, "http://api.brightbox.localhost/1.0/database_servers/dbs-12345?account_id=acc-12345")
           .to_return(:status => 200, :body => '{"id":"dbs-12345","snapshots_schedule":"34 12 * * 4","snapshots_schedule_next_at":"2016-07-07T12:34:56Z"}')
           .to_return(:status => 200, :body => '{"id":"dbs-12345","snapshots_schedule":null,"snapshots_schedule_next_at":null}')
 
-        stub_request(:put, "http://api.brightbox.dev/1.0/database_servers/dbs-12345?account_id=acc-12345")
+        stub_request(:put, "http://api.brightbox.localhost/1.0/database_servers/dbs-12345?account_id=acc-12345")
           .to_return(:status => 200, :body => '{"id":"dbs-12345","snapshots_schedule":null,"snapshots_schedule_next_at":null}')
       end
 

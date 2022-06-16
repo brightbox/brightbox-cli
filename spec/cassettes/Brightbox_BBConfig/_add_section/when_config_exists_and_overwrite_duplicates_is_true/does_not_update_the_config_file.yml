@@ -2,7 +2,7 @@
 http_interactions:
 - request:
     method: post
-    uri: http://api.brightbox.dev/token
+    uri: http://api.brightbox.localhost/token
     body:
       encoding: UTF-8
       string: '{"grant_type":"password","username":"jason.null@brightbox.com","password":"N:B3e%7Cmh"}'
@@ -16,7 +16,7 @@ http_interactions:
   response:
     status:
       code: 200
-      message: 
+      message:
     headers:
       Content-Type:
       - application/json
@@ -46,11 +46,11 @@ http_interactions:
       encoding: UTF-8
       string: '{"access_token":"13824deca216ba81d5963d75659755d76083c490","token_type":"Bearer","refresh_token":"6b70b12f95df7b7e95e6cf0a99e5982ea7087f2c","scope":"infrastructure,
         orbit","expires_in":7200}'
-    http_version: 
+    http_version:
   recorded_at: Wed, 30 Sep 2015 14:55:23 GMT
 - request:
     method: get
-    uri: http://api.brightbox.dev/1.0/accounts
+    uri: http://api.brightbox.localhost/1.0/accounts
     body:
       encoding: US-ASCII
       string: ''
@@ -64,7 +64,7 @@ http_interactions:
   response:
     status:
       code: 200
-      message: 
+      message:
     headers:
       X-Oauth-Scopes:
       - infrastructure, orbit
@@ -96,11 +96,11 @@ http_interactions:
         new servers are added to this group unless specified otherwise.","created_at":"2015-09-29T08:22:15Z","default":true}],"firewall_policies":[{"id":"fwp-12345","resource_type":"firewall_policy","url":"https://api.gb1.brightbox.com/1.0/firewall_policies/fwp-12345","default":true,"name":"default","created_at":"2015-09-29T08:22:15Z","description":"Applied
         to the default server group."}],"owner":{"id":"usr-12345","resource_type":"user","url":"https://api.gb1.brightbox.com/1.0/users/usr-12345","name":"Jason
         Null","email_address":"jason.null@brightbox.com"},"users":[],"zones":[{"id":"zon-12345","resource_type":"zone","url":"https://api.gb1.brightbox.com/1.0/zones/zon-12345","handle":"gb1-a"},{"id":"zon-12345","resource_type":"zone","url":"https://api.gb1.brightbox.com/1.0/zones/zon-12345","handle":"gb1-b"}]}]'
-    http_version: 
+    http_version:
   recorded_at: Wed, 30 Sep 2015 14:55:23 GMT
 - request:
     method: post
-    uri: http://api.brightbox.dev/token
+    uri: http://api.brightbox.localhost/token
     body:
       encoding: UTF-8
       string: '{"grant_type":"refresh_token","refresh_token":"6b70b12f95df7b7e95e6cf0a99e5982ea7087f2c"}'
@@ -114,7 +114,7 @@ http_interactions:
   response:
     status:
       code: 200
-      message: 
+      message:
     headers:
       Content-Type:
       - application/json
@@ -144,11 +144,11 @@ http_interactions:
       encoding: UTF-8
       string: '{"access_token":"9f1758514b2245dc6d52c550d252074287277e7b","token_type":"Bearer","refresh_token":"514aa63f8de3113429e721e117cc60f5a6e2e004","scope":"infrastructure,
         orbit","expires_in":7200}'
-    http_version: 
+    http_version:
   recorded_at: Wed, 30 Sep 2015 14:55:23 GMT
 - request:
     method: get
-    uri: http://api.brightbox.dev/1.0/accounts
+    uri: http://api.brightbox.localhost/1.0/accounts
     body:
       encoding: US-ASCII
       string: ''
@@ -162,7 +162,7 @@ http_interactions:
   response:
     status:
       code: 200
-      message: 
+      message:
     headers:
       X-Oauth-Scopes:
       - infrastructure, orbit
@@ -194,6 +194,6 @@ http_interactions:
         new servers are added to this group unless specified otherwise.","created_at":"2015-09-29T08:22:15Z","default":true}],"firewall_policies":[{"id":"fwp-12345","resource_type":"firewall_policy","url":"https://api.gb1.brightbox.com/1.0/firewall_policies/fwp-12345","default":true,"name":"default","created_at":"2015-09-29T08:22:15Z","description":"Applied
         to the default server group."}],"owner":{"id":"usr-12345","resource_type":"user","url":"https://api.gb1.brightbox.com/1.0/users/usr-12345","name":"Jason
         Null","email_address":"jason.null@brightbox.com"},"users":[],"zones":[{"id":"zon-12345","resource_type":"zone","url":"https://api.gb1.brightbox.com/1.0/zones/zon-12345","handle":"gb1-a"},{"id":"zon-12345","resource_type":"zone","url":"https://api.gb1.brightbox.com/1.0/zones/zon-12345","handle":"gb1-b"}]}]'
-    http_version: 
+    http_version:
   recorded_at: Wed, 30 Sep 2015 14:55:23 GMT
 recorded_with: VCR 2.5.0

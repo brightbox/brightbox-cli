@@ -15,7 +15,7 @@ describe "brightbox servers" do
       config = config_from_contents(USER_APP_CONFIG_CONTENTS)
       cache_access_token(config, "f83da712e6299cda953513ec07f7a754f747d727")
 
-      stub_request(:post, "http://api.brightbox.dev/token").to_return(
+      stub_request(:post, "http://api.brightbox.localhost/token").to_return(
         :status => 200,
         :body => '{"access_token":"44320b29286077c44f14c4efdfed70f63f4a8361","token_type":"Bearer","refresh_token":"759b2b28c228948a0ba5d07a89f39f9e268a95c0","scope":"infrastructure orbit","expires_in":7200}')
     end
@@ -37,7 +37,7 @@ describe "brightbox servers" do
       end
 
       it "requests nominated Cloud IP" do
-        stub_request(:post, "http://api.brightbox.dev/1.0/servers?account_id=acc-12345")
+        stub_request(:post, "http://api.brightbox.localhost/1.0/servers?account_id=acc-12345")
           .with(:body => /"cloud_ip":"cip-12345"/)
           .and_return(:status => 202, :body => sample_response)
 
@@ -56,7 +56,7 @@ describe "brightbox servers" do
       end
 
       it "requests new allocated Cloud IP" do
-        stub_request(:post, "http://api.brightbox.dev/1.0/servers?account_id=acc-12345")
+        stub_request(:post, "http://api.brightbox.localhost/1.0/servers?account_id=acc-12345")
           .with(:body => /"cloud_ip":"true"/)
           .and_return(:status => 202, :body => sample_response)
 
@@ -75,7 +75,7 @@ describe "brightbox servers" do
       end
 
       it "requests new server with encryption at rest enabled" do
-        stub_request(:post, "http://api.brightbox.dev/1.0/servers?account_id=acc-12345")
+        stub_request(:post, "http://api.brightbox.localhost/1.0/servers?account_id=acc-12345")
           .with(:headers => { "Content-Type" => "application/json" },
                 :body => hash_including(:disk_encrypted => true))
           .and_return(:status => 202, :body => sample_response)

@@ -71,11 +71,11 @@ describe "brightbox sql instances" do
       let(:expected_args) { { :maintenance_weekday => "5", :maintenance_hour => "11" } }
 
       before do
-        stub_request(:post, "http://api.brightbox.dev/token").to_return(
+        stub_request(:post, "http://api.brightbox.localhost/token").to_return(
           :status => 200,
           :body => '{"access_token":"44320b29286077c44f14c4efdfed70f63f4a8361","token_type":"Bearer","refresh_token":"759b2b28c228948a0ba5d07a89f39f9e268a95c0","scope":"infrastructure orbit","expires_in":7200}')
 
-        stub_request(:post, "http://api.brightbox.dev/1.0/database_servers?account_id=acc-12345")
+        stub_request(:post, "http://api.brightbox.localhost/1.0/database_servers?account_id=acc-12345")
           .with(:body => "{\"name\":null,\"description\":null,\"maintenance_weekday\":\"5\",\"maintenance_hour\":\"11\"}")
       end
 
@@ -90,11 +90,11 @@ describe "brightbox sql instances" do
       let(:expected_args) { { :maintenance_weekday => "4" } }
 
       before do
-        stub_request(:post, "http://api.brightbox.dev/token").to_return(
+        stub_request(:post, "http://api.brightbox.localhost/token").to_return(
           :status => 200,
           :body => '{"access_token":"44320b29286077c44f14c4efdfed70f63f4a8361","token_type":"Bearer","refresh_token":"759b2b28c228948a0ba5d07a89f39f9e268a95c0","scope":"infrastructure orbit","expires_in":7200}')
 
-        stub_request(:post, "http://api.brightbox.dev/1.0/database_servers?account_id=acc-12345")
+        stub_request(:post, "http://api.brightbox.localhost/1.0/database_servers?account_id=acc-12345")
           .with(:body => "{\"name\":null,\"description\":null,\"maintenance_weekday\":\"4\",\"maintenance_hour\":null}")
       end
 
@@ -117,7 +117,7 @@ describe "brightbox sql instances" do
       end
 
       before do
-        stub_request(:post, "http://api.brightbox.dev/1.0/database_servers?account_id=acc-12345")
+        stub_request(:post, "http://api.brightbox.localhost/1.0/database_servers?account_id=acc-12345")
           .with(:headers => { "Content-Type" => "application/json" },
                 :body => hash_including("snapshot" => "dbi-1493j"))
           .and_return(:status => 202, :body => json_response)
@@ -145,7 +145,7 @@ describe "brightbox sql instances" do
       end
 
       before do
-        stub_request(:post, "http://api.brightbox.dev/1.0/database_servers?account_id=acc-12345")
+        stub_request(:post, "http://api.brightbox.localhost/1.0/database_servers?account_id=acc-12345")
           .and_return(:status => 202, :body => json_response)
       end
 

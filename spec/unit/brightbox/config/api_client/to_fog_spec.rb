@@ -15,7 +15,7 @@ describe Brightbox::Config::ApiClient do
       let(:contents) do
         <<-EOS
         [#{client_name}]
-        api_url = http://api.brightbox.dev
+        api_url = http://api.brightbox.localhost
         client_id = #{client_name}
         secret = #{secret}
         EOS
@@ -26,11 +26,11 @@ describe Brightbox::Config::ApiClient do
       end
 
       it "sets API endpoint correctly" do
-        expect(for_fog[:brightbox_api_url]).to eql("http://api.brightbox.dev")
+        expect(for_fog[:brightbox_api_url]).to eql("http://api.brightbox.localhost")
       end
 
       it "copies API endpoint for auth endpoint correctly" do
-        expect(for_fog[:brightbox_auth_url]).to eql("http://api.brightbox.dev")
+        expect(for_fog[:brightbox_auth_url]).to eql("http://api.brightbox.localhost")
       end
 
       it "sets client_id correctly" do
@@ -50,7 +50,7 @@ describe Brightbox::Config::ApiClient do
       let(:contents) do
         <<-EOS
         [#{client_name}]
-        api_url = http://api.brightbox.dev
+        api_url = http://api.brightbox.localhost
         auth_url = http://auth.dev.brightbox.com
         client_id = #{client_name}
         secret = #{secret}
@@ -58,7 +58,7 @@ describe Brightbox::Config::ApiClient do
       end
 
       it "sets API endpoint correctly" do
-        expect(for_fog[:brightbox_api_url]).to eql("http://api.brightbox.dev")
+        expect(for_fog[:brightbox_api_url]).to eql("http://api.brightbox.localhost")
       end
 
       it "copies API endpoint for auth endpoint correctly" do
@@ -70,7 +70,7 @@ describe Brightbox::Config::ApiClient do
       let(:contents) do
         <<-EOS
         [#{client_name}]
-        api_url = http://api.brightbox.dev
+        api_url = http://api.brightbox.localhost
         client_id = #{client_name}
         secret = #{secret}
         persistent = false
@@ -100,7 +100,7 @@ describe Brightbox::Config::ApiClient do
       let(:contents) do
         <<-EOS
         [#{client_name}]
-        api_url = http://api.brightbox.dev
+        api_url = http://api.brightbox.localhost
         secret = #{random_token}
         EOS
       end
@@ -114,7 +114,7 @@ describe Brightbox::Config::ApiClient do
       let(:contents) do
         <<-EOS
         [#{client_name}]
-        api_url = http://api.brightbox.dev
+        api_url = http://api.brightbox.localhost
         client_id = #{client_name}
         EOS
       end

@@ -2,7 +2,7 @@
 http_interactions:
 - request:
     method: post
-    uri: http://api.brightbox.dev/token
+    uri: http://api.brightbox.localhost/token
     body:
       encoding: UTF-8
       string: '{"grant_type":"password","username":"jason.null@brightbox.com","password":"N:B3e%7Cmh"}'
@@ -47,7 +47,7 @@ http_interactions:
   recorded_at: Tue, 03 Sep 2013 10:38:04 GMT
 - request:
     method: get
-    uri: http://api.brightbox.dev/1.0/accounts
+    uri: http://api.brightbox.localhost/1.0/accounts
     body:
       encoding: US-ASCII
       string: ''

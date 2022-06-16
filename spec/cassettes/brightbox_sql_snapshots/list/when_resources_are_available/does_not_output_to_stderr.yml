@@ -2,7 +2,7 @@
 http_interactions:
 - request:
     method: get
-    uri: http://api.brightbox.dev/1.0/database_snapshots?account_id=acc-12345
+    uri: http://api.brightbox.localhost/1.0/database_snapshots?account_id=acc-12345
     body:
       encoding: US-ASCII
       string: ''
@@ -46,7 +46,7 @@ http_interactions:
   recorded_at: Fri, 17 Jan 2014 10:27:47 GMT
 - request:
     method: post
-    uri: http://api.brightbox.dev/token
+    uri: http://api.brightbox.localhost/token
     body:
       encoding: UTF-8
       string: "{\"grant_type\":\"client_credentials\"}"

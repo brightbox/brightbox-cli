@@ -2,7 +2,7 @@
 http_interactions:
 - request:
     method: get
-    uri: http://api.brightbox.dev/1.0/database_servers/dbs-12345?account_id=acc-12345
+    uri: http://api.brightbox.localhost/1.0/database_servers/dbs-12345?account_id=acc-12345
     body:
       encoding: US-ASCII
       string: ''
@@ -46,7 +46,7 @@ http_interactions:
   recorded_at: Thu, 16 Jan 2014 15:29:56 GMT
 - request:
     method: post
-    uri: http://api.brightbox.dev/1.0/database_servers/dbs-12345/snapshot?account_id=acc-12345
+    uri: http://api.brightbox.localhost/1.0/database_servers/dbs-12345/snapshot?account_id=acc-12345
     body:
       encoding: US-ASCII
       string: ''
@@ -88,7 +88,7 @@ http_interactions:
   recorded_at: Thu, 16 Jan 2014 15:29:57 GMT
 - request:
     method: post
-    uri: http://api.brightbox.dev/token
+    uri: http://api.brightbox.localhost/token
     body:
       encoding: UTF-8
       string: "{\"grant_type\":\"client_credentials\"}"
@@ -134,7 +134,7 @@ http_interactions:
   recorded_at: Tue, 18 Feb 2014 17:30:26 GMT
 - request:
     method: post
-    uri: http://api.brightbox.dev/token
+    uri: http://api.brightbox.localhost/token
     body:
       encoding: UTF-8
       string: "{\"grant_type\":\"client_credentials\"}"

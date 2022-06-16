@@ -17,6 +17,8 @@ Changes:
 * Updates `webmock` from 1.21.0 to 3.14.0
 * Removes `rubyforge` reference from gemspec to remove deprecation warning
 * Remove post install message from gemspec
+* Updated `.dev` TLD used in testing to `.localhost` to avoid problems when the
+  original was commercialised such as local DNS blocked by browsers.
 
 ### v3.3.0 / 2021-09-17
 

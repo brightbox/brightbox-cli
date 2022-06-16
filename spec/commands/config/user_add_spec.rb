@@ -15,7 +15,7 @@ describe "brightbox config" do
     let(:client_id) { "app-12345" }
     let(:secret) { "mocbuipbiaa6k6c" }
     let(:password) { "N:B3e%7Cmh" }
-    let(:api_url) { "http://api.brightbox.dev" }
+    let(:api_url) { "http://api.brightbox.localhost" }
 
     let(:default_account) { "acc-12345" }
     let(:client_alias) { email }

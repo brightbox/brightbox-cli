@@ -12,7 +12,7 @@ describe Brightbox::Config::ApiClient do
       let(:contents) do
         <<-EOS
         [#{client_name}]
-        api_url = http://api.brightbox.dev
+        api_url = http://api.brightbox.localhost
         client_id = #{client_name}
         secret = #{random_token}
         EOS
@@ -27,7 +27,7 @@ describe Brightbox::Config::ApiClient do
       let(:contents) do
         <<-EOS
         [#{client_name}]
-        api_url = http://api.brightbox.dev
+        api_url = http://api.brightbox.localhost
         client_id = #{client_name}
         secret = #{random_token}
         theme = blue
@@ -57,7 +57,7 @@ describe Brightbox::Config::ApiClient do
       let(:contents) do
         <<-EOS
         [#{client_name}]
-        api_url = http://api.brightbox.dev
+        api_url = http://api.brightbox.localhost
         secret = #{random_token}
         EOS
       end
@@ -71,7 +71,7 @@ describe Brightbox::Config::ApiClient do
       let(:contents) do
         <<-EOS
         [#{client_name}]
-        api_url = http://api.brightbox.dev
+        api_url = http://api.brightbox.localhost
         client_id = #{client_name}
         EOS
       end

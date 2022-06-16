@@ -5,7 +5,7 @@ describe Brightbox::BBConfig, "#add_login" do
 
   let(:email) { "jason.null@brightbox.com" }
   let(:password) { "N:B3e%7Cmh" }
-  let(:api_url) { ENV["BRIGHTBOX_API_URL"] || "http://api.brightbox.dev" }
+  let(:api_url) { Brightbox::DEFAULT_API_ENDPOINT }
 
   context "when no config exists", vcr: true do
     let(:expected_config) do
@@ -78,7 +78,7 @@ EOS
   context "when configured with custom options", vcr: true do
     let(:original_config) { config_file_contents }
 
-    let(:custom_url) { ENV["BRIGHTBOX_API_URL"] || "http://api.brightbox.dev" }
+    let(:custom_url) { Brightbox::DEFAULT_API_ENDPOINT }
     let(:custom_app_id) { "app-23456" }
     let(:custom_app_secret) { "ho04hondtzjjdf4" }
     let(:custom_default_account) { "acc-23456" }
@@ -132,7 +132,7 @@ EOS
   context "when altering a custom option", vcr: true do
     let(:original_config) { config_file_contents }
 
-    let(:custom_url) { ENV["BRIGHTBOX_API_URL"] || "http://api.brightbox.dev" }
+    let(:custom_url) { Brightbox::DEFAULT_API_ENDPOINT }
     let(:custom_app_id) { "app-23456" }
     let(:custom_app_secret) { "ho04hondtzjjdf4" }
     let(:custom_default_account) { "acc-23456" }

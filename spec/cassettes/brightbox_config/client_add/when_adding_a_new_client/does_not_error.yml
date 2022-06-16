@@ -3,7 +3,7 @@ recorded_with: VCR 2.5.0
 http_interactions:
 - request:
     method: post
-    uri: http://api.brightbox.dev/token
+    uri: http://api.brightbox.localhost/token
     body:
       string: "{\"grant_type\":\"client_credentials\"}"
     headers:
@@ -46,7 +46,7 @@ http_interactions:
   recorded_at: Fri, 06 Sep 2013 15:58:56 GMT
 - request:
     method: post
-    uri: http://api.brightbox.dev/token
+    uri: http://api.brightbox.localhost/token
     body:
       string: "{\"grant_type\":\"client_credentials\"}"
     headers:
@@ -89,7 +89,7 @@ http_interactions:
   recorded_at: Fri, 06 Sep 2013 15:58:56 GMT
 - request:
     method: get
-    uri: http://api.brightbox.dev/1.0/account
+    uri: http://api.brightbox.localhost/1.0/account
     body:
       string: ""
     headers:
@@ -126,7 +126,7 @@ http_interactions:
   recorded_at: Fri, 06 Sep 2013 15:58:57 GMT
 - request:
     method: get
-    uri: http://api.brightbox.dev/1.0/accounts
+    uri: http://api.brightbox.localhost/1.0/accounts
     body:
       string: ""
     headers:
@@ -163,7 +163,7 @@ http_interactions:
   recorded_at: Tue, 17 Sep 2013 17:07:35 GMT
 - request:
     method: get
-    uri: http://api.brightbox.dev/1.0/accounts
+    uri: http://api.brightbox.localhost/1.0/accounts
     body:
       string: ""
     headers:
@@ -200,7 +200,7 @@ http_interactions:
   recorded_at: Tue, 17 Sep 2013 17:07:35 GMT
 - request:
     method: post
-    uri: http://api.brightbox.dev/token
+    uri: http://api.brightbox.localhost/token
     body:
       string: "{\"grant_type\":\"client_credentials\"}"
     headers:
@@ -243,7 +243,7 @@ http_interactions:
   recorded_at: Fri, 27 Sep 2013 15:26:07 GMT
 - request:
     method: post
-    uri: http://api.brightbox.dev/token
+    uri: http://api.brightbox.localhost/token
     body:
       string: "{\"grant_type\":\"client_credentials\"}"
     headers:

@@ -12,7 +12,7 @@ describe Brightbox::BBConfig do
       let(:options) do
         {
           :username => "jason.null@brightbox.com",
-          :api_url => "http://api.brightbox.dev"
+          :api_url => "http://api.brightbox.localhost"
         }
       end
       let(:saved_config) { config_file_contents }

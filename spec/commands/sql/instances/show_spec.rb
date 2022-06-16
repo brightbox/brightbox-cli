@@ -18,7 +18,7 @@ describe "brghtbox sql instances" do
       end
 
       before do
-        stub_request(:get, "http://api.brightbox.dev/1.0/database_servers/dbs-12345?account_id=acc-12345").
+        stub_request(:get, "http://api.brightbox.localhost/1.0/database_servers/dbs-12345?account_id=acc-12345").
           to_return(:status => 404, :body => json_response, :headers => { "Content-Type" => "" })
       end
 
@@ -61,7 +61,7 @@ describe "brghtbox sql instances" do
       end
 
       before do
-        stub_request(:get, "http://api.brightbox.dev/1.0/database_servers/dbs-12345?account_id=acc-12345").
+        stub_request(:get, "http://api.brightbox.localhost/1.0/database_servers/dbs-12345?account_id=acc-12345").
           to_return(:status => 200, :body => json_response, :headers => { "Content-Type" => "" })
       end
 

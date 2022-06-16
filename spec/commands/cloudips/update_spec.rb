@@ -10,7 +10,7 @@ describe "brightbox cloudips" do
     before do
       config_from_contents(USER_APP_CONFIG_CONTENTS)
 
-      stub_request(:post, "http://api.brightbox.dev/token").
+      stub_request(:post, "http://api.brightbox.localhost/token").
         to_return(status: 200, body: JSON.dump(access_token: "ACCESS-TOKEN", refresh_token: "REFRESH-TOKEN"))
     end
 
@@ -39,12 +39,12 @@ describe "brightbox cloudips" do
         let(:expected_args) { ["cip-12345", { :name => new_name }] }
 
         before do
-          stub_request(:put, "http://api.brightbox.dev/1.0/cloud_ips/cip-12345?account_id=acc-12345")
+          stub_request(:put, "http://api.brightbox.localhost/1.0/cloud_ips/cip-12345?account_id=acc-12345")
             .with(:headers => { "Content-Type" => "application/json" },
                   :body => hash_including("name" => "New name"))
             .and_return(:status => 200, :body => json_response)
 
-          stub_request(:get, "http://api.brightbox.dev/1.0/cloud_ips/cip-12345?account_id=acc-12345")
+          stub_request(:get, "http://api.brightbox.localhost/1.0/cloud_ips/cip-12345?account_id=acc-12345")
             .with(:headers => { "Content-Type" => "application/json" })
             .and_return(:status => 200, :body => json_response)
         end
@@ -62,12 +62,12 @@ describe "brightbox cloudips" do
         let(:expected_args) { ["cip-12345", { :name => "" }] }
 
         before do
-          stub_request(:put, "http://api.brightbox.dev/1.0/cloud_ips/cip-12345?account_id=acc-12345")
+          stub_request(:put, "http://api.brightbox.localhost/1.0/cloud_ips/cip-12345?account_id=acc-12345")
             .with(:headers => { "Content-Type" => "application/json" },
                   :body => hash_including("name" => ""))
             .and_return(:status => 200, :body => json_response)
 
-          stub_request(:get, "http://api.brightbox.dev/1.0/cloud_ips/cip-12345?account_id=acc-12345")
+          stub_request(:get, "http://api.brightbox.localhost/1.0/cloud_ips/cip-12345?account_id=acc-12345")
             .with(:headers => { "Content-Type" => "application/json" })
             .and_return(:status => 200, :body => json_response)
         end

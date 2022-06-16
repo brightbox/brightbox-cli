@@ -34,7 +34,7 @@ describe "brightbox lbs" do
       end
 
       before do
-        stub_request(:post, "http://api.brightbox.dev/1.0/load_balancers?account_id=acc-12345")
+        stub_request(:post, "http://api.brightbox.localhost/1.0/load_balancers?account_id=acc-12345")
           .with(:body => hash_including("ssl_minimum_version" => "TLSv1.0"))
           .to_return(:status => 202, :body => json_response)
       end

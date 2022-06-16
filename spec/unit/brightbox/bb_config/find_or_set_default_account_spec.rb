@@ -20,7 +20,7 @@ describe Brightbox::BBConfig do
       let(:contents) do
         <<-EOS
         [cli-default]
-        api_url = http://api.brightbox.dev
+        api_url = http://api.brightbox.localhost
         client_id = cli-default
         secret = qy6xxnvy4o0tgv5
         default_account = acc-default
@@ -38,7 +38,7 @@ describe Brightbox::BBConfig do
       let(:contents) do
         <<-EOS
         [cli-12345]
-        api_url = http://api.brightbox.dev
+        api_url = http://api.brightbox.localhost
         client_id = cli-12345
         secret = wrong_password
         EOS
@@ -64,7 +64,7 @@ describe Brightbox::BBConfig do
         [core]
         default_client = cli-12345
         [cli-12345]
-        api_url = http://api.brightbox.dev
+        api_url = http://api.brightbox.localhost
         client_id = cli-12345
         secret = qy6xxnvy4o0tgv5
         EOS
@@ -81,7 +81,7 @@ describe Brightbox::BBConfig do
       let(:contents) do
         <<-EOS
         [app-12345]
-        api_url = http://api.brightbox.dev
+        api_url = http://api.brightbox.localhost
         client_id = app-12345
         secret = mocbuipbiaa6k6c
         EOS

@@ -2,7 +2,7 @@
 http_interactions:
 - request:
     method: post
-    uri: http://api.brightbox.dev/token
+    uri: http://api.brightbox.localhost/token
     body:
       encoding: UTF-8
       string: '{"grant_type":"client_credentials"}'
@@ -47,7 +47,7 @@ http_interactions:
   recorded_at: Tue, 27 Aug 2013 16:12:21 GMT
 - request:
     method: get
-    uri: http://api.brightbox.dev/1.0/account
+    uri: http://api.brightbox.localhost/1.0/account
     body:
       encoding: US-ASCII
       string: ''
@@ -92,7 +92,7 @@ http_interactions:
   recorded_at: Tue, 27 Aug 2013 16:12:21 GMT
 - request:
     method: post
-    uri: http://api.brightbox.dev/1.0/servers?account_id=acc-12345
+    uri: http://api.brightbox.localhost/1.0/servers?account_id=acc-12345
     body:
       encoding: UTF-8
       string: '{"image":"img-12345"}'
@@ -109,7 +109,7 @@ http_interactions:
       message:
     headers:
       Location:
-      - http://api.brightbox.dev/1.0/servers/srv-q47f4
+      - http://api.brightbox.localhost/1.0/servers/srv-q47f4
       Content-Type:
       - application/json; charset=utf-8
       X-UA-Compatible:
@@ -132,7 +132,7 @@ http_interactions:
   recorded_at: Tue, 27 Aug 2013 16:12:22 GMT
 - request:
     method: post
-    uri: http://api.brightbox.dev/1.0/server_groups?account_id=acc-12345
+    uri: http://api.brightbox.localhost/1.0/server_groups?account_id=acc-12345
     body:
       encoding: UTF-8
       string: '{"name":"test"}'
@@ -149,7 +149,7 @@ http_interactions:
       message:
     headers:
       Location:
-      - http://api.brightbox.dev/1.0/server_groups/grp-pclgw
+      - http://api.brightbox.localhost/1.0/server_groups/grp-pclgw
       Content-Type:
       - application/json; charset=utf-8
       X-UA-Compatible:
@@ -171,7 +171,7 @@ http_interactions:
   recorded_at: Tue, 27 Aug 2013 16:12:22 GMT
 - request:
     method: put
-    uri: http://api.brightbox.dev/1.0/servers/srv-12345?account_id=acc-12345
+    uri: http://api.brightbox.localhost/1.0/servers/srv-12345?account_id=acc-12345
     body:
       encoding: UTF-8
       string: '{"server_groups":["grp-12345"]}'
@@ -210,7 +210,7 @@ http_interactions:
   recorded_at: Tue, 27 Aug 2013 16:12:25 GMT
 - request:
     method: get
-    uri: http://api.brightbox.dev/1.0/servers/srv-12345?account_id=acc-12345
+    uri: http://api.brightbox.localhost/1.0/servers/srv-12345?account_id=acc-12345
     body:
       encoding: US-ASCII
       string: ''
@@ -249,7 +249,7 @@ http_interactions:
   recorded_at: Tue, 27 Aug 2013 16:12:25 GMT
 - request:
     method: get
-    uri: http://api.brightbox.dev/1.0/servers/srv-12345?account_id=acc-12345
+    uri: http://api.brightbox.localhost/1.0/servers/srv-12345?account_id=acc-12345
     body:
       encoding: US-ASCII
       string: ''
@@ -288,7 +288,7 @@ http_interactions:
   recorded_at: Tue, 27 Aug 2013 16:12:25 GMT
 - request:
     method: get
-    uri: http://api.brightbox.dev/1.0/servers/srv-12345?account_id=acc-12345
+    uri: http://api.brightbox.localhost/1.0/servers/srv-12345?account_id=acc-12345
     body:
       encoding: US-ASCII
       string: ''
@@ -327,7 +327,7 @@ http_interactions:
   recorded_at: Tue, 27 Aug 2013 16:12:26 GMT
 - request:
     method: delete
-    uri: http://api.brightbox.dev/1.0/servers/srv-12345?account_id=acc-12345
+    uri: http://api.brightbox.localhost/1.0/servers/srv-12345?account_id=acc-12345
     body:
       encoding: US-ASCII
       string: ''
@@ -364,7 +364,7 @@ http_interactions:
   recorded_at: Tue, 27 Aug 2013 16:12:26 GMT
 - request:
     method: post
-    uri: http://api.brightbox.dev/token
+    uri: http://api.brightbox.localhost/token
     body:
       encoding: UTF-8
       string: '{"grant_type":"client_credentials"}'
@@ -408,7 +408,7 @@ http_interactions:
   recorded_at: Tue, 27 Aug 2013 17:09:49 GMT
 - request:
     method: post
-    uri: http://api.brightbox.dev/token
+    uri: http://api.brightbox.localhost/token
     body:
       encoding: UTF-8
       string: '{"grant_type":"client_credentials"}'
@@ -452,7 +452,7 @@ http_interactions:
   recorded_at: Tue, 27 Aug 2013 17:09:49 GMT
 - request:
     method: post
-    uri: http://api.brightbox.dev/token
+    uri: http://api.brightbox.localhost/token
     body:
       encoding: UTF-8
       string: '{"grant_type":"client_credentials"}'
@@ -496,7 +496,7 @@ http_interactions:
   recorded_at: Tue, 27 Aug 2013 17:09:49 GMT
 - request:
     method: post
-    uri: http://api.brightbox.dev/token
+    uri: http://api.brightbox.localhost/token
     body:
       encoding: UTF-8
       string: '{"grant_type":"client_credentials"}'
@@ -540,7 +540,7 @@ http_interactions:
   recorded_at: Tue, 27 Aug 2013 17:09:49 GMT
 - request:
     method: post
-    uri: http://api.brightbox.dev/token
+    uri: http://api.brightbox.localhost/token
     body:
       encoding: UTF-8
       string: '{"grant_type":"client_credentials"}'
@@ -584,7 +584,7 @@ http_interactions:
   recorded_at: Tue, 27 Aug 2013 17:09:49 GMT
 - request:
     method: post
-    uri: http://api.brightbox.dev/token
+    uri: http://api.brightbox.localhost/token
     body:
       encoding: UTF-8
       string: '{"grant_type":"client_credentials"}'
@@ -628,7 +628,7 @@ http_interactions:
   recorded_at: Tue, 27 Aug 2013 17:09:50 GMT
 - request:
     method: post
-    uri: http://api.brightbox.dev/token
+    uri: http://api.brightbox.localhost/token
     body:
       encoding: UTF-8
       string: '{"grant_type":"client_credentials"}'
@@ -672,7 +672,7 @@ http_interactions:
   recorded_at: Tue, 27 Aug 2013 17:09:50 GMT
 - request:
     method: post
-    uri: http://api.brightbox.dev/token
+    uri: http://api.brightbox.localhost/token
     body:
       encoding: UTF-8
       string: '{"grant_type":"client_credentials"}'
@@ -716,7 +716,7 @@ http_interactions:
   recorded_at: Tue, 27 Aug 2013 17:09:50 GMT
 - request:
     method: get
-    uri: http://api.brightbox.dev/1.0/accounts
+    uri: http://api.brightbox.localhost/1.0/accounts
     body:
       encoding: US-ASCII
       string: ''
@@ -756,7 +756,7 @@ http_interactions:
   recorded_at: Tue, 17 Sep 2013 17:08:08 GMT
 - request:
     method: post
-    uri: http://api.brightbox.dev/token
+    uri: http://api.brightbox.localhost/token
     body:
       encoding: UTF-8
       string: '{"grant_type":"client_credentials"}'
@@ -801,7 +801,7 @@ http_interactions:
   recorded_at: Tue, 17 Sep 2013 17:08:08 GMT
 - request:
     method: get
-    uri: http://api.brightbox.dev/1.0/accounts
+    uri: http://api.brightbox.localhost/1.0/accounts
     body:
       encoding: US-ASCII
       string: ''

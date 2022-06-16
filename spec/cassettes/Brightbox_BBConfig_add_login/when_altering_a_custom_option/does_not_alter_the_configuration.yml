@@ -2,7 +2,7 @@
 http_interactions:
 - request:
     method: post
-    uri: http://api.brightbox.dev/token
+    uri: http://api.brightbox.localhost/token
     body:
       encoding: UTF-8
       string: '{"grant_type":"password","username":"jason.null@brightbox.com","password":"N:B3e%7Cmh"}'
@@ -16,7 +16,7 @@ http_interactions:
   response:
     status:
       code: 200
-      message: 
+      message:
     headers:
       Content-Type:
       - application/json
@@ -46,11 +46,11 @@ http_interactions:
       encoding: UTF-8
       string: '{"access_token":"d3d51356b662040aa9b0e4bf162409b4ea879aab","token_type":"Bearer","refresh_token":"7c72c3b5d05b61b21e9795919b236c1563496a40","scope":"infrastructure,
         orbit","expires_in":7200}'
-    http_version: 
+    http_version:
   recorded_at: Mon, 12 Oct 2015 11:34:20 GMT
 - request:
     method: post
-    uri: http://api.brightbox.dev/token
+    uri: http://api.brightbox.localhost/token
     body:
       encoding: UTF-8
       string: '{"grant_type":"refresh_token","refresh_token":"7c72c3b5d05b61b21e9795919b236c1563496a40"}'
@@ -64,7 +64,7 @@ http_interactions:
   response:
     status:
       code: 200
-      message: 
+      message:
     headers:
       Content-Type:
       - application/json
@@ -94,6 +94,6 @@ http_interactions:
       encoding: UTF-8
       string: '{"access_token":"9007643d343038066570caa040c929d19a9826e1","token_type":"Bearer","refresh_token":"a6403aaf3bc717aeadeae2f78bf8182bdd6e565e","scope":"infrastructure,
         orbit","expires_in":7200}'
-    http_version: 
+    http_version:
   recorded_at: Mon, 12 Oct 2015 11:34:20 GMT
 recorded_with: VCR 2.5.0
