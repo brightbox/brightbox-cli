@@ -1,6 +1,6 @@
 require "spec_helper"
 
-describe "brghtbox sql instances" do
+describe "brightbox sql instances" do
   describe "show" do
     let(:output) { FauxIO.new { Brightbox.run(argv) } }
     let(:stdout) { output.stdout }
