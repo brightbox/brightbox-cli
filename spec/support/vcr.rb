@@ -30,13 +30,3 @@ VCR.configure do |vcr|
     end
   end
 end
-
-VCR.turn_off!
-
-VCR.extend Module.new {
-  def use_cassette(*args)
-    VCR.turn_on!
-    super
-    VCR.turn_off!
-  end
-}

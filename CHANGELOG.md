@@ -23,6 +23,7 @@ Changes:
   later Ruby versions
 * Remove pin for `dry-inflector` added to prevent issues with Ruby < 2.4
 * Update development gems to ensure up to date
+* Update VCR to latest release v2.9.3
 
 ### v3.3.0 / 2021-09-17
 
