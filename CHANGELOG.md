@@ -19,6 +19,8 @@ Changes:
 * Remove post install message from gemspec
 * Updated `.dev` TLD used in testing to `.localhost` to avoid problems when the
   original was commercialised such as local DNS blocked by browsers.
+* Update `gli` to latest version v2.21.0 to clear some deprecations seen under
+  later Ruby versions
 
 ### v3.3.0 / 2021-09-17
 
