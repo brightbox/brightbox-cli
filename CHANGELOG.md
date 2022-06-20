@@ -22,6 +22,7 @@ Changes:
 * Update `gli` to latest version v2.21.0 to clear some deprecations seen under
   later Ruby versions
 * Remove pin for `dry-inflector` added to prevent issues with Ruby < 2.4
+* Update development gems to ensure up to date
 
 ### v3.3.0 / 2021-09-17
 
