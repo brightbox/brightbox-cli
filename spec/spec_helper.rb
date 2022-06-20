@@ -25,6 +25,9 @@ USER_APP_CONFIG_CONTENTS = File.read(File.join(File.dirname(__FILE__), "configs/
 # Remember the $HOME of the test runner
 TEST_RUNNER_HOME = ENV["HOME"]
 
+# Reduce the default fog timeout
+Fog.timeout = 10
+
 RSpec.configure do |config|
   config.include CommonHelpers
   config.include ConfigHelpers
