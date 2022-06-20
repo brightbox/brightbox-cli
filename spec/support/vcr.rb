@@ -19,14 +19,5 @@ VCR.configure do |vcr|
   vcr.before_record do |interaction|
     host = URI.parse(interaction.request.uri).host
     interaction.request.uri.gsub!(host, "api.brightbox.localhost")
-
-    # Sanitise identifiers as best as we can
-    # We need the poser of Regexp so filter_sensitive doesn't help
-    %w(acc col cip fwp fwr grp img lba srv typ usr zon).each do |prefix|
-      id_pattern = /#{prefix}-[0-9a-z]+/
-      interaction.request.uri.gsub!(id_pattern, "#{prefix}-12345")
-      interaction.request.body.gsub!(id_pattern, "#{prefix}-12345")
-      interaction.response.body.gsub!(id_pattern, "#{prefix}-12345")
-    end
   end
 end
