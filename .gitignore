@@ -16,4 +16,4 @@ spec/brightbox/cache/
 *.html
 *.gem
 /vendor/
-
+spec/examples.txt

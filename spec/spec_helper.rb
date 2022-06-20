@@ -31,6 +31,11 @@ RSpec.configure do |config|
   config.include TokenHelpers
   config.include PasswordPromptHelpers
 
+  # Allows RSpec to persist some state between runs in order to support
+  # the `--only-failures` and `--next-failure` CLI options. We recommend
+  # you configure your source control system to ignore this file.
+  config.example_status_persistence_file_path = "spec/examples.txt"
+
   config.before do
     # For each test, point to the testing endpoint to make it safer and easier to
     # record from dev endpoints. Devs can DNS api.brightbox.localhost to their dev service
