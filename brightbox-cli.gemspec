@@ -1,4 +1,5 @@
 # -*- encoding: utf-8 -*-
+
 require File.join(File.dirname(__FILE__), "lib/brightbox-cli/version")
 
 Gem::Specification.new do |s|
@@ -8,8 +9,8 @@ Gem::Specification.new do |s|
   s.authors     = ["John Leach"]
   s.email       = ["john@brightbox.co.uk"]
   s.homepage    = "http://docs.brightbox.com/cli"
-  s.summary     = %q(The Brightbox cloud management system)
-  s.description = %q(Scripts to interact with the Brightbox cloud API)
+  s.summary     = "The Brightbox cloud management system"
+  s.description = "Scripts to interact with the Brightbox cloud API"
   s.license     = "MIT"
 
   s.required_ruby_version = ">= 2.5"
@@ -22,16 +23,19 @@ Gem::Specification.new do |s|
   s.add_dependency "fog-brightbox", ">= 1.5.0"
   s.add_dependency "fog-core", "< 2.0"
   s.add_dependency "gli", "~> 2.21.0"
+  s.add_dependency "highline", "~> 1.6.0"
+  s.add_dependency "hirb", "~> 0.6"
   s.add_dependency "i18n", ">= 0.6", "< 1.11"
   s.add_dependency "mime-types", "~> 2.6"
   s.add_dependency "multi_json", "~> 1.11.0"
-  s.add_dependency "highline", "~> 1.6.0"
-  s.add_dependency "hirb", "~> 0.6"
 
   s.add_development_dependency "mocha"
   s.add_development_dependency "pry-remote"
   s.add_development_dependency "rake"
   s.add_development_dependency "rspec"
+  s.add_development_dependency "rubocop"
+  s.add_development_dependency "rubocop-rake"
+  s.add_development_dependency "rubocop-rspec"
   s.add_development_dependency "vcr", "~> 2.5"
   s.add_development_dependency "webmock"
 end

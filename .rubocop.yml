@@ -1,0 +1,70 @@
+AllCops:
+  NewCops: enable
+  Exclude:
+    - bin/*
+    - lib/brightbox-cli/vendor/**/*
+    - vendor/**/*
+  TargetRubyVersion: 2.5
+
+Layout/HeredocIndentation:
+  Enabled: true
+
+Layout/LineLength:
+  Enabled: false
+  Max: 100
+
+Lint/SuppressedException:
+  Enabled: false
+
+Metrics/AbcSize:
+  Enabled: false
+
+Metrics/BlockLength:
+  Enabled: false
+
+Metrics/ClassLength:
+  Enabled: false
+
+Metrics/CyclomaticComplexity:
+  Enabled: false
+
+Metrics/MethodLength:
+  Enabled: false
+
+Metrics/ModuleLength:
+  Enabled: false
+
+Metrics/PerceivedComplexity:
+  Enabled: false
+
+Naming/HeredocDelimiterNaming:
+  Enabled: false
+
+Style/Documentation:
+  Enabled: false
+
+Style/Encoding:
+  Enabled: false
+
+Style/FrozenStringLiteralComment:
+  Enabled: false
+
+Style/HashSyntax:
+  Enabled: true
+  EnforcedStyle: no_mixed_keys
+
+Style/GlobalVars:
+  Enabled: false # It's horrid, there's so many
+
+Style/IfUnlessModifier:
+  Enabled: false
+
+Style/SignalException:
+  # Valid values are: semantic, only_raise and only_fail
+  EnforcedStyle: only_raise
+
+Style/SingleLineMethods:
+  Enabled: false
+
+Style/StringLiterals:
+  EnforcedStyle: double_quotes
