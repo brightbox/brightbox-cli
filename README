@@ -101,7 +101,6 @@ The alias here is `main`. To prepare the password run this command:
     $ gpg --decrypt ~/.brightbox/main.password.gpg
     password!2015
     $ brightbox accounts
-    INFO: client_id: app-12345 (main)
     INFO: Decrypting /home/user/.brightbox/main.password.gpg to obtain password
     gpg: encrypted with 2048-bit RSA key, ID ABCDE890, created 2015-01-01
           "Jason Null <gpg@example.com>"

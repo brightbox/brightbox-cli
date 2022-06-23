@@ -46,9 +46,9 @@ module Brightbox
 
       if Brightbox.config.has_multiple_clients?
         if Brightbox.config.client_has_alias?
-          info "INFO: client_id: #{Brightbox.config.client_name} (#{Brightbox.config.client_alias})"
+          debug "client_id: #{Brightbox.config.client_name} (#{Brightbox.config.client_alias})"
         else
-          info "INFO: client_id: #{Brightbox.config.client_name}"
+          debug "client_id: #{Brightbox.config.client_name}"
         end
       end
 
