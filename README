@@ -2,13 +2,9 @@
 
 `brightbox-cli` is a set of cli tools to interact with the Brightbox Cloud API.
 
-You will need a user account on the Brightbox Cloud in order to make use of
-these tools.
+You will need a Brightbox account in order to make use of these tools.
 
-You can sign up at https://manage.brightbox.com
-
-{<img src="https://travis-ci.org/brightbox/brightbox-cli.png?branch=master" alt="Build Status" />}[https://travis-ci.org/brightbox/brightbox-cli]
-
+You can sign up at https://cloud.brightbox.com/signup
 
 == Installation instructions
 
@@ -129,11 +125,10 @@ appropriate section:
     password_helper_command = pass john-example-com-brightbox
 
 
-== Usage guides
+== Documentation
 
-* http://docs.brightbox.com/reference/cli
-* http://brightbox.com
-* http://docs.brightbox.com/reference/api/
+* https://www.brightbox.com/docs/guides/cli/
+* http://www.brightbox.com/docs/reference/cli/
 
 == BASH Auto-completion
 
@@ -175,12 +170,13 @@ process is not perfect, please report an issue
 
 == Alternatives
 
-There are a number of alternative ways to interact with the Brightbox Cloud.
+There are a number of alternative ways to manage Brightbox resources:
 
-* The Web GUI - https://manage.brightbox.com/
-* fog - https://github.com/fog/fog
-* knife plugin - https://github.com/rubiojr/knife-brightbox
-* Vagrant plugin - https://github.com/NeilW/vagrant-brightbox
+* Control Panel - https://cloud.brightbox.com/
+* Terraform – https://registry.terraform.io/providers/brightbox/brightbox/latest
+* Kubernetes - https://github.com/brightbox/brightbox-cloud-controller-manager
+* fog - https://github.com/fog/fog-brightbox
+* Go - https://github.com/brightbox/gobrightbox
 
 == Packaging
 
