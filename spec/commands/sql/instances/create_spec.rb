@@ -29,7 +29,7 @@ describe "brightbox sql instances" do
 
       it "reports the new admin password" do
         expected_password = sql_instance.admin_password
-        expect(stdout).to include("admin_password:")
+        expect(stdout).to include("admin_password: #{expected_password}")
       end
     end
 
