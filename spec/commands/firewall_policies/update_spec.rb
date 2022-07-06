@@ -33,7 +33,7 @@ describe "Firewall policies" do
 
       after do
         # FIXME: All specs are pending, why is this trying to run against nil?
-        @policy.destroy if @policy
+        @policy&.destroy
       end
 
       context "when new name is given", vcr: true do

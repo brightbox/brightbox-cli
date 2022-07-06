@@ -39,9 +39,7 @@ module Brightbox
     end
 
     def listeners
-      if attributes[:listeners]
-        attributes[:listeners].map { |l| [l["in"], l["out"], l["protocol"], l["timeout"]].join(":") }
-      end
+      attributes[:listeners]&.map { |l| [l["in"], l["out"], l["protocol"], l["timeout"]].join(":") }
     end
 
     def buffer_size

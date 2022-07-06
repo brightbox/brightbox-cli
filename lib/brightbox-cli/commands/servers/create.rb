@@ -99,7 +99,7 @@ module Brightbox
         msg << " in zone #{zone.handle} (#{zone})" if zone
         msg << " in groups #{server_groups.map(&:id).join(', ')}" unless server_groups.empty?
         msg << format(" with %.2fk of user data", (user_data.size / 1024.0)) if user_data
-        if options[:"cloud-ip"] && options[:"cloud-ip"].respond_to?(:start_with?)
+        if options[:"cloud-ip"].respond_to?(:start_with?)
           if options[:"cloud-ip"].start_with?("cip-")
             msg << " mapping #{options[:'cloud-ip']} when built"
           end
