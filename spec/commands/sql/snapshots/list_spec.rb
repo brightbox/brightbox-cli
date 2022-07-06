@@ -14,7 +14,7 @@ describe "brightbox sql snapshots" do
     end
 
     context "when resources are available", vcr: true do
-      let(:argv) { %w(sql snapshots list) }
+      let(:argv) { %w[sql snapshots list] }
 
       it "does not output to stderr" do
         expect(stderr).to eql("")

@@ -31,5 +31,4 @@ describe Brightbox::Server do
       end
     end
   end
-
 end

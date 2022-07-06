@@ -24,20 +24,18 @@ module Brightbox
     #
     def self.get_for_account(account_id)
       collaborations = conn.user_collaborations
-      open_collaborations = collaborations.select { |col| %w(pending accepted).include?(col.status) }
+      open_collaborations = collaborations.select { |col| %w[pending accepted].include?(col.status) }
       collaboration = open_collaborations.find do |col|
         col.account_id == account_id
       end
 
       if collaboration
         new(collaboration)
-      else
-        nil
       end
     end
 
     def self.default_field_order
-      [:id, :status, :account, :role]
+      %i[id status account role]
     end
 
     def to_s

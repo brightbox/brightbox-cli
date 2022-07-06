@@ -52,7 +52,7 @@ describe Brightbox::ConnectionManager, "#fetch_connection" do
 
     it "selects configured account" do
       skip "Fails out of sequence, mocked config incorrect"
-      Brightbox.config.stubs(:selected_config).returns('default_account' => "acc-12345")
+      Brightbox.config.stubs(:selected_config).returns("default_account" => "acc-12345")
       connection = connection_manager.fetch_connection(true)
       expect(connection).not_to be_nil
       expect(connection.scoped_account).to eq("acc-12345")

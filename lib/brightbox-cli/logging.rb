@@ -28,7 +28,7 @@ module Brightbox
       end
 
       def debug(s)
-        if ENV['DEBUG']
+        if ENV["DEBUG"]
           $stderr.write "DEBUG: "
           $stderr.write s
           $stderr.write "\n"

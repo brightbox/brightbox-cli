@@ -27,6 +27,7 @@ module Brightbox
       translators.split(",").map do |t|
         incoming, outgoing, protocol = t.split(":")
         raise "translator #{t} is invalid" if incoming.nil? || outgoing.nil? || protocol.nil?
+
         { :incoming => incoming, :outgoing => outgoing, :protocol => protocol }
       end
     end
@@ -44,21 +45,19 @@ module Brightbox
     end
 
     def mapped?
-      status == 'mapped'
+      status == "mapped"
     end
 
     def translators(raw_attributes)
-      if translators = (raw_attributes[:port_translators] || raw_attributes['port_translators'])
+      if translators = (raw_attributes[:port_translators] || raw_attributes["port_translators"])
         translators.map do |t|
-          [t['incoming'], t['outgoing'], t['protocol']].join(":")
+          [t["incoming"], t["outgoing"], t["protocol"]].join(":")
         end
-      else
-        nil
       end
     end
 
     def self.default_field_order
-      [:id, :status, :public_ip, :destination, :reverse_dns, :name]
+      %i[id status public_ip destination reverse_dns name]
     end
 
     def <=>(other)

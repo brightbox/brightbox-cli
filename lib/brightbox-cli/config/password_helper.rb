@@ -13,11 +13,9 @@ module Brightbox
           return @password_helper_password
         end
 
-        if password_helper_command
-          @password_helper_password = password_helper_call
-        else
-          @password_helper_password = nil
-        end
+        @password_helper_password = if password_helper_command
+                                      password_helper_call
+                                    end
       end
 
       private

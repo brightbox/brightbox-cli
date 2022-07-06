@@ -1,6 +1,7 @@
 module Brightbox
   class FirewallPolicy < Api
     def self.require_account?; true; end
+
     def self.create(options)
       new(conn.firewall_policies.create(options))
     end
@@ -26,7 +27,7 @@ module Brightbox
     end
 
     def self.default_field_order
-      [:id, :server_group, :name]
+      %i[id server_group name]
     end
   end
 end

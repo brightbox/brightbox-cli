@@ -5,7 +5,6 @@ require "spec_helper"
 # send invalid credentials to the real API and be rejected.
 #
 describe "brightbox config" do
-
   describe "user_add" do
     let(:output) { FauxIO.new { Brightbox.run(argv) } }
     let(:stdout) { output.stdout }
@@ -21,7 +20,7 @@ describe "brightbox config" do
     let(:client_alias) { email }
 
     context "" do
-      let(:argv) { %w(config user_add) }
+      let(:argv) { %w[config user_add] }
 
       it "does not error" do
         expect { output }.to_not raise_error

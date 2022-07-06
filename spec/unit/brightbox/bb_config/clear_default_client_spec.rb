@@ -1,7 +1,6 @@
 require "spec_helper"
 
 describe Brightbox::BBConfig do
-
   describe "#clear_default_client" do
     context "when default client is set" do
       let(:contents) do

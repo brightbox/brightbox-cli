@@ -1,7 +1,6 @@
 module Brightbox
   desc "Lists collaborations scoped to an account"
   command [:collaborators] do |cmd|
-
     cmd.default_command :list
 
     cmd.desc "List an accounts collaborations"

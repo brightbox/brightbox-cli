@@ -3,7 +3,7 @@ module Brightbox
     class UserApplication
       # FIXME: api_url should use fog's underlying default
       #
-      NON_BLANK_KEYS = %w(api_url username)
+      NON_BLANK_KEYS = %w[api_url username]
 
       attr_accessor :selected_config, :client_name
 
@@ -16,9 +16,9 @@ module Brightbox
         check_required_params
         # Note we have to merge in refresh token at the higher level
         {
-          :provider => 'Brightbox',
-          :brightbox_api_url => selected_config['api_url'],
-          :brightbox_auth_url => selected_config['auth_url'] || selected_config['api_url'],
+          :provider => "Brightbox",
+          :brightbox_api_url => selected_config["api_url"],
+          :brightbox_auth_url => selected_config["auth_url"] || selected_config["api_url"],
           :brightbox_client_id => client_id,
           :brightbox_secret => client_secret,
           :persistent => persistent?
@@ -64,18 +64,14 @@ module Brightbox
       end
 
       def persistent?
-        if selected_config["persistent"] == "false"
-          false
-        else
-          true
-        end
+        !(selected_config["persistent"] == "false")
       end
 
       def password_auth_params
         {
-          :provider => 'Brightbox',
-          :brightbox_api_url => selected_config['api_url'],
-          :brightbox_auth_url => selected_config['auth_url'] || selected_config['api_url'],
+          :provider => "Brightbox",
+          :brightbox_api_url => selected_config["api_url"],
+          :brightbox_auth_url => selected_config["auth_url"] || selected_config["api_url"],
           :brightbox_client_id => client_id,
           :brightbox_secret => client_secret,
           :brightbox_username => selected_config["username"],

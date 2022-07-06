@@ -7,6 +7,7 @@ require "fileutils"
 #
 class TmpConfig
   attr_reader :path
+
   # Creates a temporary directory and a "config" file within using the contents
   # of a passed String.
   #

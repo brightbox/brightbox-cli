@@ -13,11 +13,9 @@ module Brightbox
           return @two_factor_helper_password
         end
 
-        if two_factor_helper_command
-          @two_factor_helper_password = two_factor_helper_call
-        else
-          @two_factor_helper_password = nil
-        end
+        @two_factor_helper_password = if two_factor_helper_command
+                                        two_factor_helper_call
+                                      end
       end
 
       private

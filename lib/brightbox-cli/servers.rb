@@ -19,7 +19,7 @@ module Brightbox
     end
 
     def self.default_field_order
-      [:id, :status, :type, :zone, :created_on, :image_id, :cloud_ip_ids, :name]
+      %i[id status type zone created_on image_id cloud_ip_ids name]
     end
 
     def update(options)
@@ -41,20 +41,20 @@ module Brightbox
       a[:image] = image_id
       a[:created_at] = created_at
       a[:created_on] = created_on
-      a[:type] = server_type['handle']
+      a[:type] = server_type["handle"]
       a[:status] = fog_model.state
       a[:locked] = locked?
-      a[:zone] = zone && zone['handle']
+      a[:zone] = zone && zone["handle"]
       a[:hostname] = id
       a[:public_hostname] = "public.#{fqdn}" unless cloud_ips.empty?
-      a[:ipv6_hostname] = ipv6_fqdn if interfaces.any? { |i| i['ipv6_address'] }
+      a[:ipv6_hostname] = ipv6_fqdn if interfaces.any? { |i| i["ipv6_address"] }
       a
     end
 
     def to_row
       o = attributes
-      o[:cloud_ip_ids] = cloud_ips.map { |i| i['id'] }
-      o[:ips] = interfaces.map { |i| i['ipv4_address'] }.join(', ')
+      o[:cloud_ip_ids] = cloud_ips.map { |i| i["id"] }
+      o[:ips] = interfaces.map { |i| i["ipv4_address"] }.join(", ")
       o
     end
 

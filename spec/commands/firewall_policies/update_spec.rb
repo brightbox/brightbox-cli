@@ -11,7 +11,7 @@ describe "Firewall policies" do
     let(:stderr) { output.stderr }
 
     context "when no identifier is given", vcr: true do
-      let(:argv) { %w(firewall-policies update) }
+      let(:argv) { %w[firewall-policies update] }
 
       it "prints error to STDERR" do
         expect(stderr).to include("ERROR: You must specify the firewall-policy-id to update")
@@ -19,7 +19,7 @@ describe "Firewall policies" do
     end
 
     context "when the policy does not exist", vcr: true do
-      let(:argv) { %w(firewall-policies update -n missing fwp-12345) }
+      let(:argv) { %w[firewall-policies update -n missing fwp-12345] }
 
       it "prints error to STDERR" do
         expect(stderr).to include("ERROR: Resource not found using supplied identifier")

@@ -3,7 +3,6 @@ require "spec_helper"
 require "time"
 
 describe Time do
-
   describe "#clipped_iso_8601" do
     it "returns a shortened version of the ISO8601 datetime" do
       expect(Time.now.clipped_iso_8601).to match(/\A\d{4}-\d{2}-\d{2}T\d{2}:\d{2}\z/)

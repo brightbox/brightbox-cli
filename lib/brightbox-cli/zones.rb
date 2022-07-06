@@ -15,7 +15,7 @@ module Brightbox
     end
 
     def self.default_field_order
-      [:id, :handle]
+      %i[id handle]
     end
 
     def to_s

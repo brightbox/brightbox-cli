@@ -1,15 +1,13 @@
 module Brightbox
   command [:images] do |cmd|
-
     cmd.desc I18n.t("images.update.desc")
     cmd.arg_name "img-id"
     cmd.command [:update] do |c|
-
       c.desc I18n.t("options.name.desc")
-      c.flag [:n, :name]
+      c.flag %i[n name]
 
       c.desc I18n.t("options.description.desc")
-      c.flag [:d, :description]
+      c.flag %i[d description]
 
       c.desc "Architecture of the image (i686 or x86_64)"
       c.flag [:a, "arch"]
@@ -29,11 +27,12 @@ module Brightbox
       c.action do |global_options, options, args|
         img_id = args.shift
         raise "You must specify the image to update as the first argument" unless img_id =~ /^img-/
-        if options[:m]
-          raise "Mode must be 'virtio' or 'compatibility'" unless options[:m] == "virtio" || options[:m] == "compatibility"
+
+        if options[:m] && !(options[:m] == "virtio" || options[:m] == "compatibility")
+          raise "Mode must be 'virtio' or 'compatibility'"
         end
-        if options[:p]
-          raise "Public must be true or false" unless options[:p] == "true" || options[:p] == "false"
+        if options[:p] && !(options[:p] == "true" || options[:p] == "false")
+          raise "Public must be true or false"
         end
 
         params = NilableHash.new

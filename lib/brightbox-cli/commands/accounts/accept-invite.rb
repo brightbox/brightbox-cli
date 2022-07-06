@@ -1,7 +1,6 @@
 module Brightbox
   desc I18n.t("accounts.desc")
   command [:accounts] do |cmd|
-
     cmd.desc I18n.t("accounts.accept_invite.desc")
     cmd.arg_name "account_id"
     cmd.command [:accept_invite] do |c|

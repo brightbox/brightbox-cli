@@ -1,7 +1,6 @@
 require "spec_helper"
 
 describe TmpConfig do
-
   describe "#new(contents)" do
     it "creates a config file" do
       file_contents = "contents\ncontents"

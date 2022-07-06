@@ -1,12 +1,10 @@
 module Brightbox
   command [:"firewall-rules"] do |cmd|
-
     cmd.default_command :list
 
     cmd.desc I18n.t("firewall.rules.list.desc")
     cmd.arg_name "[firewall-policy-id...]"
     cmd.command [:list] do |c|
-
       c.action do |global_options, _options, args|
         if args.empty?
           raise "You must specify the firewall policy id as the first argument"

@@ -33,31 +33,31 @@ module Brightbox
     end
 
     def self.default_field_order
-      [
-        :id,
-        :status,
-        :type,
-        :db_engine,
-        :zone,
-        :created_on,
-        :cloud_ip_ids,
-        :name
+      %i[
+        id
+        status
+        type
+        db_engine
+        zone
+        created_on
+        cloud_ip_ids
+        name
       ]
     end
 
     # These are all the fields show in the longer table form
     def self.detailed_fields
-      [
-        :id, :name, :description, :status, :locked,
-        :type, :engine, :version,
-        :zone,
-        :created_on,
-        :admin_username, :admin_password,
-        :maintenance_window,
-        :snapshots_schedule,
-        :snapshots_schedule_next_at,
-        :allow_access,
-        :cloud_ip_ids, :cloud_ips
+      %i[
+        id name description status locked
+        type engine version
+        zone
+        created_on
+        admin_username admin_password
+        maintenance_window
+        snapshots_schedule
+        snapshots_schedule_next_at
+        allow_access
+        cloud_ip_ids cloud_ips
       ]
     end
 
@@ -99,8 +99,9 @@ module Brightbox
     # A more humanised version of the maintenance window
     def maintenance_window
       return nil if maintenance_weekday.nil?
+
       weekday = Date::DAYNAMES[maintenance_weekday]
-      sprintf("%s %02d:00 UTC", weekday, maintenance_hour)
+      format("%s %02d:00 UTC", weekday, maintenance_hour)
     end
 
     def cloud_ips
@@ -148,8 +149,6 @@ module Brightbox
       params.nilify_blanks
       params
     end
-
-    private
 
     # @param [String] user_input either a day or it's index ('sunday' or '0')
     # @returns [String] The index

@@ -6,7 +6,6 @@ describe Brightbox::FirewallPolicy do
   end
 
   describe "#create", vcr: true do
-
     it "should create firewall policy" do
       params = { :name => "rspec_tests" }
       @group = Brightbox::ServerGroup.create(params)

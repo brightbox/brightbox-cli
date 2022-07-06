@@ -1,7 +1,6 @@
 require "spec_helper"
 
 describe Brightbox::BBConfig do
-
   describe "#client_id" do
     context "when client has old 'alias' key" do
       let(:contents) do

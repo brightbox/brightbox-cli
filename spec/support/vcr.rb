@@ -8,8 +8,8 @@ VCR.configure do |vcr|
   vcr.configure_rspec_metadata!
   vcr.default_cassette_options = {
     :record => :none,
-    #:record => :new_episodes,
-    :match_requests_on => [:method, :path, :body],
+    # :record => :new_episodes,
+    :match_requests_on => %i[method path body],
     :update_content_length_header => true
   }
 

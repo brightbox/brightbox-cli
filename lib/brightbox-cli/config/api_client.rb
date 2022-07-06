@@ -1,7 +1,7 @@
 module Brightbox
   module Config
     class ApiClient
-      NON_BLANK_KEYS = %w(api_url client_id secret)
+      NON_BLANK_KEYS = %w[api_url client_id secret]
 
       attr_accessor :selected_config, :client_name
 
@@ -13,11 +13,11 @@ module Brightbox
       def to_fog
         check_required_params
         {
-          :provider => 'Brightbox',
-          :brightbox_api_url => selected_config['api_url'],
-          :brightbox_auth_url => selected_config['auth_url'] || selected_config['api_url'],
-          :brightbox_client_id => selected_config['client_id'],
-          :brightbox_secret => selected_config['secret'],
+          :provider => "Brightbox",
+          :brightbox_api_url => selected_config["api_url"],
+          :brightbox_auth_url => selected_config["auth_url"] || selected_config["api_url"],
+          :brightbox_client_id => selected_config["client_id"],
+          :brightbox_secret => selected_config["secret"],
           :persistent => persistent?
         }
       end
@@ -31,11 +31,7 @@ module Brightbox
       private
 
       def persistent?
-        if selected_config["persistent"] == "false"
-          false
-        else
-          true
-        end
+        !(selected_config["persistent"] == "false")
       end
 
       def check_required_params

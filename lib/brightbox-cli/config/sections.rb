@@ -44,7 +44,7 @@ module Brightbox
         begin
           remove_cached_tokens!
           renew_tokens(:client_name => config_alias, :password => password)
-        rescue => e
+        rescue StandardError => e
           error "Something went wrong trying to refresh new tokens #{e.message}"
         end
 
@@ -99,7 +99,7 @@ module Brightbox
         # Renew tokens via config...
         begin
           renew_tokens(:client_name => client_alias, :password => options[:password])
-        rescue => e
+        rescue StandardError => e
           error "Something went wrong trying to refresh new tokens #{e.message}"
         end
 
@@ -150,7 +150,7 @@ module Brightbox
       #
       def section_names
         # Exclude the global "core" section
-        config.sections.reject { |s| %w(core alias).include?(s) }
+        config.sections.reject { |s| %w[core alias].include?(s) }
       end
 
       private

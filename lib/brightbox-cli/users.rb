@@ -18,7 +18,7 @@ module Brightbox
     end
 
     def self.default_field_order
-      [:id, :name, :email_address, :accounts]
+      %i[id name email_address accounts]
     end
 
     def accounts

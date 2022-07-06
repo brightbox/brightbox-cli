@@ -1,7 +1,6 @@
 require "spec_helper"
 
 describe Brightbox::BBConfig do
-
   describe "#save_default_account" do
     context "when setting has not changed" do
       let(:account_id) { "acc-12345" }

@@ -1,13 +1,10 @@
 module Brightbox
   command [:config] do |cmd|
-
     cmd.default_command :client_list
 
     cmd.desc I18n.t("config.client_list.desc")
     cmd.command [:client_list] do |c|
-
       c.action do |global_options, _options, _args|
-
         info "Using config file #{Brightbox.config.config_filename}"
 
         clients = Brightbox.config.section_names.map do |cid|
@@ -28,7 +25,7 @@ module Brightbox
           }
         end
 
-        render_table clients, global_options.merge(:fields => [:alias, :client_id, :secret, :api_url, :auth_url])
+        render_table clients, global_options.merge(:fields => %i[alias client_id secret api_url auth_url])
       end
     end
   end

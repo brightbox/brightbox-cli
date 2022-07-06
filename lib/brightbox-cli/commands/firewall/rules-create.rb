@@ -1,28 +1,26 @@
 module Brightbox
   desc I18n.t("firewall.rules.desc")
   command [:"firewall-rules"] do |cmd|
-
     cmd.desc I18n.t("firewall.rules.create.desc")
     cmd.arg_name "[firewall-policy-id...]"
     cmd.command [:create] do |c|
-
       c.desc "Protocol - [tcp/udp/icmp/Protocol numbers]"
-      c.flag [:p, :protocol]
+      c.flag %i[p protocol]
 
       c.desc "Source - IPv4/IPv6 address or range (CIDR notation), 'any' for combined IPv4/IPv6 wildcard, server group identifer, server identifier."
-      c.flag [:s, :source]
+      c.flag %i[s source]
 
       c.desc "Source Port"
-      c.flag [:t, :sport]
+      c.flag %i[t sport]
 
       c.desc "Destination. IPv4/IPv6 address or range (CIDR notation), 'any' for combined IPv4/IPv6 wildcard, server group identifer, server identifier."
-      c.flag [:d, :destination]
+      c.flag %i[d destination]
 
       c.desc "Destination Port"
-      c.flag [:e, :dport]
+      c.flag %i[e dport]
 
       c.desc "Icmp Type name"
-      c.flag [:i, :icmptype]
+      c.flag %i[i icmptype]
 
       c.desc I18n.t("options.description.desc")
       c.flag :description

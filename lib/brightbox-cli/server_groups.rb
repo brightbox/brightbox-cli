@@ -15,7 +15,7 @@ module Brightbox
     end
 
     def self.default_field_order
-      [:id, :server_count, :name]
+      %i[id server_count name]
     end
 
     def firewall_policy
@@ -46,7 +46,7 @@ module Brightbox
     end
 
     def server_ids
-      attributes[:server_ids].map { |id| id.is_a?(Hash) ? id['id'] : id }
+      attributes[:server_ids].map { |id| id.is_a?(Hash) ? id["id"] : id }
     end
 
     def server_count

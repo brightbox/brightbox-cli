@@ -1,4 +1,4 @@
-require 'hirb'
+require "hirb"
 
 module Brightbox
   # Hack to set ascii art table cell width due to limitations in Hirb
@@ -10,9 +10,9 @@ module Brightbox
   # Remove most of the ascii art table output
   class SimpleTable < Hirb::Helpers::Table
     def render_table_header
-      title_row = ' ' + @fields.map do |f|
+      title_row = " " + @fields.map do |f|
         format_cell(@headers[f], @field_lengths[f])
-      end.join('  ')
+      end.join("  ")
       ["", title_row, render_border]
     end
 
@@ -21,14 +21,14 @@ module Brightbox
     end
 
     def render_border
-      '-' + @fields.map { |f| '-' * @field_lengths[f] }.join('--') + '-'
+      "-" + @fields.map { |f| "-" * @field_lengths[f] }.join("--") + "-"
     end
 
     def render_rows
       @rows.map do |row|
-        row = ' ' + @fields.map do |f|
+        row = " " + @fields.map do |f|
           format_cell(row[f], @field_lengths[f])
-        end.join('  ')
+        end.join("  ")
       end
     end
 
@@ -97,16 +97,14 @@ module Brightbox
         if options[:vertical]
           data options[:fields].map { |k| [k, row[k]].join("\t") }.join("\n")
         else
-          data options[:fields].map { |k| row[k].is_a?(Array) ? row[k].join(',') : row[k] }.join("\t")
+          data options[:fields].map { |k| row[k].is_a?(Array) ? row[k].join(",") : row[k] }.join("\t")
         end
       end
-    else
+    elsif options[:vertical]
       # "graphical" table
-      if options[:vertical]
-        data ShowTable.render(rows, options)
-      else
-        data SimpleTable.render(rows, options)
-      end
+      data ShowTable.render(rows, options)
+    else
+      data SimpleTable.render(rows, options)
     end
   end
 

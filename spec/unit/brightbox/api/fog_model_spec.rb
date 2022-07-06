@@ -1,7 +1,6 @@
 require "spec_helper"
 
 describe Brightbox::Api, "#fog_model" do
-
   context "when initialised with a fog model" do
     before do
       @identifier = "api-12345"

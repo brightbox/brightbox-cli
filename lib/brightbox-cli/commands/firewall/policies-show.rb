@@ -1,10 +1,8 @@
 module Brightbox
   command [:"firewall-policies"] do |cmd|
-
     cmd.desc I18n.t("firewall.policies.show.desc")
     cmd.arg_name "firewall-policy-id"
     cmd.command [:show] do |c|
-
       c.action do |global_options, _options, args|
         raise "You must specify server groups to show" if args.empty?
 
@@ -14,12 +12,12 @@ module Brightbox
 
         table_opts = global_options.update(
           :vertical => true,
-          :fields => [
-            :id,
-            :server_group,
-            :default,
-            :name,
-            :description
+          :fields => %i[
+            id
+            server_group
+            default
+            name
+            description
           ]
         )
 

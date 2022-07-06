@@ -9,17 +9,17 @@ describe Brightbox::BBConfig, "#add_login" do
 
   context "when no config exists", vcr: true do
     let(:expected_config) do
-      <<EOS
-[core]
-default_client = #{email}
+      <<~EOS
+        [core]
+        default_client = #{email}
 
-[#{email}]
-username = #{email}
-api_url = #{api_url}
-auth_url = #{api_url}
-default_account = acc-12345
+        [#{email}]
+        username = #{email}
+        api_url = #{api_url}
+        auth_url = #{api_url}
+        default_account = acc-12345
 
-EOS
+      EOS
     end
 
     before do
@@ -52,9 +52,9 @@ EOS
 
     it "does not alter the configuration" do
       FauxIO.new do
-        expect {
+        expect do
           config.add_login(email, password)
-        }.not_to change { config_file_contents }.from(original_config)
+        end.not_to change { config_file_contents }.from(original_config)
       end
     end
 
@@ -99,9 +99,9 @@ EOS
 
     it "does not alter the configuration" do
       FauxIO.new do
-        expect {
+        expect do
           config.add_login(email, password)
-        }.not_to change { config_file_contents }.from(original_config)
+        end.not_to change { config_file_contents }.from(original_config)
       end
 
       expect(config_file_contents).to match("[#{email}]")
@@ -153,9 +153,9 @@ EOS
 
     it "does not alter the configuration" do
       FauxIO.new do
-        expect {
+        expect do
           config.add_login(email, password)
-        }.not_to change { config_file_contents }.from(original_config)
+        end.not_to change { config_file_contents }.from(original_config)
       end
 
       expect(config_file_contents).to match("[#{email}]")
@@ -185,17 +185,17 @@ EOS
   context "when using an email and suffix", vcr: true do
     let(:client_name) { "#{email}/dev" }
     let(:expected_config) do
-      <<EOS
-[core]
-default_client = #{client_name}
+      <<~EOS
+        [core]
+        default_client = #{client_name}
 
-[#{client_name}]
-username = #{email}
-api_url = #{api_url}
-auth_url = #{api_url}
-default_account = acc-12345
+        [#{client_name}]
+        username = #{email}
+        api_url = #{api_url}
+        auth_url = #{api_url}
+        default_account = acc-12345
 
-EOS
+      EOS
     end
 
     before do
@@ -218,5 +218,4 @@ EOS
       expect(cached_refresh_token(config)).to eq(config.refresh_token)
     end
   end
-
 end

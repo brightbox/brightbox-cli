@@ -1,7 +1,6 @@
 require "spec_helper"
 
 describe Brightbox::Server do
-
   describe "#create" do
     context "when account limit reached" do
       it "should print error if account limit reached" do
@@ -16,7 +15,7 @@ describe Brightbox::Server do
         error = nil
         begin
           Brightbox::Server.create(options)
-        rescue => e
+        rescue StandardError => e
           error = Brightbox::ErrorParser.new(e)
         end
         output = FauxIO.new { error.pretty_print }

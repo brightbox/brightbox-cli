@@ -43,7 +43,6 @@ describe Brightbox::BBConfig do
         # Refresh token
         expect(cached_refresh_token(@config)).to eql(@new_refresh_token)
       end
-
     end
 
     context "when using a user app with a cached refresh token", vcr: true do
@@ -67,7 +66,7 @@ describe Brightbox::BBConfig do
         # Access token
         expect(File.exist?(@config.access_token_filename)).to be true
 
-        # NOTE The cached to disk version is filtered by VCR when testing
+        # NOTE: The cached to disk version is filtered by VCR when testing
         expect(cached_access_token(@config)).to eql(@new_access_token)
 
         # Refresh token
@@ -95,7 +94,7 @@ describe Brightbox::BBConfig do
         # Access token
         expect(File.exist?(@config.access_token_filename)).to be true
 
-        # NOTE The cached to disk version is filtered by VCR when testing
+        # NOTE: The cached to disk version is filtered by VCR when testing
         expect(cached_access_token(@config)).to eql(@new_access_token)
 
         # Refresh token

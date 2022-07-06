@@ -13,7 +13,7 @@ describe "brightbox sql instances" do
     end
 
     context "--maintenance-weekday=Monday" do
-      let(:argv) { %w(sql instances update --maintenance-weekday=Monday dbs-12345) }
+      let(:argv) { %w[sql instances update --maintenance-weekday=Monday dbs-12345] }
       let(:expected_args) { { :maintenance_weekday => "1" } }
 
       before do
@@ -60,7 +60,7 @@ describe "brightbox sql instances" do
 
     context "--remove-snapshots-schedule" do
       let(:dbs) { Brightbox::DatabaseServer.find("dbs-12345") }
-      let(:argv) { %w(sql instances update --remove-snapshots-schedule dbs-12345) }
+      let(:argv) { %w[sql instances update --remove-snapshots-schedule dbs-12345] }
       let(:expected_args) { { :snapshots_schedule => nil } }
 
       before do

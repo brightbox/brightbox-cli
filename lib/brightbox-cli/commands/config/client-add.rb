@@ -1,11 +1,9 @@
 module Brightbox
   desc I18n.t("config.desc")
   command [:config] do |cmd|
-
     cmd.desc I18n.t("config.client_add.desc")
     cmd.arg_name "client-id secret [api_url, auth_url]"
     cmd.command [:client_add] do |c|
-
       c.desc "client alias (local reference)"
       c.flag [:a, "alias"]
 
@@ -13,7 +11,6 @@ module Brightbox
       c.flag [:t, "auth-url"]
 
       c.action do |_global_options, options, args|
-
         info "Using config file #{Brightbox.config.config_filename}"
 
         client_id = args.shift

@@ -1,7 +1,6 @@
 module Brightbox
   module Config
     module TwoFactorAuth
-
       def extend_with_two_factor_pin(password)
         if two_factor_enabled
           suffix = "+" + two_factor_pin

@@ -1,7 +1,6 @@
 require "spec_helper"
 
 describe Brightbox::BBConfig do
-
   context "when config is clean" do
     let(:config) { Brightbox::BBConfig.new }
 

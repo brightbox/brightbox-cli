@@ -1,6 +1,5 @@
 module Brightbox
   command [:accounts] do |cmd|
-
     cmd.desc I18n.t("accounts.remove.desc")
     cmd.arg_name "account_id"
     cmd.command [:remove] do |c|

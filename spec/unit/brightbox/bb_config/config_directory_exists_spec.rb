@@ -2,7 +2,6 @@ require "spec_helper"
 require "tmpdir"
 
 describe Brightbox::BBConfig do
-
   describe "#config_directory_exists?" do
     let(:config) { Brightbox::BBConfig.new(:directory => @dir) }
 

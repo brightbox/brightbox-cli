@@ -3,22 +3,15 @@ module Brightbox
     module Accounts
       def save_default_account(account_id)
         dirty! unless account_id == selected_config["default_account"]
-        selected_config['default_account'] = account_id
+        selected_config["default_account"] = account_id
       end
 
-      #
-      #
-      #
       def default_account
         if selected_config
           configured_default_account = selected_config["default_account"]
           if configured_default_account && !configured_default_account.empty?
             configured_default_account
-          else
-            nil
           end
-        else
-          nil
         end
       end
 
@@ -49,7 +42,7 @@ module Brightbox
             service = Fog::Compute.new(to_fog)
             accounts = service.accounts
 
-            @account = accounts.select { |acc| %w(pending active).include?(acc.status) }.first.id
+            @account = accounts.select { |acc| %w[pending active].include?(acc.status) }.first.id
             save_default_account(@account) if @account
           rescue Brightbox::BBConfigError
             # We can't get a suitable fog connection so we can't select an

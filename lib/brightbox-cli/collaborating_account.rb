@@ -64,7 +64,6 @@ module Brightbox
       attributes[:resource_type] || attributes["resource_type"]
     end
 
-    #
     def id
       if collaboration?
         account_id
@@ -133,7 +132,7 @@ module Brightbox
     end
 
     def self.default_field_order
-      [:id, :cloud_ips_limit, :lb_limit, :ram_limit, :ram_used, :ram_free, :role, :name]
+      %i[id cloud_ips_limit lb_limit ram_limit ram_used ram_free role name]
     end
 
     private

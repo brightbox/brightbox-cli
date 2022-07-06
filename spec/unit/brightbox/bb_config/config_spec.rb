@@ -3,7 +3,6 @@ require "tmpdir"
 require "tempfile"
 
 describe Brightbox::BBConfig do
-
   describe "#config" do
     context "when config directory is missing" do
       around do |example|
@@ -68,9 +67,9 @@ describe Brightbox::BBConfig do
             f.puts "not:ini"
           end
 
-          expect {
+          expect do
             @config = Brightbox::BBConfig.new :directory => target_dir
-          }.to raise_error(Brightbox::BBConfigError)
+          end.to raise_error(Brightbox::BBConfigError)
         end
       end
     end

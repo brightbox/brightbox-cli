@@ -34,15 +34,15 @@ module Brightbox
     end
 
     def self.default_field_order
-      [:id, :name, :handle, :ram, :disk, :cores]
+      %i[id name handle ram disk cores]
     end
 
     def <=>(other)
-      if other.is_a? Type
-        ram <=> other.ram
-      else
-        ram <=> other
-      end
+      ram <=> if other.is_a? Type
+                other.ram
+              else
+                other
+              end
     end
   end
 end

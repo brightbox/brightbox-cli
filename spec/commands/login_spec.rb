@@ -15,7 +15,7 @@ describe "brightbox login" do
   let(:client_alias) { email }
 
   context "when no arguments are given" do
-    let(:argv) { %w(login) }
+    let(:argv) { %w[login] }
 
     it "errors prompting for the email address" do
       remove_config
@@ -266,7 +266,8 @@ describe "brightbox login" do
 
       stub_request(:post, "https://auth.example.com/token").to_return(
         :status => 200,
-        :body => '{"access_token":"44320b29286077c44f14c4efdfed70f63f4a8361","token_type":"Bearer","refresh_token":"759b2b28c228948a0ba5d07a89f39f9e268a95c0","scope":"infrastructure orbit","expires_in":7200}').times(2)
+        :body => '{"access_token":"44320b29286077c44f14c4efdfed70f63f4a8361","token_type":"Bearer","refresh_token":"759b2b28c228948a0ba5d07a89f39f9e268a95c0","scope":"infrastructure orbit","expires_in":7200}'
+      ).times(2)
     end
 
     it "does not change the config" do

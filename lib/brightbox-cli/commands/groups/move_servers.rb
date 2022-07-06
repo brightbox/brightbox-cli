@@ -1,14 +1,13 @@
 module Brightbox
   command [:groups] do |cmd|
-
     cmd.desc I18n.t("groups.move_servers.desc")
     cmd.arg_name "srv-id ..."
     cmd.command [:move_servers] do |c|
       c.desc "Source Server Group"
-      c.flag [:f, :from]
+      c.flag %i[f from]
 
       c.desc "Target Server Group"
-      c.flag [:t, :to]
+      c.flag %i[t to]
 
       c.action do |global_options, options, args|
         unless args && !args.empty?

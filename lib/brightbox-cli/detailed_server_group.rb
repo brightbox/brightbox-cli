@@ -7,7 +7,7 @@ module Brightbox
     end
 
     def self.default_field_order
-      [:id, :name, :servers, :firewall_policy, :description]
+      %i[id name servers firewall_policy description]
     end
   end
 end

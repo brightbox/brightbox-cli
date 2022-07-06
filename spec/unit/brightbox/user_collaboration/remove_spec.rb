@@ -1,7 +1,6 @@
 require "spec_helper"
 
 describe Brightbox::UserCollaboration do
-
   describe "#remove" do
     context "when collaboration is pending" do
       it "tells model to reject collaboration" do

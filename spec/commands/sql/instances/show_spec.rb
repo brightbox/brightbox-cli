@@ -12,14 +12,14 @@ describe "brightbox sql instances" do
     end
 
     context "when id does not exist" do
-      let(:argv) { %w(sql instances show dbs-12345) }
+      let(:argv) { %w[sql instances show dbs-12345] }
       let(:json_response) do
         "{\"error_name\":\"missing_resource\",\"errors\":[\"Resource not found using supplied identifier\"]}"
       end
 
       before do
-        stub_request(:get, "http://api.brightbox.localhost/1.0/database_servers/dbs-12345?account_id=acc-12345").
-          to_return(:status => 404, :body => json_response, :headers => { "Content-Type" => "" })
+        stub_request(:get, "http://api.brightbox.localhost/1.0/database_servers/dbs-12345?account_id=acc-12345")
+          .to_return(:status => 404, :body => json_response, :headers => { "Content-Type" => "" })
       end
 
       it "reports error" do
@@ -29,7 +29,7 @@ describe "brightbox sql instances" do
     end
 
     context "when id exists" do
-      let(:argv) { %w(sql instances show dbs-12345) }
+      let(:argv) { %w[sql instances show dbs-12345] }
 
       let(:json_response) do
         <<-EOS
@@ -61,8 +61,8 @@ describe "brightbox sql instances" do
       end
 
       before do
-        stub_request(:get, "http://api.brightbox.localhost/1.0/database_servers/dbs-12345?account_id=acc-12345").
-          to_return(:status => 200, :body => json_response, :headers => { "Content-Type" => "" })
+        stub_request(:get, "http://api.brightbox.localhost/1.0/database_servers/dbs-12345?account_id=acc-12345")
+          .to_return(:status => 200, :body => json_response, :headers => { "Content-Type" => "" })
       end
 
       it "simplifies the maintenance window" do

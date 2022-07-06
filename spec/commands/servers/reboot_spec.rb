@@ -1,7 +1,6 @@
 require "spec_helper"
 
 describe "brightbox servers" do
-
   let(:output) { FauxIO.new { Brightbox.run(argv) } }
   let(:stdout) { output.stdout }
   let(:stderr) { output.stderr }
@@ -20,7 +19,7 @@ describe "brightbox servers" do
 
   describe "reboot" do
     context "when resource is known" do
-      let(:argv) { %w(servers reboot srv-12345) }
+      let(:argv) { %w[servers reboot srv-12345] }
 
       before do
         expect(resource_class).to receive(:find_or_call).with(resource_ids).and_return(results)
@@ -33,7 +32,7 @@ describe "brightbox servers" do
     end
 
     context "when resource is unknown" do
-      let(:argv) { %w(servers reboot srv-12345) }
+      let(:argv) { %w[servers reboot srv-12345] }
 
       before do
         expect(resource_class).to receive(:find).with(resource_id).and_raise(Brightbox::Api::NotFound)
@@ -45,7 +44,7 @@ describe "brightbox servers" do
     end
 
     context "when no arguments are passed" do
-      let(:argv) { %w(servers reboot) }
+      let(:argv) { %w[servers reboot] }
 
       it "outputs error to STDERR" do
         expect(stderr).to match("ERROR: You must specify servers to reboot")

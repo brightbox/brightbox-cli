@@ -19,7 +19,7 @@ describe "brightbox sql instances" do
 
   describe "lock" do
     context "when resource is known" do
-      let(:argv) { %w(sql instances lock dbs-12345) }
+      let(:argv) { %w[sql instances lock dbs-12345] }
 
       before do
         expect(resource_class).to receive(:find_or_call).with(resource_ids).and_return(results)
@@ -32,7 +32,7 @@ describe "brightbox sql instances" do
     end
 
     context "when resource is unknown" do
-      let(:argv) { %w(sql instances lock dbs-12345) }
+      let(:argv) { %w[sql instances lock dbs-12345] }
 
       before do
         expect(resource_class).to receive(:find).with(resource_id).and_raise(Brightbox::Api::NotFound)
@@ -46,7 +46,7 @@ describe "brightbox sql instances" do
 
   describe "unlock" do
     context "when resource is known" do
-      let(:argv) { %w(sql instances unlock dbs-12345) }
+      let(:argv) { %w[sql instances unlock dbs-12345] }
 
       before do
         expect(resource_class).to receive(:find_or_call).with(resource_ids).and_return(results)
@@ -59,7 +59,7 @@ describe "brightbox sql instances" do
     end
 
     context "when resource is unknown" do
-      let(:argv) { %w(sql instances unlock dbs-12345) }
+      let(:argv) { %w[sql instances unlock dbs-12345] }
 
       before do
         expect(resource_class).to receive(:find).with(resource_id).and_raise(Brightbox::Api::NotFound)

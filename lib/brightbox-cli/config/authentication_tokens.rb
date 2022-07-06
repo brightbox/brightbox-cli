@@ -12,11 +12,10 @@ module Brightbox
         if defined?(@access_token) && !@access_token.nil?
           return @access_token
         end
-        if File.exist?(access_token_filename)
-          @access_token = cached_access_token
-        else
-          @access_token = nil
-        end
+
+        @access_token = if File.exist?(access_token_filename)
+                          cached_access_token
+                        end
       end
 
       def refresh_token_filename
@@ -28,11 +27,10 @@ module Brightbox
         if defined?(@refresh_token) && !@refresh_token.nil?
           return @refresh_token
         end
-        if File.exist?(refresh_token_filename)
-          @refresh_token = cached_refresh_token
-        else
-          @refresh_token = nil
-        end
+
+        @refresh_token = if File.exist?(refresh_token_filename)
+                           cached_refresh_token
+                         end
       end
 
       # @deprecation use access_token instead
@@ -95,7 +93,6 @@ module Brightbox
           new_access_token = service.access_token
           new_refresh_token = service.refresh_token
           update_stored_tokens(new_access_token, new_refresh_token)
-
         rescue Excon::Errors::BadRequest, Excon::Errors::Unauthorized
           error "ERROR: Unable to reauthenticate!"
         ensure
@@ -210,7 +207,7 @@ module Brightbox
         client_config = config[client_name]
         user_application = Brightbox::Config::UserApplication.new(client_config, client_name)
         # replace this portion with code that actually fetches a token
-        client_config['refresh_token'] = user_application.fetch_refresh_token(options)
+        client_config["refresh_token"] = user_application.fetch_refresh_token(options)
         save_refresh_token
       end
 
@@ -258,10 +255,9 @@ module Brightbox
         FileUtils.rm(refresh_token_filename) if File.exist?(refresh_token_filename)
       end
 
-      private
-
       def base_token_name
         return nil if client_name.nil?
+
         client_name.gsub("/", "_")
       end
     end

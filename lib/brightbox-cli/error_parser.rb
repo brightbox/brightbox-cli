@@ -21,7 +21,7 @@ module Brightbox
         begin
           json_response = MultiJson.load(e.response.body)
           extract_response_from_json(json_response, e)
-        rescue
+        rescue StandardError
           {}
         end
       else
@@ -30,7 +30,7 @@ module Brightbox
     end
 
     def extract_response_from_json(error_json, e)
-      json_error = error_json['errors'] || error_json['error']
+      json_error = error_json["errors"] || error_json["error"]
       if json_error && !json_error.empty?
         error_string = Array(json_error).join(" ")
         error "ERROR: #{error_string}"

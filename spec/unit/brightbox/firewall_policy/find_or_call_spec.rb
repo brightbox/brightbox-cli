@@ -6,7 +6,6 @@ describe Brightbox::FirewallPolicy do
   end
 
   describe "#find_or_call" do
-
     context "when a policy exists" do
       before do
         options = {

@@ -1,7 +1,6 @@
 module Brightbox
   command [:sql] do |product|
     product.command [:instances] do |cmd|
-
       cmd.desc I18n.t("sql.instances.reset_password.desc")
       cmd.arg_name "server-id"
       cmd.command [:"reset-password"] do |c|

@@ -1,5 +1,5 @@
 module Brightbox
-  class BBConfigError < StandardError ; end
+  class BBConfigError < StandardError; end
 
   class NoSelectedClientError < BBConfigError; end
   NO_CLIENT_MESSAGE = "You must specify client to use with --client or set default client"
@@ -8,8 +8,8 @@ module Brightbox
   AMBIGUOUS_CLIENT_ERROR = "You must specify a default client using brightbox config client_default"
 
   class BBConfig
-    require 'fileutils'
-    require 'ini'
+    require "fileutils"
+    require "ini"
     include Brightbox::Logging
     include Brightbox::Config::Cache
     include Brightbox::Config::GpgEncryptedPasswords
@@ -49,6 +49,7 @@ module Brightbox
     # @return [String]
     def config_directory
       return @dir if @dir
+
       path = @options[:directory] || default_config_dir
       @dir = File.expand_path(path)
     end
@@ -65,7 +66,8 @@ module Brightbox
     # @return [String]
     def config_filename
       return @config_filename if @config_filename
-      @config_filename = File.join(config_directory, 'config')
+
+      @config_filename = File.join(config_directory, "config")
     end
 
     # The loads the configuration from disk or creates the directory if missing
@@ -110,13 +112,14 @@ module Brightbox
     private
 
     def default_config_dir
-      File.join(ENV['HOME'], '.brightbox')
+      File.join(ENV["HOME"], ".brightbox")
     end
 
     def configured?
       if client_name.nil? || config[client_name].nil?
         raise BBConfigError, "client id or alias #{client_name.inspect} not defined in config"
       end
+
       true
     end
 

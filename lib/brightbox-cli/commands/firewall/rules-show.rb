@@ -1,10 +1,8 @@
 module Brightbox
   command [:"firewall-rules"] do |cmd|
-
     cmd.desc I18n.t("firewall.rules.show.desc")
     cmd.arg_name "firewall-rule-id"
     cmd.command [:show] do |c|
-
       c.action do |global_options, _options, args|
         raise "You must specify server groups to show" if args.empty?
 
@@ -13,13 +11,13 @@ module Brightbox
         end
 
         display_options = {
-          :fields => [
-            :id, :protocol,
-            :source, :sport,
-            :destination, :dport,
-            :icmp_type,
-            :firewall_policy,
-            :description
+          :fields => %i[
+            id protocol
+            source sport
+            destination dport
+            icmp_type
+            firewall_policy
+            description
           ],
           :vertical => true
         }

@@ -1,12 +1,9 @@
 module Brightbox
   command [:accounts] do |cmd|
-
     cmd.desc I18n.t("accounts.reset_ftp_password.desc")
     cmd.arg_name "account-id..."
     cmd.command [:reset_ftp_password] do |c|
-
       c.action do |global_options, _options, args|
-
         if args.empty?
           raise "You must specify the accounts to reset ftp passwords for"
         end
@@ -27,12 +24,12 @@ module Brightbox
 
         table_opts = global_options.merge(
           :vertical => true,
-          :fields => [
-            :id,
-            :name,
-            :library_ftp_host,
-            :library_ftp_user,
-            :library_ftp_password
+          :fields => %i[
+            id
+            name
+            library_ftp_host
+            library_ftp_user
+            library_ftp_password
           ]
         )
 

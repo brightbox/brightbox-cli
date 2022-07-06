@@ -1,14 +1,12 @@
 module Brightbox
   command [:images] do |cmd|
-
     cmd.desc I18n.t("images.register.desc")
     cmd.command [:register] do |c|
-
       c.desc I18n.t("options.name.desc")
-      c.flag [:n, :name]
+      c.flag %i[n name]
 
       c.desc I18n.t("options.description.desc")
-      c.flag [:d, :description]
+      c.flag %i[d description]
 
       c.desc "Image Username"
       c.flag [:u, "username"]
@@ -28,23 +26,14 @@ module Brightbox
       c.flag [:p, "public"]
 
       c.action do |global_options, options, _args|
-
         raise "You must specify the architecture" unless options[:a]
         raise "You must specify the source filename" unless options[:s]
         raise "Mode must be 'virtio' or 'compatibility'" unless options[:m] == "virtio" || options[:m] == "compatibility"
         raise "Public must be true or false" unless options[:p] == "true" || options[:p] == "false"
 
-        if options[:m] == "compatibility"
-          compatibility_flag = true
-        else
-          compatibility_flag = false
-        end
+        compatibility_flag = options[:m] == "compatibility"
 
-        if options[:p] == "true"
-          public_flag = true
-        else
-          public_flag = false
-        end
+        public_flag = options[:p] == "true"
 
         image_options = {
           :name => options[:n], :arch => options[:a],
@@ -56,7 +45,6 @@ module Brightbox
         image = Image.register(image_options)
 
         render_table([image], global_options)
-
       end
     end
   end

@@ -29,8 +29,8 @@ module Brightbox
 
     def to_row
       attrs = attributes.dup
-      [:protocol, :source, :sport, :destination, :dport, :icmp_type].each do |key|
-        attrs[key] = attributes[key] || '-'
+      %i[protocol source sport destination dport icmp_type].each do |key|
+        attrs[key] = attributes[key] || "-"
       end
       attrs
     end
@@ -40,7 +40,7 @@ module Brightbox
     end
 
     def self.default_field_order
-      [:id, :protocol, :source, :sport, :destination, :dport, :icmp_type, :description]
+      %i[id protocol source sport destination dport icmp_type description]
     end
   end
 end

@@ -4,12 +4,13 @@ module Brightbox
 
   class Api
     attr_reader :id
-    class ApiError < StandardError ; end
-    class NotFound < ApiError ; end
-    class Conflict < ApiError ; end
-    class InvalidRecord < ApiError ; end
-    class Forbidden < ApiError ; end
-    class InvalidArguments < ApiError ; end
+
+    class ApiError < StandardError; end
+    class NotFound < ApiError; end
+    class Conflict < ApiError; end
+    class InvalidRecord < ApiError; end
+    class Forbidden < ApiError; end
+    class InvalidArguments < ApiError; end
 
     @@connection_manager = nil
 
@@ -99,6 +100,7 @@ module Brightbox
     def self.find(args = :all, options = {})
       raise InvalidArguments, "find(nil)" if args.nil?
       raise InvalidArguments, "find([])" if args.respond_to?(:empty?) && args.empty?
+
       options = { :order => :created_at }.merge(options)
 
       objects = nil
@@ -113,6 +115,7 @@ module Brightbox
         objects = args.map do |arg|
           o = cached_get(arg.to_s)
           raise NotFound, "Couldn't find '#{arg}'" if o.nil?
+
           o
         end
       else
@@ -141,11 +144,9 @@ module Brightbox
     def self.find_or_call(ids, &_block)
       objects = []
       ids.each do |id|
-        begin
-          objects << find(id)
-        rescue Api::NotFound
-          yield id
-        end
+        objects << find(id)
+      rescue Api::NotFound
+        yield id
       end
       objects
     end
@@ -172,6 +173,7 @@ module Brightbox
     def self.find_by_handle(h)
       object = find(:all).find { |o| o.handle == h }
       raise Api::NotFound, "Invalid #{klass_name} #{h}" if object.nil?
+
       object
     end
 

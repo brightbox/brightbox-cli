@@ -1,7 +1,6 @@
 require "spec_helper"
 
 describe Brightbox::BBConfig do
-
   describe "#delete_section" do
     let(:client_name) { "removable" }
 

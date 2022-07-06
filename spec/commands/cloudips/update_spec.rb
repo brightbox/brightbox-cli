@@ -1,7 +1,6 @@
 require "spec_helper"
 
 describe "brightbox cloudips" do
-
   describe "update" do
     let(:output) { FauxIO.new { Brightbox.run(argv) } }
     let(:stdout) { output.stdout }
@@ -10,12 +9,12 @@ describe "brightbox cloudips" do
     before do
       config_from_contents(USER_APP_CONFIG_CONTENTS)
 
-      stub_request(:post, "http://api.brightbox.localhost/token").
-        to_return(status: 200, body: JSON.dump(access_token: "ACCESS-TOKEN", refresh_token: "REFRESH-TOKEN"))
+      stub_request(:post, "http://api.brightbox.localhost/token")
+        .to_return(status: 200, body: JSON.dump(access_token: "ACCESS-TOKEN", refresh_token: "REFRESH-TOKEN"))
     end
 
     context "" do
-      let(:argv) { %w(cloudips update) }
+      let(:argv) { %w[cloudips update] }
 
       it "does not error" do
         expect { output }.to_not raise_error

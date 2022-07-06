@@ -15,12 +15,12 @@ describe Brightbox::Server do
 
       server.fog_model.wait_for { ready? }
 
-      expect {
+      expect do
         server.stop
         server.fog_model.wait_for { !ready? }
 
         server.start
-      }.not_to raise_error
+      end.not_to raise_error
     end
   end
 end

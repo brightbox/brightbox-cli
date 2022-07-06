@@ -4,8 +4,8 @@ describe Brightbox::Api, "#created_on" do
   subject(:api_model) { described_class.new(fog_model) }
   let(:fog_model) do
     double id: nil,
-          attributes: attrs,
-          created_at: attrs[:created_at]
+           attributes: attrs,
+           created_at: attrs[:created_at]
   end
 
   context "when initialised with no attributes" do

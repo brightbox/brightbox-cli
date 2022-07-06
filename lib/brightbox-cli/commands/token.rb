@@ -29,6 +29,5 @@ module Brightbox
         $stdout.puts token.format(options[:format])
       end
     end
-
   end
 end
