@@ -1,7 +1,7 @@
 module Brightbox
   module Config
     class ApiClient
-      NON_BLANK_KEYS = %w[api_url client_id secret]
+      NON_BLANK_KEYS = %w[api_url client_id secret].freeze
 
       attr_accessor :selected_config, :client_name
 

@@ -33,8 +33,8 @@ I18n.load_path = [File.join(File.dirname(__FILE__) + "/../locales/en.yml")]
 
 module Brightbox
   DEFAULT_API_ENDPOINT = ENV["BRIGHTBOX_API_URL"] || "https://api.gb1.brightbox.com"
-  EMBEDDED_APP_ID = "app-12345"
-  EMBEDDED_APP_SECRET = "mocbuipbiaa6k6c"
+  EMBEDDED_APP_ID = "app-12345".freeze
+  EMBEDDED_APP_SECRET = "mocbuipbiaa6k6c".freeze
 
   autoload :Server, File.expand_path("brightbox-cli/servers", __dir__)
   autoload :DetailedServer, File.expand_path("brightbox-cli/detailed_server", __dir__)

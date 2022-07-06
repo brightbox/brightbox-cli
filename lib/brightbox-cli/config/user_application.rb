@@ -3,7 +3,7 @@ module Brightbox
     class UserApplication
       # FIXME: api_url should use fog's underlying default
       #
-      NON_BLANK_KEYS = %w[api_url username]
+      NON_BLANK_KEYS = %w[api_url username].freeze
 
       attr_accessor :selected_config, :client_name
 

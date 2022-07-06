@@ -2,10 +2,10 @@ module Brightbox
   class BBConfigError < StandardError; end
 
   class NoSelectedClientError < BBConfigError; end
-  NO_CLIENT_MESSAGE = "You must specify client to use with --client or set default client"
+  NO_CLIENT_MESSAGE = "You must specify client to use with --client or set default client".freeze
 
   class AmbiguousClientError < BBConfigError; end
-  AMBIGUOUS_CLIENT_ERROR = "You must specify a default client using brightbox config client_default"
+  AMBIGUOUS_CLIENT_ERROR = "You must specify a default client using brightbox config client_default".freeze
 
   class BBConfig
     require "fileutils"
