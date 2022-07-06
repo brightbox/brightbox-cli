@@ -25,14 +25,14 @@ module Brightbox
     end
 
     def self.get(id)
-      a = if Brightbox.config.using_application?
-            conn.accounts.get(id)
-          else
-            conn.account
-          end
+      acc = if Brightbox.config.using_application?
+              conn.accounts.get(id)
+            else
+              conn.account
+            end
 
-      if a && a.id == id
-        a
+      if acc && acc.id == id
+        acc
       end
     end
 

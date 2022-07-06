@@ -17,10 +17,10 @@ describe Brightbox::FirewallRule do
           :firewall_policy_id => @policy.id
         }
         rule_1_options = rule_options.merge(:destination_port => "1080")
-        @rule_1 = Brightbox::FirewallRule.create rule_1_options
+        @rule_one = Brightbox::FirewallRule.create rule_1_options
 
         rule_2_options = rule_options.merge(:destination_port => "1081")
-        @rule_2 = Brightbox::FirewallRule.create rule_2_options
+        @rule_two = Brightbox::FirewallRule.create rule_2_options
       end
 
       it "lists all rules" do
@@ -32,10 +32,10 @@ describe Brightbox::FirewallRule do
         output = FauxIO.new do
           Brightbox.render_table(@policy_rules, :vertical => true)
         end
-        expect(output.stdout).to include("id: #{@rule_1.id}")
+        expect(output.stdout).to include("id: #{@rule_one.id}")
         expect(output.stdout).to include("dport: 1080")
 
-        expect(output.stdout).to include("id: #{@rule_2.id}")
+        expect(output.stdout).to include("id: #{@rule_two.id}")
         expect(output.stdout).to include("dport: 1081")
       end
 

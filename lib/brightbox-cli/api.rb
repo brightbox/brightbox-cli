@@ -44,14 +44,14 @@ module Brightbox
       name.split("::").last
     end
 
-    def initialize(m = nil)
-      if m.is_a? String
-        @id = m
-      elsif m.respond_to?(:attributes) && m.respond_to?(:id)
-        @fog_model = m
-        @id = m.id
+    def initialize(model = nil)
+      if model.is_a? String
+        @id = model
+      elsif model.respond_to?(:attributes) && model.respond_to?(:id)
+        @fog_model = model
+        @id = model.id
       else
-        raise InvalidArguments, "Can't initialize #{self.class} with #{m.inspect}"
+        raise InvalidArguments, "Can't initialize #{self.class} with #{model.inspect}"
       end
       Brightbox.config.cache_id(@id) if Brightbox.config.respond_to?(:cache_id)
     end
@@ -151,9 +151,9 @@ module Brightbox
       objects
     end
 
-    def method_missing(m, *args)
+    def method_missing(method_name, *args)
       if fog_model
-        fog_model.send(m, *args)
+        fog_model.send(method_name, *args)
       else
         raise NoMethodError
       end
@@ -170,9 +170,9 @@ module Brightbox
       end
     end
 
-    def self.find_by_handle(h)
-      object = find(:all).find { |o| o.handle == h }
-      raise Api::NotFound, "Invalid #{klass_name} #{h}" if object.nil?
+    def self.find_by_handle(handle)
+      object = find(:all).find { |obj| obj.handle == handle }
+      raise Api::NotFound, "Invalid #{klass_name} #{handle}" if object.nil?
 
       object
     end
