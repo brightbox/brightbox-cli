@@ -157,7 +157,7 @@ module Brightbox
       fog_model.send(method_name, *args)
     end
 
-    def respond_to_missing?(method_name, *args)
+    def respond_to_missing?(method_name, _)
       return false unless fog_model
 
       fog_model.respond_to?(method_name)
