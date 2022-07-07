@@ -31,7 +31,7 @@ module Brightbox
       private
 
       def persistent?
-        !(selected_config["persistent"] == "false")
+        selected_config["persistent"] != "false"
       end
 
       def check_required_params

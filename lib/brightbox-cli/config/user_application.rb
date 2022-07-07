@@ -64,7 +64,7 @@ module Brightbox
       end
 
       def persistent?
-        !(selected_config["persistent"] == "false")
+        selected_config["persistent"] != "false"
       end
 
       def password_auth_params

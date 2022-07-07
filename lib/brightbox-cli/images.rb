@@ -23,20 +23,20 @@ module Brightbox
     def self.filter_images(images, options = {})
       # Remove images that don't match the given type
       if options[:t]
-        images.reject! { |i| i.type != options[:t] }
+        images.select! { |i| i.type == options[:t] }
       end
 
       # Remove statuses that don't match the argument
       if options[:s]
-        images.reject! { |i| i.status != options[:s] }
+        images.select! { |i| i.status == options[:s] }
       end
 
       # Remove images that don't belong to the specified owner id
       if options[:l]
         if options[:l] == "brightbox"
-          images.reject! { |i| !i.official }
+          images.select!(&:official)
         else
-          images.reject! { |i| i.owner_id != options[:l] }
+          images.select! { |i| i.owner_id == options[:l] }
         end
       end
 
