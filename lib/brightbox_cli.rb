@@ -16,7 +16,7 @@ require os_config if File.exist? os_config
 vendor_dir = File.expand_path(File.join(lib_dir, "brightbox-cli", "vendor"))
 
 # Add any vendored libraries into search path
-Dir.glob(vendor_dir + "/*").each do |f|
+Dir.glob("#{vendor_dir}/*").each do |f|
   $LOAD_PATH.unshift File.join(f, "lib")
 end
 
@@ -29,7 +29,7 @@ require "fog/brightbox"
 # I18n stuff to clean up scattered text everywhere
 I18n.enforce_available_locales = false
 I18n.default_locale = :en
-I18n.load_path = [File.join(File.dirname(__FILE__) + "/../locales/en.yml")]
+I18n.load_path = [File.join("#{File.dirname(__FILE__)}/../locales/en.yml")]
 
 module Brightbox
   DEFAULT_API_ENDPOINT = ENV["BRIGHTBOX_API_URL"] || "https://api.gb1.brightbox.com"

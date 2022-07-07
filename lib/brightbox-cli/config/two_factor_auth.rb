@@ -3,7 +3,7 @@ module Brightbox
     module TwoFactorAuth
       def extend_with_two_factor_pin(password)
         if two_factor_enabled
-          suffix = "+" + two_factor_pin
+          suffix = "+#{two_factor_pin}"
           password += suffix unless password.end_with?(suffix)
         end
         password
