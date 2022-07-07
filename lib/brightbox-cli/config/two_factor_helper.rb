@@ -1,7 +1,7 @@
 module Brightbox
   module Config
     module TwoFactorHelper
-      attr_accessor :two_factor_helper_password
+      attr_writer :two_factor_helper_password
 
       def two_factor_helper_command
         return config[client_name]["two_factor_helper_command"] unless client_name.nil?

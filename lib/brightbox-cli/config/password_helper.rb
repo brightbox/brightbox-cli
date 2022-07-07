@@ -1,7 +1,7 @@
 module Brightbox
   module Config
     module PasswordHelper
-      attr_accessor :password_helper_password
+      attr_writer :password_helper_password
 
       def password_helper_command
         return config[client_name]["password_helper_command"] unless client_name.nil?

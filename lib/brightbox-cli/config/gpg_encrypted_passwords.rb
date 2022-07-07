@@ -1,7 +1,7 @@
 module Brightbox
   module Config
     module GpgEncryptedPasswords
-      attr_accessor :gpg_password
+      attr_writer :gpg_password
 
       def gpg_encrypted_password_filename
         file_name = "#{client_name}.password.gpg"
