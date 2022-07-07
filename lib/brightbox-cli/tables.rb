@@ -56,7 +56,7 @@ module Brightbox
     def render_footer; []; end
 
     def render_rows
-      longest_header = Hirb::String.size @headers.values.sort_by { |e| Hirb::String.size(e) }.last
+      longest_header = Hirb::String.size(@headers.values.max_by { |e| Hirb::String.size(e) })
       @rows.map do |row|
         fields = @fields.map do |f|
           "#{Hirb::String.rjust(@headers[f], longest_header)}: #{row[f]}"
