@@ -20,12 +20,8 @@ module Brightbox
     # @return [Fog::Brightbox::Compute::Real]
     #
     def self.conn
-      if @@connection_manager
-        @@connection_manager.fetch_connection(require_account?)
-      else
-        @@connection_manager = Brightbox::ConnectionManager.new(Brightbox.config.to_fog)
-        @@connection_manager.fetch_connection(require_account?)
-      end
+      @@connection_manager ||= Brightbox::ConnectionManager.new(Brightbox.config.to_fog)
+      @@connection_manager.fetch_connection(require_account?)
     end
 
     # Returns +true+ if instances of this class require account details to be
