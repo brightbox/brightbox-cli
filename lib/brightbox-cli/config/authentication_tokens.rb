@@ -220,9 +220,7 @@ module Brightbox
       def persist_token(filename, token)
         token = "" if token.nil?
         # Write out a token file for this process
-        File.open(filename + ".#{$PID}", "w") do |f|
-          f.write token
-        end
+        File.write(filename + ".#{$PID}", token)
         # Move process version into place
         debug "Saving #{token} to #{filename}"
         FileUtils.mv filename + ".#{$PID}", filename

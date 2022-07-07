@@ -3,12 +3,12 @@ require "securerandom"
 module TokenHelpers
   # Creates a cached access token for the config directly to disk
   def cache_access_token(config, token)
-    File.open(config.access_token_filename, "w") { |f| f.write token }
+    File.write(config.access_token_filename, token)
   end
 
   # Creates a cached refresh token for the config directly to disk
   def cache_refresh_token(config, token)
-    File.open(config.refresh_token_filename, "w") { |f| f.write token }
+    File.write(config.refresh_token_filename, token)
   end
 
   # Returns the cached access token for the config directly from disk

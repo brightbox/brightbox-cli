@@ -12,9 +12,7 @@ module ConfigHelpers
 
     # Load the contents into the expected location
     FileUtils.mkdir_p config.config_directory
-    File.open(config.config_filename, "w") do |f|
-      f.write contents
-    end
+    File.write(config.config_filename, contents)
 
     config = Brightbox::BBConfig.new
 
@@ -33,6 +31,6 @@ module ConfigHelpers
   #
   def config_file_contents
     config = Brightbox::BBConfig.new
-    IO.read(config.config_filename)
+    File.read(config.config_filename)
   end
 end
