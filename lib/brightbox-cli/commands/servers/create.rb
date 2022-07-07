@@ -101,7 +101,7 @@ module Brightbox
         msg << format(" with %.2fk of user data", (user_data.size / 1024.0)) if user_data
         if options[:"cloud-ip"].respond_to?(:start_with?)
           if options[:"cloud-ip"].start_with?("cip-")
-            msg << " mapping #{options[:'cloud-ip']} when built"
+            msg << " mapping #{options[:"cloud-ip"]} when built"
           end
           if options[:"cloud-ip"] == "true"
             msg << " mapping a new cloud IP when built"
