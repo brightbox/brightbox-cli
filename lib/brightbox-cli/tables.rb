@@ -87,7 +87,7 @@ module Brightbox
     rows.each do |row|
       # FIXME: default Api subclasses do not respond to #keys so specialising
       #   #to_row is required to not break the following
-      row.keys.each do |k|
+      row.each_key do |k|
         row[k] = row[k].render_cell if row[k].respond_to? :render_cell
       end
     end

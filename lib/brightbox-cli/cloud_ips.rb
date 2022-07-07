@@ -49,7 +49,8 @@ module Brightbox
     end
 
     def translators(raw_attributes)
-      return unless translators = (raw_attributes[:port_translators] || raw_attributes["port_translators"])
+      translators = (raw_attributes[:port_translators] || raw_attributes["port_translators"])
+      return unless translators
 
       translators.map do |t|
         [t["incoming"], t["outgoing"], t["protocol"]].join(":")

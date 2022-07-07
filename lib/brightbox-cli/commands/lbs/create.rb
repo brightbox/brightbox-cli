@@ -90,7 +90,7 @@ module Brightbox
 
         healthcheck = {}
 
-        options.keys.each do |k|
+        options.each_key do |k|
           if options[k] && hc_arg_lookup[k]
             healthcheck[hc_arg_lookup[k]] = options[k]
           end
