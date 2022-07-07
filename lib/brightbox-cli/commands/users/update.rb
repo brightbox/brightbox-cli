@@ -17,7 +17,7 @@ module Brightbox
         user = User.find args.first
 
         if options[:f] == "-"
-          user.ssh_key = STDIN.read
+          user.ssh_key = $stdin.read
         elsif options[:f]
           File.open(File.expand_path(options[:f])) { |f| user.ssh_key = f.read }
         end
