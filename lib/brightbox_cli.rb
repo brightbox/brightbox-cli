@@ -32,7 +32,7 @@ I18n.default_locale = :en
 I18n.load_path = [File.join("#{File.dirname(__FILE__)}/../locales/en.yml")]
 
 module Brightbox
-  DEFAULT_API_ENDPOINT = ENV["BRIGHTBOX_API_URL"] || "https://api.gb1.brightbox.com"
+  DEFAULT_API_ENDPOINT = ENV.fetch("BRIGHTBOX_API_URL", "https://api.gb1.brightbox.com")
   EMBEDDED_APP_ID = "app-12345".freeze
   EMBEDDED_APP_SECRET = "mocbuipbiaa6k6c".freeze
 

@@ -112,7 +112,7 @@ module Brightbox
     private
 
     def default_config_dir
-      File.join(ENV["HOME"], ".brightbox")
+      File.join(ENV.fetch("HOME", nil), ".brightbox")
     end
 
     def configured?

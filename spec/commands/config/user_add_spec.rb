@@ -31,7 +31,7 @@ describe "brightbox config" do
       let(:argv) { ["config", "user_add", email, client_id, secret] }
 
       before do
-        config_file = File.join(ENV["HOME"], ".brightbox", "config")
+        config_file = File.join(ENV.fetch("HOME", nil), ".brightbox", "config")
         FileUtils.rm_rf(config_file)
         expect(File.exist?(config_file)).to be false
         mock_password_entry(password)

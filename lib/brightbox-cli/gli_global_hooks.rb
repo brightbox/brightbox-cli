@@ -35,8 +35,8 @@ module Brightbox
   pre do |global_options, command, _options, _args|
     # Configuration options
     config_opts = {
-      :client_name => ENV["CLIENT"] || global_options[:client],
-      :account => ENV["ACCOUNT"] || global_options[:account]
+      :client_name => ENV.fetch("CLIENT", global_options[:client]),
+      :account => ENV.fetch("ACCOUNT", global_options[:account])
     }
     Brightbox.config = BBConfig.new(config_opts)
 
@@ -60,7 +60,7 @@ module Brightbox
 
     Excon.defaults[:headers]["User-Agent"] ||= "brightbox-cli/#{Brightbox::VERSION}"
 
-    if global_options[:k] || ENV["INSECURE"]
+    if global_options[:k] || ENV.fetch("INSECURE", false)
       Excon.defaults[:ssl_verify_peer] = false
     end
 
