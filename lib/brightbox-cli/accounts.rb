@@ -31,9 +31,9 @@ module Brightbox
               conn.account
             end
 
-      if acc && acc.id == id
-        acc
-      end
+      return unless acc && acc.id == id
+
+      acc
     end
 
     def self.default_field_order

@@ -80,22 +80,22 @@ module Brightbox
 
     # Write out the configuration file to disk
     def save
-      if dirty? && config.respond_to?(:write)
-        config.write
-        clean_up
-      end
+      return unless dirty? && config.respond_to?(:write)
+
+      config.write
+      clean_up
     end
 
     # Outputs to debug the current values of the config/client's tokens
     #
     def debug_tokens
-      if ENV["DEBUG"]
-        debug "Access token: #{access_token} (#{cached_access_token})"
-        if using_application?
-          debug "Refresh token: #{refresh_token} (#{cached_refresh_token}))"
-        else
-          debug "Refresh token: <NOT EXPECTED FOR CLIENT>"
-        end
+      return unless ENV["DEBUG"]
+
+      debug "Access token: #{access_token} (#{cached_access_token})"
+      if using_application?
+        debug "Refresh token: #{refresh_token} (#{cached_refresh_token}))"
+      else
+        debug "Refresh token: <NOT EXPECTED FOR CLIENT>"
       end
     end
 
@@ -127,11 +127,11 @@ module Brightbox
     # in
     #
     def create_directory
-      unless File.exist? config_directory
-        begin
-          FileUtils.mkdir config_directory
-        rescue Errno::EEXIST
-        end
+      return if File.exist? config_directory
+
+      begin
+        FileUtils.mkdir config_directory
+      rescue Errno::EEXIST
       end
     end
 

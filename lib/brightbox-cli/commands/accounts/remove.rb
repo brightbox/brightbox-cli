@@ -8,12 +8,9 @@ module Brightbox
 
         # Find the collaboration for that account
         collaboration = UserCollaboration.get_for_account(account_id)
-        if collaboration
-          collaboration.remove
-        else
-          raise "Couldn't find an invite for account #{account_id}"
-        end
+        raise "Couldn't find an invite for account #{account_id}" unless collaboration
 
+        collaboration.remove
         render_table([collaboration], global_options)
       end
     end

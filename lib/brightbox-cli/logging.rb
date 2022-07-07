@@ -28,11 +28,11 @@ module Brightbox
       end
 
       def debug(log_msg)
-        if ENV["DEBUG"]
-          $stderr.write "DEBUG: "
-          $stderr.write log_msg
-          $stderr.write "\n"
-        end
+        return unless ENV["DEBUG"]
+
+        $stderr.write "DEBUG: "
+        $stderr.write log_msg
+        $stderr.write "\n"
       end
     end
   end

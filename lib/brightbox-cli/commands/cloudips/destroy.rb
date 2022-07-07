@@ -17,19 +17,18 @@ module Brightbox
 
         ips.each do |ip|
           if ip.mapped?
-            if options[:u]
-              info "Unmapping Cloud IP #{ip}"
-              ip.unmap
-              3.times do
-                break unless ip.mapped?
+            raise "Cannot destroy mapped Cloud IP #{ip}" unless options[:u]
 
-                sleep 1
-                ip.reload
-              end
-            else
-              raise "Cannot destroy mapped Cloud IP #{ip}"
+            info "Unmapping Cloud IP #{ip}"
+            ip.unmap
+            3.times do
+              break unless ip.mapped?
+
+              sleep 1
+              ip.reload
             end
           end
+
           info "Destroying Cloud IP #{ip}"
           ip.destroy
         end

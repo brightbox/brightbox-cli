@@ -16,10 +16,10 @@ module Brightbox
       end
 
       def two_factor_pin
-        if two_factor_enabled
-          @two_factor_pin ||= Brightbox.config.two_factor_helper_password
-          @two_factor_pin ||= prompt_for_two_factor_pin
-        end
+        return unless two_factor_enabled
+
+        @two_factor_pin ||= Brightbox.config.two_factor_helper_password
+        @two_factor_pin ||= prompt_for_two_factor_pin
       end
 
       def prompt_for_two_factor_pin

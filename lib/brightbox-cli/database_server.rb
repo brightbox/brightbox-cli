@@ -62,15 +62,15 @@ module Brightbox
     end
 
     def type_identifier
-      if fog_model.attributes.key?("database_server_type")
-        fog_model.attributes["database_server_type"]["id"]
-      end
+      return unless fog_model.attributes.key?("database_server_type")
+
+      fog_model.attributes["database_server_type"]["id"]
     end
 
     def zone_handle
-      if fog_model.attributes.key?("zone")
-        fog_model.attributes["zone"]["handle"]
-      end
+      return unless fog_model.attributes.key?("zone")
+
+      fog_model.attributes["zone"]["handle"]
     end
 
     def to_row

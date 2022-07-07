@@ -80,11 +80,11 @@ module Brightbox
       end
 
       def check_required_params
-        unless valid?
-          NON_BLANK_KEYS.each do |key|
-            unless selected_config.key?(key) && !selected_config[key].to_s.empty?
-              raise Brightbox::BBConfigError, "#{key} option missing from config in section #{client_name}"
-            end
+        return if valid?
+
+        NON_BLANK_KEYS.each do |key|
+          unless selected_config.key?(key) && !selected_config[key].to_s.empty?
+            raise Brightbox::BBConfigError, "#{key} option missing from config in section #{client_name}"
           end
         end
       end

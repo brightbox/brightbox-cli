@@ -152,11 +152,9 @@ module Brightbox
     end
 
     def method_missing(method_name, *args)
-      if fog_model
-        fog_model.send(method_name, *args)
-      else
-        raise NoMethodError
-      end
+      raise NoMethodError unless fog_model
+
+      fog_model.send(method_name, *args)
     end
 
     def self.cached_get(id)

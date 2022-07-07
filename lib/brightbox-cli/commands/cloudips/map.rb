@@ -30,16 +30,14 @@ module Brightbox
         end
 
         if ip.mapped?
-          if options[:u]
-            ip.unmap
-            3.times do
-              break unless ip.mapped?
+          raise "Refusing to map already mapped IP #{ip}" unless options[:u]
 
-              sleep 1
-              ip.reload
-            end
-          else
-            raise "Refusing to map already mapped IP #{ip}"
+          ip.unmap
+          3.times do
+            break unless ip.mapped?
+
+            sleep 1
+            ip.reload
           end
         end
 

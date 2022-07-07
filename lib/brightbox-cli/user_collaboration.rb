@@ -29,9 +29,9 @@ module Brightbox
         col.account_id == account_id
       end
 
-      if collaboration
-        new(collaboration)
-      end
+      return unless collaboration
+
+      new(collaboration)
     end
 
     def self.default_field_order

@@ -45,9 +45,10 @@ module Brightbox
       @id = fog_model.id
       # Rather than merging, we have store the collaboration as a secondary item
       @collaboration = collaboration
-      if @collaboration.nil? && @fog_model.attributes["resource_type"] == "collaboration"
-        @collaboration = @fog_model
-      end
+
+      return unless @collaboration.nil? && @fog_model.attributes["resource_type"] == "collaboration"
+
+      @collaboration = @fog_model
     end
 
     # Is this record based on an account?

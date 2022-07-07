@@ -8,11 +8,9 @@ module Brightbox
 
       # Is the currently selected config using user application details?
       def using_application?
-        if client_name
-          !config[client_name]["username"].nil?
-        else
-          raise NoSelectedClientError, NO_CLIENT_MESSAGE
-        end
+        raise NoSelectedClientError, NO_CLIENT_MESSAGE unless client_name
+
+        !config[client_name]["username"].nil?
       end
 
       # Does this config have multiple clients defined within?
