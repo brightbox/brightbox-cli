@@ -112,7 +112,9 @@ module Brightbox
       # authenticate with the API.
       #
       def save_access_token(current_access_token)
-        if access_token != current_access_token
+        if access_token == current_access_token
+          debug "Access token remains #{access_token}"
+        else
           @access_token = current_access_token
           debug "Attempting to save new access token: #{current_access_token}"
           debug "In memory access token: #{@access_token}"
@@ -121,8 +123,6 @@ module Brightbox
           persist_token(access_token_filename, current_access_token)
 
           current_access_token
-        else
-          debug "Access token remains #{access_token}"
         end
       end
 
@@ -130,7 +130,9 @@ module Brightbox
       # request a new access token when current one has expired.
       #
       def save_refresh_token(current_token)
-        if refresh_token != current_token
+        if refresh_token == current_token
+          debug "Refresh token remains #{refresh_token}"
+        else
           @refresh_token = current_token
           debug "Attempting to save new refresh token: #{current_token}"
           debug "In memory refresh token: #{@refresh_token}"
@@ -139,8 +141,6 @@ module Brightbox
           persist_token(refresh_token_filename, current_token)
 
           current_token
-        else
-          debug "Refresh token remains #{refresh_token}"
         end
       end
 
