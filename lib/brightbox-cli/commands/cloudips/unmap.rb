@@ -24,7 +24,7 @@ module Brightbox
 
         # Wait up to 3 seconds for unmapping to complete
         3.times do
-          break unless ips.find { |ip| ip.mapped? }
+          break unless ips.find(&:mapped?)
 
           sleep 1
           ips.each { |ip| ip.reload if ip.mapped? }
