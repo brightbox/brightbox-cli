@@ -101,7 +101,7 @@ module Brightbox
         error "Unable to authenticate with supplied details"
         Brightbox.config.debug_tokens if Brightbox.config.respond_to?(:debug_tokens)
         exit(111)
-      rescue Exception => e
+      rescue StandardError => e
         if ENV["DEBUG"]
           debug e
           debug e.class.to_s
