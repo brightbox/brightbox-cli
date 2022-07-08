@@ -27,11 +27,11 @@ module Brightbox
 
     def connection_options
       merged_options = @connection_options.dup
-      if @connection && @connection.refresh_token
+      if @connection&.refresh_token
         merged_options.update(:brightbox_refresh_token => @connection.refresh_token)
       end
 
-      if @connection && @connection.access_token
+      if @connection&.access_token
         merged_options.update(:brightbox_access_token => @connection.access_token)
       end
       merged_options

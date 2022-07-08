@@ -1,15 +1,13 @@
 module Brightbox
   command [:"firewall-policies"] do |cmd|
-
     cmd.desc I18n.t("firewall.policies.create.desc")
     cmd.arg_name "[server-group-id...]"
     cmd.command [:create] do |c|
-
       c.desc I18n.t("options.name.desc")
-      c.flag [:n, :name]
+      c.flag %i[n name]
 
       c.desc I18n.t("options.description.desc")
-      c.flag [:d, :description]
+      c.flag %i[d description]
 
       c.action do |global_options, options, args|
         server_group_id = nil

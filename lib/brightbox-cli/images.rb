@@ -1,6 +1,7 @@
 module Brightbox
   class Image < Api
     def self.require_account?; true; end
+
     def self.all
       conn.images
     end
@@ -11,40 +12,40 @@ module Brightbox
 
     def self.register(options = {})
       image = conn.create_image(options)
-      find image['id']
+      find image["id"]
     end
 
     def self.default_field_order
-      [:id, :owner, :type, :created_on, :status, :size, :name]
+      %i[id owner type created_on status size name]
     end
 
     # Filter out images that are not of the right type, account or status if the option is passed
     def self.filter_images(images, options = {})
       # Remove images that don't match the given type
       if options[:t]
-        images.reject! { |i| i.type != options[:t] }
+        images.select! { |i| i.type == options[:t] }
       end
 
       # Remove statuses that don't match the argument
       if options[:s]
-        images.reject! { |i| i.status != options[:s] }
+        images.select! { |i| i.status == options[:s] }
       end
 
       # Remove images that don't belong to the specified owner id
       if options[:l]
-        if options[:l] == 'brightbox'
-          images.reject! { |i| !i.official }
+        if options[:l] == "brightbox"
+          images.select!(&:official)
         else
-          images.reject! { |i| i.owner_id != options[:l] }
+          images.select! { |i| i.owner_id == options[:l] }
         end
       end
 
       unless options[:a]
         account = Account.conn.get_scoped_account(:nested => false)
-        images.reject! { |i| !i.official && i.owner_id != account["id"]  }
+        images.reject! { |i| !i.official && i.owner_id != account["id"] }
       end
 
-      snapshots = images.select { |i| i.source_type == 'snapshot' }
+      snapshots = images.select { |i| i.source_type == "snapshot" }
       images -= snapshots
 
       images.sort! { |a, b| a.default_sort_fields <=> b.default_sort_fields }
@@ -68,7 +69,7 @@ module Brightbox
 
     def status
       if fog_model.attributes[:status] == "available"
-        public? ? 'public' : 'private'
+        public? ? "public" : "private"
       else
         fog_model.attributes[:status]
       end
@@ -99,9 +100,9 @@ module Brightbox
 
     def status_sort_code
       case fog_model.attributes[:status]
-      when 'available'
+      when "available"
         (public? ? 1 : 2)
-      when 'deprecated'
+      when "deprecated"
         3
       else
         4

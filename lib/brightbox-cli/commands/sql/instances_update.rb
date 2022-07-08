@@ -1,13 +1,11 @@
 module Brightbox
   command [:sql] do |product|
     product.command [:instances] do |cmd|
-
       cmd.desc I18n.t("sql.instances.update.desc")
       cmd.arg_name "instance-id"
       cmd.command [:update] do |c|
-
         c.desc I18n.t("options.name.desc")
-        c.flag [:n, :name]
+        c.flag %i[n name]
 
         c.desc I18n.t("options.description.desc")
         c.flag [:d, "description"]

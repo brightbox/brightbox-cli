@@ -7,6 +7,7 @@ module Brightbox
 
       def cache_id(cid)
         return if cid.nil?
+
         unless File.exist?(cache_path)
           begin
             FileUtils.mkpath(cache_path)

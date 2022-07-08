@@ -1,6 +1,5 @@
 module Brightbox
   command [:lbs] do |cmd|
-
     cmd.default_command :list
 
     cmd.desc I18n.t("lbs.list.desc")

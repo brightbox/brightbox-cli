@@ -1,7 +1,6 @@
 require "spec_helper"
 
 describe Brightbox::BBConfig do
-
   describe "#access_token_filename" do
     context "when using a custom directory" do
       before do

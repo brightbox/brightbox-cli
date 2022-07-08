@@ -1,6 +1,7 @@
 module Brightbox
   class LoadBalancer < Api
     def self.require_account?; true; end
+
     def self.create(options)
       new(conn.load_balancers.create(options))
     end
@@ -38,11 +39,7 @@ module Brightbox
     end
 
     def listeners
-      if attributes[:listeners]
-        attributes[:listeners].map { |l| [l["in"], l["out"], l["protocol"], l['timeout']].join(":") }
-      else
-        nil
-      end
+      attributes[:listeners]&.map { |l| [l["in"], l["out"], l["protocol"], l["timeout"]].join(":") }
     end
 
     def buffer_size
@@ -80,7 +77,7 @@ module Brightbox
     end
 
     def self.default_field_order
-      [:id, :status, :created_on, :cloud_ips, :nodes, :name]
+      %i[id status created_on cloud_ips nodes name]
     end
   end
 end

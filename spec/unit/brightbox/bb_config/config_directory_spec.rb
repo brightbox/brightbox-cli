@@ -1,7 +1,6 @@
 require "spec_helper"
 
 describe Brightbox::BBConfig do
-
   describe "#config_directory" do
     context "when default location is used" do
       it "returns a String of the users `.brightbox` directory" do

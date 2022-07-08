@@ -4,12 +4,13 @@ module Brightbox
 
   class Api
     attr_reader :id
-    class ApiError < StandardError ; end
-    class NotFound < ApiError ; end
-    class Conflict < ApiError ; end
-    class InvalidRecord < ApiError ; end
-    class Forbidden < ApiError ; end
-    class InvalidArguments < ApiError ; end
+
+    class ApiError < StandardError; end
+    class NotFound < ApiError; end
+    class Conflict < ApiError; end
+    class InvalidRecord < ApiError; end
+    class Forbidden < ApiError; end
+    class InvalidArguments < ApiError; end
 
     @@connection_manager = nil
 
@@ -19,12 +20,8 @@ module Brightbox
     # @return [Fog::Brightbox::Compute::Real]
     #
     def self.conn
-      if @@connection_manager
-        @@connection_manager.fetch_connection(require_account?)
-      else
-        @@connection_manager = Brightbox::ConnectionManager.new(Brightbox.config.to_fog)
-        @@connection_manager.fetch_connection(require_account?)
-      end
+      @@connection_manager ||= Brightbox::ConnectionManager.new(Brightbox.config.to_fog)
+      @@connection_manager.fetch_connection(require_account?)
     end
 
     # Returns +true+ if instances of this class require account details to be
@@ -43,14 +40,14 @@ module Brightbox
       name.split("::").last
     end
 
-    def initialize(m = nil)
-      if m.is_a? String
-        @id = m
-      elsif m.respond_to?(:attributes) && m.respond_to?(:id)
-        @fog_model = m
-        @id = m.id
+    def initialize(model = nil)
+      if model.is_a? String
+        @id = model
+      elsif model.respond_to?(:attributes) && model.respond_to?(:id)
+        @fog_model = model
+        @id = model.id
       else
-        raise InvalidArguments, "Can't initialize #{self.class} with #{m.inspect}"
+        raise InvalidArguments, "Can't initialize #{self.class} with #{model.inspect}"
       end
       Brightbox.config.cache_id(@id) if Brightbox.config.respond_to?(:cache_id)
     end
@@ -99,6 +96,7 @@ module Brightbox
     def self.find(args = :all, options = {})
       raise InvalidArguments, "find(nil)" if args.nil?
       raise InvalidArguments, "find([])" if args.respond_to?(:empty?) && args.empty?
+
       options = { :order => :created_at }.merge(options)
 
       objects = nil
@@ -113,6 +111,7 @@ module Brightbox
         objects = args.map do |arg|
           o = cached_get(arg.to_s)
           raise NotFound, "Couldn't find '#{arg}'" if o.nil?
+
           o
         end
       else
@@ -141,21 +140,23 @@ module Brightbox
     def self.find_or_call(ids, &_block)
       objects = []
       ids.each do |id|
-        begin
-          objects << find(id)
-        rescue Api::NotFound
-          yield id
-        end
+        objects << find(id)
+      rescue Api::NotFound
+        yield id
       end
       objects
     end
 
-    def method_missing(m, *args)
-      if fog_model
-        fog_model.send(m, *args)
-      else
-        raise NoMethodError
-      end
+    def method_missing(method_name, *args)
+      raise NoMethodError unless fog_model
+
+      fog_model.send(method_name, *args)
+    end
+
+    def respond_to_missing?(method_name, _)
+      return false unless fog_model
+
+      fog_model.respond_to?(method_name)
     end
 
     def self.cached_get(id)
@@ -169,9 +170,10 @@ module Brightbox
       end
     end
 
-    def self.find_by_handle(h)
-      object = find(:all).find { |o| o.handle == h }
-      raise Api::NotFound, "Invalid #{klass_name} #{h}" if object.nil?
+    def self.find_by_handle(handle)
+      object = find(:all).find { |obj| obj.handle == handle }
+      raise Api::NotFound, "Invalid #{klass_name} #{handle}" if object.nil?
+
       object
     end
 
@@ -186,9 +188,9 @@ module Brightbox
     # Displays creation date in ISO 8601 Complete date format
     #
     def created_on
-      if fog_model.created_at
-        fog_model.created_at.strftime("%Y-%m-%d")
-      end
+      return unless fog_model.created_at
+
+      fog_model.created_at.strftime("%Y-%m-%d")
     end
   end
 end

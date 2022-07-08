@@ -45,9 +45,10 @@ module Brightbox
       @id = fog_model.id
       # Rather than merging, we have store the collaboration as a secondary item
       @collaboration = collaboration
-      if @collaboration.nil? && @fog_model.attributes["resource_type"] == "collaboration"
-        @collaboration = @fog_model
-      end
+
+      return unless @collaboration.nil? && @fog_model.attributes["resource_type"] == "collaboration"
+
+      @collaboration = @fog_model
     end
 
     # Is this record based on an account?
@@ -64,7 +65,6 @@ module Brightbox
       attributes[:resource_type] || attributes["resource_type"]
     end
 
-    #
     def id
       if collaboration?
         account_id
@@ -133,7 +133,7 @@ module Brightbox
     end
 
     def self.default_field_order
-      [:id, :cloud_ips_limit, :lb_limit, :ram_limit, :ram_used, :ram_free, :role, :name]
+      %i[id cloud_ips_limit lb_limit ram_limit ram_used ram_free role name]
     end
 
     private

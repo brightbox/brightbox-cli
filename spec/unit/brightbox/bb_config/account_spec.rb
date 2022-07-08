@@ -1,7 +1,6 @@
 require "spec_helper"
 
 describe Brightbox::BBConfig do
-
   describe "#account" do
     context "when passed as an option" do
       before do

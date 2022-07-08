@@ -1,12 +1,9 @@
 module Brightbox
   command [:"firewall-policies"] do |cmd|
-
     cmd.desc I18n.t("firewall.policies.destroy.desc")
     cmd.arg_name "[firewall-policy-id...]"
     cmd.command [:destroy] do |c|
-
       c.action do |_global_options, _options, args|
-
         raise "You must specify firewall-policy-id to destroy" if args.empty?
 
         firewall_policies = FirewallPolicy.find_or_call(args) do |id|

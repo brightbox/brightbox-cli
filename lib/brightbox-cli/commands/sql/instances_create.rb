@@ -1,15 +1,12 @@
 module Brightbox
   desc I18n.t("sql.desc")
   command [:sql] do |product|
-
     product.desc I18n.t("sql.instances.desc")
     product.command [:instances] do |cmd|
-
       cmd.desc I18n.t("sql.instances.create.desc")
       cmd.command [:create] do |c|
-
         c.desc I18n.t("options.name.desc")
-        c.flag [:n, :name]
+        c.flag %i[n name]
 
         c.desc I18n.t("options.description.desc")
         c.flag [:d, "description"]
@@ -19,7 +16,7 @@ module Brightbox
 
         # Database type
         c.desc I18n.t("sql.instances.options.type.desc")
-        c.flag [:t, :type]
+        c.flag %i[t type]
 
         # Database Engine / Version (e.g. "mysql-5.6"
         c.desc I18n.t("sql.instances.options.engine.desc")
@@ -45,7 +42,7 @@ module Brightbox
         c.desc I18n.t("sql.instances.options.zone.desc")
         c.flag [:z, "zone"]
 
-        c.action do |global_options, options, args|
+        c.action do |global_options, options, _args|
           params = DatabaseServer.clean_arguments(options)
 
           server = DatabaseServer.create(params)

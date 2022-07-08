@@ -1,12 +1,10 @@
 module Brightbox
   command [:groups] do |cmd|
-
     cmd.desc I18n.t("groups.remove_servers.desc")
     cmd.arg_name "grp-id [srv-id...]"
     cmd.command [:remove_servers] do |c|
-
       c.desc "Remove all servers from group"
-      c.switch [:a, :all], :negatable => false
+      c.switch %i[a all], :negatable => false
 
       c.action do |global_options, options, args|
         grp_id = args.shift
@@ -25,7 +23,7 @@ module Brightbox
         if servers.empty?
           info "Server group #{sg} already contains zero servers"
         else
-          info "Removing#{" all" if options[:a]} #{servers.size} servers from server group #{sg}"
+          info "Removing#{' all' if options[:a]} #{servers.size} servers from server group #{sg}"
           sg.remove_servers servers
         end
 

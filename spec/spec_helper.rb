@@ -23,7 +23,7 @@ API_CLIENT_CONFIG_CONTENTS = File.read(File.join(File.dirname(__FILE__), "config
 USER_APP_CONFIG_CONTENTS = File.read(File.join(File.dirname(__FILE__), "configs/user_app.ini"))
 
 # Remember the $HOME of the test runner
-TEST_RUNNER_HOME = ENV["HOME"]
+TEST_RUNNER_HOME = ENV.fetch("HOME", nil)
 
 # Reduce the default fog timeout
 Fog.timeout = 10
@@ -42,7 +42,7 @@ RSpec.configure do |config|
   config.before do
     # For each test, point to the testing endpoint to make it safer and easier to
     # record from dev endpoints. Devs can DNS api.brightbox.localhost to their dev service
-    stub_const("Brightbox::DEFAULT_API_ENDPOINT", ENV["BRIGHTBOX_API_URL"] || "http://api.brightbox.localhost")
+    stub_const("Brightbox::DEFAULT_API_ENDPOINT", ENV.fetch("BRIGHTBOX_API_URL", "http://api.brightbox.localhost"))
     # And set a sane terminal size for Hirb
     ENV["COLUMNS"] = "120"
     ENV["LINES"] = "120"

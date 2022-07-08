@@ -1,10 +1,8 @@
 module Brightbox
   command [:config] do |cmd|
-
     cmd.desc I18n.t("config.user_add.desc")
     cmd.arg_name "email client-id secret [api_url auth_url]"
     cmd.command [:user_add] do |c|
-
       c.desc "client alias (local reference)"
       c.flag [:a, "alias"]
 
@@ -12,8 +10,7 @@ module Brightbox
       c.flag [:p, "password"]
 
       c.action do |_global_options, options, args|
-
-        require 'highline'
+        require "highline"
 
         info "Using config file #{Brightbox.config.config_filename}"
 

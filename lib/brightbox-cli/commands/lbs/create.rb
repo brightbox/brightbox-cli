@@ -1,21 +1,19 @@
 module Brightbox
   command [:lbs] do |cmd|
-
     cmd.desc I18n.t("lbs.create.desc")
     cmd.long_desc I18n.t("lbs.create.long_desc")
     cmd.arg_name "srv-id..."
     cmd.command [:create] do |c|
-
       c.desc I18n.t("options.name.desc")
-      c.flag [:n, :name]
+      c.flag %i[n name]
 
       c.desc "Load balancer policy"
       c.default_value "least-connections"
-      c.flag [:p, :policy]
+      c.flag %i[p policy]
 
       c.desc "Listeners. Format: in-port:out-port:type:timeout. Comma separated multiple listeners. Protocols can be tcp, http or http+ws and timeouts are in milliseconds."
       c.default_value "80:80:http:50000,443:443:tcp:50000"
-      c.flag [:l, :listeners]
+      c.flag %i[l listeners]
 
       c.desc "Healthcheck port. Defaults to first listener out port."
       c.flag [:k, "hc-port"]
@@ -60,12 +58,12 @@ module Brightbox
       c.switch ["sslv3"]
 
       c.action do |global_options, options, args|
-
         raise "You must specify which servers to balance connections to" if args.empty?
 
         listeners = options[:l].split(",").map do |l|
           inport, outport, protocol, timeout = l.split ":"
           raise "listener '#{l}' is invalid" if inport.nil? || outport.nil? || protocol.nil?
+
           { :in => inport, :out => outport, :protocol => protocol, :timeout => timeout }
         end
 
@@ -92,7 +90,7 @@ module Brightbox
 
         healthcheck = {}
 
-        options.keys.each do |k|
+        options.each_key do |k|
           if options[k] && hc_arg_lookup[k]
             healthcheck[hc_arg_lookup[k]] = options[k]
           end

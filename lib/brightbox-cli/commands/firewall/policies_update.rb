@@ -1,15 +1,13 @@
 module Brightbox
   command [:"firewall-policies"] do |cmd|
-
     cmd.desc I18n.t("firewall.policies.update.desc")
     cmd.arg_name "firewall-policy-id"
     cmd.command [:update] do |c|
-
       c.desc I18n.t("options.name.desc")
-      c.flag [:n, :name]
+      c.flag %i[n name]
 
       c.desc I18n.t("options.description.desc")
-      c.flag [:d, :description]
+      c.flag %i[d description]
 
       c.action do |global_options, options, args|
         policy_id = args.shift

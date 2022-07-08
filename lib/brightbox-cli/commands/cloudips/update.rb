@@ -1,10 +1,8 @@
 module Brightbox
   command [:cloudips] do |cmd|
-
     cmd.desc I18n.t("cloudips.update.desc")
     cmd.arg_name "cloudip-id"
     cmd.command [:update] do |c|
-
       c.desc "Set reverse DNS for this Cloud IP"
       c.flag [:r, "reverse-dns"]
 
@@ -12,10 +10,10 @@ module Brightbox
       c.switch ["delete-reverse-dns"], :negatable => false
 
       c.desc I18n.t("options.name.desc")
-      c.flag [:n, :name]
+      c.flag %i[n name]
 
       c.desc I18n.t("cloudips.options.port_translators.desc")
-      c.flag [:t, :"port-translators"]
+      c.flag %i[t port-translators]
 
       c.action do |global_options, options, args|
         cip_id = args.shift

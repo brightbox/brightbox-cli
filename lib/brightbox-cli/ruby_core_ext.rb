@@ -7,11 +7,11 @@ class Time
   #
   # @return [String] A clipped form of date, ISO 8601 without seconds
   #
-  def clipped_iso_8601
-    strftime(self.utc? ? "%Y-%m-%dT%H:%MZ" : "%Y-%m-%dT%H:%M")
+  def clipped_iso8601
+    strftime(utc? ? "%Y-%m-%dT%H:%MZ" : "%Y-%m-%dT%H:%M")
   end
 
   def to_s
-    clipped_iso_8601
+    clipped_iso8601
   end
 end

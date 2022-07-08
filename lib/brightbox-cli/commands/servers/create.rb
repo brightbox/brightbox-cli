@@ -1,12 +1,10 @@
 module Brightbox
   command [:servers] do |cmd|
-
     cmd.desc I18n.t("servers.create.desc")
     cmd.arg_name "image_id"
     cmd.command [:create] do |c|
-
       c.desc I18n.t("options.name.desc")
-      c.flag [:n, :name]
+      c.flag %i[n name]
 
       c.desc "Number of servers to create"
       c.default_value 1
@@ -17,7 +15,7 @@ module Brightbox
 
       c.desc "Type of server to create"
       c.default_value "1gb.ssd"
-      c.flag [:t, :type]
+      c.flag %i[t type]
 
       c.desc "Specify user data"
       c.flag [:m, "user-data"]
@@ -27,7 +25,7 @@ module Brightbox
 
       c.desc "base64 encode the user data"
       c.default_value true
-      c.switch [:e, :base64], :negatable => true
+      c.switch %i[e base64], :negatable => true
 
       c.desc "Enable encryption at rest for disk"
       c.default_value false
@@ -40,7 +38,6 @@ module Brightbox
       c.flag ["cloud-ip"]
 
       c.action do |global_options, options, args|
-
         if args.empty?
           raise "You must specify the image_id as the first argument"
         end
@@ -49,19 +46,19 @@ module Brightbox
         image = Image.find image_id
 
         type_id = options[:t]
-        if type_id =~ /^typ\-/
-          type = Type.find type_id
-        else
-          type = Type.find_by_handle type_id
-        end
+        type = if type_id =~ /^typ-/
+                 Type.find type_id
+               else
+                 Type.find_by_handle type_id
+               end
 
         if options[:z]
           zone = options[:z]
-          if zone =~ /^typ\-/
-            zone = Zone.find zone
-          else
-            zone = Zone.find_by_handle zone
-          end
+          zone = if zone =~ /^typ-/
+                   Zone.find zone
+                 else
+                   Zone.find_by_handle zone
+                 end
         end
 
         user_data = options[:m]
@@ -69,9 +66,11 @@ module Brightbox
 
         if user_data_file
           raise "Cannot specify user data on command line and in file at same time" if user_data
+
           # Wot we use to read the data, be it from stdin or a file on disk
           file_handler = lambda do |fh|
             raise "User data file too big (>16k)" if fh.stat.size > 16 * 1024
+
             user_data = fh.read
           end
           # Figure out how to invoke file_handler, and then invoke it
@@ -98,11 +97,11 @@ module Brightbox
         msg = "Creating #{options[:i] > 1 ? options[:i] : 'a'} #{type.handle} (#{type.id})"
         msg << " server#{options[:i] > 1 ? 's' : ''} with image #{image.name.strip} (#{image.id})"
         msg << " in zone #{zone.handle} (#{zone})" if zone
-        msg << " in groups #{server_groups.map(&:id).join(", ")}" unless server_groups.empty?
-        msg << " with %.2fk of user data" % (user_data.size / 1024.0) if user_data
-        if options[:"cloud-ip"] && options[:"cloud-ip"].respond_to?(:start_with?)
+        msg << " in groups #{server_groups.map(&:id).join(', ')}" unless server_groups.empty?
+        msg << format(" with %.2fk of user data", (user_data.size / 1024.0)) if user_data
+        if options[:"cloud-ip"].respond_to?(:start_with?)
           if options[:"cloud-ip"].start_with?("cip-")
-            msg << " mapping #{options[:'cloud-ip']} when built"
+            msg << " mapping #{options[:"cloud-ip"]} when built"
           end
           if options[:"cloud-ip"] == "true"
             msg << " mapping a new cloud IP when built"
@@ -111,11 +110,11 @@ module Brightbox
         info msg
 
         params = {
-          :image_id      => image.id,
-          :flavor_id     => type.id,
-          :zone_id       => zone.to_s,
-          :name          => options[:n],
-          :user_data     => user_data,
+          :image_id => image.id,
+          :flavor_id => type.id,
+          :zone_id => zone.to_s,
+          :name => options[:n],
+          :user_data => user_data,
           :server_groups => server_groups.map(&:id)
         }
 

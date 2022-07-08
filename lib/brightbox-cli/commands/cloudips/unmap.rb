@@ -1,12 +1,9 @@
 module Brightbox
   command [:cloudips] do |cmd|
-
     cmd.desc I18n.t("cloudips.map.desc")
     cmd.arg_name "cloudip-id..."
     cmd.command [:unmap] do |c|
-
       c.action do |global_options, _options, args|
-
         if args.empty?
           raise "You must specify the Cloud IPs you want to unmap"
         end
@@ -27,7 +24,8 @@ module Brightbox
 
         # Wait up to 3 seconds for unmapping to complete
         3.times do
-          break unless ips.find { |ip| ip.mapped? }
+          break unless ips.find(&:mapped?)
+
           sleep 1
           ips.each { |ip| ip.reload if ip.mapped? }
         end

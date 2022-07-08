@@ -1,13 +1,10 @@
 module Brightbox
   desc I18n.t("lbs.desc")
   command [:lbs] do |cmd|
-
     cmd.desc I18n.t("lbs.add_nodes.desc")
     cmd.arg_name "lb-id node-id..."
     cmd.command [:add_nodes] do |c|
-
       c.action do |global_options, _options, args|
-
         raise "You must specify the load balancer and the node ids to add" if args.size < 2
 
         lb = LoadBalancer.find(args.shift)

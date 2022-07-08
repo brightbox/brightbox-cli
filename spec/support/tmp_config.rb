@@ -7,6 +7,7 @@ require "fileutils"
 #
 class TmpConfig
   attr_reader :path
+
   # Creates a temporary directory and a "config" file within using the contents
   # of a passed String.
   #
@@ -19,7 +20,6 @@ class TmpConfig
     @file = File.open(File.join(@path, "config"), "w+")
     @file.write(contents)
     @file.close
-    self
   end
 
   def close

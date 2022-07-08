@@ -1,7 +1,6 @@
 require "spec_helper"
 
 describe "brightbox lbs" do
-
   describe "update" do
     let(:output) { FauxIO.new { Brightbox.run(argv) } }
     let(:stdout) { output.stdout }
@@ -13,7 +12,7 @@ describe "brightbox lbs" do
     end
 
     context "" do
-      let(:argv) { %w(lbs update) }
+      let(:argv) { %w[lbs update] }
 
       it "does not error" do
         expect { output }.to_not raise_error

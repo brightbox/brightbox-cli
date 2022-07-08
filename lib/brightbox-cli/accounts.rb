@@ -25,21 +25,19 @@ module Brightbox
     end
 
     def self.get(id)
-      if Brightbox.config.using_application?
-        a = conn.accounts.get(id)
-      else
-        a = conn.account
-      end
+      acc = if Brightbox.config.using_application?
+              conn.accounts.get(id)
+            else
+              conn.account
+            end
 
-      if a && a.id == id
-        a
-      else
-        nil
-      end
+      return unless acc && acc.id == id
+
+      acc
     end
 
     def self.default_field_order
-      [:id, :name, :cloud_ips_limit, :lb_limit, :ram_limit, :ram_used, :ram_free]
+      %i[id name cloud_ips_limit lb_limit ram_limit ram_used ram_free]
     end
 
     def to_s

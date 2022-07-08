@@ -1,7 +1,6 @@
 require "spec_helper"
 
 describe Brightbox::ErrorParser do
-
   describe "#pretty_print" do
     let(:parser) { Brightbox::ErrorParser.new(error_to_parse) }
 

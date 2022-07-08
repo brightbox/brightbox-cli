@@ -1,7 +1,6 @@
 require "spec_helper"
 
 describe "brightbox servers" do
-
   describe "create" do
     let(:output) { FauxIO.new { Brightbox.run(argv) } }
     let(:stdout) { output.stdout }
@@ -17,11 +16,12 @@ describe "brightbox servers" do
 
       stub_request(:post, "http://api.brightbox.localhost/token").to_return(
         :status => 200,
-        :body => '{"access_token":"44320b29286077c44f14c4efdfed70f63f4a8361","token_type":"Bearer","refresh_token":"759b2b28c228948a0ba5d07a89f39f9e268a95c0","scope":"infrastructure orbit","expires_in":7200}')
+        :body => '{"access_token":"44320b29286077c44f14c4efdfed70f63f4a8361","token_type":"Bearer","refresh_token":"759b2b28c228948a0ba5d07a89f39f9e268a95c0","scope":"infrastructure orbit","expires_in":7200}'
+      )
     end
 
     context "without arguments" do
-      let(:argv) { %w(servers create) }
+      let(:argv) { %w[servers create] }
 
       it "does not error" do
         expect { output }.to_not raise_error
@@ -29,7 +29,7 @@ describe "brightbox servers" do
     end
 
     context "with --cloud-ip with nominated IP argument" do
-      let(:argv) { %w(servers create --cloud-ip cip-12345 img-12345) }
+      let(:argv) { %w[servers create --cloud-ip cip-12345 img-12345] }
 
       before do
         expect(Brightbox::Image).to receive(:find).with("img-12345").and_return(image)
@@ -48,7 +48,7 @@ describe "brightbox servers" do
     end
 
     context "with --cloud-ip true argument" do
-      let(:argv) { %w(servers create --cloud-ip true img-12345) }
+      let(:argv) { %w[servers create --cloud-ip true img-12345] }
 
       before do
         expect(Brightbox::Image).to receive(:find).with("img-12345").and_return(image)
@@ -67,7 +67,7 @@ describe "brightbox servers" do
     end
 
     context "with --disk-encrypted switch" do
-      let(:argv) { %w(servers create --disk-encrypted img-12345) }
+      let(:argv) { %w[servers create --disk-encrypted img-12345] }
 
       before do
         expect(Brightbox::Image).to receive(:find).with("img-12345").and_return(image)

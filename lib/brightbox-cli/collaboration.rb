@@ -22,7 +22,7 @@ module Brightbox
     end
 
     def self.default_field_order
-      [:id, :status, :role, :email, :name]
+      %i[id status role email name]
     end
 
     def to_s

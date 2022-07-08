@@ -1,6 +1,5 @@
 module Brightbox
   command [:groups] do |cmd|
-
     cmd.default_command :list
 
     cmd.desc I18n.t("groups.list.desc")

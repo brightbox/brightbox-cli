@@ -1,12 +1,9 @@
 module Brightbox
   command [:config] do |cmd|
-
     cmd.desc "Remove api client details from config"
     cmd.arg_name "alias"
     cmd.command [:client_remove] do |c|
-
       c.action do |_global_options, _options, args|
-
         info "Using config file #{Brightbox.config.config_filename}"
 
         calias = args.shift

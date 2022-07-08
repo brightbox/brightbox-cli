@@ -41,6 +41,6 @@ describe Brightbox::BBConfig, "#section_names" do
       setting = value
       EOS
     end
-    it { expect(config.section_names).to eq(%w(cli-12345 app-12345)) }
+    it { expect(config.section_names).to eq(%w[cli-12345 app-12345]) }
   end
 end

@@ -1,19 +1,17 @@
 module Brightbox
   command [:lbs] do |cmd|
-
     cmd.desc I18n.t("lbs.update.desc")
     cmd.long_desc I18n.t("lbs.update.long_desc")
     cmd.arg_name "lba-id [node-id...]"
     cmd.command [:update] do |c|
-
       c.desc I18n.t("options.name.desc")
-      c.flag [:n, :name]
+      c.flag %i[n name]
 
       c.desc "Load balancer policy"
-      c.flag [:p, :policy]
+      c.flag %i[p policy]
 
       c.desc "Listeners (in-port:out-port:protocol:timeout. Comma separate multiple listeners)"
-      c.flag [:l, :listeners]
+      c.flag %i[l listeners]
 
       c.desc "Healthcheck port"
       c.flag [:k, "hc-port"]
@@ -55,7 +53,6 @@ module Brightbox
       c.switch ["sslv3"]
 
       c.action do |global_options, options, args|
-
         lb_id = args.shift
         raise "You must specify the load balancer to update as the first argument" unless lb_id =~ /^lba-/
 
@@ -77,7 +74,7 @@ module Brightbox
 
         healthcheck = {}
 
-        options.keys.each do |k|
+        options.each_key do |k|
           if options[k] && hc_arg_lookup[k]
             healthcheck[hc_arg_lookup[k]] = options[k]
           end
@@ -131,8 +128,8 @@ module Brightbox
           lbopts[:certificate_private_key] = ""
         end
 
-        if options["ssl-min-ver"]
-          lbopts[:ssl_minimum_version] = options["ssl-min-ver"] unless options["ssl-min-ver"].nil?
+        if options["ssl-min-ver"] && !options["ssl-min-ver"].nil?
+          lbopts[:ssl_minimum_version] = options["ssl-min-ver"]
         end
 
         lbopts.nilify_blanks

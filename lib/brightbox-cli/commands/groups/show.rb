@@ -1,10 +1,8 @@
 module Brightbox
   command [:groups] do |cmd|
-
     cmd.desc I18n.t("groups.show.desc")
     cmd.arg_name "[grp-id..]"
     cmd.command [:show] do |c|
-
       c.action do |global_options, _options, args|
         raise "You must specify server groups to show" if args.empty?
 

@@ -20,7 +20,7 @@ describe "brightbox sql instances" do
     end
 
     context "without arguments", vcr: true do
-      let(:argv) { %w(sql instances create) }
+      let(:argv) { %w[sql instances create] }
 
       it "reports the new admin username" do
         username = sql_instance.admin_username
@@ -29,12 +29,12 @@ describe "brightbox sql instances" do
 
       it "reports the new admin password" do
         expected_password = sql_instance.admin_password
-        expect(stdout).to include("admin_password:")
+        expect(stdout).to include("admin_password: #{expected_password}")
       end
     end
 
     context "--allow-access=10.0.0.0", vcr: true do
-      let(:argv) { %w(sql instances create --allow-access=10.0.0.0) }
+      let(:argv) { %w[sql instances create --allow-access=10.0.0.0] }
       let(:expected_args) { { :allow_access => ["10.0.0.0"] } }
 
       it "correctly sends API parameters" do
@@ -64,7 +64,7 @@ describe "brightbox sql instances" do
     end
 
     context "--engine=mysql", vcr: true do
-      let(:argv) { %w(sql instances create --engine=mysql) }
+      let(:argv) { %w[sql instances create --engine=mysql] }
       let(:expected_args) { { :database_engine => "mysql" } }
 
       it "correctly sends API parameters" do
@@ -75,7 +75,7 @@ describe "brightbox sql instances" do
     end
 
     context "--engine=mysql --engine-version=8.0", vcr: true do
-      let(:argv) { %w(sql instances create --engine=mysql --engine-version=8.0) }
+      let(:argv) { %w[sql instances create --engine=mysql --engine-version=8.0] }
       let(:expected_args) { { :database_engine => "mysql", :database_version => "8.0" } }
 
       it "correctly sends API parameters" do
@@ -86,7 +86,7 @@ describe "brightbox sql instances" do
     end
 
     context "--maintenance-weekday=5 --maintenance_hour=11", vcr: true do
-      let(:argv) { %w(sql instances create --maintenance-weekday=5 --maintenance-hour=11) }
+      let(:argv) { %w[sql instances create --maintenance-weekday=5 --maintenance-hour=11] }
       let(:expected_args) { { :maintenance_weekday => "5", :maintenance_hour => "11" } }
 
       it "correctly sends API parameters" do
@@ -96,7 +96,7 @@ describe "brightbox sql instances" do
     end
 
     context "--maintenance-weekday=thursday", vcr: true do
-      let(:argv) { %w(sql instances create --maintenance-weekday=thursday) }
+      let(:argv) { %w[sql instances create --maintenance-weekday=thursday] }
       let(:expected_args) { { :maintenance_weekday => "4" } }
 
       it "correctly sends API parameters" do

@@ -6,7 +6,6 @@ describe Brightbox::FirewallPolicy do
   end
 
   describe "#apply_to", vcr: true do
-
     it "should apply firewall policy" do
       expect do
         params = { :name => "rspec_tests_apply" }

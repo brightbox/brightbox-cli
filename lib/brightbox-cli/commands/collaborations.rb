@@ -1,7 +1,6 @@
 module Brightbox
   desc "Lists collaborations scoped to an account"
   command [:collaborators] do |cmd|
-
     cmd.default_command :list
 
     cmd.desc "List an accounts collaborations"
@@ -36,7 +35,7 @@ module Brightbox
         collaborations = Collaboration.find_or_call(args) do |id|
           warn "Couldn't find collaboration #{id}"
         end
-        collaborations.each { |col| col.resend }
+        collaborations.each(&:resend)
         render_table(collaborations, global_options)
       end
     end
@@ -59,7 +58,7 @@ module Brightbox
         collaborations = Collaboration.find_or_call(args) do |id|
           warn "Couldn't find collaboration #{id}"
         end
-        collaborations.each { |col| col.destroy }
+        collaborations.each(&:destroy)
         render_table(collaborations, global_options)
       end
     end

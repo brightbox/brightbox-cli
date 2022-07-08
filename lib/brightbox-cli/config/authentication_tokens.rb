@@ -12,11 +12,10 @@ module Brightbox
         if defined?(@access_token) && !@access_token.nil?
           return @access_token
         end
-        if File.exist?(access_token_filename)
-          @access_token = cached_access_token
-        else
-          @access_token = nil
-        end
+
+        @access_token = if File.exist?(access_token_filename)
+                          cached_access_token
+                        end
       end
 
       def refresh_token_filename
@@ -28,11 +27,10 @@ module Brightbox
         if defined?(@refresh_token) && !@refresh_token.nil?
           return @refresh_token
         end
-        if File.exist?(refresh_token_filename)
-          @refresh_token = cached_refresh_token
-        else
-          @refresh_token = nil
-        end
+
+        @refresh_token = if File.exist?(refresh_token_filename)
+                           cached_refresh_token
+                         end
       end
 
       # @deprecation use access_token instead
@@ -95,7 +93,6 @@ module Brightbox
           new_access_token = service.access_token
           new_refresh_token = service.refresh_token
           update_stored_tokens(new_access_token, new_refresh_token)
-
         rescue Excon::Errors::BadRequest, Excon::Errors::Unauthorized
           error "ERROR: Unable to reauthenticate!"
         ensure
@@ -115,7 +112,9 @@ module Brightbox
       # authenticate with the API.
       #
       def save_access_token(current_access_token)
-        if access_token != current_access_token
+        if access_token == current_access_token
+          debug "Access token remains #{access_token}"
+        else
           @access_token = current_access_token
           debug "Attempting to save new access token: #{current_access_token}"
           debug "In memory access token: #{@access_token}"
@@ -124,8 +123,6 @@ module Brightbox
           persist_token(access_token_filename, current_access_token)
 
           current_access_token
-        else
-          debug "Access token remains #{access_token}"
         end
       end
 
@@ -133,7 +130,9 @@ module Brightbox
       # request a new access token when current one has expired.
       #
       def save_refresh_token(current_token)
-        if refresh_token != current_token
+        if refresh_token == current_token
+          debug "Refresh token remains #{refresh_token}"
+        else
           @refresh_token = current_token
           debug "Attempting to save new refresh token: #{current_token}"
           debug "In memory refresh token: #{@refresh_token}"
@@ -142,8 +141,6 @@ module Brightbox
           persist_token(refresh_token_filename, current_token)
 
           current_token
-        else
-          debug "Refresh token remains #{refresh_token}"
         end
       end
 
@@ -210,7 +207,7 @@ module Brightbox
         client_config = config[client_name]
         user_application = Brightbox::Config::UserApplication.new(client_config, client_name)
         # replace this portion with code that actually fetches a token
-        client_config['refresh_token'] = user_application.fetch_refresh_token(options)
+        client_config["refresh_token"] = user_application.fetch_refresh_token(options)
         save_refresh_token
       end
 
@@ -223,9 +220,7 @@ module Brightbox
       def persist_token(filename, token)
         token = "" if token.nil?
         # Write out a token file for this process
-        File.open(filename + ".#{$PID}", "w") do |f|
-          f.write token
-        end
+        File.write(filename + ".#{$PID}", token)
         # Move process version into place
         debug "Saving #{token} to #{filename}"
         FileUtils.mv filename + ".#{$PID}", filename
@@ -258,10 +253,9 @@ module Brightbox
         FileUtils.rm(refresh_token_filename) if File.exist?(refresh_token_filename)
       end
 
-      private
-
       def base_token_name
         return nil if client_name.nil?
+
         client_name.gsub("/", "_")
       end
     end

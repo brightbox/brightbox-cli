@@ -1,15 +1,12 @@
 module Brightbox
   command [:cloudips] do |cmd|
-
     cmd.desc I18n.t("cloudips.map.desc")
     cmd.arg_name "cloudip-id destination"
     cmd.command [:map] do |c|
-
       c.desc "Unmap mapped IPs before remapping them"
       c.switch [:u, "unmap"], :negatable => false
 
       c.action do |global_options, options, args|
-
         if args.size > 2
           raise "Too many arguments"
         end
@@ -24,7 +21,7 @@ module Brightbox
 
         destination_id = args.last
         case destination_id
-        when /^srv\-/
+        when /^srv-/
           server = Server.find destination_id
           destination_id = server.interfaces.first["id"]
           info "Mapping #{ip} to interface #{destination_id} on #{server}"
@@ -33,15 +30,14 @@ module Brightbox
         end
 
         if ip.mapped?
-          if options[:u]
-            ip.unmap
-            3.times do
-              break unless ip.mapped?
-              sleep 1
-              ip.reload
-            end
-          else
-            raise "Refusing to map already mapped IP #{ip}"
+          raise "Refusing to map already mapped IP #{ip}" unless options[:u]
+
+          ip.unmap
+          3.times do
+            break unless ip.mapped?
+
+            sleep 1
+            ip.reload
           end
         end
 
@@ -51,6 +47,7 @@ module Brightbox
         3.times do
           ip.reload
           break if ip.mapped?
+
           sleep 1
         end
 

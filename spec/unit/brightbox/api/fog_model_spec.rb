@@ -1,29 +1,29 @@
 require "spec_helper"
 
 describe Brightbox::Api, "#fog_model" do
+  let(:fog_model) { Fog::Model.new }
+  let(:identifier) { "api-12345" }
+
+  before do
+    allow(fog_model).to receive(:id).and_return(identifier)
+    allow(fog_model).to receive(:attributes).and_return({})
+  end
 
   context "when initialised with a fog model" do
-    before do
-      @identifier = "api-12345"
-      @fog_model = double
-      expect(@fog_model).to receive(:id).and_return(@identifier)
-      allow(@fog_model).to receive(:attributes).and_return({})
-    end
+    subject(:instance) { described_class.new(fog_model) }
 
     it "returns the object" do
-      @api_instance = Brightbox::Api.new(@fog_model)
-      expect(@api_instance.fog_model).to eql(@fog_model)
+      expect(instance.fog_model).to eql(fog_model)
     end
   end
 
   context "when initialised with an identifier string" do
-    it "attempts to find a resource" do
-      @identifier = "api-12345"
-      @fog_model = double
+    subject(:instance) { described_class.new(identifier) }
 
-      @api_instance = Brightbox::Api.new(@identifier)
-      expect(Brightbox::Api).to receive(:find).with(@identifier).and_return(@fog_model)
-      expect(@api_instance.fog_model).to eql(@fog_model)
+    it "attempts to find a resource" do
+      expect(Brightbox::Api).to receive(:find).with(identifier).and_return(fog_model)
+
+      expect(instance.fog_model).to eql(fog_model)
     end
   end
 end

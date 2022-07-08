@@ -8,11 +8,9 @@ module Brightbox
 
       # Is the currently selected config using user application details?
       def using_application?
-        if client_name
-          !config[client_name]["username"].nil?
-        else
-          raise NoSelectedClientError, NO_CLIENT_MESSAGE
-        end
+        raise NoSelectedClientError, NO_CLIENT_MESSAGE unless client_name
+
+        !config[client_name]["username"].nil?
       end
 
       # Does this config have multiple clients defined within?
@@ -31,6 +29,7 @@ module Brightbox
       #
       def client_alias
         return nil if selected_config.nil?
+
         # FIXME: The 'alias' field is redundant because we are using the section
         #   heading for the not ID value but we worry about it for now
         selected_config["alias"] || client_name
@@ -61,7 +60,7 @@ module Brightbox
       #
       def default_client
         @default_client ||= core_setting("default_client")
-      rescue
+      rescue StandardError
         nil
       end
 
@@ -76,6 +75,7 @@ module Brightbox
       def determine_client(preferred_client = nil)
         return preferred_client unless preferred_client.nil?
         return default_client unless default_client.nil?
+
         section_names.first unless section_names.empty?
         nil
       end
@@ -85,8 +85,8 @@ module Brightbox
       # If the prefix is in the client ID (identifier not alias) be +true+
       def config_identifier_match_prefix?(prefix)
         client_id = selected_config["client_id"]
-        !! /\A#{prefix}-.*/.match(client_id)
-      rescue
+        !!/\A#{prefix}-.*/.match(client_id)
+      rescue StandardError
         raise NoSelectedClientError, NO_CLIENT_MESSAGE
       end
     end

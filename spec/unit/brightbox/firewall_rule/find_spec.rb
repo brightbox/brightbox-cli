@@ -26,15 +26,15 @@ describe Brightbox::FirewallRule do
         end.to_not raise_error
 
         display_options = {
-          :fields => [
-            :id,
-            :protocol,
-            :source,
-            :sport,
-            :destination,
-            :dport,
-            :icmp_type,
-            :firewall_policy
+          :fields => %i[
+            id
+            protocol
+            source
+            sport
+            destination
+            dport
+            icmp_type
+            firewall_policy
           ],
           :vertical => true
         }
