@@ -24,6 +24,18 @@ Changes:
 * Remove pin for `dry-inflector` added to prevent issues with Ruby < 2.4
 * Update development gems to ensure up to date
 * Update VCR to latest release v2.9.3
+* Update `fog-brightbox` to `v1.5.0`
+* Change `client_id` logging level from info to debug
+* Setup Rubocop to help improve code quality/consistency
+
+Testing:
+
+* Updated testing/development gems
+* Remove VCR identifier sanitisation as temp dev instance are used and
+  squashing IDs cause bug when chain/multiple requests combined
+* RSpec is configured to allow re-runs
+* Timeout testing is dropped to 10s
+
 
 ### v3.3.0 / 2021-09-17
 
