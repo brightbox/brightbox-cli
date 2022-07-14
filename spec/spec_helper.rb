@@ -39,6 +39,10 @@ RSpec.configure do |config|
   # you configure your source control system to ignore this file.
   config.example_status_persistence_file_path = "spec/examples.txt"
 
+  config.expect_with :rspec do |c|
+    c.max_formatted_output_length = nil
+  end
+
   config.before do
     # For each test, point to the testing endpoint to make it safer and easier to
     # record from dev endpoints. Devs can DNS api.brightbox.localhost to their dev service
