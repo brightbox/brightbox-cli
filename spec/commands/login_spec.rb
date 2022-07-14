@@ -23,11 +23,13 @@ describe "brightbox login" do
     end
   end
 
-  context "when no config is present", vcr: true do
+  context "when no config is present" do
     let(:argv) { ["login", "-p", password, email] }
 
     before do
       remove_config
+      stub_token_request
+      stub_accounts_request
     end
 
     it "does not error" do
@@ -60,11 +62,13 @@ describe "brightbox login" do
     end
   end
 
-  context "when no password is given", vcr: true do
+  context "when no password is given" do
     let(:argv) { ["login", email] }
 
     before do
       remove_config
+      stub_token_request
+      stub_accounts_request
       mock_password_entry(password)
     end
 
@@ -102,16 +106,15 @@ describe "brightbox login" do
     end
   end
 
-  context "when custom api/auth URLs are given", vcr: true do
-    # FIXME: These need to be the "real" defaults to record the token interchange
-    #        May allow a regression that the defaults are used, not the passed argument
-    #        Need to use something better that VCR.
+  context "when custom api/auth URLs are given" do
     let(:api_url) { Brightbox::DEFAULT_API_ENDPOINT }
     let(:auth_url) { Brightbox::DEFAULT_API_ENDPOINT }
     let(:argv) { ["login", "--api-url", api_url, "--auth-url", auth_url, email] }
 
     before do
       remove_config
+      stub_token_request
+      stub_accounts_request
       mock_password_entry(password)
     end
 
@@ -150,12 +153,13 @@ describe "brightbox login" do
     end
   end
 
-  context "when default account is passed", vcr: true do
+  context "when default account is passed" do
     let(:account) { "acc-23456" }
     let(:argv) { ["login", "--default-account", account, email] }
 
     before do
       remove_config
+      stub_token_request
       mock_password_entry(password)
     end
 
@@ -194,13 +198,15 @@ describe "brightbox login" do
     end
   end
 
-  context "when alternative client credentials are given", vcr: true do
+  context "when alternative client credentials are given" do
     let(:other_client_identifier) { "app-23456" }
     let(:other_client_secret) { "ho04hondtzjjdf4" }
     let(:argv) { ["login", "--application-id", other_client_identifier, "--application-secret", other_client_secret, email] }
 
     before do
       remove_config
+      stub_token_request
+      stub_accounts_request
       mock_password_entry(password)
     end
 
