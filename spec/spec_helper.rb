@@ -31,6 +31,7 @@ Fog.timeout = 10
 RSpec.configure do |config|
   config.include CommonHelpers
   config.include ConfigHelpers
+  config.include AuthenticationHelpers
   config.include TokenHelpers
   config.include PasswordPromptHelpers
 
