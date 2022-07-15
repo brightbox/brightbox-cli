@@ -348,47 +348,50 @@ describe "brightbox login" do
 
   context "when user has 2FA set up" do
     let(:config) { Brightbox::BBConfig.new client_name: email }
-    let(:contents) do
-      <<-EOS
-      [core]
-      default_client = #{client_alias}
 
-      [#{client_alias}]
-      username = #{email}
-      default_account = #{default_account}
-      two_factor = true
-      EOS
-    end
+    context "with existing configuration" do
+      let(:contents) do
+        <<-EOS
+        [core]
+        default_client = #{client_alias}
 
-    context "when no password is given" do
-      let(:argv) { ["login", email] }
-
-      before do
-        config_from_contents(contents)
-        stub_token_request(two_factor: true)
-        stub_accounts_request
-        mock_password_entry(password)
-        mock_otp_entry("123456")
+        [#{client_alias}]
+        username = #{email}
+        default_account = #{default_account}
+        two_factor = true
+        EOS
       end
 
-      it "prompts for the password" do
-        expect { output }.not_to raise_error
-      end
+      context "when no password is given" do
+        let(:argv) { ["login", email] }
 
-      it "does not error" do
-        expect { output }.to_not raise_error
-        expect(stderr).to_not include("ERROR")
-      end
+        before do
+          config_from_contents(contents)
+          stub_token_request(two_factor: true)
+          stub_accounts_request
+          mock_password_entry(password)
+          mock_otp_entry("123456")
+        end
 
-      it "requests access tokens" do
-        expect { output }.to_not raise_error
+        it "prompts for the password" do
+          expect { output }.not_to raise_error
+        end
 
-        expect(cached_access_token(config)).to eql(config.access_token)
-        expect(cached_refresh_token(config)).to eql(config.refresh_token)
-      end
+        it "does not error" do
+          expect { output }.to_not raise_error
+          expect(stderr).to_not include("ERROR")
+        end
 
-      it "does not prompt to rerun the command" do
-        expect(stderr).to_not include("please re-run your command")
+        it "requests access tokens" do
+          expect { output }.to_not raise_error
+
+          expect(cached_access_token(config)).to eql(config.access_token)
+          expect(cached_refresh_token(config)).to eql(config.refresh_token)
+        end
+
+        it "does not prompt to rerun the command" do
+          expect(stderr).to_not include("please re-run your command")
+        end
       end
     end
   end

@@ -174,23 +174,10 @@ module Brightbox
         connection
       end
 
-      # This asks the user to input their password
-      def prompt_for_password
-        require "highline"
-        highline = HighLine.new
-        highline.say("Your API credentials have expired, enter your password to update them.")
-        # FIXME: Capture interupts if user aborts
-        highline.ask("Enter your password : ") { |q| q.echo = false }
-      end
-
       def update_tokens_with_user_credentials(password = nil)
         user_application = Brightbox::Config::UserApplication.new(selected_config, client_name)
 
-        password ||= gpg_password
-        password ||= password_helper_password
-        password ||= prompt_for_password
-
-        password = extend_with_two_factor_pin(password)
+        password = discover_password(password: password, expired: true)
 
         # FIXME: options are required to work
         options = {

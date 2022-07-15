@@ -21,18 +21,8 @@ module Brightbox
 
       raise "You must specify your email address" if email.nil?
 
-      password = options[:p]
-      password ||= Brightbox.config.gpg_password
-      password ||= Brightbox.config.password_helper_password
-
-      if !password || password.empty?
-        require "highline"
-        highline = HighLine.new
-        password = highline.ask("Enter your password : ") { |q| q.echo = false }
-      end
+      password = Brightbox.config.discover_password(password: options[:p])
       raise "You must specify your Brightbox password." if password.empty?
-
-      password = Brightbox.config.extend_with_two_factor_pin(password)
 
       section_options = {
         :client_name => config_name,
