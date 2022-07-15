@@ -31,6 +31,7 @@ Fog.timeout = 10
 RSpec.configure do |config|
   config.include CommonHelpers
   config.include ConfigHelpers
+  config.include AuthenticationHelpers
   config.include TokenHelpers
   config.include PasswordPromptHelpers
 
@@ -38,6 +39,10 @@ RSpec.configure do |config|
   # the `--only-failures` and `--next-failure` CLI options. We recommend
   # you configure your source control system to ignore this file.
   config.example_status_persistence_file_path = "spec/examples.txt"
+
+  config.expect_with :rspec do |c|
+    c.max_formatted_output_length = nil
+  end
 
   config.before do
     # For each test, point to the testing endpoint to make it safer and easier to
