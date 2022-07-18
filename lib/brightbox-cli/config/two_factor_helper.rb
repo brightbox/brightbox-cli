@@ -27,7 +27,7 @@ module Brightbox
           IO.popen(cmd, "r") do |io|
             io.readline.chomp
           end
-        rescue Errno::ENOENT
+        rescue ArgumentError, Errno::ENOENT
           nil
         end
       end
