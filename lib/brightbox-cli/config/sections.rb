@@ -44,17 +44,17 @@ module Brightbox
         begin
           remove_cached_tokens!
           renew_tokens(:client_name => config_alias, :password => password)
+
+          # Try to determine a default account
+          unless default_account == find_or_set_default_account
+            info "The default account of #{default_account} has been selected"
+          end
+
+          # If only client then set it as the default
+          set_default_client(client_alias) unless default_client
         rescue StandardError => e
           error "Something went wrong trying to refresh new tokens #{e.message}"
         end
-
-        # Try to determine a default account
-        unless default_account == find_or_set_default_account
-          info "The default account of #{default_account} has been selected"
-        end
-
-        # If only client then set it as the default
-        set_default_client(client_alias) unless default_client
 
         # Ensure all our config changes are now saved
         save

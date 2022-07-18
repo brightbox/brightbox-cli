@@ -43,31 +43,6 @@ describe "brightbox login" do
             status: 401,
             body: { error: "invalid_client" }.to_json
           )
-
-          # FIXME: Phantom follow up as a client
-          stub_request(:post, "#{api_url}/token")
-            .with(
-              body: {
-                grant_type: "client_credentials"
-              }.to_json
-            ).to_return(
-              status: 400,
-              body: {
-                "error": "unauthorized_client",
-                "error_description": "The authenticated client is not authorized to use the access grant type provided."
-              }.to_json
-            )
-
-          # FIXME: Attempt to access accounts list and fail
-          stub_request(:get, "#{api_url}/1.0/accounts?nested=false")
-            .to_return(
-              status: 401,
-              body: {
-                "error": "invalid_request",
-                "error_description": "OAuth token was not sent as Authorization header"
-              }.to_json
-            )
-
       end
 
       it "does not error" do
