@@ -21,6 +21,7 @@ module Brightbox
           :brightbox_auth_url => selected_config["auth_url"] || selected_config["api_url"],
           :brightbox_client_id => client_id,
           :brightbox_secret => client_secret,
+          :brightbox_support_two_factor => true,
           :persistent => persistent?
         }
       end
@@ -40,7 +41,9 @@ module Brightbox
       #
       def fetch_refresh_token(options)
         password_options = {
-          :brightbox_password => options[:password]
+          :brightbox_password => options[:password],
+          :brightbox_support_two_factor => true,
+          :brightbox_one_time_password => options[:one_time_password]
         }
 
         default_fog_options = password_auth_params.merge(password_options)
@@ -75,6 +78,7 @@ module Brightbox
           :brightbox_client_id => client_id,
           :brightbox_secret => client_secret,
           :brightbox_username => selected_config["username"],
+          :brightbox_support_two_factor => true,
           :persistent => persistent?
         }
       end

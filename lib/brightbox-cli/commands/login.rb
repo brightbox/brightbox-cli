@@ -39,7 +39,18 @@ module Brightbox
       section_options[:client_id] = options[:"application-id"] if options[:"application-id"]
       section_options[:secret] = options[:"application-secret"] if options[:"application-secret"]
 
-      Brightbox.config.add_login(email, password, section_options)
+      begin
+        Brightbox.config.add_login(email, password, section_options)
+      rescue Fog::Brightbox::OAuth2::TwoFactorMissingError
+        section_options = {
+          :client_name => config_name,
+          :alias => config_name,
+          :username => email,
+          :password => password,
+          :one_time_password => discover_two_factor_pin
+        }
+        Brightbox.config.add_login(email, password, section_options)
+      end
     end
   end
 end

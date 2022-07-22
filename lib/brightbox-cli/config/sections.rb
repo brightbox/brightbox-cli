@@ -43,7 +43,16 @@ module Brightbox
         #
         begin
           remove_cached_tokens!
-          renew_tokens(:client_name => config_alias, :password => password)
+          begin
+            renew_tokens(client_name: config_alias,
+                         password: password)
+          rescue Fog::Brightbox::OAuth2::TwoFactorMissingError
+            discover_two_factor_pin
+
+            renew_tokens(client_name: client_alias,
+                         password: options[:password],
+                         one_time_password: current_second_factor)
+          end
 
           # Try to determine a default account
           unless default_account == find_or_set_default_account
@@ -98,18 +107,25 @@ module Brightbox
 
         # Renew tokens via config...
         begin
-          renew_tokens(:client_name => client_alias, :password => options[:password])
+          begin
+            renew_tokens(client_name: client_alias,
+                         password: options[:password])
+          rescue Fog::Brightbox::OAuth2::TwoFactorMissingError
+            renew_tokens(client_name: client_alias,
+                         password: options[:password],
+                         one_time_password: discover_two_factor_pin)
+          end
+
+          # Try to determine a default account
+          unless default_account == find_or_set_default_account
+            info "The default account of #{default_account} has been selected"
+          end
+
+          # If only client then set it as the default
+          set_default_client(client_alias) unless default_client
         rescue StandardError => e
           error "Something went wrong trying to refresh new tokens #{e.message}"
         end
-
-        # Try to determine a default account
-        unless default_account == find_or_set_default_account
-          info "The default account of #{default_account} has been selected"
-        end
-
-        # If only client then set it as the default
-        set_default_client(client_alias) unless default_client
 
         # Ensure all our config changes are now saved
         save

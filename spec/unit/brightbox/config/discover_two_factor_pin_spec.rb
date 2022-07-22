@@ -8,22 +8,6 @@ RSpec.describe Brightbox::Config, "#discover_two_factor_pin" do
   let(:default_account) { "acc-12345" }
   let(:email) { "jason.null@brightbox.com" }
 
-  context "when 2FA is not enabled" do
-    let(:contents) do
-      <<-EOS
-      [core]
-      default_client = #{client_alias}
-
-      [#{client_alias}]
-      username = #{email}
-      EOS
-    end
-
-    it "returns nil" do
-      expect(config.discover_two_factor_pin).to be_nil
-    end
-  end
-
   context "when 2FA is enabled" do
     context "with password helper" do
       let(:cmd) { "fnord" }

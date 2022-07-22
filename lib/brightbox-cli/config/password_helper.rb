@@ -18,10 +18,6 @@ module Brightbox
         password ||= gpg_password
         password ||= password_helper_password
         password ||= prompt_for_password(expired)
-
-        # Current workaround for 2FA support is to check for config and
-        # append OTP to password
-        extend_with_two_factor_pin(password)
       end
 
       private

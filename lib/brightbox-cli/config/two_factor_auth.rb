@@ -6,29 +6,19 @@ module Brightbox
       attr_accessor :current_second_factor
 
       def discover_two_factor_pin
-        return unless two_factor_enabled
-
         @two_factor_pin ||= Brightbox.config.two_factor_helper_password
         @two_factor_pin ||= prompt_for_two_factor_pin
-      end
 
-      def extend_with_two_factor_pin(password)
-        return password unless two_factor_enabled
-
-        # Make the OTP available in the configuration
-        self.current_second_factor = discover_two_factor_pin
-        return password unless current_second_factor
-
-        # This is a workaround to send the OTP appended to password
-        suffix = "+#{current_second_factor}"
-        password += suffix unless password.end_with?(suffix)
-        password
+        self.current_second_factor = @two_factor_pin
       end
 
       private
 
       def two_factor_enabled
-        return config[client_name]["two_factor"] == "true" unless client_name.nil?
+        return false unless client_name.nil?
+        return true if config[client_name]["two_factor"] == "true"
+
+        false
       end
 
       def prompt_for_two_factor_pin
