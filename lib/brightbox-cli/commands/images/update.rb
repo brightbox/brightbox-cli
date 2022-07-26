@@ -18,6 +18,9 @@ module Brightbox
       c.desc "Set image to be publicly visible (true or false)"
       c.flag [:p, "public"]
 
+      c.desc "Set minimum amount of RAM required by this image (MB)"
+      c.flag ["min-ram"]
+
       c.desc "Set image to be deprecated (true or false)"
       c.flag "deprecated"
 
@@ -47,6 +50,8 @@ module Brightbox
 
         params[:public] = true if options[:p] == "true"
         params[:public] = false if options[:p] == "false"
+
+        params[:min_ram] = options["min-ram"].to_i if options["min-ram"]
 
         # If options[:deprecated] isn't specified, leave the status alone
         params[:status] = "deprecated" if options[:deprecated] == "true"

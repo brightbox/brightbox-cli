@@ -91,6 +91,7 @@ module Brightbox
       o[:description] = description if description
       o[:licence_name] = licence_name
       o[:size] = virtual_size
+      o[:min_ram] = min_ram
       o
     end
 

@@ -26,6 +26,7 @@ module Brightbox
             official
             ancestor_id
             licence_name
+            min_ram
           ]
         }
 

@@ -25,6 +25,9 @@ module Brightbox
       c.default_value "false"
       c.flag [:p, "public"]
 
+      c.desc "Set minimum amount of RAM required by this image (MB)"
+      c.flag ["min-ram"]
+
       c.action do |global_options, options, _args|
         raise "You must specify the architecture" unless options[:a]
         raise "You must specify the source filename" unless options[:s]
@@ -39,7 +42,8 @@ module Brightbox
           :name => options[:n], :arch => options[:a],
           :username => options[:u], :source => options[:s],
           :compatibility_mode => compatibility_flag,
-          :description => options[:d], :public => public_flag
+          :description => options[:d], :public => public_flag,
+          :min_ram => options["min-ram"].to_i
         }
 
         image = Image.register(image_options)
