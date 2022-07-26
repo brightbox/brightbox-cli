@@ -68,6 +68,7 @@ module Brightbox
         # through the process.
         #
         password = options[:password] if options[:password]
+        one_time_password = options[:one_time_password] if options[:one_time_password]
 
         # To prevent refreshing tokens for the wrong client (using client_name
         # is pretty random) we set it specially
@@ -80,11 +81,15 @@ module Brightbox
             if refresh_token
               begin
                 service = update_tokens_with_refresh_token
-              rescue Excon::Errors::BadRequest, Excon::Errors::Unauthorized
+              rescue Fog::Brightbox::OAuth2::TwoFactorMissingError, Excon::Errors::BadRequest, Excon::Errors::Unauthorized
                 service = update_tokens_with_user_credentials
               end
             else
-              service = update_tokens_with_user_credentials(password)
+              begin
+                service = update_tokens_with_user_credentials(password: password, one_time_password: one_time_password)
+              rescue Fog::Brightbox::OAuth2::TwoFactorMissingError, Excon::Errors::BadRequest, Excon::Errors::Unauthorized
+                service = update_tokens_with_user_credentials(password: password)
+              end
             end
           else
             service = update_tokens_with_client_credentials
@@ -174,32 +179,30 @@ module Brightbox
         connection
       end
 
-      # This asks the user to input their password
-      def prompt_for_password
-        require "highline"
-        highline = HighLine.new
-        highline.say("Your API credentials have expired, enter your password to update them.")
-        # FIXME: Capture interupts if user aborts
-        highline.ask("Enter your password : ") { |q| q.echo = false }
-      end
-
-      def update_tokens_with_user_credentials(password = nil)
+      def update_tokens_with_user_credentials(password: nil, one_time_password: nil)
         user_application = Brightbox::Config::UserApplication.new(selected_config, client_name)
 
-        password ||= gpg_password
-        password ||= password_helper_password
-        password ||= prompt_for_password
-
-        password = extend_with_two_factor_pin(password)
+        password = discover_password(password: password, expired: true)
 
         # FIXME: options are required to work
         options = {
           :client_id => client_name,
           :email => selected_config["username"],
-          :password => password
+          :password => password,
+          :one_time_password => one_time_password
         }
 
-        user_application.fetch_refresh_token(options)
+        begin
+          user_application.fetch_refresh_token(options)
+        rescue Fog::Brightbox::OAuth2::TwoFactorMissingError
+          options = {
+            :client_id => client_name,
+            :email => selected_config["username"],
+            :password => password,
+            :one_time_password => discover_two_factor_pin
+          }
+          user_application.fetch_refresh_token(options)
+        end
       end
 
       def fetch_refresh_token(options)

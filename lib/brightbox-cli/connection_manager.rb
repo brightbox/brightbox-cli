@@ -27,6 +27,8 @@ module Brightbox
 
     def connection_options
       merged_options = @connection_options.dup
+      merged_options.update(:brightbox_support_two_factor => true)
+
       if @connection&.refresh_token
         merged_options.update(:brightbox_refresh_token => @connection.refresh_token)
       end

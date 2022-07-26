@@ -2,7 +2,7 @@ PATH
   remote: .
   specs:
     brightbox-cli (4.0.0.rc1)
-      fog-brightbox (>= 1.5.0)
+      fog-brightbox (>= 1.6.0)
       fog-core (< 2.0)
       gli (~> 2.21.0)
       highline (~> 1.6.0)
@@ -24,8 +24,8 @@ GEM
       rexml
     diff-lcs (1.5.0)
     dry-inflector (0.2.0)
-    excon (0.92.3)
-    fog-brightbox (1.5.0)
+    excon (0.92.4)
+    fog-brightbox (1.6.0)
       dry-inflector
       fog-core (>= 1.45, < 3.0)
       fog-json

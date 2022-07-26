@@ -28,37 +28,84 @@ describe "brightbox login" do
 
     before do
       remove_config
-      stub_token_request
-      stub_accounts_request
     end
 
-    it "does not error" do
-      expect { output }.to_not raise_error
-      expect(stderr).to_not include("ERROR")
+    context "without correct authentication" do
+      before do
+        stub_request(:post, "#{api_url}/token")
+          .with(
+            body: {
+              grant_type: "password",
+              username: email,
+              password: password
+            }.to_json
+          ).to_return(
+            status: 401,
+            body: { error: "invalid_client" }.to_json
+          )
+      end
+
+      it "does not error" do
+        expect { output }.to_not raise_error
+        expect(stderr).to_not include("ERROR")
+      end
+
+      it "sets up the config" do
+        expect { output }.to_not raise_error
+
+        @config = Brightbox::BBConfig.new
+        @client_section = @config.config[email]
+
+        expect(@client_section["api_url"]).to eql(Brightbox::DEFAULT_API_ENDPOINT)
+        expect(@client_section["username"]).to eql(email)
+
+        expect(@client_section["default_account"]).to be_nil
+      end
+
+      it "requests access tokens" do
+        expect { output }.to_not raise_error
+
+        @config = Brightbox::BBConfig.new :client_name => email
+
+        expect(cached_access_token(@config)).to eql(@config.access_token)
+        expect(cached_refresh_token(@config)).to eql(@config.refresh_token)
+      end
     end
 
-    it "sets up the config" do
-      expect { output }.to_not raise_error
+    context "with correct authentication" do
+      before do
+        stub_token_request
+        stub_accounts_request
+      end
 
-      @config = Brightbox::BBConfig.new
-      @client_section = @config.config[email]
+      it "does not error" do
+        expect { output }.to_not raise_error
+        expect(stderr).to_not include("ERROR")
+      end
 
-      expect(@client_section["api_url"]).to eql(Brightbox::DEFAULT_API_ENDPOINT)
-      expect(@client_section["username"]).to eql(email)
-      expect(@client_section["default_account"]).to eql(default_account)
-    end
+      it "sets up the config" do
+        expect { output }.to_not raise_error
 
-    it "requests access tokens" do
-      expect { output }.to_not raise_error
+        @config = Brightbox::BBConfig.new
+        @client_section = @config.config[email]
 
-      @config = Brightbox::BBConfig.new :client_name => email
+        expect(@client_section["api_url"]).to eql(Brightbox::DEFAULT_API_ENDPOINT)
+        expect(@client_section["username"]).to eql(email)
+        expect(@client_section["default_account"]).to eql(default_account)
+      end
 
-      expect(cached_access_token(@config)).to eql(@config.access_token)
-      expect(cached_refresh_token(@config)).to eql(@config.refresh_token)
-    end
+      it "requests access tokens" do
+        expect { output }.to_not raise_error
 
-    it "does not prompt to rerun the command" do
-      expect(stderr).to_not include("please re-run your command")
+        @config = Brightbox::BBConfig.new :client_name => email
+
+        expect(cached_access_token(@config)).to eql(@config.access_token)
+        expect(cached_refresh_token(@config)).to eql(@config.refresh_token)
+      end
+
+      it "does not prompt to rerun the command" do
+        expect(stderr).to_not include("please re-run your command")
+      end
     end
   end
 
@@ -301,47 +348,50 @@ describe "brightbox login" do
 
   context "when user has 2FA set up" do
     let(:config) { Brightbox::BBConfig.new client_name: email }
-    let(:contents) do
-      <<-EOS
-      [core]
-      default_client = #{client_alias}
 
-      [#{client_alias}]
-      username = #{email}
-      default_account = #{default_account}
-      two_factor = true
-      EOS
-    end
+    context "with existing configuration" do
+      let(:contents) do
+        <<-EOS
+        [core]
+        default_client = #{client_alias}
 
-    context "when no password is given" do
-      let(:argv) { ["login", email] }
-
-      before do
-        config_from_contents(contents)
-        stub_token_request(two_factor: true)
-        stub_accounts_request
-        mock_password_entry(password)
-        mock_otp_entry("123456")
+        [#{client_alias}]
+        username = #{email}
+        default_account = #{default_account}
+        two_factor = true
+        EOS
       end
 
-      it "prompts for the password" do
-        expect { output }.not_to raise_error
-      end
+      context "when no password is given" do
+        let(:argv) { ["login", email] }
 
-      it "does not error" do
-        expect { output }.to_not raise_error
-        expect(stderr).to_not include("ERROR")
-      end
+        before do
+          config_from_contents(contents)
+          stub_token_request(two_factor: true)
+          stub_accounts_request
+          mock_password_entry(password)
+          mock_otp_entry("123456")
+        end
 
-      it "requests access tokens" do
-        expect { output }.to_not raise_error
+        it "prompts for the password" do
+          expect { output }.not_to raise_error
+        end
 
-        expect(cached_access_token(config)).to eql(config.access_token)
-        expect(cached_refresh_token(config)).to eql(config.refresh_token)
-      end
+        it "does not error" do
+          expect { output }.to_not raise_error
+          expect(stderr).to_not include("ERROR")
+        end
 
-      it "does not prompt to rerun the command" do
-        expect(stderr).to_not include("please re-run your command")
+        it "requests access tokens" do
+          expect { output }.to_not raise_error
+
+          expect(cached_access_token(config)).to eql(config.access_token)
+          expect(cached_refresh_token(config)).to eql(config.refresh_token)
+        end
+
+        it "does not prompt to rerun the command" do
+          expect(stderr).to_not include("please re-run your command")
+        end
       end
     end
   end
