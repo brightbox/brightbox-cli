@@ -8,7 +8,7 @@ Gem::Specification.new do |s|
   s.platform    = Gem::Platform::RUBY
   s.authors     = ["John Leach", "Paul Thornthwaite"]
   s.email       = ["john@brightbox.com", "paul@brightbox.com"]
-  s.homepage    = "http://docs.brightbox.com/cli"
+  s.homepage    = "https://www.brightbox.com/cli"
   s.summary     = "The Brightbox cloud management system"
   s.description = "Scripts to interact with the Brightbox cloud API"
   s.license     = "MIT"
