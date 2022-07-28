@@ -11,31 +11,44 @@ Backwards incompatible changes:
 
 Changes:
 
+* Improved Two Factor Authentication (2FA) support resulting in it working
+  automatically without configuration prompting when required. The `two_factor`
+  configuration setting is now ignored
+* The `brightbox login` command will now work when 2FA is enabled for a user
 * Adds Ruby 3.1 and 3.2 (preview) to testing matrix
+* Update `fog-brightbox` to `v1.7.0`
 * Removed references to `Fixnum` from code and dependencies to allow
   testing of Ruby 3.2 support
 * Updates `webmock` from 1.21.0 to 3.14.0
 * Removes `rubyforge` reference from gemspec to remove deprecation warning
 * Remove post install message from gemspec
-* Updated `.dev` TLD used in testing to `.localhost` to avoid problems when the
-  original was commercialised such as local DNS blocked by browsers.
 * Update `gli` to latest version v2.21.0 to clear some deprecations seen under
   later Ruby versions
-* Remove pin for `dry-inflector` added to prevent issues with Ruby < 2.4
 * Update development gems to ensure up to date
-* Update VCR to latest release v2.9.3
-* Update `fog-brightbox` to `v1.5.0`
 * Change `client_id` logging level from info to debug
 * Setup Rubocop to help improve code quality/consistency
+* Updated code based on Rubocop reports resulting in many changes
+* Pin `dry-inflector` to v0.2.0 to prevent issues with Ruby =< 2.5
+* Add support for `min-ram` to `brightbox images` commands
+* Update authors (and emails) in gemspec
+
+Bug fixes:
+
+* Implement `Brightbox::Api#respond_to_missing?` to avoid issues when
+  delegating made `#respond_to?` raise an error
+* `brightbox login` no longer attempts (and fails) to download accounts when
+  authentication has failed
 
 Testing:
 
 * Updated testing/development gems
+* Update VCR to latest release v2.9.3
 * Remove VCR identifier sanitisation as temp dev instance are used and
   squashing IDs cause bug when chain/multiple requests combined
 * RSpec is configured to allow re-runs
 * Timeout testing is dropped to 10s
-
+* Updated `.dev` TLD used in testing to `.localhost` to avoid problems when the
+  original was commercialised such as local DNS blocked by browsers.
 
 ### v3.3.0 / 2021-09-17
 
