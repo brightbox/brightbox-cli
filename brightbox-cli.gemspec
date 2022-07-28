@@ -29,6 +29,11 @@ Gem::Specification.new do |s|
   s.add_dependency "mime-types", "~> 2.6"
   s.add_dependency "multi_json", "~> 1.11.0"
 
+  # Indirect dependency
+  # 0.3 drops support for Ruby < 2.7
+  # 0.2.1 drops support for Ruby < 2.6
+  s.add_dependency "dry-inflector", "= 0.2.0"
+
   s.add_development_dependency "mocha"
   s.add_development_dependency "pry-remote"
   s.add_development_dependency "rake"

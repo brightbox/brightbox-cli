@@ -2,6 +2,7 @@ PATH
   remote: .
   specs:
     brightbox-cli (4.0.0.rc1)
+      dry-inflector (= 0.2.0)
       fog-brightbox (>= 1.6.0)
       fog-core (< 2.0)
       gli (~> 2.21.0)
