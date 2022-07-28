@@ -12,6 +12,7 @@ Gem::Specification.new do |s|
   s.summary     = "The Brightbox cloud management system"
   s.description = "Scripts to interact with the Brightbox cloud API"
   s.license     = "MIT"
+  s.metadata['rubygems_mfa_required'] = 'true'
 
   s.required_ruby_version = ">= 2.5"
 
