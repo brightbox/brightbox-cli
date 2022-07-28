@@ -21,7 +21,6 @@ Gem::Specification.new do |s|
   s.require_paths = ["lib"]
 
   s.add_dependency "fog-brightbox", ">= 1.6.0"
-  s.add_dependency "dry-inflector", "~> 0.2.0" # 0.3 drops support Ruby < 2.7
   s.add_dependency "fog-core", "< 2.0"
   s.add_dependency "gli", "~> 2.21.0"
   s.add_dependency "highline", "~> 1.6.0"
@@ -29,6 +28,11 @@ Gem::Specification.new do |s|
   s.add_dependency "i18n", ">= 0.6", "< 1.11"
   s.add_dependency "mime-types", "~> 2.6"
   s.add_dependency "multi_json", "~> 1.11.0"
+
+  # Indirect dependency
+  # 0.3 drops support for Ruby < 2.7
+  # 0.2.1 drops support for Ruby < 2.6
+  s.add_dependency "dry-inflector", "= 0.2.0"
 
   s.add_development_dependency "mocha"
   s.add_development_dependency "pry-remote"
