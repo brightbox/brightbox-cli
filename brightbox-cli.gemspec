@@ -21,6 +21,7 @@ Gem::Specification.new do |s|
   s.require_paths = ["lib"]
 
   s.add_dependency "fog-brightbox", ">= 1.6.0"
+  s.add_dependency "dry-inflector", "~> 0.2.0" # 0.3 drops support Ruby < 2.7
   s.add_dependency "fog-core", "< 2.0"
   s.add_dependency "gli", "~> 2.21.0"
   s.add_dependency "highline", "~> 1.6.0"
