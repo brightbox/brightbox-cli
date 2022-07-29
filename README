@@ -40,12 +40,12 @@ To browse available resources use the resource name as the command:
 
 === Two factor authentication ===
 
-If you've enabled two factor authentication for your user, you can enable it in
-your config and the CLI will prompt for a two factor pin when needed:
+If you've enabled two factor authentication for your user, you should be
+prompted for a one time password (OTP) when it is required unless you have set
+up a two factor helper (see below).
 
-    [john@example.com]
-    username = john@example.com
-    two_factor = true
+The previous configuration setting `two_factor` is no longer required when
+using v4.0 or greater. This is ignored and can be removed.
 
 === Integrating with a password manager
 
