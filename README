@@ -153,16 +153,6 @@ original `brightbox` (brightbox-deployment) gem.
 So `brightbox-servers` will no longer work. Use the subcommand variation
 `brightbox servers` instead.
 
-== Testing
-
-You should be able to run the specs and features with the following steps:
-
-    $ bundle install
-    $ bundle exec rake
-
-The specs use VCR to playback filtered recordings from real API sessions. This
-process is not perfect, please report an issue
-
 == Alternatives
 
 There are a number of alternative ways to manage Brightbox resources:
@@ -172,6 +162,16 @@ There are a number of alternative ways to manage Brightbox resources:
 * Kubernetes - https://github.com/brightbox/brightbox-cloud-controller-manager
 * fog - https://github.com/fog/fog-brightbox
 * Go - https://github.com/brightbox/gobrightbox
+
+== Testing
+
+You should be able to run the specs and features with the following steps:
+
+    $ bundle install
+    $ bundle exec rake
+
+The specs use VCR to playback filtered recordings from real API sessions. This
+process is not perfect, please report an issue
 
 == Packaging
 
