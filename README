@@ -147,15 +147,11 @@ in the path, just specify the full path to it:
 
 == UPGRADE NOTES
 
-Version 1.0.0 adds a new top level `brightbox` command for the suite.
+Version 4.0.0 removes the older, backward compatible binaries for users of the
+original `brightbox` (brightbox-deployment) gem.
 
-This may clash with our `brightbox` (brightbox-deployment) gem which, before
-version 2.4.0, used `brightbox` as the name for it's binary. Please ensure you
-update your `brightbox` gem to avoid using the wrong command.
-
-We have included backwards compatible binaries for all the older CLI commands
-(brightbox-accounts, brightbox-servers etc...) but recommend getting used to the
-new form.
+So `brightbox-servers` will no longer work. Use the subcommand variation
+`brightbox servers` instead.
 
 == Testing
 
