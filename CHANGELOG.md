@@ -1,6 +1,6 @@
-### v4.0.0 / master
+### v4.0.0 / 2022-08-01
 
-[Full Changelog](https://github.com/brightbox/brightbox-cli/compare/v3.3.0...master)
+[Full Changelog](https://github.com/brightbox/brightbox-cli/compare/v3.3.0...v4.0.0)
 
 Backwards incompatible changes:
 
