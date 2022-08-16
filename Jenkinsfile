@@ -16,6 +16,7 @@ pipeline {
             }
           }
           steps {
+            sh 'gem install bundler:2.1.4'
             sh 'bundle install --deployment'
             sh 'bundle exec rake spec'
           }
@@ -27,6 +28,7 @@ pipeline {
             }
           }
           steps {
+            sh 'gem install bundler:2.1.4'
             sh 'bundle install --deployment'
             sh 'bundle exec rake spec'
           }
