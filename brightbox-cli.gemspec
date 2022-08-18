@@ -28,7 +28,7 @@ Gem::Specification.new do |s|
   s.add_dependency "hirb", "~> 0.6"
   s.add_dependency "i18n", ">= 0.6", "< 1.11"
   s.add_dependency "mime-types", "~> 3.0"
-  s.add_dependency "multi_json", "~> 1.11.0"
+  s.add_dependency "multi_json", "~> 1.11"
 
   # Indirect dependency
   # 0.3 drops support for Ruby < 2.7
