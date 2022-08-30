@@ -114,10 +114,10 @@ module Brightbox
           :flavor_id => type.id,
           :zone_id => zone.to_s,
           :name => options[:n],
-          :user_data => user_data,
-          :server_groups => server_groups.map(&:id)
+          :user_data => user_data
         }
 
+        params[:server_groups] = server_groups.map(&:id) if server_groups.any?
         params[:cloud_ip] = options[:"cloud-ip"] if options.key?(:"cloud-ip")
         params[:disk_encrypted] = options[:"disk-encrypted"] if options.key?(:"disk-encrypted")
 

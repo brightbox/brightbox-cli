@@ -86,6 +86,50 @@ describe "brightbox servers" do
       end
     end
 
+    context "with --server-groups flag" do
+      let(:argv) { %w[servers create --server-groups grp-12345,grp-67890 img-12345] }
+      let(:group_ids) { %w(grp-12345 grp-67890) }
+      let(:group_one) { double(:id => "grp-12345") }
+      let(:group_two) { double(:id => "grp-67890") }
+
+      before do
+        expect(Brightbox::Image).to receive(:find).with("img-12345").and_return(image)
+        expect(Brightbox::Type).to receive(:find_by_handle).and_return(type)
+        expect(Brightbox::ServerGroup).to receive(:find_or_call).with(group_ids).and_return([group_one, group_two])
+      end
+
+      it "requests new server be in both server groups" do
+        stub_request(:post, "http://api.brightbox.localhost/1.0/servers?account_id=acc-12345")
+          .with(:headers => { "Content-Type" => "application/json" },
+                :body => hash_including(:server_groups => group_ids))
+          .and_return(:status => 202, :body => sample_response)
+
+        expect(stderr).to match("Creating a nano")
+        expect(stderr).not_to match("ERROR")
+        expect(stdout).to match("srv-12345")
+      end
+    end
+
+    context "without --server-groups flag" do
+      let(:argv) { %w[servers create img-12345] }
+
+      before do
+        expect(Brightbox::Image).to receive(:find).with("img-12345").and_return(image)
+        expect(Brightbox::Type).to receive(:find_by_handle).and_return(type)
+      end
+
+      it "requests new server be in both server groups" do
+        stub_request(:post, "http://api.brightbox.localhost/1.0/servers?account_id=acc-12345")
+          .with(:headers => { "Content-Type" => "application/json" })
+          .with { |request| hash_excluding("server_groups") === JSON.parse(request.body) }
+          .and_return(:status => 202, :body => sample_response)
+
+        expect(stderr).to match("Creating a nano")
+        expect(stderr).not_to match("ERROR")
+        expect(stdout).to match("srv-12345")
+      end
+    end
+
     def sample_response
       '{
         "id": "srv-12345",
