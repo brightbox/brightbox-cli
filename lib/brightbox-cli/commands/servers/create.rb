@@ -37,6 +37,9 @@ module Brightbox
       c.desc I18n.t("servers.create.cloud_ip.desc")
       c.flag ["cloud-ip"]
 
+      c.desc I18n.t("servers.create.volume_size.desc")
+      c.flag ["volume-size"]
+
       c.action do |global_options, options, args|
         if args.empty?
           raise "You must specify the image_id as the first argument"
@@ -120,6 +123,10 @@ module Brightbox
         params[:server_groups] = server_groups.map(&:id) if server_groups.any?
         params[:cloud_ip] = options[:"cloud-ip"] if options.key?(:"cloud-ip")
         params[:disk_encrypted] = options[:"disk-encrypted"] if options.key?(:"disk-encrypted")
+
+        if options.key?(:"volume-size") && !options[:"volume-size"].nil?
+          params[:volume_size] = options[:"volume-size"].to_i
+        end
 
         servers = Server.create_servers options[:i], params
         render_table(servers, global_options)

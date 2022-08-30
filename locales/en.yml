@@ -144,6 +144,8 @@ en:
       desc: Create servers
       cloud_ip:
         desc: Immediately map a Cloud IP to new server? Either "true" or the identifier of the Cloud IP
+      volume_size:
+        desc: Specify a custom volume size (in MiB) when building a network block storage server
     destroy:
       desc: Destroy servers
     lock:

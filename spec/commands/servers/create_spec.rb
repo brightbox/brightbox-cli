@@ -28,6 +28,24 @@ describe "brightbox servers" do
       end
     end
 
+    context "with image argument" do
+      let(:argv) { %w[servers create img-12345] }
+
+      before do
+        expect(Brightbox::Image).to receive(:find).with("img-12345").and_return(image)
+        expect(Brightbox::Type).to receive(:find_by_handle).and_return(type)
+      end
+
+      it "does not error" do
+        stub_request(:post, "http://api.brightbox.localhost/1.0/servers?account_id=acc-12345")
+          .with(:body => hash_including(image: "img-12345"))
+          .and_return(:status => 202, :body => sample_response)
+
+        expect(stderr).not_to match("ERROR")
+        expect(stdout).to match("srv-12345")
+      end
+    end
+
     context "with --cloud-ip with nominated IP argument" do
       let(:argv) { %w[servers create --cloud-ip cip-12345 img-12345] }
 
@@ -127,6 +145,46 @@ describe "brightbox servers" do
         expect(stderr).to match("Creating a nano")
         expect(stderr).not_to match("ERROR")
         expect(stdout).to match("srv-12345")
+      end
+    end
+
+    context "with --volume-size switch", vcr: false do
+      context "with network storage" do
+        let(:argv) { %w[servers create --type=2gb.nbs --volume-size=10000 img-12345] }
+
+        before do
+          expect(Brightbox::Image).to receive(:find).with("img-12345").and_return(image)
+          expect(Brightbox::Type).to receive(:find_by_handle).and_return(type)
+        end
+
+        it "requests new server with a custom volume size" do
+          stub_request(:post, "http://api.brightbox.localhost/1.0/servers?account_id=acc-12345")
+            .with(:headers => { "Content-Type" => "application/json" },
+                  body: hash_including(volumes: [{ image: "img-12345", size: 10000 }]))
+            .and_return(status: 202, body: sample_response)
+
+          expect(stderr).not_to match("ERROR")
+          expect(stdout).to match("srv-12345")
+        end
+      end
+
+      context "without network storage type" do
+        let(:argv) { %w[servers create --type=nano --volume-size=10000 img-12345] }
+
+        before do
+          expect(Brightbox::Image).to receive(:find).with("img-12345").and_return(image)
+          expect(Brightbox::Type).to receive(:find_by_handle).and_return(type)
+        end
+
+        it "requests new server with a custom volume size" do
+          stub_request(:post, "http://api.brightbox.localhost/1.0/servers?account_id=acc-12345")
+            .with(:headers => { "Content-Type" => "application/json" },
+                  body: hash_including(volumes: [{ image: "img-12345", size: 10000 }]))
+            .and_return(status: 202, body: sample_response)
+
+          expect(stderr).not_to match("ERROR")
+          expect(stdout).to match("srv-12345")
+        end
       end
     end
 
