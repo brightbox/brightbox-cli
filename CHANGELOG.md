@@ -1,3 +1,11 @@
+### v4.1.0 / 2022-08-01
+
+[Full Changelog](https://github.com/brightbox/brightbox-cli/compare/v4.0.0...v4.1.0)
+
+Changes:
+
+* Add `volume-size` to `servers create` to allow passing of arbitary sizes for network based storage types.
+
 ### v4.0.0 / 2022-08-01
 
 [Full Changelog](https://github.com/brightbox/brightbox-cli/compare/v3.3.0...v4.0.0)
