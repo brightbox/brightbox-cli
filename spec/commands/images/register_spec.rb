@@ -23,14 +23,63 @@ describe "brightbox images" do
       end
     end
 
+    context "without any source" do
+      let(:argv) { %w[images register --arch x86_64] }
+
+      it "does not error" do
+        expect { output }.to_not raise_error
+
+        expect(stderr).to match("ERROR: You must specify one of 'server', 'source', 'url', or 'volume'")
+        expect(stdout).to match("")
+      end
+    end
+
     context "with mutually exclusive arguments" do
       let(:argv) { %w[images register --arch x86_64 --source test.img --url http://example.com/test.img] }
 
       it "does not error" do
         expect { output }.to_not raise_error
 
-        expect(stderr).to match("ERROR: You cannot register from multiple sources. Use either 'source' or 'url'")
+        expect(stderr).to match("ERROR: You cannot register from multiple sources. Use either 'source', 'server', 'url', or 'volume'")
         expect(stdout).to match("")
+      end
+    end
+
+    context "with 'server' argument" do
+      let(:argv) { %w[images register --arch x86_64 --server srv-12345] }
+
+      before do
+        expect(Brightbox::Image).to receive(:register)
+          .with(hash_including(
+                  arch: "x86_64",
+                  server: "srv-12345"
+                ))
+          .and_call_original
+
+        stub_request(:post, "#{api_url}/1.0/images?account_id=acc-12345")
+          .with(body: /"server":"srv-12345"/)
+          .to_return(
+            status: 201,
+            body: {
+              id: "img-12345"
+            }.to_json
+          )
+
+        stub_request(:get, "#{api_url}/1.0/images/img-12345?account_id=acc-12345")
+          .to_return(
+            status: 200,
+            body: {
+              id: "img-12345"
+            }.to_json
+          )
+      end
+
+      it "does not error" do
+        expect { output }.to_not raise_error
+
+        expect(stderr).to match("")
+        expect(stderr).not_to match("ERROR")
+        expect(stdout).to match("img-12345")
       end
     end
 
@@ -85,6 +134,44 @@ describe "brightbox images" do
 
         stub_request(:post, "#{api_url}/1.0/images?account_id=acc-12345")
           .with(body: %r{"http_url":"https://example.com/os-22.iso"})
+          .to_return(
+            status: 201,
+            body: {
+              id: "img-12345"
+            }.to_json
+          )
+
+        stub_request(:get, "#{api_url}/1.0/images/img-12345?account_id=acc-12345")
+          .to_return(
+            status: 200,
+            body: {
+              id: "img-12345"
+            }.to_json
+          )
+      end
+
+      it "does not error" do
+        expect { output }.to_not raise_error
+
+        expect(stderr).to match("")
+        expect(stderr).not_to match("ERROR")
+        expect(stdout).to match("img-12345")
+      end
+    end
+
+    context "with 'volume' argument" do
+      let(:argv) { %w[images register --arch x86_64 --volume vol-12345] }
+
+      before do
+        expect(Brightbox::Image).to receive(:register)
+          .with(hash_including(
+                  arch: "x86_64",
+                  volume: "vol-12345"
+                ))
+          .and_call_original
+
+        stub_request(:post, "#{api_url}/1.0/images?account_id=acc-12345")
+          .with(body: /"volume":"vol-12345"/)
           .to_return(
             status: 201,
             body: {

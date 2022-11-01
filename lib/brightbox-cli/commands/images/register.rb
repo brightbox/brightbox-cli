@@ -17,8 +17,14 @@ module Brightbox
       c.desc "Source filename of the image you uploaded to the image library"
       c.flag [:s, "source"]
 
+      c.desc "Source server ID to create image from"
+      c.flag ["server"]
+
       c.desc "Source URL of the image to download via HTTP"
       c.flag ["url"]
+
+      c.desc "Source volume ID to create image from"
+      c.flag ["volume"]
 
       c.desc "Set image mode to be either 'virtio' or 'compatibility'"
       c.default_value "virtio"
@@ -36,12 +42,13 @@ module Brightbox
         raise "Mode must be 'virtio' or 'compatibility'" unless options[:m] == "virtio" || options[:m] == "compatibility"
         raise "Public must be true or false" unless options[:p] == "true" || options[:p] == "false"
 
-        source_options = [:s, :url].map { |k| options[k] }
+        # Sources are mutually exclusive but at least one is required from this list
+        source_options = [:s, :server, :url, :volume].map { |k| options[k] }
 
         if source_options.none?
-          raise "You must specify the 'source' filename or a 'url'"
+          raise "You must specify one of 'server', 'source', 'url', or 'volume'"
         elsif !source_options.one?
-          raise "You cannot register from multiple sources. Use either 'source' or 'url'"
+          raise "You cannot register from multiple sources. Use either 'source', 'server', 'url', or 'volume'"
         end
 
         compatibility_flag = options[:m] == "compatibility"
@@ -58,11 +65,11 @@ module Brightbox
           :username => options[:u]
         }
 
-        if options[:url]
-          image_options[:http_url] = options[:url]
-        else
-          image_options[:source] = options[:s]
-        end
+        # These should be limited to one by the mutually exclusive check earlier
+        image_options[:http_url] = options[:url] if options[:url]
+        image_options[:server] = options[:server] if options[:server]
+        image_options[:source] = options[:s] if options[:s]
+        image_options[:volume] = options[:volume] if options[:volume]
 
         image = Image.register(image_options)
 
