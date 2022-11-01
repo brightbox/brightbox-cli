@@ -1,10 +1,24 @@
+### v4.2.0 / 2022-11-01
+
+[Full Changelog](https://github.com/brightbox/brightbox-cli/compare/v4.1.0...v4.2.0)
+
+Changes:
+
+* Adds three new, mutually exclusive options to `images create` to specify
+  different sources:
+  * `url` can specify source as a URL for a HTTP or HTTPS download rather than
+     an existing FTP upload.
+  * `server` can specify a server ID to create a snapshot image from.
+  * `volume` can specify a volume ID to create a snapshot image from.
+
 ### v4.1.0 / 2022-08-01
 
 [Full Changelog](https://github.com/brightbox/brightbox-cli/compare/v4.0.0...v4.1.0)
 
 Changes:
 
-* Add `volume-size` to `servers create` to allow passing of arbitary sizes for network based storage types.
+* Adds `volume-size` to `servers create` to allow passing of arbitrary sizes for
+  network based storage types.
 
 ### v4.0.0 / 2022-08-01
 
