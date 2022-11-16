@@ -1,13 +1,12 @@
 module Brightbox
+  desc I18n.t("login.desc")
+  arg :email
   command [:login] do |cmd|
-    cmd.desc I18n.t("login.desc")
-    cmd.arg_name "email"
-
     cmd.desc "password, if not specified you will be prompted"
-    cmd.flag [:p, "password"]
+    cmd.flag [:p, "password"], arg_name: "password"
 
-    cmd.desc "default account"
-    cmd.flag [:"default-account"]
+    cmd.desc "Set a default account"
+    cmd.flag [:"default-account"], arg_name: "acc-12345"
 
     cmd.flag [:"application-id"]
     cmd.flag [:"application-secret"]
