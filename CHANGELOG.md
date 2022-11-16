@@ -1,3 +1,12 @@
+### v4.2.1 / 2022-11-16
+
+[Full Changelog](https://github.com/brightbox/brightbox-cli/compare/v4.2.0...v4.2.1)
+
+Bug fixes:
+
+* Bumped version of `highline` gem to fix issue when prompting for password during `brightbox login` command on Ruby 3.0+.
+* Fixed help output for `brightbox login` by correcting DSL declaration.
+
 ### v4.2.0 / 2022-11-01
 
 [Full Changelog](https://github.com/brightbox/brightbox-cli/compare/v4.1.0...v4.2.0)
