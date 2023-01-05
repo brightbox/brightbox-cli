@@ -56,6 +56,7 @@ module Brightbox
   autoload :DatabaseType, File.expand_path("brightbox-cli/database_type", __dir__)
   autoload :DatabaseServer, File.expand_path("brightbox-cli/database_server", __dir__)
   autoload :DatabaseSnapshot, File.expand_path("brightbox-cli/database_snapshot", __dir__)
+  autoload :Volume, File.expand_path("brightbox-cli/volume", __dir__)
   autoload :Token, File.expand_path("brightbox-cli/token", __dir__)
 
   module Config

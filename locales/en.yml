@@ -155,7 +155,7 @@ en:
     reboot:
       desc: Reboot servers (OS reboot issued)
     reset:
-      desc: Reset servers (Hardward reset issued)
+      desc: Reset servers (Hardware reset issued)
     show:
       desc: Show servers
     shutdown:
@@ -245,3 +245,59 @@ en:
       desc: Show users
     update:
       desc: Update a user
+  volumes:
+    desc: Manage an account's volumes
+    args:
+      one: <volume>
+      optional: [<volume>...]
+      many: <volume>...
+      specify_one_id_first: You must specify the volume ID as the first argument
+      specify_many_ids: You must specify volume IDs as arguments
+      unknown_id: Couldn't find %{volume}
+    options:
+      boot: Set this volume as boot volume on server
+      delete_with_server: Set volume to be deleted with a server if attached
+      encrypted: Encrypt the volume
+      fs_label: Filesystem label, visible from within some OS
+      fs_type: Filesystem type to use to create blank volume
+      image: Create volume from existing Image ID
+      serial: Customisable serial number for volume
+      size: Volume size in MB
+    attach:
+      desc: Attach a volume to an existing server
+      args: <volume> <server>
+      specify_server_id_second: "You must specify the server ID to attach to as the second argument"
+      acting: Attaching %{volume}
+    copy:
+      desc: Create a new volume from an existing one
+      acting: Copying %{volume}
+    create:
+      desc: Create a new volume
+      acting: Creating volume
+      image_or_type_required: An 'image' or 'fs-type' option must be passed
+      either_image_or_type: An 'image' and 'fs-type' can not be passed together
+    destroy:
+      desc: Destroy one or more volumes
+      acting: Destroying %{volume}
+    detach:
+      desc: Detach a volume from a server
+      acting: Detaching %{volume}
+    list:
+      desc: List all volumes or limit using passed IDs
+    lock:
+      desc: Lock volumes
+      acting: Locking %{volume}
+    resize:
+      desc: Resize a volume
+      size_option_needed: A 'size' option is required
+      acting: Resizing %{volume}
+    show:
+      desc: Show details about multiple volumes
+    unlock:
+      desc: Unlock volumes
+      acting: Unlocking %{volume}
+    update:
+      desc: Update a volume
+      acting: Updating %{volume}
+
+
