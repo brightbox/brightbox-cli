@@ -1,3 +1,15 @@
+### v4.3.0 / 2023-01-11
+
+[Full Changelog](https://github.com/brightbox/brightbox-cli/compare/v4.2.1...v4.3.0)
+
+Enhancements:
+
+* Adds `volumes` subcommand for Volume management.
+
+Changes:
+
+* Update `fog-brightbox` to `v1.7.0`
+
 ### v4.2.1 / 2022-11-16
 
 [Full Changelog](https://github.com/brightbox/brightbox-cli/compare/v4.2.0...v4.2.1)
@@ -11,7 +23,7 @@ Bug fixes:
 
 [Full Changelog](https://github.com/brightbox/brightbox-cli/compare/v4.1.0...v4.2.0)
 
-Changes:
+Enhancements:
 
 * Adds three new, mutually exclusive options to `images create` to specify
   different sources:
@@ -24,7 +36,7 @@ Changes:
 
 [Full Changelog](https://github.com/brightbox/brightbox-cli/compare/v4.0.0...v4.1.0)
 
-Changes:
+Enhancements:
 
 * Adds `volume-size` to `servers create` to allow passing of arbitrary sizes for
   network based storage types.
