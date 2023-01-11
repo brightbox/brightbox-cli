@@ -1,4 +1,5 @@
 module Brightbox
+  desc I18n.t("volumes.desc")
   command [:volumes] do |cmd|
     cmd.desc I18n.t("volumes.attach.desc")
     cmd.arg_name I18n.t("volumes.attach.args")
