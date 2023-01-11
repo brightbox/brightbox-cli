@@ -249,7 +249,7 @@ en:
     desc: Manage an account's volumes
     args:
       one: <volume>
-      optional: [<volume>...]
+      optional: "[<volume>...]"
       many: <volume>...
       specify_one_id_first: You must specify the volume ID as the first argument
       specify_many_ids: You must specify volume IDs as arguments
