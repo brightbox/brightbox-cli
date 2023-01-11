@@ -1,3 +1,11 @@
+### v4.3.1 / 2023-01-11
+
+[Full Changelog](https://github.com/brightbox/brightbox-cli/compare/v4.3.0...v4.3.1)
+
+Bug fixes:
+
+* Fix `help` output crashing when encountering Array in locale file.
+
 ### v4.3.0 / 2023-01-11
 
 [Full Changelog](https://github.com/brightbox/brightbox-cli/compare/v4.2.1...v4.3.0)

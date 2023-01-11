@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    brightbox-cli (4.3.0)
+    brightbox-cli (4.3.1)
       dry-inflector (= 0.2.0)
       fog-brightbox (>= 1.9.1)
       fog-core (< 2.0)
