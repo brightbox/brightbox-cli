@@ -31,7 +31,19 @@ module Brightbox
         row_attributes[:server_groups] = server_groups.map { |sg| sg["id"] }.join(", ")
       end
 
+      row_attributes[:volumes] = volume_ids if volumes
+
       row_attributes
+    end
+
+    def volume_ids
+      volumes.map do |vol|
+        if vol["boot"] == true
+          "*#{vol['id']}*"
+        else
+          vol["id"]
+        end
+      end.join(", ")
     end
 
     def self.default_field_order
@@ -65,6 +77,7 @@ module Brightbox
         cloud_ipv6s
         snapshots
         server_groups
+        volumes
       ]
     end
   end
