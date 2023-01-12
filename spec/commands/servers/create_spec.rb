@@ -38,7 +38,10 @@ describe "brightbox servers" do
 
       it "does not error" do
         stub_request(:post, "http://api.brightbox.localhost/1.0/servers?account_id=acc-12345")
-          .with(:body => hash_including(image: "img-12345"))
+          .with(:body => {
+            image: "img-12345",
+            server_type: "typ-12345"
+          })
           .and_return(:status => 202, :body => sample_response)
 
         expect(stderr).not_to match("ERROR")
@@ -94,8 +97,12 @@ describe "brightbox servers" do
 
       it "requests new server with encryption at rest enabled" do
         stub_request(:post, "http://api.brightbox.localhost/1.0/servers?account_id=acc-12345")
-          .with(:headers => { "Content-Type" => "application/json" },
-                :body => hash_including(:disk_encrypted => true))
+          .with(headers: { "Content-Type" => "application/json" },
+                body: {
+                  disk_encrypted: true,
+                  image: "img-12345",
+                  server_type: "typ-12345"
+                })
           .and_return(:status => 202, :body => sample_response)
 
         expect(stderr).to match("Creating a nano")

@@ -28,7 +28,6 @@ module Brightbox
       c.switch %i[e base64], :negatable => true
 
       c.desc "Enable encryption at rest for disk"
-      c.default_value false
       c.switch ["disk-encrypted"], :negatable => false
 
       c.desc "Server groups to place server in - comma delimited list"
