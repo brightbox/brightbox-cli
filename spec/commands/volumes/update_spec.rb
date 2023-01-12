@@ -46,7 +46,6 @@ describe "brightbox volumes update" do
           id: "vol-908us",
           name: "Old",
           description: nil,
-          delete_with_server: true,
           serial: "vol-908us"
         )
       )
