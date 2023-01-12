@@ -23,6 +23,7 @@ end
 require "multi_json"
 require "date"
 require "gli"
+require "gli_patches"
 require "i18n"
 require "fog/brightbox"
 

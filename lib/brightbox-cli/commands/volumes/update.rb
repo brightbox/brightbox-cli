@@ -8,8 +8,7 @@ module Brightbox
       c.flag %i[d description]
 
       c.desc I18n.t("volumes.options.delete_with_server")
-      c.default_value :ignore # So we can discard unless deliberately passed
-      c.switch ["delete-with-server"], negatable: true
+      c.switch [:"delete-with-server"], ignore_default: true
 
       c.desc I18n.t("options.name.desc")
       c.flag %i[n name]
@@ -28,8 +27,8 @@ module Brightbox
 
         # Switches will always appear in the options so we need a non-boolean
         # setting to determine if the user did not add it to their command
-        unless options["delete-with-server"] == :ignore
-          params[:delete_with_server] = options["delete-with-server"]
+        unless options[:"delete-with-server"].nil?
+          params[:delete_with_server] = options[:"delete-with-server"]
         end
 
         params[:description] = options[:description] if options[:description]

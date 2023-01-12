@@ -17,7 +17,7 @@ module Brightbox
       c.switch %i[e base64], :negatable => true
 
       c.desc "Use compatibility mode"
-      c.switch [:"compatibility-mode"], :negatable => true
+      c.switch [:"compatibility-mode"], ignore_default: true
 
       c.desc "Server groups to place server in - comma delimited list"
       c.flag [:g, "server-groups"]

@@ -50,7 +50,7 @@ module Brightbox
       c.switch ["remove-ssl"], :negatable => false
 
       c.desc "Enable SSL v3 support"
-      c.switch ["sslv3"]
+      c.switch ["sslv3"], ignore_default: true
 
       c.action do |global_options, options, args|
         lb_id = args.shift
