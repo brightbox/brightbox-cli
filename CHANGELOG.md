@@ -1,3 +1,26 @@
+### v4.3.2 / 2023-01-12
+
+[Full Changelog](https://github.com/brightbox/brightbox-cli/compare/v4.3.1...v4.3.2)
+
+Bug fixes:
+
+* Declared top level help for `volumes` subcommand.
+* Fix `volumes update --delete-with-server` switch.
+* Fix `lbs update --sslv3` switch.
+* Fix `servers update --compatibility-mode` switch.
+
+Changes:
+
+* Added a `ignore_default` option to GLI DSL, by monkey patching, to prevent
+  unexpected switches from interfering with API calls. In some cases it was
+  impossible to determine if `--feature` or `--no-feature` had been used in the
+  command OR added as a default in GLI. This meant `update` commands would always
+  send `feature: false` in API requests even when updating names and other fields.
+  This could clear setting unexpectedly due to the behaviour.
+* Test `servers create --compatibility-mode` switch.
+* Test `cloudips update --delete-reverse-dns` switch.
+* Test `sql instances --remove-snapshots-schedule` switch.
+
 ### v4.3.1 / 2023-01-11
 
 [Full Changelog](https://github.com/brightbox/brightbox-cli/compare/v4.3.0...v4.3.1)
