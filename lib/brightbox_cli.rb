@@ -53,6 +53,7 @@ module Brightbox
   autoload :FirewallRule, File.expand_path("brightbox-cli/firewall_rule", __dir__)
   autoload :FirewallRules, File.expand_path("brightbox-cli/firewall_rules", __dir__)
   autoload :Collaboration, File.expand_path("brightbox-cli/collaboration", __dir__)
+  autoload :ConfigMap, File.expand_path("brightbox-cli/config_map", __dir__)
   autoload :UserCollaboration, File.expand_path("brightbox-cli/user_collaboration", __dir__)
   autoload :DatabaseType, File.expand_path("brightbox-cli/database_type", __dir__)
   autoload :DatabaseServer, File.expand_path("brightbox-cli/database_server", __dir__)

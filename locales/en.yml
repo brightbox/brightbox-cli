@@ -51,6 +51,39 @@ en:
       desc: Remove an API client from config
     user_add:
       desc: Add new user credentials to config
+  configmaps:
+    desc: Manage config maps
+    args:
+      one: <configmap>
+      optional: "[<configmap>...]"
+      many: <configmap>...
+      specify_one_id_first: You must specify the config map ID as the first argument
+      specify_many_ids: You must specify config map IDs as arguments
+      unknown_id: Couldn't find %{config_map}
+    options:
+      data_args: You can only access data for a single config map at a time
+      data_file: A path to a file contain a JSON object containing key/values, or '-' for STDIO
+      data_string: String representing a valid JSON object
+      data_output: Return the config map data key/values
+      data_format: "Format to return 'data' in: 'json' (default) or 'text'"
+      format_no_data: The 'format' option can only be used with 'data'
+      bad_data: Config map data was not valid JSON
+      multiple_data: Config map data can only be passed by either 'data' or 'data-file'
+    create:
+      desc: Create a config map
+      acting: Creating config map
+      data_required: Config map data is required as 'data' option
+    destroy:
+      desc: Destroy config maps
+      acting: Destroying %{config_map}
+      failed: Failed to destroy %{config_map}
+    list:
+      desc: List config maps
+    show:
+      desc: Show config maps
+    update:
+      desc: Update a config map
+      acting: Updating %{config_map}
   firewall:
     policies:
       desc: Manage firewall policies
