@@ -207,6 +207,14 @@ en:
     desc: Manage an account's Cloud SQL instances and snapshots
     instances:
       desc: Manage Cloud SQL instances
+      args:
+        one: <sql-instance>
+        optional: "[<sql-instance>...]"
+        many: <sql-instance>...
+        specify_one_id_first: You must specify the SQL instance ID as the first argument
+        specify_many_ids: You must specify SQL instance IDs as arguments
+        invalid: You must specify a valid SQL instance ID as the first argument
+        unknown_id: Couldn't find %{database_server}
       options:
         allow_access:
           desc: Comma separated list of IPs or IDs for servers or groups to allow access
@@ -230,6 +238,7 @@ en:
           desc: Clear an existing snapshots schedule
         type:
           desc: ID of a Cloud SQL type
+          invalid: Cloud SQL type format is invalid
         zone:
           desc: Zone to locate the instance in
       create:
@@ -240,8 +249,16 @@ en:
         desc: Lock Cloud SQL instances
       list:
         desc: List Cloud SQL instances
+      reset:
+        desc: Reset a Cloud SQL instance
+        acting: Resetting %{database_server}
+        failed: Could not reset %{database_server}
       reset_password:
         desc: Reset the admin password of a Cloud SQL instance
+      resize:
+        desc: Resize a Cloud SQL instance to use a new type
+        acting: Resizing %{database_server}
+        failed: Could not resize %{database_server}
       show:
         desc: Show details of Cloud SQL instances
       snapshot:

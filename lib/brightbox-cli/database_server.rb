@@ -24,8 +24,16 @@ module Brightbox
       self
     end
 
+    def reset
+      fog_model.reset
+    end
+
     def reset_password
       fog_model.reset_password
+    end
+
+    def resize(options)
+      fog_model.resize(options[:new_type])
     end
 
     def destroy

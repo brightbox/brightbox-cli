@@ -3,7 +3,7 @@ PATH
   specs:
     brightbox-cli (4.4.0)
       dry-inflector (= 0.2.0)
-      fog-brightbox (>= 1.10.0)
+      fog-brightbox (>= 1.11.0)
       fog-core (< 2.0)
       gli (~> 2.21)
       highline (~> 2.0)
@@ -26,7 +26,7 @@ GEM
     diff-lcs (1.5.0)
     dry-inflector (0.2.0)
     excon (0.97.2)
-    fog-brightbox (1.10.0)
+    fog-brightbox (1.11.0)
       dry-inflector
       fog-core (>= 1.45, < 3.0)
       fog-json
