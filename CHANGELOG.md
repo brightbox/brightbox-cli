@@ -1,3 +1,12 @@
+### v4.5.0.rc1 / 2023-01-26
+
+[Full Changelog](https://github.com/brightbox/brightbox-cli/compare/v4.4.0...v4.5.0)
+
+Enhancements:
+
+* Added `sql instances reset` subcommand for restarting DBMS on a database server.
+* Added `sql instances resize` subcommand for increasing database server resources.
+
 ### v4.4.0 / 2023-01-26
 
 [Full Changelog](https://github.com/brightbox/brightbox-cli/compare/v4.3.2...v4.4.0)
