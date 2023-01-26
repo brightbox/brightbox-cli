@@ -1,3 +1,11 @@
+### v4.4.0 / 2023-01-26
+
+[Full Changelog](https://github.com/brightbox/brightbox-cli/compare/v4.3.2...v4.4.0)
+
+Enhancements:
+
+* Added `configmaps` subcommand for manage config management.
+
 ### v4.3.2 / 2023-01-12
 
 [Full Changelog](https://github.com/brightbox/brightbox-cli/compare/v4.3.1...v4.3.2)
