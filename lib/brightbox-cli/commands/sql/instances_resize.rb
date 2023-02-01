@@ -1,7 +1,7 @@
 module Brightbox
   command [:sql] do |product|
     product.command [:instances] do |cmd|
-      cmd.desc I18n.t("sql.instances.reset_password.desc")
+      cmd.desc I18n.t("sql.instances.resize.desc")
       cmd.arg_name "server-id"
       cmd.command [:resize] do |c|
         # Database type
