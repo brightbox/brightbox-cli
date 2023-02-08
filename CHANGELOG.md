@@ -56,7 +56,7 @@ Enhancements:
 
 Changes:
 
-* Update `fog-brightbox` to `v1.7.0`
+* Update `fog-brightbox` to `v1.9.1`
 
 ### v4.2.1 / 2022-11-16
 
