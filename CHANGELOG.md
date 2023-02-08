@@ -1,6 +1,18 @@
+### v4.5.0 / 2023-02-08
+
+[Full Changelog](https://github.com/brightbox/brightbox-cli/compare/v4.5.0.rc1...v4.5.0)
+
+Bug fixes:
+
+* Correct locale references to `sql instances reset` and `resize` help text.
+
+Changes:
+
+* Corrected previous CHANGELOG entry related to the update to `fog-brightbox` to show `v1.9.1` not `v1.7.0`
+
 ### v4.5.0.rc1 / 2023-01-26
 
-[Full Changelog](https://github.com/brightbox/brightbox-cli/compare/v4.4.0...v4.5.0)
+[Full Changelog](https://github.com/brightbox/brightbox-cli/compare/v4.4.0...v4.5.0.rc1)
 
 Enhancements:
 
