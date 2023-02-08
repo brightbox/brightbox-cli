@@ -25,7 +25,7 @@ Enhancements:
 
 Enhancements:
 
-* Added `configmaps` subcommand for manage config management.
+* Added `configmaps` subcommand for managing config map resources.
 
 ### v4.3.2 / 2023-01-12
 
