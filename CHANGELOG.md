@@ -1,3 +1,16 @@
+### v4.6.0 / 2023-02-22
+
+[Full Changelog](https://github.com/brightbox/brightbox-cli/compare/v4.5.0...v4.6.0)
+
+Changes:
+
+* Remove `accounts ftp_reset_password` subcommand. The FTP service has been
+  retired so the command would receive an error from the API.
+* Remove `--source` option from `images register`. This was tied to the FTP
+  based registration which is no longer supported. Using `url` on a HTTP
+  source is now the preferred option for custom uploads.
+* Update `mime-types-data` gem to
+
 ### v4.5.0 / 2023-02-08
 
 [Full Changelog](https://github.com/brightbox/brightbox-cli/compare/v4.5.0.rc1...v4.5.0)
