@@ -14,8 +14,6 @@ en:
       desc: List accounts
     remove:
       desc: Refuses or removes an account collaboration
-    reset_ftp_password:
-      desc: Reset an account's FTP Library password
     show:
       desc: Show accounts
   cloudips:

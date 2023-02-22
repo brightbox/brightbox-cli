@@ -22,8 +22,6 @@ module Brightbox
             ram_used
             lb_limit
             ram_free
-            library_ftp_host
-            library_ftp_user
           ]
         )
 
