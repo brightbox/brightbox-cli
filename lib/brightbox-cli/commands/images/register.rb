@@ -14,9 +14,6 @@ module Brightbox
       c.desc "Architecture of the image (i686 or x86_64)"
       c.flag [:a, "arch"]
 
-      c.desc "Source filename of the image you uploaded to the image library"
-      c.flag [:s, "source"]
-
       c.desc "Source server ID to create image from"
       c.flag ["server"]
 
@@ -46,9 +43,9 @@ module Brightbox
         source_options = [:s, :server, :url, :volume].map { |k| options[k] }
 
         if source_options.none?
-          raise "You must specify one of 'server', 'source', 'url', or 'volume'"
+          raise "You must specify one of 'server', 'url', or 'volume'"
         elsif !source_options.one?
-          raise "You cannot register from multiple sources. Use either 'source', 'server', 'url', or 'volume'"
+          raise "You cannot register from multiple sources. Use either 'server', 'url', or 'volume'"
         end
 
         compatibility_flag = options[:m] == "compatibility"
@@ -68,7 +65,6 @@ module Brightbox
         # These should be limited to one by the mutually exclusive check earlier
         image_options[:http_url] = options[:url] if options[:url]
         image_options[:server] = options[:server] if options[:server]
-        image_options[:source] = options[:s] if options[:s]
         image_options[:volume] = options[:volume] if options[:volume]
 
         image = Image.register(image_options)
