@@ -9,7 +9,7 @@ Changes:
 * Remove `--source` option from `images register`. This was tied to the FTP
   based registration which is no longer supported. Using `url` on a HTTP
   source is now the preferred option for custom uploads.
-* Update `mime-types-data` gem to
+* Update `mime-types-data` gem to `3.2023.0218.1`
 
 ### v4.5.0 / 2023-02-08
 
