@@ -17,6 +17,7 @@ module Brightbox
       if image
         row_attributes[:image_name] = image.name
         row_attributes[:arch] = image.arch
+        row_attributes[:image_username] = image.username
       end
 
       row_attributes[:private_ips] = interfaces.map { |i| i["ipv4_address"] }.join(", ")
@@ -65,6 +66,7 @@ module Brightbox
         compatibility_mode
         image
         image_name
+        image_username
         arch
         private_ips
         ipv6_address

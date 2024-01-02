@@ -29,6 +29,9 @@ describe Brightbox::Server do
         expect(output.stdout).to include("hostname: #{@server.id}")
         expect(output.stdout).to include("ipv6_hostname: ipv6.#{@server.id}.gb1.brightbox.com")
         expect(output.stdout).to include("fqdn: #{@server.id}.gb1.brightbox.com")
+
+        expect(output.stdout).to include("image: img-12345")
+        expect(output.stdout).to include("image_username: ubuntu")
       end
     end
   end
