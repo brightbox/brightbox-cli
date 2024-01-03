@@ -1,3 +1,11 @@
+### v4.7.0 / 2024-01-03
+
+[Full Changelog](https://github.com/brightbox/brightbox-cli/compare/v4.6.0...v4.7.0)
+
+Changes:
+
+* Expose `image_username` to `servers show` output
+
 ### v4.6.0 / 2023-02-22
 
 [Full Changelog](https://github.com/brightbox/brightbox-cli/compare/v4.5.0...v4.6.0)
