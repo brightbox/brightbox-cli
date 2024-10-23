@@ -71,8 +71,6 @@ module Brightbox
 
           # Wot we use to read the data, be it from stdin or a file on disk
           file_handler = lambda do |fh|
-            raise "User data file too big (>16k)" if fh.stat.size > 16 * 1024
-
             user_data = fh.read
           end
           # Figure out how to invoke file_handler, and then invoke it
@@ -84,11 +82,11 @@ module Brightbox
         end
 
         if user_data
+          raise "User data too big (>16k)" if user_data.size > 16 * 1024
           if options[:e]
             require "base64"
             user_data = Base64.encode64(user_data)
           end
-          raise "User data too big (>16k)" if user_data.size > 16 * 1024
         end
 
         # Split server groups into array of identifiers (or empty array)
