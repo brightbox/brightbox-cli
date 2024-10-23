@@ -195,6 +195,58 @@ describe "brightbox servers" do
       end
     end
 
+    context "with --user-data flag" do
+      before do
+        expect(Brightbox::Image).to receive(:find).with("img-12345").and_return(image)
+        expect(Brightbox::Type).to receive(:find_by_handle).and_return(type)
+      end
+
+      context "with user data string within limit" do
+        let(:argv) { ["servers", "create", "--user-data", user_data, "--no-base64", "img-12345"] }
+        let(:user_data) { ("a" * 65_535) }
+
+        it "requests new server with user data" do
+          stub_request(:post, "http://api.brightbox.localhost/1.0/servers?account_id=acc-12345")
+            .with(:headers => { "Content-Type" => "application/json" },
+                  body: hash_including(user_data: user_data))
+            .and_return(status: 202, body: sample_response)
+
+          aggregate_failures do
+            expect(stderr).not_to match("ERROR")
+            expect(stdout).to match("srv-12345")
+          end
+        end
+      end
+
+      context "with user data string encoded by client" do
+        let(:argv) { ["servers", "create", "--user-data", user_data, "--base64", "img-12345"] }
+        let(:encoded_user_data) { Base64.encode64(user_data) }
+        let(:user_data) { ("a" * 48_345) }
+
+        it "requests new server with user data" do
+          stub_request(:post, "http://api.brightbox.localhost/1.0/servers?account_id=acc-12345")
+            .with(:headers => { "Content-Type" => "application/json" },
+                  body: hash_including(user_data: encoded_user_data))
+            .and_return(status: 202, body: sample_response)
+
+          aggregate_failures do
+            expect(stderr).not_to match("ERROR")
+            expect(stdout).to match("srv-12345")
+          end
+        end
+      end
+
+      context "with user data string exceeding limit" do
+        let(:argv) { ["servers", "create", "--user-data", user_data, "img-12345"] }
+        let(:user_data) { ("a" * 65_535) + "b" }
+
+        it "errors" do
+          expect(stderr).to match("Encoded user-data exceeds 64KiB limit")
+          expect(stdout).not_to match("srv-12345")
+        end
+      end
+    end
+
     def sample_response
       '{
         "id": "srv-12345",

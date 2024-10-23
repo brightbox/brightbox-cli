@@ -69,10 +69,8 @@ module Brightbox
         if user_data_file
           raise "Cannot specify user data on command line and in file at same time" if user_data
 
-          # Wot we use to read the data, be it from stdin or a file on disk
+          # Used to read the data, be it from stdin or a file on disk
           file_handler = lambda do |fh|
-            raise "User data file too big (>16k)" if fh.stat.size > 16 * 1024
-
             user_data = fh.read
           end
           # Figure out how to invoke file_handler, and then invoke it
@@ -88,7 +86,7 @@ module Brightbox
             require "base64"
             user_data = Base64.encode64(user_data)
           end
-          raise "User data too big (>16k)" if user_data.size > 16 * 1024
+          raise "Encoded user-data exceeds 64KiB limit" if user_data.size > 64 * 1024
         end
 
         # Split server groups into array of identifiers (or empty array)
