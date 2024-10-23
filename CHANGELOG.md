@@ -1,3 +1,12 @@
+### v4.8.0 / 2024-10-23
+
+[Full Changelog](https://github.com/brightbox/brightbox-cli/compare/v4.7.0...v4.8.0)
+
+Changes:
+
+* Increase supported Server `user-data` limit to match 64KiB now
+  supported by API.
+
 ### v4.7.0 / 2024-01-03
 
 [Full Changelog](https://github.com/brightbox/brightbox-cli/compare/v4.6.0...v4.7.0)
