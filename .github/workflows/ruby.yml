@@ -31,6 +31,8 @@ jobs:
       uses: ruby/setup-ruby@v1
       with:
         ruby-version: ${{ matrix.ruby }}
+    - name: Install Bundler
+      run: gem install bundler -v $(grep -A 1 "BUNDLED WITH" Gemfile.lock | tail -n 1 | awk '{print $1}')
     - name: Install dependencies
       run: bundle install
     - name: Run tests
