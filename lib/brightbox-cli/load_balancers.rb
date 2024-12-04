@@ -31,11 +31,13 @@ module Brightbox
     end
 
     def cloud_ip_ids
-      @cloud_ip_ids ||= attributes["cloud_ips"].map { |n| n["id"] } if attributes["cloud_ips"]
+      cips = attributes["cloud_ips"] || attributes[:cloud_ips]
+      @cloud_ip_ids ||= cips.map { |n| n["id"] } if cips
     end
 
     def cloud_ips
-      @cloud_ips ||= attributes["cloud_ips"].map { |n| n["public_ip"] } if attributes["cloud_ips"]
+      cips = attributes["cloud_ips"] || attributes[:cloud_ips]
+      @cloud_ips ||= cips.map { |n| n["public_ip"] } if cips
     end
 
     def listeners
