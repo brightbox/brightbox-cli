@@ -3,6 +3,7 @@ LIB_DIR = File.expand_path(File.join(File.dirname(__FILE__), "..", "lib"))
 $LOAD_PATH.unshift LIB_DIR unless
   $LOAD_PATH.include?(LIB_DIR) || $LOAD_PATH.include?(File.expand_path(LIB_DIR))
 
+require "simplecov"
 require "brightbox_cli"
 require "json"
 require "tmpdir"
@@ -27,6 +28,17 @@ TEST_RUNNER_HOME = ENV.fetch("HOME", nil)
 
 # Reduce the default fog timeout
 Fog.timeout = 10
+
+require "fog/brightbox"
+
+SimpleCov.start do
+  add_filter "/spec/"
+  add_filter "/config/"
+  add_filter "/vendor/"
+end
+
+# Currently just above 80% coverage - don't make it worse
+SimpleCov.minimum_coverage 80
 
 RSpec.configure do |config|
   config.include CommonHelpers
