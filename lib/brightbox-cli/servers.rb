@@ -45,7 +45,7 @@ module Brightbox
       a[:status] = fog_model.state
       a[:locked] = locked?
       a[:zone] = zone && zone["handle"]
-      a[:hostname] = id
+      a[:hostname] = hostname
       a[:public_hostname] = "public.#{fqdn}" unless cloud_ips.empty?
       a[:ipv6_hostname] = ipv6_fqdn if interfaces.any? { |i| i["ipv6_address"] }
       a
