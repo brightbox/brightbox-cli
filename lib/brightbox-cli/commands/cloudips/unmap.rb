@@ -1,6 +1,6 @@
 module Brightbox
   command [:cloudips] do |cmd|
-    cmd.desc I18n.t("cloudips.map.desc")
+    cmd.desc I18n.t("cloudips.unmap.desc")
     cmd.arg_name "cloudip-id..."
     cmd.command [:unmap] do |c|
       c.action do |global_options, _options, args|
