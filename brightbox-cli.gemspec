@@ -14,7 +14,7 @@ Gem::Specification.new do |s|
   s.license     = "MIT"
   s.metadata['rubygems_mfa_required'] = 'true'
 
-  s.required_ruby_version = ">= 2.5"
+  s.required_ruby_version = ">= 2.7"
 
   s.files         = `git ls-files`.split("\n") + `find lib/brightbox-cli/vendor`.split("\n")
   s.test_files    = `git ls-files -- {test,spec,features}/*`.split("\n")
@@ -29,11 +29,6 @@ Gem::Specification.new do |s|
   s.add_dependency "i18n", ">= 0.6", "< 1.11"
   s.add_dependency "mime-types", "~> 3.0"
   s.add_dependency "multi_json", "~> 1.11"
-
-  # Indirect dependency
-  # 0.3 drops support for Ruby < 2.7
-  # 0.2.1 drops support for Ruby < 2.6
-  s.add_dependency "dry-inflector", "= 0.2.0"
 
   s.add_development_dependency "mocha"
   s.add_development_dependency "pry-remote"

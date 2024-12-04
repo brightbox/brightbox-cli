@@ -1,8 +1,7 @@
 PATH
   remote: .
   specs:
-    brightbox-cli (4.8.0)
-      dry-inflector (= 0.2.0)
+    brightbox-cli (5.0.0.alpha)
       fog-brightbox (>= 1.11.0)
       fog-core (< 2.0)
       gli (~> 2.21)
@@ -24,7 +23,7 @@ GEM
     crack (0.4.5)
       rexml
     diff-lcs (1.5.0)
-    dry-inflector (0.2.0)
+    dry-inflector (1.1.0)
     excon (0.112.0)
     fog-brightbox (1.11.0)
       dry-inflector
@@ -38,18 +37,18 @@ GEM
       fog-core
       multi_json (~> 1.10)
     formatador (0.3.0)
-    gli (2.21.5)
+    gli (2.22.0)
     hashdiff (1.0.1)
     highline (2.1.0)
     hirb (0.7.3)
     i18n (1.10.0)
       concurrent-ruby (~> 1.0)
-    logger (1.6.1)
+    logger (1.6.2)
     method_source (1.0.0)
     mime-types (3.6.0)
       logger
       mime-types-data (~> 3.2015)
-    mime-types-data (3.2024.1001)
+    mime-types-data (3.2024.1203)
     mocha (1.14.0)
     multi_json (1.15.0)
     parallel (1.22.1)

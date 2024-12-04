@@ -1,3 +1,3 @@
 module Brightbox
-  VERSION = "4.8.0".freeze unless defined?(Brightbox::VERSION)
+  VERSION = "5.0.0.alpha".freeze unless defined?(Brightbox::VERSION)
 end
