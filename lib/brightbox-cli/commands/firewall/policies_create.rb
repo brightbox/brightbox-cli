@@ -1,5 +1,5 @@
 module Brightbox
-  command [:"firewall-policies"] do |cmd|
+  command ["firewall-policies", "firewall-policy"] do |cmd|
     cmd.desc I18n.t("firewall.policies.create.desc")
     cmd.arg_name "[server-group-id...]"
     cmd.command [:create] do |c|

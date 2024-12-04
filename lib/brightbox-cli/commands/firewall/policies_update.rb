@@ -1,5 +1,5 @@
 module Brightbox
-  command [:"firewall-policies"] do |cmd|
+  command ["firewall-policies", "firewall-policy"] do |cmd|
     cmd.desc I18n.t("firewall.policies.update.desc")
     cmd.arg_name "firewall-policy-id"
     cmd.command [:update] do |c|

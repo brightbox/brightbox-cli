@@ -1,5 +1,5 @@
 module Brightbox
-  command [:"firewall-policies"] do |cmd|
+  command ["firewall-policies", "firewall-policy"] do |cmd|
     cmd.desc I18n.t("firewall.policies.remove.desc")
     cmd.arg_name "firewall-policy-id server-group-id"
     cmd.command [:remove] do |c|

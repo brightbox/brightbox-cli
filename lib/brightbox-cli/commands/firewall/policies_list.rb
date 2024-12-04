@@ -1,5 +1,5 @@
 module Brightbox
-  command [:"firewall-policies"] do |cmd|
+  command ["firewall-policies", "firewall-policy"] do |cmd|
     cmd.default_command :list
 
     cmd.desc I18n.t("firewall.policies.list.desc")
