@@ -16,7 +16,7 @@ module Brightbox
     end
 
     def self.default_field_order
-      %i[id owner type created_on status size name]
+      %i[id owner type created_on status size arch name]
     end
 
     # Filter out images that are not of the right type, account or status if the option is passed
@@ -84,7 +84,7 @@ module Brightbox
         locked: locked?,
         username: username,
         arch: arch,
-        name: name.to_s + " (#{arch})",
+        name: name.to_s,
         owner: official ? "brightbox" : owner_id,
         type: type,
         created_at: created_at,
