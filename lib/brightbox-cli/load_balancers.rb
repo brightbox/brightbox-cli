@@ -3,6 +3,9 @@ module Brightbox
     def self.require_account?; true; end
 
     def self.create(options)
+      options.delete(:buffer_size) if options[:buffer_size].nil?
+      options[:buffer_size] = options[:buffer_size].to_i if options[:buffer_size]
+
       new(conn.load_balancers.create(options))
     end
 

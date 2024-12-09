@@ -100,10 +100,10 @@ module Brightbox
         end
 
         if options[:b]
-          lbopts[:buffer_size] = options[:b]
+          lbopts[:buffer_size] = options[:b].to_i
         end
 
-        # SSL argumens
+        # SSL arguments
         ssl_cert_path = options["ssl-cert"]
         ssl_key_path = options["ssl-key"]
         remove_ssl = options["remove-ssl"]

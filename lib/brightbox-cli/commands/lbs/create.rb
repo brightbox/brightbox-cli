@@ -78,6 +78,10 @@ module Brightbox
           options[:y] = listeners.first[:protocol]
         end
 
+        if options[:b]
+          options[:b] = options[:b].to_i
+        end
+
         hc_arg_lookup = {
           :k => :port,
           :y => :type,
