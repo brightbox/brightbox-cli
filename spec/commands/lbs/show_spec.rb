@@ -58,6 +58,18 @@ describe "brightbox lbs" do
           "name":"app-lb1",
           "status":"active",
           "created_at":"2012-03-05T12:00:00Z",
+          "acme": {
+            "domains": [
+              {
+                "identifier": "domain.test",
+                "status": "verified"
+              },
+              {
+                "identifier": "domain2.test",
+                "status": "verified"
+              }
+            ]
+          },
           "nodes":[
             {
               "id":"srv-12345",
@@ -81,6 +93,7 @@ describe "brightbox lbs" do
           expect(stdout).to include("name: app-lb1")
           expect(stdout).to include("created_at: 2012-03-05T12:00Z")
           expect(stdout).to include("nodes: srv-12345")
+          expect(stdout).to include("acme_domains: domain.test:verified,domain2.test:verified")
         end
       end
     end

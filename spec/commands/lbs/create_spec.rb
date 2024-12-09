@@ -169,5 +169,46 @@ describe "brightbox lbs" do
         expect(stdout).to include("lba-12345")
       end
     end
+
+    context "--acme-domains=example.com" do
+      let(:argv) { ["lbs", "create", "--acme-domains", "example.com", "--listeners", "443:443:https:5000", "lba-12345"] }
+      let(:json_response) do
+        <<~EOS
+        {
+          "id":"lba-12345",
+          "acme": {
+            "domains": [
+              {
+                "identifier": "example.com",
+                "last_message": null,
+                "status": "pending"
+              }
+            ]
+          },
+          "certificate": null,
+          "listeners": [
+            {
+              "in": 443,
+              "out": 443,
+              "protocol": "https",
+              "proxy_protocol": null,
+              "timeout": 5000
+            }
+          ]
+        }
+        EOS
+      end
+
+      before do
+        stub_request(:post, "http://api.brightbox.localhost/1.0/load_balancers?account_id=acc-12345")
+          .with(body: hash_including(domains: ["example.com"]))
+          .to_return(:status => 202, :body => json_response)
+      end
+
+      it "includes acme_certificate_domain in response" do
+        expect(stderr).to eq("Creating a new load balancer\n")
+        expect(stdout).to include("lba-12345")
+      end
+    end
   end
 end

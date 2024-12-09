@@ -37,6 +37,9 @@ module Brightbox
       c.desc "Healthcheck threshold down. Number of failed healthchecks for the node to be considered down."
       c.flag [:d, "hc-down"]
 
+      c.desc "ACME domains"
+      c.flag ["acme_domains"]
+
       c.desc "Filepath to the SSL certificate file to use."
       c.flag ["ssl-cert"]
 
@@ -130,6 +133,10 @@ module Brightbox
 
         if options["ssl-min-ver"] && !options["ssl-min-ver"].nil?
           lbopts[:ssl_minimum_version] = options["ssl-min-ver"]
+        end
+
+        if options["acme_domains"]
+          lbopts[:domains] = options["acme_domains"].split(",")
         end
 
         lbopts.nilify_blanks

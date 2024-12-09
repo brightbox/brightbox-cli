@@ -16,6 +16,7 @@ module Brightbox
             created_at
             deleted_at
             policy
+            acme_domains
             ssl_minimum_version
             ssl_issuer
             ssl_subject

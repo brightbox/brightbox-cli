@@ -9,6 +9,18 @@ module Brightbox
       new(conn.load_balancers.create(options))
     end
 
+    def acme_domains
+      if attributes["acme"]
+        attributes["acme"]["domains"].map do |domain|
+          [domain["identifier"], domain["status"]].join(":")
+        end.join(",")
+      else
+        []
+      end
+    rescue StandardError
+      []
+    end
+
     def attributes
       fog_model.attributes
     end
@@ -16,6 +28,7 @@ module Brightbox
     def to_row
       attributes.merge(
         :locked => locked?,
+        :acme_domains => acme_domains,
         :ssl_minimum_version => ssl_minimum_version,
         :ssl_issuer => certificate_issuer,
         :ssl_subject => certificate_subject,

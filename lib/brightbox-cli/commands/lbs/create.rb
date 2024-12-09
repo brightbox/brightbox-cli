@@ -44,6 +44,9 @@ module Brightbox
       c.default_value "3"
       c.flag [:d, "hc-down"]
 
+      c.desc "ACME domains"
+      c.flag ["acme_domains"]
+
       c.desc "Filepath to the SSL certificate file to use."
       c.flag ["ssl-cert"]
 
@@ -82,6 +85,10 @@ module Brightbox
           options[:b] = options[:b].to_i
         end
 
+        if options["acme_domains"]
+          options["acme_domains"] = options["acme_domains"].split(",")
+        end
+
         hc_arg_lookup = {
           :k => :port,
           :y => :type,
@@ -118,6 +125,7 @@ module Brightbox
         msg = "Creating a new load balancer"
         info msg
         lb = LoadBalancer.create(
+          domains: options["acme_domains"],
           buffer_size: options[:b],
           certificate_pem: ssl_cert,
           certificate_private_key: ssl_key,
