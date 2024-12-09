@@ -26,7 +26,38 @@ describe "brightbox lbs" do
       let(:expected_args) { { nodes: [{ node: "srv-12345" }] } }
 
       let(:json_response) do
-        <<-EOS
+        <<~EOS
+        {
+          "id": "lba-12345",
+          "nodes": [
+            {
+              "id": "srv-12345"
+            }
+          ]
+        }
+        EOS
+      end
+
+      before do
+        stub_request(:post, "http://api.brightbox.localhost/1.0/load_balancers?account_id=acc-12345")
+          .with(:body => hash_including("nodes" => [{ "node" => "srv-12345" }]))
+          .to_return(:status => 202, :body => json_response)
+      end
+
+      it "makes request" do
+        expect(Brightbox::LoadBalancer).to receive(:create).with(hash_including(expected_args)).and_call_original
+
+        expect(stderr).to eq("Creating a new load balancer\n")
+        expect(stdout).to include("lba-12345")
+      end
+    end
+
+    context "with required nodes arguments" do
+      let(:argv) { %w[lbs create srv-12345] }
+      let(:expected_args) { { nodes: [{ node: "srv-12345" }] } }
+
+      let(:json_response) do
+        <<~EOS
         {
           "id": "lba-12345",
           "nodes": [
@@ -57,7 +88,7 @@ describe "brightbox lbs" do
       let(:expected_args) { { nodes: [{ node: "srv-12345" }, { node: "srv-54321" }] } }
 
       let(:json_response) do
-        <<-EOS
+        <<~EOS
         {
           "id": "lba-12345",
           "nodes": [
@@ -91,7 +122,7 @@ describe "brightbox lbs" do
       let(:expected_args) { { nodes: [{ node: "srv-12345" }], buffer_size: 1024 } }
 
       let(:json_response) do
-        <<-EOS
+        <<~EOS
         {
           "id": "lba-12345",
           "buffer_size": 1024
@@ -118,7 +149,7 @@ describe "brightbox lbs" do
       let(:expected_args) { { ssl_minimum_version: "TLSv1.0" } }
 
       let(:json_response) do
-        <<-EOS
+        <<~EOS
         {
           "id":"lba-12345",
           "ssl_minimum_version":"TLSv1.0"

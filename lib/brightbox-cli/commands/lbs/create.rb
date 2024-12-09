@@ -32,15 +32,15 @@ module Brightbox
       c.default_value "/"
       c.flag [:s, "hc-request"]
 
-      c.desc "Healthcheck interval"
+      c.desc "Health check interval"
       c.default_value "5000"
       c.flag [:e, "hc-interval"]
 
-      c.desc "Healthcheck threshold up. Number of successful healthchecks for the node to be considered up."
+      c.desc "Health check threshold up. Number of successful health checks for the node to be considered up."
       c.default_value "3"
       c.flag [:u, "hc-up"]
 
-      c.desc "Healthcheck threshold down. Number of failed healthchecks for the node to be considered down."
+      c.desc "Health check threshold down. Number of failed health checks for the node to be considered down."
       c.default_value "3"
       c.flag [:d, "hc-down"]
 
@@ -100,7 +100,7 @@ module Brightbox
           end
         end
 
-        # SSL argumens
+        # SSL arguments
         ssl_cert_path = options["ssl-cert"]
         ssl_key_path = options["ssl-key"]
 
@@ -117,16 +117,18 @@ module Brightbox
 
         msg = "Creating a new load balancer"
         info msg
-        lb = LoadBalancer.create(:policy => options[:policy],
-                                 :name => options[:n],
-                                 :buffer_size => options[:b],
-                                 :healthcheck => healthcheck,
-                                 :listeners => listeners,
-                                 :certificate_pem => ssl_cert,
-                                 :certificate_private_key => ssl_key,
-                                 :ssl_minimum_version => options["ssl-min-ver"],
-                                 :sslv3 => options["sslv3"],
-                                 :nodes => nodes)
+        lb = LoadBalancer.create(
+          buffer_size: options[:b],
+          certificate_pem: ssl_cert,
+          certificate_private_key: ssl_key,
+          healthcheck: healthcheck,
+          listeners: listeners,
+          name: options[:n],
+          nodes: nodes,
+          policy: options[:policy],
+          ssl_minimum_version: options["ssl-min-ver"],
+          sslv3: options["sslv3"]
+        )
         render_table([lb], global_options)
       end
     end

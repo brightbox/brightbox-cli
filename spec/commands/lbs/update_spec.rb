@@ -23,7 +23,7 @@ describe "brightbox lbs" do
       let(:argv) { ["lbs", "update", "--ssl-min-ver", "TLSv1.0", "lba-12345"] }
 
       let(:json_response) do
-        <<-EOS
+        <<~EOS
         {
           "id":"lba-12345",
           "ssl_minimum_version":"TLSv1.0"
@@ -50,7 +50,7 @@ describe "brightbox lbs" do
       let(:argv) { ["lbs", "update", "--sslv3", "lba-grt24"] }
 
       let(:json_response) do
-        <<-EOS
+        <<~EOS
         {
           "id":"lba-grt24",
           "ssl_minimum_version":"TLSv1.0"
@@ -77,7 +77,7 @@ describe "brightbox lbs" do
       let(:argv) { ["lbs", "update", "--no-sslv3", "lba-kl432"] }
 
       let(:json_response) do
-        <<-EOS
+        <<~EOS
         {
           "id":"lba-kl432",
           "ssl_minimum_version":"TLSv1.0"
