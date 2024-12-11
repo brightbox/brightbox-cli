@@ -61,8 +61,6 @@ module Brightbox
       c.switch ["sslv3"]
 
       c.action do |global_options, options, args|
-        raise "You must specify which servers to balance connections to" if args.empty?
-
         listeners = options[:l].split(",").map do |l|
           inport, outport, protocol, timeout = l.split ":"
           raise "listener '#{l}' is invalid" if inport.nil? || outport.nil? || protocol.nil?
