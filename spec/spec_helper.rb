@@ -35,10 +35,11 @@ SimpleCov.start do
   add_filter "/spec/"
   add_filter "/config/"
   add_filter "/vendor/"
-end
 
-# Currently just above 80% coverage - don't make it worse
-SimpleCov.minimum_coverage 80
+  # Currently just above 80% coverage - don't make it worse
+  minimum_coverage 80
+  refuse_coverage_drop
+end
 
 RSpec.configure do |config|
   config.include CommonHelpers
