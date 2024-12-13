@@ -39,7 +39,7 @@ describe "brightbox sql instances" do
 
       it "correctly sends API parameters" do
         expect(Brightbox::DatabaseServer).to receive(:create).with(expected_args).and_call_original
-        expect(stderr).to eq("")
+        expect(stderr).to be_empty unless ENV["DEBUG"]
       end
     end
 
@@ -55,7 +55,7 @@ describe "brightbox sql instances" do
 
       it "correctly sends API parameters" do
         expect(Brightbox::DatabaseServer).to receive(:create).with(expected_args).and_call_original
-        expect(stderr).to eq("")
+        expect(stderr).to be_empty unless ENV["DEBUG"]
       end
 
       after do
@@ -69,7 +69,7 @@ describe "brightbox sql instances" do
 
       it "correctly sends API parameters" do
         expect(Brightbox::DatabaseServer).to receive(:create).with(expected_args).and_call_original
-        expect(stderr).to eq("")
+        expect(stderr).to be_empty unless ENV["DEBUG"]
         expect(stdout).to include("version: 8.0")
       end
     end
@@ -80,7 +80,7 @@ describe "brightbox sql instances" do
 
       it "correctly sends API parameters" do
         expect(Brightbox::DatabaseServer).to receive(:create).with(expected_args).and_call_original
-        expect(stderr).to eq("")
+        expect(stderr).to be_empty unless ENV["DEBUG"]
         expect(stdout).to include("version: 8.0")
       end
     end
@@ -91,7 +91,7 @@ describe "brightbox sql instances" do
 
       it "correctly sends API parameters" do
         expect(Brightbox::DatabaseServer).to receive(:create).with(expected_args).and_call_original
-        expect(stderr).to eq("")
+        expect(stderr).to be_empty unless ENV["DEBUG"]
       end
     end
 
@@ -101,7 +101,7 @@ describe "brightbox sql instances" do
 
       it "correctly sends API parameters" do
         expect(Brightbox::DatabaseServer).to receive(:create).with(expected_args).and_call_original
-        expect(stderr).to eq("")
+        expect(stderr).to be_empty unless ENV["DEBUG"]
       end
     end
 
@@ -124,7 +124,7 @@ describe "brightbox sql instances" do
       it "includes schedule fields in response" do
         expect(Brightbox::DatabaseServer).to receive(:create).with(expected_args).and_call_original
         expect(stdout).to include("id: #{sql_instance.id}")
-        expect(stderr).to eq("")
+        expect(stderr).to be_empty unless ENV["DEBUG"]
       end
     end
 
@@ -136,7 +136,7 @@ describe "brightbox sql instances" do
         expect(Brightbox::DatabaseServer).to receive(:create).with(expected_args).and_call_original
         expect(stdout).to include("snapshots_schedule: 0 12 * * 4")
         expect(stdout).to match(/snapshots_schedule_next_at: 20\d{2}-\d{2}-\d{2}T12:\d{2}Z/)
-        expect(stderr).to eq("")
+        expect(stderr).to be_empty unless ENV["DEBUG"]
       end
     end
   end

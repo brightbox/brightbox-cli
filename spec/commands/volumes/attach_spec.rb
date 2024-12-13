@@ -28,7 +28,7 @@ describe "brightbox volumes attach" do
     it "does not error" do
       expect { output }.to_not raise_error
 
-      expect(stderr).to eq("ERROR: You must specify the volume ID as the first argument\n")
+      expect(stderr).to include("ERROR: You must specify the volume ID as the first argument\n")
 
       expect(stdout).to match("")
     end
@@ -40,7 +40,7 @@ describe "brightbox volumes attach" do
     it "does not error" do
       expect { output }.to_not raise_error
 
-      expect(stderr).to eq("ERROR: You must specify the server ID to attach to as the second argument\n")
+      expect(stderr).to include("ERROR: You must specify the server ID to attach to as the second argument\n")
 
       expect(stdout).to match("")
     end
@@ -94,7 +94,7 @@ describe "brightbox volumes attach" do
     it "does not error" do
       expect { output }.to_not raise_error
 
-      expect(stderr).to eq("Attaching vol-809s1\n")
+      expect(stderr).to include("Attaching vol-809s1\n")
 
       aggregate_failures do
         expect(stdout).to match("vol-809s1")
@@ -153,7 +153,7 @@ describe "brightbox volumes attach" do
     it "does not error" do
       expect { output }.to_not raise_error
 
-      expect(stderr).to eq("Attaching vol-90328\n")
+      expect(stderr).to include("Attaching vol-90328\n")
 
       aggregate_failures do
         expect(stdout).to match("vol-90328")

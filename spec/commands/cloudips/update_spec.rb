@@ -59,7 +59,9 @@ describe "brightbox cloudips update" do
 
       it "puts new name in update" do
         expect(Brightbox::CloudIP.conn).to receive(:update_cloud_ip).with(*expected_args).and_call_original
-        expect(stderr).to eq("")
+
+        expect(stderr).to be_empty unless ENV["DEBUG"]
+
         expect(stdout).to include("cip-12345")
         expect(stdout).to include("New name")
       end
@@ -82,7 +84,7 @@ describe "brightbox cloudips update" do
 
       it "puts new name in update" do
         expect(Brightbox::CloudIP.conn).to receive(:update_cloud_ip).with(*expected_args).and_call_original
-        expect(stderr).to eq("")
+        expect(stderr).to be_empty unless ENV["DEBUG"]
         expect(stdout).to include("cip-12345")
       end
     end
@@ -114,7 +116,7 @@ describe "brightbox cloudips update" do
     end
 
     it "puts new name in update" do
-      expect(stderr).to eq("")
+      expect(stderr).to be_empty unless ENV["DEBUG"]
       expect(stdout).to include("cip-dfsa3")
       expect(stdout).to include("domain.example")
     end
@@ -146,7 +148,7 @@ describe "brightbox cloudips update" do
     end
 
     it "puts new name in update" do
-      expect(stderr).to eq("")
+      expect(stderr).to be_empty unless ENV["DEBUG"]
       expect(stdout).to include("cip-dfsa3")
     end
   end
@@ -155,7 +157,7 @@ describe "brightbox cloudips update" do
     let(:argv) { ["cloudips", "update", "--reverse-dns", "domain.example", "--delete-reverse-dns", "cip-dfsa3"] }
 
     it "puts new name in update" do
-      expect(stderr).to eq("ERROR: You must either specify a reverse DNS record or --delete-reverse-dns\n")
+      expect(stderr).to include("ERROR: You must either specify a reverse DNS record or --delete-reverse-dns\n")
       expect(stdout).to eq("")
     end
   end

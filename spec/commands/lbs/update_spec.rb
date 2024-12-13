@@ -41,7 +41,7 @@ describe "brightbox lbs" do
       end
 
       it "includes ssl_minimum_version in response" do
-        expect(stderr).to eq("Updating load balancer lba-12345\n")
+        expect(stderr).to include("Updating load balancer lba-12345\n")
         expect(stdout).to include("lba-12345")
       end
     end
@@ -68,7 +68,7 @@ describe "brightbox lbs" do
       end
 
       it "includes ssl_minimum_version in response" do
-        expect(stderr).to eq("Updating load balancer lba-grt24\n")
+        expect(stderr).to include("Updating load balancer lba-grt24\n")
         expect(stdout).to include("lba-grt24")
       end
     end
@@ -95,7 +95,7 @@ describe "brightbox lbs" do
       end
 
       it "includes ssl_minimum_version in response" do
-        expect(stderr).to eq("Updating load balancer lba-kl432\n")
+        expect(stderr).to include("Updating load balancer lba-kl432\n")
         expect(stdout).to include("lba-kl432")
       end
     end
@@ -139,7 +139,7 @@ describe "brightbox lbs" do
       end
 
       it "includes acme_certificate_domain in response" do
-        expect(stderr).to eq("Updating load balancer lba-12345\n")
+        expect(stderr).to include("Updating load balancer lba-12345\n")
         expect(stdout).to include("lba-12345")
       end
     end

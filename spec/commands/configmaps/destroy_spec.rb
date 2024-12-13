@@ -26,7 +26,7 @@ describe "brightbox configmaps destroy" do
     it "does not error" do
       expect { output }.to_not raise_error
 
-      expect(stderr).to eq("ERROR: You must specify config map IDs as arguments\n")
+      expect(stderr).to include("ERROR: You must specify config map IDs as arguments\n")
 
       expect(stdout).to match("")
     end

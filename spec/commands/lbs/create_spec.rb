@@ -33,7 +33,7 @@ describe "brightbox lbs" do
       it "makes request" do
         expect(Brightbox::LoadBalancer).to receive(:create).with(hash_including(expected_args)).and_call_original
 
-        expect(stderr).to eq("Creating a new load balancer\n")
+        expect(stderr).to include("Creating a new load balancer\n")
         expect(stdout).to include("lba-12345")
       end
     end
@@ -64,7 +64,7 @@ describe "brightbox lbs" do
       it "makes request" do
         expect(Brightbox::LoadBalancer).to receive(:create).with(hash_including(expected_args)).and_call_original
 
-        expect(stderr).to eq("Creating a new load balancer\n")
+        expect(stderr).to include("Creating a new load balancer\n")
         expect(stdout).to include("lba-12345")
       end
     end
@@ -98,7 +98,7 @@ describe "brightbox lbs" do
       it "makes request" do
         expect(Brightbox::LoadBalancer).to receive(:create).with(hash_including(expected_args)).and_call_original
 
-        expect(stderr).to eq("Creating a new load balancer\n")
+        expect(stderr).to include("Creating a new load balancer\n")
         expect(stdout).to include("lba-12345")
       end
     end
@@ -125,7 +125,7 @@ describe "brightbox lbs" do
       it "includes buffer_size in response" do
         expect(Brightbox::LoadBalancer).to receive(:create).with(hash_including(expected_args)).and_call_original
 
-        expect(stderr).to eq("Creating a new load balancer\n")
+        expect(stderr).to include("Creating a new load balancer\n")
         expect(stdout).to include("lba-12345")
       end
     end
@@ -151,7 +151,7 @@ describe "brightbox lbs" do
 
       it "includes ssl_minimum_version in response" do
         expect(Brightbox::LoadBalancer).to receive(:create).with(hash_including(expected_args)).and_call_original
-        expect(stderr).to eq("Creating a new load balancer\n")
+        expect(stderr).to include("Creating a new load balancer\n")
         expect(stdout).to include("lba-12345")
       end
     end
@@ -192,7 +192,7 @@ describe "brightbox lbs" do
       end
 
       it "includes acme_certificate_domain in response" do
-        expect(stderr).to eq("Creating a new load balancer\n")
+        expect(stderr).to include("Creating a new load balancer\n")
         expect(stdout).to include("lba-12345")
       end
     end

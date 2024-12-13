@@ -17,7 +17,7 @@ describe "brightbox sql snapshots" do
       let(:argv) { %w[sql snapshots list] }
 
       it "does not output to stderr" do
-        expect(stderr).to eql("")
+        expect(stderr).to be_empty unless ENV["DEBUG"]
       end
 
       it "outputs table details to stdout" do

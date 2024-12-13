@@ -26,7 +26,7 @@ describe "brightbox servers update" do
     it "does not error" do
       expect { output }.to_not raise_error
 
-      expect(stderr).to eq("ERROR: You must specify a valid server id as the first argument\n")
+      expect(stderr).to include("ERROR: You must specify a valid server id as the first argument\n")
 
       expect(stdout).to match("")
     end
@@ -66,7 +66,7 @@ describe "brightbox servers update" do
     it "does not error" do
       expect { output }.to_not raise_error
 
-      expect(stderr).to eq("Updating server srv-klfkd\n")
+      expect(stderr).to include("Updating server srv-klfkd\n")
 
       expect(stdout).to match("srv-klfkd")
     end
@@ -104,7 +104,7 @@ describe "brightbox servers update" do
     it "does not error" do
       expect { output }.to_not raise_error
 
-      expect(stderr).to eq("Updating server srv-ds321\n")
+      expect(stderr).to include("Updating server srv-ds321\n")
 
       expect(stdout).to match("srv-ds321")
     end
@@ -144,7 +144,7 @@ describe "brightbox servers update" do
     it "does not error" do
       expect { output }.to_not raise_error
 
-      expect(stderr).to eq("Updating server srv-ds321\n")
+      expect(stderr).to include("Updating server srv-ds321\n")
 
       expect(stdout).to match("srv-ds321")
     end
@@ -184,7 +184,7 @@ describe "brightbox servers update" do
     it "does not error" do
       expect { output }.to_not raise_error
 
-      expect(stderr).to eq("Updating server srv-ds321\n")
+      expect(stderr).to include("Updating server srv-ds321\n")
 
       expect(stdout).to match("srv-ds321")
     end
@@ -224,7 +224,7 @@ describe "brightbox servers update" do
     it "does not error" do
       expect { output }.to_not raise_error
 
-      expect(stderr).to eq("Updating server srv-ds321 with 0.01k of user data\n")
+      expect(stderr).to include("Updating server srv-ds321 with 0.01k of user data\n")
 
       expect(stdout).to match("srv-ds321")
     end
@@ -264,7 +264,7 @@ describe "brightbox servers update" do
     it "does not error" do
       expect { output }.to_not raise_error
 
-      expect(stderr).to eq("Updating server srv-ds321 with 0.00k of user data\n")
+      expect(stderr).to include("Updating server srv-ds321 with 0.00k of user data\n")
 
       expect(stdout).to match("srv-ds321")
     end

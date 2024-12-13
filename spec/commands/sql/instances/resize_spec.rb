@@ -26,7 +26,7 @@ describe "brightbox sql instances resize" do
     it "does not error" do
       expect { output }.to_not raise_error
 
-      expect(stderr).to eq("ERROR: You must specify a valid SQL instance ID as the first argument\n")
+      expect(stderr).to include("ERROR: You must specify a valid SQL instance ID as the first argument\n")
 
       expect(stdout).to match("")
     end
@@ -47,7 +47,7 @@ describe "brightbox sql instances resize" do
     it "does not error" do
       expect { output }.to_not raise_error
 
-      expect(stderr).to eq("ERROR: Couldn't find 'dbs-xsd23'\n")
+      expect(stderr).to include("ERROR: Couldn't find 'dbs-xsd23'\n")
 
       expect(stdout).to match("")
     end
@@ -59,7 +59,7 @@ describe "brightbox sql instances resize" do
     it "does not error" do
       expect { output }.to_not raise_error
 
-      expect(stderr).to eq("ERROR: Cloud SQL type format is invalid\n")
+      expect(stderr).to include("ERROR: Cloud SQL type format is invalid\n")
 
       expect(stdout).to match("")
     end
@@ -104,7 +104,7 @@ describe "brightbox sql instances resize" do
     it "does not error" do
       expect { output }.to_not raise_error
 
-      expect(stderr).to eq("Resizing dbs-zzasa\n")
+      expect(stderr).to include("Resizing dbs-zzasa\n")
 
       expect(stdout).to match("dbs-zzasa")
     end

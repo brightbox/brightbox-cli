@@ -28,7 +28,7 @@ describe "brightbox volumes update" do
     it "does not error" do
       expect { output }.to_not raise_error
 
-      expect(stderr).to eq("ERROR: You must specify the volume ID as the first argument\n")
+      expect(stderr).to include("ERROR: You must specify the volume ID as the first argument\n")
 
       expect(stdout).to match("")
     end
@@ -82,7 +82,7 @@ describe "brightbox volumes update" do
     it "does not error" do
       expect { output }.to_not raise_error
 
-      expect(stderr).to eq("Updating vol-908us\n")
+      expect(stderr).to include("Updating vol-908us\n")
 
       aggregate_failures do
         expect(stdout).to match("vol-908us")
@@ -129,7 +129,7 @@ describe "brightbox volumes update" do
     it "does not error" do
       expect { output }.to_not raise_error
 
-      expect(stderr).to eq("Updating vol-kl234\n")
+      expect(stderr).to include("Updating vol-kl234\n")
 
       aggregate_failures do
         expect(stdout).to match("vol-kl234")
@@ -176,7 +176,7 @@ describe "brightbox volumes update" do
     it "does not error" do
       expect { output }.to_not raise_error
 
-      expect(stderr).to eq("Updating vol-sdj2j\n")
+      expect(stderr).to include("Updating vol-sdj2j\n")
 
       aggregate_failures do
         expect(stdout).to match("vol-sdj2j")

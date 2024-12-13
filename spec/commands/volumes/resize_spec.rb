@@ -28,7 +28,7 @@ describe "brightbox volumes resize" do
     it "does not error" do
       expect { output }.to_not raise_error
 
-      expect(stderr).to eq("ERROR: You must specify the volume ID as the first argument\n")
+      expect(stderr).to include("ERROR: You must specify the volume ID as the first argument\n")
 
       expect(stdout).to match("")
     end
@@ -40,7 +40,7 @@ describe "brightbox volumes resize" do
     it "does not error" do
       expect { output }.to_not raise_error
 
-      expect(stderr).to eq("ERROR: A 'size' option is required\n")
+      expect(stderr).to include("ERROR: A 'size' option is required\n")
 
       expect(stdout).to match("")
     end
@@ -85,7 +85,7 @@ describe "brightbox volumes resize" do
     it "does not error" do
       expect { output }.to_not raise_error
 
-      expect(stderr).to eq("Resizing vol-op324\n")
+      expect(stderr).to include("Resizing vol-op324\n")
 
       aggregate_failures do
         expect(stdout).to match("vol-op324")

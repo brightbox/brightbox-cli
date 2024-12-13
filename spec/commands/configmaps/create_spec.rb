@@ -109,7 +109,7 @@ describe "brightbox configmaps create" do
       it "does not error" do
         expect { output }.to_not raise_error
 
-        expect(stderr).to eq("ERROR: Config map data was not valid JSON\n")
+        expect(stderr).to include("ERROR: Config map data was not valid JSON\n")
 
         expect(stdout).to eq("")
       end
@@ -156,7 +156,7 @@ describe "brightbox configmaps create" do
         it "does not error" do
           expect { output }.to_not raise_error
 
-          expect(stderr).to eq("Creating config map\n")
+          expect(stderr).to include("Creating config map\n")
 
           aggregate_failures do
             expect(stdout).to match("cfg-s432l")
@@ -169,7 +169,7 @@ describe "brightbox configmaps create" do
           it "does not error" do
             expect { output }.to_not raise_error
 
-            expect(stderr).to eq("ERROR: Config map data was not valid JSON\n")
+            expect(stderr).to include("ERROR: Config map data was not valid JSON\n")
 
             expect(stdout).to eq("")
           end
@@ -219,7 +219,7 @@ describe "brightbox configmaps create" do
       it "does not error" do
         expect { output }.to_not raise_error
 
-        expect(stderr).to eq("Creating config map\n")
+        expect(stderr).to include("Creating config map\n")
 
         aggregate_failures do
           expect(stdout).to match("cfg-mj53s")
@@ -232,7 +232,7 @@ describe "brightbox configmaps create" do
         it "does not error" do
           expect { output }.to_not raise_error
 
-          expect(stderr).to eq("ERROR: Config map data was not valid JSON\n")
+          expect(stderr).to include("ERROR: Config map data was not valid JSON\n")
 
           expect(stdout).to eq("")
         end
@@ -248,7 +248,7 @@ describe "brightbox configmaps create" do
       it "does not error" do
         expect { output }.to_not raise_error
 
-        expect(stderr).to eq("ERROR: Config map data can only be passed by either 'data' or 'data-file'\n")
+        expect(stderr).to include("ERROR: Config map data can only be passed by either 'data' or 'data-file'\n")
 
         expect(stdout).to eq("")
       end

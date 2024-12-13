@@ -66,8 +66,9 @@ describe "brightbox sql instances" do
       end
 
       it "simplifies the maintenance window" do
+        expect(stderr).to be_empty unless ENV["DEBUG"]
+
         expect(stdout).to include("maintenance_window: Sunday 06:00 UTC")
-        expect(stderr).to be_empty
       end
 
       it "includes snapshots schedule fields" do

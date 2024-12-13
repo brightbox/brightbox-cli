@@ -35,7 +35,7 @@ describe "brightbox configmaps list" do
     it "does not error" do
       expect { output }.to_not raise_error
 
-      expect(stderr).to eq("")
+      expect(stderr).to be_empty unless ENV["DEBUG"]
 
       aggregate_failures do
         expect(stdout).to match("id.*name")

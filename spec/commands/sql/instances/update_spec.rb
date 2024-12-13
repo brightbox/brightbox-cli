@@ -30,7 +30,7 @@ describe "brightbox sql instances" do
       end
 
       it "sets custom maintenance window settings" do
-        expect(stderr).to eql("Updating dbs-12345\n")
+        expect(stderr).to include("Updating dbs-12345\n")
         expect(stdout).to include("dbs-12345")
       end
     end
@@ -54,7 +54,7 @@ describe "brightbox sql instances" do
         expect(Brightbox::DatabaseServer).to receive(:find).and_return(dbs)
         expect(dbs).to receive(:update).with(expected_args).and_call_original
 
-        expect(stderr).to eq("Updating dbs-12345\n")
+        expect(stderr).to include("Updating dbs-12345\n")
         expect(stdout).to include("dbs-12345")
       end
     end
@@ -78,7 +78,7 @@ describe "brightbox sql instances" do
         expect(Brightbox::DatabaseServer).to receive(:find).and_return(dbs)
         expect(dbs).to receive(:update).with(expected_args).and_call_original
 
-        expect(stderr).to eq("Updating dbs-432sf\n")
+        expect(stderr).to include("Updating dbs-432sf\n")
         expect(stdout).to include("dbs-432sf")
       end
     end

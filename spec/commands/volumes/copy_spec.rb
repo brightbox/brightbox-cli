@@ -28,7 +28,7 @@ describe "brightbox volumes copy" do
     it "does not error" do
       expect { output }.to_not raise_error
 
-      expect(stderr).to eq("ERROR: You must specify the volume ID as the first argument\n")
+      expect(stderr).to include("ERROR: You must specify the volume ID as the first argument\n")
 
       expect(stdout).to match("")
     end
@@ -66,7 +66,7 @@ describe "brightbox volumes copy" do
     it "does not error" do
       expect { output }.to_not raise_error
 
-      expect(stderr).to eq("Copying vol-909ds\n")
+      expect(stderr).to include("Copying vol-909ds\n")
 
       expect(stdout).to match("vol-909ds")
     end

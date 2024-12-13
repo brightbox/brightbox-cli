@@ -27,7 +27,7 @@ describe "brightbox configmaps update" do
     it "does not error" do
       expect { output }.to_not raise_error
 
-      expect(stderr).to eq("ERROR: You must specify the config map ID as the first argument\n")
+      expect(stderr).to include("ERROR: You must specify the config map ID as the first argument\n")
 
       expect(stdout).to match("")
     end
@@ -73,7 +73,7 @@ describe "brightbox configmaps update" do
     it "does not error" do
       expect { output }.to_not raise_error
 
-      expect(stderr).to eq("Updating cfg-0932s\n")
+      expect(stderr).to include("Updating cfg-0932s\n")
 
       aggregate_failures do
         expect(stdout).to match("cfg-0932s")
@@ -134,7 +134,7 @@ describe "brightbox configmaps update" do
       it "does not error" do
         expect { output }.to_not raise_error
 
-        expect(stderr).to eq("Updating cfg-25hrt\n")
+        expect(stderr).to include("Updating cfg-25hrt\n")
 
         aggregate_failures do
           expect(stdout).to match("cfg-25hrt")
@@ -148,7 +148,7 @@ describe "brightbox configmaps update" do
       it "does not error" do
         expect { output }.to_not raise_error
 
-        expect(stderr).to eq("ERROR: Config map data was not valid JSON\n")
+        expect(stderr).to include("ERROR: Config map data was not valid JSON\n")
 
         expect(stdout).to eq("")
       end
@@ -218,7 +218,7 @@ describe "brightbox configmaps update" do
         it "does not error" do
           expect { output }.to_not raise_error
 
-          expect(stderr).to eq("Updating cfg-gr45a\n")
+          expect(stderr).to include("Updating cfg-gr45a\n")
 
           aggregate_failures do
             expect(stdout).to match("cfg-gr45a")
@@ -231,7 +231,7 @@ describe "brightbox configmaps update" do
           it "does not error" do
             expect { output }.to_not raise_error
 
-            expect(stderr).to eq("ERROR: Config map data was not valid JSON\n")
+            expect(stderr).to include("ERROR: Config map data was not valid JSON\n")
 
             expect(stdout).to eq("")
           end
@@ -303,7 +303,7 @@ describe "brightbox configmaps update" do
         it "does not error" do
           expect { output }.to_not raise_error
 
-          expect(stderr).to eq("Updating cfg-stdin\n")
+          expect(stderr).to include("Updating cfg-stdin\n")
 
           aggregate_failures do
             expect(stdout).to match("cfg-stdin")
@@ -316,7 +316,7 @@ describe "brightbox configmaps update" do
           it "does not error" do
             expect { output }.to_not raise_error
 
-            expect(stderr).to eq("ERROR: Config map data was not valid JSON\n")
+            expect(stderr).to include("ERROR: Config map data was not valid JSON\n")
 
             expect(stdout).to eq("")
           end
@@ -332,7 +332,7 @@ describe "brightbox configmaps update" do
         it "does not error" do
           expect { output }.to_not raise_error
 
-          expect(stderr).to eq("ERROR: Config map data can only be passed by either 'data' or 'data-file'\n")
+          expect(stderr).to include("ERROR: Config map data can only be passed by either 'data' or 'data-file'\n")
 
           expect(stdout).to eq("")
         end

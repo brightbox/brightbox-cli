@@ -91,11 +91,17 @@ module Brightbox
     def debug_tokens
       return unless ENV["DEBUG"]
 
-      debug "Access token: #{access_token} (#{cached_access_token})"
-      if using_application?
-        debug "Refresh token: #{refresh_token} (#{cached_refresh_token}))"
+      if client_name
+        debug "Client: #{client_name}"
+
+        debug "Access token: #{access_token} (#{cached_access_token})"
+        if using_application?
+          debug "Refresh token: #{refresh_token} (#{cached_refresh_token}))"
+        else
+          debug "Refresh token: <NOT EXPECTED FOR CLIENT>"
+        end
       else
-        debug "Refresh token: <NOT EXPECTED FOR CLIENT>"
+        debug "No client selected"
       end
     end
 

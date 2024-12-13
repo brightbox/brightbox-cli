@@ -39,7 +39,7 @@ describe "brightbox lbs" do
 
       it "shows load balancer details" do
         aggregate_failures do
-          expect(stderr).to eq("")
+          expect(stderr).to be_empty unless ENV["DEBUG"]
           expect(stdout).to include("id: lba-12345")
           expect(stdout).to include("status: active")
           expect(stdout).to include("name: app-lb1")
@@ -87,7 +87,7 @@ describe "brightbox lbs" do
 
       it "shows load balancer details" do
         aggregate_failures do
-          expect(stderr).to eq("")
+          expect(stderr).to be_empty unless ENV["DEBUG"]
           expect(stdout).to include("id: lba-12345")
           expect(stdout).to include("status: active")
           expect(stdout).to include("name: app-lb1")

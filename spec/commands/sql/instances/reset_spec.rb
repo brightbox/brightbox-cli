@@ -26,7 +26,7 @@ describe "brightbox sql instances reset" do
     it "does not error" do
       expect { output }.to_not raise_error
 
-      expect(stderr).to eq("ERROR: You must specify a valid SQL instance ID as the first argument\n")
+      expect(stderr).to include("ERROR: You must specify a valid SQL instance ID as the first argument\n")
 
       expect(stdout).to match("")
     end
@@ -47,7 +47,7 @@ describe "brightbox sql instances reset" do
     it "does not error" do
       expect { output }.to_not raise_error
 
-      expect(stderr).to eq("ERROR: Couldn't find 'dbs-l3kd4'\n")
+      expect(stderr).to include("ERROR: Couldn't find 'dbs-l3kd4'\n")
 
       expect(stdout).to match("")
     end
@@ -79,7 +79,7 @@ describe "brightbox sql instances reset" do
     it "does not error" do
       expect { output }.to_not raise_error
 
-      expect(stderr).to eq("Resetting dbs-po953\n")
+      expect(stderr).to include("Resetting dbs-po953\n")
 
       expect(stdout).to match("dbs-po953")
     end

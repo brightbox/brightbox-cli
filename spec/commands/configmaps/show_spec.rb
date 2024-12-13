@@ -35,7 +35,7 @@ describe "brightbox configmaps show" do
     it "does not error" do
       expect { output }.to_not raise_error
 
-      expect(stderr).to eq("")
+      expect(stderr).to be_empty unless ENV["DEBUG"]
 
       aggregate_failures do
         expect(stdout).to match("id: cfg-12345")
@@ -81,7 +81,7 @@ describe "brightbox configmaps show" do
       it "does not error" do
         expect { output }.to_not raise_error
 
-        expect(stderr).to eq("ERROR: You can only access data for a single config map at a time\n")
+        expect(stderr).to include("ERROR: You can only access data for a single config map at a time\n")
 
         expect(stdout).to eq("")
       end
@@ -137,7 +137,7 @@ describe "brightbox configmaps show" do
       it "does not error" do
         expect { output }.to_not raise_error
 
-        expect(stderr).to eq("")
+        expect(stderr).to be_empty unless ENV["DEBUG"]
 
         expect(stdout).to eq(%({"key":"value","name":"key name"}\n))
       end
