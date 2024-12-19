@@ -9,6 +9,24 @@ module Brightbox
       new(conn.load_balancers.create(options))
     end
 
+    def acme_cert
+      if attributes[:acme] && attributes[:acme][:certificate]
+        OpenStruct.new(
+          :expires_at => attributes[:acme][:certificate][:expires_at],
+          :fingerprint => attributes[:acme][:certificate][:fingerprint],
+          :issued_at => attributes[:acme][:certificate][:issued_at],
+          :subjects => attributes[:acme][:certificate][:domains].join(",")
+        )
+      else
+        OpenStruct.new(
+          :expires_at => "",
+          :fingerprint => "",
+          :issued_at => "",
+          :subjects => ""
+        )
+      end
+    end
+
     def formatted_acme_domains
       return "" unless attributes[:acme]
 
@@ -23,6 +41,10 @@ module Brightbox
       attributes.merge(
         :locked => locked?,
         :acme_domains => formatted_acme_domains,
+        :acme_cert_expires_at => acme_cert.expires_at,
+        :acme_cert_fingerprint => acme_cert.fingerprint,
+        :acme_cert_issued_at => acme_cert.issued_at,
+        :acme_cert_subjects => acme_cert.subjects,
         :ssl_minimum_version => ssl_minimum_version,
         :ssl_issuer => certificate_issuer,
         :ssl_subject => certificate_subject,

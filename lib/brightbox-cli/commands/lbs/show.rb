@@ -17,6 +17,10 @@ module Brightbox
             deleted_at
             policy
             acme_domains
+            acme_cert_subjects
+            acme_cert_fingerprint
+            acme_cert_expires_at
+            acme_cert_issued_at
             ssl_minimum_version
             ssl_issuer
             ssl_subject
