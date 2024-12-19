@@ -9,22 +9,20 @@ module Brightbox
       new(conn.load_balancers.create(options))
     end
 
-    def acme_domains
-      if attributes["acme"]
-        attributes["acme"]["domains"].map do |domain|
-          [domain["identifier"], domain["status"]].join(":")
-        end.join(",")
-      else
-        []
-      end
+    def formatted_acme_domains
+      return "" unless attributes[:acme]
+
+      attributes[:acme][:domains].map do |domain|
+        [domain[:identifier], domain[:status]].join(":")
+      end.join(",")
     rescue StandardError
-      []
+      ""
     end
 
     def to_row
       attributes.merge(
         :locked => locked?,
-        :acme_domains => acme_domains,
+        :acme_domains => formatted_acme_domains,
         :ssl_minimum_version => ssl_minimum_version,
         :ssl_issuer => certificate_issuer,
         :ssl_subject => certificate_subject,
