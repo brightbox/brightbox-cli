@@ -52,6 +52,10 @@ module Brightbox
       Brightbox.config.cache_id(@id) if Brightbox.config.respond_to?(:cache_id)
     end
 
+    def attributes
+      IndifferentAccessHash.new(fog_model.attributes)
+    end
+
     def fog_model
       @fog_model ||= self.class.find(@id)
     end
