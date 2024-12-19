@@ -52,6 +52,16 @@ module Brightbox
       Brightbox.config.cache_id(@id) if Brightbox.config.respond_to?(:cache_id)
     end
 
+    def attributes
+      fog_attributes
+    end
+
+    # Returns the transformed attributes from the fog model with a
+    # wrapper to allow access using either String or Symbol keys.
+    def fog_attributes
+      IndifferentAccessHash.new(deep_symbolize(fog_model.attributes))
+    end
+
     def fog_model
       @fog_model ||= self.class.find(@id)
     end
@@ -191,6 +201,25 @@ module Brightbox
       return unless fog_model.created_at
 
       fog_model.created_at.strftime("%Y-%m-%d")
+    end
+
+    private
+
+    # Recursively converts all keys in a hash to symbols to ensure
+    # consistent access.
+    def deep_symbolize(hash)
+      return hash unless hash.respond_to?(:each_with_object)
+
+      hash.each_with_object({}) do |(k, v), result|
+        result[k.to_sym] = case v
+                           when Hash
+                             deep_symbolize(v)
+                           when Array
+                             v.map { |i| i.is_a?(Hash) ? deep_symbolize(i) : i }
+                           else
+                             v
+                           end
+      end
     end
   end
 end
