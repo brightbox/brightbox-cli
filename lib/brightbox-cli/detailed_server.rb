@@ -1,40 +1,38 @@
 module Brightbox
   class DetailedServer < Server
     def to_row
-      row_attributes = attributes
+      attributes.tap do |attrs|
+        attrs[:compatibility_mode] = attrs["compatibility_mode"]
 
-      row_attributes[:compatibility_mode] = row_attributes["compatibility_mode"]
+        if server_type
+          attrs[:type] = server_type["id"]
+          attrs[:type_handle] = server_type["handle"]
+          attrs[:type_name] = server_type["name"]
+          attrs[:ram] = server_type["ram"]
+          attrs[:cores] = server_type["cores"]
+          attrs[:disk] = server_type["disk_size"].to_i
+        end
 
-      if server_type
-        row_attributes[:type] = server_type["id"]
-        row_attributes[:type_handle] = server_type["handle"]
-        row_attributes[:type_name] = server_type["name"]
-        row_attributes[:ram] = server_type["ram"]
-        row_attributes[:cores] = server_type["cores"]
-        row_attributes[:disk] = server_type["disk_size"].to_i
-      end
+        if image
+          attrs[:image_name] = image.name
+          attrs[:arch] = image.arch
+          attrs[:image_username] = image.username
+        end
 
-      if image
-        row_attributes[:image_name] = image.name
-        row_attributes[:arch] = image.arch
-        row_attributes[:image_username] = image.username
-      end
+        attrs[:private_ips] = interfaces.map { |i| i["ipv4_address"] }.join(", ")
+        attrs[:ipv6_address] = interfaces.map { |i| i["ipv6_address"] }.join(", ")
 
-      row_attributes[:private_ips] = interfaces.map { |i| i["ipv4_address"] }.join(", ")
-      row_attributes[:ipv6_address] = interfaces.map { |i| i["ipv6_address"] }.join(", ")
+        attrs[:cloud_ip_ids] = cloud_ips.map { |i| i["id"] }.join(", ")
+        attrs[:cloud_ipv4s] = cloud_ips.map { |i| i["public_ipv4"] }.join(", ")
+        attrs[:cloud_ipv6s] = cloud_ips.map { |i| i["public_ipv6"] }.join(", ")
+        attrs[:snapshots] = snapshots.map { |i| i["id"] }.join(", ")
 
-      row_attributes[:cloud_ip_ids] = cloud_ips.map { |i| i["id"] }.join(", ")
-      row_attributes[:cloud_ipv4s] = cloud_ips.map { |i| i["public_ipv4"] }.join(", ")
-      row_attributes[:cloud_ipv6s] = cloud_ips.map { |i| i["public_ipv6"] }.join(", ")
-      row_attributes[:snapshots] = snapshots.map { |i| i["id"] }.join(", ")
+        if server_groups
+          attrs[:server_groups] = server_groups.map { |sg| sg["id"] }.join(", ")
+        end
 
-      if server_groups
-        row_attributes[:server_groups] = server_groups.map { |sg| sg["id"] }.join(", ")
-      end
-
-      row_attributes[:volumes] = volume_ids if volumes
-
-      row_attributes
+        attrs[:volumes] = volume_ids if volumes
+      end.to_h
     end
 
     def volume_ids

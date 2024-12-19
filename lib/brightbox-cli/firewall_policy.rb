@@ -15,15 +15,11 @@ module Brightbox
     end
 
     def attributes
-      t = fog_model.attributes
-      t[:name] = name
-      t[:description] = description
-      t[:server_group] = server_group_id
-      t
-    end
-
-    def to_row
-      attributes
+      fog_attributes.tap do |attrs|
+        attrs[:name] = name
+        attrs[:description] = description
+        attrs[:server_group] = server_group_id
+      end
     end
 
     def self.default_field_order

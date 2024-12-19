@@ -34,15 +34,11 @@ module Brightbox
       fog_model.destroy
     end
 
-    def attributes
-      fog_model.attributes
-    end
-
     def to_row
-      o = attributes
-      o[:servers] = server_string
-      o[:server_count] = server_count
-      o
+      super.merge(
+        servers: server_string,
+        server_count: server_count
+      ).to_h
     end
 
     def server_ids

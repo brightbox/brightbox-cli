@@ -57,19 +57,15 @@ module Brightbox
     end
 
     def attributes
-      a = fog_model.attributes
-      a[:id] = fog_model.id
-      a[:image] = image_id
-      a[:locked] = locked?
-      a[:server] = server_id
-      a[:status] = state
-      a[:type] = storage_type
-      a[:zone] = zone_id
-      a
-    end
-
-    def to_row
-      attributes
+      super.merge(
+        id: fog_model.id,
+        image: image_id,
+        locked: locked?,
+        server: server_id,
+        status: state,
+        type: storage_type,
+        zone: zone_id
+      )
     end
 
     def update(options)

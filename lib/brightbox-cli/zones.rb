@@ -2,10 +2,6 @@ module Brightbox
   class Zone < Api
     def self.require_account?; true; end
 
-    def to_row
-      attributes
-    end
-
     def self.all
       conn.zones
     end

@@ -68,33 +68,32 @@ module Brightbox
     end
 
     def status
-      if fog_model.attributes[:status] == "available"
+      if fog_attributes[:status] == "available"
         public? ? "public" : "private"
-      elsif fog_model.attributes[:status] == "deprecated"
+      elsif fog_attributes[:status] == "deprecated"
         public? ? "deprecated" : "private"
       else
-        fog_model.attributes[:status]
+        fog_attributes[:status]
       end
     end
 
     def to_row
-      o = fog_model.attributes
-      o[:id] = fog_model.id
-      o[:status] = status
-      o[:locked] = locked?
-      o[:username] = username
-      o[:arch] = arch
-      o[:name] = name.to_s + " (#{arch})"
-      o[:owner] = owner_id
-      o[:owner] = "brightbox" if official
-      o[:type] = type
-      o[:created_at] = created_at
-      o[:created_on] = created_on
-      o[:description] = description if description
-      o[:licence_name] = licence_name
-      o[:size] = virtual_size
-      o[:min_ram] = min_ram
-      o
+      fog_attributes.merge(
+        id: fog_model.id,
+        status: status,
+        locked: locked?,
+        username: username,
+        arch: arch,
+        name: name.to_s + " (#{arch})",
+        owner: official ? "brightbox" : owner_id,
+        type: type,
+        created_at: created_at,
+        created_on: created_on,
+        description: description,
+        licence_name: licence_name,
+        size: virtual_size,
+        min_ram: min_ram
+      )
     end
 
     def public?
@@ -102,7 +101,7 @@ module Brightbox
     end
 
     def status_sort_code
-      case fog_model.attributes[:status]
+      case fog_attributes[:status]
       when "available"
         (public? ? 1 : 2)
       when "deprecated"

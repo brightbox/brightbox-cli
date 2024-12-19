@@ -37,25 +37,31 @@ module Brightbox
     end
 
     def attributes
-      a = fog_model.attributes
-      a[:image] = image_id
-      a[:created_at] = created_at
-      a[:created_on] = created_on
-      a[:type] = server_type["handle"]
-      a[:status] = fog_model.state
-      a[:locked] = locked?
-      a[:zone] = zone && zone["handle"]
-      a[:hostname] = hostname
-      a[:public_hostname] = "public.#{fqdn}" unless cloud_ips.empty?
-      a[:ipv6_hostname] = ipv6_fqdn if interfaces.any? { |i| i["ipv6_address"] }
-      a
+      fog_attributes.tap do |attrs|
+        attrs[:created_at] = created_at
+        attrs[:created_on] = created_on
+        attrs[:hostname] = hostname
+        attrs[:image] = image_id
+        attrs[:locked] = locked?
+        attrs[:status] = fog_model.state
+        attrs[:type] = server_type["handle"]
+        attrs[:zone] = zone && zone["handle"]
+
+        unless cloud_ips.empty?
+          attrs[:public_hostname] = "public.#{fqdn}"
+        end
+
+        if interfaces.any? { |i| i["ipv6_address"] }
+          attrs[:ipv6_hostname] = ipv6_fqdn
+        end
+      end
     end
 
     def to_row
-      o = attributes
-      o[:cloud_ip_ids] = cloud_ips.map { |i| i["id"] }
-      o[:ips] = interfaces.map { |i| i["ipv4_address"] }.join(", ")
-      o
+      attributes.merge(
+        cloud_ips: cloud_ips.map { |i| i["public_ip"] }.join(", "),
+        ips: interfaces.map { |i| i["ipv4_address"] }.join(", ")
+      )
     end
 
     def deleted?

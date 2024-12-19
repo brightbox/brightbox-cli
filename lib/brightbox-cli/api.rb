@@ -72,6 +72,10 @@ module Brightbox
       false
     end
 
+    def to_row
+      attributes.to_h
+    end
+
     def to_s
       @id
     end
@@ -175,7 +179,7 @@ module Brightbox
       if value
         value
       else
-        Brightbox.config.cache_id id
+        Brightbox.config.cache_id id if Brightbox.config.respond_to?(:cache_id)
         @cache[id] = get(id)
       end
     end

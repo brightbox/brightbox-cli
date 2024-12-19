@@ -33,15 +33,15 @@ module Brightbox
     end
 
     def attributes
-      a = fog_model.attributes
-      a[:destination] = destination_id
-      a
+      fog_attributes.tap do |attrs|
+        attrs[:destination] = destination_id
+      end
     end
 
     def to_row
-      o = attributes
-      o[:port_translators] = translators(o)
-      o
+      attributes.merge(
+        port_translators: translators(attributes),
+      ).to_h
     end
 
     def mapped?

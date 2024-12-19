@@ -19,24 +19,23 @@ module Brightbox
     end
 
     def attributes
-      t = @attributes || fog_model.attributes
-      t[:sport] = t[:source_port]
-      t[:dport] = t[:destination_port]
-      t[:firewall_policy] = t[:firewall_policy_id]
-      t[:icmp_type] = t[:icmp_type_name]
-      t
+      (@attributes || fog_attributes).tap do |attrs|
+        attrs[:sport] = attrs[:source_port]
+        attrs[:dport] = attrs[:destination_port]
+        attrs[:firewall_policy] = attrs[:firewall_policy_id]
+        attrs[:icmp_type] = attrs[:icmp_type_name]
+      end
     end
 
     def to_row
-      attrs = attributes.dup
-      %i[protocol source sport destination dport icmp_type].each do |key|
-        attrs[key] = attributes[key] || "-"
-      end
-      attrs
-    end
-
-    def ret_val(attributes, key)
-      attributes[key] || "-"
+      attributes.merge(
+        protocol: attributes[:protocol] || "-",
+        source: attributes[:source] || "-",
+        sport: attributes[:sport] || "-",
+        destination: attributes[:destination] || "-",
+        dport: attributes[:dport] || "-",
+        icmp_type: attributes[:icmp_type] || "-"
+      )
     end
 
     def self.default_field_order

@@ -31,14 +31,10 @@ module Brightbox
 
     attr_reader :id
 
-    def attributes
-      fog_model.attributes
-    end
-
     def to_row
-      row_attributes = attributes
-      row_attributes[:name] = invitee_name
-      row_attributes
+      attributes.merge(
+        name: invitee_name
+      ).to_h
     end
 
     def invitee_name

@@ -17,7 +17,7 @@ class IndifferentAccessHash
   # @param value [Object] the value to set
   # @return [Object] the value of the key
   def []=(key, value)
-    @hash[key.to_s] = value
+    @hash[key.to_sym] = value
   end
 
   # @param other [Object] the object to compare

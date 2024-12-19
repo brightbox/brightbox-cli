@@ -21,10 +21,6 @@ module Brightbox
       []
     end
 
-    def attributes
-      fog_model.attributes
-    end
-
     def to_row
       attributes.merge(
         :locked => locked?,

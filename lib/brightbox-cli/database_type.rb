@@ -3,10 +3,10 @@ module Brightbox
     def self.require_account?; true; end
 
     def attributes
-      o = fog_model.attributes
-      o[:ram] = ram
-      o[:disk] = disk
-      o
+      fog_attributes.tap do |attrs|
+        attrs[:ram] = ram
+        attrs[:disk] = disk
+      end
     end
 
     def ram
@@ -15,10 +15,6 @@ module Brightbox
 
     def disk
       fog_model.disk.to_i
-    end
-
-    def to_row
-      attributes
     end
 
     def self.all

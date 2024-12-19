@@ -69,7 +69,7 @@ module Brightbox
     def to_row
       row_attributes = attributes
       row_attributes[:account] = attributes[:account]["id"]
-      row_attributes
+      row_attributes.to_h
     end
   end
 end

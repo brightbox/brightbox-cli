@@ -1,11 +1,9 @@
 module Brightbox
   class User < Api
-    def attributes
-      fog_model.attributes
-    end
-
     def to_row
-      attributes.merge(:accounts => accounts.size)
+      attributes.merge(
+        accounts: accounts.size
+      )
     end
 
     def self.all

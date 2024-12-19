@@ -70,34 +70,34 @@ module Brightbox
     end
 
     def type_identifier
-      return unless fog_model.attributes.key?("database_server_type")
+      return unless fog_attributes.key?("database_server_type")
 
-      fog_model.attributes["database_server_type"]["id"]
+      fog_attributes["database_server_type"]["id"]
     end
 
     def zone_handle
-      return unless fog_model.attributes.key?("zone")
+      return unless fog_attributes.key?("zone")
 
-      fog_model.attributes["zone"]["handle"]
+      fog_attributes["zone"]["handle"]
     end
 
     def to_row
-      a = fog_model.attributes
-      a[:status] = fog_model.state
-      a[:locked] = locked?
-      a[:type] = type_identifier
-      a[:db_engine] = engine_version
-      a[:engine] = database_engine
-      a[:version] = database_version
-      a[:maintenance_weekday] = maintenance_weekday
-      a[:maintenance_hour] = maintenance_hour
-      a[:maintenance_window] = maintenance_window
-      a[:zone] = zone_handle
-      a[:created_on] = created_on
-      a[:allow_access] = allow_access
-      a[:cloud_ip_ids] = cloud_ip_ids
-      a[:cloud_ips] = cloud_ip_addresses
-      a
+      attributes.merge(
+        status: fog_model.state,
+        locked: locked?,
+        type: type_identifier,
+        db_engine: engine_version,
+        engine: database_engine,
+        version: database_version,
+        maintenance_weekday: maintenance_weekday,
+        maintenance_hour: maintenance_hour,
+        maintenance_window: maintenance_window,
+        zone: zone_handle,
+        created_on: created_on,
+        allow_access: allow_access,
+        cloud_ip_ids: cloud_ip_ids,
+        cloud_ips: cloud_ip_addresses
+      )
     end
 
     def engine_version
