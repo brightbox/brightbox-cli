@@ -70,6 +70,8 @@ module Brightbox
     def status
       if fog_model.attributes[:status] == "available"
         public? ? "public" : "private"
+      elsif fog_model.attributes[:status] == "deprecated"
+        public? ? "deprecated" : "private"
       else
         fog_model.attributes[:status]
       end
