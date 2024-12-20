@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    brightbox-cli (5.0.0.alpha)
+    brightbox-cli (5.0.0.rc1)
       fog-brightbox (>= 1.12.0)
       fog-core (< 2.0)
       gli (~> 2.21)

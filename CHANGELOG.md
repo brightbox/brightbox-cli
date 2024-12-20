@@ -1,3 +1,63 @@
+### v5.0.0.rc1 / 2024-12-20
+
+[Full Changelog](https://github.com/brightbox/brightbox-cli/compare/v4.8.0...v5.0.0.rc1)
+
+Backwards incompatible changes:
+
+* Drop support for Ruby versions older than 2.7
+* Update `Gemfile.lock` to use Bundler 2.4.22
+* When ENV `HOME` is not set, the working directory is used for configs
+  rather than `/.brightbox` to fix issues with containers
+
+Enhancements:
+
+* Added support for ACME certificates
+* `brightbox lbs create` and `update` accepts `--acme-domains` with CSV
+  domains to request them to be setup on the load balancer
+* `brightbox lbs show` outputs ACME related fields
+  * `acme_domains` - domains requested to be present
+  * `acme_cert_expires` - when the ACME certificate in no longer valid
+  * `acme_cert_fingerprint` - the fingerprint of the ACME certificate
+  * `acme_cert_issued_at` - when the ACME certificate was issued
+  * `acme_cert_subjects` - domain present on ACME certificate
+* `brightbox firewall-policy` is now an alias for `firewall-policies`
+
+Changes:
+
+* `brightbox images` will now report an deprecated and private image as
+  "private" rather than "deprecated"
+* Update `fog-brightbox` to `v1.12.0`
+* Numerous dependency gems updated
+* Expanded debugging output
+* `Brightbox::Api#attributes` attempts to transform and make attributes
+  indifferent to String or Symbol keys as that has introduced numerous
+  issues over the years. Fog only converts the top level of keys from
+  Strings to Symbols resulting in mismatched keys throughout
+* Refactored all models `#attributes` and `#to_row` methods to use the
+  above with more involved testing
+
+Bug fixes:
+
+* `brightbox lbs create` no longer requires at least one node to balance
+  which was outdated client side validation long removed from the API
+* `brightbox lbs create` should now recognise the `--buffer-size` option
+* `brightbox lbs update` converts `buffer-size` to integer before sending
+* `brightbox cloudips unmap` incorrectly used the "map" description in
+  the help output. This is now fixed
+
+Testing:
+
+* Update CI testing matrix from Ruby 2.7 up to 3.3
+* Ensure bundler version declared in `Gemfile.lock` is used by CI tests
+* CI setting completes all builds rather than cancelling on one fail
+* CI testing includes `DEBUG` ENV settings
+* Tests updated to not "fail" when `DEBUG` output is included upsetting
+  matches to expected output in numerous cases
+* Simplecov has been introduced and configured to prevent a drop in
+  test coverage.
+* Temporary testing config directories are removed explicitly to prevent
+  config bleeding in some test scenarios
+
 ### v4.8.0 / 2024-10-23
 
 [Full Changelog](https://github.com/brightbox/brightbox-cli/compare/v4.7.0...v4.8.0)
