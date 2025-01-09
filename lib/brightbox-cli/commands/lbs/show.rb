@@ -4,7 +4,11 @@ module Brightbox
     cmd.arg_name "lbs-id..."
     cmd.command [:show] do |c|
       c.action do |global_options, _options, args|
-        lbs = LoadBalancer.find_all_or_warn(args)
+        raise "You must specify load balancer IDs to show" if args.empty?
+
+        lbs = LoadBalancer.find_or_call(args) do |id|
+          raise "Couldn't find a load balancer with ID #{id}"
+        end
 
         table_opts = global_options.merge(
           :vertical => true,

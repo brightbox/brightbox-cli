@@ -11,40 +11,15 @@ describe "brightbox lbs" do
       cache_access_token(config, "f83da712e6299cda953513ec07f7a754f747d727")
     end
 
-    context "without identifier argument" do
+    context "without arguments" do
       let(:argv) { %w[lbs show] }
-      let(:json_response) do
-        <<~EOS
-        [
-          {
-            "id":"lba-12345",
-            "name":"app-lb1",
-            "status":"active",
-            "created_at":"2012-03-05T12:00:00Z",
-            "nodes":[
-              {
-                "id":"srv-12345",
-                "status":"active"
-              }
-            ]
-          }
-        ]
-        EOS
-      end
 
-      before do
-        stub_request(:get, "http://api.brightbox.localhost/1.0/load_balancers?account_id=acc-12345")
-          .to_return(:status => 200, :body => json_response)
-      end
+      it "reports missing IDs" do
+        expect { output }.to_not raise_error
 
-      it "shows load balancer details" do
         aggregate_failures do
-          expect(stderr).to be_empty unless ENV["DEBUG"]
-          expect(stdout).to include("id: lba-12345")
-          expect(stdout).to include("status: active")
-          expect(stdout).to include("name: app-lb1")
-          expect(stdout).to include("created_at: 2012-03-05T12:00Z")
-          expect(stdout).to include("nodes: srv-12345")
+          expect(stderr).to include("ERROR: You must specify load balancer IDs to show")
+          expect(stdout).to be_empty
         end
       end
     end
@@ -101,6 +76,117 @@ describe "brightbox lbs" do
           expect(stdout).to include("name: app-lb1")
           expect(stdout).to include("created_at: 2012-03-05T12:00Z")
           expect(stdout).to include("nodes: srv-12345")
+          expect(stdout).to include("acme_domains: domain.test:verified,domain2.test:verified")
+          expect(stdout).to include("acme_cert_subjects: domain.test")
+          expect(stdout).to include("acme_cert_expires_at: 2025-12-31T23:59:59Z")
+          expect(stdout).to include("acme_cert_fingerprint: fingerprint")
+          expect(stdout).to include("acme_cert_issued_at: 2025-01-01T00:00:00Z")
+        end
+      end
+    end
+
+    context "with multiple identifiers" do
+      let(:argv) { %w[lbs show lba-12345 lba-54321] }
+      let(:json_response_1) do
+        <<~EOS
+        {
+          "id":"lba-12345",
+          "name":"app-lb1",
+          "status":"active",
+          "created_at":"2012-03-05T12:00:00Z",
+          "acme": {
+            "domains": [
+              {
+                "identifier": "domain.test",
+                "status": "verified"
+              },
+              {
+                "identifier": "domain2.test",
+                "status": "verified"
+              }
+            ],
+            "certificate": {
+              "domains": [
+                "domain.test"
+              ],
+              "expires_at": "2025-12-31T23:59:59Z",
+              "fingerprint": "fingerprint",
+              "issued_at": "2025-01-01T00:00:00Z"
+            }
+          },
+          "nodes":[
+            {
+              "id":"srv-12345",
+              "status":"active"
+            }
+          ]
+        }
+        EOS
+      end
+      let(:json_response_2) do
+        <<~EOS
+        {
+          "id":"lba-54321",
+          "name":"app-lb2",
+          "status":"active",
+          "created_at":"2012-03-05T12:00:00Z",
+          "acme": {
+            "domains": [
+              {
+                "identifier": "domain.test",
+                "status": "verified"
+              },
+              {
+                "identifier": "domain2.test",
+                "status": "verified"
+              }
+            ],
+            "certificate": {
+              "domains": [
+                "domain.test"
+              ],
+              "expires_at": "2025-12-31T23:59:59Z",
+              "fingerprint": "fingerprint",
+              "issued_at": "2025-01-01T00:00:00Z"
+            }
+          },
+          "nodes":[
+            {
+              "id":"srv-54321",
+              "status":"active"
+            }
+          ]
+        }
+        EOS
+      end
+
+      before do
+        stub_request(:get, "http://api.brightbox.localhost/1.0/load_balancers/lba-12345?account_id=acc-12345")
+          .to_return(:status => 200, :body => json_response_1)
+
+        stub_request(:get, "http://api.brightbox.localhost/1.0/load_balancers/lba-54321?account_id=acc-12345")
+          .to_return(:status => 200, :body => json_response_2)
+      end
+
+      it "shows multiple load balancer details" do
+        aggregate_failures do
+          expect(stderr).to be_empty unless ENV["DEBUG"]
+          expect(stdout).to include("id: lba-12345")
+          expect(stdout).to include("status: active")
+          expect(stdout).to include("name: app-lb1")
+          expect(stdout).to include("created_at: 2012-03-05T12:00Z")
+          expect(stdout).to include("nodes: srv-12345")
+          expect(stdout).to include("acme_domains: domain.test:verified,domain2.test:verified")
+          expect(stdout).to include("acme_cert_subjects: domain.test")
+          expect(stdout).to include("acme_cert_expires_at: 2025-12-31T23:59:59Z")
+          expect(stdout).to include("acme_cert_fingerprint: fingerprint")
+          expect(stdout).to include("acme_cert_issued_at: 2025-01-01T00:00:00Z")
+
+          expect(stdout).to include("id: lba-54321")
+          expect(stdout).to include("status: active")
+          expect(stdout).to include("name: app-lb2")
+          expect(stdout).to include("created_at: 2012-03-05T12:00Z")
+          expect(stdout).to include("nodes: srv-54321")
           expect(stdout).to include("acme_domains: domain.test:verified,domain2.test:verified")
           expect(stdout).to include("acme_cert_subjects: domain.test")
           expect(stdout).to include("acme_cert_expires_at: 2025-12-31T23:59:59Z")
