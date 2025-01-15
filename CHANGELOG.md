@@ -8,6 +8,9 @@ Backwards incompatible changes:
 * Update `Gemfile.lock` to use Bundler 2.4.22
 * When ENV `HOME` is not set, the working directory is used for configs
   rather than `/.brightbox` to fix issues with containers
+* `show` commands require at least one argument to
+   prevent an issue where the wrong, summary API was
+   used resulting in missing data in tables
 
 Enhancements:
 
