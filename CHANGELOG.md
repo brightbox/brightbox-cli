@@ -1,6 +1,6 @@
-### v5.0.0.rc1 / 2024-12-20
+### v5.0.0.rc3 / 2024-12-20
 
-[Full Changelog](https://github.com/brightbox/brightbox-cli/compare/v4.8.0...v5.0.0.rc1)
+[Full Changelog](https://github.com/brightbox/brightbox-cli/compare/v4.8.0...v5.0.0.rc3)
 
 Backwards incompatible changes:
 
@@ -11,6 +11,8 @@ Backwards incompatible changes:
 * `show` commands require at least one argument to
    prevent an issue where the wrong, summary API was
    used resulting in missing data in tables
+* `images` architecture is now its own `arch` column and no longer
+  combined with the name field.
 
 Enhancements:
 
@@ -60,6 +62,8 @@ Testing:
   test coverage.
 * Temporary testing config directories are removed explicitly to prevent
   config bleeding in some test scenarios
+* Tests for `server activate_console` confirm support for local time and
+  time zones.
 
 ### v4.8.0 / 2024-10-23
 
