@@ -23,7 +23,11 @@ module Brightbox
           uri.query = "password=#{r['console_token']}"
 
           expires = Time.parse(r["console_token_expires"])
-          consoles << { :url => uri.to_s, :token => r["console_token"], :expires => expires.localtime.to_s }
+          consoles << {
+            url: uri.to_s,
+            token: r["console_token"],
+            expires: expires.localtime.to_s
+          }
         end
 
         render_table(consoles, global_options.merge(:fields => %i[url token expires], :resize => false))
