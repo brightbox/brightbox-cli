@@ -1,6 +1,6 @@
-### v5.0.0.rc3 / 2024-12-20
+### v5.0.0 / 2025-01-20
 
-[Full Changelog](https://github.com/brightbox/brightbox-cli/compare/v4.8.0...v5.0.0.rc3)
+[Full Changelog](https://github.com/brightbox/brightbox-cli/compare/v4.8.0...v5.0.0)
 
 Backwards incompatible changes:
 
