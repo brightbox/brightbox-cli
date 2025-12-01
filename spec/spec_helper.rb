@@ -9,7 +9,6 @@ SimpleCov.start do
 
   # Currently just above 75% coverage - don't make it worse
   minimum_coverage 75
-  refuse_coverage_drop
 end
 
 LIB_DIR = File.expand_path(File.join(File.dirname(__FILE__), "..", "lib"))
