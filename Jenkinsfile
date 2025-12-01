@@ -66,6 +66,28 @@ pipeline {
             sh 'bundle exec rake spec'
           }
         }
+        stage("Ruby 3.2") {
+          agent {
+            docker {
+              image 'ruby:3.2'
+            }
+          }
+          steps {
+            sh 'bundle install --deployment'
+            sh 'bundle exec rake spec'
+          }
+        }
+        stage("Ruby 3.3") {
+          agent {
+            docker {
+              image 'ruby:3.3'
+            }
+          }
+          steps {
+            sh 'bundle install --deployment'
+            sh 'bundle exec rake spec'
+          }
+        }
       }
     }
   }
