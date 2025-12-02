@@ -1,3 +1,17 @@
+# Polyfill for newer Ruby versions that remove
+require "cgi"
+
+unless CGI.respond_to?(:parse)
+  require "uri"
+  def CGI.parse(query)
+    params = Hash.new { |h, k| h[k] = [] }
+    URI.decode_www_form(query).each do |key, value|
+      params[key] << value
+    end
+    params
+  end
+end
+
 require "vcr"
 
 VCR.configure do |vcr|

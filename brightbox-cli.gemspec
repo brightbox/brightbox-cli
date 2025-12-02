@@ -21,6 +21,9 @@ Gem::Specification.new do |s|
   s.executables   = `git ls-files -- bin/*`.split("\n").map { |f| File.basename(f) }
   s.require_paths = ["lib"]
 
+  s.add_dependency "abbrev"
+  s.add_dependency "base64"
+  s.add_dependency "bigdecimal"
   s.add_dependency "fog-brightbox", ">= 1.12.0"
   s.add_dependency "fog-core", "< 2.0"
   s.add_dependency "gli", "~> 2.21"
@@ -29,6 +32,7 @@ Gem::Specification.new do |s|
   s.add_dependency "i18n", ">= 0.6", "< 1.11"
   s.add_dependency "mime-types", "~> 3.0"
   s.add_dependency "multi_json", "~> 1.11"
+  s.add_dependency "ostruct"
 
   s.add_development_dependency "mocha"
   s.add_development_dependency "pry-remote"
