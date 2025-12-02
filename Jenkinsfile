@@ -4,7 +4,7 @@ pipeline {
     ansiColor('xterm')
   }
   triggers {
-    cron('@monthly')
+    cron('@weekly')
   }
   stages {
     stage("Run tests") {
