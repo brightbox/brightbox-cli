@@ -12,7 +12,7 @@
     "ghcr.io/devcontainers-extra/features/fish-apt-get:1": {},
     "ghcr.io/devcontainers-extra/features/neovim-apt-get:1": {},
     "ghcr.io/devcontainers-extra/features/ripgrep:1": {},
-    "ghcr.io/schlich/devcontainer-features/jujutsu:0": {},
+    "ghcr.io/devcontainer-community/devcontainer-features/jj-vcs.dev:1": {},
     "ghcr.io/stuartleeks/dev-container-features/shell-history:0": {}
   },
   "customizations": {
