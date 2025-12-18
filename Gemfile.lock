@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    brightbox-cli (5.0.0)
+    brightbox-cli (5.1.0)
       abbrev
       base64
       bigdecimal

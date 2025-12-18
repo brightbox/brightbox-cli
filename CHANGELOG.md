@@ -1,3 +1,20 @@
+### v5.1.0 / 2025-12-18
+
+[Full Changelog](https://github.com/brightbox/brightbox-cli/compare/v5.0.0...v5.1.0)
+
+Enhancements:
+
+* Update dependencies for Ruby 4.0 support
+
+Changes:
+
+* Numerous dependency gems updated
+
+Testing:
+
+* Added development container
+* CI changes
+
 ### v5.0.0 / 2025-01-20
 
 [Full Changelog](https://github.com/brightbox/brightbox-cli/compare/v4.8.0...v5.0.0)
