@@ -22,19 +22,20 @@ jobs:
       fail-fast: false
       matrix:
         ruby: ["2.7", "3.0", "3.1", "3.2", "3.3", "head"]
+        include:
+          - ruby: "2.7"
+            bundler: "2.4.22"
     env:
       DEBUG: "true"
     steps:
     - uses: actions/checkout@v3
-    - name: Remove bundler version pin for head Ruby
-      if: matrix.ruby == 'head'
-      run: sed -i '/^BUNDLED WITH/{N;d}' Gemfile.lock
     - name: Set up Ruby ${{ matrix.ruby }}
     # To automatically get bug fixes and new Ruby versions for ruby/setup-ruby,
     # change this to (see https://github.com/ruby/setup-ruby#versioning):
       uses: ruby/setup-ruby@v1
       with:
         ruby-version: ${{ matrix.ruby }}
+        bundler: ${{ matrix.bundler || 'default' }}
         bundler-cache: true
     - name: Run tests
       run: bundle exec rake
