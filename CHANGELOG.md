@@ -1,3 +1,21 @@
+### v5.1.1 / 2026-05-12
+
+[Full Changelog](https://github.com/brightbox/brightbox-cli/compare/v5.1.0...v5.1.1)
+
+Changes:
+
+* Bump `addressable` from 2.8.0 to 2.9.0
+* Remove `BUNDLED_WITH` from `Gemfile.lock` to avoid Bundler conflict
+  where Ruby 4 failed with v2.4.22 but without specifying everything can
+  install without a hard bundling error
+
+Testing:
+
+* CI now uses `bundler-cache` via `ruby/setup-ruby` instead of a manual
+  Bundler install step, improving reliability across Ruby versions
+* Update devcontainer image to Ruby 2.7
+* Switch `jj` devcontainer feature to `devcontainer-community` source
+
 ### v5.1.0 / 2025-12-18
 
 [Full Changelog](https://github.com/brightbox/brightbox-cli/compare/v5.0.0...v5.1.0)
@@ -22,7 +40,7 @@ Testing:
 Backwards incompatible changes:
 
 * Drop support for Ruby versions older than 2.7
-* Update `Gemfile.lock` to use Bundler 2.4.22
+
 * When ENV `HOME` is not set, the working directory is used for configs
   rather than `/.brightbox` to fix issues with containers
 * `show` commands require at least one argument to
