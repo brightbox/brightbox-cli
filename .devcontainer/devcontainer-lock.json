@@ -1,0 +1,29 @@
+{
+  "features": {
+    "ghcr.io/devcontainer-community/devcontainer-features/jj-vcs.dev:1": {
+      "version": "1.0.4",
+      "resolved": "ghcr.io/devcontainer-community/devcontainer-features/jj-vcs.dev@sha256:52aacbe68546260c846e6e40c1b6ec6d98018b43b7d2ab633c8a63e4622b2ed2",
+      "integrity": "sha256:52aacbe68546260c846e6e40c1b6ec6d98018b43b7d2ab633c8a63e4622b2ed2"
+    },
+    "ghcr.io/devcontainers-extra/features/fish-apt-get:1": {
+      "version": "1.0.5",
+      "resolved": "ghcr.io/devcontainers-extra/features/fish-apt-get@sha256:d3c21bb6aec6e0f9d5348adee443c70c31d5f4372b8ad5f56a0ab925b2725108",
+      "integrity": "sha256:d3c21bb6aec6e0f9d5348adee443c70c31d5f4372b8ad5f56a0ab925b2725108"
+    },
+    "ghcr.io/devcontainers-extra/features/neovim-apt-get:1": {
+      "version": "1.0.20",
+      "resolved": "ghcr.io/devcontainers-extra/features/neovim-apt-get@sha256:99663f4dfdfac03321caa2f72e64132a43ae778e7cc2da2681e6a50e4f071038",
+      "integrity": "sha256:99663f4dfdfac03321caa2f72e64132a43ae778e7cc2da2681e6a50e4f071038"
+    },
+    "ghcr.io/devcontainers-extra/features/ripgrep:1": {
+      "version": "1.0.15",
+      "resolved": "ghcr.io/devcontainers-extra/features/ripgrep@sha256:0dfc0ac16f0d6aa754d006a138fd4cb4a62c245d308306edf8ad1b7a80b8fdf2",
+      "integrity": "sha256:0dfc0ac16f0d6aa754d006a138fd4cb4a62c245d308306edf8ad1b7a80b8fdf2"
+    },
+    "ghcr.io/stuartleeks/dev-container-features/shell-history:0": {
+      "version": "0.0.6",
+      "resolved": "ghcr.io/stuartleeks/dev-container-features/shell-history@sha256:f266af2d093e0611921ccf510046e53affeccb353405ee05d2b91fcc4f69c1c9",
+      "integrity": "sha256:f266af2d093e0611921ccf510046e53affeccb353405ee05d2b91fcc4f69c1c9"
+    }
+  }
+}

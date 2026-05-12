@@ -1,4 +1,7 @@
-FROM mcr.microsoft.com/devcontainers/ruby:2-3.4-trixie
+FROM mcr.microsoft.com/devcontainers/ruby:2.7-bullseye
+
+# Remove stale Yarn repository entries from base image to avoid apt signature errors
+RUN rm -f /etc/apt/sources.list.d/yarn.sources /etc/apt/sources.list.d/yarn.list
 
 # Install additional OS packages
 RUN apt-get update && export DEBIAN_FRONTEND=noninteractive \
